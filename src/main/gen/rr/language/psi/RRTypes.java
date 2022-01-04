@@ -51,6 +51,7 @@ public interface RRTypes {
   IElementType COORDS_WITH_XY = new RRElementType("COORDS_WITH_XY");
   IElementType CORE_ATTITUDES_ITEM = new RRElementType("CORE_ATTITUDES_ITEM");
   IElementType CULTURE_NAME_DECL = new RRElementType("CULTURE_NAME_DECL");
+  IElementType CULTURE_REF = new RRElementType("CULTURE_REF");
   IElementType DESCR_CULTURES = new RRElementType("DESCR_CULTURES");
   IElementType DESCR_FACTION_GROUPS = new RRElementType("DESCR_FACTION_GROUPS");
   IElementType DESCR_MERCENARIES = new RRElementType("DESCR_MERCENARIES");
@@ -1316,6 +1317,9 @@ public interface RRTypes {
       }
       else if (type == CULTURE_NAME_DECL) {
         return new RRCultureNameDeclImpl(node);
+      }
+      else if (type == CULTURE_REF) {
+        return new RRCultureRefImpl(node);
       }
       else if (type == DESCR_CULTURES) {
         return new RRDescrCulturesImpl(node);

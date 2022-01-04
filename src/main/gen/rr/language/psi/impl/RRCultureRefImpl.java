@@ -10,15 +10,16 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static rr.language.psi.RRTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import rr.language.psi.*;
+import rr.language.psi.references.CultureReference;
 
-public class RRAncillaryDefImpl extends ASTWrapperPsiElement implements RRAncillaryDef {
+public class RRCultureRefImpl extends ASTWrapperPsiElement implements RRCultureRef {
 
-  public RRAncillaryDefImpl(@NotNull ASTNode node) {
+  public RRCultureRefImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RRVisitor visitor) {
-    visitor.visitAncillaryDef(this);
+    visitor.visitCultureRef(this);
   }
 
   @Override
@@ -28,21 +29,19 @@ public class RRAncillaryDefImpl extends ASTWrapperPsiElement implements RRAncill
   }
 
   @Override
-  @Nullable
-  public RRAncillaryNameDecl getAncillaryNameDecl() {
-    return findChildByClass(RRAncillaryNameDecl.class);
+  @NotNull
+  public PsiElement getId() {
+    return findNotNullChildByType(ID);
   }
 
   @Override
-  @NotNull
-  public List<RRAncillaryRef> getAncillaryRefList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RRAncillaryRef.class);
+  public PsiElement setName(String newName) {
+    return RRPsiImplUtil.setName(this, newName);
   }
 
   @Override
-  @NotNull
-  public List<RRCultureRef> getCultureRefList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RRCultureRef.class);
+  public CultureReference getReference() {
+    return RRPsiImplUtil.getReference(this);
   }
 
 }

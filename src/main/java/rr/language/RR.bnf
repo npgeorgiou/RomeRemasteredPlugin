@@ -1417,7 +1417,7 @@ ancillary_def ::= ANCILLARY ancillary_name_decl
                     IMAGE TGA_FILE*
                     (UNIQUE)*
                     (EXCLUDEDANCILLARIES <<list ancillary_ref>>)*
-                    (EXCLUDECULTURES list_of_IDs)*
+                    (EXCLUDECULTURES <<list culture_ref>>)*
                     DESCRIPTION ID
                     EFFECTSDESCRIPTION list_of_IDs
                     (EFFECT ID INT)*
@@ -1550,6 +1550,7 @@ descr_cultures ::= DESCR_CULTURES_MARKER
                    CSB COMMA
 
 culture_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+culture_ref ::= ID {methods=[setName getReference]}
 str_culture_ref ::= STRING {methods=[setName getReference]}
 // ############### descr_cultures end #################################
 

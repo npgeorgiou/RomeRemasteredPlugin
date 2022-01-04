@@ -39,7 +39,7 @@ public class ConditionAliases extends RRCompletionProvider {
             .collect(Collectors.toList());
 
         for (String alias : aliases) {
-            resultSet.addElement(LookupElementBuilder.create(alias));
+            resultSet.addElement(LookupElementBuilder.create(alias).withTypeText("alias"));
         }
     }
 }

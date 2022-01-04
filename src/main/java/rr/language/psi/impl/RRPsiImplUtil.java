@@ -76,6 +76,16 @@ public class RRPsiImplUtil {
         return decl.getFirstChild();
     }
 
+    public static PsiElement setName(RRCultureRef ref, String newName) {
+        RRUnitRef newRef = RRElementFactory.createUnitRef(ref.getProject(), newName);
+        return ref.replace(newRef);
+    }
+
+    public static CultureReference getReference(RRCultureRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new CultureReference(ref, range);
+    }
+
     public static PsiElement setName(RRStrCultureRef ref, String newName) {
         PsiElement str = RRElementFactory.createString(ref.getProject(), newName);
         ref.getFirstChild().replace(str);
@@ -273,12 +283,12 @@ public class RRPsiImplUtil {
     }
 
     public static UnitReference getReference(RRUnitRef ref) {
-        TextRange foo = new TextRange(
+        TextRange range = new TextRange(
             ref.getFirstChild().getTextRangeInParent().getStartOffset(),
             ref.getLastChild().getTextRangeInParent().getEndOffset()
         );
 
-        return new UnitReference(ref, foo);
+        return new UnitReference(ref, range);
     }
 
     public static PsiElement setName(RRStrUnitRef ref, String newName) {

@@ -199,6 +199,10 @@ public class RRVisitor extends PsiElementVisitor {
     visitNamedElement(o);
   }
 
+  public void visitCultureRef(@NotNull RRCultureRef o) {
+    visitPsiElement(o);
+  }
+
   public void visitDescrCultures(@NotNull RRDescrCultures o) {
     visitPsiElement(o);
   }

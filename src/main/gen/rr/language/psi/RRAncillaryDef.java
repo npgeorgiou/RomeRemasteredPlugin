@@ -13,4 +13,7 @@ public interface RRAncillaryDef extends PsiElement {
   @NotNull
   List<RRAncillaryRef> getAncillaryRefList();
 
+  @NotNull
+  List<RRCultureRef> getCultureRefList();
+
 }

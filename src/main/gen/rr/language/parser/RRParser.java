@@ -422,7 +422,7 @@ public class RRParser implements PsiParser, LightPsiParser {
   //                     IMAGE TGA_FILE*
   //                     (UNIQUE)*
   //                     (EXCLUDEDANCILLARIES <<list ancillary_ref>>)*
-  //                     (EXCLUDECULTURES list_of_IDs)*
+  //                     (EXCLUDECULTURES <<list culture_ref>>)*
   //                     DESCRIPTION ID
   //                     EFFECTSDESCRIPTION list_of_IDs
   //                     (EFFECT ID INT)*
@@ -515,7 +515,7 @@ public class RRParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (EXCLUDECULTURES list_of_IDs)*
+  // (EXCLUDECULTURES <<list culture_ref>>)*
   private static boolean ancillary_def_8(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ancillary_def_8")) return false;
     while (true) {
@@ -526,13 +526,13 @@ public class RRParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // EXCLUDECULTURES list_of_IDs
+  // EXCLUDECULTURES <<list culture_ref>>
   private static boolean ancillary_def_8_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ancillary_def_8_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, EXCLUDECULTURES);
-    r = r && list_of_IDs(b, l + 1);
+    r = r && list(b, l + 1, RRParser::culture_ref);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -4152,6 +4152,18 @@ public class RRParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, STRING);
     exit_section_(b, m, CULTURE_NAME_DECL, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // ID
+  public static boolean culture_ref(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "culture_ref")) return false;
+    if (!nextTokenIs(b, ID)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, ID);
+    exit_section_(b, m, CULTURE_REF, r);
     return r;
   }
 
