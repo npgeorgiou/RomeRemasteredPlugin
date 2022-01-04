@@ -1,0 +1,1073 @@
+;
+;	This file contains the engine linkages; it gets parsed on application
+;	startup but is not otherwise referred to. The data format is thus:
+;
+;	;						indicates a comment ;-)
+;
+;	Common Data
+;	-----------
+;	type					indicates a new engine type, must be followed by id name string,
+;								and id strings must be unique
+;	culture					permitted cultures - 'all' for any culture
+;	class					underlying engine class
+;	projectile				projectile type used (if any)
+;	engine_collision		cas file detailing the 3D collision model
+;	engine_outline			cas file defining the 'outline' used for collision
+;							when stationary; previously the lowest LOD was used
+;	engine_model			model(s) to be used for the engine, followed by distance in m or "max"
+;	engine_radius			2D radius for the engine
+;	engine_height			height of the engine
+;	engine_mass				total mass for the engine
+;
+;	Artillery Classes Only
+;	----------------------
+;	missile_model			model(s) to be used for the missile, followed by distance in m or "max"
+;	missile_radius			2D radius for the missile
+;	missile_height			height of the missile
+;	missile_mass			total mass for the missile
+;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				ballista
+culture				all
+class				ballista
+projectile			ballista
+
+engine_model_group	normal
+engine_skeleton		ballista
+engine_collision	data/models_engine/Ballista_very_low_LOD.CAS
+engine_outline		data/models_engine/ballista_outline.cas
+engine_model		data/models_engine/Ballista.cas,				20.0
+engine_model		data/models_engine/Ballista_med_lod.CAS,		40.0
+engine_model		data/models_engine/Ballista_low_LOD.CAS,		120.0
+engine_model		data/models_engine/Ballista_very_low_LOD.CAS,	max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		ballista_dying
+engine_outline		data/models_engine/ballista_dead_model_outline.cas
+engine_model		data/models_engine/Ballista_dead_model.CAS, max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/ballista_dead_outline.cas
+engine_model		data/models_engine/Ballista_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		2.5
+engine_length		4
+engine_width		2
+engine_height		1.5
+engine_mass			4
+engine_dock_dist	5
+engine_mob_dist		7.5
+engine_flammable    true
+engine_ignition		2.5
+fire_effect		    engine_fire_ballista_set
+
+obstacle_shape		drop
+obstacle_x_radius	1.0
+obstacle_y_radius	5.0
+
+engine_spo
+
+engine_push_point	-1.5	-1.4
+engine_push_point	1.5		-1.4
+engine_push_point	0.0		-5.2
+
+engine_station		crank	-0.92	-3.65
+engine_station		crank	 0.8	-4.6
+engine_station		captain	-0.0	-5.2
+
+engine_health		15
+;engine_weapon		ballista
+;engine_armour		ballista
+
+missile_model		data/models_engine/Bolt_high.CAS,  20.0
+missile_model		data/models_engine/Bolt_high.CAS,  40.0
+missile_model		data/models_engine/Bolt_high.CAS,  max
+missile_pos			0.0 1.0 0.0
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				onager
+culture				all
+class				onager
+projectile			boulder
+
+engine_model_group	normal
+engine_skeleton		onager
+engine_collision	data/models_engine/Onager_low.CAS
+engine_outline		data/models_engine/onager_outline.cas
+engine_model		data/models_engine/Onager_high.CAS, 40.0
+engine_model		data/models_engine/Onager_med.CAS,  80.0
+engine_model		data/models_engine/Onager_low.CAS,  max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		onager_dying
+engine_outline		data/models_engine/onager_dying_outline.cas
+engine_model		data/models_engine/onager_dying_model01.cas, max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/onager_dying_dead_outline.cas
+engine_model		data/models_engine/onager_dying_dead.CAS,  max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		2
+engine_length		4
+engine_width		3
+engine_height		4.5
+engine_mass			8
+engine_dock_dist	4
+engine_mob_dist		5.5
+engine_flammable    true
+engine_ignition		2.5
+fire_effect		    engine_fire_onager_set
+
+obstacle_shape		rectangle
+obstacle_x_radius	1.5
+obstacle_y_radius	3.0
+
+engine_spo
+
+engine_push_point	-1.1	-2.7
+engine_push_point	1.1		-2.7
+engine_push_point	0.0		-2.7
+
+engine_station		crank	-1.81	-1.96
+engine_station		crank	 1.83	-2.46
+engine_station		captain	-0.7	-4.5
+
+engine_health		15
+;engine_weapon		ballista
+;engine_armour		ballista
+
+missile_model		data/models_engine/Big_Boulder_high.CAS, 20.0
+missile_model		data/models_engine/Big_Boulder_med.CAS,  40.0
+missile_model		data/models_engine/Big_Boulder_low.CAS,  max
+missile_pos			0.0 6.8 1.2
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+type				heavy_onager
+culture				all
+class				heavy_onager
+projectile			big_boulder
+
+engine_model_group	normal
+engine_skeleton		onager
+engine_collision	data/models_engine/heavy_onager_low.CAS
+engine_outline		data/models_engine/heavy_onager_outline.cas
+engine_model		data/models_engine/heavy_onager_high.CAS, 40.0
+engine_model		data/models_engine/heavy_onager_med.CAS,  80.0
+engine_model		data/models_engine/heavy_onager_low.CAS,  max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		onager_dying
+engine_outline		data/models_engine/heavy_onager_dying_outline.cas
+engine_model		data/models_engine/heavy_onager_dying.CAS, max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/heavy_onager_dead_outline.cas
+engine_model		data/models_engine/heavy_onager_dead.CAS,  max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		2
+engine_length		4
+engine_width		3
+engine_height		4.5
+engine_mass			8
+engine_dock_dist	4
+engine_mob_dist		5.5
+engine_flammable    true
+engine_ignition		1.0
+fire_effect		    engine_fire_onager_set
+
+obstacle_shape		rectangle
+obstacle_x_radius	1.5
+obstacle_y_radius	3.0
+
+engine_spo
+
+engine_push_point	-1.1	-2.7
+engine_push_point	1.1		-2.7
+engine_push_point	0.0		-2.7
+
+engine_station		crank	-1.81	-1.96
+engine_station		crank	 1.83	-2.46
+engine_station		captain	-0.7	-4.5
+
+engine_health		30
+;engine_weapon		ballista
+;engine_armour		ballista
+
+missile_model		data/models_engine/Big_Boulder_high.CAS, 20.0
+missile_model		data/models_engine/Big_Boulder_med.CAS,  40.0
+missile_model		data/models_engine/Big_Boulder_low.CAS,  max
+missile_pos			0.0 6.8 1.2
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				scorpion
+culture				all
+class				scorpion
+projectile			scorpion
+
+engine_model_group	normal
+engine_skeleton		scorpion
+engine_collision	data/models_engine/Scorpion_very_low_lod.CAS
+engine_outline		data/models_engine/scorpion_outline.cas
+engine_model		data/models_engine/scorpion.CAS,				10.0
+engine_model		data/models_engine/Scorpion_med_lod.CAS,		20.0
+engine_model		data/models_engine/Scorpion_low_lod.CAS,		40.0
+engine_model		data/models_engine/Scorpion_very_low_lod.CAS,	max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		scorpion_dying
+engine_outline		data/models_engine/scorpion_dying_outline.cas
+engine_model		data/models_engine/scorpion_dying_model.CAS,  max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/scorpion_dead_outline.cas
+engine_model		data/models_engine/scorpion_dead.CAS,  max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		1
+engine_length		2
+engine_width		1.5
+engine_height		1.5
+engine_mass			2
+engine_dock_dist	1.5
+engine_mob_dist		4
+engine_flammable    true
+engine_ignition		2.5
+fire_effect		    engine_fire_ballista_set
+
+obstacle_shape		drop
+obstacle_x_radius	0.5
+obstacle_y_radius	1.0
+
+engine_spo
+
+engine_push_point			0.0	-1.85
+engine_station		crank	0.0	-1.93
+
+engine_health		10
+;engine_weapon		ballista
+;engine_armour		ballista
+
+missile_model		data/models_engine/Bolt_high.CAS,  20.0
+missile_model		data/models_engine/Bolt_high.CAS,  40.0
+missile_model		data/models_engine/Bolt_high.CAS,  max
+missile_pos			0.0 1.0 0.0
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Bob currently a clone of the ballista with a different projectile
+
+type				repeating_ballista
+culture				all
+class				repeating_ballista
+projectile			repeating_ballista
+
+engine_model_group	normal
+engine_skeleton		ballista
+engine_collision	data/models_engine/repeating_ballista_lowest.CAS
+engine_outline		data/models_engine/repeating_ballista_outline.cas
+engine_model		data/models_engine/repeating_ballista_high.CAS,		20.0
+engine_model		data/models_engine/repeating_ballista_med.CAS,		40.0
+engine_model		data/models_engine/repeating_ballista_low.CAS,		120.0
+engine_model		data/models_engine/repeating_ballista_lowest.CAS,	max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		ballista_dying
+engine_outline		data/models_engine/ballista_dead_model_outline.cas
+engine_model		data/models_engine/Ballista_dead_model.CAS, max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/ballista_dead_outline.cas
+engine_model		data/models_engine/Ballista_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		2.5
+engine_length		4
+engine_width		2
+engine_height		1.5
+engine_mass			4
+engine_dock_dist	5
+engine_mob_dist		7.5
+engine_flammable    true
+engine_ignition		2.5
+fire_effect		    engine_fire_ballista_set
+
+obstacle_shape		drop
+obstacle_x_radius	1.0
+obstacle_y_radius	5.0
+
+engine_spo
+
+engine_push_point	-1.5	-1.4
+engine_push_point	1.5		-1.4
+engine_push_point	0.0		-5.2
+
+engine_station		crank	-0.92	-3.65
+engine_station		crank	 0.8	-4.6
+engine_station		captain	-0.0	-5.2
+
+engine_health		10
+;engine_weapon		ballista
+;engine_armour		ballista
+
+missile_model		data/models_engine/Bolt_high.CAS,  20.0
+missile_model		data/models_engine/Bolt_high.CAS,  40.0
+missile_model		data/models_engine/Bolt_high.CAS,  max
+missile_pos			0.0 1.0 0.0
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				siege_tower
+culture				all
+class				tower
+variant				small
+projectile			arrow
+
+engine_model_group	normal
+engine_skeleton		siege_tower
+engine_collision	data/models_engine/small_tower_very_low_lod.CAS
+engine_outline		data/models_engine/small_tower_outline.cas
+engine_model		data/models_engine/small_tower_model.CAS,			100
+engine_model		data/models_engine/small_tower_med_lod.CAS,			200
+engine_model		data/models_engine/small_tower_low_lod.CAS,			400
+engine_model		data/models_engine/small_tower_very_low_lod.CAS,	max
+engine_platforms	data/models_engine/small_tower_info.CAS
+
+engine_model_group	dying
+engine_skeleton		siege_tower_dying
+engine_outline		data/models_engine/small_tower_dying_model_outline.cas
+engine_model		data/models_engine/small_tower_dying_model.CAS, max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/small_tower_dying_dead_outline.cas
+engine_model		data/models_engine/small_tower_dying_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		4
+engine_length		7.0
+engine_width		7.0
+engine_height		23
+engine_mass			40
+engine_dock_dist	6.6
+engine_mob_dist		8.0
+engine_flammable    true
+engine_ignition		0.20
+fire_effect		    engine_fire_siege_set
+collapse_effect     engine_collapse_small_tower_set
+
+obstacle_shape		rectangle
+obstacle_x_radius	4.5
+obstacle_y_radius	4.5
+
+engine_spo			physical_obstacle
+
+engine_push_point	-3.5		4.5
+engine_push_point	-1.75		4.5
+engine_push_point	 0.0		4.5
+engine_push_point	 1.75		4.5
+engine_push_point	 3.5		4.5
+engine_push_point	-3.5		5.5
+engine_push_point	-1.75		5.5
+engine_push_point	 0.0		5.5
+engine_push_point	 1.75		5.5
+engine_push_point	 3.5		5.5
+
+engine_health		130
+;engine_weapon		ballista
+;engine_armour		siege tower
+
+attack_stat         8, 2, arrow, 100, 100, missile, archery, piercing, arrow_tower
+attack_stat_attr    ap
+
+arrow_generator		2 21.8 3.3
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		1 21.8 3.3
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		0 21.8 3.3
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		-1 21.8 3.3
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		-2 21.8 3.3
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+missile_model		data/models_engine/Bolt_high.CAS,  20.0
+missile_model		data/models_engine/Bolt_high.CAS,  40.0
+missile_model		data/models_engine/Bolt_high.CAS,  max
+missile_pos			0.0 22 0.0
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				middle_tower
+culture				all
+class				tower
+variant				medium
+projectile			scorpion
+
+engine_model_group	normal
+engine_skeleton		middle_tower
+engine_collision	data/models_engine/Mid_Tow_mod_very_low.CAS
+engine_outline		data/models_engine/mid_tow_outline.cas
+engine_model		data/models_engine/Middle_tow_model.CAS,		200
+engine_model		data/models_engine/Mid_Tow_mod_med.CAS,			400
+engine_model		data/models_engine/Mid_Tow_mod_low.CAS,			800
+engine_model		data/models_engine/Mid_Tow_mod_very_low.CAS,	max
+engine_platforms	data/models_engine/Middle_tow_info.CAS
+
+engine_model_group	dying
+engine_skeleton		middle_tower_dying
+engine_outline		data/models_engine/mid_tow_dying_model_outline.cas
+engine_model		data/models_engine/mid_tow_dying_model.CAS,		max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/mid_tow_dying_dead_outline.cas
+engine_model		data/models_engine/mid_tow_dying_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		8
+engine_length		14
+engine_width		11
+engine_height		36
+engine_mass			40
+engine_dock_dist	12.5
+engine_mob_dist		18
+engine_flammable    true
+engine_ignition		0.20
+fire_effect		    engine_fire_middle_tower_set
+collapse_effect     engine_collapse_middle_tower_set
+
+obstacle_shape		rectangle
+obstacle_x_radius	9
+obstacle_y_radius	9
+
+engine_spo			physical_obstacle
+
+engine_push_point	-7.00		9
+engine_push_point	-5.25		9
+engine_push_point	-3.5		9
+engine_push_point	-1.75		9
+engine_push_point	 0.0		9
+engine_push_point	 1.75		9
+engine_push_point	 3.5		9
+engine_push_point	 5.25		9
+engine_push_point	 7.00		9
+
+engine_push_point	-7.00		10
+engine_push_point	-5.25		10
+engine_push_point	-3.5		10
+engine_push_point	-1.75		10
+engine_push_point	 0.0		10
+engine_push_point	 1.75		10
+engine_push_point	 3.5		10
+engine_push_point	 5.25		10
+engine_push_point	 7.00		10
+
+
+engine_health		150
+;engine_weapon		ballista
+;engine_armour		siege tower
+
+attack_stat         12, 2, scorpion, 120, 30, siege_missile, siege, piercing, ballista_tower
+attack_stat_attr    ap, bp, launching
+
+arrow_generator		0 35.7 4.8
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		1 35.7 4.8
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		2 35.7 4.8
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		-1 35.7 4.8
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		-2 35.7 4.8
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+missile_model		data/models_engine/Bolt_high.CAS,  20.0
+missile_model		data/models_engine/Bolt_high.CAS,  40.0
+missile_model		data/models_engine/Bolt_high.CAS,  max
+missile_pos			0.0 22 0.0
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				heliopolis
+culture				all
+class				tower
+variant				large
+projectile			scorpion
+
+engine_model_group	normal
+engine_skeleton		heliopolis
+engine_collision	data/models_engine/helipolis_mod_very_low.CAS
+engine_outline		data/models_engine/helipolis_outline.cas
+engine_model		data/models_engine/Heliopolis_model.CAS,		200
+engine_model		data/models_engine/helipolis_mod_med.CAS,		400
+engine_model		data/models_engine/helipolis_mod_low.CAS,		800
+engine_model		data/models_engine/helipolis_mod_very_low.CAS,	max
+engine_platforms	data/models_engine/Heliopolis_info.CAS
+
+engine_model_group	dying
+engine_skeleton		heliopolis_dying
+engine_outline		data/models_engine/helio_dying_model_outline.cas
+engine_model		data/models_engine/helio'_dying_model.CAS , max
+
+engine_model_group	dead
+engine_outline		data/models_engine/helio_dying_dead_outline.cas
+engine_model		data/models_engine/helio'_dying_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		11
+engine_length		16
+engine_width		19
+engine_height		46
+engine_mass			40
+engine_dock_dist	18.3
+engine_mob_dist		18
+engine_flammable    true
+engine_ignition		0.1
+fire_effect		    engine_fire_heliopolis_set
+collapse_effect     engine_collapse_large_tower_set
+
+obstacle_shape		rectangle
+obstacle_x_radius	12
+obstacle_y_radius	12
+
+engine_spo			physical_obstacle
+
+engine_push_point	-7.00		11
+engine_push_point	-5.25		11
+engine_push_point	-3.5		11
+engine_push_point	-1.75		11
+engine_push_point	 0.0		11
+engine_push_point	 1.75		11
+engine_push_point	 3.5		11
+engine_push_point	 5.25		11
+engine_push_point	 7.00		11
+
+engine_push_point	-7.00		13
+engine_push_point	-5.25		13
+engine_push_point	-3.5		13
+engine_push_point	-1.75		13
+engine_push_point	 0.0		13
+engine_push_point	 1.75		13
+engine_push_point	 3.5		13
+engine_push_point	 5.25		13
+engine_push_point	 7.00		13
+
+engine_health		1000
+;engine_weapon		ballista
+;engine_armour		siege tower
+
+attack_stat         12, 2, scorpion, 150, 30, siege_missile, siege, piercing, ballista_tower
+attack_stat_attr    ap, bp, launching
+
+arrow_generator		0 44 6.4
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		1 44 6.4
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		2 44 6.4
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		-1 44 6.4
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		-2 44 6.4
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		0 31 9
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		0 24 9
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+arrow_generator		0 16 9
+aim_dir				0.0 0.0 1.0
+aim_arc				1.0
+fire_interval		1.5
+
+missile_model		data/models_engine/Bolt_high.CAS,  20.0
+missile_model		data/models_engine/Bolt_high.CAS,  40.0
+missile_model		data/models_engine/Bolt_high.CAS,  max
+missile_pos			0.0 22 0.0
+missile_radius		1
+missile_height		2.5
+missile_mass		3
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				tortoise_ram
+culture				all; roman
+class				ram
+
+engine_model_group	normal
+engine_skeleton		tortoise_ram
+engine_collision	data/models_engine/tort_ram_low_LOD.CAS
+engine_outline		data/models_engine/tort_ram_outline.cas
+engine_model		data/models_engine/Tortram_model.CAS,			20.0
+;engine_model		data/models_engine/tort_ram_med_LOD.CAS,		40.0
+;engine_model		data/models_engine/tort_ram_low_LOD.CAS,		80.0
+;engine_model		data/models_engine/tort_ram_very_low_LOD.CAS,	max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		tortoise_ram_dying
+engine_outline		data/models_engine/tort_ram_dying_model_outline.cas
+engine_model		data/models_engine/tort_ram_dying_model.CAS, max
+engine_platforms	none
+
+
+engine_model_group	dead
+engine_outline		data/models_engine/tort_ram_dying_dead_outline.cas
+engine_model		data/models_engine/tort_ram_dying_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		4
+engine_length		7
+engine_width		6
+engine_height		3.0
+engine_mass			25
+engine_dock_dist	5.0
+engine_mob_dist		6.3
+engine_flammable    true
+engine_ignition		0.8
+fire_effect		    engine_fire_ram_set
+
+obstacle_shape		ellipse
+obstacle_x_radius	2.2
+obstacle_y_radius	6.0
+
+engine_spo
+
+engine_push_point	-2.5		 1.0
+engine_push_point	-2.5		-1.3
+engine_push_point	-2.5		-3.6
+engine_push_point	 2.5		 1.0
+engine_push_point	 2.5		-1.3
+engine_push_point	 2.5		-3.6
+
+engine_health		150
+;engine_armour		ram
+
+attack_stat         10, 4, no, 0, 0, melee, simple, blunt, none
+attack_stat_attr    no
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				eastern_ram
+culture				eastern
+class				ram
+
+engine_model_group	normal
+engine_skeleton		eastern_ram
+engine_collision	data/models_engine/east_ram_low_LOD.CAS
+engine_outline		data/models_engine/tort_ram_outline.cas
+engine_model		data/models_engine/Eastram_model.CAS,		20.0
+engine_model		data/models_engine/east_ram_med_LOD.CAS,	40.0
+engine_model		data/models_engine/east_ram_low_LOD.CAS,	max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		eastern_ram_dying
+engine_outline		data/models_engine/east_ram_dying_outline.cas
+engine_model		data/models_engine/east_ram_dying.CAS,	max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/east_ram_dead_outline.cas
+engine_model		data/models_engine/east_ram_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		4.0
+engine_length		4
+engine_width		4
+engine_height		3.0
+engine_mass			25
+engine_dock_dist	4.7
+engine_mob_dist		6.7
+engine_flammable    true
+engine_ignition		0.8
+fire_effect		    engine_fire_ram_set
+
+obstacle_shape		ellipse
+obstacle_x_radius	2.2
+obstacle_y_radius	6.0
+
+engine_spo
+
+engine_push_point	-1.0		 1.6
+engine_push_point	-1.0		 0.0
+engine_push_point	-1.0		-1.6
+engine_push_point	 1.0		 1.6
+engine_push_point	 1.0		 0.0
+engine_push_point	 1.0		-1.6
+
+engine_health		120
+;engine_armour		ram
+
+attack_stat         10, 4, no, 0, 0, melee, simple, blunt, none
+attack_stat_attr    no
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				open_frame_ram
+culture				all
+class				ram
+
+engine_model_group	normal
+engine_skeleton		open_frame_ram
+engine_collision	data/models_engine/openframe_very_low_LOD.CAS
+engine_outline		data/models_engine/openframe_outline.cas
+engine_model		data/models_engine/OFRam_model.CAS,				20.0
+engine_model		data/models_engine/openframe_med_LOD.CAS,		40.0
+engine_model		data/models_engine/openframe_low_LOD.CAS,		80.0
+engine_model		data/models_engine/openframe_very_low_LOD.CAS,	max
+engine_platforms	none
+
+engine_model_group	dying
+engine_skeleton		open_frame_ram_dying
+engine_outline		data/models_engine/openframe_dying_model_outline.cas
+engine_model		data/models_engine/openframe_dying_model.CAS, max
+engine_platforms	none
+
+engine_model_group	dead
+engine_outline		data/models_engine/openframe_dying_dead_outline.cas
+engine_model		data/models_engine/openframe_dying_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		1.5
+engine_length		3
+engine_width		3
+engine_height		3.0
+engine_mass			25
+engine_dock_dist	2.2
+engine_mob_dist		3.9
+engine_flammable    true
+engine_ignition		0.8
+fire_effect		    engine_fire_ram_set
+
+obstacle_shape		rectangle
+obstacle_x_radius	1.4
+obstacle_y_radius	1.6
+
+engine_spo
+
+engine_push_point	-0.75		-2.1
+engine_push_point	 0.75		-2.1
+engine_push_point	-1.7		-0.2
+engine_push_point	 1.7		-0.2
+
+engine_health		100
+;engine_armour		ram
+
+attack_stat         10, 4, no, 0, 0, melee, simple, blunt, none
+attack_stat_attr    no
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				town_ladder
+culture				all
+class				ladder
+variant				small
+
+engine_model_group	normal, dying
+engine_skeleton		town_ladder
+engine_collision	data/models_engine/town_ladder_model.CAS
+engine_outline		data/models_engine/town_ladder_outline.cas
+engine_model		data/models_engine/town_ladder_model.CAS, max
+engine_platforms	data/models_engine/town_ladder_tunnel.CAS
+
+engine_model_group	dead
+engine_outline		data/models_engine/town_ladder_dead_outline.cas
+engine_model		data/animations/engine/ladder/town_ladder_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		8
+engine_length		18
+engine_width		2
+engine_height		20.0
+engine_mass			10
+engine_dock_dist	12.85
+engine_mob_dist		10.5
+engine_flammable    false
+fire_effect		    engine_fire_ladder_set
+
+engine_spo
+
+engine_push_point	 -0.7		 7.0
+engine_push_point	 -0.7		 5.25
+engine_push_point	 -0.7		 3.5
+engine_push_point	 -0.7		 1.75
+engine_push_point	 -0.7		 0.0
+engine_push_point	 -0.7		-1.75
+engine_push_point	 -0.7		-3.5
+engine_push_point	 -0.7		-5.25
+engine_push_point	 -0.7		-7.0
+
+engine_health		15
+;engine_armour		ram
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; TEMP MEDIUM LADDER ENTRY - but is actually small ladder!
+
+type				medium_ladder
+culture				all
+class				ladder
+variant				medium
+
+engine_model_group	normal, dying
+engine_skeleton		town_ladder
+engine_collision	data/models_engine/town_ladder_model.CAS
+engine_outline		data/models_engine/town_ladder_outline.cas
+engine_model		data/models_engine/town_ladder_model.CAS, max
+engine_platforms	data/models_engine/town_ladder_tunnel.CAS
+
+engine_model_group	dead
+engine_outline		data/models_engine/town_ladder_dead_outline.cas
+engine_model		data/animations/engine/ladder/town_ladder_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		8
+engine_length		18
+engine_width		2
+engine_height		20.0
+engine_mass			10
+engine_dock_dist	12.85
+engine_mob_dist		10.5
+engine_flammable    true
+engine_ignition		1.0
+fire_effect		    engine_fire_ladder_set
+
+engine_spo
+
+engine_push_point	 -0.7		 7.0
+engine_push_point	 -0.7		 5.25
+engine_push_point	 -0.7		 3.5
+engine_push_point	 -0.7		 1.75
+engine_push_point	 -0.7		 0.0
+engine_push_point	 -0.7		-1.75
+engine_push_point	 -0.7		-3.5
+engine_push_point	 -0.7		-5.25
+engine_push_point	 -0.7		-7.0
+
+engine_health		15
+;engine_armour		ram
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; TEMP LARGE LADDER ENTRY - but is actually small ladder!
+
+type				large_ladder
+culture				all
+class				ladder
+variant				large
+
+engine_model_group	normal, dying
+engine_skeleton		town_ladder
+engine_collision	data/models_engine/town_ladder_model.CAS
+engine_outline      data/models_engine/town_ladder_outline.cas
+engine_model		data/models_engine/town_ladder_model.CAS, max
+engine_platforms	data/models_engine/town_ladder_tunnel.CAS
+
+engine_model_group	dead
+engine_outline		data/models_engine/town_ladder_dead_outline.cas
+engine_model		data/animations/engine/ladder/town_ladder_dead.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		8
+engine_length		18
+engine_width		2
+engine_height		20.0
+engine_mass			10
+engine_dock_dist	12.85
+engine_mob_dist		10.5
+engine_flammable    true
+engine_ignition		1.0
+fire_effect		    engine_fire_ladder_set
+
+engine_spo
+
+engine_push_point	 -0.7		 7.0
+engine_push_point	 -0.7		 5.25
+engine_push_point	 -0.7		 3.5
+engine_push_point	 -0.7		 1.75
+engine_push_point	 -0.7		 0.0
+engine_push_point	 -0.7		-1.75
+engine_push_point	 -0.7		-3.5
+engine_push_point	 -0.7		-5.25
+engine_push_point	 -0.7		-7.0
+
+engine_health		15
+;engine_armour		ram
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+type				sap_point
+culture				all
+class				sap_point
+
+engine_model_group	normal, dying
+engine_skeleton		sap_point
+engine_collision	data/models_engine/mining_tunnel_lowest.CAS
+engine_outline		data/models_engine/mining_tunnel_outline.cas
+engine_model		data/models_engine/mining_tunnel_high.CAS, 20.0
+engine_model		data/models_engine/mining_tunnel_med.CAS, 40.0
+engine_model		data/models_engine/mining_tunnel_low.CAS, 80.0
+engine_model		data/models_engine/mining_tunnel_lowest.CAS, max
+engine_platforms	none
+
+engine_model_group	dead
+engine_collision	data/models_engine/mining_tunnel_dead_lowest.CAS, max
+engine_outline		data/models_engine/mining_tunnel_dead_outline.cas
+engine_model		data/models_engine/mining_tunnel_dead_high.CAS, 20.0
+engine_model		data/models_engine/mining_tunnel_dead_med.CAS, 40.0
+engine_model		data/models_engine/mining_tunnel_dead_low.CAS, 80.0
+engine_model		data/models_engine/mining_tunnel_dead_lowest.CAS, max
+engine_platforms	none
+
+engine_shadow		none
+
+engine_radius		5
+engine_length		10
+engine_width		6
+engine_height		3.0
+engine_mass			25
+engine_dock_dist	80
+engine_mob_dist		15
+engine_flammable    true
+engine_ignition		1.0
+fire_effect		    engine_fire_ram_set
+
+engine_spo			physical_obstacle
+
+engine_push_point	-1		-9
+engine_push_point	-1		-4
+engine_push_point	1		-9
+engine_push_point	1		-4
+engine_push_point	0		-2
+
+engine_health		20
+;engine_armour		ram
+
+attack_stat         10, 4, no, 0, 0, melee, simple, blunt, none
+attack_stat_attr    no
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+

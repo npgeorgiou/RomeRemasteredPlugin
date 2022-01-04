@@ -1,8 +1,5 @@
 ;descr_unit_variation.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
 
-
-
-
 skin
 {
 	african

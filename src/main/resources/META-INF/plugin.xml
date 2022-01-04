@@ -92,8 +92,8 @@
         <action
                 id="rr.language.actions.MarkFileTypeWithComment"
                 class="rr.language.actions.MarkFileTypeWithComment"
-                text="At the Top of Each File, Add a Comment with Its Name"
-                description="At the top of each file, add a comment with its name"
+                text="Add Special Comment at Beginning of Files (Needed for Plugin)"
+                description="Add special comment at beginning of files (Needed for plugin)"
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
@@ -102,6 +102,14 @@
                 class="rr.language.actions.CreateExportBuildingsFile"
                 text="Create Export_Buildings.Txt File"
                 description="Create export_buildings.txt file"
+        >
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+        <action
+                id="rr.language.actions.DeleteNotLoadedFiles"
+                class="rr.language.actions.DeleteNotLoadedFiles"
+                text="Delete not Needed Files (Previous RTW Versions' Leftovers)"
+                description="Delete not needed files (previous RTW versions' leftovers)"
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
