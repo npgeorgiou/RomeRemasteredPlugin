@@ -227,6 +227,10 @@ public class RRVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitDescrSmResources(@NotNull RRDescrSmResources o) {
+    visitPsiElement(o);
+  }
+
   public void visitDescrStrat(@NotNull RRDescrStrat o) {
     visitPsiElement(o);
   }
@@ -455,8 +459,16 @@ public class RRVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitResourceDecl(@NotNull RRResourceDecl o) {
+    visitPsiElement(o);
+  }
+
   public void visitResourceItem(@NotNull RRResourceItem o) {
     visitPsiElement(o);
+  }
+
+  public void visitResourceNameDecl(@NotNull RRResourceNameDecl o) {
+    visitNamedElement(o);
   }
 
   public void visitResourceQuantityDisabled_(@NotNull RRResourceQuantityDisabled_ o) {
@@ -464,6 +476,14 @@ public class RRVisitor extends PsiElementVisitor {
   }
 
   public void visitResourceQuantityEnabled_(@NotNull RRResourceQuantityEnabled_ o) {
+    visitPsiElement(o);
+  }
+
+  public void visitResourceRef(@NotNull RRResourceRef o) {
+    visitPsiElement(o);
+  }
+
+  public void visitResourceType(@NotNull RRResourceType o) {
     visitPsiElement(o);
   }
 

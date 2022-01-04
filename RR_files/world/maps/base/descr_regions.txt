@@ -8,7 +8,7 @@ Britannia_Inferior
 	britons
 	Brigantes
 	232 41 198
-	none
+	amber, amber
 	5
 	5
 

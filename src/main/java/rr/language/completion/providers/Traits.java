@@ -26,9 +26,7 @@ public class Traits extends RRCompletionProvider {
         PsiElement typed = parameters.getPosition();
         Project project = parameters.getOriginalFile().getProject();
 
-        Collection<String> ancillaries = RRUtil.findAllTraits(project).stream()
-            .map(it -> it.getFirstChild().getNextSibling().getNextSibling().getText())
-            .collect(Collectors.toList());
+        Collection<String> ancillaries = RRUtil.findAllTraitsAsStrings(project);
 
         for (String ancillary : ancillaries) {
             resultSet.addElement(LookupElementBuilder.create(ancillary));

@@ -28,21 +28,21 @@ public class RRResourceItemImpl extends ASTWrapperPsiElement implements RRResour
   }
 
   @Override
-  @NotNull
+  @Nullable
   public RRCoords getCoords() {
-    return findNotNullChildByClass(RRCoords.class);
+    return findChildByClass(RRCoords.class);
   }
 
   @Override
-  @NotNull
-  public PsiElement getId() {
-    return findNotNullChildByType(ID);
+  @Nullable
+  public RRResourceRef getResourceRef() {
+    return findChildByClass(RRResourceRef.class);
   }
 
   @Override
-  @NotNull
+  @Nullable
   public PsiElement getInt() {
-    return findNotNullChildByType(INT);
+    return findChildByType(INT);
   }
 
 }

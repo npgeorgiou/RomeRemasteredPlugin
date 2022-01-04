@@ -5,15 +5,18 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RRRegionDef extends PsiElement {
+public interface RRResourceDecl extends PsiElement {
 
   @NotNull
-  RRFactionRef getFactionRef();
+  List<RRKVFItem> getKVFItemList();
 
   @NotNull
-  RRRegionNameDecl getRegionNameDecl();
+  RRResourceNameDecl getResourceNameDecl();
 
   @NotNull
-  List<RRResourceRef> getResourceRefList();
+  RRResourceType getResourceType();
+
+  @NotNull
+  PsiElement getString();
 
 }

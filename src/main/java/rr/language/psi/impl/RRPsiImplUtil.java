@@ -395,6 +395,33 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Resource decl and refs">
+    public static PsiElement setName(RRResourceNameDecl decl, String newName) {
+        PsiElement id = RRElementFactory.createString(decl.getProject(), newName);
+        decl.getFirstChild().replace(id);
+        return decl;
+    }
+
+    public static String getName(RRResourceNameDecl decl) {
+        return Util.unquote(decl.getFirstChild().getText());
+    }
+
+    public static PsiElement getNameIdentifier(RRResourceNameDecl decl) {
+        return decl.getFirstChild();
+    }
+
+    public static PsiElement setName(RRResourceRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static ResourceReference getReference(RRResourceRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new ResourceReference(ref, range);
+    }
+    //</editor-fold>
+
     public static String name(RRSettlementItem settlementItem) {
         return settlementItem.getNode().findChildByType(RRTypes.REGION_REF).getText();
     }

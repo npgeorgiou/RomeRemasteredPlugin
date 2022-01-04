@@ -24,6 +24,7 @@ WS      = ({EOL}|{LINE_WS})+
 EXPORT_BUILDINGS_MARKER = ";export_buildings.txt"[^\r\n]*
 DESCR_CULTURES_MARKER = ";descr_cultures.txt"[^\r\n]*
 DESCR_SM_FACTIONS_MARKER = ";descr_sm_factions.txt"[^\r\n]*
+DESCR_SM_RESOURCES_MARKER = ";descr_sm_resources.txt"[^\r\n]*
 FERAL_DESCR_AI_PERSONALITY_MARKER = ";feral_descr_ai_personality.txt"[^\r\n]*
 DESCR_FACTION_GROUPS_MARKER = ";descr_faction_groups.txt"[^\r\n]*
 
@@ -74,6 +75,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 {DESCR_SM_FACTIONS_MARKER}            {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
 {FERAL_DESCR_AI_PERSONALITY_MARKER}   {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
 {DESCR_FACTION_GROUPS_MARKER}         {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
+{DESCR_SM_RESOURCES_MARKER}           {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
 
 
 {WS}             {return TokenType.WHITE_SPACE;}

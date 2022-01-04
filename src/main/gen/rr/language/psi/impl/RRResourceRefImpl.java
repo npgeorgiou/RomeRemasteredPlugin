@@ -10,15 +10,16 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static rr.language.psi.RRTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import rr.language.psi.*;
+import rr.language.psi.references.ResourceReference;
 
-public class RRRegionDefImpl extends ASTWrapperPsiElement implements RRRegionDef {
+public class RRResourceRefImpl extends ASTWrapperPsiElement implements RRResourceRef {
 
-  public RRRegionDefImpl(@NotNull ASTNode node) {
+  public RRResourceRefImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RRVisitor visitor) {
-    visitor.visitRegionDef(this);
+    visitor.visitResourceRef(this);
   }
 
   @Override
@@ -29,20 +30,18 @@ public class RRRegionDefImpl extends ASTWrapperPsiElement implements RRRegionDef
 
   @Override
   @NotNull
-  public RRFactionRef getFactionRef() {
-    return findNotNullChildByClass(RRFactionRef.class);
+  public PsiElement getId() {
+    return findNotNullChildByType(ID);
   }
 
   @Override
-  @NotNull
-  public RRRegionNameDecl getRegionNameDecl() {
-    return findNotNullChildByClass(RRRegionNameDecl.class);
+  public PsiElement setName(String newName) {
+    return RRPsiImplUtil.setName(this, newName);
   }
 
   @Override
-  @NotNull
-  public List<RRResourceRef> getResourceRefList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RRResourceRef.class);
+  public ResourceReference getReference() {
+    return RRPsiImplUtil.getReference(this);
   }
 
 }

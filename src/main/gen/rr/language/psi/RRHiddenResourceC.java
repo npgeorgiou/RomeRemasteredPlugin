@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface RRHiddenResourceC extends PsiElement {
 
   @Nullable
-  PsiElement getId();
+  RRResourceRef getResourceRef();
 
 }

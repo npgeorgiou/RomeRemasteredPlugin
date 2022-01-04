@@ -19,6 +19,7 @@
       FERAL_DESCR_AI_PERSONALITY_MARKER='regexp:;feral_descr_ai_personality.txt.*'
       DESCR_FACTION_GROUPS_MARKER='regexp:;descr_faction_groups.txt.*'
       DESCR_SM_FACTIONS_MARKER='regexp:;descr_sm_factions.txt.*'
+      DESCR_SM_RESOURCES_MARKER='regexp:;descr_sm_resources.txt.*'
       COMMENT='regexp:[;¬].*'
       space='regexp:\s+'
       INT = 'regexp:[\+\-]?[0-9]+'
@@ -1131,6 +1132,7 @@ RRFile ::= descr_strat|
           feral_descr_ai_personality|
           descr_faction_groups|
           descr_sm_factions|
+          descr_sm_resources|
           kv_format|
 
 // ############### descr_strat start #################################
@@ -1166,9 +1168,8 @@ resources_section ::=
 
 resource_quantity_enabled_ ::= RESOURCE_QUANTITY_ENABLED resource_item* END
 resource_quantity_disabled_ ::= RESOURCE_QUANTITY_DISABLED resource_item* END
-
-resource_item ::= RESOURCE ID COMMA INT COMMA coords
-
+resource_item ::= RESOURCE resource_ref COMMA INT COMMA coords {pin=1 recoverWhile=recover_resource_item}
+private recover_resource_item ::= !(resource_item|END)
 sound_emitters_section ::=
 events_section ::=
 
@@ -1336,7 +1337,7 @@ export_descr_buildings ::= tags_
                            condition_alias*
                            building_tree+
 
-tags_ ::= TAGS OCB list_of_IDs CCB {pin=1 recoverWhile=tagsRecover}
+tags_ ::= TAGS OCB list_of_IDs CCB {pin=1 recoverWhile=}
 private tagsRecover ::= !(condition_alias|building_tree)
 
 condition_alias ::= ALIAS ID OCB
@@ -1350,7 +1351,7 @@ building_tree ::= BUILDING building_tree_name_decl OCB
                         (TAG ID)?
                         ICON ID
                         LEVELS building_level_ref+ OCB
-                          building_level*
+                          building_level+
                         CCB
                         PLUGINS OCB CCB
                       CCB {pin=1}
@@ -1368,7 +1369,7 @@ building_level ::= building_level_name_decl requirement
                          UPGRADES OCB
                            building_level_ref?
                          CCB
-                       CCB
+                       CCB {pin=1}
 
 building_level_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 building_level_ref ::= ID {methods=[setName getReference]}
@@ -1392,15 +1393,25 @@ requirement ::= REQUIRES composite_c
 private composite_c ::= maybe_negated_c ((AND|OR) maybe_negated_c)* {pin=1}
 private maybe_negated_c ::= NOT? building_condition
 building_condition ::= (alias_c|factions_c|major_event_c|resource_c|hidden_resource_c|no_tag_c|building_min_level_c|building_c|is_toggled_c)
-alias_c ::= ID                                             {pin=1}
-factions_c ::= FACTIONS OCB <<list faction_or_culture_ref>> COMMA CCB {pin=1}
-major_event_c ::= MAJOR_EVENT STRING                       {pin=1} // kv_format.txt:
-resource_c ::= RESOURCE ID                                 {pin=1}
-hidden_resource_c ::= HIDDEN_RESOURCE ID                   {pin=1}
-no_tag_c ::= NO_BUILDING_TAGGED ID QUEUED?                 {pin=1}
-building_c ::= BUILDING_PRESENT building_tree_ref          {pin=1}
-building_min_level_c ::= BUILDING_PRESENT_MIN_LEVEL building_tree_ref building_level_ref  {pin=1}
-is_toggled_c ::= IS_TOGGLED STRING                         {pin=1} // toggles\remastered\campaign.txt
+{recoverWhile=}
+private recover_c ::= !(
+                        capability_|
+                        DISPLAY_STRING|CAPABILITY|
+                        CCB|OCB|
+                        AND|OR
+                        FACTIONS|MAJOR_EVENT|RESOURCE|HIDDEN_RESOURCE|NO_BUILDING_TAGGED|BUILDING_PRESENT|BUILDING_PRESENT_MIN_LEVEL|IS_TOGGLED
+                       )
+
+alias_c ::= ID                                                                           {pin=1}
+factions_c ::= FACTIONS OCB <<list faction_or_culture_ref>> COMMA CCB                    {pin=1}
+major_event_c ::= MAJOR_EVENT STRING                                                     {pin=1} // kv_format.txt:
+resource_c ::= RESOURCE resource_ref                                                     {pin=1}
+hidden_resource_c ::= HIDDEN_RESOURCE resource_ref                                       {pin=1}
+no_tag_c ::= NO_BUILDING_TAGGED ID QUEUED?                                               {pin=1}
+building_c ::= BUILDING_PRESENT building_tree_ref                                        {pin=1}
+building_min_level_c ::= BUILDING_PRESENT_MIN_LEVEL building_tree_ref building_level_ref {pin=1}
+is_toggled_c ::= IS_TOGGLED STRING                                                       {pin=1} // toggles\remastered\campaign.txt
+
 
 agent_type ::= DIPLOMAT|SPY|MERCHANT|ASSASSIN
 // ############### export_descr_buildings end #################################
@@ -1502,7 +1513,7 @@ region_def ::= region_name_decl
                  faction_ref
                  ID
                  INT INT INT
-                 (NONE|list_of_IDs)
+                 (NONE|<<list resource_ref>>)
                  INT
                  INT
 region_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
@@ -1640,6 +1651,20 @@ faction_decl ::= faction_name_decl COLON OCB
 faction_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 faction_ref ::= ID {methods=[setName getReference]}
 // ############### descr_sm_factions end #################################
+
+// ############### descr_sm_resources start #################################
+descr_sm_resources ::= DESCR_SM_RESOURCES_MARKER
+                       STRING COLON OSB
+                        resource_decl+
+                       CSB COMMA
+resource_decl ::= resource_name_decl COLON OCB
+                    STRING COLON resource_type COMMA
+                   KVF_item*
+                 CCB COMMA
+resource_type ::= '"hidden"'|'"slaves"'|'"mineable"'|'"none"'
+resource_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+resource_ref ::= ID {methods=[setName getReference]}
+// ############### descr_sm_resources end #################################
 
 // ############### General things #################################
 // #### events & conditions

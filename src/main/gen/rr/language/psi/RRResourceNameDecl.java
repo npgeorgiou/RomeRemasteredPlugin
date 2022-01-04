@@ -5,15 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RRRegionDef extends PsiElement {
+public interface RRResourceNameDecl extends RRNamedElement {
 
   @NotNull
-  RRFactionRef getFactionRef();
+  PsiElement getString();
 
-  @NotNull
-  RRRegionNameDecl getRegionNameDecl();
+  PsiElement setName(String newName);
 
-  @NotNull
-  List<RRResourceRef> getResourceRefList();
+  String getName();
+
+  PsiElement getNameIdentifier();
 
 }

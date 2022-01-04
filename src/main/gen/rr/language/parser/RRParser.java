@@ -179,6 +179,7 @@ public class RRParser implements PsiParser, LightPsiParser {
   //           feral_descr_ai_personality|
   //           descr_faction_groups|
   //           descr_sm_factions|
+  //           descr_sm_resources|
   //           kv_format|
   // // ############### descr_strat start #################################
   static boolean RRFile(PsiBuilder b, int l) {
@@ -200,8 +201,9 @@ public class RRParser implements PsiParser, LightPsiParser {
     if (!r) r = feral_descr_ai_personality(b, l + 1);
     if (!r) r = descr_faction_groups(b, l + 1);
     if (!r) r = descr_sm_factions(b, l + 1);
+    if (!r) r = descr_sm_resources(b, l + 1);
     if (!r) r = kv_format(b, l + 1);
-    if (!r) r = consumeToken(b, RRFILE_16_0);
+    if (!r) r = consumeToken(b, RRFILE_17_0);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -840,21 +842,22 @@ public class RRParser implements PsiParser, LightPsiParser {
   public static boolean building_level(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "building_level")) return false;
     if (!nextTokenIs(b, ID)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, BUILDING_LEVEL, null);
     r = building_level_name_decl(b, l + 1);
-    r = r && requirement(b, l + 1);
-    r = r && consumeToken(b, OCB);
-    r = r && building_level_3(b, l + 1);
-    r = r && consumeTokens(b, 0, CAPABILITY, OCB);
-    r = r && building_level_6(b, l + 1);
-    r = r && consumeTokens(b, 0, CCB, CONSTRUCTION, INT, COST, INT, SETTLEMENT_MIN);
-    r = r && settlement_level(b, l + 1);
-    r = r && consumeTokens(b, 0, UPGRADES, OCB);
-    r = r && building_level_16(b, l + 1);
-    r = r && consumeTokens(b, 0, CCB, CCB);
-    exit_section_(b, m, BUILDING_LEVEL, r);
-    return r;
+    p = r; // pin = 1
+    r = r && report_error_(b, requirement(b, l + 1));
+    r = p && report_error_(b, consumeToken(b, OCB)) && r;
+    r = p && report_error_(b, building_level_3(b, l + 1)) && r;
+    r = p && report_error_(b, consumeTokens(b, -1, CAPABILITY, OCB)) && r;
+    r = p && report_error_(b, building_level_6(b, l + 1)) && r;
+    r = p && report_error_(b, consumeTokens(b, -1, CCB, CONSTRUCTION, INT, COST, INT, SETTLEMENT_MIN)) && r;
+    r = p && report_error_(b, settlement_level(b, l + 1)) && r;
+    r = p && report_error_(b, consumeTokens(b, -1, UPGRADES, OCB)) && r;
+    r = p && report_error_(b, building_level_16(b, l + 1)) && r;
+    r = p && report_error_(b, consumeTokens(b, -1, CCB, CCB)) && r;
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
   }
 
   // (AI_DESTRUCTION_HINT requirement)?
@@ -955,7 +958,7 @@ public class RRParser implements PsiParser, LightPsiParser {
   //                         (TAG ID)?
   //                         ICON ID
   //                         LEVELS building_level_ref+ OCB
-  //                           building_level*
+  //                           building_level+
   //                         CCB
   //                         PLUGINS OCB CCB
   //                       CCB
@@ -1010,15 +1013,19 @@ public class RRParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // building_level*
+  // building_level+
   private static boolean building_tree_9(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "building_tree_9")) return false;
-    while (true) {
+    boolean r;
+    Marker m = enter_section_(b);
+    r = building_level(b, l + 1);
+    while (r) {
       int c = current_position_(b);
       if (!building_level(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "building_tree_9", c)) break;
     }
-    return true;
+    exit_section_(b, m, null, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -4321,6 +4328,38 @@ public class RRParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // DESCR_SM_RESOURCES_MARKER
+  //                        STRING COLON OSB
+  //                         resource_decl+
+  //                        CSB COMMA
+  public static boolean descr_sm_resources(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "descr_sm_resources")) return false;
+    if (!nextTokenIs(b, DESCR_SM_RESOURCES_MARKER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, DESCR_SM_RESOURCES_MARKER, STRING, COLON, OSB);
+    r = r && descr_sm_resources_4(b, l + 1);
+    r = r && consumeTokens(b, 0, CSB, COMMA);
+    exit_section_(b, m, DESCR_SM_RESOURCES, r);
+    return r;
+  }
+
+  // resource_decl+
+  private static boolean descr_sm_resources_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "descr_sm_resources_4")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = resource_decl(b, l + 1);
+    while (r) {
+      int c = current_position_(b);
+      if (!resource_decl(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "descr_sm_resources_4", c)) break;
+    }
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // campaign_section
   //                 landmark_section?
   //                 resources_section
@@ -5655,14 +5694,15 @@ public class RRParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // HIDDEN_RESOURCE ID
+  // HIDDEN_RESOURCE resource_ref
   public static boolean hidden_resource_c(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "hidden_resource_c")) return false;
     if (!nextTokenIs(b, HIDDEN_RESOURCE)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, HIDDEN_RESOURCE_C, null);
-    r = consumeTokens(b, 1, HIDDEN_RESOURCE, ID);
+    r = consumeToken(b, HIDDEN_RESOURCE);
     p = r; // pin = 1
+    r = r && resource_ref(b, l + 1);
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
@@ -6575,6 +6615,50 @@ public class RRParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // !(
+  //                         capability_|
+  //                         DISPLAY_STRING|CAPABILITY|
+  //                         CCB|OCB|
+  //                         AND|OR
+  //                         FACTIONS|MAJOR_EVENT|RESOURCE|HIDDEN_RESOURCE|NO_BUILDING_TAGGED|BUILDING_PRESENT|BUILDING_PRESENT_MIN_LEVEL|IS_TOGGLED
+  //                        )
+  static boolean recover_c(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_c")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NOT_);
+    r = !recover_c_0(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // capability_|
+  //                         DISPLAY_STRING|CAPABILITY|
+  //                         CCB|OCB|
+  //                         AND|OR
+  //                         FACTIONS|MAJOR_EVENT|RESOURCE|HIDDEN_RESOURCE|NO_BUILDING_TAGGED|BUILDING_PRESENT|BUILDING_PRESENT_MIN_LEVEL|IS_TOGGLED
+  private static boolean recover_c_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_c_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = capability_(b, l + 1);
+    if (!r) r = consumeToken(b, DISPLAY_STRING);
+    if (!r) r = consumeToken(b, CAPABILITY);
+    if (!r) r = consumeToken(b, CCB);
+    if (!r) r = consumeToken(b, OCB);
+    if (!r) r = consumeToken(b, AND);
+    if (!r) r = parseTokens(b, 0, OR, FACTIONS);
+    if (!r) r = consumeToken(b, MAJOR_EVENT);
+    if (!r) r = consumeToken(b, RESOURCE);
+    if (!r) r = consumeToken(b, HIDDEN_RESOURCE);
+    if (!r) r = consumeToken(b, NO_BUILDING_TAGGED);
+    if (!r) r = consumeToken(b, BUILDING_PRESENT);
+    if (!r) r = consumeToken(b, BUILDING_PRESENT_MIN_LEVEL);
+    if (!r) r = consumeToken(b, IS_TOGGLED);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // !(landmark_section)
   static boolean recover_campaign_section(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recover_campaign_section")) return false;
@@ -6607,6 +6691,28 @@ public class RRParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // !(resource_item|END)
+  static boolean recover_resource_item(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_resource_item")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NOT_);
+    r = !recover_resource_item_0(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // resource_item|END
+  private static boolean recover_resource_item_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_resource_item_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = resource_item(b, l + 1);
+    if (!r) r = consumeToken(b, END);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // !(STAT_PRI_ATTR|STAT_SEC_ATTR)
   static boolean recover_stat_pri_attr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recover_stat_pri_attr")) return false;
@@ -6632,7 +6738,7 @@ public class RRParser implements PsiParser, LightPsiParser {
   //                  faction_ref
   //                  ID
   //                  INT INT INT
-  //                  (NONE|list_of_IDs)
+  //                  (NONE|<<list resource_ref>>)
   //                  INT
   //                  INT
   public static boolean region_def(PsiBuilder b, int l) {
@@ -6650,12 +6756,14 @@ public class RRParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // NONE|list_of_IDs
+  // NONE|<<list resource_ref>>
   private static boolean region_def_7(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "region_def_7")) return false;
     boolean r;
+    Marker m = enter_section_(b);
     r = consumeToken(b, NONE);
-    if (!r) r = list_of_IDs(b, l + 1);
+    if (!r) r = list(b, l + 1, RRParser::resource_ref);
+    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -6733,28 +6841,74 @@ public class RRParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // RESOURCE ID
+  // RESOURCE resource_ref
   public static boolean resource_c(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "resource_c")) return false;
     if (!nextTokenIs(b, RESOURCE)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, RESOURCE_C, null);
-    r = consumeTokens(b, 1, RESOURCE, ID);
+    r = consumeToken(b, RESOURCE);
     p = r; // pin = 1
+    r = r && resource_ref(b, l + 1);
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
   /* ********************************************************** */
-  // RESOURCE ID COMMA INT COMMA coords
-  public static boolean resource_item(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "resource_item")) return false;
-    if (!nextTokenIs(b, RESOURCE)) return false;
+  // resource_name_decl COLON OCB
+  //                     STRING COLON resource_type COMMA
+  //                    KVF_item*
+  //                  CCB COMMA
+  public static boolean resource_decl(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "resource_decl")) return false;
+    if (!nextTokenIs(b, STRING)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, RESOURCE, ID, COMMA, INT, COMMA);
-    r = r && coords(b, l + 1);
-    exit_section_(b, m, RESOURCE_ITEM, r);
+    r = resource_name_decl(b, l + 1);
+    r = r && consumeTokens(b, 0, COLON, OCB, STRING, COLON);
+    r = r && resource_type(b, l + 1);
+    r = r && consumeToken(b, COMMA);
+    r = r && resource_decl_7(b, l + 1);
+    r = r && consumeTokens(b, 0, CCB, COMMA);
+    exit_section_(b, m, RESOURCE_DECL, r);
+    return r;
+  }
+
+  // KVF_item*
+  private static boolean resource_decl_7(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "resource_decl_7")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!KVF_item(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "resource_decl_7", c)) break;
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // RESOURCE resource_ref COMMA INT COMMA coords
+  public static boolean resource_item(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "resource_item")) return false;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, RESOURCE_ITEM, "<resource item>");
+    r = consumeToken(b, RESOURCE);
+    p = r; // pin = 1
+    r = r && report_error_(b, resource_ref(b, l + 1));
+    r = p && report_error_(b, consumeTokens(b, -1, COMMA, INT, COMMA)) && r;
+    r = p && coords(b, l + 1) && r;
+    exit_section_(b, l, m, r, p, RRParser::recover_resource_item);
+    return r || p;
+  }
+
+  /* ********************************************************** */
+  // STRING
+  public static boolean resource_name_decl(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "resource_name_decl")) return false;
+    if (!nextTokenIs(b, STRING)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, STRING);
+    exit_section_(b, m, RESOURCE_NAME_DECL, r);
     return r;
   }
 
@@ -6806,6 +6960,32 @@ public class RRParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(b, "resource_quantity_enabled__1", c)) break;
     }
     return true;
+  }
+
+  /* ********************************************************** */
+  // ID
+  public static boolean resource_ref(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "resource_ref")) return false;
+    if (!nextTokenIs(b, ID)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, ID);
+    exit_section_(b, m, RESOURCE_REF, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // '"hidden"'|'"slaves"'|'"mineable"'|'"none"'
+  public static boolean resource_type(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "resource_type")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, RESOURCE_TYPE, "<resource type>");
+    r = consumeToken(b, "\"hidden\"");
+    if (!r) r = consumeToken(b, "\"slaves\"");
+    if (!r) r = consumeToken(b, "\"mineable\"");
+    if (!r) r = consumeToken(b, "\"none\"");
+    exit_section_(b, l, m, r, false, null);
+    return r;
   }
 
   /* ********************************************************** */
@@ -7119,13 +7299,14 @@ public class RRParser implements PsiParser, LightPsiParser {
   // TAGS OCB list_of_IDs CCB
   public static boolean tags_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "tags_")) return false;
+    if (!nextTokenIs(b, TAGS)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, TAGS_, "<tags>");
+    Marker m = enter_section_(b, l, _NONE_, TAGS_, null);
     r = consumeTokens(b, 1, TAGS, OCB);
     p = r; // pin = 1
     r = r && report_error_(b, list_of_IDs(b, l + 1));
     r = p && consumeToken(b, CCB) && r;
-    exit_section_(b, l, m, r, p, RRParser::tagsRecover);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 

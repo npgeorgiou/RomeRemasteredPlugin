@@ -4,16 +4,15 @@ package rr.language.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
+import rr.language.psi.references.ResourceReference;
 
-public interface RRRegionDef extends PsiElement {
-
-  @NotNull
-  RRFactionRef getFactionRef();
+public interface RRResourceRef extends PsiElement {
 
   @NotNull
-  RRRegionNameDecl getRegionNameDecl();
+  PsiElement getId();
 
-  @NotNull
-  List<RRResourceRef> getResourceRefList();
+  PsiElement setName(String newName);
+
+  ResourceReference getReference();
 
 }

@@ -28,35 +28,13 @@ public class Resources extends RRCompletionProvider {
         @NotNull ProcessingContext context,
         @NotNull CompletionResultSet resultSet
     ) {
-        // TODO: Get it from descr_sm_resources instead?
+        PsiElement typed = parameters.getPosition();
         Project project = parameters.getOriginalFile().getProject();
-        RRFile file = RRUtil.findRRFile("descr_strat.txt", project);
 
-        if (file == null) {
-            return;
+        Collection<String> items = RRUtil.findAllResourcesAsStrings(false, project);
+
+        for (String item : items) {
+            resultSet.addElement(LookupElementBuilder.create(item));
         }
-
-//        @Nullable RRDescrStrat descrStrat = file.findChildByClass(RRDescrStrat.class);
-//
-//        Collection<String> resourcesWithQuantityEnabled = descrStrat.getResourcesSection()
-//            .getResourceQuantityEnabled_()
-//            .getResourceItemList().stream()
-//            .map(it -> it.getId().getText())
-//            .collect(Collectors.toList());
-//
-//        Collection<String> resourcesWithQuantityDisabled = descrStrat.getResourcesSection()
-//            .getResourceQuantityDisabled_()
-//            .getResourceItemList().stream()
-//            .map(it -> it.getId().getText())
-//            .collect(Collectors.toList());
-//
-//        Collection<String> resources = Stream.concat(
-//            resourcesWithQuantityEnabled.stream(),
-//            resourcesWithQuantityDisabled.stream()
-//        ).distinct().collect(Collectors.toList());
-//
-//        for (String resource : resources) {
-//            resultSet.addElement(LookupElementBuilder.create(resource));
-//        }
     }
 }

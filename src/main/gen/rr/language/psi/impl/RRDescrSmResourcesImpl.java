@@ -11,14 +11,14 @@ import static rr.language.psi.RRTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import rr.language.psi.*;
 
-public class RRRegionDefImpl extends ASTWrapperPsiElement implements RRRegionDef {
+public class RRDescrSmResourcesImpl extends ASTWrapperPsiElement implements RRDescrSmResources {
 
-  public RRRegionDefImpl(@NotNull ASTNode node) {
+  public RRDescrSmResourcesImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RRVisitor visitor) {
-    visitor.visitRegionDef(this);
+    visitor.visitDescrSmResources(this);
   }
 
   @Override
@@ -29,20 +29,20 @@ public class RRRegionDefImpl extends ASTWrapperPsiElement implements RRRegionDef
 
   @Override
   @NotNull
-  public RRFactionRef getFactionRef() {
-    return findNotNullChildByClass(RRFactionRef.class);
+  public List<RRResourceDecl> getResourceDeclList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RRResourceDecl.class);
   }
 
   @Override
   @NotNull
-  public RRRegionNameDecl getRegionNameDecl() {
-    return findNotNullChildByClass(RRRegionNameDecl.class);
+  public PsiElement getDescrSmResourcesMarker() {
+    return findNotNullChildByType(DESCR_SM_RESOURCES_MARKER);
   }
 
   @Override
   @NotNull
-  public List<RRResourceRef> getResourceRefList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RRResourceRef.class);
+  public PsiElement getString() {
+    return findNotNullChildByType(STRING);
   }
 
 }

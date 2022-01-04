@@ -1,7 +1,27 @@
-;export_descr_buildings.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+; classification option (inside `building` and before first `levels`)
+; Example:
+;	 classification core|defence|military|trade|water|culture|religious (deprecated, but recognised:fortification|infrastructure|other)
+; This tells the game which category of the building browser to use.
+; RomeHD has subtly different classifications than the original, so note the deprecated classifications, they wont work anymore.
+; If no classification is specified, the game will guess based on the building name, which works for all the unmodded buildings.
+; Automatic classification:
+;   core_building
+;	   core
+;   defenses
+;	   defence
+;   barracks|equestrian|missiles|smith|despotic_law
+;	   military
+;   market|port_buildings|hinterland_*|caravans
+;	   trade
+;   health
+;	   water
+;   academic|amphitheatres|theatres|taverns
+;	   culture
+;   temple_*|christian_acedemic
+;	   religious
+; Explicit classification overrides the automatic classification, so if you don't like the above classifications, you can overule them.
 
-
-
+;;exclusivity tags, used for the "no_building_tagged" condition
 tags
 {
 	temple
@@ -376,7 +396,7 @@ building barracks
 				army_barracks
 			}
 		}
-		army_barracks requires factions { carthaginian, armenia, pontus, egyptian, greek, roman, }
+		army_barracks requires building_present_min_level despotic_law secret_police_hq
 		{
 			capability
 			{
@@ -1576,7 +1596,7 @@ building despotic_law
 				secret_police_hq
 			}
 		}
-		secret_police_hq requires factions { carthaginian, eastern, parthia, egyptian, }
+		secret_police_hq requires resource elephants and hidden_resource italy
 		{
 			capability
 			{
@@ -1750,7 +1770,7 @@ building temple_of_battle
 
 			capability
 			{
-				recruit   "barb archer scythian" 1
+				recruit "barb naked fanatics dacian"  1
 				happiness_bonus bonus 3
 				recruits_morale_bonus bonus 2
 			}

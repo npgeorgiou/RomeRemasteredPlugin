@@ -52,9 +52,9 @@ public class RRBuildingLevelImpl extends ASTWrapperPsiElement implements RRBuild
   }
 
   @Override
-  @NotNull
+  @Nullable
   public RRSettlementLevel getSettlementLevel() {
-    return findNotNullChildByClass(RRSettlementLevel.class);
+    return findChildByClass(RRSettlementLevel.class);
   }
 
 }

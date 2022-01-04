@@ -6,10 +6,12 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
+import org.jetbrains.annotations.NotNull;
 import rr.language.psi.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -104,7 +106,8 @@ public class RRUtil {
             return new ArrayList<>();
         }
 
-        return file.findChildByClass(RRDescrSmFactions.class).getFactionDeclList().stream()
+        return file.findChildByClass(RRDescrSmFactions.class)
+            .getFactionDeclList().stream()
             .map(it -> it.getFactionNameDecl())
             .collect(Collectors.toList());
     }
@@ -145,6 +148,33 @@ public class RRUtil {
 
     public static Collection<String> findAllCulturesAsStrings(Project project) {
         return findAllCultures(project).stream()
+            .map(it -> Util.unquote(it.getText()))
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRResourceNameDecl> findAllResources(boolean hidden, Project project) {
+        RRFile file = RRUtil.findRRFile("descr_sm_resources.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        Predicate<RRResourceDecl> filter = it -> true;
+        if (hidden) {
+            filter = it -> Util.unquote(it.getResourceType().getText()).equals("hidden");
+        }
+
+        List<RRResourceNameDecl> resources = file.findChildByClass(RRDescrSmResources.class)
+            .getResourceDeclList().stream()
+            .filter(filter)
+            .map(it -> it.getResourceNameDecl())
+            .collect(Collectors.toList());
+
+        return resources;
+    }
+
+    public static Collection<String> findAllResourcesAsStrings(boolean hidden, Project project) {
+        return findAllResources(hidden, project).stream()
             .map(it -> Util.unquote(it.getText()))
             .collect(Collectors.toList());
     }

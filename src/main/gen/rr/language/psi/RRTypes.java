@@ -58,6 +58,7 @@ public interface RRTypes {
   IElementType DESCR_NAMES = new RRElementType("DESCR_NAMES");
   IElementType DESCR_REGIONS = new RRElementType("DESCR_REGIONS");
   IElementType DESCR_SM_FACTIONS = new RRElementType("DESCR_SM_FACTIONS");
+  IElementType DESCR_SM_RESOURCES = new RRElementType("DESCR_SM_RESOURCES");
   IElementType DESCR_STRAT = new RRElementType("DESCR_STRAT");
   IElementType DESCR_UNIT_VARIATION = new RRElementType("DESCR_UNIT_VARIATION");
   IElementType DIPLOMACY_SECTION = new RRElementType("DIPLOMACY_SECTION");
@@ -121,9 +122,13 @@ public interface RRTypes {
   IElementType REQUIREMENT = new RRElementType("REQUIREMENT");
   IElementType RESOURCES_SECTION = new RRElementType("RESOURCES_SECTION");
   IElementType RESOURCE_C = new RRElementType("RESOURCE_C");
+  IElementType RESOURCE_DECL = new RRElementType("RESOURCE_DECL");
   IElementType RESOURCE_ITEM = new RRElementType("RESOURCE_ITEM");
+  IElementType RESOURCE_NAME_DECL = new RRElementType("RESOURCE_NAME_DECL");
   IElementType RESOURCE_QUANTITY_DISABLED_ = new RRElementType("RESOURCE_QUANTITY_DISABLED_");
   IElementType RESOURCE_QUANTITY_ENABLED_ = new RRElementType("RESOURCE_QUANTITY_ENABLED_");
+  IElementType RESOURCE_REF = new RRElementType("RESOURCE_REF");
+  IElementType RESOURCE_TYPE = new RRElementType("RESOURCE_TYPE");
   IElementType SEASON = new RRElementType("SEASON");
   IElementType SETTLEMENT_ITEM = new RRElementType("SETTLEMENT_ITEM");
   IElementType SETTLEMENT_LEVEL = new RRElementType("SETTLEMENT_LEVEL");
@@ -411,6 +416,7 @@ public interface RRTypes {
   IElementType DESCR_CULTURES_MARKER = new RRTokenType("DESCR_CULTURES_MARKER");
   IElementType DESCR_FACTION_GROUPS_MARKER = new RRTokenType("DESCR_FACTION_GROUPS_MARKER");
   IElementType DESCR_SM_FACTIONS_MARKER = new RRTokenType("DESCR_SM_FACTIONS_MARKER");
+  IElementType DESCR_SM_RESOURCES_MARKER = new RRTokenType("DESCR_SM_RESOURCES_MARKER");
   IElementType DICTIONARY = new RRTokenType("dictionary");
   IElementType DIPLOMACYCONSTRUCTINGCOUNTEROFFER = new RRTokenType("DiplomacyConstructingCounterOffer");
   IElementType DIPLOMACYCONSTRUCTINGOFFER = new RRTokenType("DiplomacyConstructingOffer");
@@ -979,7 +985,7 @@ public interface RRTypes {
   IElementType ROUTESBLOCKADED = new RRTokenType("RoutesBlockaded");
   IElementType ROUTING = new RRTokenType("routing");
   IElementType ROUTS = new RRTokenType("Routs");
-  IElementType RRFILE_16_0 = new RRTokenType("RRFile_16_0");
+  IElementType RRFILE_17_0 = new RRTokenType("RRFile_17_0");
   IElementType RUNNING_AMOK = new RRTokenType("running_amok");
   IElementType SABOTAGEMISSION = new RRTokenType("SabotageMission");
   IElementType SALLYBESIEGER = new RRTokenType("SallyBesieger");
@@ -1339,6 +1345,9 @@ public interface RRTypes {
       else if (type == DESCR_SM_FACTIONS) {
         return new RRDescrSmFactionsImpl(node);
       }
+      else if (type == DESCR_SM_RESOURCES) {
+        return new RRDescrSmResourcesImpl(node);
+      }
       else if (type == DESCR_STRAT) {
         return new RRDescrStratImpl(node);
       }
@@ -1528,14 +1537,26 @@ public interface RRTypes {
       else if (type == RESOURCE_C) {
         return new RRResourceCImpl(node);
       }
+      else if (type == RESOURCE_DECL) {
+        return new RRResourceDeclImpl(node);
+      }
       else if (type == RESOURCE_ITEM) {
         return new RRResourceItemImpl(node);
+      }
+      else if (type == RESOURCE_NAME_DECL) {
+        return new RRResourceNameDeclImpl(node);
       }
       else if (type == RESOURCE_QUANTITY_DISABLED_) {
         return new RRResourceQuantityDisabled_Impl(node);
       }
       else if (type == RESOURCE_QUANTITY_ENABLED_) {
         return new RRResourceQuantityEnabled_Impl(node);
+      }
+      else if (type == RESOURCE_REF) {
+        return new RRResourceRefImpl(node);
+      }
+      else if (type == RESOURCE_TYPE) {
+        return new RRResourceTypeImpl(node);
       }
       else if (type == SEASON) {
         return new RRSeasonImpl(node);

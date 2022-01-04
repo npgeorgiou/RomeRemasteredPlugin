@@ -19,7 +19,7 @@ public interface RRBuildingLevel extends PsiElement {
   @NotNull
   List<RRRequirement> getRequirementList();
 
-  @NotNull
+  @Nullable
   RRSettlementLevel getSettlementLevel();
 
 }

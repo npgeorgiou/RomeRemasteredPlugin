@@ -26,12 +26,9 @@ public class BuildingTrees extends RRCompletionProvider {
         @NotNull CompletionResultSet resultSet
     ) {
         PsiElement typed = parameters.getPosition();
-
         Project project = parameters.getOriginalFile().getProject();
 
-        Collection<String> buildings = RRUtil.findAllBuildingTrees(project).stream()
-            .map(it -> it.getFirstChild().getNextSibling().getNextSibling().getText())
-            .collect(Collectors.toList());
+        Collection<String> buildings = RRUtil.findAllBuildingTreesAsStrings(project);
 
         for (String building : buildings) {
             resultSet.addElement(LookupElementBuilder.create(building));

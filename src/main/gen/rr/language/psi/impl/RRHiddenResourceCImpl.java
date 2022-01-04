@@ -29,8 +29,8 @@ public class RRHiddenResourceCImpl extends ASTWrapperPsiElement implements RRHid
 
   @Override
   @Nullable
-  public PsiElement getId() {
-    return findChildByType(ID);
+  public RRResourceRef getResourceRef() {
+    return findChildByClass(RRResourceRef.class);
   }
 
 }
