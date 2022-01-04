@@ -77,8 +77,9 @@ public class RRPsiImplUtil {
     }
 
     public static PsiElement setName(RRCultureRef ref, String newName) {
-        RRUnitRef newRef = RRElementFactory.createUnitRef(ref.getProject(), newName);
-        return ref.replace(newRef);
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
     }
 
     public static CultureReference getReference(RRCultureRef ref) {

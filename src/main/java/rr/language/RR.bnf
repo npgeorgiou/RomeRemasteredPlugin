@@ -20,6 +20,7 @@
       DESCR_FACTION_GROUPS_MARKER='regexp:;descr_faction_groups.txt.*'
       DESCR_SM_FACTIONS_MARKER='regexp:;descr_sm_factions.txt.*'
       DESCR_SM_RESOURCES_MARKER='regexp:;descr_sm_resources.txt.*'
+      FERAL_DESCR_PORTRAITS_VARIATION_MARKER='regexp:;feral_descr_portraits_variation.txt.*'
       COMMENT='regexp:[;¬].*'
       space='regexp:\s+'
       INT = 'regexp:[\+\-]?[0-9]+'
@@ -374,8 +375,15 @@
       AGGRESIVENESS = "aggresiveness"
       PERSONALITY = "personality"
 
+      // feral_descr_portraits_variation
+      OLD="old"
+      CIVILIAN="civilian"
+      ROGUE="rogue"
+      YOUNG="young"
+
       // descr_faction_groups
       GROUP="group"
+
       // events
       PREBATTLE = "PreBattle"
       PREBATTLEWITHDRAWAL = "PreBattleWithdrawal"
@@ -1133,6 +1141,7 @@ RRFile ::= descr_strat|
           descr_faction_groups|
           descr_sm_factions|
           descr_sm_resources|
+          feral_descr_portraits_variation|
           kv_format|
 
 // ############### descr_strat start #################################
@@ -1337,7 +1346,7 @@ export_descr_buildings ::= tags_
                            condition_alias*
                            building_tree+
 
-tags_ ::= TAGS OCB list_of_IDs CCB {pin=1 recoverWhile=}
+tags_ ::= TAGS OCB list_of_IDs CCB {pin=1}
 private tagsRecover ::= !(condition_alias|building_tree)
 
 condition_alias ::= ALIAS ID OCB
@@ -1393,7 +1402,6 @@ requirement ::= REQUIRES composite_c
 private composite_c ::= maybe_negated_c ((AND|OR) maybe_negated_c)* {pin=1}
 private maybe_negated_c ::= NOT? building_condition
 building_condition ::= (alias_c|factions_c|major_event_c|resource_c|hidden_resource_c|no_tag_c|building_min_level_c|building_c|is_toggled_c)
-{recoverWhile=}
 private recover_c ::= !(
                         capability_|
                         DISPLAY_STRING|CAPABILITY|
@@ -1665,6 +1673,24 @@ resource_type ::= '"hidden"'|'"slaves"'|'"mineable"'|'"none"'
 resource_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 resource_ref ::= ID {methods=[setName getReference]}
 // ############### descr_sm_resources end #################################
+
+// ############### feral_descr_portraits_variation start #################################
+feral_descr_portraits_variation ::= FERAL_DESCR_PORTRAITS_VARIATION_MARKER
+                                    culture_portrait_variation+
+culture_portrait_variation ::= culture_ref OCB
+                                 OLD OCB
+                                   CIVILIAN OCB portrait_variation+ CCB
+                                   GENERAL OCB portrait_variation+ CCB
+                                   (ROGUE OCB portrait_variation+ CCB)?
+                                 CCB
+                                   YOUNG OCB
+                                   CIVILIAN OCB portrait_variation+ CCB
+                                   GENERAL OCB portrait_variation+ CCB
+                                   (ROGUE OCB portrait_variation+ CCB)?
+                                 CCB
+                               CCB
+private portrait_variation ::= INT COMMA INT COMMA INT COMMA ID
+// ############### feral_descr_portraits_variation end #################################
 
 // ############### General things #################################
 // #### events & conditions

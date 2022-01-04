@@ -80,6 +80,10 @@
                          displayName="Non existing faction or culture" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingFactionOrCulture"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_culture"
+                         displayName="Non existing culture" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingCulture"/>
 
 
     </extensions>

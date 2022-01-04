@@ -27,6 +27,7 @@ DESCR_SM_FACTIONS_MARKER = ";descr_sm_factions.txt"[^\r\n]*
 DESCR_SM_RESOURCES_MARKER = ";descr_sm_resources.txt"[^\r\n]*
 FERAL_DESCR_AI_PERSONALITY_MARKER = ";feral_descr_ai_personality.txt"[^\r\n]*
 DESCR_FACTION_GROUPS_MARKER = ";descr_faction_groups.txt"[^\r\n]*
+FERAL_DESCR_PORTRAITS_VARIATION_MARKER = ";feral_descr_portraits_variation.txt"[^\r\n]*
 
 COMMENT = [";""¬"][^\r\n]*
 INT = [\+\-]?[0-9]+
@@ -64,18 +65,20 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_UNIT_VARIATION
 %xstate FERAL_DESCR_AI_PERSONALITY
 %state DESCR_FACTION_GROUPS
+%state FERAL_DESCR_PORTRAITS_VARIATION
 
 %state CONDITIONS
 
 %%
 <DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
 
-{EXPORT_BUILDINGS_MARKER}             {yybegin(EXPORT_BUILDINGS); return RRTypes.EXPORT_BUILDINGS_MARKER;}
-{DESCR_CULTURES_MARKER}               {return RRTypes.DESCR_CULTURES_MARKER;}
-{DESCR_SM_FACTIONS_MARKER}            {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
-{FERAL_DESCR_AI_PERSONALITY_MARKER}   {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
-{DESCR_FACTION_GROUPS_MARKER}         {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
-{DESCR_SM_RESOURCES_MARKER}           {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
+{EXPORT_BUILDINGS_MARKER}                {yybegin(EXPORT_BUILDINGS); return RRTypes.EXPORT_BUILDINGS_MARKER;}
+{DESCR_CULTURES_MARKER}                  {return RRTypes.DESCR_CULTURES_MARKER;}
+{DESCR_SM_FACTIONS_MARKER}               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
+{FERAL_DESCR_AI_PERSONALITY_MARKER}      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
+{DESCR_FACTION_GROUPS_MARKER}            {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
+{DESCR_SM_RESOURCES_MARKER}              {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
+{FERAL_DESCR_PORTRAITS_VARIATION_MARKER} {yybegin(FERAL_DESCR_PORTRAITS_VARIATION); return RRTypes.FERAL_DESCR_PORTRAITS_VARIATION_MARKER;}
 
 
 {WS}             {return TokenType.WHITE_SPACE;}
@@ -855,6 +858,15 @@ true|false       {return RRTypes.BOOLEAN;}
 {
     "group"      {return RRTypes.GROUP;}
     "faction"    {return RRTypes.FACTION;}
+    {ID}         {return RRTypes.ID;}
+}
+
+<FERAL_DESCR_PORTRAITS_VARIATION>
+{
+    "old"        {return RRTypes.OLD;}
+    "civilian"   {return RRTypes.CIVILIAN;}
+    "rogue"      {return RRTypes.ROGUE;}
+    "young"      {return RRTypes.YOUNG;}
     {ID}         {return RRTypes.ID;}
 }
 

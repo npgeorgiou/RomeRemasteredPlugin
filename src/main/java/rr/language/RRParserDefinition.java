@@ -531,7 +531,13 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.PERSONALITY,
 
         // descr_faction_groups
-        RRTypes.GROUP
+        RRTypes.GROUP,
+
+        // feral_descr_portraits_variation
+        RRTypes.OLD,
+        RRTypes.CIVILIAN,
+        RRTypes.ROGUE,
+        RRTypes.YOUNG
         );
     //</editor-fold>
 
