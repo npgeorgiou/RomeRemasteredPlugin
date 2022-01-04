@@ -1,0 +1,105 @@
+<idea-plugin>
+    <id>org.example.test</id>
+    <name>RR</name>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+    <description>foofoofoofoofoofoofoofoofoofoofoofoofoofoofoofoo</description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="RomeRemastered File"
+                  implementationClass="rr.language.RRFileType"
+                  fieldName="INSTANCE"
+                  language="RomeRemastered"
+                  extensions="txt"/>
+        <lang.namesValidator language="RomeRemastered" implementationClass="rr.language.refactoring.RRNamesValidator"/>
+        <lang.parserDefinition language="RomeRemastered" implementationClass="rr.language.RRParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="RomeRemastered"
+                                       implementationClass="rr.language.colors.RRSyntaxHighlighterFactory"/>
+        <annotator language="RomeRemastered" implementationClass="rr.language.colors.RRHighlightingAnnotator"/>
+        <colorSettingsPage implementation="rr.language.colors.RRColorSettingsPage"/>
+        <lang.foldingBuilder language="RomeRemastered" implementationClass="rr.language.RRFoldingBuilder"/>
+        <lang.commenter language="RomeRemastered" implementationClass="rr.language.RRCommenter"/>
+        <completion.contributor language="RomeRemastered"
+                                implementationClass="rr.language.completion.RRCompletionContributor"/>
+        <lang.findUsagesProvider language="RomeRemastered" implementationClass="rr.language.RRFindUsagesProvider"/>
+        <lang.refactoringSupport language="RomeRemastered"
+                                 implementationClass="rr.language.RRRefactoringSupportProvider"/>
+
+        <referencesSearch implementation="rr.language.RRReferencesSearch"/>
+
+        <!-- Inspections -->
+        <localInspection language="RomeRemastered" shortName="Descr_names_not_in_names"
+                         displayName="Name not existing in names.txt" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.DescrNamesNotInNames"/>
+        <localInspection language="RomeRemastered" shortName="Names_not_used"
+                         displayName="Name not used in descr_names.txt" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NamesNotInDescrNames"/>
+        <localInspection language="RomeRemastered" shortName="Duplicate_mercenary_pool_regions"
+                         displayName="Duplicate mercenary pool regions" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.DuplicateMercenaryPoolRegions"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_mercenary_pool_regions"
+                         displayName="Non existing mercenary pool regions" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingRegion"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_unit" displayName="Non existing unit"
+                         groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingUnit"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_building_tree"
+                         displayName="Non existing building tree" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingBuildingTree"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_building_level"
+                         displayName="Non existing building level" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingBuildingLevel"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_trait" displayName="Non existing trait"
+                         groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingTrait"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_ancillary"
+                         displayName="Non existing ancillary" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingAncillary"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_ethnicity_makeup"
+                         displayName="Non existing ethnicity makeup" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingEthnicityMakeup"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_faction"
+                         displayName="Non existing faction" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingFaction"/>
+        <localInspection language="RomeRemastered" shortName="Non_existing_faction_or_culture"
+                         displayName="Non existing faction or culture" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.NonExistingFactionOrCulture"/>
+
+
+    </extensions>
+
+    <actions>
+        <action
+                id="rr.language.actions.MarkFileTypeWithComment"
+                class="rr.language.actions.MarkFileTypeWithComment"
+                text="At the Top of Each File, Add a Comment with Its Name"
+                description="At the top of each file, add a comment with its name"
+        >
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+        <action
+                id="rr.language.actions.CreateExportBuildingsFile"
+                class="rr.language.actions.CreateExportBuildingsFile"
+                text="Create Export_Buildings.Txt File"
+                description="Create export_buildings.txt file"
+        >
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
