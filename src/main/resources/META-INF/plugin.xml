@@ -1,9 +1,9 @@
 <idea-plugin>
-    <id>org.example.test</id>
+    <id>org.NikosPapageorgiou.RomeRemasteredPlugin</id>
     <name>RR</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="foo@foo.com" url="http://www.foo.com">Foo</vendor>
 
-    <description>foofoofoofoofoofoofoofoofoofoofoofoofoofoofoofoo</description>
+    <description>Supports modding of Rome remastered files</description>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
