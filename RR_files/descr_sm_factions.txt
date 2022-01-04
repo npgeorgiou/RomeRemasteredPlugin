@@ -1,0 +1,1517 @@
+;descr_sm_factions.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+"factions":
+[
+	"romans_julii":
+	{
+		;;name and description
+		"string":      "ROMANS_JULII",
+		"description": "ROMANS_JULII_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "roman",
+		"ethnicity": "mediterranean",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_romans", "fgroup_fertility_temple", "fgroup_fun_temple", "fgroup_leadership_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "romans_julii_men",
+			"women":    "roman_women",
+			"surnames": "romans_julii_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/romans_julii.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       0,
+			"rebel standard index": 20,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       0,
+			"rebel logo index": 20,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_julii.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_slaves.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  165, 20,  20,  ],
+			"secondary": [  0,   0,   0,   ],
+
+			"family tree":
+			{
+				"background":      [  96,  17,  15,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/julii_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/julii_outro.wmv",
+			"defeat": "data/fmv/lose/julii_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"romans_brutii":
+	{
+		;;name and description
+		"string":      "ROMANS_BRUTII",
+		"description": "ROMANS_BRUTII_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "roman",
+		"ethnicity": "mediterranean",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_romans", "eeeeee", "fgroup_violence_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "roman_men",
+			"women":    "roman_women",
+			"surnames": "romans_brutii_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/romans_brutii.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       1,
+			"rebel standard index": 20,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       1,
+			"rebel logo index": 20,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_brutii.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_slaves.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  85,  135, 65,  ],
+			"secondary": [  255, 250, 200, ],
+
+			"family tree":
+			{
+				"background":      [  51,  91,  30,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/brutii_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/brutii_outro.wmv",
+			"defeat": "data/fmv/lose/brutii_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"romans_scipii":
+	{
+		;;name and description
+		"string":      "ROMANS_SCIPII",
+		"description": "ROMANS_SCIPII_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "roman",
+		"ethnicity": "mediterranean",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_romans", "fgroup_forge_temple", "fgroup_law_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "roman_men",
+			"women":    "roman_women",
+			"surnames": "romans_scipii_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/romans_scipii.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       2,
+			"rebel standard index": 20,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       2,
+			"rebel logo index": 20,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_scipii.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_slaves.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  35,  95,  175, ],
+			"secondary": [  240, 220, 180, ],
+
+			"family tree":
+			{
+				"background":      [  21,  51,  73,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/scipii_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/scipii_outro.wmv",
+			"defeat": "data/fmv/lose/scipii_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"romans_senate":
+	{
+		;;name and description
+		"string":      "ROMANS_SENATE",
+		"description": "ROMANS_SENATE_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "roman",
+		"ethnicity": "mediterranean",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_romans", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "romans_senate_men",
+			"women":    "roman_women",
+			"surnames": "romans_senate_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/romans_senate.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       3,
+			"rebel standard index": 20,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       3,
+			"rebel logo index": 20,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_senate.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_slaves.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  150, 80,  205, ],
+			"secondary": [  255, 255, 255, ],
+
+			"family tree":
+			{
+				"background":      [  0,   0,   0,   ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/scipii_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/scipii_outro.wmv",
+			"defeat": "data/fmv/lose/SPQR_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"macedon":
+	{
+		;;name and description
+		"string":      "MACEDON",
+		"description": "MACEDON_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "greek",
+		"ethnicity": "mediterranean",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_farming_temple", "fgroup_governors_temple", "fgroup_hunting_temple", "fgroup_violence_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "macedon_men",
+			"women":    "macedon_women",
+			"surnames": "greek_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/macedon.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       4,
+			"rebel standard index": 23,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       4,
+			"rebel logo index": 20, ;23,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_macedon.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_greek_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  0,   0,   0,   ],
+			"secondary": [  255, 75,  0,   ],
+
+			"family tree":
+			{
+				"background":      [  42,  42,  42,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/greek_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/greek_outro.wmv",
+			"defeat": "data/fmv/lose/macedon_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"egypt":
+	{
+		;;name and description
+		"string":      "EGYPT",
+		"description": "EGYPT_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "egyptian",
+		"ethnicity": "egyptian",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_fertility_temple", "fgroup_fun_temple", "fgroup_justice_templexxx", "fgroup_law_temple", "eeeeee", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "egypt_men",
+			"women":    "egypt_women",
+			"surnames": "egypt_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/egypt.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       5,
+			"rebel standard index": 24,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       5,
+			"rebel logo index": 20, ;24,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_egypt.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_egypt_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  255, 255, 140, ],
+			"secondary": [  0,   0,   0,   ],
+
+			"family tree":
+			{
+				"background":      [  154, 117, 57,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/egyptian_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/egyptian_outro.wmv",
+			"defeat": "data/fmv/lose/egyptians_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"seleucid":
+	{
+		;;name and description
+		"string":      "SELEUCID",
+		"description": "SELEUCID_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "greek",
+		"ethnicity": "arabic",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_forge_temple", "fgroup_fun_temple", "eeeeee", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "seleucid_men",
+			"women":    "seleucid_women",
+			"surnames": "seleucid_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/seleucid.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       6,
+			"rebel standard index": 23,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       6,
+			"rebel logo index": 20, ;23,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_seleucid.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_greek_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  155, 128, 128, ],
+			"secondary": [  255, 255, 255, ],
+
+			"family tree":
+			{
+				"background":      [  85,  82,  80,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/greek_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/greek_outro.wmv",
+			"defeat": "data/fmv/lose/seleucid_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"carthage":
+	{
+		;;name and description
+		"string":      "CARTHAGE",
+		"description": "CARTHAGE_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "carthaginian",
+		"ethnicity": "arabic",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_farming_temple", "fgroup_justice_templexxx", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "carthage_men",
+			"women":    "african_women",
+			"surnames": "carthage_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/carthage.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       7,
+			"rebel standard index": 22,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       7,
+			"rebel logo index": 20, ;22,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_carthage.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_carthage_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  255, 255, 255, ],
+			"secondary": [  85,  100, 200, ],
+
+			"family tree":
+			{
+				"background":      [  255, 255, 255, ],
+				"font":            [  0,   0,   0,   ],
+
+				"selected line":   [  0,   0,   0,   ],
+				"unselected line": [  17,  17,  17,  ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/carthage_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/carthage_outro.wmv",
+			"defeat": "data/fmv/lose/carthage_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"parthia":
+	{
+		;;name and description
+		"string":      "PARTHIA",
+		"description": "PARTHIA_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "eastern",
+		"ethnicity": "arabic",
+
+		;;tags for faction groups
+		"tags": [ ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "parthia_men",
+			"women":    "parthia_women",
+			"surnames": "parthia_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/parthia.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       8,
+			"rebel standard index": 25,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       8,
+			"rebel logo index": 20, ;25,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_parthia.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_eastern_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  168, 62,  154, ],
+			"secondary": [  0,   0,   0,   ],
+
+			"family tree":
+			{
+				"background":      [  82,  17,  64,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/eastern_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/eastern_outro.wmv",
+			"defeat": "data/fmv/lose/parthia_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"pontus":
+	{
+		;;name and description
+		"string":      "PONTUS",
+		"description": "PONTUS_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "eastern",
+		"ethnicity": "mediterranean",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_governors_temple", "fgroup_love_temple", "fgroup_violence_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "pontus_men",
+			"women":    "pontus_women",
+			"surnames": "pontus_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/pontus.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       9,
+			"rebel standard index": 25,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       9,
+			"rebel logo index": 20, ;25,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_pontus.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_eastern_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  10,  100, 125, ],
+			"secondary": [  165, 20,  20,  ],
+
+			"family tree":
+			{
+				"background":      [  23,  94,  117, ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/eastern_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/eastern_outro.wmv",
+			"defeat": "data/fmv/lose/pontus_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"gauls":
+	{
+		;;name and description
+		"string":      "GAULS",
+		"description": "GAULS_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "barbarian",
+		"ethnicity": "caucasian",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_justice_templexxx", "fgroup_popo", "fgroup_hunting_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "gauls_men",
+			"women":    "gauls_women",
+			"surnames": "gauls_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/gauls.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       10,
+			"rebel standard index": 21,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       10,
+			"rebel logo index": 20, ;21,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_gaul.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_barb_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  77,  190, 45,  ],
+			"secondary": [  165, 20,  20,  ],
+
+			"family tree":
+			{
+				"background":      [  51,  91,  30,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/barbarian_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/barbarian_outro.wmv",
+			"defeat": "data/fmv/lose/gauls_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"germans":
+	{
+		;;name and description
+		"string":      "GERMANS",
+		"description": "GERMANS_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "barbarian",
+		"ethnicity": "caucasian",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_fertility_temple", "fgroup_violence_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "germans_men",
+			"women":    "germans_women",
+			"surnames": "germans_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/germans.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       11,
+			"rebel standard index": 21,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       11,
+			"rebel logo index": 20, ;21,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_german.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_barb_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  88,  21,  38,  ],
+			"secondary": [  255, 255, 255, ],
+
+			"family tree":
+			{
+				"background":      [  66,  16,  26,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/barbarian_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/barbarian_outro.wmv",
+			"defeat": "data/fmv/lose/germania_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"britons":
+	{
+		;;name and description
+		"string":      "BRITONS",
+		"description": "BRITONS_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "barbarian",
+		"ethnicity": "caucasian",
+
+		;;tags for faction groups
+		"tags": [ "eeeeee", "foobar", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "britons_men",
+			"women":    "britons_women",
+			"surnames": "britons_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/britons.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       12,
+			"rebel standard index": 21,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       12,
+			"rebel logo index": 20, ;21,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_briton.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_barb_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  95,  125, 190, ],
+			"secondary": [  215, 235, 250, ],
+
+			"family tree":
+			{
+				"background":      [  21,  51,  73,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/barbarian_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/barbarian_outro.wmv",
+			"defeat": "data/fmv/lose/britons_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"armenia":
+	{
+		;;name and description
+		"string":      "ARMENIA",
+		"description": "ARMENIA_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "eastern",
+		"ethnicity": "arabic",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_fun_temple", "fgroup_leadership_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "armenia_men",
+			"women":    "armenia_women",
+			"surnames": "armenia_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/armenia.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       13,
+			"rebel standard index": 25,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       13,
+			"rebel logo index": 20, ;25,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_armenia.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_eastern_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  32,  115, 85,  ],
+			"secondary": [  150, 215, 255, ],
+
+			"family tree":
+			{
+				"background":      [  33,  78,  62,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/armenia_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/eastern_outro.wmv",
+			"defeat": "data/fmv/lose/armenia_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"dacia":
+	{
+		;;name and description
+		"string":      "DACIA",
+		"description": "DACIA_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "barbarian",
+		"ethnicity": "caucasian",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_battle_temple", "fgroup_battleforge_temple", "fgroup_farming_temple", "fgroup_forge_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "dacia_men",
+			"women":    "dacia_women",
+			"surnames": "blank_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/dacia.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       14,
+			"rebel standard index": 21,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       14,
+			"rebel logo index": 20, ;21,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_dacia.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_barb_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  115, 75,  40,  ],
+			"secondary": [  0,   0,   0,   ],
+
+			"family tree":
+			{
+				"background":      [  56,  27,  16,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/barbarian_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/barbarian_outro.wmv",
+			"defeat": "data/fmv/lose/dacia_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"greek_cities":
+	{
+		;;name and description
+		"string":      "GREEK_CITIES",
+		"description": "GREEK_CITIES_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "greek",
+		"ethnicity": "mediterraneanFoo",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_leadership_temple", "fgroup_love_temple", "foobar", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "greek_cities_men",
+			"women":    "greek_cities_women",
+			"surnames": "greek_cities_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/greek_cities.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       15,
+			"rebel standard index": 23,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       15,
+			"rebel logo index": 20, ;23,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_greek_cities.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_greek_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  197, 194, 129, ],
+			"secondary": [  165, 20,  20,  ],
+
+			"family tree":
+			{
+				"background":      [  210, 191, 158, ],
+				"font":            [  0,   0,   0,   ],
+
+				"selected line":   [  0,   0,   0,   ],
+				"unselected line": [  17,  17,  17,  ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/greek_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/greek_outro.wmv",
+			"defeat": "data/fmv/lose/greeks_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"numidia":
+	{
+		;;name and description
+		"string":      "NUMIDIA",
+		"description": "NUMIDIA_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "carthaginian",
+		"ethnicity": "berber",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_farming_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "numidia_men",
+			"women":    "numidia_women",
+			"surnames": "blank_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/numidia.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       16,
+			"rebel standard index": 22,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       16,
+			"rebel logo index": 20, ;22,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_numidia.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_carthage_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  55,  80,  90,  ],
+			"secondary": [  225, 215, 200, ],
+
+			"family tree":
+			{
+				"background":      [  47,  54,  60,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/numidia_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/carthage_outro.wmv",
+			"defeat": "data/fmv/lose/numidian_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"scythia":
+	{
+		;;name and description
+		"string":      "SCYTHIA",
+		"description": "SCYTHIA_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "barbarian",
+		"ethnicity": "caucasian",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_law_temple", "fgroup_love_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "scythia_men",
+			"women":    "scythia_women",
+			"surnames": "blank_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/scythia.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       17,
+			"rebel standard index": 21,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       17,
+			"rebel logo index": 20, ;21,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_scythia.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_barb_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  215, 115, 25,  ],
+			"secondary": [  255, 255, 139, ],
+
+			"family tree":
+			{
+				"background":      [  123, 43,  15,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/scythia_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/barbarian_outro.wmv",
+			"defeat": "data/fmv/lose/scythia_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"spain":
+	{
+		;;name and description
+		"string":      "SPAIN",
+		"description": "SPAIN_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "barbarian",
+		"ethnicity": "caucasian",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_justice_templexxx", "fgroup_popo", "fgroup_hunting_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "spain_men",
+			"women":    "spain_women",
+			"surnames": "spain_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/spain.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       18,
+			"rebel standard index": 21,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       18,
+			"rebel logo index": 20, ;21,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_spain.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_barb_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  135, 110, 60,  ],
+			"secondary": [  240, 230, 190, ],
+
+			"family tree":
+			{
+				"background":      [  110, 74,  15,  ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/spain_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/barbarian_outro.wmv",
+			"defeat": "data/fmv/lose/spain_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"thrace":
+	{
+		;;name and description
+		"string":      "THRACE",
+		"description": "THRACE_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "greek",
+		"ethnicity": "caucasian",
+
+		;;tags for faction groups
+		"tags": [ "fgroup_battle_temple", "fgroup_battleforge_temple", "fgroup_fun_temple", ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "thrace_men",
+			"women":    "thrace_women",
+			"surnames": "blank_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/thrace.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       19,
+			"rebel standard index": 23,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       19,
+			"rebel logo index": 20, ;23,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_thrace.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_greek_rebel.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  115, 195, 195, ],
+			"secondary": [  0,   0,   0,   ],
+
+			"family tree":
+			{
+				"background":      [  28,  111, 138, ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/thrace_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/greek_outro.wmv",
+			"defeat": "data/fmv/lose/thrace_eliminated.wmv",
+		},
+
+		"available in custom battles": true,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": true,
+	},
+	"slave":
+	{
+		;;name and description
+		"string":      "SLAVE",
+		"description": "SLAVE_DESCR",
+
+		;;culture and (default?) character ethnicity
+		"culture":   "roman",
+		"ethnicity": "mediterranean",
+
+		;;tags for faction groups
+		"tags": [ ],
+
+		;;namelists
+		"namelists":
+		{
+			"men":      "slave_men",
+			"women":    "slave_women",
+			"surnames": "blank_surnames",
+		},
+
+		"logos":
+		{
+			;;logo to use in the loading screens (seperate as sprite sheets aren't loaded at that point)
+			"loading screen icon": "data/ui/faction_icons/slave.tga",
+
+			;;standard index as declared in descr_standards (4 per page)
+			"standard index":       21,
+			"rebel standard index": 20,
+
+			;;logo index as declared in descr_sm_faction_logos (1 per page)
+			"logo index":       20,
+			"rebel logo index": 20,
+
+			;;flag models to be used on the strat map when a settlement is unoccupied
+			"strat symbol model":       "data/models_strat/symbol_slaves.CAS",
+			"strat rebel symbol model": "data/models_strat/symbol_slaves.CAS",
+		},
+
+		;;faction colours (some base game factions may have hardcoded overrides)
+		"colours":
+		{
+			"primary":   [  155, 145, 120, ],
+			"secondary": [  90,  75,  40,  ],
+
+			"family tree":
+			{
+				"background":      [  0,   0,   0,   ],
+				"font":            [  255, 255, 255, ],
+
+				"selected line":   [  255, 255, 255, ],
+				"unselected line": [  200, 187, 187, ],
+			},
+		},
+
+		"movies":
+		{
+			;;movie to play when starting a campaign
+			"intro": "data/fmv/intros/julii_intro_1080p.wmv",
+
+			;;movie to play when this faction wins or is defeated, respectively
+			"victory": "data/fmv/victory/barbarian_outro.wmv",
+			"defeat": "data/fmv/lose/rebels_eliminated.wmv",
+		},
+
+		"available in custom battles": false,
+		"prefer naval invasions": false,
+		"default battle ai personality": "default_personality",
+
+		;;allow this faction to have a functioning family tree
+		"allow reproduction": false,
+	},
+],

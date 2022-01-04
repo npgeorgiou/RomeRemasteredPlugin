@@ -1,0 +1,3434 @@
+;names.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+
+{Amulius}			Amulius
+{Augustus}			Augustus
+{Aulus}			Aulus
+{Caius}			Caius
+{Cassius}			Cassius
+{Cnaeus}			Cnaeus
+{Cornelius}			Cornelius
+{Decius}			Decius
+{Flavius}			Flavius
+{Gaius}			Gaius
+{Galerius}			Galerius
+{Gnaeus}			Gnaeus
+{Julianus}			Julianus
+{Kaeso}			Kaeso
+{Lentulus}			Lentulus
+{Luca}			Luca
+{Lucius}			Lucius
+{Manius}			Manius
+{Marcus}			Marcus
+{Nero}			Nero
+{Numerius}			Numerius
+{Oppius}			Oppius
+{Placus}			Placus
+{Publius}			Publius
+{Quintis}			Quintis
+{Quintus}			Quintus
+{Secundus}			Secundus
+{Servius}			Servius
+{Sextus}			Sextus
+{Sextius}			Sextius
+{Spurius}			Spurius
+{Tertius}			Tertius
+{Tiberius}			Tiberius
+{Titus}			Titus
+{Valerius}			Valerius
+{Vibius}			Vibius
+{Appius}			Appius
+{Acilius}			Acilius
+{Aelius}			Aelius
+{Aemilius}			Aemilius
+{Afranius}			Afranius
+{Agricola}			Agricola
+{Albinus}			Albinus
+{Alfenius}			Alfenius
+{Alienus}			Alienus
+{Ammianus}			Ammianus
+{Ammonius}			Ammonius
+{Annaeus}			Annaeus
+{Annius}			Annius
+{Antio}			Antio
+{Antonius}			Antonius
+{Appuleius}			Appuleius
+{Aquilius}			Aquilius
+{Asconius}			Asconius
+{Asinius}			Asinius
+{Atilius}			Atilius
+{Atinius}			Atinius
+{Attius}			Attius
+{Aurelius}			Aurelius
+{Ausonius}			Ausonius
+{Avidius}			Avidius
+{Avilius}			Avilius
+{Balbus}			Balbus
+{Caecilius}			Caecilius
+{Caecina}			Caecina
+{Caelius}			Caelius
+{Caesennius}			Caesennius
+{Calpurnius}			Calpurnius
+{Calvia}			Calvia
+{Canuleius}			Canuleius
+{Carvilius}			Carvilius
+{Casperius}			Casperius
+{Ceionius}			Ceionius
+{Cestius}			Cestius
+{Cilnius}			Cilnius
+{Cincinnatus}			Cincinnatus
+{Cincius}			Cincius
+{Cipius}			Cipius
+{Claudius}			Claudius
+{Clausus}			Clausus
+{Clodius}			Clodius
+{Coruncanius}			Coruncanius
+{Cossutius}			Cossutius
+{Cottius}			Cottius
+{Curius}			Curius
+{Curtius}			Curtius
+{Dellius}			Dellius
+{Didius}			Didius
+{Dio}			Dio
+{Domitianus}			Domitianus
+{Domitius}			Domitius
+{Domna}			Domna
+{Duillius}			Duillius
+{Ennius}			Ennius
+{Fabius}			Fabius
+{Fabricius}			Fabricius
+{Falerius}			Falerius
+{Fannius}			Fannius
+{Flaminius}			Flaminius
+{Foedus}			Foedus
+{Fonteius}			Fonteius
+{Fulvius}			Fulvius
+{Furius}			Furius
+{Gabinius}			Gabinius
+{Galba}			Galba
+{Gellius}			Gellius
+{Genucius}			Genucius
+{Gessius}			Gessius
+{Helvius}			Helvius
+{Herdonius}			Herdonius
+{Hirtius}			Hirtius
+{Hirtuleius}			Hirtuleius
+{Horatius}			Horatius
+{Hordeonius}			Hordeonius
+{Hortensius}			Hortensius
+{Hostilius}			Hostilius
+{Ignatius}			Ignatius
+{Iunius}			Iunius
+{Iuventius}			Iuventius
+{Julius}			Julius
+{Junius}			Junius
+{Laberius}			Laberius
+{Labienus}			Labienus
+{Laelius}			Laelius
+{Lappius}			Lappius
+{Libo}			Libo
+{Licinius}			Licinius
+{Livius}			Livius
+{Lollius}			Lollius
+{Lucullius}			Lucullius
+{Lusius}			Lusius
+{Lutatius}			Lutatius
+{Maccius}			Maccius
+{Macrinus}			Macrinus
+{Maelius}			Maelius
+{Maenius}			Maenius
+{Maesa}			Maesa
+{Mallius}			Mallius
+{Mamaea}			Mamaea
+{Mamilius}			Mamilius
+{Mancinus}			Mancinus
+{Manilius}			Manilius
+{Manlius}			Manlius
+{Marcius}			Marcius
+{Maximianus}			Maximianus
+{Memmius}			Memmius
+{Menenius}			Menenius
+{Messius}			Messius
+{Metellus}			Metellus
+{Mettius}			Mettius
+{Minucius}			Minucius
+{Mummius}			Mummius
+{Munatius}			Munatius
+{Naevius}			Naevius
+{Nigidius}			Nigidius
+{Norbanus}			Norbanus
+{Octavianus}			Octavianus
+{Ofonius}			Ofonius
+{Ogulnius}			Ogulnius
+{Opellius}			Opellius
+{Opimius}			Opimius
+{Ostorius}			Ostorius
+{Otho}			Otho
+{Ovidius}			Ovidius
+{Pacuvius}			Pacuvius
+{Papinius}			Papinius
+{Papirius}			Papirius
+{Pedius}			Pedius
+{Peducaeus}			Peducaeus
+{Perperna}			Perperna
+{Persius}			Persius
+{Pescennius}			Pescennius
+{Petillius}			Petillius
+{Petreius}			Petreius
+{Petronius}			Petronius
+{Piavonius}			Piavonius
+{Platorius}			Platorius
+{Plautius}			Plautius
+{Pleminius}			Pleminius
+{Plinius}			Plinius
+{Poetelius}			Poetelius
+{Pompeius}			Pompeius
+{Pompilius}			Pompilius
+{Pomponius}			Pomponius
+{Pontius}			Pontius
+{Popillius}			Popillius
+{Poppaedius}			Poppaedius
+{Poppaeus}			Poppaeus
+{Porcius}			Porcius
+{Postumius}			Postumius
+{Propertius}			Propertius
+{Publilius}			Publilius
+{Quinctilius}			Quinctilius
+{Quinctius}			Quinctius
+{Rabirius}			Rabirius
+{Rupilius}			Rupilius
+{Rutilius}			Rutilius
+{Sallustias}			Sallustias
+{Salvidienus}			Salvidienus
+{Salvius}			Salvius
+{Scribonius}			Scribonius
+{Sempronius}			Sempronius
+{Septimius}			Septimius
+{Sergius}			Sergius
+{Sertorius}			Sertorius
+{Servilius}			Servilius
+{Severus}			Severus
+{Silius}			Silius
+{Sittius}			Sittius
+{Soaemias}			Soaemias
+{Sosius}			Sosius
+{Statilius}			Statilius
+{Statius}			Statius
+{Stertinius}			Stertinius
+{Suetonius}			Suetonius
+{Sulla}			Sulla
+{Sulpicius}			Sulpicius
+{Sutorius}			Sutorius
+{Terentilius}			Terentilius
+{Terentius}			Terentius
+{Tettius}			Tettius
+{Trajanus}			Trajanus
+{Trebellius}			Trebellius
+{Trebonianus}			Trebonianus
+{Trebonius}			Trebonius
+{Triarius}			Triarius
+{Tullius}			Tullius
+{Tullus}			Tullus
+{Turranius}			Turranius
+{Ulpius}			Ulpius
+{Ursus}			Ursus
+{Valens}			Valens
+{Varius}			Varius
+{Vatinius}			Vatinius
+{Vellius}			Vellius
+{Ventidius}			Ventidius
+{Vergilius}			Vergilius
+{Verginius}			Verginius
+{Verres}			Verres
+{Verrius}			Verrius
+{Vespasianus}			Vespasianus
+{Vettius}			Vettius
+{Vinicianus}			Vinicianus
+{Vipsanius}			Vipsanius
+{Virius}			Virius
+{Vitellius}			Vitellius
+{Vitruvius}			Vitruvius
+{Voconius}			Voconius
+{Volsinius}			Volsinius
+{Volumnius}			Volumnius
+{Agrippa}			Agrippa
+{Aelianus}			Aelianus
+{Aemilianus}			Aemilianus
+{Afer}			Afer
+{Ahala}			Ahala
+{Ahenobarbus}			Ahenobarbus
+{Alimentus}			Alimentus
+{Andronicus}			Andronicus
+{Antoninus}			Antoninus
+{Arrianus}			Arrianus
+{Asellio}			Asellio
+{Attianus}			Attianus
+{Augurinus}			Augurinus
+{Aurelianus}			Aurelianus
+{Aureolus}			Aureolus
+{Balbillus}			Balbillus
+{Balbinus}			Balbinus
+{Barbatus}			Barbatus
+{Blaesus}			Blaesus
+{Bolanus}			Bolanus
+{Brutus}			Brutus
+{Burrus}			Burrus
+{Caecus}			Caecus
+{Caepio}			Caepio
+{Caldus}			Caldus
+{Calvinus}			Calvinus
+{Camillus}			Camillus
+{Capito}			Capito
+{Caprarius}			Caprarius
+{Caracalla}			Caracalla
+{Carausius}			Carausius
+{Carbo}			Carbo
+{Carinus}			Carinus
+{Carus}			Carus
+{Cassianum}			Cassianum
+{Catalina}			Catalina
+{Cato}			Cato
+{Catulus}			Catulus
+{Celadus}			Celadus
+{Celer}			Celer
+{Celsus}			Celsus
+{Cerealis}			Cerealis
+{Chaerea}			Chaerea
+{Cicero}			Cicero
+{Cinna}			Cinna
+{Civilis}			Civilis
+{Classicianus}			Classicianus
+{Classicus}			Classicus
+{Claudianus}			Claudianus
+{Cocceianus}			Cocceianus
+{Cocles}			Cocles
+{Columella}			Columella
+{Commodus}			Commodus
+{Constantinius}			Constantinius
+{Constantius}			Constantius
+{Corbulo}			Corbulo
+{Corialanus}			Corialanus
+{Corvinus}			Corvinus
+{Corvus}			Corvus
+{Cossus}			Cossus
+{Crassus}			Crassus
+{Creticus}			Creticus
+{Crispus}			Crispus
+{Cursor}			Cursor
+{Delmeticus}			Delmeticus
+{Dentatus}			Dentatus
+{Dolabella}			Dolabella
+{Donatus}			Donatus
+{Drusus}			Drusus
+{Egnatius}			Egnatius
+{Elagabalus}			Elagabalus
+{Fidenas}			Fidenas
+{Figulus}			Figulus
+{Flaccus}			Flaccus
+{Floarianus}			Floarianus
+{Florus}			Florus
+{Frontinus}			Frontinus
+{Fronto}			Fronto
+{Fufetius}			Fufetius
+{Fundanus}			Fundanus
+{Fuscus}			Fuscus
+{Gaetulicus}			Gaetulicus
+{Galenus}			Galenus
+{Galienus}			Galienus
+{Gallio}			Gallio
+{Geta}			Geta
+{Glabrio}			Glabrio
+{Glaucia}			Glaucia
+{Gracchus}			Gracchus
+{Hadrianus}			Hadrianus
+{Harsa}			Harsa
+{Hemina}			Hemina
+{Honoratus}			Honoratus
+{Isauricus}			Isauricus
+{Laco}			Laco
+{Laeca}			Laeca
+{Laenas}			Laenas
+{Laetus}			Laetus
+{Laevinus}			Laevinus
+{Lepidus}			Lepidus
+{Lepis}			Lepis
+{Licinianus}			Licinianus
+{Longinus}			Longinus
+{Longus}			Longus
+{Lucanus}			Lucanus
+{Lucullus}			Lucullus
+{Luscinus}			Luscinus
+{Macer}			Macer
+{Macrianus}			Macrianus
+{Macro}			Macro
+{Maecenas}			Maecenas
+{Maluginensis}			Maluginensis
+{Mamercus}			Mamercus
+{Marcellinus}			Marcellinus
+{Marcellus}			Marcellus
+{Maro}			Maro
+{Maternus}			Maternus
+{Maxentius}			Maxentius
+{Maximian}			Maximian
+{Mela}			Mela
+{Messala}			Messala
+{Milo}			Milo
+{Mucianus}			Mucianus
+{Murena}			Murena
+{Mus}			Mus
+{Nasica}			Nasica
+{Naso}			Naso
+{Nepos}			Nepos
+{Nobilior}			Nobilior
+{Octavius}			Octavius
+{Odaenathus}			Odaenathus
+{Ofella}			Ofella
+{Paelignus}			Paelignus
+{Paetus}			Paetus
+{Palma}			Palma
+{Pansa}			Pansa
+{Papinianus}			Papinianus
+{Paterculus}			Paterculus
+{Paulinus}			Paulinus
+{Paullus}			Paullus
+{Paulus}			Paulus
+{Pedianus}			Pedianus
+{Pennus}			Pennus
+{Pertinax}			Pertinax
+{Philo}			Philo
+{Pilatus}			Pilatus
+{Piso}			Piso
+{Plancus}			Plancus
+{Plautianus}			Plautianus
+{Plautus}			Plautus
+{Pollio}			Pollio
+{Polybius}			Polybius
+{Potitus}			Potitus
+{Priscus}			Priscus
+{Probus}			Probus
+{Pulcher}			Pulcher
+{Pullus}			Pullus
+{Pupienus}			Pupienus
+{Quadrigarius}			Quadrigarius
+{Quietus}			Quietus
+{Quintilianus}			Quintilianus
+{Quirinius}			Quirinius
+{Regillus}			Regillus
+{Regulus}			Regulus
+{Rex}			Rex
+{Rullianus}			Rullianus
+{Sabinus}			Sabinus
+{Saccas}			Saccas
+{Sacrovir}			Sacrovir
+{Saturninus}			Saturninus
+{Scaevola}			Scaevola
+{Scapula}			Scapula
+{Scaurus}			Scaurus
+{Scipio}			Scipio
+{Scribonianus}			Scribonianus
+{Sejanus}			Sejanus
+{Seneca}			Seneca
+{Senecio}			Senecio
+{Servianus}			Servianus
+{Servilianus}			Servilianus
+{Silanus}			Silanus
+{Silo}			Silo
+{Silva}			Silva
+{Silvanus}			Silvanus
+{Stilo}			Stilo
+{Stolo}			Stolo
+{Syrus}			Syrus
+{Tacitus}			Tacitus
+{Thrasea}			Thrasea
+{Tigellinus}			Tigellinus
+{Timesitheus}			Timesitheus
+{Torquatus}			Torquatus
+{Tubertus}			Tubertus
+{Tuditanus}			Tuditanus
+{Turbo}			Turbo
+{Ulpianus}			Ulpianus
+{Urbicus}			Urbicus
+{Varro}			Varro
+{Varus}			Varus
+{Verus}			Verus
+{Vettus}			Vettus
+{Volesus}			Volesus
+{Vulso}			Vulso
+{women}			women
+{Metella}			Metella
+{Domitia}			Domitia
+{Gratidia}			Gratidia
+{Atia}			Atia
+{Faustina}			Faustina
+{Ocellina}			Ocellina
+{Magna}			Magna
+{Poppaea}			Poppaea
+{Verina}			Verina
+{Ceacilia}			Ceacilia
+{Agrippina}			Agrippina
+{Alfidia}			Alfidia
+{Alypia}			Alypia
+{Ancharia}			Ancharia
+{Antistia}			Antistia
+{Antonia}			Antonia
+{Arria}			Arria
+{Aurelia}			Aurelia
+{Baebiana}			Baebiana
+{Caesonia}			Caesonia
+{Claudia}			Claudia
+{Clodia}			Clodia
+{Cornelia}			Cornelia
+{Crispina}			Crispina
+{Domitilla}			Domitilla
+{Drusilla}			Drusilla
+{Dryantilla}			Dryantilla
+{Euphemia}			Euphemia
+{Eutropia}			Eutropia
+{Fabia}			Fabia
+{Fadia}			Fadia
+{Fannia}			Fannia
+{Fausta}			Fausta
+{Fulvia}			Fulvia
+{Galla}			Galla
+{Helena}			Helena
+{Helvia}			Helvia
+{Honoria}			Honoria
+{Hostia}			Hostia
+{Julia}			Julia
+{Ustina}			Ustina
+{Leontia}			Leontia
+{Lepida}			Lepida
+{Licinia}			Licinia
+{Livia}			Livia
+{Livilla}			Livilla
+{Lucilla}			Lucilla
+{Magia}			Magia
+{Marcella}			Marcella
+{Marcia}			Marcia
+{Marciana}			Marciana
+{Mariniara}			Mariniara
+{Matidia}			Matidia
+{Messalina}			Messalina
+{Minervina}			Minervina
+{Mucia}			Mucia
+{Octavia}			Octavia
+{Orbiana}			Orbiana
+{Papiria}			Papiria
+{Paulina}			Paulina
+{Placidia}			Placidia
+{Plautilla}			Plautilla
+{Plotina}			Plotina
+{Pompeia}			Pompeia
+{Pomponia}			Pomponia
+{Popillia}			Popillia
+{Porcia}			Porcia
+{Prisca}			Prisca
+{Pulcheria}			Pulcheria
+{Sabina}			Sabina
+{Salonina}			Salonina
+{Sempronia}			Sempronia
+{Servilia}			Servilia
+{Severa}			Severa
+{Severina}			Severina
+{Sulpicia}			Sulpicia
+{Terentia}			Terentia
+{Titiana}			Titiana
+{Tranquillina}			Tranquillina
+{Tullia}			Tullia
+{Turia}			Turia
+{Ulpia}			Ulpia
+{Urgulania}			Urgulania
+{Urgunalla}			Urgunalla
+{Vibia}			Vibia
+{Violentilla}			Violentilla
+{Vipsania}			Vipsania
+{Vistilia}			Vistilia
+{Aneirin}			Aneirin
+{Adcobrovatus}			Adcobrovatus
+{Amminos}			Amminos
+{Barrivendos}			Barrivendos
+{Budic}			Budic
+{Belenus}			Belenus
+{Berdic}			Berdic
+{Brennus}			Brennus
+{Brigomaglos}			Brigomaglos
+{Brycham}			Brycham
+{Cador}			Cador
+{Custennyn}			Custennyn
+{Cynan}			Cynan
+{Conan}			Conan
+{Cacumattus}			Cacumattus
+{Cadwaladur}			Cadwaladur
+{Caratawc}			Caratawc
+{Cassivellaunus}			Cassivellaunus
+{Cadeyrn}			Cadeyrn
+{Caratacus}			Caratacus
+{Caradog}			Caradog
+{Catavignus}			Catavignus
+{Calpornus}			Calpornus
+{Ceanatis}			Ceanatis
+{Cintugnatus}			Cintugnatus
+{Cocolitanus}			Cocolitanus
+{Cogidubnus}			Cogidubnus
+{Cunobelinos}			Cunobelinos
+{Cunovindus}			Cunovindus
+{Dejotarus}			Dejotarus
+{Drustan}			Drustan
+{Diviciacus}			Diviciacus
+{Enemnogenus}			Enemnogenus
+{Enestinus}			Enestinus
+{Erbin}			Erbin
+{Geraint}			Geraint
+{Glasobrin}			Glasobrin
+{Gorteyrn}			Gorteyrn
+{Ivomagus}			Ivomagus
+{Lannildut}			Lannildut
+{Lucco}			Lucco
+{Lugotorix}			Lugotorix
+{Mabon}			Mabon
+{Maglocunus}			Maglocunus
+{Mandubracius}			Mandubracius
+{Matugenus}			Matugenus
+{Meriadoc}			Meriadoc
+{Morirex}			Morirex
+{Motius}			Motius
+{Tancogeistla}			Tancogeistla
+{Tincommius}			Tincommius
+{Vercingetorix}			Vercingetorix
+{Vellocatus}			Vellocatus
+{Vindex}			Vindex
+{Vindomorucius}			Vindomorucius
+{Virssuccius}			Virssuccius
+{Vortigern}			Vortigern
+{Voteporix}			Voteporix
+{Wotecorix}			Wotecorix
+{Praesutagus}			Praesutagus
+{Prasutagus}			Prasutagus
+{Rianorix}			Rianorix
+{Segovax}			Segovax
+{Senaculus}			Senaculus
+{Sennianus}			Sennianus
+{Tasciovanus}			Tasciovanus
+{Taximagulus}			Taximagulus
+{Togodumnus}			Togodumnus
+{Cerethreus}			Cerethreus
+{Dumnorix}			Dumnorix
+{Eporedorix}			Eporedorix
+{Vercassivellaunos}			Vercassivellaunos
+{Bolgios}			Bolgios
+{Ambiorix}			Ambiorix
+{Orgetorix}			Orgetorix
+{Casticos}			Casticos
+{of_Itius_Portis}			of Itius Portis
+{of_Nemetocenna}			of Nemetocenna
+{of_Scaldis}			of Scaldis
+{of_Sabis}			of Sabis
+{of_Aduatuca}			of Aduatuca
+{of_Mosa}			of Mosa
+{of_Aduatucorum}			of Aduatucorum
+{of_Arduenna}			of Arduenna
+{of_Silva}			of Silva
+{of_Isara}			of Isara
+{of_Bibrax}			of Bibrax
+{of_Axona}			of Axona
+{of_Samarabriva}			of Samarabriva
+{of_Matrona}			of Matrona
+{of_Durocortorum}			of Durocortorum
+{of_Mosella}			of Mosella
+{of_Lutetia}			of Lutetia
+{of_Meclodunum}			of Meclodunum
+{of_Vellaunodunum}			of Vellaunodunum
+{of_Cenabum}			of Cenabum
+{of_Agedincum}			of Agedincum
+{of_Alesia}			of Alesia
+{of_Vesontio}			of Vesontio
+{of_Dubis}			of Dubis
+{of_Jura_Mons}			of Jura Mons
+{of_Arurius}			of Arurius
+{of_Lacus_Lemannus}			of Lacus Lemannus
+{of_Dibractes}			of Dibractes
+{of_Cabillonum}			of Cabillonum
+{of_Decetia}			of Decetia
+{of_Liger}			of Liger
+{of_Noviodunum}			of Noviodunum
+{of_Gorgobina}			of Gorgobina
+{of_Elaver}			of Elaver
+{of_Matisco}			of Matisco
+{of_Lugdunum}			of Lugdunum
+{of_Genava}			of Genava
+{of_Vienna}			of Vienna
+{of_Rhodanus}			of Rhodanus
+{of_Cevenna}			of Cevenna
+{of_Lemonum}			of Lemonum
+{of_Caranionus}			of Caranionus
+{of_Garumna}			of Garumna
+{of_Burdigala}			of Burdigala
+{of_Duranius}			of Duranius
+{of_Oltis}			of Oltis
+{of_Uxellodunum}			of Uxellodunum
+{of_Tarnis}			of Tarnis
+{of_Aturius}			of Aturius
+{of_Tolosa}			of Tolosa
+{of_Carcaso}			of Carcaso
+{of_Agathe}			of Agathe
+{of_Nemausus}			of Nemausus
+{of_Fossae}			of Fossae
+{of_Massilia}			of Massilia
+{of_Arausio}			of Arausio
+{Barita}			Barita
+{Boudicca}			Boudicca
+{Boudecea}			Boudecea
+{Cartimandua}			Cartimandua
+{Cunoarda}			Cunoarda
+{Cuniovenda}			Cuniovenda
+{Esselt}			Esselt
+{Eudaf}			Eudaf
+{Huctia}			Huctia
+{Iseult}			Iseult
+{Keyne}			Keyne
+{Verctissa}			Verctissa
+{Verica}			Verica
+{Cynfawr}			Cynfawr
+{Gwenddolau}			Gwenddolau
+{Manawyddan}			Manawyddan
+{Rhydderch}			Rhydderch
+{the_Damnonii}			the Damnonii
+{the_Carvetii}			the Carvetii
+{the_Novantae}			the Novantae
+{the_Selgovae}			the Selgovae
+{the_Votadini}			the Votadini
+{the_Scotii}			the Scotii
+{the_Britanii}			the Britanii
+{the_Britunculi}			the Britunculi
+{the_Brigantes}			the Brigantes
+{the_Parisi}			the Parisi
+{the_Coritani}			the Coritani
+{the_Iceni}			the Iceni
+{the_Cornovii}			the Cornovii
+{the_Dobunni}			the Dobunni
+{the_Catuvellauni}			the Catuvellauni
+{the_Trinovantes}			the Trinovantes
+{the_Atrebates}			the Atrebates
+{the_Dumnonii}			the Dumnonii
+{the_Durotriges}			the Durotriges
+{the_Belgae}			the Belgae
+{the_Regnenses}			the Regnenses
+{the_Cantiaci}			the Cantiaci
+{the_Deceangli}			the Deceangli
+{the_Ordovices}			the Ordovices
+{the_Demetae}			the Demetae
+{the_Silures}			the Silures
+{of_Eboracum}			of Eboracum
+{of_Deva}			of Deva
+{of_Isca}			of Isca
+{of_Gleva}			of Gleva
+{of_Camulodunum}			of Camulodunum
+{of_Gesoriacum}			of Gesoriacum
+{of_Durovernum}			of Durovernum
+{of_Durobrivae}			of Durobrivae
+{of_Anderita}			of Anderita
+{of_Noviomagus}			of Noviomagus
+{of_Portus_Adurni}			of Portus Adurni
+{of_Venta}			of Venta
+{of_Clausentum}			of Clausentum
+{of_Sorviodunum}			of Sorviodunum
+{of_Durnovaria}			of Durnovaria
+{of_Lindinis}			of Lindinis
+{of_Aquae_Sulis}			of Aquae Sulis
+{of_Cunetio}			of Cunetio
+{of_Calleva}			of Calleva
+{of_Corinium}			of Corinium
+{of_Dyf}			of Dyf
+{of_Moridunum}			of Moridunum
+{of_Alabum}			of Alabum
+{of_Bremia}			of Bremia
+{of_Salinae}			of Salinae
+{of_Glevum}			of Glevum
+{of_Lactodorum}			of Lactodorum
+{of_Verulamium}			of Verulamium
+{of_Durolipons}			of Durolipons
+{of_Durovigutum}			of Durovigutum
+{of_Venorae}			of Venorae
+{of_Ratae}			of Ratae
+{of_Mediomanum}			of Mediomanum
+{of_Segontium}			of Segontium
+{of_Canovium}			of Canovium
+{of_Aqua_Arnemetiae}			of Aqua Arnemetiae
+{of_Mamucium}			of Mamucium
+{of_Danum}			of Danum
+{of_Lindum}			of Lindum
+{of_Petuaria}			of Petuaria
+{of_Olicana}			of Olicana
+{of_Isurium}			of Isurium
+{of_Ictis}			of Ictis
+{of_Bremetennacum}			of Bremetennacum
+{of_Glannaventa}			of Glannaventa
+{of_Brocavum}			of Brocavum
+{of_Luguvalium}			of Luguvalium
+{of_Corstopitum}			of Corstopitum
+{of_Arbeia}			of Arbeia
+{of_Pons_Aelius}			of Pons Aelius
+{of_Vercovicium}			of Vercovicium
+{of_Blatooulgium}			of Blatooulgium
+{of_Bremenium}			of Bremenium
+{of_Trimontium}			of Trimontium
+{of_Pinnata_Castra}			of Pinnata Castra
+{of_Vectis}			of Vectis
+{Viriathus}			Viriathus
+{Ambon}			Ambon
+{Arganthonios}			Arganthonios
+{Auaros}			Auaros
+{Caraunios}			Caraunios
+{Caros}			Caros
+{Leukon}			Leukon
+{Megaravicos}			Megaravicos
+{Rhetogenes}			Rhetogenes
+{Viriathos}			Viriathos
+{Avaros}			Avaros
+{Huevos}			Ambon
+{the_Callaici}			the Callaici
+{the_Lusitani}			the Lusitani
+{the_Turdetani}			the Turdetani
+{the_Oretani}			the Oretani
+{the_Edetani}			the Edetani
+{the_Vaccaei}			the Vaccaei
+{the_Illergetes}			the Illergetes
+{the_Celtiberi}			the Celtiberi
+{the_Carpetani}			the Carpetani
+{of_Ibaconn}			of Ibaconn
+{of_Osca}			of Osca
+{of_Rhodae}			of Rhodae
+{of_Emporiae}			of Emporiae
+{of_Barcino}			of Barcino
+{of_Ilerda}			of Ilerda
+{of_Brigantium}			of Brigantium
+{of_Olisipo}			of Olisipo
+{of_Emerita}			of Emerita
+{of_Toletum}			of Toletum
+{of_Segovia}			of Segovia
+{of_Clunia}			of Clunia
+{of_Pallantia}			of Pallantia
+{of_Gracchuris}			of Gracchuris
+{of_Bilbilis}			of Bilbilis
+{of_Dertosa}			of Dertosa
+{of_Ibera}			of Ibera
+{of_Segontia}			of Segontia
+{of_Segobriga}			of Segobriga
+{of_Dianium}			of Dianium
+{of_Baecula}			of Baecula
+{of_Metellinum}			of Metellinum
+{of_Valentia}			of Valentia
+{of_Castulo}			of Castulo
+{of_Corduba}			of Corduba
+{of_Ilipa}			of Ilipa
+{of_Hispalis}			of Hispalis
+{of_Carmo}			of Carmo
+{of_Urso}			of Urso
+{of_Munda}			of Munda
+{of_Tartessus}			of Tartessus
+{of_Malaca}			of Malaca
+{of_Mainake}			of Mainake
+{of_Carthago_Nova}			of Carthago Nova
+{of_Saguntum}			of Saguntum
+{of_Ilorci}			of Ilorci
+{of_Carteia}			of Carteia
+{of_Gades}			of Gades
+{of_Ebro}			of Ebro
+{of_Salo}			of Salo
+{of_Galicia}			of Galicia
+{of_Castillejo}			of Castillejo
+{Esselta}			Esselta
+{Euda}			Euda
+{Iseulta}			Iseulta
+{Keynea}			Keynea
+{Admetos}			Admetos
+{Adymos}			Adymos
+{Akylos}			Akylos
+{Anaksarxos}			Anaksarxos
+{Antigonos}			Antigonos
+{Antiochos}			Antiochos
+{Antipatros}			Antipatros
+{Arrhideos}			Arrhideos
+{Argeos}			Argeos
+{Aristandros}			Aristandros
+{Aristotelis}			Aristotelis
+{Aristoboulos}			Aristoboulos
+{Aristokritos}			Aristokritos
+{Arpalos}			Arpalos
+{Arrianos}			Arrianos
+{Assandros}			Assandros
+{Attalos}			Attalos
+{Aegisthes}			Aegisthes
+{Abantes}			Abantes
+{Abreas}			Abreas
+{Acestes}			Acestes
+{Adeimanthos}			Adeimanthos
+{Aeaces}			Aeaces
+{Aenesidemos}			Aenesidemos
+{Aeson}			Aeson
+{Aetolos}			Aetolos
+{Agathocles}			Agathocles
+{Agis}			Agis
+{Aischylos}			Aischylos
+{Alcaeos}			Alcaeos
+{Alcman}			Alcman
+{Alexarchos}			Alexarchos
+{Alexander}			Alexander
+{Alketas}			Alketas
+{Aloeus}			Aloeus
+{Alypius}			Alypius
+{Amopaon}			Amopaon
+{Amphion}			Amphion
+{Amythaon}			Amythaon
+{Anaxagoras}			Anaxagoras
+{Anaximander}			Anaximander
+{Anchises}			Anchises
+{Androcles}			Androcles
+{Antaeus}			Antaeus
+{Antidoros}			Antidoros
+{Antiochus}			Antiochus
+{Antisthenes}			Antisthenes
+{Apisaon}			Apisaon
+{Arcesilaus}			Arcesilaus
+{Archilochus}			Archilochus
+{Areithous}			Areithous
+{Ariphron}			Ariphron
+{Aristarchus}			Aristarchus
+{Aristocles}			Aristocles
+{Aristonous}			Aristonous
+{Aristoxenus}			Aristoxenus
+{Artemios}			Artemios
+{Aschines}			Aschines
+{Asphalion}			Asphalion
+{Astrabacus}			Astrabacus
+{Athenodorus}			Athenodorus
+{Autesion}			Autesion
+{Axylus}			Axylus
+{Bolon}			Bolon
+{Bacis}			Bacis
+{Basileios}			Basileios
+{Baias}			Baias
+{Borus}			Borus
+{Bucoli}			Bucoli
+{Carpus}			Carpus
+{Carenos}			Carenos
+{Ceas}			Ceas
+{Ceyx}			Ceyx
+{Charax}			Charax
+{Choerilos}			Choerilos
+{Chrysolorus}			Chrysolorus
+{Cleades}			Cleades
+{Cleombrotos}			Cleombrotos
+{Clisthenes}			Clisthenes
+{Calisthenis}			Calisthenis
+{Charidimos}			Charidimos
+{Cleitos}			Cleitos
+{Damasos}			Damasos
+{Deinokratis}			Deinokratis
+{Deukalos}			Deukalos
+{Euenus}			Euenus
+{Ermias}			Ermias
+{Eumenes}			Eumenes
+{Eumenis}			Eumenis
+{Gyras}			Gyras
+{Hermias}			Hermias
+{Hippostratos}			Hippostratos
+{Ifestionas}			Ifestionas
+{Iolaos}			Iolaos
+{Icarus}			Icarus
+{Kalas}			Kalas
+{Kassandros}			Kassandros
+{Krateros}			Krateros
+{Kleitarxos}			Kleitarxos
+{Koinos}			Koinos
+{Leocharis}			Leocharis
+{Leonatos}			Leonatos
+{Lysippos}			Lysippos
+{Lyssimachos}			Lyssimachos
+{Marsias}			Marsias
+{Meleagros}			Meleagros
+{Memmon}			Memmon
+{Nearchos}			Nearchos
+{Neoptolemos}			Neoptolemos
+{Olganos}			Olganos
+{Paramonos}			Paramonos
+{Parmenion}			Parmenion
+{Paterinos}			Paterinos
+{Pausanias}			Pausanias
+{Pefkolaos}			Pefkolaos
+{Perdicas}			Perdicas
+{Permenion}			Permenion
+{Perseas}			Perseas
+{Philotas}			Philotas
+{Philip}			Philip
+{Philipos}			Philipos
+{Podaleirios}			Podaleirios
+{Polycratis}			Polycratis
+{Polyperchon}			Polyperchon
+{Praxinos}			Praxinos
+{Ptolemeos}			Ptolemeos
+{Python}			Python
+{Sekoundos}			Sekoundos
+{Selefkos}			Selefkos
+{Thessalos}			Thessalos
+{Xenokratis}			Xenokratis
+{Zoilos}			Zoilos
+{Zeuxis}			Zeuxis
+{of_Scodra}			of Scodra
+{of_Lissus}			of Lissus
+{of_Dimale}			of Dimale
+{of_Dyrrachium}			of Dyrrachium
+{of_Epidamnus}			of Epidamnus
+{of_Antipatreia}			of Antipatreia
+{of_Apollonia}			of Apollonia
+{of_Oricus}			of Oricus
+{of_Antigonela}			of Antigonela
+{of_Phoenice}			of Phoenice
+{of_Ambracia}			of Ambracia
+{of_Actium}			of Actium
+{of_Same}			of Same
+{of_Naupactus}			of Naupactus
+{of_Patrae}			of Patrae
+{of_Elis}			of Elis
+{of_Olympia}			of Olympia
+{of_Messene}			of Messene
+{of_Pylos}			of Pylos
+{of_Sparta}			of Sparta
+{of_Gythium}			of Gythium
+{of_Argos}			of Argos
+{of_Corinth}			of Corinth
+{of_Aegium}			of Aegium
+{of_Delphi}			of Delphi
+{of_Piraeus}			of Piraeus
+{of_Athens}			of Athens
+{of_Oropus}			of Oropus
+{of_Thebes}			of Thebes
+{of_Delium}			of Delium
+{of_Chalcis}			of Chalcis
+{of_Eretria}			of Eretria
+{of_Nicaea}			of Nicaea
+{of_Echinus}			of Echinus
+{of_Lamia}			of Lamia
+{of_Heraclea}			of Heraclea
+{of_Gomphi}			of Gomphi
+{of_Pharsalus}			of Pharsalus
+{of_Scotussa}			of Scotussa
+{of_Pherae}			of Pherae
+{of_Demetrias}			of Demetrias
+{of_Larissa}			of Larissa
+{of_Phalanna}			of Phalanna
+{of_Gonni}			of Gonni
+{of_Heracleum}			of Heracleum
+{of_Pythion}			of Pythion
+{of_Libethron}			of Libethron
+{of_Dium}			of Dium
+{of_Portaes}			of Portaes
+{of_Petra}			of Petra
+{of_Pydna}			of Pydna
+{of_Pella}			of Pella
+{of_Ottolobus}			of Ottolobus
+{of_Thessalonica}			of Thessalonica
+{of_Cassandreia}			of Cassandreia
+{of_Amphipolis}			of Amphipolis
+{of_Abdera}			of Abdera
+{of_Maroneia}			of Maroneia
+{of_Aenus}			of Aenus
+{of_Cypsela}			of Cypsela
+{of_Lysimachia}			of Lysimachia
+{of_Lampsacus}			of Lampsacus
+{of_Abydos}			of Abydos
+{of_Ilium}			of Ilium
+{of_Naulochus}			of Naulochus
+{of_Messana}			of Messana
+{of_Mylae}			of Mylae
+{of_Catana}			of Catana
+{of_Centuripae}			of Centuripae
+{of_Enna}			of Enna
+{of_Armerinia}			of Armerinia
+{of_Morgantina}			of Morgantina
+{of_Syracuse}			of Syracuse
+{of_Gela}			of Gela
+{of_Agrigentum}			of Agrigentum
+{of_Selinus}			of Selinus
+{of_Lilybaeum}			of Lilybaeum
+{of_Drepana}			of Drepana
+{of_Segesta}			of Segesta
+{of_Panormus}			of Panormus
+{of_Himera}			of Himera
+{Harmodias}			Harmodias
+{Clymene}			Clymene
+{Menelaia}			Menelaia
+{Thessala}			Thessala
+{Achaia}			Achaia
+{Aedon}			Aedon
+{Aganippe}			Aganippe
+{Agave}			Agave
+{Alcandre}			Alcandre
+{Alkmena}			Alkmena
+{Amatheia}			Amatheia
+{Anastasia}			Anastasia
+{Anthusa}			Anthusa
+{Appollonia}			Appollonia
+{Arisbe}			Arisbe
+{Aspasia}			Aspasia
+{Athis}			Athis
+{Barbara}			Barbara
+{Caenis}			Caenis
+{Canace}			Canace
+{Chloris}			Chloris
+{Circe}			Circe
+{Cratais}			Cratais
+{Cymodoce}			Cymodoce
+{Damia}			Damia
+{Delias}			Delias
+{Dione}			Dione
+{Dynamene}			Dynamene
+{Electra}			Electra
+{Eriboea}			Eriboea
+{Eudokia}			Eudokia
+{Eurycleia}			Eurycleia
+{Glyke}			Glyke
+{Harmonia}			Harmonia
+{Helike}			Helike
+{Hero}			Hero
+{Hippolyta}			Hippolyta
+{Ianthe}			Ianthe
+{Ione}			Ione
+{Irene}			Irene
+{Kallisto}			Kallisto
+{Kharmion}			Kharmion
+{Klytemnestra}			Klytemnestra
+{Kypris}			Kypris
+{Lampito}			Lampito
+{Lasthena}			Lasthena
+{Leucotho}			Leucothoë
+{Maia}			Maia
+{Megara}			Megara
+{Melite}			Melite
+{Milto}			Milto
+{Nausicaa}			Nausicaa
+{Nikaia}			Nikaia
+{Oitane}			Oitane
+{Orthia}			Orthia
+{Parthenope}			Parthenope
+{Perialla}			Perialla
+{Pervica}			Pervica
+{Pherenike}			Pherenike
+{Philomela}			Philomela
+{Phyllis}			Phyllis
+{Polydora}			Polydora
+{Proto}			Proto
+{Pythias}			Pythias
+{Rhodope}			Rhodope
+{Sophia}			Sophia
+{Telephassa}			Telephassa
+{Thelma}			Thelma
+{Theresa}			Theresa
+{Thoösa}			Thoösa
+{Tyro}			Tyro
+{Zenobia}			Zenobia
+{Achradina}			Achradina
+{Aegiolea}			Aegiolea
+{Agape}			Agape
+{Aglaia}			Aglaia
+{Alcestis}			Alcestis
+{Althaea}			Althaea
+{Amphithoe}			Amphithoe
+{Andromeda}			Andromeda
+{Anticleia}			Anticleia
+{Apseudes}			Apseudes
+{Aristonike}			Aristonike
+{Astera}			Astera
+{Auge}			Auge
+{Basiane}			Basiane
+{Caleope}			Caleope
+{Castianiera}			Castianiera
+{Chryse}			Chryse
+{Clio}			Clio
+{Creusa}			Creusa
+{Cymothoe}			Cymothoe
+{Dana}			Danaë
+{Demetria}			Demetria
+{Dirce}			Dirce
+{Egeria}			Egeria
+{Elpir}			Elpir
+{Erigone}			Erigone
+{Eunice}			Eunice
+{Eurydike}			Eurydike
+{Gorgo}			Gorgo
+{Hecuba}			Hecuba
+{Heliodora}			Heliodora
+{Herophile}			Herophile
+{Hypsipyle}			Hypsipyle
+{Ino}			Ino
+{Iphianassa}			Iphianassa
+{Iris}			Iris
+{Kallixeina}			Kallixeina
+{Khlöe}			Khlöe
+{Kor}			Koré
+{Kyra}			Kyra
+{Lanike}			Lanike
+{Latona}			Latona
+{Limnoreia}			Limnoreia
+{Maiandria}			Maiandria
+{Megare}			Megare
+{Molpadia}			Molpadia
+{Neaera}			Neaera
+{Nikasepolis}			Nikasepolis
+{Olympias}			Olympias
+{Otonia}			Otonia
+{Pasiphae}			Pasiphae
+{Periboea}			Periboea
+{Amphitrite}			Amphitrite
+{Antehe}			Antehe
+{Antigone}			Antigone
+{Arete}			Arete
+{Aristophane}			Aristophane
+{Astyoche}			Astyoche
+{Augo}			Augo
+{Baucis}			Baucis
+{Callianeira}			Callianeira
+{Charis}			Charis
+{Chryseis}			Chryseis
+{Crisa}			Crisa
+{Cyrene}			Cyrene
+{Deianeira}			Deianeira
+{Demophile}			Demophile
+{Doris}			Doris
+{Egina}			Egina
+{Endeis}			Endeis
+{Eriopis}			Eriopis
+{Euodias}			Euodias
+{Eurynome}			Eurynome
+{Gygaea}			Gygaea
+{Hekabe}			Hekabe
+{Hellanike}			Hellanike
+{Hesione}			Hesione
+{Hyrmina}			Hyrmina
+{Iola}			Iola
+{Iphigenia}			Iphigenia
+{Isadora}			Isadora
+{Kassandra}			Kassandra
+{Khloris}			Khloris
+{Koritto}			Koritto
+{Labda}			Labda
+{Laodameia}			Laodameia
+{Leda}			Leda
+{Lois}			Lois
+{Marpessa}			Marpessa
+{Melanie}			Melanie
+{Merope}			Merope
+{Monima}			Monima
+{Nemerte}			Nemerte
+{Niko}			Niko
+{Omphale}			Omphale
+{Pales}			Pales
+{Pelopia}			Pelopia
+{Pero}			Pero
+{Phaedra}			Phaedra
+{Phigaleia}			Phigaleia
+{Phoebe}			Phoebe
+{Phylomedusa}			Phylomedusa
+{Polyxena}			Polyxena
+{Psamathe}			Psamathe
+{Rhea}			Rhea
+{Sappho}			Sappho
+{Speio}			Speio
+{Thalassa}			Thalassa
+{Theodotis}			Theodotis
+{Thessalonike}			Thessalonike
+{Timandra}			Timandra
+{Xanthippe}			Xanthippe
+{Zoe}			Zoe
+{Adeia}			Adeia
+{Agamede}			Agamede
+{Agathonice}			Agathonice
+{Aketa}			Aketa
+{Alemene}			Alemene
+{Amathea}			Amathea
+{Anais}			Anais
+{Anthousa}			Anthousa
+{Anysia}			Anysia
+{Ariadne}			Ariadne
+{Artemisia}			Artemisia
+{At}			Atë
+{Axiothea}			Axiothea
+{Briseis}			Briseis
+{Calypso}			Calypso
+{Chlo}			Chlo
+{Cilla}			Cilla
+{Corythia}			Corythia
+{Cydippe}			Cydippe
+{Damaris}			Damaris
+{Deipyle}			Deipyle
+{Diomede}			Diomede
+{Drosis}			Drosis
+{Elcmene}			Elcmene
+{Epicaste}			Epicaste
+{Eucarpia}			Eucarpia
+{Europa}			Europa
+{Glauce}			Glauce
+{Helice}			Helice
+{Hermione}			Hermione
+{Hippodamia}			Hippodamia
+{Ianessa}			Ianessa
+{Iomene}			Iomene
+{Iphitheme}			Iphitheme
+{Jocasta}			Jocasta
+{Kephissa}			Kephissa
+{Klymene}			Klymene
+{Kynthia}			Kynthia
+{Lampetie}			Lampetie
+{Laothoe}			Laothoe
+{Leucothea}			Leucothea
+{Maera}			Maera
+{Megaera}			Megaera
+{Melita}			Melita
+{Myrine}			Myrine
+{Nicopolis}			Nicopolis
+{Oenone}			Oenone
+{Orithyia}			Orithyia
+{Parthenia}			Parthenia
+{Percalus}			Percalus
+{Persis}			Persis
+{Phaia}			Phaia
+{Philomache}			Philomache
+{Phylia}			Phylia
+{Polydamna}			Polydamna
+{Prone}			Prone
+{Pyrrha}			Pyrrha
+{Rhode}			Rhode
+{Semele}			Semele
+{Tecmessa}			Tecmessa
+{Thebe}			Thebe
+{Theophano}			Theophano
+{Tho}			Thoë
+{Tryphosa}			Tryphosa
+{Xenophile}			Xenophile
+{Ada}			Ada
+{Aethre}			Aethre
+{Agath}			Agathé
+{Aithra}			Aithra
+{Alcyone}			Alcyone
+{Amarhyllis}			Amarhyllis
+{Amplias}			Amplias
+{Antheia}			Antheia
+{Antiope}			Antiope
+{Argeia}			Argeia
+{Artemidora}			Artemidora
+{Atalanta}			Atalanta
+{Auxesia}			Auxesia
+{Bito}			Bito
+{Calliphana}			Calliphana
+{Chiore}			Chiore
+{Cilissa}			Cilissa
+{Colubra}			Colubra
+{Cybele}			Cybele
+{Cytheris}			Cytheris
+{Deiphobe}			Deiphobe
+{Dianeme}			Dianeme
+{Doto}			Doto
+{Eileithyia}			Eileithyia
+{Eos}			Eos
+{Eris}			Eris
+{Euphrosyne}			Euphrosyne
+{Galatea}			Galatea
+{Halie}			Halie
+{Hekate}			Hekate
+{Hermine}			Hermine
+{Hippodameia}			Hippodameia
+{Ianeira}			Ianeira
+{Iole}			Iole
+{Iphis}			Iphis
+{Issa}			Issa
+{Katina}			Katina
+{Kleopatra}			Kleopatra
+{Kynna}			Kynna
+{Lalage}			Lalage
+{Laodice}			Laodice
+{Leto}			Leto
+{Maeonia}			Maeonia
+{Medesicaste}			Medesicaste
+{Melissa}			Melissa
+{Metriche}			Metriche
+{Mykale}			Mykale
+{Nesaea}			Nesaea
+{Oreithyia}			Oreithyia
+{Panora}			Panora
+{Penthesilea}			Penthesilea
+{Persephone}			Persephone
+{Phaethusa}			Phaethusa
+{Philinna}			Philinna
+{Phylace}			Phylace
+{Polycaste}			Polycaste
+{Procris}			Procris
+{Pylia}			Pylia
+{Rhoda}			Rhoda
+{Sebasteia}			Sebasteia
+{Stratonice}			Stratonice
+{Theano}			Theano
+{Theophania}			Theophania
+{Thisbe}			Thisbe
+{Tryphena}			Tryphena
+{Xene}			Xene
+{Act}			Actë
+{Aerope}			Aerope
+{Agarista}			Agarista
+{Aikaterine}			Aikaterine
+{Alcmene}			Alcmene
+{Althea}			Althea
+{Ampinomene}			Ampinomene
+{Anteia}			Anteia
+{Antiochis}			Antiochis
+{Arethusa}			Arethusa
+{Arsinoe}			Arsinoe
+{Astyocheia}			Astyocheia
+{Autonoe}			Autonoe
+{Berenike}			Berenike
+{Callianessa}			Callianessa
+{Chione}			Chione
+{Chrysothemis}			Chrysothemis
+{Clymere}			Clymere
+{Ctimene}			Ctimene
+{Cythereia}			Cythereia
+{Deineira}			Deineira
+{Dexamene}			Dexamene
+{Dorothea}			Dorothea
+{Eidothee}			Eidothee
+{Enyo}			Enyo
+{Eriphyle}			Eriphyle
+{Euphro}			Euphro
+{Evadne}			Evadne
+{Haidee}			Haidee
+{Hekaline}			Hekaline
+{Helle}			Helle
+{Hilaera}			Hilaera
+{Iaera}			Iaera
+{Iolanthe}			Iolanthe
+{Iphimedeia}			Iphimedeia
+{Ismene}			Ismene
+{Katana}			Katana
+{Kleio}			Kleio
+{Kydilla}			Kydilla
+{Lais}			Lais
+{Laodamia}			Laodamia
+{Lede}			Lede
+{Lyra}			Lyra
+{Medea}			Medea
+{Melantho}			Melantho
+{Metis}			Metis
+{Monime}			Monime
+{Nephele}			Nephele
+{Niobe}			Niobe
+{Oreithuia}			Oreithuia
+{Panope}			Panope
+{Penelope}			Penelope
+{Perse}			Perse
+{Phaedre}			Phaedre
+{Philea}			Philea
+{Phryne}			Phryne
+{Podarge}			Podarge
+{Procne}			Procne
+{Psyche}			Psyche
+{Rhene}			Rhene
+{Scylla}			Scylla
+{Stheneboea}			Stheneboea
+{Thaleia}			Thaleia
+{Theophane}			Theophane
+{Thetis}			Thetis
+{Timo}			Timo
+{Xantippe}			Xantippe
+{Hekhemmut}			Hekhemmut
+{Khnumhoptep}			Khnumhoptep
+{Nakhrankh}			Nakhrankh
+{Ptahhotep}			Ptahhotep
+{Ptahotem}			Ptahotem
+{Wah}			Wah
+{Ahmose}			Ahmose
+{Heruben}			Heruben
+{Isetnofet}			Isetnofet
+{Khasekhem}			Khasekhem
+{Khu}			Khu
+{Kiya}			Kiya
+{Neferet}			Neferet
+{Neferetiabet}			Neferetiabet
+{Nakhti}			Nakhti
+{Miwsher}			Miwsher
+{Meryre}			Meryre
+{Menmaatre}			Menmaatre
+{Mutnodjmet}			Mutnodjmet
+{Pamiu}			Pamiu
+{Pasebakhaen}			Pasebakhaen
+{Akhaenniut}			Akhaenniut
+{Rameses}			Rameses
+{Tutankhemwy}			Tutankhemwy
+{Amunmose}			Amunmose
+{Sekhemwy}			Sekhemwy
+{Akhoris}			Akhoris
+{Amasis}			Amasis
+{Amyrtaios}			Amyrtaios
+{Apries}			Apries
+{Djehutimes}			Djehutimes
+{Nekho}			Nekho
+{Nektanebo}			Nektanebo
+{Philippos}			Philippos
+{Psammetikhos}			Psammetikhos
+{Psamuthis}			Psamuthis
+{Ptolemy}			Ptolemy
+{Ramose}			Ramose
+{Shabaka}			Shabaka
+{Shabataka}			Shabataka
+{Tanutamun}			Tanutamun
+{Thutmose}			Thutmose
+{Taharqa}			Taharqa
+{Teos}			Teos
+{Soter}			Soter
+{Arrhidaeos}			Arrhidaeos
+{Philadelphos}			Philadelphos
+{Euergetes}			Euergetes
+{Philopator}			Philopator
+{Epiphanes}			Epiphanes
+{Philometor}			Philometor
+{Neos_Philopator}			Neos Philopator
+{Neos_Dionysos}			Neos Dionysos
+{Philopater}			Philopater
+{Auletes}			Auletes
+{Kasaros}			Kasaros
+{Helios}			Helios
+{Ankhesen}			Ankhesen
+{Hebeny}			Hebeny
+{Cleopatra}			Cleopatra
+{Euredice}			Euredice
+{Nepherites}			Nepherites
+{Piye}			Piye
+{Pepi}			Pepi
+{Bebi}			Bebi
+{Hetepheres}			Hetepheres
+{Aneksi}			Aneksi
+{Bet}			Bet
+{Satsobek}			Satsobek
+{Senbi}			Senbi
+{Tepemkau}			Tepemkau
+{Wosret}			Wosret
+{Ahankh}			Ahankh
+{Tiy}			Tiy
+{Teti}			Teti
+{Pedibastet}			Pedibastet
+{Netikerty}			Netikerty
+{Abdimilki}			Abdimilki
+{Abascantus}			Abascantus
+{Abdeshmun}			Abdeshmun
+{Abdmelqart}			Abdmelqart
+{Abdosir}			Abdosir
+{Abydos}			Abydos
+{Aderbal}			Aderbal
+{Adonibal}			Adonibal
+{Aegicoros}			Aegicoros
+{Ahiram}			Ahiram
+{Akbar}			Akbar
+{Amilkas}			Amilkas
+{Annibas}			Annibas
+{Aqhat}			Aqhat
+{Asdroubas}			Asdroubas
+{Ashtartyaton}			Ashtartyaton
+{Ashtzaph}			Ashtzaph
+{Balhanno}			Balhanno
+{Balshillek}			Balshillek
+{Bathyaes}			Bathyaes
+{Bisaltes}			Bisaltes
+{Bodashtart}			Bodashtart
+{Bodeshmun}			Bodeshmun
+{Bodinelqart}			Bodinelqart
+{Bodmelqart}			Bodmelqart
+{Bomilkar}			Bomilkar
+{Briareus}			Briareus
+{Burrhus}			Burrhus
+{Carpophorus}			Carpophorus
+{Carthalo}			Carthalo
+{Celeas}			Celeas
+{Chaeremon}			Chaeremon
+{Charidemos}			Charidemos
+{Cheiron}			Cheiron
+{Chremes}			Chremes
+{Chryses}			Chryses
+{Danel}			Danel
+{Eshmunamash}			Eshmunamash
+{Eshmunazar}			Eshmunazar
+{Gelon}			Gelon
+{Germelqart}			Germelqart
+{Giscon}			Giscon
+{Gisgo}			Gisgo
+{Hamalcar}			Hamalcar
+{Hannibal}			Hannibal
+{Hanno}			Hanno
+{Hasdrubal}			Hasdrubal
+{Hiempsal}			Hiempsal
+{Himilcar}			Himilcar
+{Himilco}			Himilco
+{Hiram}			Hiram
+{Juba}			Juba
+{Jubal}			Jubal
+{Kanmi}			Kanmi
+{Khilletzbal}			Khilletzbal
+{Maharbal}			Maharbal
+{Massinissa}			Massinissa
+{Melqartpilles}			Melqartpilles
+{Milkherem}			Milkherem
+{Milkpilles}			Milkpilles
+{Milkyaton}			Milkyaton
+{Muttines}			Muttines
+{Mytonnes}			Mytonnes
+{Philosir}			Philosir
+{Ribaddi}			Ribaddi
+{Sakarbal}			Sakarbal
+{Tabnit}			Tabnit
+{Theages}			Theages
+{Theodekles}			Theodekles
+{Theophanes}			Theophanes
+{Theopropides}			Theopropides
+{Thero}			Thero
+{Timasion}			Timasion
+{Tydeides}			Tydeides
+{Vettias}			Vettias
+{Xenophanes}			Xenophanes
+{Yehawwielon}			Yehawwielon
+{Yutpan}			Yutpan
+{Zamolxis}			Zamolxis
+{Zimrida}			Zimrida
+{Barca}			Barca
+{Saunites}			Saunites
+{Phameas}			Phameas
+{Haedus}			Haedus
+{Gades}			Gades
+{Tartessus}			Tartessus
+{Ilipa}			Ilipa
+{Carmo}			Carmo
+{Urso}			Urso
+{Munda}			Munda
+{Mainake}			Mainake
+{Ilorci}			Ilorci
+{Baecula}			Baecula
+{Castulo}			Castulo
+{Bilbilis}			Bilbilis
+{Dertosa}			Dertosa
+{Ibera}			Ibera
+{Tarraco}			Tarraco
+{Barcino}			Barcino
+{Ilerda}			Ilerda
+{Osca}			Osca
+{Balaeres}			Balaeres
+{Olisipo}			Olisipo
+{Aleria}			Aleria
+{Tingis}			Tingis
+{Cirta}			Cirta
+{Utica}			Utica
+{Iol}			Iol
+{Volubilis}			Volubilis
+{Lambaesis}			Lambaesis
+{Thamagadi}			Thamagadi
+{Theveste}			Theveste
+{Tunis}			Tunis
+{Hadrumetum}			Hadrumetum
+{Thapsus}			Thapsus
+{Sabrata}			Sabrata
+{Oea}			Oea
+{Apollonia}			Apollonia
+{Ptolemais}			Ptolemais
+{Berenice}			Berenice
+{Corduba}			Corduba
+{Carales}			Carales
+{Alalia}			Alalia
+{Emerita}			Emerita
+{Malaga}			Malaga
+{Lixus}			Lixus
+{Abdera}			Abdera
+{Russadir}			Russadir
+{Siga}			Siga
+{Cartenna}			Cartenna
+{Tipasa}			Tipasa
+{Icosium}			Icosium
+{Rusucuru}			Rusucuru
+{Saldae}			Saldae
+{Rusicade}			Rusicade
+{Chullu}			Chullu
+{Thabraca}			Thabraca
+{Bulla}			Bulla
+{Naraggara}			Naraggara
+{Sicca}			Sicca
+{Acholla}			Acholla
+{Adys}			Adys
+{Nepheris}			Nepheris
+{Cercina}			Cercina
+{Meninx}			Meninx
+{Sabratha}			Sabratha
+{Mago}			Mago
+{Ebusus}			Ebusus
+{Clupea}			Clupea
+{Actaee}			Actaee
+{Aegle}			Aegle
+{Agapia}			Agapia
+{Aglaurus}			Aglaurus
+{Alcippe}			Alcippe
+{Althaia}			Althaia
+{Arishat}			Arishat
+{Elissa}			Elissa
+{Muttunbaal}			Muttunbaal
+{Pervinca}			Pervinca
+{Pherusa}			Pherusa
+{Philona}			Philona
+{Phylo}			Phylo
+{Polymede}			Polymede
+{Protogonia}			Protogonia
+{Raisa}			Raisa
+{Ramona}			Ramona
+{Roxane}			Roxane
+{Sotera}			Sotera
+{Thais}			Thais
+{Thyia}			Thyia
+{Xanthe}			Xanthe
+{Zita}			Zita
+{Adalbert}			Adalbert
+{Adalgard}			Adalgard
+{Adalwolf}			Adalwolf
+{Adalberina}			Adalberina
+{Adelhaide}			Adelhaide
+{Adalmun}			Adalmun
+{Adaluuih}			Adaluuih
+{Adgandestrius}			Adgandestrius
+{Aia}			Aia
+{Aioulfus}			Aioulfus
+{Alfsuind}			Alfsuind
+{Alfuuihi}			Alfuuihi
+{Arminius}			Arminius
+{Alaric}			Alaric
+{Amalric}			Amalric
+{Ariogaisus}			Ariogaisus
+{Ariovistus}			Ariovistus
+{Athanaric}			Athanaric
+{Badeloga}			Badeloga
+{Bava}			Bava
+{Bertgarda}			Bertgarda
+{Boiocalus}			Boiocalus
+{Brinno}			Brinno
+{Burkhard}			Burkhard
+{Butilinus}			Butilinus
+{Catualdo}			Catualdo
+{Carolus}			Carolus
+{Chariomerus}			Chariomerus
+{Chondomarius}			Chondomarius
+{Cimberius}			Cimberius
+{Clovis}			Clovis
+{Dodonis}			Dodonis
+{Duva}			Duva
+{Eutlinde}			Eutlinde
+{Eraric}			Eraric
+{Aelric}			Aelric
+{Etelgis}			Etelgis
+{Etreleus}			Etreleus
+{Flavus}			Flavus
+{Fulcaris}			Fulcaris
+{Furtuis}			Furtuis
+{Gaiobomarus}			Gaiobomarus
+{Gundahar}			Gundahar
+{Gunderic}			Gunderic
+{Gundioc}			Gundioc
+{Gaiseric}			Gaiseric
+{Hanhavaldi}			Hanhavaldi
+{Hariulfus}			Hariulfus
+{Hengist}			Hengist
+{Hema}			Hema
+{Heriman}			Heriman
+{Hesa}			Hesa
+{Horsa}			Horsa
+{Hrodgar}			Hrodgar
+{Inguiomerus}			Inguiomerus
+{Italicus}			Italicus
+{Kuonrad}			Kuonrad
+{Lutgardis}			Lutgardis
+{Malorix}			Malorix
+{Marcuui}			Marcuui
+{Maroboduus}			Maroboduus
+{Nasua}			Nasua
+{Odovacar}			Odovacar
+{Ostina}			Ostina
+{Othelhildis}			Othelhildis
+{Oza}			Oza
+{Rando}			Rando
+{Reingardis}			Reingardis
+{Ricbolda}			Ricbolda
+{Ricburgis}			Ricburgis
+{Ricgard}			Ricgard
+{Reudilo}			Reudilo
+{Rodulf}			Rodulf
+{Segestes}			Segestes
+{Segimerus}			Segimerus
+{Serapio}			Serapio
+{Sesithacus}			Sesithacus
+{Sido}			Sido
+{Sigimer}			Sigimer
+{Tancred}			Tancred
+{Thelonius}			Thelonius
+{Tillo}			Tillo
+{Theodoric}			Theodoric
+{Tudrus}			Tudrus
+{Vangio}			Vangio
+{Vannius}			Vannius
+{Verritus}			Verritus
+{Wallia}			Wallia
+{of_Vetera}			of Vetera
+{of_Novaesium}			of Novaesium
+{of_Colonia}			of Colonia
+{of_Moguntiacum}			of Moguntiacum
+{of_Bonna}			of Bonna
+{of_Treverorum}			of Treverorum
+{of_Argentorate}			of Argentorate
+{of_Regina}			of Regina
+{of_Vindelicum}			of Vindelicum
+{of_Vindonissa}			of Vindonissa
+{of_Tuetoburga}			of Tuetoburga
+{of_Aventicum}			of Aventicum
+{of_Raurica}			of Raurica
+{of_Mediolanum}			of Mediolanum
+{of_Noreia}			of Noreia
+{of_Rhenus}			of Rhenus
+{of_Albis}			of Albis
+{Ulrike}			Ulrike
+{Priska}			Priska
+{Ludwiga}			Ludwiga
+{Isolde}			Isolde
+{Johanna}			Johanna
+{Olga}			Olga
+{Gisela}			Gisela
+{Eva}			Eva
+{Eberharde}			Eberharde
+{Edith}			Edith
+{Adelgund}			Adelgund
+{Brunhild}			Brunhild
+{Alba}			Alba
+{Althilt}			Althilt
+{Ama}			Ama
+{Amalberga}			Amalberga
+{Asuui}			Asuui
+{Aurinia}			Aurinia
+{Bebelina}			Bebelina
+{Bernildis}			Bernildis
+{Bescela}			Bescela
+{Biua}			Biua
+{Ethelmoda}			Ethelmoda
+{Herlinda}			Herlinda
+{Irmingarda}			Irmingarda
+{Ramis}			Ramis
+{Thusnelda}			Thusnelda
+{Veleda}			Veleda
+{Eponina}			Eponina
+{Acaeus}			Acaeus
+{Acamus}			Acamus
+{Aclepiades}			Aclepiades
+{Acrisias}			Acrisias
+{Acroneos}			Acroneos
+{Adrastos}			Adrastos
+{Aegon}			Aegon
+{Aeimnestos}			Aeimnestos
+{Aeolus}			Aeolus
+{Aeropus}			Aeropus
+{Aeschreas}			Aeschreas
+{Aesculapius}			Aesculapius
+{Aesepus}			Aesepus
+{Aetes}			Aetes
+{Aethon}			Aethon
+{Aetion}			Aetion
+{Aetios}			Aetios
+{Agamedes}			Agamedes
+{Agamemnon}			Agamemnon
+{Agapenor}			Agapenor
+{Agapias}			Agapias
+{Agelaus}			Agelaus
+{Agetos}			Agetos
+{Akadios}			Akadios
+{Alcides}			Alcides
+{Alcon}			Alcon
+{Alexandros}			Alexandros
+{Alkamenos}			Alkamenos
+{Alkibiades}			Alkibiades
+{Alkimachos}			Alkimachos
+{Ameinokles}			Ameinokles
+{Amphidamos}			Amphidamos
+{Amphimachos}			Amphimachos
+{Anaxandros}			Anaxandros
+{Anaximenes}			Anaximenes
+{Androdamos}			Androdamos
+{Antagoras}			Antagoras
+{Archemides}			Archemides
+{Antilochus}			Antilochus
+{Antiphus}			Antiphus
+{Arcidamus}			Arcidamus
+{Aristaeus}			Aristaeus
+{Aristagoras}			Aristagoras
+{Aristarchos}			Aristarchos
+{Aristides}			Aristides
+{Aristophanes}			Aristophanes
+{Artemas}			Artemas
+{Asopus}			Asopus
+{Athenaeus}			Athenaeus
+{Azeus}			Azeus
+{Bacchides}			Bacchides
+{Baerius}			Baerius
+{Balius}			Balius
+{Basilides}			Basilides
+{Boethus}			Boethus
+{Callimachus}			Callimachus
+{Casambus}			Casambus
+{Castor}			Castor
+{Chabrias}			Chabrias
+{Chares}			Chares
+{Chersis}			Chersis
+{Chrysippos}			Chrysippos
+{Chrysogones}			Chrysogones
+{Chrysogonus}			Chrysogonus
+{Cleandros}			Cleandros
+{Cleomenes}			Cleomenes
+{Cleon}			Cleon
+{Cleonymus}			Cleonymus
+{Cordylion}			Cordylion
+{Coronos}			Coronos
+{Crathis}			Crathis
+{Cratippus}			Cratippus
+{Cretheus}			Cretheus
+{Crethon}			Crethon
+{Crios}			Crios
+{Croesus}			Croesus
+{Cronos}			Cronos
+{Dadaces}			Dadaces
+{Daedalos}			Daedalos
+{Damasippus}			Damasippus
+{Damasithymos}			Damasithymos
+{Damastor}			Damastor
+{Damian}			Damian
+{Damianos}			Damianos
+{Damiskos}			Damiskos
+{Damoetas}			Damoetas
+{Damon}			Damon
+{Danaos}			Danaos
+{Danaus}			Danaus
+{Dardanus}			Dardanus
+{Dares}			Dares
+{Davos}			Davos
+{Deinias}			Deinias
+{Deinokrates}			Deinokrates
+{Deinomenes}			Deinomenes
+{Deiphobus}			Deiphobus
+{Deiphonous}			Deiphonous
+{Deipylus}			Deipylus
+{Demades}			Demades
+{Demaratos}			Demaratos
+{Demarmenos}			Demarmenos
+{Demas}			Demas
+{Demeas}			Demeas
+{Demetrios}			Demetrios
+{Democedes}			Democedes
+{Demokrates}			Demokrates
+{Demoleon}			Demoleon
+{Demonous}			Demonous
+{Demophlos}			Demophlos
+{Demosthenes}			Demosthenes
+{Deon}			Deon
+{Deukalion}			Deukalion
+{Diactorides}			Diactorides
+{Diadromes}			Diadromes
+{Diadumenus}			Diadumenus
+{Diagoras}			Diagoras
+{Dicaeus}			Dicaeus
+{Dieneces}			Dieneces
+{Diocles}			Diocles
+{Diodoros}			Diodoros
+{Diokles}			Diokles
+{Diomedes}			Diomedes
+{Dionysios}			Dionysios
+{Dionysophanes}			Dionysophanes
+{Dionysos}			Dionysos
+{Diophantus}			Diophantus
+{Diores}			Diores
+{Dioscuros}			Dioscuros
+{Diotrephes}			Diotrephes
+{Dismas}			Dismas
+{Dithyrambos}			Dithyrambos
+{Dmetor}			Dmetor
+{Dolon}			Dolon
+{Doreios}			Doreios
+{Doreius}			Doreius
+{Dorian}			Dorian
+{Doriskos}			Doriskos
+{Doros}			Doros
+{Doryssos}			Doryssos
+{Dosithios}			Dosithios
+{Drimylos}			Drimylos
+{Dromeus}			Dromeus
+{Ducetius}			Ducetius
+{Duris}			Duris
+{Dymas}			Dymas
+{Dymnos}			Dymnos
+{Echelaos}			Echelaos
+{Echemmon}			Echemmon
+{Echemus}			Echemus
+{Echephron}			Echephron
+{Echepolus}			Echepolus
+{Elasus}			Elasus
+{Elatos}			Elatos
+{Elatreus}			Elatreus
+{Eleon}			Eleon
+{Elpides}			Elpides
+{Elpidius}			Elpidius
+{Empedocles}			Empedocles
+{Endios}			Endios
+{Endymion}			Endymion
+{Engenes}			Engenes
+{Eniopus}			Eniopus
+{Ennaeus}			Ennaeus
+{Ennomus}			Ennomus
+{Ennychus}			Ennychus
+{Enops}			Enops
+{Epaenetus}			Epaenetus
+{Epaphos}			Epaphos
+{Epeigeus}			Epeigeus
+{Epeius}			Epeius
+{Ephialtes}			Ephialtes
+{Epicurus}			Epicurus
+{Epicydes}			Epicydes
+{Epikrates}			Epikrates
+{Epimenes}			Epimenes
+{Epistrophos}			Epistrophos
+{Erasistratus}			Erasistratus
+{Eratosthenes}			Eratosthenes
+{Eratostheres}			Eratostheres
+{Erechtheus}			Erechtheus
+{Eretmenus}			Eretmenus
+{Ereuthalion}			Ereuthalion
+{Erginus}			Erginus
+{Ergiyios}			Ergiyios
+{Erichthonius}			Erichthonius
+{Erxandros}			Erxandros
+{Eryalus}			Eryalus
+{Eteocles}			Eteocles
+{Eteokles}			Eteokles
+{Eteonous}			Eteonous
+{Euaemon}			Euaemon
+{Eualcidas}			Eualcidas
+{Euanthes}			Euanthes
+{Euarestos}			Euarestos
+{Eubulus}			Eubulus
+{Eucarpus}			Eucarpus
+{Euchenor}			Euchenor
+{Eucleides}			Eucleides
+{Eudorus}			Eudorus
+{Euenor}			Euenor
+{Eugammon}			Eugammon
+{Eugenios}			Eugenios
+{Eugenius}			Eugenius
+{Euhemenis}			Euhemenis
+{Eukles}			Eukles
+{Eumaeus}			Eumaeus
+{Eumastas}			Eumastas
+{Eumelus}			Eumelus
+{Eumolpus}			Eumolpus
+{Euneas}			Euneas
+{Euonomos}			Euonomos
+{Eupalinus}			Eupalinus
+{Euphenes}			Euphenes
+{Euryanax}			Euryanax
+{Eurybiades}			Eurybiades
+{Eurycliedes}			Eurycliedes
+{Eurydamus}			Eurydamus
+{Eurydemon}			Eurydemon
+{Eurydemos}			Eurydemos
+{Euryhus}			Euryhus
+{Eurykrates}			Eurykrates
+{Eurykratides}			Eurykratides
+{Euryleon}			Euryleon
+{Eurylochos}			Eurylochos
+{Eurymachos}			Eurymachos
+{Euryphon}			Euryphon
+{Eurypylos}			Eurypylos
+{Eurystenes}			Eurystenes
+{Eurysthenes}			Eurysthenes
+{Eurystheus}			Eurystheus
+{Eurysthios}			Eurysthios
+{Eurythion}			Eurythion
+{Eurytos}			Eurytos
+{Eutropios}			Eutropios
+{Eutuches}			Eutuches
+{Eutychides}			Eutychides
+{Eutychus}			Eutychus
+{Evaenetos}			Evaenetos
+{Geleon}			Geleon
+{Gelo}			Gelo
+{Gennadios}			Gennadios
+{Glaukias}			Glaukias
+{Glaukos}			Glaukos
+{Glycon}			Glycon
+{Gordias}			Gordias
+{Gorgias}			Gorgias
+{Gurgos}			Gurgos
+{Gyrtias}			Gyrtias
+{Haemon}			Haemon
+{Hagias}			Hagias
+{Harmatidas}			Harmatidas
+{Harmocydes}			Harmocydes
+{Harmodios}			Harmodios
+{Harmon}			Harmon
+{Heiron}			Heiron
+{Hektor}			Hektor
+{Helicaon}			Helicaon
+{Herakleitos}			Herakleitos
+{Heraklides}			Heraklides
+{Hermeias}			Hermeias
+{Hermolaos}			Hermolaos
+{Hermon}			Hermon
+{Hermotimos}			Hermotimos
+{Herodes}			Herodes
+{Herodion}			Herodion
+{Heromenes}			Heromenes
+{Hicetaon}			Hicetaon
+{Hiero}			Hiero
+{Hipparchos}			Hipparchos
+{Hipparinos}			Hipparinos
+{Hippias}			Hippias
+{Hippoklides}			Hippoklides
+{Hippokratides}			Hippokratides
+{Hippomenes}			Hippomenes
+{Hyakinthos}			Hyakinthos
+{Hyrtacus}			Hyrtacus
+{Hyrtius}			Hyrtius
+{Iakchos}			Iakchos
+{Ialmenes}			Ialmenes
+{Iambulus}			Iambulus
+{Iasos}			Iasos
+{Iatragoras}			Iatragoras
+{Iatrokles}			Iatrokles
+{Idaeus}			Idaeus
+{Idaios}			Idaios
+{Idas}			Idas
+{Idomeneus}			Idomeneus
+{Ilioneus}			Ilioneus
+{Ilus}			Ilus
+{Imbrus}			Imbrus
+{Inachos}			Inachos
+{Iobates}			Iobates
+{Iollas}			Iollas
+{Iphiclus}			Iphiclus
+{Iphicrates}			Iphicrates
+{Iphikrates}			Iphikrates
+{Isagoras}			Isagoras
+{Ischenous}			Ischenous
+{Isidoros}			Isidoros
+{Ismenios}			Ismenios
+{Isocrates}			Isocrates
+{Isodemos}			Isodemos
+{Isokrates}			Isokrates
+{Kaenas}			Kaenas
+{Kaeneus}			Kaeneus
+{Kalchas}			Kalchas
+{Kalesius}			Kalesius
+{Kalliaros}			Kalliaros
+{Kallias}			Kallias
+{Kallikles}			Kallikles
+{Kallikrates}			Kallikrates
+{Kallimachos}			Kallimachos
+{Kallinicus}			Kallinicus
+{Kallinos}			Kallinos
+{Kallipides}			Kallipides
+{Kallipos}			Kallipos
+{Kallisthenes}			Kallisthenes
+{Kallon}			Kallon
+{Kandaules}			Kandaules
+{Kapaneus}			Kapaneus
+{Kapys}			Kapys
+{Karipos}			Karipos
+{Karopophores}			Karopophores
+{Kebalinos}			Kebalinos
+{Kebes}			Kebes
+{Kekrops}			Kekrops
+{Kerameikos}			Kerameikos
+{Kerkyon}			Kerkyon
+{Keteus}			Keteus
+{Kimon}			Kimon
+{Kirphis}			Kirphis
+{Kleobis}			Kleobis
+{Kleomenes}			Kleomenes
+{Kreon}			Kreon
+{Krinippos}			Krinippos
+{Kritias}			Kritias
+{Kritoboulos}			Kritoboulos
+{Kritodemos}			Kritodemos
+{Kroisos}			Kroisos
+{Krokinos}			Krokinos
+{Ktesiphon}			Ktesiphon
+{Laertes}			Laertes
+{Laios}			Laios
+{Lamachos}			Lamachos
+{Laodamas}			Laodamas
+{Laodocus}			Laodocus
+{Laogonus}			Laogonus
+{Laphanes}			Laphanes
+{Lasos}			Lasos
+{Lasthenes}			Lasthenes
+{Leo}			Leo
+{Leocedes}			Leocedes
+{Leodes}			Leodes
+{Leon}			Leon
+{Leonidas}			Leonidas
+{Lichas}			Lichas
+{Linus}			Linus
+{Lycomedes}			Lycomedes
+{Lycophon}			Lycophon
+{Lykomedes}			Lykomedes
+{Lykon}			Lykon
+{Lysagoras}			Lysagoras
+{Lysandros}			Lysandros
+{Lysias}			Lysias
+{Lysikles}			Lysikles
+{Lysimachos}			Lysimachos
+{Machaon}			Machaon
+{Maeon}			Maeon
+{Maiandrios}			Maiandrios
+{Makarios}			Makarios
+{Maleos}			Maleos
+{Mantes}			Mantes
+{Mantios}			Mantios
+{Marcion}			Marcion
+{Marnes}			Marnes
+{Maron}			Maron
+{Marsyas}			Marsyas
+{Mastor}			Mastor
+{Mausolos}			Mausolos
+{Mecistes}			Mecistes
+{Medios}			Medios
+{Medon}			Medon
+{Medus}			Medus
+{Megadates}			Megadates
+{Megakles}			Megakles
+{Megareus}			Megareus
+{Megasthenes}			Megasthenes
+{Megistias}			Megistias
+{Meidias}			Meidias
+{Melampos}			Melampos
+{Melas}			Melas
+{Melegros}			Melegros
+{Meles}			Meles
+{Meliboeus}			Meliboeus
+{Melicertes}			Melicertes
+{Memnon}			Memnon
+{Menalcas}			Menalcas
+{Menandros}			Menandros
+{Menares}			Menares
+{Menekrates}			Menekrates
+{Menelaos}			Menelaos
+{Menestas}			Menestas
+{Menesthes}			Menesthes
+{Menesthios}			Menesthios
+{Mentes}			Mentes
+{Mentor}			Mentor
+{Meriones}			Meriones
+{Merops}			Merops
+{Mesaulius}			Mesaulius
+{Mesthles}			Mesthles
+{Metiochus}			Metiochus
+{Meton}			Meton
+{Metrobius}			Metrobius
+{Metron}			Metron
+{Metrophanes}			Metrophanes
+{Meurius}			Meurius
+{Micythos}			Micythos
+{Midas}			Midas
+{Midylos}			Midylos
+{Mikkos}			Mikkos
+{Mikon}			Mikon
+{Milanion}			Milanion
+{Miltiades}			Miltiades
+{Minos}			Minos
+{Misenus}			Misenus
+{Mnester}			Mnester
+{Mnesus}			Mnesus
+{Moschion}			Moschion
+{Musaeus}			Musaeus
+{Musaios}			Musaios
+{Mydon}			Mydon
+{Myrsinus}			Myrsinus
+{Myrto}			Myrto
+{Mys}			Mys
+{Narkissos}			Narkissos
+{Nelpus}			Nelpus
+{Neokles}			Neokles
+{Neritos}			Neritos
+{Nestor}			Nestor
+{Niarchos}			Niarchos
+{Nicandros}			Nicandros
+{Nicanor}			Nicanor
+{Nicias}			Nicias
+{Nicodromos}			Nicodromos
+{Nicomachos}			Nicomachos
+{Nicon}			Nicon
+{Nikandros}			Nikandros
+{Nikanor}			Nikanor
+{Nikasios}			Nikasios
+{Nikeratos}			Nikeratos
+{Nikias}			Nikias
+{Nikomachos}			Nikomachos
+{Nikomedes}			Nikomedes
+{Nireus}			Nireus
+{Nisos}			Nisos
+{Noemon}			Noemon
+{Nomion}			Nomion
+{Nothon}			Nothon
+{Ocealu}			Ocealu
+{Ochesius}			Ochesius
+{Odysseus}			Odysseus
+{Oedipus}			Oedipus
+{Oenemaus}			Oenemaus
+{Oenomaus}			Oenomaus
+{Oenopion}			Oenopion
+{Oicles}			Oicles
+{Olus}			Olus
+{Olympiodorus}			Olympiodorus
+{Onamakritos}			Onamakritos
+{Onetas}			Onetas
+{Onias}			Onias
+{Onomastos}			Onomastos
+{Ophelestes}			Ophelestes
+{Orestes}			Orestes
+{Orion}			Orion
+{Oroites}			Oroites
+{Orpheus}			Orpheus
+{Orsilochus}			Orsilochus
+{Orsiphantes}			Orsiphantes
+{Orthaeus}			Orthaeus
+{Otus}			Otus
+{Paios}			Paios
+{Palaechthon}			Palaechthon
+{Palaemon}			Palaemon
+{Pallas}			Pallas
+{Panaetios}			Panaetios
+{Panaetius}			Panaetius
+{Panares}			Panares
+{Pandaros}			Pandaros
+{Pandion}			Pandion
+{Panionos}			Panionos
+{Panites}			Panites
+{Pankratios}			Pankratios
+{Pantites}			Pantites
+{Paraebates}			Paraebates
+{Paris}			Paris
+{Parmenides}			Parmenides
+{Parthenopaeus}			Parthenopaeus
+{Patrobas}			Patrobas
+{Pausanius}			Pausanius
+{Pedocles}			Pedocles
+{Peiros}			Peiros
+{Peithon}			Peithon
+{Pelagon}			Pelagon
+{Pelegon}			Pelegon
+{Peleus}			Peleus
+{Pelias}			Pelias
+{Pelicles}			Pelicles
+{Peneleos}			Peneleos
+{Peneus}			Peneus
+{Pentheus}			Pentheus
+{Penthylos}			Penthylos
+{Peolpidas}			Peolpidas
+{Perdikkas}			Perdikkas
+{Periandros}			Periandros
+{Periclymenus}			Periclymenus
+{Perikles}			Perikles
+{Perimedes}			Perimedes
+{Perimos}			Perimos
+{Peteos}			Peteos
+{Peukestes}			Peukestes
+{Phaedo}			Phaedo
+{Phaestus}			Phaestus
+{Phaidon}			Phaidon
+{Phalanthus}			Phalanthus
+{Phalinos}			Phalinos
+{Phanagoras}			Phanagoras
+{Pheidias}			Pheidias
+{Pheidippides}			Pheidippides
+{Pheidon}			Pheidon
+{Phemius}			Phemius
+{Phereclus}			Phereclus
+{Pherecydes}			Pherecydes
+{Phidias}			Phidias
+{Phigaleios}			Phigaleios
+{Philagros}			Philagros
+{Philaon}			Philaon
+{Phileas}			Phileas
+{Philemon}			Philemon
+{Philiskos}			Philiskos
+{Philistos}			Philistos
+{Phillipos}			Phillipos
+{Philocrates}			Philocrates
+{Philoctetes}			Philoctetes
+{Philocypros}			Philocypros
+{Philoetius}			Philoetius
+{Philogus}			Philogus
+{Philokles}			Philokles
+{Philokrates}			Philokrates
+{Philolaos}			Philolaos
+{Philon}			Philon
+{Philonikos}			Philonikos
+{Philopoemon}			Philopoemon
+{Philostratos}			Philostratos
+{Philotectes}			Philotectes
+{Phineus}			Phineus
+{Phokas}			Phokas
+{Phokion}			Phokion
+{Phorbas}			Phorbas
+{Phorcys}			Phorcys
+{Phrixus}			Phrixus
+{Phrynichos}			Phrynichos
+{Phrynikos}			Phrynikos
+{Phrynon}			Phrynon
+{Phylas}			Phylas
+{Pidytes}			Pidytes
+{Pigres}			Pigres
+{Pinder}			Pinder
+{Pistias}			Pistias
+{Pittacos}			Pittacos
+{Pittacus}			Pittacus
+{Pixodarus}			Pixodarus
+{Pleistarchos}			Pleistarchos
+{Pleistos}			Pleistos
+{Podaeleirus}			Podaeleirus
+{Podaleirus}			Podaleirus
+{Podalinus}			Podalinus
+{Podarces}			Podarces
+{Podargos}			Podargos
+{Podaroes}			Podaroes
+{Podes}			Podes
+{Poecas}			Poecas
+{Poimen}			Poimen
+{Polemion}			Polemion
+{Poliadas}			Poliadas
+{Polyctor}			Polyctor
+{Polydectes}			Polydectes
+{Polydeuces}			Polydeuces
+{Polydius}			Polydius
+{Polydoros}			Polydoros
+{Polygonus}			Polygonus
+{Polykleitos}			Polykleitos
+{Polykles}			Polykles
+{Polykritos}			Polykritos
+{Polymedes}			Polymedes
+{Polyphetes}			Polyphetes
+{Porphyrios}			Porphyrios
+{Porphyrius}			Porphyrius
+{Posides}			Posides
+{Posidonios}			Posidonios
+{Pratinos}			Pratinos
+{Praxilaus}			Praxilaus
+{Praxiteles}			Praxiteles
+{Praxites}			Praxites
+{Priam}			Priam
+{Prinetadas}			Prinetadas
+{Procrustes}			Procrustes
+{Proctus}			Proctus
+{Proetus}			Proetus
+{Protagoras}			Protagoras
+{Protus}			Protus
+{Proxenos}			Proxenos
+{Prymneus}			Prymneus
+{Pylaemenes}			Pylaemenes
+{Pylaeus}			Pylaeus
+{Pylartes}			Pylartes
+{Pylas}			Pylas
+{Pylenor}			Pylenor
+{Pyris}			Pyris
+{Pyrrhus}			Pyrrhus
+{Pythagoras}			Pythagoras
+{Pythogenes}			Pythogenes
+{Salmoneus}			Salmoneus
+{Scamandius}			Scamandius
+{Scylax}			Scylax
+{Sicinnos}			Sicinnos
+{Simmias}			Simmias
+{Simo}			Simo
+{Simoisius}			Simoisius
+{Simonides}			Simonides
+{Sinis}			Sinis
+{Sippas}			Sippas
+{Siromos}			Siromos
+{Socus}			Socus
+{Sophanes}			Sophanes
+{Sophokles}			Sophokles
+{Sosibios}			Sosibios
+{Sosicles}			Sosicles
+{Sosigines}			Sosigines
+{Sosthenes}			Sosthenes
+{Sostias}			Sostias
+{Stolos}			Stolos
+{Strachys}			Strachys
+{Stratios}			Stratios
+{Strophius}			Strophius
+{Strymon}			Strymon
+{Syagros}			Syagros
+{Talaemenes}			Talaemenes
+{Talaos}			Talaos
+{Talaus}			Talaus
+{Talos}			Talos
+{Tarchon}			Tarchon
+{Taureas}			Taureas
+{Tebaeus}			Tebaeus
+{Tecton}			Tecton
+{Teiresias}			Teiresias
+{Telamon}			Telamon
+{Telemacho}			Telemacho
+{Telemachos}			Telemachos
+{Telemachus}			Telemachus
+{Telephos}			Telephos
+{Telephus}			Telephus
+{Telines}			Telines
+{Tellias}			Tellias
+{Tellis}			Tellis
+{Telys}			Telys
+{Tenes}			Tenes
+{Tereus}			Tereus
+{Teukros}			Teukros
+{Teutamos}			Teutamos
+{Teuthranes}			Teuthranes
+{Teuthras}			Teuthras
+{Thales}			Thales
+{Thalysios}			Thalysios
+{Tharybis}			Tharybis
+{Thaulos}			Thaulos
+{Theagenes}			Theagenes
+{Theocydes}			Theocydes
+{Theodoros}			Theodoros
+{Theodotus}			Theodotus
+{Theomestor}			Theomestor
+{Theophrastos}			Theophrastos
+{Theophrastus}			Theophrastus
+{Theophylaktos}			Theophylaktos
+{Theopompos}			Theopompos
+{Theoros}			Theoros
+{Theos}			Theos
+{Theramenes}			Theramenes
+{Therapon}			Therapon
+{Theras}			Theras
+{Theron}			Theron
+{Thersandros}			Thersandros
+{Therseandros}			Therseandros
+{Thersilochus}			Thersilochus
+{Thersites}			Thersites
+{Thestor}			Thestor
+{Thrasidaios}			Thrasidaios
+{Thrasilaus}			Thrasilaus
+{Thrasymedes}			Thrasymedes
+{Thukydides}			Thukydides
+{Thyestes}			Thyestes
+{Thymoetes}			Thymoetes
+{Thyrsos}			Thyrsos
+{Timagenidas}			Timagenidas
+{Timagoras}			Timagoras
+{Timasitheus}			Timasitheus
+{Timesithius}			Timesithius
+{Timnes}			Timnes
+{Timoleon}			Timoleon
+{Timon}			Timon
+{Timonax}			Timonax
+{Timotheus}			Timotheus
+{Timoxenos}			Timoxenos
+{Tiro}			Tiro
+{Tirynthius}			Tirynthius
+{Tithonius}			Tithonius
+{Tmolus}			Tmolus
+{Trechus}			Trechus
+{Triopas}			Triopas
+{Triptolemus}			Triptolemus
+{Tros}			Tros
+{Trypho}			Trypho
+{Tydeids}			Tydeids
+{Tymnes}			Tymnes
+{Tyndareus}			Tyndareus
+{Tyndarios}			Tyndarios
+{Xanthippos}			Xanthippos
+{Xanthippus}			Xanthippus
+{Xenagoras}			Xenagoras
+{Xenokrates}			Xenokrates
+{Xenophon}			Xenophon
+{Xiphilinus}			Xiphilinus
+{Xuthos}			Xuthos
+{Xuthus}			Xuthus
+{Zagreus}			Zagreus
+{Zenicetes}			Zenicetes
+{Zenodoros}			Zenodoros
+{Zethus}			Zethus
+{Plato}			Plato
+{Aristotle}			Aristotle
+{Aristophenes}			Aristophenes
+{Hippocratus}			Hippocratus
+{Socrates}			Socrates
+{Democritus}			Democritus
+{Epictetus}			Epictetus
+{Euclides}			Euclides
+{Heraclitus}			Heraclitus
+{Zeno}			Zeno
+{of_Philippi}			of Philippi
+{of_Samos}			of Samos
+{of_Chios}			of Chios
+{of_Magnesia}			of Magnesia
+{of_Miletus}			of Miletus
+{of_Smyrna}			of Smyrna
+{of_Pergamum}			of Pergamum
+{of_Cos}			of Cos
+{of_Knossus}			of Knossus
+{of_Gortyn}			of Gortyn
+{of_Sicilia}			of Sicilia
+{of_Dardania}			of Dardania
+{of_Paeonia}			of Paeonia
+{of_Illyria}			of Illyria
+{of_Lyncestis}			of Lyncestis
+{of_Macedonia}			of Macedonia
+{of_Chalcidice}			of Chalcidice
+{of_Epirus}			of Epirus
+{of_Thrace}			of Thrace
+{of_Thasos}			of Thasos
+{of_Samothrace}			of Samothrace
+{of_Lemnos}			of Lemnos
+{of_Lesbos}			of Lesbos
+{of_Delos}			of Delos
+{of_Perrhaebia}			of Perrhaebia
+{of_Tempe}			of Tempe
+{of_Hestiaeotis}			of Hestiaeotis
+{of_Athamania}			of Athamania
+{of_Dolopia}			of Dolopia
+{of_Thessaly}			of Thessaly
+{of_Achaea}			of Achaea
+{of_Phthiotis}			of Phthiotis
+{of_Acarnania}			of Acarnania
+{of_Phocis}			of Phocis
+{of_Boeotia}			of Boeotia
+{of_Attica}			of Attica
+{of_Corcyra}			of Corcyra
+{of_Leucas}			of Leucas
+{of_Cephallenia}			of Cephallenia
+{of_Zacynthos}			of Zacynthos
+{of_Crete}			of Crete
+{of_Aegina}			of Aegina
+{of_Lacaedon}			of Lacaedon
+{of_Lacedon}			of Lacedon
+{of_Euboea}			of Euboea
+{of_Rhodes}			of Rhodes
+{Abas}			Abas
+{Abderos}			Abderos
+{Aberkios}			Aberkios
+{Ablerus}			Ablerus
+{Abronychus}			Abronychus
+{Achaeus}			Achaeus
+{Arsaces}			Arsaces
+{Attalus}			Attalus
+{Demetrius}			Demetrius
+{Diodotus}			Diodotus
+{Euthydemus}			Euthydemus
+{Molon}			Molon
+{Perdiccas}			Perdiccas
+{Seleucus}			Seleucus
+{Tigranes}			Tigranes
+{Nicator}			Nicator
+{Callinicus}			Callinicus
+{Ceraunus}			Ceraunus
+{Eupator}			Eupator
+{Balas}			Balas
+{Dionysus}			Dionysus
+{Tryphon}			Tryphon
+{Sidetes}			Sidetes
+{Zabinas}			Zabinas
+{Thea}			Thea
+{Grypus}			Grypus
+{Cyzicenus}			Cyzicenus
+{Epiphanes_Nicator}			Epiphanes Nicator
+{Eusebes_Philopator}			Eusebes Philopator
+{Eucaerus}			Eucaerus
+{Ephiphanes_Philadelphus}			Ephiphanes Philadelphus
+{Philadelphus}			Philadelphus
+{of_Armenia}			of Armenia
+{Asiaticus}			Asiaticus
+{Philoromaeus}			Philoromaeus
+{Poliorcetes}			Poliorcetes
+{Hierax}			Hierax
+{of_Ctesiphon}			of Ctesiphon
+{of_Arbela}			of Arbela
+{of_Nisibis}			of Nisibis
+{of_Sidera}			of Sidera
+{of_Ipsus}			of Ipsus
+{of_Antiochus}			of Antiochus
+{of_Philomelium}			of Philomelium
+{of_Attaleia}			of Attaleia
+{of_Perge}			of Perge
+{of_Selge}			of Selge
+{of_Aspendus}			of Aspendus
+{of_Side}			of Side
+{of_Seleuceia}			of Seleuceia
+{of_Seleucis}			of Seleucis
+{of_Ptolemais}			of Ptolemais
+{of_Arsinoe}			of Arsinoe
+{of_Philadelphia}			of Philadelphia
+{of_Olba}			of Olba
+{of_Corycus}			of Corycus
+{of_Loadicea}			of Loadicea
+{of_Iconium}			of Iconium
+{of_Soli}			of Soli
+{of_Adana}			of Adana
+{of_Tyana}			of Tyana
+{of_Mazaca}			of Mazaca
+{of_Ariaratheia}			of Ariaratheia
+{of_Comana}			of Comana
+{of_Mallus}			of Mallus
+{of_Castabala}			of Castabala
+{of_Tarsus}			of Tarsus
+{of_Zuegma}			of Zuegma
+{of_Samosata}			of Samosata
+{of_Apamea}			of Apamea
+{of_Edessa}			of Edessa
+{of_Carrhae}			of Carrhae
+{of_Singara}			of Singara
+{of_Ichnae}			of Ichnae
+{of_Nicephorium}			of Nicephorium
+{of_Bambyce}			of Bambyce
+{of_Thapsacus}			of Thapsacus
+{of_Chaonia}			of Chaonia
+{of_Mopsuestia}			of Mopsuestia
+{of_Rhosus}			of Rhosus
+{of_Gindarus}			of Gindarus
+{of_Beroea}			of Beroea
+{of_Posideium}			of Posideium
+{of_Pieria}			of Pieria
+{of_Lysias}			of Lysias
+{of_Belum}			of Belum
+{of_Laodicea}			of Laodicea
+{of_Epiphaneia}			of Epiphaneia
+{of_Antaradus}			of Antaradus
+{of_Aradus}			of Aradus
+{of_Marathus}			of Marathus
+{of_Tripolis}			of Tripolis
+{of_Arethusa}			of Arethusa
+{of_Emesa}			of Emesa
+{of_Libanum}			of Libanum
+{of_Byblus}			of Byblus
+{of_Berytus}			of Berytus
+{of_Heliopolis}			of Heliopolis
+{of_Sidon}			of Sidon
+{of_Ace}			of Ace
+{of_Philoteria}			of Philoteria
+{of_Hippus}			of Hippus
+{of_Abila}			of Abila
+{of_Gadara}			of Gadara
+{of_Dora}			of Dora
+{of_Bostra}			of Bostra
+{of_Gerasa}			of Gerasa
+{of_Samaria}			of Samaria
+{of_Appolonia}			of Appolonia
+{of_Azotus}			of Azotus
+{of_Marisa}			of Marisa
+{of_Ascalon}			of Ascalon
+{of_Raphia}			of Raphia
+{Athena}			Athena
+{Abdieso}			Abdieso
+{Achaemenes}			Achaemenes
+{Ardumanish}			Ardumanish
+{Ares}			Ares
+{Ariaramnes}			Ariaramnes
+{Arsames}			Arsames
+{Arses}			Arses
+{Artavardiya}			Artavardiya
+{Artaxerxes}			Artaxerxes
+{Artostes}			Artostes
+{Aspacanah}			Aspacanah
+{Bagabigna}			Bagabigna
+{Bagabuxsha}			Bagabuxsha
+{Bahar}			Bahar
+{Cambyses}			Cambyses
+{Caspar}			Caspar
+{Cincixri}			Cincixri
+{Cisantaxma}			Cisantaxma
+{Cishpi}			Cishpi
+{Cyaxares}			Cyaxares
+{Cyrus}			Cyrus
+{Dadarshi}			Dadarshi
+{Darayavahu}			Darayavahu
+{Darius}			Darius
+{Datuvahya}			Datuvahya
+{Fariel}			Fariel
+{Fravarti}			Fravarti
+{Gaspar}			Gaspar
+{Gaubaruva}			Gaubaruva
+{Gaumata}			Gaumata
+{Gobryas}			Gobryas
+{Haxamanish}			Haxamanish
+{Hydarnes}			Hydarnes
+{Hystaspes}			Hystaspes
+{Imanish}			Imanish
+{Intaphernes}			Intaphernes
+{Jahangir}			Jahangir
+{Kambugiya}			Kambugiya
+{Kambyses}			Kambyses
+{Khorshed}			Khorshed
+{Khortdad}			Khortdad
+{Kuru}			Kuru
+{Mardonius}			Mardonius
+{Marduniya}			Marduniya
+{Megabyzus}			Megabyzus
+{Melchior}			Melchior
+{Nabonidus}			Nabonidus
+{Nabukudracara}			Nabukudracara
+{Nidintu-Bel}			Nidintu-Bel
+{Otanes}			Otanes
+{Phraotes}			Phraotes
+{Rashne}			Rashne
+{Roshan}			Roshan
+{Sarosh}			Sarosh
+{Sherh}			Sherh
+{Siamak}			Siamak
+{Skunxa}			Skunxa
+{Smerdis}			Smerdis
+{Sogdianus}			Sogdianus
+{Sosimenes}			Sosimenes
+{Tabor}			Tabor
+{Tallis}			Tallis
+{Taxmaspada}			Taxmaspada
+{Teispes}			Teispes
+{Thuxra}			Thuxra
+{Umamaita}			Umamaita
+{Upadarma}			Upadarma
+{Uvaxshtra}			Uvaxshtra
+{Vahauka}			Vahauka
+{Vahumisa}			Vahumisa
+{Vahyavishdapaya}			Vahyavishdapaya
+{Vahyazdata}			Vahyazdata
+{Vaumisa}			Vaumisa
+{Vayaspara}			Vayaspara
+{Vindarna}			Vindarna
+{Vishtaspa}			Vishtaspa
+{Xanthos}			Xanthos
+{Xerxes}			Xerxes
+{Xeus}			Xeus
+{Xshathrita}			Xshathrita
+{Xshayarshan}			Xshayarshan
+{Zircon}			Zircon
+{Zoroaster}			Zoroaster
+{of_Adianbene}			of Adianbene
+{of_Agbatana}			of Agbatana
+{of_Agra}			of Agra
+{of_Mesene}			of Mesene
+{of_Apaortenon}			of Apaortenon
+{of_Apavortene}			of Apavortene
+{of_Arshak}			of Arshak
+{of_Artaxata}			of Artaxata
+{of_Arzanene}			of Arzanene
+{of_Ashkha}			of Ashkha
+{of_Asaak}			of Asaak
+{of_Ashur}			of Ashur
+{of_Atropatene}			of Atropatene
+{of_Babylon}			of Babylon
+{of_Babylonia}			of Babylonia
+{of_Behistun}			of Behistun
+{of_Birs_Nimrud}			of Birs Nimrud
+{of_Borsippa}			of Borsippa
+{of_Charax}			of Charax
+{of_Damghan}			of Damghan
+{of_Dara}			of Dara
+{of_Eddur}			of Eddur
+{of_Dura-Europas}			of Dura-Europas
+{of_Ecbatana}			of Ecbatana
+{of_Elymais}			of Elymais
+{of_Epardus}			of Epardus
+{of_Eulaeus}			of Eulaeus
+{of_Europa-Rhagai}			of Europa-Rhagai
+{of_Fars}			of Fars
+{of_Gabae}			of Gabae
+{of_Gedrosia}			of Gedrosia
+{of_Wyrsn}			of Wyrsn
+{of_Gordyene}			of Gordyene
+{of_Hamadan}			of Hamadan
+{of_Hatra}			of Hatra
+{of_Hecatompylos}			of Hecatompylos
+{of_Hedyphon}			of Hedyphon
+{of_Herat}			of Herat
+{of_Hyrcania}			of Hyrcania
+{of_Kangavar}			of Kangavar
+{of_Kirkuk}			of Kirkuk
+{of_Konkobar}			of Konkobar
+{of_Labus}			of Labus
+{of_Lamavu}			of Lamavu
+{of_Lycus}			of Lycus
+{of_Mange}			of Mange
+{of_Media}			of Media
+{of_Merv}			of Merv
+{of_Mithradatkart}			of Mithradatkart
+{of_Nihavand}			of Nihavand
+{of_Nineveh}			of Nineveh
+{of_Nippur}			of Nippur
+{of_Nisa}			of Nisa
+{of_Nishapur}			of Nishapur
+{of_Nisaia}			of Nisaia
+{of_Oratha}			of Oratha
+{of_Palmyra}			of Palmyra
+{of_Persis}			of Persis
+{of_Praaspa}			of Praaspa
+{of_Saramana}			of Saramana
+{of_Seleucia}			of Seleucia
+{of_Solace}			of Solace
+{of_Sophene}			of Sophene
+{of_Spasini}			of Spasini
+{of_Susa}			of Susa
+{of_Syrinx}			of Syrinx
+{of_Tagae}			of Tagae
+{of_Tapuria}			of Tapuria
+{of_Taxila}			of Taxila
+{of_Tambrax}			of Tambrax
+{of_Traxiana}			of Traxiana
+{of_Urfa}			of Urfa
+{of_Uruk}			of Uruk
+{of_Vologesocerta}			of Vologesocerta
+{of_Zabdicene}			of Zabdicene
+{of_Zenodotium}			of Zenodotium
+{Ava}			Ava
+{Daria}			Daria
+{Esther}			Esther
+{Jasmine}			Jasmine
+{Kira}			Kira
+{Lila}			Lila
+{Roxanna}			Roxanna
+{Ardaxcashca}			Ardaxcashca
+{Arkha}			Arkha
+{Ariyamna}			Ariyamna
+{Arshaka}			Arshaka
+{Arshama}			Arshama
+{Artaxshasa}			Artaxshasa
+{Arxa}			Arxa
+{Asina}			Asina
+{Atamaita}			Atamaita
+{Athiyabaushna}			Athiyabaushna
+{Bardiya}			Bardiya
+{Frada}			Frada
+{Haldita}			Haldita
+{Martiya}			Martiya
+{Nabunaita}			Nabunaita
+{Utana}			Utana
+{Vivana}			Vivana
+{Akas}			Akas
+{Ariobarzanes}			Ariobarzanes
+{Asander}			Asander
+{Aspurgus}			Aspurgus
+{Cotys}			Cotys
+{Herakles}			Herakles
+{Hygiaenon}			Hygiaenon
+{Ininthimeus}			Ininthimeus
+{Leucon}			Leucon
+{Mithradates}			Mithradates
+{Paerisades}			Paerisades
+{Pharnaces}			Pharnaces
+{Pharsanzes}			Pharsanzes
+{Polemo}			Polemo
+{Rhadamsades}			Rhadamsades
+{Rhescuporis}			Rhescuporis
+{Rhoemetalces}			Rhoemetalces
+{Sauromates}			Sauromates
+{Spartocus}			Spartocus
+{Synges}			Synges
+{Teiranes}			Teiranes
+{Thothorses}			Thothorses
+{of_Amasia}			of Amasia
+{of_Amisus}			of Amisus
+{of_Astacus}			of Astacus
+{of_Bithyniae}			of Bithyniae
+{of_Bithynium}			of Bithynium
+{of_Cabeira}			of Cabeira
+{of_Calchedon}			of Calchedon
+{of_Cerasus}			of Cerasus
+{of_Chabacta}			of Chabacta
+{of_Cius}			of Cius
+{of_Dia}			of Dia
+{of_Gaziura}			of Gaziura
+{of_Geredeh}			of Geredeh
+{of_Gordiucome}			of Gordiucome
+{of_Haemilium}			of Haemilium
+{of_Heracleia}			of Heracleia
+{of_Heracleopolis}			of Heracleopolis
+{of_Kadikeui}			of Kadikeui
+{of_Laodiceia}			of Laodiceia
+{of_Myrlea}			of Myrlea
+{of_Neocaesareia}			of Neocaesareia
+{of_Nicomedia}			of Nicomedia
+{of_Nicopolis}			of Nicopolis
+{of_Peiraeeus}			of Peiraeeus
+{of_Pharnaceia}			of Pharnaceia
+{of_Pimolisa}			of Pimolisa
+{of_Piourkh}			of Piourkh
+{of_Prusa}			of Prusa
+{of_Prusias}			of Prusias
+{of_Sebasteia}			of Sebasteia
+{of_Taourla}			of Taourla
+{of_Taulara}			of Taulara
+{of_Tium}			of Tium
+{of_Trapezus}			of Trapezus
+{of_Trebizond}			of Trebizond
+{of_Zela}			of Zela
+{of_Pontus}			of Pontus
+{of_Amastris}			of Amastris
+{of_Ancyra}			of Ancyra
+{of_Cierus}			of Cierus
+{of_Pessinus}			of Pessinus
+{of_Dorylaeum}			of Dorylaeum
+{of_Gordium}			of Gordium
+{of_Tius}			of Tius
+{of_Gangra}			of Gangra
+{of_Amasei}			of Amasei
+{of_Europatoria}			of Europatoria
+{of_Phasis}			of Phasis
+{of_Tavium}			of Tavium
+{Pythodoris}			Pythodoris
+{Dynamis}			Dynamis
+{Gepaepyris}			Gepaepyris
+{Tryphaena}			Tryphaena
+{Zipoetes}			Zipoetes
+{Arame}			Arame
+{Artashes}			Artashes
+{Ara}			Ara
+{Aram}			Aram
+{Aramu}			Aramu
+{Argishti}			Argishti
+{Artavazd}			Artavazd
+{Artaxias}			Artaxias
+{Atheas}			Atheas
+{Belnirari}			Belnirari
+{Eminos}			Eminos
+{Kudurmabug}			Kudurmabug
+{Liapos}			Liapos
+{Madyes}			Madyes
+{Menua}			Menua
+{Partatua}			Partatua
+{Prusias}			Prusias
+{Rimsin}			Rimsin
+{Rusa}			Rusa
+{Sarduri}			Sarduri
+{Tigran}			Tigran
+{Trdat}			Trdat
+{Waradsin}			Waradsin
+{Ziaelas}			Ziaelas
+{of_Rhizus}			of Rhizus
+{of_Kainepolis}			of Kainepolis
+{of_Gorneae}			of Gorneae
+{of_Carana}			of Carana
+{of_Elegeia}			of Elegeia
+{of_Satala}			of Satala
+{of_Arsamosata}			of Arsamosata
+{of_Tigranocerta}			of Tigranocerta
+{of_Tomisa}			of Tomisa
+{Erato}			Erato
+{Karo}			Karo
+{Pao}			Pao
+{Arao}			Arao
+{Donatiya}			Donatiya
+{Hurriya}			Hurriya
+{Pigat}			Pigat
+{Anacharsis}			Anacharsis
+{Arapeithes}			Arapeithes
+{Idanthyrsus}			Idanthyrsus
+{Palacus}			Palacus
+{Saulius}			Saulius
+{Scyles}			Scyles
+{Scylurus}			Scylurus
+{Ata}			Ata
+{Attila}			Attila
+{Vencaslac}			Vencaslac
+{Burubista}			Burubista
+{Cotiso}			Cotiso
+{Decebalus}			Decebalus
+{Scorilo}			Scorilo
+{Deceneu}			Deceneu
+{Zalmoxis}			Zalmoxis
+{Comosicus}			Comosicus
+{Duras}			Duras
+{Dicomes}			Dicomes
+{Dnestr}			Dnestr
+{Dapyx}			Dapyx
+{Zyraxes}			Zyraxes
+{Roles}			Roles
+{Diurpaneus}			Diurpaneus
+{Vezina}			Vezina
+{Diegis}			Diegis
+{Banat}			Banat
+{Oltenia}			Oltenia
+{Decebal}			Decebal
+{Markos}			Markos
+{Comosikus}			Comosikus
+{Dekainos}			Dekainos
+{Ion}			Ion
+{Dromichetes}			Dromichetes
+{Bendis}			Bendis
+{Serapia}			Serapia
+{Afina}			Afina
+{Birkita}			Birkita
+{Branka}			Branka
+{Devnet}			Devnet
+{Dita}			Dita
+{Fallon}			Fallon
+{Hestia}			Hestia
+{Oxynta}			Oxynta
+{Melqart}			Melqart
+{Adherbal}			Adherbal
+{Alyamas}			Alyamas
+{Capussa}			Capussa
+{Gaia}			Gaia
+{Galussa}			Galussa
+{Gauda}			Gauda
+{Isalcas}			Isalcas
+{Oesalces}			Oesalces
+{Jugurthen}			Jugurthen
+{Juva}			Juva
+{Lacumaces}			Lacumaces
+{Masgava}			Masgava
+{Massnsen}			Massnsen
+{Massiva}			Massiva
+{Mastanabal}			Mastanabal
+{Micipsa}			Micipsa
+{Misagenes}			Misagenes
+{Niptasan}			Niptasan
+{Ptolemee}			Ptolemee
+{Stembanos}			Stembanos
+{Tabat}			Tabat
+{Thabitah}			Thabitah
+{Zalelsan}			Zalelsan
+{Syphax}			Syphax
+{Dahia}			Dahia
+{Dihya}			Dihya
+{Kahina}			Kahina
+{Blendidoros}			Blendidoros
+{Brinkazis}			Brinkazis
+{Brinkazeis}			Brinkazeis
+{Brinkainos}			Brinkainos
+{Bryzos}			Bryzos
+{Byzas}			Byzas
+{Dentupes}			Dentupes
+{Deopus}			Deopus
+{Desakenthos}			Desakenthos
+{Diazelmis}			Diazelmis
+{Diazenis}			Diazenis
+{Dizazelmis}			Dizazelmis
+{Drenis}			Drenis
+{Iptacens}			Iptacens
+{Eptecentus}			Eptecentus
+{Eptaper}			Eptaper
+{Eptepus}			Eptepus
+{Eptepyris}			Eptepyris
+{Eptenis}			Eptenis
+{Hezbenus}			Hezbenus
+{Gaidres}			Gaidres
+{Kersos}			Kersos
+{Kersebleptos}			Kersebleptos
+{Ketriporis}			Ketriporis
+{Mukaboris}			Mukaboris
+{Mukos}			Mukos
+{Mukazeis}			Mukazeis
+{Mukakenthos}			Mukakenthos
+{Mukapaibes}			Mukapaibes
+{Mukaporis}			Mukaporis
+{Mukazenis}			Mukazenis
+{Pytros}			Pytros
+{Rhaskos}			Rhaskos
+{Rhaskuporis}			Rhaskuporis
+{Rescuturme}			Rescuturme
+{Rhesus}			Rhesus
+{Satres}			Satres
+{Sautes}			Sautes
+{Skaris}			Skaris
+{Skílas}			Skílas
+{Suratralis}			Suratralis
+{Tarusinas}			Tarusinas
+{Ziles}			Ziles
+{Zipaibes}			Zipaibes
+{Ziper}			Ziper
+{Ziepyrus}			Ziepyrus
+{Spartacus}			Spartacus
+{Karia}			Karia
+{Bendidora}			Bendidora
+{Cerzula}			Cerzula
+{Dentysyka}			Dentysyka
+{Eptarys}			Eptarys
+{Eptesyka}			Eptesyka
+{Ketripora}			Ketripora
+{Mokasokos}			Mokasokos
+{Primus}			Primus
+{Solomon}			Solomon
+{Abraham}			Abraham
+{Isaac}			Isaac
+{Esau}			Esau
+{Moses}			Moses
+{Aaron}			Aaron
+{Nautius}			Nautius
+{Decemius}			Decemius
+{Posthumus}			Posthumus
+{Beth}			Beth
+{Rebecca}			Rebecca
+
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬***** Changes made after 29/03/2004 17:30:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬***** Changes made after 21/04/2004 17:30:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+{Adiran}					Adiran
+{Ager}						Ager
+{Aingeru}					Aingeru
+{Akil}						Akil
+{Ander}						Ander
+{Antton}					Antton
+{Asentzio}					Asentzio
+{Benat}						Benat
+{Bingen}					Bingen
+{Bittor}					Bittor
+{Deunoro}					Deunoro
+{Dunixi}					Dunixi
+{Edorta}					Edorta
+{Edrigu}					Edrigu
+{Edur}						Edur
+{Elazar}					Elazar
+{Erromon}					Erromon
+{Etor}						Etor
+{Gabirel}					Gabirel
+{Gaizka}					Gaizka
+{Gentza}					Gentza
+{Gotzon}					Gotzon
+{Gurutz}					Gurutz
+{Iker}						Iker
+{Inaki}						Inaki
+{Ixaka}						Ixaka
+{Jakome}					Jakome
+{Kemen}						Kemen
+{Kerbasi}					Kerbasi
+{Mikel}						Mikel
+{Mikolas}					Mikolas
+{Mikolaus}					Mikolaus
+{Ortzi}						Ortzi
+{Palben}					Palben
+{Txanton}					Txanton
+{Txomin}					Txomin
+{Ugutz}						Ugutz
+{Unai}						Unai
+{Urtzi}						Urtzi
+{Xanti}						Xanti
+{Yuli}						Yuli
+{Zadornin}					Zadornin
+{Zigor}						Zigor
+{Zorion}					Zorion
+{Erruki}					Erruki
+{Ilixo}						Ilixo
+{Txeru}						Txeru
+{Lon}						Lon
+{Berriotxoa}					Berriotxoa
+{Xalbador}					Xalbador
+{Gartzi}					Gartzi
+{Gergori}					Gergori
+{Beila}						Beila
+{Decimus}					Decimus
+{Herius}					Herius
+{Herennius}					Herennius
+{Asinius}					Asinius
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬***** Changes made after 13/05/2004 09:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬***** Changes made after 03/06/2004 16:48:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬***** Changes made after 17/06/2004 13:01:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*		This particular divider does not denote a changes round.
+¬*	This is when the files were locked to be sent for Russian and Polish translation.
+¬*
+¬*
+¬***** Changes made after 01/07/2004 09:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 07/07/2004 17:15:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 15/07/2004 17:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 22/07/2004 09:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 29/07/2004 09:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 05/08/2004 12:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 12/08/2004 09:53:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 19/08/2004 16:05:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 01/09/2004 09:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬****************************************************************************************
+¬****************************************************************************************
+¬*
+¬*			THIS FILE GONE FOR LOCALISATION!!!
+¬*		ALL CHANGES & ADDITIONS MADE POST THE DATE SPECIFIED
+¬*			BELOW MUST GO UNDERNEATH THIS DIVIDER!!!
+¬*
+¬*
+¬***** Changes made after 03/09/2004 09:00:00
+¬*
+¬****************************************************************************************
+¬****************************************************************************************
+
+¬+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+¬*******************************************************************************************************
+¬*******************************************************************************************************
+¬*
+¬*			EXPANSION PACK TEXT BEGINS HERE!!!
+¬*		ALL TEXT BELOW THIS LINE SHOULD BE EXPANSION ADDITIONS/CHANGES ONLY!!!
+¬*
+¬*¬***** Changes made after 05/01/2005 15:18:00
+¬*
+¬*******************************************************************************************************
+¬*******************************************************************************************************
+¬+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

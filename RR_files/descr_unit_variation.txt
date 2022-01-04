@@ -1,0 +1,1954 @@
+;descr_unit_variation.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+
+
+
+skin
+{
+	african
+	{
+		male data/characters/skin_textures/african_m_skin.tga 1 6 14
+		female data/characters/skin_textures/african_f_skin.tga 1 10 12
+	}
+	arabic
+	{
+		male data/characters/skin_textures/arabic_m_skin.tga 3 10 15
+		female data/characters/skin_textures/arabic_f_skin.tga 1 5 13
+	}
+	berber
+	{
+		male data/characters/skin_textures/arabic_m_skin.tga 3 10 15
+		female data/characters/skin_textures/arabic_f_skin.tga 1 5 13
+	}
+	caucasian
+	{
+		male data/characters/skin_textures/caucasian_m_skin.tga 3 11 13
+		female data/characters/skin_textures/caucasian_f_skin.tga 1 6 15
+	}
+	eastasian
+	{
+		male data/characters/skin_textures/eastasian_m_skin.tga 1 8 13
+		female data/characters/skin_textures/eastasian_f_skin.tga 1 7 14
+	}
+	egyptian
+	{
+		male data/characters/skin_textures/egyptian_m_skin.tga 0 8 15
+		female data/characters/skin_textures/egyptian_f_skin.tga 1 6 13
+	}
+	indian
+	{
+		male data/characters/skin_textures/indian_m_skin.tga 2 10 15
+		female data/characters/skin_textures/indian_f_skin.tga 2 8 13
+	}
+	mediterranean
+	{
+		male data/characters/skin_textures/mediterranean_m_skin.tga 1 11 15
+		female data/characters/skin_textures/mediterranean_f_skin.tga 1 9 12
+	}
+}
+
+ethnicities
+{
+	african
+	{
+		hair_styles ( 13, 5.0 ), ( 16, 35.0 ), ( 17, 35.0 ), ( -1, 25.0 )
+		female_hair ( 7, 75.0 ), ( -1, 25.0 )
+		beard_styles ( 2, 25.0 ), ( 3, 20.0 ), ( 4, 20.0 ), ( -1, 35.0 )
+		hair_color ( black, 100.0 )
+		aged_hair_color ( grey, 100.0 )
+	}
+
+	arabic
+	{
+		hair_styles ( 0, 10.0 ), ( 1, 6.0 ), ( 4, 16.0 ), ( 9, 21.0 ), ( 11, 21.0 ), ( 13, 21.0 ), ( -1, 5.0 )
+		female_hair ( 6, 50.0 ), ( 7, 45.0 ), ( -1, 5.0 )
+		beard_styles ( 1, 5.0 ), ( 4, 15.0 ), ( 5, 15.0 ), ( 6, 15.0 ), ( 9, 5.0 ), ( 12, 15.0 ), ( 13, 15.0 ), ( -1, 15.0 )
+		hair_color ( black, 80.0 ), ( dark_brown, 20.0 )
+		aged_hair_color ( grey, 100.0 )
+	}
+
+	berber
+	{
+		hair_styles ( 0, 10.0 ), ( 1, 6.0 ), ( 4, 16.0 ), ( 9, 21.0 ), ( 11, 21.0 ), ( 13, 21.0 ), ( -1, 5.0 )
+		female_hair ( 6, 50.0 ), ( 7, 45.0 ), ( -1, 5.0 )
+		beard_styles ( 1, 5.0 ), ( 4, 15.0 ), ( 5, 15.0 ), ( 6, 15.0 ), ( 9, 5.0 ), ( 12, 15.0 ), ( 13, 15.0 ), ( -1, 15.0 )
+		hair_color ( black, 80.0 ), ( dark_brown, 20.0 )
+		aged_hair_color ( grey, 100.0 )
+	}
+
+	caucasiandark
+	{
+		hair_styles ( 1, 8.0 ), ( 2, 12.0 ), ( 3, 12.0 ), ( 4, 10.0 ), ( 9, 10.0 ), ( 10, 10.0 ), ( 13, 15.0 ), ( 14, 15.0 ), ( -1, 8.0 )
+		female_hair ( 6, 50.0 ), ( 7, 45.0 ), ( -1, 8.0 )
+		beard_styles ( 1, 15.0 ), ( 4, 15.0 ), ( 5, 20.0 ), ( 6, 15.0 ), ( 10, 25.0 ), ( -1, 10.0 )
+		hair_color ( black, 25.0 ), ( dark_brown, 55.0 ), ( light_brown, 20.0 )
+		aged_hair_color ( white, 100.0 )
+	}
+
+	berserker
+	{
+		hair_styles ( 1, 8.0 ), ( 2, 12.0 ), ( 3, 12.0 ), ( 4, 10.0 ), ( 9, 10.0 ), ( 10, 10.0 ), ( 13, 15.0 ), ( 14, 15.0 ), ( -1, 8.0 )
+		female_hair ( 6, 50.0 ), ( 7, 45.0 ), ( -1, 8.0 )
+		beard_styles ( 4, 35.0 ), ( 5, 35.0 ), ( 6, 30.0 )
+		hair_color ( light_brown, 50.0 ), ( blond, 35.0 ), ( ginger, 15.0 )
+		aged_hair_color ( white, 100.0 )
+	}
+
+	caucasian
+	{
+		hair_styles ( 1, 8.0 ), ( 2, 12.0 ), ( 3, 12.0 ), ( 4, 10.0 ), ( 9, 10.0 ), ( 10, 10.0 ), ( 13, 15.0 ), ( 14, 15.0 ), ( -1, 8.0 )
+		female_hair ( 6, 50.0 ), ( 7, 45.0 ), ( -1, 8.0 )
+		beard_styles ( 1, 15.0 ), ( 4, 15.0 ), ( 5, 20.0 ), ( 6, 15.0 ), ( 10, 25.0 ), ( -1, 10.0 )
+		hair_color ( light_brown, 50.0 ), ( blond, 35.0 ), ( ginger, 15.0 )
+		aged_hair_color ( white, 100.0 )
+	}
+
+	eastasian
+	{
+		hair_styles ( 1, 12.0 ), ( 3, 17.0 ), ( 4, 17.0 ), ( 9, 14.0 ), ( 10, 6.0 ), ( 11, 12.0 ), ( 13, 12.0 ), ( -1, 10.0 )
+		female_hair ( 6, 50.0 ), ( 7, 40.0 ), ( -1, 10.0 )
+		beard_styles ( 1, 10.0 ), ( 4, 10.0 ), ( 7, 5.0 ), ( 8, 20.0 ), ( 9, 15.0 ), ( 11, 20.0 ), ( -1, 20.0 )
+		hair_color ( black, 100.0 )
+		aged_hair_color ( white, 100.0 )
+	}
+
+	egyptian
+	{
+		hair_styles ( 4, 4.0 ), ( 8, 15.0 ), ( 13, 8.0 ), ( 16, 20.0 ), ( 17, 23.0 ), ( -1, 30.0 )
+		female_hair ( 6, 40.0 ), ( 7, 30.0 ), ( -1, 30.0 )
+		beard_styles ( 2, 15.0 ), ( 3, 10.0 ), ( 4, 10.0 ), ( 7, 40.0 ), ( -1, 25.0 )
+		hair_color ( black, 100.0 )
+		aged_hair_color ( grey, 100.0 )
+	}
+
+	mediterranean
+	{
+		hair_styles ( 0, 15.0 ), ( 1, 10.0 ), ( 3, 15.0 ), ( 8, 10.0 ), ( 9, 10.0 ), ( 11, 16.0 ), ( 12, 15.0 ), ( -1, 9.0 )
+		female_hair ( 6, 50.0 ), ( 7, 46.0 ), ( -1, 9.0 )
+		beard_styles ( 1, 5.0 ), ( 4, 10.0 ), ( 5, 10.0 ), ( 6, 5.0 ), ( -1, 70.0 )
+		hair_color ( black, 50.0 ), ( dark_brown, 30.0 ), ( light_brown, 20.0 )
+		aged_hair_color ( white, 100.0 )
+	}
+
+	north_african
+	{
+		hair_styles ( 4, 20.0 ), ( 9, 20.0 ), ( 11, 20.0 ), ( 13, 20.0 ), ( 16, 5.0 ), ( 17, 10.0 ), ( -1, 5.0 )
+		female_hair ( 6, 50.0 ), ( 7, 45.0 ), ( -1, 5.0 )
+		beard_styles ( 2, 12.0 ), ( 3, 12.0 ), ( 4, 12.0 ), ( 5, 12.0 ), ( 6, 12.0 ), ( 12, 7.0 ), ( 13, 8.0 ), ( -1, 25.0 )
+		hair_color ( black, 100.0 )
+		aged_hair_color ( grey, 100.0 )
+	}
+
+	indian
+	{
+		hair_styles ( 3, 20.0 ), ( 4, 15.0 ), ( 5, 15.0 ), ( 9, 13.0 ), ( 13, 13.0 ), ( 15, 20.0 ), ( -1, 4.0 )
+		female_hair ( 6, 50.0 ), ( 7, 46.0 ), ( -1, 4.0 )
+		beard_styles ( 1, 10.0 ), ( 5, 10.0 ), ( 6, 15.0 ), ( 9, 15.0 ), ( 11, 5.0 ), ( 12, 2.5 ), ( 13, 2.5 ), ( -1, 40.0 )
+		hair_color ( black, 80.0 ), ( dark_brown, 20.0 )
+		aged_hair_color ( grey, 100.0 )
+	}
+
+}
+
+
+region
+{
+
+	Colchis
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 30
+		}
+	}
+
+	Armenia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 10
+		}
+	}
+
+	Atropatene
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 10
+		}
+	}
+
+	Brittania_Inferior
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 60
+		}
+	}
+
+	Brittania_Superior
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 40
+		}
+	}
+
+	Tribus_Silurii
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 50
+		}
+	}
+
+	Hibernia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 60
+		}
+	}
+
+	Belgica
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 60
+		}
+	}
+
+	Baetica
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 25
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 15
+		}
+	}
+
+	Baliares
+	{
+
+		variant
+		{
+			ethnicity north_african
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 15
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 5
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 20
+		}
+	}
+
+	Sardinia
+	{
+
+		variant
+		{
+			ethnicity mediterraneanFOo
+			distribution 75
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 25
+		}
+	}
+
+	Africa
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+	}
+
+	Byzacium
+	{
+
+		variant
+		{
+			ethnicity north_african
+			distribution 100
+		}
+	}
+
+	Sicilia_Poeni
+	{
+
+		variant
+		{
+			ethnicity north_african
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 70
+		}
+	}
+
+	Tribus_Iazyges
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Dacia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Pannonia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Illyria
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 25
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 65
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 10
+		}
+	}
+
+	Dalmatia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 5
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 15
+		}
+	}
+
+	Nile_Delta
+	{
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 35
+		}
+
+		variant
+		{
+			ethnicity african
+			distribution 5
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 35
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 20
+		}
+	}
+
+	Middle_Egypt
+	{
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 75
+		}
+
+		variant
+		{
+			ethnicity african
+			distribution 5
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 5
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 15
+		}
+	}
+
+	Thebais
+	{
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity african
+			distribution 5
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 25
+		}
+	}
+
+	Sinai
+	{
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 35
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 35
+		}
+	}
+
+	Arabia
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 90
+		}
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 10
+		}
+	}
+
+	Nabataea
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 50
+		}
+	}
+
+	Judaea
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 15
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 5
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 20
+		}
+	}
+
+	Phoenicia
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 10
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 25
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 5
+		}
+	}
+
+	Cyprus
+	{
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+	}
+
+	Nubia
+	{
+
+		variant
+		{
+			ethnicity african
+			distribution 100
+		}
+	}
+
+	Armorica
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Aquitania
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 50
+		}
+	}
+
+	Central_Gaul
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 50
+		}
+	}
+
+	Narbonensis
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 30
+		}
+	}
+
+	Lugdinensis
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 40
+		}
+	}
+
+	Transalpine_Gaul
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+	}
+
+	Cisalpine_Gaul
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+	}
+
+	Venetia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+	}
+
+	Liguria
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+	}
+
+	Celtiberia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 30
+		}
+	}
+
+	Germania_Inferior
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Germania_Superior
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Agri_Decumates
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Tribus_Saxones
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Tribus_Chattii
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 70
+		}
+	}
+
+	Noricum
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 40
+		}
+	}
+
+	Boihaemum
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 40
+		}
+	}
+
+	Regnum_Marcomannii
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 60
+		}
+	}
+
+	Locus_Gothi
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 30
+		}
+	}
+
+	Locus_Gepidae
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 30
+		}
+	}
+
+	Pripet
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Sicilia_Graecus
+	{
+
+		variant
+		{
+			ethnicity mediterraneanFOo
+			distribution 90
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 10
+		}
+	}
+
+	Aetolia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Laconia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Crete
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Rhodos
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Phrygia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Paionia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Macedonia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Thessalia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Attica
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Peloponnesus
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Epirus
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Mauretania
+	{
+
+		variant
+		{
+			ethnicity berber
+			distribution 75
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 25
+		}
+	}
+
+	Numidia
+	{
+
+		variant
+		{
+			ethnicity berber
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 30
+		}
+	}
+
+	Gaetulia
+	{
+
+		variant
+		{
+			ethnicity berber
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 50
+		}
+	}
+
+	Sahara
+	{
+
+		variant
+		{
+			ethnicity berber
+			distribution 40
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 60
+		}
+	}
+
+	Cyrenaica
+	{
+
+		variant
+		{
+			ethnicity berber
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 30
+		}
+	}
+
+	Libya
+	{
+
+		variant
+		{
+			ethnicity berber
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 30
+		}
+	}
+
+	Tripolitania
+	{
+
+		variant
+		{
+			ethnicity berber
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 10
+		}
+	}
+
+	Elymais
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity mediterraneanFOo
+			distribution 20
+		}
+	}
+
+	Media
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 10
+		}
+	}
+
+	Tribus_Sakae
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity mediterraneanFOo
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 20
+		}
+	}
+
+	Cappadocia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 55
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 35
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 10
+		}
+	}
+
+	Pontus
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 10
+		}
+	}
+
+	Bithynia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+	}
+
+	Galatia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 70
+		}
+	}
+
+	Apulia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Bruttium
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Etruria
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Umbria
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Campania
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Sicilia_Romanus
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 90
+		}
+
+		variant
+		{
+			ethnicity north_african
+			distribution 10
+		}
+	}
+
+	Latium
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 100
+		}
+	}
+
+	Scythia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Pripet
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Bosphorus
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Maeotis
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Tribus_Sarmatae
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Hyperboria
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Tribus_Alanni
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 80
+		}
+	}
+
+	Assyria
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 20
+		}
+	}
+
+	Babylonia
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 100
+		}
+	}
+
+	Regnum_Palmyrae
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 90
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 10
+		}
+	}
+
+	Coele_Syria
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 60
+		}
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 20
+		}
+	}
+
+	Syria
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 45
+		}
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 35
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 20
+		}
+	}
+
+	Cilicia
+	{
+
+		variant
+		{
+			ethnicity arabic
+			distribution 35
+		}
+
+		variant
+		{
+			ethnicity mediterraneanFOo
+			distribution 35
+		}
+
+		variant
+		{
+			ethnicity egyptian
+			distribution 30
+		}
+	}
+
+	Lycia
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 30
+		}
+	}
+
+	Ionia
+	{
+
+		variant
+		{
+			ethnicity mediterraneanFOo
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity arabic
+			distribution 30
+		}
+	}
+
+	Taraconenis
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+	}
+
+	Hispania
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 80
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+	}
+
+	Lusitania
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 50
+		}
+	}
+
+	Gallaecia
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 50
+		}
+	}
+
+	Tribus_Getae
+	{
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 20
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 30
+		}
+	}
+
+	Thrace
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 50
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 15
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 35
+		}
+	}
+
+	Propontis
+	{
+
+		variant
+		{
+			ethnicity mediterranean
+			distribution 70
+		}
+
+		variant
+		{
+			ethnicity caucasiandark
+			distribution 10
+		}
+
+		variant
+		{
+			ethnicity caucasian
+			distribution 20
+		}
+	}
+
+	Berserk
+	{
+
+		variant
+		{
+			ethnicity berserker
+			distribution 100
+		}
+	}
+}

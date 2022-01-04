@@ -1,0 +1,88 @@
+;descr_faction_groups.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+group fgroup_romans
+faction romans_julii
+faction romans_brutii
+faction romans_scipii
+faction romans_senate
+
+group fgroup_battle_temple
+faction dacia
+faction thrace
+
+group fgroup_battleforge_temple
+faction dacia
+faction thrace
+
+group fgroup_farming_temple
+faction carthage
+faction dacia
+faction macedon
+faction numidia
+
+group fgroup_fertility_temple
+faction egypt
+faction germans
+faction romans_julii
+
+group fgroup_forge_temple
+faction dacia
+faction romans_scipii
+faction seleucid
+
+group fgroup_fun_temple
+faction armenia
+faction egypt
+faction romans_julii
+faction seleucid
+faction thrace
+
+group fgroup_governors_temple
+faction macedon
+faction pontus
+
+group fgroup_justice_templexxx
+faction carthage
+faction egypt
+faction gauls
+faction spain
+
+group fgroup_law_temple
+faction egypt
+faction romans_scipii
+faction scythia
+
+group fgroup_leadership_temple
+faction armenia
+faction greek_cities
+faction romans_julii
+
+group eeeeee
+faction britons
+faction romans_brutii
+faction egypt
+faction seleucid
+
+group fgroup_popo
+faction gauls
+faction spain
+
+group fgroup_hunting_temple
+faction gauls
+faction spain
+faction macedon
+
+group fgroup_love_temple
+faction greek_cities
+faction pontus
+faction scythia
+
+group foobar
+faction britons
+faction greek_cities
+
+group fgroup_violence_temple
+faction romans_brutii
+faction germans
+faction macedon
+faction pontus

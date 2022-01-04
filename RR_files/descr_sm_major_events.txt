@@ -1,0 +1,22 @@
+;descr_sm_major_events.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+
+
+
+
+"major events": [
+	"marian_reforms": {
+		"affects": [ "all", ],
+		"global": true,
+		"priority": 3,
+		"activation": {
+			"trigger conditions": "major_event_scripts/marian_reforms_trigger.txt",
+			"unit switches": {
+				"thracian bodyguard early": "thracian bodyguard",
+			},
+			"use big panel": true,
+		},
+		"deactivation": {
+		},
+	},
+],

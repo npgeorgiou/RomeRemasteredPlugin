@@ -1,0 +1,474 @@
+;feral_descr_ai_personality.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+
+building_priority Balanced
+population_growth_bonus 80
+population_loyalty_bonus 64
+population_health_bonus 32
+trade_base_income_bonus 32
+trade_level_bonus 64
+trade_fleet 48
+taxable_income_bonus 80
+mine_resource_level 16
+farming_level 48
+road_level 48
+gate_strength 16
+gate_defenses 16
+wall_level 64
+tower_level 16
+stage_games 48
+stage_races 48
+weapon_bladed 32
+weapon_missile 32
+armour 32
+population_fire_risk_bonus 16
+bodyguard 48
+recruits_morale_bonus 32
+recruits_experience_bonus 64
+happiness_bonus 48
+law_bonus 48
+
+building_priority Trader
+population_growth_bonus 80
+population_loyalty_bonus 32
+population_health_bonus 48
+trade_base_income_bonus 64
+trade_level_bonus 64
+trade_fleet 48
+taxable_income_bonus 80
+mine_resource_level 48
+farming_level 64
+road_level 80
+gate_strength 16
+gate_defenses 16
+wall_level 48
+tower_level 16
+stage_games 64
+stage_races 64
+weapon_bladed 64
+weapon_missile 64
+armour 64
+population_fire_risk_bonus 16
+bodyguard 48
+recruits_morale_bonus 32
+recruits_experience_bonus 64
+happiness_bonus 48
+law_bonus 48
+
+building_priority Religious
+population_growth_bonus 80
+population_loyalty_bonus 80
+population_health_bonus 32
+trade_base_income_bonus 32
+trade_level_bonus 32
+trade_fleet 48
+taxable_income_bonus 80
+mine_resource_level 48
+farming_level 64
+road_level 48
+gate_strength 16
+gate_defenses 16
+wall_level 64
+tower_level 16
+stage_games 64
+stage_races 16
+weapon_bladed 48
+weapon_missile 48
+armour 48
+population_fire_risk_bonus 16
+bodyguard 48
+recruits_morale_bonus 64
+recruits_experience_bonus 48
+happiness_bonus 32
+law_bonus 64
+
+building_priority Comfortable
+population_growth_bonus 80
+population_loyalty_bonus 64
+population_health_bonus 64
+trade_base_income_bonus 48
+trade_level_bonus 64
+trade_fleet 48
+taxable_income_bonus 48
+mine_resource_level 16
+farming_level 80
+road_level 64
+gate_strength 16
+gate_defenses 16
+wall_level 64
+tower_level 16
+stage_games 80
+stage_races 80
+weapon_bladed 32
+weapon_missile 32
+armour 32
+population_fire_risk_bonus 32
+bodyguard 48
+recruits_morale_bonus 32
+recruits_experience_bonus 64
+happiness_bonus 64
+law_bonus 32
+
+building_priority Bureaucrat
+population_growth_bonus 64
+population_loyalty_bonus 48
+population_health_bonus 64
+trade_base_income_bonus 64
+trade_level_bonus 48
+trade_fleet 48
+taxable_income_bonus 80
+mine_resource_level 16
+farming_level 64
+road_level 64
+gate_strength 16
+gate_defenses 16
+wall_level 64
+tower_level 16
+stage_games 16
+stage_races 16
+weapon_bladed 32
+weapon_missile 32
+armour 32
+population_fire_risk_bonus 32
+bodyguard 64
+recruits_morale_bonus 32
+recruits_experience_bonus 64
+happiness_bonus 32
+law_bonus 64
+
+building_priority Craftsman
+population_growth_bonus 64
+population_loyalty_bonus 32
+population_health_bonus 64
+trade_base_income_bonus 64
+trade_level_bonus 48
+trade_fleet 32
+taxable_income_bonus 80
+mine_resource_level 64
+farming_level 48
+road_level 64
+gate_strength 48
+gate_defenses 48
+wall_level 80
+tower_level 48
+stage_games 48
+stage_races 80
+weapon_bladed 64
+weapon_missile 64
+armour 64
+population_fire_risk_bonus 32
+bodyguard 48
+recruits_morale_bonus 32
+recruits_experience_bonus 64
+happiness_bonus 48
+law_bonus 48
+
+building_priority Sailor
+population_growth_bonus 64
+population_loyalty_bonus 32
+population_health_bonus 48
+trade_base_income_bonus 64
+trade_level_bonus 48
+trade_fleet 80
+taxable_income_bonus 80
+mine_resource_level 16
+farming_level 48
+road_level 64
+gate_strength 48
+gate_defenses 48
+wall_level 80
+tower_level 48
+stage_games 48
+stage_races 32
+weapon_bladed 32
+weapon_missile 32
+armour 16
+population_fire_risk_bonus 48
+bodyguard 32
+recruits_morale_bonus 64
+recruits_experience_bonus 48
+happiness_bonus 48
+law_bonus 32
+
+building_priority Fortified
+population_growth_bonus 64
+population_loyalty_bonus 64
+population_health_bonus 48
+trade_base_income_bonus 48
+trade_level_bonus 48
+trade_fleet 32
+taxable_income_bonus 80
+mine_resource_level 16
+farming_level 48
+road_level 148
+gate_strength 64
+gate_defenses 64
+wall_level 80
+tower_level 64
+stage_games 16
+stage_races 16
+weapon_bladed 48
+weapon_missile 48
+armour 64
+population_fire_risk_bonus 48
+bodyguard 64
+recruits_morale_bonus 64
+recruits_experience_bonus 32
+happiness_bonus 32
+law_bonus 64
+
+
+;;; Military Priorities
+military_priority smith
+mass 64
+infantry_light 64
+infantry_heavy 64
+infantry_missile 64
+infantry_spearmen 64
+cavalry_light 64
+cavalry_heavy 64
+cavalry_missile 64
+siege_artillery 64
+special 64
+sally_agression 15
+sally_desperate 80
+attack_risk_taker 2
+subterfuge_risk_taker 1
+
+military_priority mao
+mass 80
+infantry_light 80
+infantry_heavy 64
+infantry_missile 56
+infantry_spearmen 64
+cavalry_light 64
+cavalry_heavy 48
+cavalry_missile 64
+siege_artillery 48
+special 48
+sally_agression 35
+sally_desperate 20
+attack_risk_taker 2
+subterfuge_risk_taker 0
+
+military_priority genghis
+mass 48
+infantry_light 64
+infantry_heavy 56
+infantry_missile 48
+infantry_spearmen 48
+cavalry_light 72
+cavalry_heavy 48
+cavalry_missile 80
+siege_artillery 48
+special 48
+sally_agression 90
+sally_desperate 99
+attack_risk_taker 2
+subterfuge_risk_taker 4
+
+military_priority stalin
+mass 48
+infantry_light 64
+infantry_heavy 80
+infantry_missile 64
+infantry_spearmen 48
+cavalry_light 64
+cavalry_heavy 64
+cavalry_missile 48
+siege_artillery 80
+special 48
+sally_agression 50
+sally_desperate 50
+attack_risk_taker 2
+subterfuge_risk_taker 2
+
+military_priority napoleon
+mass 48
+infantry_light 56
+infantry_heavy 56
+infantry_missile 64
+infantry_spearmen 64
+cavalry_light 80
+cavalry_heavy 64
+cavalry_missile 48
+siege_artillery 64
+special 48
+sally_agression 50
+sally_desperate 50
+attack_risk_taker 2
+subterfuge_risk_taker 7
+
+military_priority henry
+mass 56
+infantry_light 64
+infantry_heavy 64
+infantry_missile 72
+infantry_spearmen 64
+cavalry_light 72
+cavalry_heavy 80
+cavalry_missile 48
+siege_artillery 48
+special 48
+sally_agression 80
+sally_desperate 30
+attack_risk_taker 2
+subterfuge_risk_taker 3
+
+military_priority caesar
+mass 48
+infantry_light 64
+infantry_heavy 80
+infantry_missile 64
+infantry_spearmen 64
+cavalry_light 72
+cavalry_heavy 64
+cavalry_missile 48
+siege_artillery 72
+special 48
+sally_agression 60
+sally_desperate 65
+attack_risk_taker 2
+subterfuge_risk_taker 6
+
+
+;;; Diplomatic Priorities
+diplomatic_priority default
+aggresiveness 100
+
+
+;;; Personalities
+personality balanced_smith
+building_priority Balanced
+military_priority smith
+diplomatic_priority default
+
+personality religious_smith
+building_priority Religious
+military_priority smith
+diplomatic_priority default
+
+personality trader_smith
+building_priority Trader
+military_priority smith
+diplomatic_priority default
+
+personality bureaucrat_napoleon
+building_priority Bureaucrat
+military_priority napoleon
+diplomatic_priority default
+
+personality comfortable_napoleon
+building_priority Comfortable
+military_priority napoleon
+diplomatic_priority default
+
+personality fortified_napoleon
+building_priority Fortified
+military_priority napoleon
+diplomatic_priority default
+
+personality trader_napoleon
+building_priority Trader
+military_priority napoleon
+diplomatic_priority default
+
+personality sailor_napoleon
+building_priority Sailor
+military_priority napoleon
+diplomatic_priority default
+
+personality balanced_mao
+building_priority Balanced
+military_priority mao
+diplomatic_priority default
+
+personality fortified_mao
+building_priority Fortified
+military_priority mao
+diplomatic_priority default
+
+personality trader_henry
+building_priority Trader
+military_priority henry
+diplomatic_priority default
+
+personality fortified_henry
+building_priority Fortified
+military_priority henry
+diplomatic_priority default
+
+personality balanced_henry
+building_priority Balanced
+military_priority henry
+diplomatic_priority default
+
+personality religious_caesar
+building_priority Religious
+military_priority caesar
+diplomatic_priority default
+
+personality comfortable_caesar
+building_priority Comfortable
+military_priority caesar
+diplomatic_priority default
+
+personality balanced_genghis
+building_priority Balanced
+military_priority genghis
+diplomatic_priority default
+
+personality balanced_stalin
+building_priority Balanced
+military_priority stalin
+diplomatic_priority default
+
+personality trader_genghis
+building_priority Trader
+military_priority genghis
+diplomatic_priority default
+
+personality comfortable_smith
+building_priority Comfortable
+military_priority smith
+diplomatic_priority default
+
+personality balanced_caesar
+building_priority Balanced
+military_priority caesar
+diplomatic_priority default
+
+personality sailor_smith
+building_priority Sailor
+military_priority smith
+diplomatic_priority default
+
+personality religious_napoleon
+building_priority Religious
+military_priority napoleon
+diplomatic_priority default
+
+personality religious_genghis
+building_priority Religious
+military_priority genghis
+diplomatic_priority default
+
+personality bureaucrat_stalin
+building_priority Bureaucrat
+military_priority stalin
+diplomatic_priority default
+
+personality religious_stalin
+building_priority Religious
+military_priority stalin
+diplomatic_priority default
+
+personality fortified_caesar
+building_priority Fortified
+military_priority caesar
+diplomatic_priority default
+
+personality fortified_stalin
+building_priority Fortified
+military_priority stalin
+diplomatic_priority default

@@ -1,0 +1,5641 @@
+;export_descr_ancillaries.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+
+Ancillary actor
+    Image effete_man_ancillary.tga
+    ExcludedAncillaries comedian, playwright
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, roman
+    Description actor_desc
+    EffectsDescription actor_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary aged_retainer
+    Image older_man_ancillary.tga
+    ExcludedAncillaries bad_poet
+    ExcludeCultures barbarian
+    Description aged_retainer_desc
+    EffectsDescription aged_retainer_effects_desc
+    Effect Management  1
+    Effect PersonalSecurity  1
+
+;------------------------------------------
+Ancillary agriculturalist
+    Image mechanic_ancillary.tga
+    ExcludeCultures barbarian, eastern
+    Description agriculturalist_desc
+    EffectsDescription agriculturalist_effects_desc
+    Effect Farming  1
+
+;------------------------------------------
+Ancillary animal_trader
+    Image freedman_servant_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description animal_trader_desc
+    EffectsDescription animal_trader_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary architect
+    Image mechanic_ancillary.tga
+    ExcludeCultures barbarian
+    Description architect_desc
+    EffectsDescription architect_effects_desc
+    Effect Construction  10
+    Effect Squalor -1
+
+;------------------------------------------
+Ancillary armourer
+    Image grizzled_veteran_ancillary.tga
+    Description armourer_desc
+    EffectsDescription armourer_effects_desc
+    Effect TroopMorale  1
+
+;------------------------------------------
+Ancillary artist
+    Image effete_man_ancillary.tga
+    ExcludedAncillaries sculptor
+    ExcludeCultures barbarian
+    Description artist_desc
+    EffectsDescription artist_effects_desc
+    Effect Influence  1
+    Effect BribeResistance -1
+
+;------------------------------------------
+Ancillary astrologer
+    Image mystic_ancillary.tga
+    ExcludeCultures barbarian
+    Description astrologer_desc
+    EffectsDescription astrologer_effects_desc
+    Effect Command  1
+    Effect Management -1
+
+;------------------------------------------
+Ancillary barbarian_slave
+    Image young_woman_ancillary.tga
+    ExcludedAncillaries exotic_slave
+    ExcludeCultures barbarian
+    Description barbarian_slave_desc
+    EffectsDescription barbarian_slave_effects_desc
+    Effect Combat_V_Barbarian  1
+    Effect Looting   1
+
+;------------------------------------------
+Ancillary barbarian_turncoat
+    Image barbarian_beardy_ancillary.tga
+    ExcludeCultures barbarian
+    Description barbarian_turncoat_desc
+    EffectsDescription barbarian_turncoat_effects_desc
+    Effect Combat_V_Barbarian  1
+
+;------------------------------------------
+Ancillary bard
+    Image scribe_ancillary.tga
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description bard_desc
+    EffectsDescription bard_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary beastmaster
+    Image barbarian_beardy_ancillary.tga
+    Description beastmaster_desc
+    EffectsDescription beastmaster_effects_desc
+    Effect CavalryCommand  1
+    Effect TrainingAnimalUnits  3
+
+;------------------------------------------
+Ancillary biographer
+    Image scribe_ancillary.tga
+    ExcludedAncillaries playwright
+    ExcludeCultures barbarian
+    Description biographer_desc
+    EffectsDescription biographer_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary body_slave
+    Image effete_man_ancillary.tga
+    Description body_slave_desc
+    EffectsDescription body_slave_effects_desc
+    Effect Influence  1
+    Effect PersonalSecurity -1
+
+;------------------------------------------
+Ancillary bodyguard
+    Image muscular_man_ancillary.tga
+    Description bodyguard_desc
+    EffectsDescription bodyguard_effects_desc
+    Effect PersonalSecurity  2
+    Effect BodyguardValour  2
+
+;------------------------------------------
+Ancillary brilliant_inventor
+    Image mechanic_ancillary.tga
+    ExcludeCultures barbarian
+    Description brilliant_inventor_desc
+    EffectsDescription brilliant_inventor_effects_desc
+    Effect SiegeEngineering  30
+    Effect Farming  1
+    Effect Mining  20
+
+;------------------------------------------
+Ancillary cackling_crone
+    Image mad_woman_ancillary.tga
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description cackling_crone_desc
+    EffectsDescription cackling_crone_effects_desc
+    Effect Influence  1
+    Effect TroopMorale -1
+
+;------------------------------------------
+Ancillary carnifex
+    Image hooded_figure_ancillary.tga
+    ExcludedAncillaries fasces
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description carnifex_desc
+    EffectsDescription carnifex_effects_desc
+    Effect PublicSecurity  2
+    Effect Law  2
+
+;------------------------------------------
+Ancillary carthaginian_turncoat
+    Image easterner_ancillary.tga
+    ExcludeCultures carthaginian
+    Description carthaginian_turncoat_desc
+    EffectsDescription carthaginian_turncoat_effects_desc
+    Effect Combat_V_Carthaginian  1
+
+;------------------------------------------
+Ancillary networker
+    Image effete_man_ancillary.tga
+    ExcludeCultures barbarian
+    Description networker_desc
+    EffectsDescription networker_effects_desc
+    Effect Subterfuge  1
+
+;------------------------------------------
+Ancillary charioteer
+    Image muscular_man_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description charioteer_desc
+    EffectsDescription charioteer_effects_desc
+    Effect PopularStanding  10
+
+;------------------------------------------
+Ancillary chief_eunuch
+    Image effete_man_ancillary.tga
+    ExcludeCultures barbarian, greek, roman
+    Description chief_eunuch_desc
+    EffectsDescription chief_eunuch_effects_desc
+    Effect PersonalSecurity  2
+    Effect BodyguardValour  1
+
+;------------------------------------------
+Ancillary chirugeon
+    Image older_man_ancillary.tga
+    ExcludedAncillaries doctor, herbalist
+    ExcludeCultures barbarian
+    Description chirugeon_desc
+    EffectsDescription chirugeon_effects_desc
+    Effect BattleSurgery  15
+
+;------------------------------------------
+Ancillary civilized_slave
+    Image young_woman_ancillary.tga
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description civilized_slave_desc
+    EffectsDescription civilized_slave_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary comedian
+    Image entertainer_ancillary.tga
+    ExcludedAncillaries actor
+    ExcludeCultures barbarian
+    Description comedian_desc
+    EffectsDescription comedian_effects_desc
+    Effect TroopMorale  1
+
+;------------------------------------------
+Ancillary cook
+    Image freedman_servant_ancillary.tga
+    ExcludedAncillaries master_of_assassins
+    ExcludeCultures barbarian
+    Description cook_desc
+    EffectsDescription cook_effects_desc
+    Effect PersonalSecurity  1
+
+;------------------------------------------
+Ancillary courtesan
+    Image young_woman_ancillary.tga
+    ExcludedAncillaries networker
+    ExcludeCultures barbarian
+    Description courtesan_desc
+    EffectsDescription courtesan_effects_desc
+    Effect Subterfuge  1
+
+;------------------------------------------
+Ancillary crooked_judge
+    Image older_man_ancillary.tga
+    ExcludedAncillaries judge, honest_man, crooked_judge2
+    ExcludeCultures barbarian, roman
+    Description crooked_judge_desc
+    EffectsDescription crooked_judge_effects_desc
+    Effect TrainingAgents  4
+    Effect Unrest  1
+    Effect Law  2
+
+;------------------------------------------
+Ancillary crooked_judge2
+    Image older_man_ancillary.tga
+    ExcludedAncillaries judge, honest_man, crooked_judge
+    ExcludeCultures barbarian, roman
+    Description crooked_judge2_desc
+    EffectsDescription crooked_judge2_effects_desc
+    Effect TrainingAgents  4
+    Effect Unrest  1
+    Effect Law  2
+
+;------------------------------------------
+Ancillary dancer
+    Image young_woman_ancillary.tga
+    ExcludedAncillaries dancer2
+    Description dancer_desc
+    EffectsDescription dancer_effects_desc
+    Effect Subterfuge  2
+
+;------------------------------------------
+Ancillary dancer2
+    Image young_woman_ancillary.tga
+    ExcludedAncillaries dancer
+    Description dancer2_desc
+    EffectsDescription dancer2_effects_desc
+    Effect Subterfuge  2
+
+;------------------------------------------
+Ancillary decorated_hero
+    Image helmeted_soldier_ancillary.tga
+    ExcludedAncillaries famous_warrior
+    ExcludeCultures barbarian
+    Description decorated_hero_desc
+    EffectsDescription decorated_hero_effects_desc
+    Effect TrainingUnits  4
+
+;------------------------------------------
+Ancillary desert_scout
+    Image mystic_ancillary.tga
+    ExcludeCultures roman, barbarian, greek
+    Description desert_scout_desc
+    EffectsDescription desert_scout_effects_desc
+    Effect Ambush  1
+    Effect LineOfSight  1
+
+;------------------------------------------
+Ancillary doctor
+    Image grizzled_veteran_ancillary.tga
+    ExcludedAncillaries chirugeon
+    ExcludeCultures barbarian, roman, carthaginian
+    Description doctor_desc
+    EffectsDescription doctor_effects_desc
+    Effect Fertility  1
+    Effect BattleSurgery  10
+
+;------------------------------------------
+Ancillary drillmaster
+    Image grizzled_veteran_ancillary.tga
+    ExcludeCultures barbarian
+    Description drillmaster_desc
+    EffectsDescription drillmaster_effects_desc
+    Effect MovementPoints  5
+    Effect TrainingUnits  2
+
+;------------------------------------------
+Ancillary drinking_companion
+    Image drunkard_ancillary.tga
+    Description drinking_companion_desc
+    EffectsDescription drinking_companion_effects_desc
+    Effect Influence  1
+    Effect Command -1
+
+;------------------------------------------
+Ancillary druid
+    Image mystic_ancillary.tga
+    ExcludedAncillaries druid2
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description druid_desc
+    EffectsDescription druid_effects_desc
+    Effect Influence  1
+    Effect BattleSurgery  10
+
+;------------------------------------------
+Ancillary druid2
+    Image mystic_ancillary.tga
+    ExcludedAncillaries druid
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description druid2_desc
+    EffectsDescription druid2_effects_desc
+    Effect TroopMorale  1
+    Effect Attack  1
+
+;------------------------------------------
+Ancillary drunken_uncle
+    Image drunkard_ancillary.tga
+    Description drunken_uncle_desc
+    EffectsDescription drunken_uncle_effects_desc
+    Effect Influence -1
+
+;------------------------------------------
+Ancillary easterner_turncoat
+    Image easterner_ancillary.tga
+    ExcludeCultures eastern
+    Description easterner_turncoat_desc
+    EffectsDescription easterner_turncoat_effects_desc
+    Effect Combat_V_Eastern  1
+
+;------------------------------------------
+Ancillary editor
+    Image older_man_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description editor_desc
+    EffectsDescription editor_effects_desc
+    Effect Influence  2
+
+;------------------------------------------
+Ancillary egyptian_turncoat
+    Image egyptian_ancillary.tga
+    ExcludeCultures egyptian
+    Description egyptian_turncoat_desc
+    EffectsDescription egyptian_turncoat_effects_desc
+    Effect Combat_V_Egyptian  1
+
+;------------------------------------------
+Ancillary elder_senator
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries honest_man, mentor
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description elder_senator_desc
+    EffectsDescription elder_senator_effects_desc
+    Effect Influence  1
+    Effect Management  1
+    Effect Electability  6
+    Effect SenateStanding  15
+
+;------------------------------------------
+Ancillary elderly_spinster_aunt
+    Image older_woman_ancillary.tga
+    ExcludedAncillaries bad_poet
+    Description elderly_spinster_aunt_desc
+    EffectsDescription elderly_spinster_aunt_effects_desc
+    Effect Influence -1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary equestrian
+    Image roman_official_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description equestrian_desc
+    EffectsDescription equestrian_effects_desc
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary bad_poet
+    Image older_woman_ancillary.tga
+    ExcludedAncillaries over_protective_nanny
+    Description bad_poet_desc
+    EffectsDescription bad_poet_effects_desc
+    Effect Influence -1
+    Effect TroopMorale -1
+
+;------------------------------------------
+Ancillary exotic_slave
+    Image young_woman_ancillary.tga
+    Description exotic_slave_desc
+    EffectsDescription exotic_slave_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary famous_courtesan
+    Image young_woman_ancillary.tga
+    ExcludeCultures barbarian
+    Description famous_courtesan_desc
+    EffectsDescription famous_courtesan_effects_desc
+    Effect TrainingAgents  5
+
+;------------------------------------------
+Ancillary famous_warrior
+    Image barbarian_beardy_ancillary.tga
+    ExcludedAncillaries decorated_hero
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description famous_warrior_desc
+    EffectsDescription famous_warrior_effects_desc
+    Effect Command  1
+    Effect TroopMorale  1
+    Effect TrainingUnits  2
+
+;------------------------------------------
+Ancillary fasces
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries carnifex
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description fasces_desc
+    EffectsDescription fasces_effects_desc
+    Effect PublicSecurity  1
+    Effect Law  2
+
+;------------------------------------------
+Ancillary partner-in-crime
+    Image young_woman_ancillary.tga
+    Description partner-in-crime_desc
+    EffectsDescription partner-in-crime_effects_desc
+    Effect Subterfuge  2
+
+;------------------------------------------
+Ancillary rival
+    Image young_woman_ancillary.tga
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description rival_desc
+    EffectsDescription rival_effects_desc
+    Effect PersonalSecurity -2
+
+;------------------------------------------
+Ancillary foodtaster
+    Image slave_ancillary.tga
+    Description foodtaster_desc
+    EffectsDescription foodtaster_effects_desc
+    Effect PersonalSecurity  1
+
+;------------------------------------------
+Ancillary foreign_dignitary
+    Image older_man_ancillary.tga
+    ExcludedAncillaries foreign_hostage
+    Description foreign_dignitary_desc
+    EffectsDescription foreign_dignitary_effects_desc
+    Effect Negotiation  1
+
+;------------------------------------------
+Ancillary foreign_hostage
+    Image muscular_man_ancillary.tga
+    ExcludedAncillaries foreign_dignitary
+    Description foreign_hostage_desc
+    EffectsDescription foreign_hostage_effects_desc
+    Effect Negotiation  1
+
+;------------------------------------------
+Ancillary freeman_clerk
+    Image freedman_servant_ancillary.tga
+    ExcludedAncillaries freeman_clerk2
+    Description freeman_clerk_desc
+    EffectsDescription freeman_clerk_effects_desc
+    Effect Management  1
+    Effect TaxCollection  10
+
+;------------------------------------------
+Ancillary freeman_clerk2
+    Image freedman_servant_ancillary.tga
+    ExcludedAncillaries freeman_clerk
+    Description freeman_clerk2_desc
+    EffectsDescription freeman_clerk2_effects_desc
+    Effect Management  1
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary galloper
+    Image helmeted_soldier_ancillary.tga
+    ExcludedAncillaries runner
+    ExcludeCultures greek, roman
+    Description galloper_desc
+    EffectsDescription galloper_effects_desc
+    Effect Attack  1
+
+;------------------------------------------
+Ancillary geographer
+    Image scribe_ancillary.tga
+    ExcludeCultures barbarian
+    Description geographer_desc
+    EffectsDescription geographer_effects_desc
+    Effect MovementPoints  3
+    Effect TaxCollection  10
+
+;------------------------------------------
+Ancillary geomancer
+    Image hooded_figure_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, egyptian, greek, roman
+    Description geomancer_desc
+    EffectsDescription geomancer_effects_desc
+    Effect Construction  10
+    Effect Mining  10
+    Effect Squalor  1
+
+;------------------------------------------
+Ancillary geometer
+    Image mystic_ancillary.tga
+    ExcludeCultures barbarian
+    Description geometer_desc
+    EffectsDescription geometer_effects_desc
+    Effect SiegeDefence  1
+    Effect Construction  10
+
+;------------------------------------------
+Ancillary gladiator
+    Image grizzled_veteran_ancillary.tga
+    ExcludedAncillaries lanista
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description gladiator_desc
+    EffectsDescription gladiator_effects_desc
+    Effect PersonalSecurity  1
+    Effect BodyguardValour  1
+
+;------------------------------------------
+Ancillary goldsmith
+    Image mechanic_ancillary.tga
+    Description goldsmith_desc
+    EffectsDescription goldsmith_effects_desc
+    Effect Trading  10
+    Effect BribeResistance -1
+
+;------------------------------------------
+Ancillary gourmands_chef
+    Image freedman_servant_ancillary.tga
+    ExcludedAncillaries master_of_assassins
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description gourmands_chef_desc
+    EffectsDescription gourmands_chef_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary greek_turncoat
+    Image helmeted_soldier_ancillary.tga
+    ExcludeCultures greek
+    Description greek_turncoat_desc
+    EffectsDescription greek_turncoat_effects_desc
+    Effect Combat_V_Greek  1
+
+;------------------------------------------
+Ancillary haruspex
+    Image mystic_ancillary.tga
+    ExcludeCultures barbarian, eastern, egyptian
+    Description haruspex_desc
+    EffectsDescription haruspex_effects_desc
+    Effect TroopMorale  1
+
+;------------------------------------------
+Ancillary herbalist
+    Image older_woman_ancillary.tga
+    Description herbalist_desc
+    EffectsDescription herbalist_effects_desc
+    Effect Fertility  1
+    Effect BattleSurgery  10
+
+;------------------------------------------
+Ancillary heroic_saviour
+    Image muscular_man_ancillary.tga
+    Description heroic_saviour_desc
+    EffectsDescription heroic_saviour_effects_desc
+    Effect PersonalSecurity  1
+    Effect BodyguardValour  1
+
+;------------------------------------------
+Ancillary historian
+    Image scribe_ancillary.tga
+    ExcludedAncillaries biographer
+    ExcludeCultures barbarian
+    Description historian_desc
+    EffectsDescription historian_effects_desc
+    Effect Command  1
+
+;------------------------------------------
+Ancillary honest_man
+    Image freedman_servant_ancillary.tga
+    ExcludedAncillaries elder_senator
+    Description honest_man_desc
+    EffectsDescription honest_man_effects_desc
+    Effect BribeResistance  20
+    Effect Law  1
+
+;------------------------------------------
+Ancillary Herald
+    Image helmeted_soldier_ancillary.tga
+    Description Herald_desc
+    EffectsDescription Herald_effects_desc
+    Effect Influence  2
+
+;------------------------------------------
+Ancillary lazy_guards
+    Image slave_ancillary.tga
+    Description lazy_guards_desc
+    EffectsDescription lazy_guards_effects_desc
+    Effect Influence -2
+    Effect PersonalSecurity -1
+
+;------------------------------------------
+Ancillary idiot_savant
+    Image scribe_ancillary.tga
+    ExcludedAncillaries lazy_guards
+    ExcludeCultures barbarian
+    Description idiot_savant_desc
+    EffectsDescription idiot_savant_effects_desc
+    Effect Management  1
+    Effect TaxCollection  10
+
+;------------------------------------------
+Ancillary barbarian_scholar
+    Image older_man_ancillary.tga
+    Description barbarian_scholar_desc
+    EffectsDescription barbarian_scholar_effects_desc
+    Effect TroopMorale -2
+    Effect Combat_V_Barbarian  2
+
+;------------------------------------------
+Ancillary intrepid_explorer
+    Image muscular_man_ancillary.tga
+    ExcludeCultures barbarian
+    Description intrepid_explorer_desc
+    EffectsDescription intrepid_explorer_effects_desc
+    Effect MovementPoints  3
+    Effect LineOfSight  1
+
+;------------------------------------------
+Ancillary jeweller
+    Image freedman_servant_ancillary.tga
+    ExcludeCultures barbarian
+    Description jeweller_desc
+    EffectsDescription jeweller_effects_desc
+    Effect Trading  10
+    Effect BribeResistance -1
+
+;------------------------------------------
+Ancillary judge
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries crooked_judge, crooked_judge2
+    ExcludeCultures barbarian, roman
+    Description judge_desc
+    EffectsDescription judge_effects_desc
+    Effect PublicSecurity  1
+    Effect Law  2
+
+;------------------------------------------
+Ancillary lanista
+    Image freedman_servant_ancillary.tga
+    ExcludedAncillaries gladiator
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description lanista_desc
+    EffectsDescription lanista_effects_desc
+    Effect TrainingUnits  2
+    Effect Combat_V_Slave  2
+
+;------------------------------------------
+Ancillary librarian
+    Image scribe_ancillary.tga
+    ExcludedAncillaries actor, comedian
+    ExcludeCultures barbarian
+    Description librarian_desc
+    EffectsDescription librarian_effects_desc
+    Effect Influence  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary linguist
+    Image scribe_ancillary.tga
+    ExcludedAncillaries translator
+    Description linguist_desc
+    EffectsDescription linguist_effects_desc
+    Effect Negotiation  2
+
+;------------------------------------------
+Ancillary magician
+    Image mystic_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, greek, roman
+    Description magician_desc
+    EffectsDescription magician_effects_desc
+    Effect Influence  2
+
+;------------------------------------------
+Ancillary magistrate
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries crooked_judge
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description magistrate_desc
+    EffectsDescription magistrate_effects_desc
+    Effect PublicSecurity  1
+    Effect Law  1
+
+;------------------------------------------
+Ancillary master_embalmer
+    Image egyptian_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, greek, roman
+    Description master_embalmer_desc
+    EffectsDescription master_embalmer_effects_desc
+    Effect TroopMorale  1
+    Effect Attack  1
+
+;------------------------------------------
+Ancillary master_hunter
+    Image barbarian_beardy_ancillary.tga
+    Description master_hunter_desc
+    EffectsDescription master_hunter_effects_desc
+    Effect Ambush  1
+    Effect LineOfSight  1
+
+;------------------------------------------
+Ancillary master_of_archers
+    Image grizzled_veteran_ancillary.tga
+    ExcludeCultures roman, barbarian
+    Description master_of_archers_desc
+    EffectsDescription master_of_archers_effects_desc
+    Effect Command  1
+
+;------------------------------------------
+Ancillary master_of_assassins
+    Image hooded_figure_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, egyptian, greek, roman
+    Description master_of_assassins_desc
+    EffectsDescription master_of_assassins_effects_desc
+    Effect PersonalSecurity  1
+    Effect TrainingAgents  4
+
+;------------------------------------------
+Ancillary master_of_horse
+    Image grizzled_veteran_ancillary.tga
+    ExcludeCultures barbarian
+    Description master_of_horse_desc
+    EffectsDescription master_of_horse_effects_desc
+    Effect CavalryCommand  1
+
+;------------------------------------------
+Ancillary master_smith
+    Image mechanic_ancillary.tga
+    Description master_smith_desc
+    EffectsDescription master_smith_effects_desc
+    Effect TrainingUnits  2
+
+;------------------------------------------
+Ancillary mathematician
+    Image scribe_ancillary.tga
+    ExcludeCultures barbarian
+    Description mathematician_desc
+    EffectsDescription mathematician_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary menhir_carver
+    Image muscular_man_ancillary.tga
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description menhir_carver_desc
+    EffectsDescription menhir_carver_effects_desc
+    Effect Influence  1
+    Effect Construction  10
+
+;------------------------------------------
+Ancillary mentor
+    Image older_man_ancillary.tga
+    ExcludedAncillaries aged_retainer
+    ExcludeCultures barbarian
+    Description mentor_desc
+    EffectsDescription mentor_effects_desc
+    Effect Command  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary mercenary_captain
+    Image grizzled_veteran_ancillary.tga
+    Description mercenary_captain_desc
+    EffectsDescription mercenary_captain_effects_desc
+    Effect Command  1
+    Effect TrainingUnits  2
+    Effect Looting   2
+
+;------------------------------------------
+Ancillary merchant
+    Image freedman_servant_ancillary.tga
+    Description merchant_desc
+    EffectsDescription merchant_effects_desc
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary grain_merchant
+    Image freedman_servant_ancillary.tga
+    Description grain_merchant_desc
+    EffectsDescription grain_merchant_effects_desc
+    Effect GrainTrading  2
+
+;------------------------------------------
+Ancillary military_engineer
+    Image mechanic_ancillary.tga
+    ExcludeCultures barbarian, eastern, egyptian, greek, carthaginian
+    Description military_engineer_desc
+    EffectsDescription military_engineer_effects_desc
+    Effect SiegeAttack  2
+    Effect SiegeEngineering  50
+
+;------------------------------------------
+Ancillary military_tribune
+    Image roman_soldier_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description military_tribune_desc
+    EffectsDescription military_tribune_effects_desc
+    Effect Defence  1
+    Effect Electability  3
+    Effect SenateStanding  10
+
+;------------------------------------------
+Ancillary mining_engineer
+    Image mechanic_ancillary.tga
+    ExcludeCultures barbarian
+    Description mining_engineer_desc
+    EffectsDescription mining_engineer_effects_desc
+    Effect Mining  25
+
+;------------------------------------------
+Ancillary mistress
+    Image young_woman_ancillary.tga
+    ExcludeCultures barbarian
+    Description mistress_desc
+    EffectsDescription mistress_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary musician
+    Image effete_man_ancillary.tga
+    Description musician_desc
+    EffectsDescription musician_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary Natural_philosopher
+    Image mechanic_ancillary.tga
+    ExcludeCultures barbarian, eastern, egyptian
+    Description Natural_philosopher_desc
+    EffectsDescription Natural_philosopher_effects_desc
+    Effect Management  1
+    Effect Construction  10
+
+;------------------------------------------
+Ancillary Navigator
+    Image helmeted_soldier_ancillary.tga
+    ExcludeCultures barbarian
+    Description Navigator_desc
+    EffectsDescription Navigator_effects_desc
+    Effect NavalCommand  2
+
+;------------------------------------------
+Ancillary Numismatist
+    Image freedman_servant_ancillary.tga
+    ExcludeCultures barbarian
+    Description Numismatist_desc
+    EffectsDescription Numismatist_effects_desc
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary oracle
+    Image mystic_ancillary.tga
+    ExcludeCultures barbarian
+    Description oracle_desc
+    EffectsDescription oracle_effects_desc
+    Effect Influence  1
+    Effect Command  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary orator
+    Image older_man_ancillary.tga
+    ExcludeCultures barbarian
+    Description orator_desc
+    EffectsDescription orator_effects_desc
+    Effect Influence  2
+    Effect Command  1
+
+;------------------------------------------
+Ancillary over_protective_nanny
+    Image older_woman_ancillary.tga
+    ExcludeCultures barbarian
+    Description over_protective_nanny_desc
+    EffectsDescription over_protective_nanny_effects_desc
+    Effect Influence -1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary overseer
+    Image muscular_man_ancillary.tga
+    Description overseer_desc
+    EffectsDescription overseer_effects_desc
+    Effect Influence -1
+    Effect Farming  1
+
+;------------------------------------------
+Ancillary pet_hunting_dog
+    Image dog_ancillary.tga
+    ExcludedAncillaries pet_lion
+    Description pet_hunting_dog_desc
+    EffectsDescription pet_hunting_dog_effects_desc
+    Effect LineOfSight  1
+
+;------------------------------------------
+Ancillary pet_lion
+    Image lion_ancillary.tga
+    ExcludedAncillaries pet_hunting_dog
+    Description pet_lion_desc
+    EffectsDescription pet_lion_effects_desc
+    Effect PersonalSecurity  1
+    Effect Combat_V_Slave  1
+
+;------------------------------------------
+Ancillary pet_monkey
+    Image monkey_ancillary.tga
+    ExcludedAncillaries pet_lion, pet_hunting_dog, pet_white_cat
+    Description pet_monkey_desc
+    EffectsDescription pet_monkey_effects_desc
+    Effect Subterfuge  2
+
+;------------------------------------------
+Ancillary pet_white_cat
+    Image white_cat_ancillary.tga
+    ExcludedAncillaries pet_lion, pet_hunting_dog, pet_monkey
+    ExcludeCultures barbarian, carthaginian, eastern, greek, roman
+    Description pet_white_cat_desc
+    EffectsDescription pet_white_cat_effects_desc
+    Effect Subterfuge  2
+
+;------------------------------------------
+Ancillary philosopher
+    Image older_man_ancillary.tga
+    ExcludeCultures barbarian, eastern, egyptian, carthaginian
+    Description philosopher_desc
+    EffectsDescription philosopher_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary physician
+    Image older_man_ancillary.tga
+    ExcludeCultures barbarian, eastern, egyptian, greek
+    Description physician_desc
+    EffectsDescription physician_effects_desc
+    Effect Fertility  1
+    Effect BattleSurgery  10
+
+;------------------------------------------
+Ancillary playwright
+    Image scribe_ancillary.tga
+    ExcludedAncillaries actor
+    ExcludeCultures barbarian
+    Description playwright_desc
+    EffectsDescription playwright_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary poet
+    Image scribe_ancillary.tga
+    ExcludedAncillaries comedian, playwright
+    ExcludeCultures barbarian
+    Description poet_desc
+    EffectsDescription poet_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary poisoner
+    Image hooded_figure_ancillary.tga
+    ExcludeCultures barbarian
+    Description poisoner_desc
+    EffectsDescription poisoner_effects_desc
+    Effect Subterfuge  2
+
+;------------------------------------------
+Ancillary pontifex
+    Image roman_official_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description pontifex_desc
+    EffectsDescription pontifex_effects_desc
+    Effect Influence  1
+    Effect Command  1
+    Effect PopularStanding  10
+
+;------------------------------------------
+Ancillary praetorian_guardsman
+    Image roman_soldier_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description praetorian_guardsman_desc
+    EffectsDescription praetorian_guardsman_effects_desc
+    Effect Influence  1
+    Effect Command  1
+    Effect PopularStanding  20
+
+;------------------------------------------
+Ancillary problem_mother
+    Image mad_woman_ancillary.tga
+    ExcludedAncillaries bad_poet
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description problem_mother_desc
+    EffectsDescription problem_mother_effects_desc
+    Effect Influence -1
+    Effect Management  1
+    Effect Electability -3
+
+;------------------------------------------
+Ancillary procurator
+    Image roman_official_ancillary.tga
+    ExcludeCultures barbarian, eastern, egyptian, greek
+    Description procurator_desc
+    EffectsDescription procurator_effects_desc
+    Effect TaxCollection  10
+
+;------------------------------------------
+Ancillary quartermaster
+    Image roman_soldier_ancillary.tga
+    ExcludeCultures barbarian
+    Description quartermaster_desc
+    EffectsDescription quartermaster_effects_desc
+    Effect MovementPoints  3
+    Effect Looting   2
+
+;------------------------------------------
+Ancillary rhetorician
+    Image older_man_ancillary.tga
+    ExcludeCultures barbarian
+    Description rhetorician_desc
+    EffectsDescription rhetorician_effects_desc
+    Effect Negotiation  2
+
+;------------------------------------------
+Ancillary roman_turncoat
+    Image roman_official_ancillary.tga
+    ExcludeCultures roman
+    Description roman_turncoat_desc
+    EffectsDescription roman_turncoat_effects_desc
+    Effect Combat_V_Roman  1
+
+;------------------------------------------
+Ancillary runner
+    Image muscular_man_ancillary.tga
+    ExcludedAncillaries galloper
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, roman
+    Description runner_desc
+    EffectsDescription runner_effects_desc
+    Effect Command  1
+
+;------------------------------------------
+Ancillary satirist
+    Image scribe_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian
+    Description satirist_desc
+    EffectsDescription satirist_effects_desc
+    Effect Influence  2
+
+;------------------------------------------
+Ancillary scout
+    Image barbarian_beardy_ancillary.tga
+    Description scout_desc
+    EffectsDescription scout_effects_desc
+    Effect Ambush  1
+    Effect LineOfSight  2
+
+;------------------------------------------
+Ancillary scribe_ancillary
+    Image scribe_ancillary.tga
+    ExcludeCultures barbarian
+    Description scribe_ancillary_desc
+    EffectsDescription scribe_ancillary_effects_desc
+    Effect Management  1
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary sculptor
+    Image mechanic_ancillary.tga
+    ExcludedAncillaries artist, architect, surveyor
+    ExcludeCultures barbarian
+    Description sculptor_desc
+    EffectsDescription sculptor_effects_desc
+    Effect Influence  1
+    Effect Construction  10
+
+;------------------------------------------
+Ancillary seamaster
+    Image grizzled_veteran_ancillary.tga
+    Description seamaster_desc
+    EffectsDescription seamaster_effects_desc
+    Effect NavalCommand  2
+
+;------------------------------------------
+Ancillary senatorial_horse
+    Image horse_ancillary.tga
+    ExcludedAncillaries elder_senator
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description senatorial_horse_desc
+    EffectsDescription senatorial_horse_effects_desc
+    Effect Electability -9
+    Effect SenateStanding -10
+    Effect PopularStanding  10
+
+;------------------------------------------
+Ancillary shieldbearer
+    Image helmeted_soldier_ancillary.tga
+    ExcludedAncillaries swordbearer
+    ExcludeCultures roman
+    Description shieldbearer_desc
+    EffectsDescription shieldbearer_effects_desc
+    Effect BodyguardValour  1
+
+;------------------------------------------
+Ancillary shipwright
+    Image mechanic_ancillary.tga
+    Description shipwright_desc
+    EffectsDescription shipwright_effects_desc
+    Effect NavalCommand  1
+
+;------------------------------------------
+Ancillary siege_engineer
+    Image mechanic_ancillary.tga
+    ExcludeCultures barbarian
+    Description siege_engineer_desc
+    EffectsDescription siege_engineer_effects_desc
+    Effect SiegeAttack  1
+    Effect SiegeEngineering  60
+
+;------------------------------------------
+Ancillary silk_merchant
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries spice_merchant
+    Description silk_merchant_desc
+    EffectsDescription silk_merchant_effects_desc
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary slave_trader
+    Image muscular_man_ancillary.tga
+    Description slave_trader_desc
+    EffectsDescription slave_trader_effects_desc
+    Effect SlaveTrading  2
+
+;------------------------------------------
+Ancillary slubberdegullion
+    Image drunkard_ancillary.tga
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description slubberdegullion_desc
+    EffectsDescription slubberdegullion_effects_desc
+    Effect Influence -1
+    Effect PersonalSecurity -1
+
+;------------------------------------------
+Ancillary soothsayer
+    Image hooded_figure_ancillary.tga
+    Description soothsayer_desc
+    EffectsDescription soothsayer_effects_desc
+    Effect TroopMorale  2
+
+;------------------------------------------
+Ancillary spice_merchant
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries silk_merchant
+    Description spice_merchant_desc
+    EffectsDescription spice_merchant_effects_desc
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary spymaster
+    Image hooded_figure_ancillary.tga
+    ExcludeCultures barbarian
+    Description spymaster_desc
+    EffectsDescription spymaster_effects_desc
+    Effect Command  1
+    Effect TrainingAgents  4
+
+;------------------------------------------
+Ancillary surveyor
+    Image freedman_servant_ancillary.tga
+    ExcludeCultures barbarian
+    Description surveyor_desc
+    EffectsDescription surveyor_effects_desc
+    Effect Construction  20
+    Effect Health  1
+
+;------------------------------------------
+Ancillary swordbearer
+    Image helmeted_soldier_ancillary.tga
+    ExcludedAncillaries shieldbearer
+    ExcludeCultures roman
+    Description swordbearer_desc
+    EffectsDescription swordbearer_effects_desc
+    Effect PersonalSecurity  1
+    Effect BodyguardValour  1
+
+;------------------------------------------
+Ancillary tax_farmer
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries treasurer
+    ExcludeCultures barbarian, eastern, egyptian, greek
+    Description tax_farmer_desc
+    EffectsDescription tax_farmer_effects_desc
+    Effect Influence -1
+    Effect TaxCollection  5
+
+;------------------------------------------
+Ancillary tender_of_the_arse
+    Image egyptian_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, greek, roman
+    Description tender_of_the_arse_desc
+    EffectsDescription tender_of_the_arse_effects_desc
+    Effect Influence  1
+    Effect PersonalSecurity -1
+
+;------------------------------------------
+Ancillary torturer
+    Image hooded_figure_ancillary.tga
+    ExcludeCultures greek, roman
+    Description torturer_desc
+    EffectsDescription torturer_effects_desc
+    Effect PublicSecurity  2
+    Effect Unrest  1
+    Effect Law  3
+
+;------------------------------------------
+Ancillary translator
+    Image scribe_ancillary.tga
+    ExcludedAncillaries linguist
+    Description translator_desc
+    EffectsDescription translator_effects_desc
+    Effect Negotiation  2
+
+;------------------------------------------
+Ancillary treasurer
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries tax_farmer
+    ExcludeCultures barbarian
+    Description treasurer_desc
+    EffectsDescription treasurer_effects_desc
+    Effect Management  2
+
+;------------------------------------------
+Ancillary tribune_of_the_plebs
+    Image roman_official_ancillary.tga
+    ExcludedAncillaries elder_senator
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description tribune_of_the_plebs_desc
+    EffectsDescription tribune_of_the_plebs_effects_desc
+    Effect Influence  1
+    Effect PopularStanding  20
+
+;------------------------------------------
+Ancillary trusty_steed
+    Image horse_ancillary.tga
+    ExcludedAncillaries senatorial_horse
+    Description trusty_steed_desc
+    EffectsDescription trusty_steed_effects_desc
+    Effect CavalryCommand  1
+    Effect InfantryCommand -1
+
+;------------------------------------------
+Ancillary turncoat_slave
+    Image freedman_servant_ancillary.tga
+    Description turncoat_slave_desc
+    EffectsDescription turncoat_slave_effects_desc
+    Effect Combat_V_Slave  1
+
+;------------------------------------------
+Ancillary tutor
+    Image older_man_ancillary.tga
+    ExcludedAncillaries drinking_companion
+    ExcludeCultures barbarian
+    Description tutor_desc
+    EffectsDescription tutor_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary veteran_centurion
+    Image roman_soldier_ancillary.tga
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description veteran_centurion_desc
+    EffectsDescription veteran_centurion_effects_desc
+    Effect PersonalSecurity  1
+    Effect InfantryCommand  1
+
+;------------------------------------------
+Ancillary veteran_warrior
+    Image helmeted_soldier_ancillary.tga
+    ExcludeCultures roman
+    Description veteran_warrior_desc
+    EffectsDescription veteran_warrior_effects_desc
+    Effect PersonalSecurity  1
+    Effect InfantryCommand  1
+
+;------------------------------------------
+Ancillary wilderness_prophet
+    Image hooded_figure_ancillary.tga
+    ExcludedAncillaries pontifex
+    ExcludeCultures barbarian, carthaginian, egyptian, greek, roman
+    Description wilderness_prophet_desc
+    EffectsDescription wilderness_prophet_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary wine_steward
+    Image drunkard_ancillary.tga
+    ExcludedAncillaries master_of_assassins
+    ExcludeCultures barbarian
+    Description wine_steward_desc
+    EffectsDescription wine_steward_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary wise_man
+    Image mystic_ancillary.tga
+    Description wise_man_desc
+    EffectsDescription wise_man_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary wise_woman
+    Image older_woman_ancillary.tga
+    ExcludedAncillaries herbalist, doctor, chirugeon
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description wise_woman_desc
+    EffectsDescription wise_woman_effects_desc
+    Effect Fertility  1
+    Effect BattleSurgery  10
+
+;------------------------------------------
+Ancillary witch
+    Image mad_woman_ancillary.tga
+    ExcludeCultures carthaginian, eastern, egyptian, greek, roman
+    Description witch_desc
+    EffectsDescription witch_effects_desc
+    Effect Fertility  1
+
+;------------------------------------------
+Ancillary wrestler
+    Image muscular_man_ancillary.tga
+    ExcludeCultures barbarian
+    Description wrestler_desc
+    EffectsDescription wrestler_effects_desc
+    Effect Influence  1
+    Effect PersonalSecurity  1
+
+;------------------------------------------
+Ancillary priest_of_Vahagan
+    Image easterner_ancillary.tga
+    Description priest_of_Vahagan_desc
+    EffectsDescription priest_of_Vahagan_effects_desc
+    Effect Command  1
+    Effect TrainingUnits  2
+
+;------------------------------------------
+Ancillary priest_of_Anahit
+    Image easterner_ancillary.tga
+    Description priest_of_Anahit_desc
+    EffectsDescription priest_of_Anahit_effects_desc
+    Effect Influence  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Armazd
+    Image easterner_ancillary.tga
+    Description priest_of_Armazd_desc
+    EffectsDescription priest_of_Armazd_effects_desc
+    Effect Influence  1
+    Effect Command  1
+
+;------------------------------------------
+Ancillary priest_of_Brigantia
+    Image older_woman_ancillary.tga
+    Description priest_of_Brigantia_desc
+    EffectsDescription priest_of_Brigantia_effects_desc
+    Effect Management  1
+    Effect BattleSurgery  20
+
+;------------------------------------------
+Ancillary priest_of_Britannia2
+    Image older_woman_ancillary.tga
+    Description priest_of_Britannia2_desc
+    EffectsDescription priest_of_Britannia2_effects_desc
+    Effect Management  1
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary priest_of_Andrasta
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Andrasta_desc
+    EffectsDescription priest_of_Andrasta_effects_desc
+    Effect Command  1
+    Effect MovementPoints  3
+
+;------------------------------------------
+Ancillary priest_of_Tanit
+    Image young_woman_ancillary.tga
+    Description priest_of_Tanit_desc
+    EffectsDescription priest_of_Tanit_effects_desc
+    Effect Management  1
+    Effect Farming  1
+
+;------------------------------------------
+Ancillary priest_of_Baal
+    Image hooded_figure_ancillary.tga
+    Description priest_of_Baal_desc
+    EffectsDescription priest_of_Baal_effects_desc
+    Effect TrainingAgents  4
+    Effect Law  1
+
+;------------------------------------------
+Ancillary priest_of_Milqart
+    Image mystic_ancillary.tga
+    Description priest_of_Milqart_desc
+    EffectsDescription priest_of_Milqart_effects_desc
+    Effect Management  1
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary priest_of_Hebeleysis
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Hebeleysis_desc
+    EffectsDescription priest_of_Hebeleysis_effects_desc
+    Effect Attack  2
+
+;------------------------------------------
+Ancillary priest_of_Bendis
+    Image older_woman_ancillary.tga
+    Description priest_of_Bendis_desc
+    EffectsDescription priest_of_Bendis_effects_desc
+    Effect Health  1
+    Effect BattleSurgery  20
+
+;------------------------------------------
+Ancillary priest_of_Zalmoxis
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Zalmoxis_desc
+    EffectsDescription priest_of_Zalmoxis_effects_desc
+    Effect Management  1
+    Effect TrainingUnits  2
+    Effect Mining  20
+
+;------------------------------------------
+Ancillary priest_of_Isis
+    Image young_woman_ancillary.tga
+    Description priest_of_Isis_desc
+    EffectsDescription priest_of_Isis_effects_desc
+    Effect Management  1
+    Effect Fertility  1
+    Effect Health  1
+
+;------------------------------------------
+Ancillary priest_of_Osiris
+    Image egyptian_ancillary.tga
+    Description priest_of_Osiris_desc
+    EffectsDescription priest_of_Osiris_effects_desc
+    Effect Influence  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Imhotep
+    Image egyptian_ancillary.tga
+    Description priest_of_Imhotep_desc
+    EffectsDescription priest_of_Imhotep_effects_desc
+    Effect Management  1
+    Effect BattleSurgery  20
+
+;------------------------------------------
+Ancillary priest_of_Set
+    Image egyptian_ancillary.tga
+    Description priest_of_Set_desc
+    EffectsDescription priest_of_Set_effects_desc
+    Effect Management  1
+    Effect TrainingAgents  4
+
+;------------------------------------------
+Ancillary priest_of_Horus
+    Image egyptian_ancillary.tga
+    Description priest_of_Horus_desc
+    EffectsDescription priest_of_Horus_effects_desc
+    Effect Management  1
+    Effect Law  1
+
+;------------------------------------------
+Ancillary priest_of_Teutatis
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Teutatis_desc
+    EffectsDescription priest_of_Teutatis_effects_desc
+    Effect Command  1
+    Effect TrainingUnits  2
+
+;------------------------------------------
+Ancillary priest_of_Epona
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Epona_desc
+    EffectsDescription priest_of_Epona_effects_desc
+    Effect CavalryCommand  2
+
+;------------------------------------------
+Ancillary priest_of_Abnoba
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Abnoba_desc
+    EffectsDescription priest_of_Abnoba_effects_desc
+    Effect Management  1
+    Effect Ambush  2
+    Effect LineOfSight  1
+
+;------------------------------------------
+Ancillary priest_of_Esus
+    Image hooded_figure_ancillary.tga
+    Description priest_of_Esus_desc
+    EffectsDescription priest_of_Esus_effects_desc
+    Effect Management  1
+    Effect TrainingAgents  2
+    Effect Law  1
+
+;------------------------------------------
+Ancillary priest_of_Freyja
+    Image older_woman_ancillary.tga
+    Description priest_of_Freyja_desc
+    EffectsDescription priest_of_Freyja_effects_desc
+    Effect Management  1
+    Effect Fertility  1
+    Effect Health  1
+
+;------------------------------------------
+Ancillary priest_of_Donar
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Donar_desc
+    EffectsDescription priest_of_Donar_effects_desc
+    Effect Attack  2
+
+;------------------------------------------
+Ancillary priest_of_Woden
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Woden_desc
+    EffectsDescription priest_of_Woden_effects_desc
+    Effect InfantryCommand  2
+    Effect BattleSurgery  10
+
+;------------------------------------------
+Ancillary priest_of_Athena
+    Image young_woman_ancillary.tga
+    Description priest_of_Athena_desc
+    EffectsDescription priest_of_Athena_effects_desc
+    Effect Command  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Aphrodite
+    Image young_woman_ancillary.tga
+    Description priest_of_Aphrodite_desc
+    EffectsDescription priest_of_Aphrodite_effects_desc
+    Effect Management  1
+    Effect TrainingAgents  4
+    Effect Health  1
+
+;------------------------------------------
+Ancillary priest_of_Hermes
+    Image mystic_ancillary.tga
+    Description priest_of_Hermes_desc
+    EffectsDescription priest_of_Hermes_effects_desc
+    Effect Management  1
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary priest_of_Nike
+    Image mystic_ancillary.tga
+    Description priest_of_Nike_desc
+    EffectsDescription priest_of_Nike_effects_desc
+    Effect Command  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Ceres
+    Image mystic_ancillary.tga
+    Description priest_of_Ceres_desc
+    EffectsDescription priest_of_Ceres_effects_desc
+    Effect Management  1
+    Effect Farming  1
+
+;------------------------------------------
+Ancillary priest_of_Bacchus
+    Image mystic_ancillary.tga
+    Description priest_of_Bacchus_desc
+    EffectsDescription priest_of_Bacchus_effects_desc
+    Effect Influence  2
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Jupiter
+    Image mystic_ancillary.tga
+    Description priest_of_Jupiter_desc
+    EffectsDescription priest_of_Jupiter_effects_desc
+    Effect Influence  1
+    Effect Command  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Demeter
+    Image older_woman_ancillary.tga
+    Description priest_of_Demeter_desc
+    EffectsDescription priest_of_Demeter_effects_desc
+    Effect Management  1
+    Effect Farming  1
+
+;------------------------------------------
+Ancillary priest_of_Zeus
+    Image mystic_ancillary.tga
+    Description priest_of_Zeus_desc
+    EffectsDescription priest_of_Zeus_effects_desc
+    Effect Influence  1
+    Effect Management  1
+    Effect SiegeDefence  1
+
+;------------------------------------------
+Ancillary priest_of_Artemis
+    Image young_woman_ancillary.tga
+    Description priest_of_Artemis_desc
+    EffectsDescription priest_of_Artemis_effects_desc
+    Effect Management  1
+    Effect Ambush  2
+    Effect LineOfSight  1
+    Effect TrainingAnimalUnits  4
+
+;------------------------------------------
+Ancillary priest_of_Ares
+    Image mystic_ancillary.tga
+    Description priest_of_Ares_desc
+    EffectsDescription priest_of_Ares_effects_desc
+    Effect Attack  2
+
+;------------------------------------------
+Ancillary priest_of_Zoroastra
+    Image easterner_ancillary.tga
+    Description priest_of_Zoroastra_desc
+    EffectsDescription priest_of_Zoroastra_effects_desc
+    Effect Influence  1
+    Effect Command  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Zeus2
+    Image easterner_ancillary.tga
+    Description priest_of_Zeus2_desc
+    EffectsDescription priest_of_Zeus2_effects_desc
+    Effect Influence  1
+    Effect Management  1
+    Effect SiegeDefence  1
+
+;------------------------------------------
+Ancillary priest_of_Aphrodite2
+    Image young_woman_ancillary.tga
+    Description priest_of_Aphrodite2_desc
+    EffectsDescription priest_of_Aphrodite2_effects_desc
+    Effect Management  1
+    Effect TrainingAgents  2
+    Effect Health  1
+
+;------------------------------------------
+Ancillary priest_of_Hercules
+    Image easterner_ancillary.tga
+    Description priest_of_Hercules_desc
+    EffectsDescription priest_of_Hercules_effects_desc
+    Effect Attack  2
+
+;------------------------------------------
+Ancillary priest_of_Juno
+    Image young_woman_ancillary.tga
+    Description priest_of_Juno_desc
+    EffectsDescription priest_of_Juno_effects_desc
+    Effect Management  1
+    Effect Health  1
+    Effect BattleSurgery  10
+
+;------------------------------------------
+Ancillary priest_of_Mercury
+    Image mystic_ancillary.tga
+    Description priest_of_Mercury_desc
+    EffectsDescription priest_of_Mercury_effects_desc
+    Effect Management  1
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary priest_of_Mars
+    Image mystic_ancillary.tga
+    Description priest_of_Mars_desc
+    EffectsDescription priest_of_Mars_effects_desc
+    Effect Attack  2
+
+;------------------------------------------
+Ancillary priest_of_Vulcan
+    Image mystic_ancillary.tga
+    Description priest_of_Vulcan_desc
+    EffectsDescription priest_of_Vulcan_effects_desc
+    Effect Management  1
+    Effect TrainingUnits  2
+    Effect Mining  20
+
+;------------------------------------------
+Ancillary priest_of_Saturn
+    Image mystic_ancillary.tga
+    Description priest_of_Saturn_desc
+    EffectsDescription priest_of_Saturn_effects_desc
+    Effect Influence  1
+    Effect Management  1
+    Effect PublicSecurity  2
+
+;------------------------------------------
+Ancillary priest_of_Neptune
+    Image mystic_ancillary.tga
+    Description priest_of_Neptune_desc
+    EffectsDescription priest_of_Neptune_effects_desc
+    Effect NavalCommand  2
+
+;------------------------------------------
+Ancillary priest_of_Papay
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Papay_desc
+    EffectsDescription priest_of_Papay_effects_desc
+    Effect Management  1
+    Effect PublicSecurity  2
+    Effect Law  1
+
+;------------------------------------------
+Ancillary priest_of_Api
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Api_desc
+    EffectsDescription priest_of_Api_effects_desc
+    Effect Management  1
+    Effect Fertility  1
+    Effect Health  1
+
+;------------------------------------------
+Ancillary priest_of_Kolaksay
+    Image barbarian_beardy_ancillary.tga
+    Description priest_of_Kolaksay_desc
+    EffectsDescription priest_of_Kolaksay_effects_desc
+    Effect CavalryCommand  2
+
+;------------------------------------------
+Ancillary priest_of_Haphaestus
+    Image easterner_ancillary.tga
+    Description priest_of_Haphaestus_desc
+    EffectsDescription priest_of_Haphaestus_effects_desc
+    Effect Management  1
+    Effect TrainingUnits  2
+    Effect Mining  20
+
+;------------------------------------------
+Ancillary priest_of_Asklepios
+    Image easterner_ancillary.tga
+    Description priest_of_Asklepios_desc
+    EffectsDescription priest_of_Asklepios_effects_desc
+    Effect Fertility  1
+    Effect Health  1
+    Effect BattleSurgery  20
+
+;------------------------------------------
+Ancillary priest_of_Dionysus
+    Image easterner_ancillary.tga
+    Description priest_of_Dionysus_desc
+    EffectsDescription priest_of_Dionysus_effects_desc
+    Effect Influence  2
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Dionysus2
+    Image mystic_ancillary.tga
+    Description priest_of_Dionysus2_desc
+    EffectsDescription priest_of_Dionysus2_effects_desc
+    Effect Influence  2
+    Effect Management  1
+
+;------------------------------------------
+Ancillary priest_of_Ares2
+    Image easterner_ancillary.tga
+    Description priest_of_Ares2_desc
+    EffectsDescription priest_of_Ares2_effects_desc
+    Effect Attack  2
+
+;------------------------------------------
+Ancillary appolonius_of_perge
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries appolonius_of_perge
+    ExcludeCultures barbarian
+    Description appolonius_of_perge_desc
+    EffectsDescription appolonius_of_perge_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary appolonius_of_rhodes
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries appolonius_of_rhodes
+    ExcludeCultures barbarian
+    Description appolonius_of_rhodes_desc
+    EffectsDescription appolonius_of_rhodes_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary archimedes
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries archimedes
+    ExcludeCultures barbarian
+    Description archimedes_desc
+    EffectsDescription archimedes_effects_desc
+    Effect SiegeAttack  2
+    Effect SiegeDefence  1
+    Effect SiegeEngineering  100
+
+;------------------------------------------
+Ancillary aristarchus_of_samos
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries aristarchus_of_samos
+    ExcludeCultures barbarian
+    Description aristarchus_of_samos_desc
+    EffectsDescription aristarchus_of_samos_effects_desc
+    Effect NavalCommand  1
+    Effect Trading  10
+
+;------------------------------------------
+Ancillary ariston_of_chios
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries ariston_of_chios
+    ExcludeCultures barbarian
+    Description ariston_of_chios_desc
+    EffectsDescription ariston_of_chios_effects_desc
+    Effect BribeResistance  10
+
+;------------------------------------------
+Ancillary ariston_of_cyrene
+    Image entertainer_ancillary.tga
+    Unique
+    ExcludedAncillaries ariston_of_cyrene, comedian, playwright
+    ExcludeCultures barbarian
+    Description ariston_of_cyrene_desc
+    EffectsDescription ariston_of_cyrene_effects_desc
+    Effect Influence  1
+
+;------------------------------------------
+Ancillary aristophanes_of_byzantium
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries aristophanes_of_byzantium
+    ExcludeCultures barbarian
+    Description aristophanes_of_byzantium_desc
+    EffectsDescription aristophanes_of_byzantium_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary agatharchides_of_cnidus
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries agatharchides_of_cnidus
+    ExcludeCultures barbarian
+    Description agatharchides_of_cnidus_desc
+    EffectsDescription agatharchides_of_cnidus_effects_desc
+    Effect MovementPoints  4
+    Effect Combat_V_Barbarian  1
+
+;------------------------------------------
+Ancillary callimachus_of_cyrene
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries callimachus_of_cyrene, actor, playwright
+    ExcludeCultures barbarian
+    Description callimachus_of_cyrene_desc
+    EffectsDescription callimachus_of_cyrene_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary carneades_the_academic
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries carneades_the_academic
+    ExcludeCultures barbarian
+    Description carneades_the_academic_desc
+    EffectsDescription carneades_the_academic_effects_desc
+    Effect Command  1
+
+;------------------------------------------
+Ancillary quintus_lutatius_catulus
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries quintus_lutatius_catulus, elder_senator, honest_man
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description quintus_lutatius_catulus_desc
+    EffectsDescription quintus_lutatius_catulus_effects_desc
+    Effect Command  2
+
+;------------------------------------------
+Ancillary gaius_valerius_catullus
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries gaius_valerius_catullus, elder_senator, honest_man
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description gaius_valerius_catullus_desc
+    EffectsDescription gaius_valerius_catullus_effects_desc
+    Effect Influence  1
+    Effect Electability  3
+    Effect SenateStanding  10
+
+;------------------------------------------
+Ancillary chrysippus
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries chrysippus, actor, comedian
+    ExcludeCultures barbarian
+    Description chrysippus_desc
+    EffectsDescription chrysippus_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary ctesibius
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries ctesibius
+    ExcludeCultures barbarian
+    Description ctesibius_desc
+    EffectsDescription ctesibius_effects_desc
+    Effect SiegeEngineering  30
+    Effect Health  1
+
+;------------------------------------------
+Ancillary quintus_ennius
+    Image entertainer_ancillary.tga
+    Unique
+    ExcludedAncillaries quintus_ennius
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description quintus_ennius_desc
+    EffectsDescription quintus_ennius_effects_desc
+    Effect Influence  1
+    Effect PopularStanding  10
+
+;------------------------------------------
+Ancillary erasistratus_of_ceos
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries erasistratus_of_ceos
+    ExcludeCultures barbarian
+    Description erasistratus_of_ceos_desc
+    EffectsDescription erasistratus_of_ceos_effects_desc
+    Effect TroopMorale -1
+    Effect Health  1
+    Effect BattleSurgery  20
+
+;------------------------------------------
+Ancillary eratosthenes_of_cyrene
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries eratosthenes_of_cyrene
+    ExcludeCultures barbarian
+    Description eratosthenes_of_cyrene_desc
+    EffectsDescription eratosthenes_of_cyrene_effects_desc
+    Effect Command  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary fabius_pictor
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries fabius_pictor
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description fabius_pictor_desc
+    EffectsDescription fabius_pictor_effects_desc
+    Effect Influence  1
+    Effect Electability  3
+    Effect SenateStanding  10
+
+;------------------------------------------
+Ancillary hieronymus_of_cardia
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries hieronymus_of_cardia
+    ExcludeCultures barbarian
+    Description hieronymus_of_cardia_desc
+    EffectsDescription hieronymus_of_cardia_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary herodas
+    Image entertainer_ancillary.tga
+    Unique
+    ExcludedAncillaries herodas
+    ExcludeCultures barbarian
+    Description herodas_desc
+    EffectsDescription herodas_effects_desc
+    Effect Influence  1
+    Effect TroopMorale  1
+
+;------------------------------------------
+Ancillary iunius_pennus
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries crooked_judge, tribune_of_the_plebs
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description iunius_pennus_desc
+    EffectsDescription iunius_pennus_effects_desc
+    Effect Management  1
+    Effect TroopMorale -2
+    Effect Electability  3
+
+;------------------------------------------
+Ancillary lucilius
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries lucilius
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description lucilius_desc
+    EffectsDescription lucilius_effects_desc
+    Effect Influence  2
+    Effect SenateStanding -10
+    Effect PopularStanding -10
+
+;------------------------------------------
+Ancillary m_porcius_cato
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries m_porcius_cato, biographer, comedian
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description m_porcius_cato_desc
+    EffectsDescription m_porcius_cato_effects_desc
+    Effect Management  1
+    Effect Unrest  1
+    Effect Law  3
+
+;------------------------------------------
+Ancillary m_tullius_cicero
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries m_tullius_cicero
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description m_tullius_cicero_desc
+    EffectsDescription m_tullius_cicero_effects_desc
+    Effect Influence  2
+    Effect Electability  3
+
+;------------------------------------------
+Ancillary gnaeus_naevius
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries gnaeus_naevius
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description gnaeus_naevius_desc
+    EffectsDescription gnaeus_naevius_effects_desc
+    Effect Influence  1
+    Effect PopularStanding  10
+
+;------------------------------------------
+Ancillary nicander
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries nicander
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, roman
+    Description nicander_desc
+    EffectsDescription nicander_effects_desc
+    Effect Fertility  2
+    Effect Health  2
+    Effect BattleSurgery  20
+
+;------------------------------------------
+Ancillary panaetius
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries panaetius
+    ExcludeCultures barbarian
+    Description panaetius_desc
+    EffectsDescription panaetius_effects_desc
+    Effect Management  2
+
+;------------------------------------------
+Ancillary titus_maccius_plautus
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries titus_maccius_plautus
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description titus_maccius_plautus_desc
+    EffectsDescription titus_maccius_plautus_effects_desc
+    Effect TroopMorale  2
+    Effect PopularStanding  10
+
+;------------------------------------------
+Ancillary polybius_of_megalopolis
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries polybius_of_megalopolis, biographer
+    ExcludeCultures barbarian
+    Description polybius_of_megalopolis_desc
+    EffectsDescription polybius_of_megalopolis_effects_desc
+    Effect Influence  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary posidonius_of_rhodes
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries posidonius_of_rhodes
+    ExcludeCultures barbarian
+    Description posidonius_of_rhodes_desc
+    EffectsDescription posidonius_of_rhodes_effects_desc
+    Effect Influence  1
+    Effect Management  1
+    Effect Mining  20
+
+;------------------------------------------
+Ancillary publius_clodius
+    Image effete_man_ancillary.tga
+    Unique
+    ExcludedAncillaries publius_clodius
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description publius_clodius_desc
+    EffectsDescription publius_clodius_effects_desc
+    Effect Electability  3
+
+;------------------------------------------
+Ancillary strato
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries strato
+    ExcludeCultures barbarian
+    Description strato_desc
+    EffectsDescription strato_effects_desc
+    Effect Command  1
+    Effect Management  1
+    Effect MovementPoints  2
+
+;------------------------------------------
+Ancillary terrence
+    Image entertainer_ancillary.tga
+    Unique
+    ExcludedAncillaries terrence
+    ExcludeCultures barbarian
+    Description terrence_desc
+    EffectsDescription terrence_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary theocritus_of_syracuse
+    Image entertainer_ancillary.tga
+    Unique
+    ExcludedAncillaries theocritus_of_syracuse
+    ExcludeCultures barbarian
+    Description theocritus_of_syracuse_desc
+    EffectsDescription theocritus_of_syracuse_effects_desc
+    Effect Management  1
+
+;------------------------------------------
+Ancillary ti_sempronius_gracchus
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries ti_sempronius_gracchus
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description ti_sempronius_gracchus_desc
+    EffectsDescription ti_sempronius_gracchus_effects_desc
+    Effect Electability -3
+    Effect PopularStanding  20
+
+;------------------------------------------
+Ancillary caius_gracchus
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries caius_gracchus
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description caius_gracchus_desc
+    EffectsDescription caius_gracchus_effects_desc
+    Effect Influence  2
+    Effect Electability -3
+    Effect SenateStanding -20
+    Effect PopularStanding  20
+
+;------------------------------------------
+Ancillary ti_sempronius_gracchus_the_elder
+    Image roman_official_ancillary.tga
+    Unique
+    ExcludedAncillaries ti_sempronius_gracchus_the_elder
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description ti_sempronius_gracchus_the_elder_desc
+    EffectsDescription ti_sempronius_gracchus_the_elder_effects_desc
+    Effect Influence  1
+    Effect SenateStanding  10
+
+;------------------------------------------
+Ancillary timaeus_of_tauromenium
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries timaeus_of_tauromenium
+    ExcludeCultures barbarian
+    Description timaeus_of_tauromenium_desc
+    EffectsDescription timaeus_of_tauromenium_effects_desc
+    Effect Influence  1
+    Effect Management  1
+
+;------------------------------------------
+Ancillary livy
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries livy
+    ExcludeCultures barbarian, carthaginian, eastern, egyptian, greek
+    Description livy_desc
+    EffectsDescription livy_effects_desc
+    Effect Management  2
+    Effect BribeResistance  5
+    Effect PopularStanding  25
+
+;------------------------------------------
+Ancillary virgilius
+    Image scribe_ancillary.tga
+    Unique
+    ExcludedAncillaries virgilius
+    ExcludeCultures barbarian
+    Description virgilius_desc
+    EffectsDescription virgilius_effects_desc
+    Effect Fertility  1
+    Effect Health  1
+
+;------------------------------------------
+Ancillary zeno_of_cittium
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries zeno_of_cittium
+    ExcludeCultures barbarian
+    Description zeno_of_cittium_desc
+    EffectsDescription zeno_of_cittium_effects_desc
+    Effect Management  2
+
+;------------------------------------------
+Ancillary t_lucretius_carus
+    Image older_man_ancillary.tga
+    Unique
+    ExcludedAncillaries t_lucretius_carus
+    ExcludeCultures barbarian
+    Description t_lucretius_carus_desc
+    EffectsDescription t_lucretius_carus_effects_desc
+    Effect Farming  1
+    Effect Mining  20
+
+;------------------------------------------
+Ancillary Merchant_Clerk
+    Image scribe_ancillary.tga
+    Description Merchant_Clerk_desc
+    EffectsDescription Merchant_Clerk_effects_desc
+    Effect Finance  1
+
+;------------------------------------------
+Ancillary Trick_Abacus
+    Image trick_abacus.tga
+    Description Trick_Abacus_desc
+    EffectsDescription Trick_Abacus_effects_desc
+    Effect Finance  1
+
+;------------------------------------------
+Ancillary Caravan_Driver
+    Image easterner_ancillary.tga
+    Description Caravan_Driver_desc
+    EffectsDescription Caravan_Driver_effects_desc
+    Effect MovementPoints  5
+    Effect LineOfSight  1
+
+;DEPRECATED--------------------------------
+Ancillary RomanFashion
+    Image monkey_ancillary.tga
+    Description RomanFashion_desc
+    EffectsDescription RomanFashion_effects_desc
+
+;------------------------------------------
+Ancillary RomanFashion_Julii
+    Image romans_julii_export.tga
+    ExcludedAncillaries RomanFashion_Brutii, RomanFashion_Scipii, RomanFashion_Senate
+    Description RomanFashion_desc
+    EffectsDescription RomanFashion_effects_desc
+    FakeEffect Finance 1
+
+;------------------------------------------
+Ancillary RomanFashion_Brutii
+    Image romans_brutii_export.tga
+    ExcludedAncillaries RomanFashion_Julii, RomanFashion_Scipii, RomanFashion_Senate
+    Description RomanFashion_desc
+    EffectsDescription RomanFashion_effects_desc
+    FakeEffect Finance 1
+
+;------------------------------------------
+Ancillary RomanFashion_Scipii
+    Image romans_scipii_export.tga
+    ExcludedAncillaries RomanFashion_Julii, RomanFashion_Brutii, RomanFashion_Senate
+    Description RomanFashion_desc
+    EffectsDescription RomanFashion_effects_desc
+    FakeEffect Finance 1
+
+;------------------------------------------
+Ancillary RomanFashion_Senate
+    Image romans_senate_export.tga
+    ExcludedAncillaries RomanFashion_Julii, RomanFashion_Brutii, RomanFashion_Scipii
+    Description RomanFashion_desc
+    EffectsDescription RomanFashion_effects_desc
+    FakeEffect Finance 1
+
+;------------------------------------------
+Ancillary RomanFashionEffect
+    Hidden
+    ShowStats
+    Image monkey_ancillary.tga
+    Description RomanFashion_desc
+    EffectsDescription RomanFashion_effects_desc
+    Effect Finance 1
+    Effect Conditional 1
+
+;------------------------------------------
+Ancillary ArmenianApricots
+    Image armenia_export.tga
+    Description ArmenianApricots_desc
+    EffectsDescription ArmenianApricots_effects_desc
+    FakeEffect Finance 1
+
+;------------------------------------------
+Ancillary ArmenianApricotsEffect
+    Hidden
+    ShowStats
+    Image armenia_export.tga
+    Description ArmenianApricots_desc
+    EffectsDescription ArmenianApricots_effects_desc
+    Effect Finance 1
+    Effect Conditional 1
+
+;------------------------------------------
+Ancillary BritishCuisine
+    Image britons_export.tga
+    Description BritishCuisine_desc
+    EffectsDescription BritishCuisine_effects_desc
+    Effect HitPoints 1
+    Effect TroopMorale 1
+
+;------------------------------------------
+Ancillary PhoenicianSeamanship
+    Image carthage_export.tga
+    Description PhoenicianSeamanship_desc
+    EffectsDescription PhoenicianSeamanship_effects_desc
+    Effect Command 2
+
+;------------------------------------------
+Ancillary DacianDraco
+    Image dacia_export.tga
+    Description DacianDraco_desc
+    EffectsDescription DacianDraco_effects_desc
+    Effect TroopMorale 1
+    Effect Ambush 1
+    Effect NightBattle 1
+    Effect Combat_V_Slave 1
+
+;------------------------------------------
+Ancillary EgyptianMummyPowder
+    Image egypt_export.tga
+    Description EgyptianMummyPowder_desc
+    EffectsDescription EgyptianMummyPowder_effects_desc
+    Effect Health 1
+
+;------------------------------------------
+Ancillary GaulishPotions
+    Image gauls_export.tga
+    Description GaulishPotions_desc
+    EffectsDescription GaulishPotions_effects_desc
+    Effect Fertility 1
+    Effect BattleSurgery 10
+
+;------------------------------------------
+Ancillary GermanicThings
+    Image germans_export.tga
+    Description GermanicThings_desc
+    EffectsDescription GermanicThings_effects_desc
+    Effect Unrest 1
+    Effect Law 2
+
+;------------------------------------------
+Ancillary AthenianDemocracy
+    Image greek_cities_export.tga
+    Description AthenianDemocracy_desc
+    EffectsDescription AthenianDemocracy_effects_desc
+    Effect Unrest 1
+    Effect TaxCollection 5
+
+;------------------------------------------
+Ancillary SpartanMuliebrity
+    Image greek_cities_export.tga
+    Description SpartanMuliebrity_desc
+    EffectsDescription SpartanMuliebrity_effects_desc
+    Effect PersonalSecurity 1
+    Effect PublicSecurity 1
+    Effect Defence 1
+
+;------------------------------------------
+Ancillary MacedonianSymposia
+    Image macedon_export.tga
+    Description MacedonianSymposia_desc
+    EffectsDescription MacedonianSymposia_effects_desc
+    Effect LocalPopularity 2
+
+;------------------------------------------
+Ancillary NumidianCouscous
+    Image numidia_export.tga
+    Description NumidianCouscous_desc
+    EffectsDescription NumidianCouscous_effects_desc
+    Effect MovementPoints 5
+
+;------------------------------------------
+Ancillary BactrianCamels
+    Image parthia_export.tga
+    Description BactrianCamels_desc
+    EffectsDescription BactrianCamels_effects_desc
+    FakeEffect Finance 1
+    FakeEffect MovementPoints 5
+
+;------------------------------------------
+Ancillary BactrianCamelsEffect
+    Hidden
+    ShowStats
+    Image parthia_export.tga
+    Description BactrianCamels_desc
+    EffectsDescription BactrianCamels_effects_desc
+    Effect MovementPoints 5
+    Effect Finance 1
+    Effect Conditional 1
+
+;------------------------------------------
+Ancillary IndoParthianMahouts
+    Image parthia_export.tga
+    Description IndoParthianMahouts_desc
+    EffectsDescription IndoParthianMahouts_effects_desc
+    Effect ElephantCommand 1
+
+;------------------------------------------
+Ancillary PonticSinopia
+    Image pontus_export.tga
+    Description PonticSinopia_desc
+    EffectsDescription PonticSinopia_effects_desc
+    Effect Mining 10
+
+;------------------------------------------
+Ancillary ScythianEnarees
+    Image scythia_export.tga
+    Description ScythianEnarees_desc
+    EffectsDescription ScythianEnarees_effects_desc
+    Effect LocalPopularity 1
+    Effect MovementPoints 1
+
+;------------------------------------------
+Ancillary SeleucidUrbanPlanning
+    Image seleucid_export.tga
+    Description SeleucidUrbanPlanning_desc
+    EffectsDescription SeleucidUrbanPlanning_effects_desc
+    Effect Squalor -1
+
+;------------------------------------------
+Ancillary BlackSpanishPig
+    Image spain_export.tga
+    Description BlackSpanishPig_desc
+    EffectsDescription BlackSpanishPig_effects_desc
+    Effect Command 1
+
+;------------------------------------------
+Ancillary ThracianHemp
+    Image thrace_export.tga
+    Description ThracianHemp_desc
+    EffectsDescription ThracianHemp_effects_desc
+    Effect Trading 5
+    Effect TaxCollection -5
+    Effect Health 1
+
+;===============================================================
+;== ANCILLARY TRIGGERS START HERE ==============================
+;===============================================================
+
+;------------------------------------------
+Trigger trigger_actor
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= odeon
+          and IsGeneral
+
+    AcquireAncillary actor chance  6
+
+;------------------------------------------
+Trigger trigger_aged_retainer
+    WhenToTest CharacterComesOfAge
+    Condition FatherTrait Loyal >= 1
+
+    AcquireAncillary aged_retainer chance  50
+
+;------------------------------------------
+Trigger trigger_agriculturalist
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_farming_temple
+          and IsGeneral
+
+    AcquireAncillary agriculturalist chance  5
+
+;------------------------------------------
+Trigger trigger_animal_trader
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= stone_amphitheatre
+          and Trait GamesFanRomanVice >= 1
+          and IsGeneral
+
+    AcquireAncillary animal_trader chance  10
+
+;------------------------------------------
+Trigger trigger_architect
+    WhenToTest GovernorBuildingCompleted
+    Condition SettlementBuildingExists >= proconsuls_palace
+          and IsGeneral
+
+    AcquireAncillary architect chance  5
+
+;------------------------------------------
+Trigger trigger_armourer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= foundry
+          and IsGeneral
+
+    AcquireAncillary armourer chance  10
+
+;------------------------------------------
+Trigger trigger_artist
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= governors_villa
+          and Trait ExpensiveTastes >= 1
+          and Trait BattleScarred <= 1
+          and IsGeneral
+
+    AcquireAncillary artist chance  15
+
+;------------------------------------------
+Trigger trigger_astrologer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_law_shrine
+          and Trait Superstitious >= 1
+          and IsGeneral
+
+    AcquireAncillary astrologer chance  15
+
+;------------------------------------------
+Trigger trigger_barbarian_slave
+    WhenToTest EnslavePopulation
+    Condition TargetFactionCultureType barbarian
+
+    AcquireAncillary barbarian_slave chance  20
+
+;------------------------------------------
+Trigger trigger_barbarian_turncoat
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 40
+          and GeneralFoughtCulture barbarian
+          and IsGeneral
+
+    AcquireAncillary barbarian_turncoat chance  8
+
+;------------------------------------------
+Trigger trigger_bard
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= bardic_circle
+          and IsGeneral
+
+    AcquireAncillary bard chance  10
+
+;------------------------------------------
+Trigger trigger_beastmaster
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_hunting_temple
+          and IsGeneral
+
+    AcquireAncillary beastmaster chance  6
+
+;------------------------------------------
+Trigger trigger_biographer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and Trait GoodAttacker >= 2
+          and IsGeneral
+
+    AcquireAncillary biographer chance  4
+
+;------------------------------------------
+Trigger trigger_body_slave
+    WhenToTest EnslavePopulation
+    Condition not TargetFactionCultureType barbarian
+
+    AcquireAncillary body_slave chance  20
+
+;------------------------------------------
+Trigger trigger_bodyguard
+    WhenToTest SufferAssassinationAttempt
+    Condition Trait HighPersonalSecurity >= 1
+          and Attribute Command >= 3
+          and IsGeneral
+
+    AcquireAncillary bodyguard chance  50
+
+;------------------------------------------
+Trigger trigger_brilliant_inventor
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_forge_temple
+          and IsGeneral
+
+    AcquireAncillary brilliant_inventor chance  8
+
+;------------------------------------------
+Trigger trigger_cackling_crone
+    WhenToTest CharacterTurnEnd
+    Condition not EndedInSettlement
+          and Trait Superstitious >= 2
+          and RemainingMPPercentage = 100
+          and IsGeneral
+
+    AcquireAncillary cackling_crone chance  15
+
+;------------------------------------------
+Trigger trigger_carnifex
+    WhenToTest GovernorCityRebels
+    Condition SettlementBuildingExists >= governors_palace
+          and IsGeneral
+
+    AcquireAncillary carnifex chance  20
+
+;------------------------------------------
+Trigger trigger_carthaginian_turncoat
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 50
+          and GeneralFoughtCulture carthaginian
+          and IsGeneral
+
+    AcquireAncillary carthaginian_turncoat chance  8
+
+;------------------------------------------
+Trigger trigger_networker
+    WhenToTest AssassinationMission
+    Condition MissionSucceeded
+          and AgentType = assassin
+
+    AcquireAncillary networker chance  15
+
+;------------------------------------------
+Trigger trigger_charioteer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = circus_maximus
+          and Trait RacesFanRomanVice >= 1
+          and IsGeneral
+
+    AcquireAncillary charioteer chance  15
+
+;------------------------------------------
+Trigger trigger_chief_eunuch
+    WhenToTest SufferAssassinationAttempt
+    Condition Trait HighPersonalSecurity >= 1
+          and IsGeneral
+
+    AcquireAncillary chief_eunuch chance  50
+
+;------------------------------------------
+Trigger trigger_chirugeon
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary chirugeon chance  15
+
+;------------------------------------------
+Trigger trigger_civilized_slave
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= forum
+          and IsGeneral
+
+    AcquireAncillary civilized_slave chance  5
+
+;------------------------------------------
+Trigger trigger_comedian
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and IsGeneral
+
+    AcquireAncillary comedian chance  8
+
+;------------------------------------------
+Trigger trigger_cook
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_shrine
+          and IsGeneral
+
+    AcquireAncillary cook chance  10
+
+;------------------------------------------
+Trigger trigger_courtesan
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and not IsGeneral
+          and not AgentType = family
+          and not AgentType = diplomat
+          and not AgentType = admiral
+          and not AgentType = merchant
+
+    AcquireAncillary courtesan chance  15
+
+;------------------------------------------
+Trigger trigger_crooked_judge
+    WhenToTest GovernorCityRiots
+    Condition SettlementBuildingExists >= temple_of_law_temple
+          and IsGeneral
+
+    AcquireAncillary crooked_judge chance  20
+
+;------------------------------------------
+Trigger trigger_crooked_judge2
+    WhenToTest GovernorCityRiots
+    Condition SettlementBuildingExists >= temple_of_justice_temple
+          and IsGeneral
+
+    AcquireAncillary crooked_judge2 chance  20
+
+;------------------------------------------
+Trigger trigger_dancer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and not IsGeneral
+          and not AgentType = family
+          and not AgentType = diplomat
+          and not AgentType = admiral
+          and not AgentType = merchant
+
+    AcquireAncillary dancer chance  15
+
+;------------------------------------------
+Trigger trigger_dancer2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = bardic_circle
+          and not IsGeneral
+          and not AgentType = family
+          and not AgentType = diplomat
+          and not AgentType = admiral
+          and not AgentType = merchant
+
+    AcquireAncillary dancer2 chance  25
+
+;------------------------------------------
+Trigger trigger_decorated_hero
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageOfArmyKilled > 30
+          and PercentageEnemyKilled > 35
+          and IsGeneral
+
+    AcquireAncillary decorated_hero chance  20
+
+;------------------------------------------
+Trigger trigger_desert_scout
+    WhenToTest GovernorUnitTrained
+    Condition TrainedUnitCategory cavalry
+          and SettlementBuildingExists >= cavalry_barracks
+          and IsGeneral
+
+    AcquireAncillary desert_scout chance  10
+
+;------------------------------------------
+Trigger trigger_doctor
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary doctor chance  10
+
+;------------------------------------------
+Trigger trigger_drillmaster
+    WhenToTest GovernorUnitTrained
+    Condition TrainedUnitCategory infantry
+          and Attribute Command >= 4
+          and IsGeneral
+
+    AcquireAncillary drillmaster chance  3
+
+;------------------------------------------
+Trigger trigger_drinking_companion
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and Trait Drink >= 2
+          and IsGeneral
+
+    AcquireAncillary drinking_companion chance  7
+
+;------------------------------------------
+Trigger trigger_druid
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_shrine
+          and Trait PublicFaith >= 1
+          and IsGeneral
+
+    AcquireAncillary druid chance  15
+
+;------------------------------------------
+Trigger trigger_druid2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_battleforge_shrine
+          and Trait PublicFaith >= 1
+          and IsGeneral
+
+    AcquireAncillary druid2 chance  15
+
+;------------------------------------------
+Trigger trigger_drunken_uncle
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and Trait Drink >= 3
+          and IsGeneral
+
+    AcquireAncillary drunken_uncle chance  2
+
+;------------------------------------------
+Trigger trigger_easterner_turncoat
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 40
+          and GeneralFoughtCulture eastern
+          and IsGeneral
+
+    AcquireAncillary easterner_turncoat chance  8
+
+;------------------------------------------
+Trigger trigger_editor
+    WhenToTest GovernorThrowGames
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= stone_amphitheatre
+          and IsGeneral
+          and Trait GamesFanRomanVice >= 1
+
+    AcquireAncillary editor chance  20
+
+;------------------------------------------
+Trigger trigger_egyptian_turncoat
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 40
+          and GeneralFoughtCulture egyptian
+          and IsGeneral
+
+    AcquireAncillary egyptian_turncoat chance  8
+
+;------------------------------------------
+Trigger trigger_elder_senator
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and IsFactionLeader
+          and SettlementBuildingExists >= curia
+          and RemainingMPPercentage = 100
+          and IsGeneral
+
+    AcquireAncillary elder_senator chance  20
+
+;------------------------------------------
+Trigger trigger_elderly_spinster_aunt
+    WhenToTest CharacterTurnEnd
+    Condition IsFactionHeir
+          and EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists > proconsuls_palace
+          and IsGeneral
+
+    AcquireAncillary elderly_spinster_aunt chance  5
+
+;------------------------------------------
+Trigger trigger_equestrian
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and IsFactionLeader
+          and RemainingMPPercentage > 50
+          and SettlementBuildingExists >= baths
+          and SettlementBuildingExists >= governors_palace
+          and IsGeneral
+
+    AcquireAncillary equestrian chance  10
+
+;------------------------------------------
+Trigger trigger_bad_poet
+    WhenToTest CharacterMarries
+    Condition Trait Girls >= 1
+          and Trait Gambling >= 1
+          and Trait Drink >= 1
+          and IsGeneral
+
+    AcquireAncillary bad_poet chance  50
+
+;------------------------------------------
+Trigger trigger_exotic_slave
+    WhenToTest EnslavePopulation
+
+    AcquireAncillary exotic_slave chance  10
+
+;------------------------------------------
+Trigger trigger_famous_courtesan
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and Trait Girls >= 2
+          and SettlementBuildingExists >= proconsuls_palace
+          and RemainingMPPercentage = 100
+          and IsGeneral
+
+    AcquireAncillary famous_courtesan chance  20
+
+;------------------------------------------
+Trigger trigger_famous_warrior
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 50
+          and IsGeneral
+
+    AcquireAncillary famous_warrior chance  25
+
+;------------------------------------------
+Trigger trigger_fasces
+    WhenToTest GovernorCityRiots
+    Condition SettlementBuildingExists >= temple_of_leadership_temple
+          and IsGeneral
+
+    AcquireAncillary fasces chance  15
+
+;------------------------------------------
+Trigger trigger_partner-in-crime
+    WhenToTest AssassinationMission
+    Condition MissionSucceeded
+          and not IsGeneral
+          and not AgentType = family
+          and not AgentType = diplomat
+          and not AgentType = admiral
+          and not AgentType = merchant
+
+    AcquireAncillary partner-in-crime chance  15
+
+;------------------------------------------
+Trigger trigger_rival
+    WhenToTest PostBattle
+    Condition WonBattle
+          and Trait Girls >= 1
+          and Trait Brave >= 1
+          and IsGeneral
+
+    AcquireAncillary rival chance  25
+
+;------------------------------------------
+Trigger trigger_foodtaster
+    WhenToTest SufferAssassinationAttempt
+    Condition Trait Paranoia >= 1
+          and IsGeneral
+
+    AcquireAncillary foodtaster chance  20
+
+;------------------------------------------
+Trigger trigger_foreign_dignitary
+    WhenToTest CharacterTurnEnd
+    Condition InEnemyLands
+          and AgentType = diplomat
+
+    AcquireAncillary foreign_dignitary chance  1
+
+;------------------------------------------
+Trigger trigger_foreign_hostage
+    WhenToTest CharacterTurnEnd
+    Condition InEnemyLands
+          and AgentType = diplomat
+
+    AcquireAncillary foreign_hostage chance  1
+
+;------------------------------------------
+Trigger trigger_freeman_clerk
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_governors_temple
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary freeman_clerk chance  15
+
+;------------------------------------------
+Trigger trigger_freeman_clerk2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_trade_temple
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary freeman_clerk2 chance  15
+
+;------------------------------------------
+Trigger trigger_galloper
+    WhenToTest PostBattle
+    Condition not Routs
+          and WonBattle
+          and IsGeneral
+
+    AcquireAncillary galloper chance  3
+
+;------------------------------------------
+Trigger trigger_geographer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+
+    AcquireAncillary geographer chance  15
+
+;------------------------------------------
+Trigger trigger_geomancer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and SettlementBuildingExists >= mines
+          and IsGeneral
+
+    AcquireAncillary geomancer chance  15
+
+;------------------------------------------
+Trigger trigger_geometer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and SettlementBuildingExists >= temple_of_forge_temple
+          and IsGeneral
+
+    AcquireAncillary geometer chance  15
+
+;------------------------------------------
+Trigger trigger_gladiator
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= urban_amphitheatre
+          and IsGeneral
+
+    AcquireAncillary gladiator chance  15
+
+;------------------------------------------
+Trigger trigger_goldsmith
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= forum
+          and Trait Miserly >= 1
+          and IsGeneral
+
+    AcquireAncillary goldsmith chance  20
+
+;------------------------------------------
+Trigger trigger_gourmands_chef
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and IsGeneral
+
+    AcquireAncillary gourmands_chef chance  10
+
+;------------------------------------------
+Trigger trigger_greek_turncoat
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 40
+          and GeneralFoughtCulture greek
+          and IsGeneral
+
+    AcquireAncillary greek_turncoat chance  8
+
+;------------------------------------------
+Trigger trigger_haruspex
+    WhenToTest PostBattle
+    Condition not WonBattle
+
+    AcquireAncillary haruspex chance  5
+
+;------------------------------------------
+Trigger trigger_herbalist
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_farming_temple
+          and IsGeneral
+
+    AcquireAncillary herbalist chance  15
+
+;------------------------------------------
+Trigger trigger_heroic_saviour
+    WhenToTest PostBattle
+    Condition GeneralHPLostRatioinBattle >= 0.8
+          and not Routs
+          and WonBattle
+          and GeneralFoughtInCombat
+          and IsGeneral
+
+    AcquireAncillary heroic_saviour chance  50
+
+;------------------------------------------
+Trigger trigger_historian
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+
+    AcquireAncillary historian chance  15
+
+;------------------------------------------
+Trigger trigger_honest_man
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and Trait Just >= 2
+          and IsGeneral
+
+    AcquireAncillary honest_man chance  15
+
+;------------------------------------------
+Trigger trigger_Herald
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists = great_amphitheatre
+          and SettlementBuildingExists = circus_maximus
+          and IsFactionLeader
+          and IsGeneral
+
+    AcquireAncillary Herald chance  30
+
+;------------------------------------------
+Trigger trigger_lazy_guards
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists = governors_house
+          and RemainingMPPercentage = 100
+          and IsGeneral
+          and RandomPercent > 80
+
+    AcquireAncillary lazy_guards chance  1
+
+;------------------------------------------
+Trigger trigger_idiot_savant
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= governors_palace
+          and SettlementBuildingExists >= temple_of_trade_temple
+          and IsGeneral
+
+    AcquireAncillary idiot_savant chance  5
+
+;------------------------------------------
+Trigger trigger_barbarian_scholar
+    WhenToTest CharacterTurnEnd
+    Condition not EndedInSettlement
+          and InBarbarianLands
+          and Trait Insane >= 1
+          and IsGeneral
+          and RandomPercent > 95
+
+    AcquireAncillary barbarian_scholar chance  2
+
+;------------------------------------------
+Trigger trigger_intrepid_explorer
+    WhenToTest CharacterTurnEnd
+    Condition not EndedInSettlement
+          and RemainingMPPercentage <= 15
+          and InBarbarianLands
+          and IsGeneral
+
+    AcquireAncillary intrepid_explorer chance  8
+
+;------------------------------------------
+Trigger trigger_jeweller
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= curia
+          and Trait Miserly >= 1
+          and IsGeneral
+
+    AcquireAncillary jeweller chance  9
+
+;------------------------------------------
+Trigger trigger_judge
+    WhenToTest GovernorCityRiots
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= governors_palace
+          and SettlementBuildingExists >= temple_of_justice_temple
+          and IsGeneral
+
+    AcquireAncillary judge chance  15
+
+;------------------------------------------
+Trigger trigger_lanista
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and Trait GamesFanRomanVice >= 1
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = great_amphitheatre
+          and IsGeneral
+
+    AcquireAncillary lanista chance  20
+
+;------------------------------------------
+Trigger trigger_librarian
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary librarian chance  4
+
+;------------------------------------------
+Trigger trigger_linguist
+    WhenToTest CharacterTurnEnd
+    Condition InBarbarianLands
+          and AgentType = diplomat
+
+    AcquireAncillary linguist chance  4
+
+;------------------------------------------
+Trigger trigger_magician
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and Trait Superstitious >= 1
+          and SettlementBuildingExists >= temple_of_law_temple
+          and IsGeneral
+
+    AcquireAncillary magician chance  15
+
+;------------------------------------------
+Trigger trigger_magistrate
+    WhenToTest GovernorCityRiots
+    Condition SettlementBuildingExists >= governors_palace
+          and IsGeneral
+
+    AcquireAncillary magistrate chance  20
+
+;------------------------------------------
+Trigger trigger_master_embalmer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_temple
+          and IsGeneral
+
+    AcquireAncillary master_embalmer chance  7
+
+;------------------------------------------
+Trigger trigger_master_hunter
+    WhenToTest CharacterTurnEnd
+    Condition not EndedInSettlement
+          and RemainingMPPercentage = 100
+          and InBarbarianLands
+          and IsGeneral
+
+    AcquireAncillary master_hunter chance  1
+
+;------------------------------------------
+Trigger trigger_master_of_archers
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= catapult_range
+          and IsGeneral
+
+    AcquireAncillary master_of_archers chance  5
+
+;------------------------------------------
+Trigger trigger_master_of_assassins
+    WhenToTest LeaderOrderedAssassination
+
+    AcquireAncillary master_of_assassins chance  5
+
+;------------------------------------------
+Trigger trigger_master_of_horse
+    WhenToTest GovernorUnitTrained
+    Condition TrainedUnitCategory cavalry
+          and SettlementBuildingExists > cavalry_barracks
+          and IsGeneral
+
+    AcquireAncillary master_of_horse chance  20
+
+;------------------------------------------
+Trigger trigger_master_smith
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= smiths_workshop
+          and IsGeneral
+
+    AcquireAncillary master_smith chance  2
+
+;------------------------------------------
+Trigger trigger_mathematician
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary mathematician chance  5
+
+;------------------------------------------
+Trigger trigger_menhir_carver
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and Trait PublicFaith >= 1
+          and SettlementBuildingExists >= temple_of_battle_temple
+          and IsGeneral
+
+    AcquireAncillary menhir_carver chance  10
+
+;------------------------------------------
+Trigger trigger_mentor
+    WhenToTest CharacterComesOfAge
+    Condition FatherTrait Ignorance <= 2
+
+    AcquireAncillary mentor chance  3
+
+;------------------------------------------
+Trigger trigger_mercenary_captain
+    WhenToTest HireMercenaries
+
+    AcquireAncillary mercenary_captain chance  8
+
+;------------------------------------------
+Trigger trigger_merchant
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= great_forum
+          and SettlementBuildingExists >= port
+          and IsGeneral
+
+    AcquireAncillary merchant chance  3
+
+;------------------------------------------
+Trigger trigger_grain_merchant
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= great_forum
+          and SettlementBuildingExists >= port
+          and IsGeneral
+
+    AcquireAncillary grain_merchant chance  5
+
+;------------------------------------------
+Trigger trigger_military_engineer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and SettlementBuildingExists >= smiths_workshop
+          and SettlementBuildingExists >= catapult_range
+          and IsGeneral
+
+    AcquireAncillary military_engineer chance  20
+
+;------------------------------------------
+Trigger trigger_military_tribune
+    WhenToTest PostBattle
+    Condition Trait VictorRomanVirtue >= 1
+          and Attribute Command >= 4
+          and IsGeneral
+          and WonBattle
+
+    AcquireAncillary military_tribune chance  20
+
+;------------------------------------------
+Trigger trigger_mining_engineer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= mines
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary mining_engineer chance  8
+
+;------------------------------------------
+Trigger trigger_mistress
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= governors_villa
+          and Trait Girls >= 1
+          and IsGeneral
+
+    AcquireAncillary mistress chance  5
+
+;------------------------------------------
+Trigger trigger_musician
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= theatre
+          and IsGeneral
+
+    AcquireAncillary musician chance  15
+
+;------------------------------------------
+Trigger trigger_Natural_philosopher
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = ludus_magnus
+          and IsGeneral
+
+    AcquireAncillary Natural_philosopher chance  15
+
+;------------------------------------------
+Trigger trigger_Navigator
+    WhenToTest CharacterTurnEnd
+    Condition RemainingMPPercentage = 0
+          and IsAdmiral
+
+    AcquireAncillary Navigator chance  5
+
+;------------------------------------------
+Trigger trigger_Numismatist
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= great_forum
+          and SettlementBuildingExists >= temple_of_trade_large_temple
+          and IsGeneral
+
+    AcquireAncillary Numismatist chance  15
+
+;------------------------------------------
+Trigger trigger_oracle
+    WhenToTest CharacterTurnEnd
+    Condition not EndedInSettlement
+          and RemainingMPPercentage >= 35
+          and RemainingMPPercentage <= 45
+          and IsGeneral
+
+    AcquireAncillary oracle chance  1
+
+;------------------------------------------
+Trigger trigger_orator
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= odeon
+          and IsGeneral
+
+    AcquireAncillary orator chance  10
+
+;------------------------------------------
+Trigger trigger_over_protective_nanny
+    WhenToTest CharacterComesOfAge
+    Condition FatherTrait Paranoia >= 2
+
+    AcquireAncillary over_protective_nanny chance  35
+
+;------------------------------------------
+Trigger trigger_overseer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= farms+3
+          and IsGeneral
+
+    AcquireAncillary overseer chance  10
+
+;------------------------------------------
+Trigger trigger_pet_hunting_dog
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_hunting_temple
+          and IsGeneral
+
+    AcquireAncillary pet_hunting_dog chance  15
+
+;------------------------------------------
+Trigger trigger_pet_lion
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= urban_amphitheatre
+          and IsGeneral
+
+    AcquireAncillary pet_lion chance  15
+
+;------------------------------------------
+Trigger trigger_pet_monkey
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= market
+          and not IsGeneral
+          and not AgentType = family
+          and not AgentType = diplomat
+          and not AgentType = admiral
+          and not AgentType = merchant
+
+    AcquireAncillary pet_monkey chance  2
+
+;------------------------------------------
+Trigger trigger_pet_white_cat
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_justice_awesome_temple
+          and AgentType = assassin
+
+    AcquireAncillary pet_white_cat chance  15
+
+;------------------------------------------
+Trigger trigger_philosopher
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+
+    AcquireAncillary philosopher chance  10
+
+;------------------------------------------
+Trigger trigger_physician
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_temple
+          and IsGeneral
+
+    AcquireAncillary physician chance  15
+
+;------------------------------------------
+Trigger trigger_playwright
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = theatre
+          and IsGeneral
+
+    AcquireAncillary playwright chance  15
+
+;------------------------------------------
+Trigger trigger_poet
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= odeon
+          and IsGeneral
+
+    AcquireAncillary poet chance  10
+
+;------------------------------------------
+Trigger trigger_poisoner
+;    WhenToTest SufferAssassinationAttempt
+;    Condition Trait Paranoia >= 2
+;          and Trait DeceiverVirtue >= 1
+;          and AgentType = assassin
+    WhenToTest AssassinationMission
+    Condition AgentType = assassin
+          and MissionSucceeded
+
+    AcquireAncillary poisoner chance  10
+
+;------------------------------------------
+Trigger trigger_pontifex
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_leadership_awesome_temple
+          and IsGeneral
+
+    AcquireAncillary pontifex chance  15
+
+;------------------------------------------
+Trigger trigger_praetorian_guardsman
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = royal_barracks
+          and Trait Disloyal >= 1
+          and IsGeneral
+
+    AcquireAncillary praetorian_guardsman chance  15
+
+;------------------------------------------
+Trigger trigger_problem_mother
+    WhenToTest CharacterComesOfAge
+    Condition FatherTrait AuthoritarianRomanVirtue >= 1
+
+    AcquireAncillary problem_mother chance  10
+
+;------------------------------------------
+Trigger trigger_procurator
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_trade_awesome_temple
+          and IsGeneral
+
+    AcquireAncillary procurator chance  20
+
+;------------------------------------------
+Trigger trigger_quartermaster
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= army_barracks
+          and IsGeneral
+
+    AcquireAncillary quartermaster chance  15
+
+;------------------------------------------
+Trigger trigger_rhetorician
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= ludus_magnus
+          and AgentType = diplomat
+
+    AcquireAncillary rhetorician chance  15
+
+;------------------------------------------
+Trigger trigger_roman_turncoat
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 40
+          and GeneralFoughtCulture roman
+          and IsGeneral
+
+    AcquireAncillary roman_turncoat chance  8
+
+;------------------------------------------
+Trigger trigger_runner
+    WhenToTest PostBattle
+    Condition not Routs
+          and WonBattle
+          and IsGeneral
+
+    AcquireAncillary runner chance  8
+
+;------------------------------------------
+Trigger trigger_satirist
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= lyceum
+          and IsGeneral
+
+    AcquireAncillary satirist chance  15
+
+;------------------------------------------
+Trigger trigger_scout
+    WhenToTest PostBattle
+    Condition WonBattle
+          and I_ConflictType SuccessfulAmbush
+          and not WasAttacker
+          and InBarbarianLands
+          and IsGeneral
+
+    AcquireAncillary scout chance  90
+
+;------------------------------------------
+Trigger trigger_scribe_ancillary
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+
+    AcquireAncillary scribe_ancillary chance  15
+
+;------------------------------------------
+Trigger trigger_sculptor
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= proconsuls_palace
+          and Trait GoodBuilder >= 2
+          and IsGeneral
+
+    AcquireAncillary sculptor chance  15
+
+;------------------------------------------
+Trigger trigger_seamaster
+    WhenToTest NewAdmiralCreated
+    Condition SettlementBuildingExists >= dockyard
+
+    AcquireAncillary seamaster chance  20
+
+;------------------------------------------
+Trigger trigger_senatorial_horse
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = circus_maximus
+          and Trait Insane >= 2
+          and IsGeneral
+
+    AcquireAncillary senatorial_horse chance  15
+
+;------------------------------------------
+Trigger trigger_shieldbearer
+    WhenToTest PostBattle
+    Condition GeneralHPLostRatioinBattle <= 0.8
+          and GeneralNumKillsInBattle > 5
+          and WonBattle
+          and not Routs
+          and IsGeneral
+
+    AcquireAncillary shieldbearer chance  30
+
+;------------------------------------------
+Trigger trigger_shipwright
+    WhenToTest NewAdmiralCreated
+    Condition SettlementBuildingExists >= shipwright
+
+    AcquireAncillary shipwright chance  4
+
+;------------------------------------------
+Trigger trigger_siege_engineer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= siege_engineer
+          and IsGeneral
+
+    AcquireAncillary siege_engineer chance  20
+
+;------------------------------------------
+Trigger trigger_silk_merchant
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= governors_palace
+          and SettlementBuildingExists >= forum
+          and SettlementBuildingExists >= port
+          and IsGeneral
+
+    AcquireAncillary silk_merchant chance  1
+
+;------------------------------------------
+Trigger trigger_slave_trader
+    WhenToTest EnslavePopulation
+
+    AcquireAncillary slave_trader chance  20
+
+;------------------------------------------
+Trigger trigger_slubberdegullion
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= tavern
+          and IsGeneral
+
+    AcquireAncillary slubberdegullion chance  3
+
+;------------------------------------------
+Trigger trigger_soothsayer
+    WhenToTest PostBattle
+    Condition not WonBattle
+
+    AcquireAncillary soothsayer chance  2
+
+;------------------------------------------
+Trigger trigger_spice_merchant
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= governors_palace
+          and SettlementBuildingExists >= forum
+          and SettlementBuildingExists >= port
+          and IsGeneral
+
+    AcquireAncillary spice_merchant chance  1
+
+;------------------------------------------
+Trigger trigger_spymaster
+    WhenToTest LeaderOrderedSpyingMission
+    Condition IsFactionLeader
+          and IsGeneral
+
+    AcquireAncillary spymaster chance  1
+
+;------------------------------------------
+Trigger trigger_surveyor
+    WhenToTest GovernorBuildingCompleted
+    Condition Trait GoodBuilder >= 2
+          and IsGeneral
+
+    AcquireAncillary surveyor chance  10
+
+;------------------------------------------
+Trigger trigger_swordbearer
+    WhenToTest PostBattle
+    Condition GeneralNumKillsInBattle > 5
+          and WonBattle
+          and not Routs
+          and IsGeneral
+
+    AcquireAncillary swordbearer chance  20
+
+;------------------------------------------
+Trigger trigger_tax_farmer
+    WhenToTest GovernorBuildingCompleted
+    Condition Trait BadTaxman >= 1
+          and IsGeneral
+
+    AcquireAncillary tax_farmer chance  8
+
+;------------------------------------------
+Trigger trigger_tender_of_the_arse
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and IsFactionLeader
+          and SettlementBuildingExists >= proconsuls_palace
+          and IsGeneral
+
+    AcquireAncillary tender_of_the_arse chance  5
+
+;------------------------------------------
+Trigger trigger_torturer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= secret_police_hq
+          and IsGeneral
+
+    AcquireAncillary torturer chance  15
+
+;------------------------------------------
+Trigger trigger_translator
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= market
+          and AgentType = diplomat
+
+    AcquireAncillary translator chance  15
+
+;------------------------------------------
+Trigger trigger_treasurer
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= great_forum
+          and IsGeneral
+
+    AcquireAncillary treasurer chance  10
+
+;------------------------------------------
+Trigger trigger_tribune_of_the_plebs
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and IsFactionLeader
+          and SettlementBuildingExists >= proconsuls_palace
+          and RemainingMPPercentage = 100
+          and IsGeneral
+
+    AcquireAncillary tribune_of_the_plebs chance  8
+
+;------------------------------------------
+Trigger trigger_trusty_steed
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= hippodrome
+          and Trait GoodCavalryGeneral >= 1
+          and IsGeneral
+
+    AcquireAncillary trusty_steed chance  15
+
+;------------------------------------------
+Trigger trigger_turncoat_slave
+    WhenToTest PostBattle
+    Condition WonBattle
+          and PercentageEnemyKilled >= 50
+          and GeneralFoughtFaction slave
+          and IsGeneral
+
+    AcquireAncillary turncoat_slave chance  8
+
+;------------------------------------------
+Trigger trigger_tutor
+    WhenToTest CharacterComesOfAge
+    Condition Trait Ignorance <= 1
+          and FatherTrait Ignorance <= 1
+
+    AcquireAncillary tutor chance  12
+
+;------------------------------------------
+Trigger trigger_veteran_centurion
+    WhenToTest PostBattle
+    Condition PercentageOfArmyKilled <= 20
+          and GeneralNumKillsInBattle > 5
+          and WonBattle
+          and not Routs
+          and Attribute Command >= 4
+          and IsGeneral
+
+    AcquireAncillary veteran_centurion chance  20
+
+;------------------------------------------
+Trigger trigger_veteran_warrior
+    WhenToTest PostBattle
+    Condition PercentageOfArmyKilled <= 20
+          and GeneralNumKillsInBattle > 5
+          and WonBattle
+          and not Routs
+          and Attribute Command >= 4
+          and IsGeneral
+
+    AcquireAncillary veteran_warrior chance  20
+
+;------------------------------------------
+Trigger trigger_wilderness_prophet
+    WhenToTest CharacterTurnEnd
+    Condition not EndedInSettlement
+          and RemainingMPPercentage >= 35
+          and RemainingMPPercentage <= 50
+          and IsGeneral
+
+    AcquireAncillary wilderness_prophet chance  8
+
+;------------------------------------------
+Trigger trigger_wine_steward
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = city_plumbing
+          and IsGeneral
+
+    AcquireAncillary wine_steward chance  8
+
+;------------------------------------------
+Trigger trigger_wise_man
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists <= governors_villa
+          and SettlementBuildingExists >= temple_of_trade_shrine
+          and IsGeneral
+
+    AcquireAncillary wise_man chance  4
+
+;------------------------------------------
+Trigger trigger_wise_woman
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_shrine
+          and IsGeneral
+
+    AcquireAncillary wise_woman chance  15
+
+;------------------------------------------
+Trigger trigger_witch
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_shrine
+          and IsGeneral
+
+    AcquireAncillary witch chance  15
+
+;------------------------------------------
+Trigger trigger_wrestler
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists <= governors_palace
+          and SettlementBuildingExists >= temple_of_violence_shrine
+          and IsGeneral
+
+    AcquireAncillary wrestler chance  12
+
+;------------------------------------------
+Trigger trigger_priest_of_Vahagan
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_battleforge_temple
+          and FactionType armenia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Vahagan chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Anahit
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and FactionType armenia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Anahit chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Armazd
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_leadership_temple
+          and FactionType armenia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Armazd chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Brigantia
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_temple
+          and FactionType britons
+          and IsGeneral
+
+    AcquireAncillary priest_of_Brigantia chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Britannia2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_trade_temple
+          and FactionType britons
+          and IsGeneral
+
+    AcquireAncillary priest_of_Britannia2 chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Andrasta
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_victory_temple
+          and FactionType britons
+          and IsGeneral
+
+    AcquireAncillary priest_of_Andrasta chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Tanit
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_farming_temple
+          and FactionType carthage
+          and IsGeneral
+
+    AcquireAncillary priest_of_Tanit chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Baal
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_justice_temple
+          and FactionType carthage
+          and IsGeneral
+
+    AcquireAncillary priest_of_Baal chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Milqart
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_trade_temple
+          and FactionType carthage
+          and IsGeneral
+
+    AcquireAncillary priest_of_Milqart chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Tanit2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_farming_temple
+          and FactionType numidia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Tanit chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Baal2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_justice_temple
+          and FactionType numidia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Baal chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Milqart2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_trade_temple
+          and FactionType numidia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Milqart chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Hebeleysis
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_battle_temple
+          and FactionType dacia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Hebeleysis chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Bendis
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_farming_temple
+          and FactionType dacia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Bendis chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Zalmoxis
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_forge_temple
+          and FactionType dacia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Zalmoxis chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Isis
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fertility_temple
+          and FactionType egypt
+          and IsGeneral
+
+    AcquireAncillary priest_of_Isis chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Osiris
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and FactionType egypt
+          and IsGeneral
+
+    AcquireAncillary priest_of_Osiris chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Imhotep
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_temple
+          and FactionType egypt
+          and IsGeneral
+
+    AcquireAncillary priest_of_Imhotep chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Set
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_justice_temple
+          and FactionType egypt
+          and IsGeneral
+
+    AcquireAncillary priest_of_Set chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Horus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_law_temple
+          and FactionType egypt
+          and IsGeneral
+
+    AcquireAncillary priest_of_Horus chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Teutatis
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_battleforge_temple
+          and FactionType gauls
+          and IsGeneral
+
+    AcquireAncillary priest_of_Teutatis chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Epona
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_horse_temple
+          and FactionType gauls
+          and IsGeneral
+
+    AcquireAncillary priest_of_Epona chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Abnoba
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_hunting_temple
+          and FactionType gauls
+          and IsGeneral
+
+    AcquireAncillary priest_of_Abnoba chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Esus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_justice_temple
+          and FactionType gauls
+          and IsGeneral
+
+    AcquireAncillary priest_of_Esus chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Teutatis2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_battleforge_temple
+          and FactionType spain
+          and IsGeneral
+
+    AcquireAncillary priest_of_Teutatis chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Epona2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_horse_temple
+          and FactionType spain
+          and IsGeneral
+
+    AcquireAncillary priest_of_Epona chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Abnoba2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_hunting_temple
+          and FactionType spain
+          and IsGeneral
+
+    AcquireAncillary priest_of_Abnoba chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Esus2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_justice_temple
+          and FactionType spain
+          and IsGeneral
+
+    AcquireAncillary priest_of_Esus chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Freyja
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fertility_temple
+          and FactionType germans
+          and IsGeneral
+
+    AcquireAncillary priest_of_Freyja chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Donar
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_violence_temple
+          and FactionType germans
+          and IsGeneral
+
+    AcquireAncillary priest_of_Donar chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Woden
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_viking_temple
+          and FactionType germans
+          and IsGeneral
+
+    AcquireAncillary priest_of_Woden chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Athena
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_leadership_temple
+          and FactionType greek_cities
+          and IsGeneral
+
+    AcquireAncillary priest_of_Athena chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Aphrodite
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_love_temple
+          and FactionType greek_cities
+          and IsGeneral
+
+    AcquireAncillary priest_of_Aphrodite chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Hermes
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_trade_temple
+          and FactionType greek_cities
+          and IsGeneral
+
+    AcquireAncillary priest_of_Hermes chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Nike
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_victory_temple
+          and FactionType greek_cities
+          and IsGeneral
+
+    AcquireAncillary priest_of_Nike chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Ceres
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fertility_temple
+          and FactionType romans_julii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Ceres chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Bacchus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and FactionType romans_julii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Bacchus chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Jupiter
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_leadership_temple
+          and FactionType romans_julii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Jupiter chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Demeter
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_farming_temple
+          and FactionType macedon
+          and IsGeneral
+
+    AcquireAncillary priest_of_Demeter chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Zeus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_governors_temple
+          and FactionType macedon
+          and IsGeneral
+
+    AcquireAncillary priest_of_Zeus chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Artemis
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_hunting_temple
+          and FactionType macedon
+          and IsGeneral
+
+    AcquireAncillary priest_of_Artemis chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Ares
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_violence_temple
+          and FactionType macedon
+          and IsGeneral
+
+    AcquireAncillary priest_of_Ares chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Zoroastra
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_one_god_temple
+          and FactionType parthia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Zoroastra chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Zeus2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_governors_temple
+          and FactionType pontus
+          and IsGeneral
+
+    AcquireAncillary priest_of_Zeus2 chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Aphrodite2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_love_temple
+          and FactionType pontus
+          and IsGeneral
+
+    AcquireAncillary priest_of_Aphrodite2 chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Hercules
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_violence_temple
+          and FactionType pontus
+          and IsGeneral
+
+    AcquireAncillary priest_of_Hercules chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Juno
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_temple
+          and FactionType romans_brutii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Juno chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Mercury
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_trade_temple
+          and FactionType romans_brutii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Mercury chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Mars
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_violence_temple
+          and FactionType romans_brutii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Mars chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Vulcan
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_forge_temple
+          and FactionType romans_scipii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Vulcan chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Saturn
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_law_temple
+          and FactionType romans_scipii
+          and IsGeneral
+
+    AcquireAncillary priest_of_Saturn chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Neptune
+    WhenToTest NewAdmiralCreated
+    Condition SettlementBuildingExists >= temple_of_naval_temple
+
+    AcquireAncillary priest_of_Neptune chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Papay
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_law_temple
+          and FactionType scythia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Papay chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Api
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_love_temple
+          and FactionType scythia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Api chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Kolaksay
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_horse_2_temple
+          and FactionType scythia
+          and IsGeneral
+
+    AcquireAncillary priest_of_Kolaksay chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Haphaestus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_forge_temple
+          and FactionType seleucid
+          and IsGeneral
+
+    AcquireAncillary priest_of_Haphaestus chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Asklepios
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_temple
+          and FactionType seleucid
+          and IsGeneral
+
+    AcquireAncillary priest_of_Asklepios chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Dionysus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and FactionType seleucid
+          and IsGeneral
+
+    AcquireAncillary priest_of_Dionysus chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Dionysus2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_temple
+          and FactionType thrace
+          and IsGeneral
+
+    AcquireAncillary priest_of_Dionysus2 chance  15
+
+;------------------------------------------
+Trigger trigger_priest_of_Ares2
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_battle_temple
+          and FactionType thrace
+          and IsGeneral
+
+    AcquireAncillary priest_of_Ares2 chance  15
+
+;------------------------------------------
+Trigger trigger_appolonius_of_perge
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  50
+          and I_TurnNumber <=  160
+
+    AcquireAncillary appolonius_of_perge chance  80
+
+;------------------------------------------
+Trigger trigger_appolonius_of_rhodes
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  0
+          and I_TurnNumber <=  110
+
+    AcquireAncillary appolonius_of_rhodes chance  80
+
+;------------------------------------------
+Trigger trigger_archimedes
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  6
+          and I_TurnNumber <=  116
+
+    AcquireAncillary archimedes chance  80
+
+;------------------------------------------
+Trigger trigger_aristarchus_of_samos
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  160
+          and I_TurnNumber <=  254
+
+    AcquireAncillary aristarchus_of_samos chance  80
+
+;------------------------------------------
+Trigger trigger_ariston_of_chios
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  100
+          and I_TurnNumber <=  200
+
+    AcquireAncillary ariston_of_chios chance  80
+
+;------------------------------------------
+Trigger trigger_ariston_of_cyrene
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  140
+          and I_TurnNumber <=  240
+
+    AcquireAncillary ariston_of_cyrene chance  80
+
+;------------------------------------------
+Trigger trigger_aristophanes_of_byzantium
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  86
+          and I_TurnNumber <=  180
+
+    AcquireAncillary aristophanes_of_byzantium chance  80
+
+;------------------------------------------
+Trigger trigger_agatharchides_of_cnidus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  220
+          and I_TurnNumber <=  300
+
+    AcquireAncillary agatharchides_of_cnidus chance  80
+
+;------------------------------------------
+Trigger trigger_callimachus_of_cyrene
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  12
+          and I_TurnNumber <=  60
+
+    AcquireAncillary callimachus_of_cyrene chance  80
+
+;------------------------------------------
+Trigger trigger_carneades_the_academic
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  160
+          and I_TurnNumber <=  280
+
+    AcquireAncillary carneades_the_academic chance  80
+
+;------------------------------------------
+Trigger trigger_quintus_lutatius_catulus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= scriptorium
+          and FactionType romans_julii
+          and IsGeneral
+          and I_TurnNumber >=  290
+          and I_TurnNumber <=  380
+
+    AcquireAncillary quintus_lutatius_catulus chance  80
+
+;------------------------------------------
+Trigger trigger_gaius_valerius_catullus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= scriptorium
+          and FactionType romans_julii
+          and IsGeneral
+          and I_TurnNumber >=  412
+          and I_TurnNumber <=  432
+
+    AcquireAncillary gaius_valerius_catullus chance  80
+
+;------------------------------------------
+Trigger trigger_chrysippus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  20
+          and I_TurnNumber <=  128
+
+    AcquireAncillary chrysippus chance  80
+
+;------------------------------------------
+Trigger trigger_ctesibius
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  10
+          and I_TurnNumber <=  96
+
+    AcquireAncillary ctesibius chance  80
+
+;------------------------------------------
+Trigger trigger_quintus_ennius
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  102
+          and I_TurnNumber <=  204
+
+    AcquireAncillary quintus_ennius chance  80
+
+;------------------------------------------
+Trigger trigger_erasistratus_of_ceos
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  68
+          and I_TurnNumber <=  180
+
+    AcquireAncillary erasistratus_of_ceos chance  80
+
+;------------------------------------------
+Trigger trigger_eratosthenes_of_cyrene
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  28
+          and I_TurnNumber <=  152
+
+    AcquireAncillary eratosthenes_of_cyrene chance  80
+
+;------------------------------------------
+Trigger trigger_fabius_pictor
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  90
+          and I_TurnNumber <=  200
+
+    AcquireAncillary fabius_pictor chance  80
+
+;------------------------------------------
+Trigger trigger_hieronymus_of_cardia
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  0
+          and I_TurnNumber <=  32
+
+    AcquireAncillary hieronymus_of_cardia chance  80
+
+;------------------------------------------
+Trigger trigger_herodas
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  0
+          and I_TurnNumber <=  60
+
+    AcquireAncillary herodas chance  80
+
+;------------------------------------------
+Trigger trigger_iunius_pennus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  340
+          and I_TurnNumber <=  440
+
+    AcquireAncillary iunius_pennus chance  80
+
+;------------------------------------------
+Trigger trigger_lucilius
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  220
+          and I_TurnNumber <=  336
+
+    AcquireAncillary lucilius chance  80
+
+;------------------------------------------
+Trigger trigger_m_porcius_cato
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists = ludus_magnus
+          and FactionType romans_scipii
+          and IsGeneral
+          and I_TurnNumber >=  406
+          and I_TurnNumber <=  480
+
+    AcquireAncillary m_porcius_cato chance  80
+
+;------------------------------------------
+Trigger trigger_m_tullius_cicero
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and FactionType romans_brutii
+          and IsGeneral
+          and I_TurnNumber >=  368
+          and I_TurnNumber <=  480
+
+    AcquireAncillary m_tullius_cicero chance  80
+
+;------------------------------------------
+Trigger trigger_gnaeus_naevius
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  44
+          and I_TurnNumber <=  132
+
+    AcquireAncillary gnaeus_naevius chance  80
+
+;------------------------------------------
+Trigger trigger_nicander
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_healing_awesome_temple
+          and IsGeneral
+          and I_TurnNumber >=  200
+          and I_TurnNumber <=  300
+
+    AcquireAncillary nicander chance  80
+
+;------------------------------------------
+Trigger trigger_panaetius
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  210
+          and I_TurnNumber <=  324
+
+    AcquireAncillary panaetius chance  80
+
+;------------------------------------------
+Trigger trigger_titus_maccius_plautus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= temple_of_fun_awesome_temple
+          and IsGeneral
+          and I_TurnNumber >=  90
+          and I_TurnNumber <=  172
+
+    AcquireAncillary titus_maccius_plautus chance  80
+
+;------------------------------------------
+Trigger trigger_polybius_of_megalopolis
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= scriptorium
+          and FactionType romans_scipii
+          and IsGeneral
+          and I_TurnNumber >=  180
+          and I_TurnNumber <=  304
+
+    AcquireAncillary polybius_of_megalopolis chance  50
+
+;------------------------------------------
+Trigger trigger_posidonius_of_rhodes
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  310
+          and I_TurnNumber <=  438
+
+    AcquireAncillary posidonius_of_rhodes chance  80
+
+;------------------------------------------
+Trigger trigger_publius_clodius
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and Trait Joker >= 1
+          and Trait PublicAtheism >= 1
+          and IsGeneral
+          and I_TurnNumber >=  396
+          and I_TurnNumber <=  436
+
+    AcquireAncillary publius_clodius chance  80
+
+;------------------------------------------
+Trigger trigger_strato
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  0
+          and I_TurnNumber <=  80
+
+    AcquireAncillary strato chance  80
+
+;------------------------------------------
+Trigger trigger_terrence
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >=  190
+          and I_TurnNumber <=  260
+
+    AcquireAncillary terrence chance  80
+
+;------------------------------------------
+Trigger trigger_theocritus_of_syracuse
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= lyceum
+          and IsGeneral
+          and I_TurnNumber >= -20
+          and I_TurnNumber <=  40
+
+    AcquireAncillary theocritus_of_syracuse chance  80
+
+;------------------------------------------
+Trigger trigger_ti_sempronius_gracchus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  260
+          and I_TurnNumber <=  274
+
+    AcquireAncillary ti_sempronius_gracchus chance  80
+
+;------------------------------------------
+Trigger trigger_caius_gracchus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and SettlementBuildingExists >= scriptorium
+          and FactionType romans_julii
+          and IsGeneral
+          and I_TurnNumber >=  274
+          and I_TurnNumber <=  296
+
+    AcquireAncillary caius_gracchus chance  80
+
+;------------------------------------------
+Trigger trigger_ti_sempronius_gracchus_the_elder
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and FactionType romans_scipii
+          and IsGeneral
+          and I_TurnNumber >=  170
+          and I_TurnNumber <=  238
+
+    AcquireAncillary ti_sempronius_gracchus_the_elder chance  80
+
+;------------------------------------------
+Trigger trigger_timaeus_of_tauromenium
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >= -120
+          and I_TurnNumber <=  40
+
+    AcquireAncillary timaeus_of_tauromenium chance  80
+
+;------------------------------------------
+Trigger trigger_livy
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and Trait PlainRomanVirtue >= 1
+          and IsGeneral
+          and I_TurnNumber >=  452
+          and I_TurnNumber <=  506
+
+    AcquireAncillary livy chance  80
+
+;------------------------------------------
+Trigger trigger_virgilius
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  440
+          and I_TurnNumber <=  502
+
+    AcquireAncillary virgilius chance  80
+
+;------------------------------------------
+Trigger trigger_zeno_of_cittium
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= academy
+          and IsGeneral
+          and I_TurnNumber >= -60
+          and I_TurnNumber <=  40
+
+    AcquireAncillary zeno_of_cittium chance  80
+
+;------------------------------------------
+Trigger trigger_t_lucretius_carus
+    WhenToTest CharacterTurnEnd
+    Condition EndedInSettlement
+          and RemainingMPPercentage = 100
+          and SettlementBuildingExists >= scriptorium
+          and IsGeneral
+          and I_TurnNumber >=  382
+          and I_TurnNumber <=  430
+
+    AcquireAncillary t_lucretius_carus chance  80
+
+;------------------------------------------
+Trigger caravan_driver_vnv_trigger
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementBuildingExists >= caravan
+
+    AcquireAncillary Caravan_Driver chance  50
+
+;------------------------------------------
+Trigger caravan_driver_vnv_trigger2
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and EndedInSettlement
+          and SettlementBuildingExists >= caravan
+
+    AcquireAncillary Caravan_Driver chance  50
+
+;------------------------------------------
+Trigger merchantinit12
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementBuildingExists >= academy
+
+    AcquireAncillary Merchant_Clerk chance  50
+
+;------------------------------------------
+Trigger trick_abacus_vnv_trigger
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+
+    AcquireAncillary Trick_Abacus chance  5
+
+
+
+
+
+
+
+
+
+
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementMerchantTradingWith romans_julii
+          and not IsFromFaction romans_julii
+
+    AcquireAncillary RomanFashion_Julii         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and EndedInSettlement
+          and SettlementOwnedBy romans_julii
+          and not IsFromFaction romans_julii
+
+    AcquireAncillary RomanFashion_Julii         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementMerchantTradingWith romans_brutii
+          and not IsFromFaction romans_brutii
+
+    AcquireAncillary RomanFashion_Brutii         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and EndedInSettlement
+          and SettlementOwnedBy romans_brutii
+          and not IsFromFaction romans_brutii
+
+    AcquireAncillary RomanFashion_Brutii         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementMerchantTradingWith romans_scipii
+          and not IsFromFaction romans_scipii
+
+    AcquireAncillary RomanFashion_Scipii         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and EndedInSettlement
+          and SettlementOwnedBy romans_scipii
+          and not IsFromFaction romans_scipii
+
+    AcquireAncillary RomanFashion_Scipii         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementMerchantTradingWith romans_senate
+          and not IsFromFaction romans_senate
+
+    AcquireAncillary RomanFashion_Senate         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and EndedInSettlement
+          and SettlementOwnedBy romans_senate
+          and not IsFromFaction romans_senate
+
+    AcquireAncillary RomanFashion_Senate         chance 15
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+
+    RemoveAncillary  RomanFashionEffect   chance 100
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and HasAncillary RomanFashion_Julii
+          and RegionTradingResource textiles
+
+    AcquireAncillary RomanFashionEffect chance 100
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and HasAncillary RomanFashion_Brutii
+          and RegionTradingResource textiles
+
+    AcquireAncillary RomanFashionEffect chance 100
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and HasAncillary RomanFashion_Scipii
+          and RegionTradingResource textiles
+
+    AcquireAncillary RomanFashionEffect chance 100
+
+;------------------------------------------
+Trigger culturalimport0
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and HasAncillary RomanFashion_Senate
+          and RegionTradingResource textiles
+
+    AcquireAncillary RomanFashionEffect chance 100
+
+
+
+;------------------------------------------
+Trigger culturalimport1
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementMerchantTradingWith armenia
+          and not IsFromFaction armenia
+
+    AcquireAncillary ArmenianApricots         chance 15
+
+;------------------------------------------
+Trigger culturalimport1
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and EndedInSettlement
+          and SettlementOwnedBy armenia
+          and not IsFromFaction armenia
+
+    AcquireAncillary ArmenianApricots         chance 15
+
+;------------------------------------------
+Trigger culturalimport1
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+
+    RemoveAncillary  ArmenianApricotsEffect   chance 100
+
+;------------------------------------------
+Trigger culturalimport1
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and HasAncillary ArmenianApricots
+          and RegionTradingResource textiles
+
+    AcquireAncillary ArmenianApricotsEffect chance 100
+
+
+
+;------------------------------------------
+Trigger culturalimport2
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith britons
+          and not IsFromFaction britons
+
+    AcquireAncillary BritishCuisine chance 15
+
+
+;------------------------------------------
+Trigger culturalimport3
+    WhenToTest AgentCreated
+    Condition AgentType = admiral
+          and SettlementMerchantTradingWith carthage
+          and not IsFromFaction carthage
+
+    AcquireAncillary PhoenicianSeamanship chance 35
+
+;------------------------------------------
+Trigger culturalimport4
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith dacia
+          and not IsFromFaction dacia
+
+    AcquireAncillary DacianDraco chance 15
+
+
+;------------------------------------------
+Trigger culturalimport5
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith egypt
+          and not IsFromFaction egypt
+
+    AcquireAncillary EgyptianMummyPowder chance 15
+
+
+;------------------------------------------
+Trigger culturalimport6
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith gauls
+          and not IsFromFaction gauls
+
+    AcquireAncillary GaulishPotions chance 15
+
+;------------------------------------------
+Trigger culturalimport7
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith germans
+          and not IsFromFaction germans
+
+    AcquireAncillary GermanicThings chance 15
+
+
+;------------------------------------------
+Trigger culturalimport8
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith greek_cities
+          and not IsFromFaction greek_cities
+
+    AcquireAncillary AthenianDemocracy chance 15
+
+;------------------------------------------
+Trigger culturalimport9
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith greek_cities
+          and not IsFromFaction greek_cities
+
+    AcquireAncillary SpartanMuliebrity chance 15
+
+;------------------------------------------
+Trigger culturalimport9
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith macedon
+          and not IsFromFaction macedon
+
+    AcquireAncillary MacedonianSymposia chance 15
+
+;------------------------------------------
+Trigger culturalimport10
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith numidia
+          and not IsFromFaction numidia
+
+    AcquireAncillary NumidianCouscous chance 15
+
+
+
+
+;------------------------------------------
+Trigger culturalimport11
+    WhenToTest AgentCreated
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and SettlementMerchantTradingWith parthia
+          and not IsFromFaction parthia
+
+    AcquireAncillary BactrianCamels         chance 15
+
+;------------------------------------------
+Trigger culturalimport11
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and EndedInSettlement
+          and SettlementOwnedBy parthia
+          and not IsFromFaction parthia
+
+    AcquireAncillary BactrianCamels         chance 15
+
+;------------------------------------------
+Trigger culturalimport11
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+
+    RemoveAncillary BactrianCamelsEffect   chance 100
+
+;------------------------------------------
+Trigger culturalimport11
+    WhenToTest CharacterTurnEnd
+    Condition AgentType = merchant
+          and not IsFromFaction slave
+          and HasAncillary BactrianCamels
+          and RegionTradingResource textiles
+
+    AcquireAncillary BactrianCamelsEffect chance 100
+
+
+;------------------------------------------
+Trigger culturalimport12
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith parthia
+          and not IsFromFaction parthia
+
+    AcquireAncillary IndoParthianMahouts chance 15
+
+;------------------------------------------
+Trigger culturalimport13
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith pontus
+          and not IsFromFaction pontus
+
+    AcquireAncillary PonticSinopia chance 15
+
+;------------------------------------------
+Trigger culturalimport14
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith scythia
+          and not IsFromFaction scythia
+
+    AcquireAncillary ScythianEnarees chance 15
+
+;------------------------------------------
+Trigger culturalimport15
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith seleucid
+          and not IsFromFaction seleucid
+
+    AcquireAncillary SeleucidUrbanPlanning chance 15
+
+;------------------------------------------
+Trigger culturalimport16
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith spain
+          and not IsFromFaction spain
+
+    AcquireAncillary BlackSpanishPig chance 15
+
+;------------------------------------------
+Trigger culturalimport17
+    WhenToTest CharacterTurnEnd
+    Condition IsGeneral
+          and EndedInSettlement
+          and SettlementMerchantTradingWith thrace
+          and not IsFromFaction thrace
+
+    AcquireAncillary ThracianHemp chance 15
