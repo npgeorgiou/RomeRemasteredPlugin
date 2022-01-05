@@ -1,7 +1,9 @@
 package rr.language.completion;
 
 import com.intellij.codeInsight.completion.CompletionContributor;
+import com.intellij.codeInsight.completion.CompletionInitializationContext;
 import com.intellij.codeInsight.completion.CompletionType;
+import com.intellij.lang.ASTNode;
 import com.intellij.patterns.ElementPattern;
 import com.intellij.patterns.PatternCondition;
 import com.intellij.patterns.PsiElementPattern;
@@ -22,11 +24,15 @@ import java.util.stream.Stream;
 import static com.intellij.patterns.PlatformPatterns.psiElement;
 
 public class RRCompletionContributor extends CompletionContributor {
-//    @Override
-//    public void beforeCompletion(@NotNull CompletionInitializationContext context) {
-//        context.setDummyIdentifier(" ");
-//        super.beforeCompletion(context);
-//    }
+    @Override
+    public void beforeCompletion(@NotNull CompletionInitializationContext context) {
+        // TODO: This is stupid.
+        // the reason I do this is that file autocompletion will not work, unless a dummy id that matches the *.txt
+        // lexing rule is inserted, so that the parser will wrap it in a txt_fie_ element, on which getVariants can be called.
+        // instead, add . as a valid part of ids, and let txt files be lexed as ids.
+        context.setDummyIdentifier("foo");
+        super.beforeCompletion(context);
+    }
 
     private class Node {
         PsiElementPattern.Capture<PsiElement> pattern;
@@ -813,16 +819,17 @@ public class RRCompletionContributor extends CompletionContributor {
             new Units((it) -> Util.quote(it))
         );
 
-        // TODO: fix that
+        // TODO: finish that
         // capability {
         //   {capability}
         //   {capability}
         //   ...
         // }
         Node export_descr_buildings_capability = new RootNode(
-//            sequence(psiElement(RRTypes.CAPABILITY), psiElement(RRTypes.OCB)),
-            psiElement().afterLeaf(inside(RRTypes.CAPABILITY_)),
-//            psiElement(),
+            any(
+                sequence(RRTypes.CAPABILITY, RRTypes.OCB),
+                inside(RRTypes.CAPABILITY_).and(beforeNewline())
+            ),
             new Node(new HardcodedValues(
                 "recruit",
                 "agent",
@@ -955,6 +962,24 @@ public class RRCompletionContributor extends CompletionContributor {
         return acc;
     }
 
+    private PsiElementPattern.Capture<PsiElement> sequence(IElementType... types) {
+        PsiElementPattern.Capture<PsiElement> acc = psiElement();
+        boolean first = true;
+
+        for (IElementType type : types) {
+            if (first) {
+                first = false;
+
+                acc = psiElement(type);
+                continue;
+            }
+
+            acc = psiElement(type).afterLeaf(acc);
+        }
+
+        return acc;
+    }
+
     //    private PsiElementPattern.Capture<PsiElement> afterItemUsage() {
 //        // TODO: Dont know why I cant just do psiElement().afterSibling(psiElement(CobolItemUsage_.class));
 //        return psiElement().afterLeaf(psiElement(CobolTypes.ID).withParent(psiElement(CobolItemUsage_.class)));
@@ -979,7 +1004,7 @@ public class RRCompletionContributor extends CompletionContributor {
 //                .withElementType(CobolTypes.ID)
 //                .inside(CobolProcedureDivision_.class)
 //                .afterLeaf(psiElement(CobolTypes.DOT))
-//                .and(psiElementIsOnLineBeginning());
+//                .and(afterNewline());
 //    }
 //
 //    private ElementPattern<PsiElement> atProcedureDivisionLevel() {
@@ -993,8 +1018,11 @@ public class RRCompletionContributor extends CompletionContributor {
 //        );
 //    }
 //
-    private PsiElementPattern.Capture<PsiElement> psiElementIsOnLineBeginning() {
-        return psiElement().with(new OnLineBeginning(""));
+    private PsiElementPattern.Capture<PsiElement> afterNewline() {
+        return psiElement().with(new AfterNewline());
+    }
+    private PsiElementPattern.Capture<PsiElement> beforeNewline() {
+        return psiElement().with(new BeforeNewline());
     }
 
     //
@@ -1014,6 +1042,12 @@ public class RRCompletionContributor extends CompletionContributor {
 //        );
 //    }
 //
+
+
+    private PsiElementPattern.Capture<PsiElement> any(PsiElementPattern.Capture<PsiElement>... patterns) {
+        return psiElement().andOr(patterns);
+    }
+
     private PsiElementPattern.Capture<PsiElement> any(IElementType... types) {
         Collection<ElementPattern> patterns = Stream.of(types)
             .map(it -> psiElement(it))
@@ -1060,10 +1094,29 @@ public class RRCompletionContributor extends CompletionContributor {
     }
 }
 
-class OnLineBeginning extends PatternCondition<PsiElement> {
+class AfterNewline extends PatternCondition<PsiElement> {
+    public AfterNewline() {
+        super("After newline");
+    }
 
-    public OnLineBeginning(String debugMethodName) {
-        super("On line beginning");
+    @Override
+    public boolean accepts(@NotNull PsiElement element, ProcessingContext context) {
+        PsiElement foo = PsiTreeUtil.prevLeaf(element);
+        ASTNode asdas = element.getNode();
+        ASTNode dsds = element.getNode().getTreePrev();
+
+        if (foo instanceof PsiWhiteSpace) {
+            boolean aaa = foo.textContains('\n');
+            return foo.textContains('\n');
+        }
+
+        return false;
+    }
+}
+
+class BeforeNewline extends PatternCondition<PsiElement> {
+    public BeforeNewline() {
+        super("Before newline");
     }
 
     @Override
@@ -1071,12 +1124,14 @@ class OnLineBeginning extends PatternCondition<PsiElement> {
         PsiElement foo = PsiTreeUtil.nextLeaf(element);
 
         if (foo instanceof PsiWhiteSpace) {
+            boolean aaa = foo.textContains('\n');
             return foo.textContains('\n');
         }
 
         return false;
     }
 }
+
 //
 //class StatementAlreadyHas extends PatternCondition<PsiElement> {
 //    Collection<IElementType> types = new ArrayList<>();

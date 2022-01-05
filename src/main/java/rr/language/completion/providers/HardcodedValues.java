@@ -17,7 +17,7 @@ public class HardcodedValues extends RRCompletionProvider {
     @Override
     public void addCompletions(@NotNull CompletionParameters parameters, @NotNull ProcessingContext context, @NotNull CompletionResultSet resultSet) {
         PsiElement typed = parameters.getPosition();
-
+        PsiElement asdasd = typed.getPrevSibling();
         for (String value : values) {
             resultSet.addElement(LookupElementBuilder.create(value));
         }

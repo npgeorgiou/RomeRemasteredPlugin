@@ -59,6 +59,7 @@ building core_building
 			capability
 			{
 				recruit "carthaginian peasant"  0
+
 				recruit "barb peasant briton"  0
 				recruit "barb peasant dacian"  0
 				recruit "barb peasant gaul"  0
@@ -442,7 +443,7 @@ building barracks
 				recruit "greek hoplite elite"  0
 				recruit "greek royal pikemen"  0
 				recruit "greek silver shield pikemen"  0
-				recruit "greek hoplite spartan"  0  requires hidden_resource sparta
+				recruit "greek hoplite spartan"  0  requires resource italy
 				recruit "greek bastarnae"  0
 				recruit "roman city militia"  0
 				recruit "roman hastati"  0  requires not major_event "marian_reforms"

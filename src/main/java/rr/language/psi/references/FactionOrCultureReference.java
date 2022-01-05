@@ -1,5 +1,6 @@
 package rr.language.psi.references;
 
+import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
@@ -16,6 +17,7 @@ import rr.language.psi.RRFactionOrCultureRef;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FactionOrCultureReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
@@ -48,5 +50,13 @@ public class FactionOrCultureReference extends PsiReferenceBase<PsiElement> impl
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
         ((RRFactionOrCultureRef) myElement).setName(newName);
         return myElement;
+    }
+
+    public Object @NotNull [] getVariants() {
+        return Stream.concat(
+                RRUtil.findAllFactionsAsStrings(myElement.getProject()).stream(),
+                RRUtil.findAllFactionsAsStrings(myElement.getProject()).stream()
+            ).map(it -> LookupElementBuilder.create(it))
+            .toArray();
     }
 }

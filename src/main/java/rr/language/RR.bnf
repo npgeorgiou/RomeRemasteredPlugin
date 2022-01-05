@@ -1431,7 +1431,8 @@ building_level ::= building_level_name_decl requirement
 
 building_level_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 building_level_ref ::= ID {methods=[setName getReference]}
-capability_ ::= (unit_recruit_capability|agent_recruit_capability|effect_capability) requirement?
+capability_ ::= (unit_recruit_capability|agent_recruit_capability|effect_capability) {recoverWhile=capability_recover}
+private capability_recover ::= !(capability_|requirement|CCB)
 private unit_recruit_capability ::=  RECRUIT str_unit_ref INT
 private agent_recruit_capability ::=  AGENT agent_type INT
 private effect_capability ::= (
