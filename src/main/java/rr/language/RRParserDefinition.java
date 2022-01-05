@@ -34,7 +34,8 @@ public class RRParserDefinition implements ParserDefinition {
 
     public static final TokenSet FILES = TokenSet.create(
         RRTypes.TGA_FILE,
-        RRTypes.TXT_FILE
+        RRTypes.TXT_FILE,
+        RRTypes.CAS_FILE
     );
 
     //<editor-fold desc="FILE MARKERS">
@@ -537,7 +538,47 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.OLD,
         RRTypes.CIVILIAN,
         RRTypes.ROGUE,
-        RRTypes.YOUNG
+        RRTypes.YOUNG,
+
+        // descr_banners
+        RRTypes.BANNER,
+        RRTypes.MODEL,
+        RRTypes.SKELETON,
+        RRTypes.OUTLINE,
+        RRTypes.STANDARD_TEXTURE,
+        RRTypes.REBELS_TEXTURE,
+        RRTypes.ROUTING_TEXTURE,
+        RRTypes.ALLY_TEXTURE,
+
+        // descr_character
+        RRTypes.STARTING_ACTION_POINTS,
+        RRTypes.ACTIONS,
+        RRTypes.WAGE_BASE,
+        RRTypes.STRAT_CARD,
+        RRTypes.STRAT_MODEL,
+        RRTypes.BATTLE_MODEL,
+        RRTypes.BATTLE_EQUIP,
+
+        // descr_character
+        RRTypes.TEXTURE_VARIANTS,
+        RRTypes.SNOWCOVER,
+        RRTypes.SNOWFALL,
+        RRTypes.SPOT_ITEMS,
+        RRTypes.ANY,
+        RRTypes.STAT_CATS,
+        RRTypes.FULL_HEALTH,
+        RRTypes.BATTLE_STATS,
+        RRTypes.TRANSITION_SCRIPTS,
+        RRTypes.TRANSITION,
+        RRTypes.DURATION,
+        RRTypes.PHYSICAL_SWITCH,
+        RRTypes.START_ITEMS,
+        RRTypes.END_ITEMS,
+        RRTypes.INCLUDE,
+        RRTypes.LOCALISED_NAME,
+        RRTypes.MIN_HEALTH,
+        RRTypes.ITEM,
+        RRTypes.PHYSICAL_INFO
         );
     //</editor-fold>
 

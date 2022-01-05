@@ -258,6 +258,51 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
             for (RRCulturePortraitVariation element : PsiTreeUtil.findChildrenOfType(file, RRCulturePortraitVariation.class)) {
                 fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
             }
+
+            // descr_banners file
+            for (RRCultureBanner element : PsiTreeUtil.findChildrenOfType(file, RRCultureBanner.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRFactionBanner element : PsiTreeUtil.findChildrenOfType(file, RRFactionBanner.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+
+            // descr_character file
+            for (RRCharacterTypeDef element : PsiTreeUtil.findChildrenOfType(file, RRCharacterTypeDef.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRCharacterTypeFactionDef element : PsiTreeUtil.findChildrenOfType(file, RRCharacterTypeFactionDef.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+
+            // descr_building_battle file
+            for (RRTextureVariants_ element : PsiTreeUtil.findChildrenOfType(file, RRTextureVariants_.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRTextureVariant element : PsiTreeUtil.findChildrenOfType(file, RRTextureVariant.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRSpotItems_ element : PsiTreeUtil.findChildrenOfType(file, RRSpotItems_.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRSpotItem element : PsiTreeUtil.findChildrenOfType(file, RRSpotItem.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRStatCategories element : PsiTreeUtil.findChildrenOfType(file, RRStatCategories.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRStatCategory element : PsiTreeUtil.findChildrenOfType(file, RRStatCategory.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRTransitionScripts_ element : PsiTreeUtil.findChildrenOfType(file, RRTransitionScripts_.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRTransitionScript element : PsiTreeUtil.findChildrenOfType(file, RRTransitionScript.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RRConstructionSite element : PsiTreeUtil.findChildrenOfType(file, RRConstructionSite.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
         }
 
         return folds.toArray(new FoldingDescriptor[folds.size()]);

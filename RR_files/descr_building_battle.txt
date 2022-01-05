@@ -1,0 +1,1094 @@
+;descr_building_battle.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+texture_variants
+{
+	##barb_log_wall.tga
+	{
+		roman		##roman_log_wall.tga
+		greek		##roman_log_wall.tga
+		barbarian 	##barb_log_wall.tga
+		eastern		##eastern_log_wall.tga
+		egyptian	##eastern_log_wall.tga
+		carthaginian ##eastern_log_wall.tga
+	}
+	##barb_log_wall2.tga
+	{
+		roman		##roman_log_wall2.tga
+		greek		##roman_log_wall2.tga
+		eastern		##eastern_log_wall2.tga
+		barbarian 	##barb_log_wall2.tga
+		egyptian	##eastern_log_wall2.tga
+		carthaginian ##eastern_log_wall2.tga
+	}
+	##standard_julii.tga
+	{
+		romans_julii	##standard_julii.tga
+		romans_brutii	##standard_brutii.tga
+		romans_scipii	##standard_scipii.tga
+		romans_senate	##standard_senate.tga
+		macedon			##standard_macedonia.tga
+		egypt			##standard_egypt.tga
+		seleucid		##standard_seleucid.tga
+		carthage		##standard_carthage.tga
+		parthia			##standard_parthia.tga
+		pontus			##standard_pontus.tga
+		gauls			##standard_gaul.tga
+		germans			##standard_german.tga
+		britons			##standard_briton.tga
+		armenia			##standard_armenia.tga
+		dacia			##standard_dacia.tga
+		greek_cities	##standard_greek_cities.tga
+		numidia			##standard_numidia.tga
+		scythia			##standard_scythia.tga
+		spain			##standard_spain.tga
+		thrace			##standard_thrace.tga
+		slave			##standard_slave.tga
+	}
+
+	##cren.tga
+	{
+		greek		##cren_greek.tga
+	}
+
+	##crenellations_brck42S.tga
+	{
+		greek		##crenellations_brck42S_greek.tga
+	}
+
+	brck42S.tga
+	{
+		greek		brck42S_greek.tga
+		eastern		brck42s_east.tga
+		egyptian	brck42s_east.tga
+		carthaginian brck42s_east.tga
+	}
+
+	brck42s_bottom.tga
+	{
+		greek		brck42s_greek_bottom.tga
+		eastern		brck42s_east_bottom.tga
+		egyptian	brck42s_east_bottom.tga
+		carthaginian brck42s_east_bottom.tga
+	}
+
+	brck42s_darker.tga
+	{
+		greek		brck42s_darker.tga
+		eastern		brck42s_east_darker.tga
+		egyptian	brck42s_east_darker.tga
+		carthaginian brck42s_east_darker.tga
+	}
+
+	roman_wall_bottom_trim.tga
+	{
+		greek		greek_wall_bottom_trim.tga
+		eastern		east_wall_bottom_trim.tga
+		egyptian	east_wall_bottom_trim.tga
+		carthaginian east_wall_bottom_trim.tga
+	}
+
+	rooftiles_large.tga
+	{
+		greek		rooftiles_greek.tga
+	}
+
+	roman_roof_tiles_bottom.tga
+	{
+		greek		rooftiles_greek.tga
+	}
+
+	roman_tenament_1.tga
+	{
+		greek		greek_tenament_1.tga
+	}
+
+	roman_tenament_3.tga
+	{
+		greek		greek_tenament_3.tga
+	}
+
+	destroyed_wall_roman.tga
+	{
+		greek		destroyed_wall_egyptian.tga
+		egyptian	destroyed_wall_egyptian.tga
+		eastern		destroyed_wall_eastern.tga
+		barbarian	destroyed_wall_barbarian.tga
+	}
+
+	destroyed_walltops_roman.tga
+	{
+		greek		destroyed_walltops_egyptian.tga
+		egyptian	destroyed_walltops_egyptian.tga
+		eastern		destroyed_walltops_eastern.tga
+		barbarian	destroyed_walltops_barbarian.tga
+	}
+
+	destroyed_rubble_roman.tga
+	{
+		greek		destroyed_rubble_egyptian.tga
+		egyptian	destroyed_rubble_egyptian.tga
+		eastern		destroyed_rubble_eastern.tga
+		barbarian	destroyed_rubble_barbarian.tga
+	}
+
+	roman_wall_trim_1.tga
+	{
+		greek		greek_wall_trim_1.tga
+	}
+
+	eastern_wall_trim_1.tga
+	{
+		eastern		eastern_wall_trim_1.tga
+		egyptian	eastern_wall_trim_1.tga
+		carthaginian eastern_wall_trim_1.tga
+	}
+
+	eastern_wall_trim_2.tga
+	{
+		eastern		eastern_wall_trim_2.tga
+		egyptian	eastern_wall_trim_2.tga
+		carthaginian eastern_wall_trim_2.tga
+	}
+
+
+;	WINTER TEXTURES
+
+	##wheat_gold.tga
+	{
+		winter ##transparent_winter.tga
+	}
+
+	##wheat_green.tga
+	{
+		winter ##transparent_winter.tga
+	}
+
+	##wheat_brown.tga
+	{
+		winter ##transparent_winter.tga
+	}
+
+	##cauliflower.tga
+	{
+		winter ##transparent_winter.tga
+	}
+
+	#&roman_grass.tga
+	{
+		snowcover #&roman_grass_winter.tga
+	}
+
+	roman_grass.tga
+	{
+		snowcover #&roman_grass_winter.tga
+	}
+
+	#&ground_dusty.tga
+	{
+	   snowcover #&roman_grass_winter.tga
+	}
+
+	#&ground_dusty_dark.tga
+	{
+	   snowcover #&roman_grass_winter.tga
+	}
+
+	sand.tga
+	{
+	   snowcover #&roman_grass_winter.tga
+	}
+
+	#&east_rich02_grnd.tga
+	{
+	   snowcover #&east_rich02_grnd_winter.tga
+	}
+
+	##cornfield_clump.tga
+	{
+	   winter ##transparent_winter.tga
+	}
+
+	##cornfield_edge.tga
+	{
+	   winter ##transparent_winter.tga
+	}
+
+	##hay_clump.tga
+	{
+	   winter ##transparent_winter.tga
+	}
+
+	##hay_edge_01.tga
+	{
+	   winter ##transparent_winter.tga
+	}
+
+	##hay_edge_02.tga
+	{
+	   winter ##transparent_winter.tga
+	}
+
+	##olive_tree01.tga
+	{
+	   winter ##olive_tree01_winter.tga
+	}
+
+	#&hayfield_floor_edge.tga
+	{
+	   winter ##transparent_winter.tga
+	}
+
+	#&under_winery2.tga
+	{
+	   winter #&under_winery2_winter.tga
+	}
+
+    #&under_hospital.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&under_white_domus.tga
+	{
+	   snowcover #&under_white_domus_winter.tga
+	}
+
+	#&under_officers_house.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&under_praetorium.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+    #&under_roman_ambush_building.tga
+	{
+	   snowcover #&under_roman_ambush_building_winter.tga
+	}
+
+	crop_ground.tga
+	{
+	   winter ##crop_ground_winter.tga
+	}
+
+	tile_winery2.tga
+	{
+	   winter snowfall ##transparent_winter.tga
+	}
+
+	##barb_log_wall2.tga
+	{
+	   snowcover ##barb_log_wall2_winter.tga
+	}
+
+	##roman_log_wall2.tga
+	{
+	   snowcover ##roman_log_wall2_winter.tga
+	}
+
+	##eastern_log_wall2.tga
+	{
+	   snowcover ##eastern_log_wall2_winter.tga
+	}
+
+	##barbarian_roof1.tga
+	{
+	   snowcover ##barbarian_roof1_winter.tga
+	}
+
+	roof_tiles.tga
+	{
+	   snowcover roof_tiles_winter.tga
+	}
+
+	rooftiles_large_darker.tga
+	{
+	   snowcover rooftiles_large_darker_winter.tga
+	}
+
+	roman_tenament_3.tga
+	{
+	   snowcover roman_tenament_3_winter.tga
+
+	}
+
+	roman_tenament_1.tga
+	{
+	   snowcover roman_tenament_1_winter.tga
+
+	}
+
+	greek_tenament_3.tga
+	{
+	   snowcover greek_tenament_3_winter.tga
+
+	}
+
+	greek_tenament_1.tga
+	{
+	   snowcover greek_tenament_1_winter.tga
+
+	}
+
+	eastern_dome.tga
+	{
+	   snowcover eastern_dome_winter.tga
+	}
+
+	bleachedtiles.tga
+	{
+	   snowcover bleachedtiles_winter.tga
+	}
+
+	twigs.tga
+	{
+	   snowcover twigs_winter.tga
+	}
+
+	roman_roof_aquatower.tga
+	{
+	   snowcover roman_roof_aquatower_winter.tga
+	}
+
+	colosseum_awning.tga
+	{
+	   snowcover colosseum_awning_winter.tga
+	}
+
+	roman_roof_tiles.tga
+	{
+	   snowcover roman_roof_tiles_winter.tga
+	}
+
+	tile_rooftiles.tga
+	{
+	   snowcover tile_rooftiles_winter.tga
+	}
+
+	rooftiles_greek.tga
+	{
+	   snowcover rooftiles_greek_winter.tga
+	}
+
+	greek_roof_tiles.tga
+	{
+	   snowcover greek_roof_tiles_winter.tga
+	}
+
+	greek_rooftiles_large.tga
+	{
+	   snowcover greek_rooftiles_large_winter.tga
+	}
+
+	greek_rooftiles_large_ivy.tga
+	{
+	   snowcover greek_rooftiles_large_winter.tga
+	}
+
+	greek_rooftiles_large_scatty.tga
+	{
+	   snowcover greek_rooftiles_large_winter.tga
+	}
+
+	greek_rooftiles_large_02.tga
+	{
+	   snowcover greek_rooftiles_large_02_winter.tga
+	}
+
+	greek_rooftiles_large_02_ivy.tga
+	{
+	   snowcover greek_rooftiles_large_02_winter.tga
+	}
+
+	greek_rooftiles_large_02_scatty.tga
+	{
+	   snowcover greek_rooftiles_large_02_winter.tga
+	}
+
+	roman_white_roof_tiles.tga
+	{
+	   snowcover roman_white_roof_tiles_winter.tga
+	}
+
+	rooftiles_large_greyish.tga
+	{
+	   snowcover rooftiles_large_greyish_winter.tga
+	}
+
+	rooftiles_large_reddish.tga
+	{
+	   snowcover rooftiles_large_reddish_winter.tga
+	}
+
+	rooftiles_large_reddish_ivy.tga
+	{
+	   snowcover rooftiles_large_reddish_winter.tga
+	}
+
+    rooftiles_large_reddish_scatty.tga
+	{
+	   snowcover rooftiles_large_reddish_winter.tga
+	}
+
+	rooftiles_large_goldish_02.tga
+	{
+	   snowcover rooftiles_large_goldish_02_winter.tga
+	}
+
+	rooftiles_large_goldish.tga
+	{
+	   snowcover rooftiles_large_goldish_winter.tga
+	}
+
+	roman_roof_tiled.tga
+	{
+	   snowcover roman_roof_tiled_winter.tga
+	}
+
+	rooftiles_large.tga
+	{
+	   snowcover rooftiles_large_winter.tga
+	}
+
+	rooftiles_large_ivy.tga
+	{
+	   snowcover rooftiles_large_winter.tga
+	}
+
+	rooftiles_large_scatty.tga
+	{
+	   snowcover rooftiles_large_winter.tga
+	}
+
+	rooftiles_large_greyish_02.tga
+	{
+	   snowcover rooftiles_large_greyish_02_winter.tga
+	}
+
+	rooftiles_large_greyish_02_ivy.tga
+	{
+	   snowcover rooftiles_large_greyish_02_winter.tga
+	}
+
+	rooftiles_large_greyish_02_scatty.tga
+	{
+	   snowcover rooftiles_large_greyish_02_winter.tga
+	}
+
+	roman_roof_tiles_bottom.tga
+	{
+	   snowcover roman_roof_tiles_bottom_winter.tga
+	}
+
+	barbarian_roof_shingle2.tga
+	{
+	   snowcover barbarian_roof_shingle2_winter.tga
+	}
+
+	wood_shingles.tga
+	{
+	   snowcover wood_shingles_winter.tga
+	}
+
+	roman_farm_perimeter_wall.tga
+	{
+	   snowcover roman_farm_perimeter_wall_winter.tga
+	}
+
+	yellow_brick_txt_pge.tga
+	{
+	   snowcover yellow_brick_txt_pge_winter.tga
+	}
+
+	barb_house_B.tga
+	{
+	   snowcover barb_house_B_winter.tga
+	}
+
+	barb_house_C.tga
+	{
+	   snowcover barb_house_C_winter.tga
+	}
+
+	grass_stony.tga
+	{
+	   snowcover grass_stony_winter.tga
+	}
+
+    ##grass_strip.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##grass_clump1.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	#&bush_floor.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##hedge_bush.tga
+	{
+	   snowcover ##hedge_bush_winter.tga
+	}
+
+	##conifer_tree.tga
+	{
+	   snowcover ##conifer_tree_winter.tga
+	}
+
+	##bullrushes.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##vvine1.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	vvine2.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##vvine3.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##settlement_foliage_set_01.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##settlement_foliage_set_02.tga
+	{
+	   snowcover ##settlement_foliage_set_winter.tga
+	}
+
+	##settlement_foliage_set_03.tga
+	{
+	   snowcover ##settlement_foliage_set_winter.tga
+	}
+
+	##plnt03.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##plnt11.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##plnt28.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##hedge_side.tga
+	{
+	   snowcover ##hedge_side_winter.tga
+	}
+
+	##tenement_set_01.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	##tenement_set_02.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	#&under_tree_muddy.tga
+	{
+	   snowcover #&under_tree_winter.tga
+	}
+
+	#&under_tree_on_sand.tga
+	{
+	   snowcover #&under_tree_winter.tga
+	}
+
+	under_tree_on_sand.tga
+	{
+	   snowcover #&under_tree_winter.tga
+	}
+
+	under_tree_on_grass.tga
+	{
+	   snowcover under_tree_winter.tga
+	}
+
+	#&tree_shadow.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	#&sandy_edges.tga
+	{
+	   snowcover #&winter_edges.tga
+	}
+
+	#&sand_skidmarks_dusty.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	#&white_chalk_line.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	#&under_colosseum.tga
+	{
+	   snowcover #&under_colosseum_winter.tga
+	}
+
+	under_tree_on_grass2.tga
+	{
+	   snowcover under_tree_on_grass2_winter.tga
+	}
+
+	#&colosseum_arena_sand.tga
+	{
+	   snowcover #&roman_grass_winter.tga
+	}
+
+	colosseum_arena_sand.tga
+	{
+	   snowcover #&roman_grass_winter.tga
+	}
+
+	#&eastern_largetown_smith_overlay.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&eastern_largetown_smith2_overlay.tga
+	{
+	   snowcover #&under_roman_ambush_building_winter.tga
+	}
+
+	#&overlay_eastern_merchant_quarter.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&roman_cavalry_barracks_overlay.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&generic_patch_floor.tga
+	{
+	   snowcover #&generic_patch_floor_winter.tga
+	}
+
+	#&patch_muddy.tga
+	{
+	   snowcover #&patch_winter.tga
+	}
+
+	#&overlay_eastern_camelstables.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&overlay_eastern_trader.tga
+	{
+	   snowcover #&overlay_eastern_trader_winter.tga
+	}
+
+	#&overlay_eastern_large_market.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&overlay_eastern_govvilla.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&overlay_eastern_cavalry.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&overlay_eastern_royal_cav_1.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&overlay_eastern_royal_cav_2.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&overlay_eastern_elitecav1.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&overlay_eastern_citybarracks.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	overlay_eastern_armoury.tga
+	{
+	   snowcover overlay_eastern_armoury_winter.tga
+	}
+
+	#&under_roman_governors_villa.tga
+	{
+	   snowcover #&under_roman_governors_villa_winter.tga
+	}
+
+	#&overlay_eastern_gov_house.tga
+	{
+	   snowcover #&overlay_eastern_gov_house_winter.tga
+	}
+
+	#&overlay_eastern_gov_palace.tga
+	{
+	   snowcover #&overlay_eastern_gov_palace_winter.tga
+	}
+
+	#&under_eastern_pro-consuls_palace.tga
+	{
+	   snowcover #&under_eastern_pro-consuls_palace_winter.tga
+	}
+
+	#&overlay_eastern_grand_bazaar.tga
+	{
+	   snowcover #&overlay_eastern_govvilla_winter.tga
+	}
+
+	#&under_egyptian_rich_house.tga
+	{
+	   snowcover #&east_rich02_grnd_winter.tga
+	}
+
+	#&under_egyptian_rich_house_b.tga
+	{
+	   snowcover #&east_rich02_grnd_winter.tga
+	}
+
+	#&egyptian_shrine_ground.tga
+	{
+	   snowcover #&east_rich02_grnd_winter.tga
+	}
+
+	#&under_domus.tga
+	{
+	   snowcover #&under_domus_winter.tga
+	}
+
+	#&under_roman_trader_moss.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	#&under_drinking_hall.tga
+	{
+	   snowcover #&under_drinking_hall_winter.tga
+	}
+
+	#&under_mead_hall.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	#&hall_of_kings.tga
+	{
+	   snowcover #&hall_of_kings_winter.tga
+	}
+
+	#&under_barbarian_great_market.tga
+	{
+	   snowcover #&overlay_eastern_trader_winter.tga
+	}
+
+	#&under_warlords_stable.tga
+	{
+	   snowcover #&generic_patch_floor_winter.tga
+	}
+
+	#&under_hall_of_heroes.tga
+	{
+	   snowcover #&under_hall_of_heroes_winter.tga
+	}
+
+	#&figure8.tga
+	{
+	   snowcover ##transparent_winter.tga
+	}
+
+	roof_tiles.tga
+	{
+	   snowcover roof_tiles_winter.tga
+	}
+
+	wood_roof_triangles.tga
+	{
+	   snowcover wood_roof_triangles_winter.tga
+	}
+
+	stattex_new.tga
+	{
+	   snowcover stattex_new_winter.tga
+	}
+
+	stattex_destroyed.tga
+	{
+	   snowcover stattex_destroyed_winter.tga
+	}
+
+	##tree_leaves.tga
+	{
+	   snowcover ##tree_leaves_winter.tga
+	}
+
+	##planted_vines_leaves.tga
+	{
+	   winter ##transparent_winter.tga
+	}
+
+	##thatch5.tga
+	{
+		snowcover ##thatch5_winter.tga
+	}
+}
+
+spot_items
+{
+	flag_vertical_small
+	{
+		any			flag_vertical_small
+	}
+
+	flag_vertical_large
+	{
+		any			flag_vertical_small
+	}
+
+	flag_horizontal_large
+	{
+		any			flag_horizontal_large
+	}
+}
+
+stat_cats
+{
+	tiny_wooden
+	{
+		full_health 150
+		battle_stats  flammability_high impact_damage_high
+	}
+	small_wooden
+	{
+		full_health 250
+		battle_stats  flammability_high impact_damage_high
+	}
+	medium_wooden
+	{
+		full_health 1000
+		battle_stats  flammability_high impact_damage_high
+	}
+	large_wooden
+	{
+		full_health 2000
+		battle_stats  flammability_high impact_damage_medium
+	}
+	tiny_stone
+	{
+		full_health 150
+		battle_stats  flammability_low impact_damage_high
+	}
+	small_stone
+	{
+		full_health 250
+		battle_stats  flammability_low impact_damage_high
+	}
+	medium_stone
+	{
+		full_health 1000
+		battle_stats  flammability_low impact_damage_medium
+
+	}
+	large_stone
+	{
+		full_health 5000
+		battle_stats  flammability_low impact_damage_medium
+	}
+	medium_stone_nonflammable
+	{
+		full_health 1000
+		battle_stats  flammability_none impact_damage_medium
+
+	}
+	large_stone_nonflammable
+	{
+		full_health 5000
+		battle_stats  flammability_none impact_damage_medium
+	}
+	indestructable
+	{
+		full_health 5000
+		battle_stats  flammability_none impact_damage_none
+	}
+}
+
+;immense stone buildings, plazas etc. should be indestructable.
+
+transition_scripts
+{
+	transition default
+	{
+		duration 50
+		physical_switch 10
+		start_items
+		{
+			0 enable
+			0 dust_bounds 30 0.5 3 1
+			0 shake 50 1.5 0.25
+			10 fall
+			40 fade 10 1 0
+			50 disable
+		}
+		end_items
+		{
+			0 enable
+			10 fade 10 0 1
+			50 disable
+		}
+	}
+	transition default_large_stone
+	{
+		duration 200
+		physical_switch 10
+		start_items
+		{
+			0 enable
+			0 dust_bounds 90 10 3 1 1.0 1.0 1.0 ;duration, radius, frequency of generation, how many per spawn tick, x,y (height),z scaling factor for dust Bounding box
+			10 fall
+			11 fade  120 1 0   ; # duration 1 opacity=100% 0 opacity=0%
+			200 disable
+		}
+		end_items
+		{
+			10 fade 50 0 1   ; # duration  0 opacity=0% 1 opacity=100%
+			11 enable
+			11 dust_bounds 90 10 3 1 3 3 3
+			200 disable
+		}
+	}
+	transition default_small_wooden
+	{
+		duration 20
+		physical_switch 10
+		start_items
+		{
+			0 enable
+			0 dust_bounds 5 0.5 1 4
+			5 dust_bounds 5 0.5 1 3 1.3 0.5 1.3
+			10 dust_bounds 5 0.5 1 2 1.5 0.3 1.5
+			0 shake 20 6.5 0.05
+			10 fall
+			15 fade 5 1 0
+			20 disable
+		}
+		end_items
+		{
+			0 enable
+			10 fade 10 0 1
+			20 disable
+		}
+	}
+}
+
+include dbb_slot_fillers.txt
+include dbb_walls_wooden.txt
+include dbb_walls_roman.txt
+include dbb_walls_greek.txt
+include dbb_walls_eastern.txt
+include dbb_walls_egyptian.txt
+include dbb_walls_barbarian.txt
+include dbb_wonders.txt
+include dbb_foliage.txt
+include dbb_nicks_roman_buildings.txt
+include dbb_nicks_egyptian_buildings.txt
+include dbb_nicks_greek_buildings.txt
+include dbb_nicks_eastern_buildings.txt
+include dbb_barbarian_buildings.txt
+include dbb_andrews_buildings.txt
+include dbb_bens_buildings.txt
+include dbb_kevins_buildings.txt
+include dbb_pauls_buildings.txt
+include dbb_johns_buildings.txt
+include dbb_joss_buildings.txt
+include dbb_roads.txt
+include dbb_gates.txt
+include dbb_animals.txt
+include dbb_ambient.txt
+include dbb_lorenzo_romehd.txt
+
+	scale_soldier
+	{
+		full_health 10
+		localised_name ambient
+		level
+		{
+			min_health 0
+			battle_stats
+			item		scale_soldier
+			physical_info	none
+		}
+	}
+
+	construction_site_48x32
+	{
+		full_health 10
+		localised_name construction_site
+		level
+		{
+			min_health 0
+			battle_stats
+			item		construction_site_48x32
+			physical_info	info_construction_48x32.cas
+		}
+	}
+
+	construction_site_112x64
+	{
+		full_health 10
+		localised_name construction_site
+		level
+		{
+			min_health 0
+			battle_stats
+			item		construction_site_112x64
+			physical_info	info_construction_112x64.cas
+		}
+	}
+
+	construction_site_160x128
+	{
+		full_health 10
+		localised_name construction_site
+		level
+		{
+			min_health 0
+			battle_stats
+			item		construction_site_160x128
+			physical_info	info_construction_160x128.cas
+		}
+	}

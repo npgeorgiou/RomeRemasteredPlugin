@@ -1,0 +1,194 @@
+;descr_banners.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+banner		roman
+model       data/models/standard_general_julii.cas			; generals banner
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+model		data/models/standard_julii.cas					; standard unit banner
+skeleton	standard_legion_pole
+outline		data/models/standard_battle_glow_units.cas
+model		data/models/standard_general_julii.cas			; mini banner
+skeleton	standard_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+
+banner		barbarian
+model		data/models/standard_general_gaul.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_barb_general.cas
+model		data/models/standard_gaul.cas
+skeleton	standard_legion_pole
+outline		data/models/standard_battle_glow_barb_units.cas
+model		data/models/standard_general_gaul.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_barb_general.cas
+
+banner		carthaginian
+model		data/models/standard_general_carthage.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+model		data/models/standard_carthage.cas
+skeleton	standard_legion_pole
+outline		data/models/standard_battle_glow_units.cas
+model		data/models/standard_general_carthage.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+
+banner		greek
+model		data/models/standard_general_macedonia.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+model		data/models/standard_macedonia.cas
+skeleton	standard_legion_pole
+outline		data/models/standard_battle_glow_units.cas
+model		data/models/standard_general_macedonia.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+
+banner		egyptian
+model		data/models/standard_general_egypt.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+model		data/models/standard_julii.cas
+skeleton	standard_legion_pole
+outline		data/models/standard_battle_glow_units.cas
+model		data/models/standard_general_egypt.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_general.cas
+
+banner		eastern
+model		data/models/standard_general_julii.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_eastern.cas
+model		data/models/standard_julii.cas
+skeleton	standard_legion_pole
+outline		data/models/standard_battle_glow_eastern_units.cas
+model		data/models/standard_general_julii.cas
+skeleton	general_legion_pole
+outline		data/models/standard_battle_glow_eastern.cas
+
+
+faction				romans_julii
+standard_texture	models/textures/standard_julii.tga
+rebels_texture		models/textures/standard_slave.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_julii_ally.tga
+
+faction				romans_brutii
+standard_texture	models/textures/standard_brutii.tga
+rebels_texture		models/textures/standard_slave.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_brutii_ally.tga
+
+faction				romans_scipii
+standard_texture	models/textures/standard_scipii.tga
+rebels_texture		models/textures/standard_slave.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_scipii_ally.tga
+
+faction				romans_senate
+standard_texture	models/textures/standard_senate.tga
+rebels_texture		models/textures/standard_slave.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_senate_ally.tga
+
+faction				macedon
+standard_texture	models/textures/standard_macedonia.tga
+rebels_texture		models/textures/standard_greek_rebels.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_macedonia_ally.tga
+
+faction				egypt
+standard_texture	models/textures/standard_egypt.tga
+rebels_texture		models/textures/standard_egyptian_rebels.tga
+routing_texture		models/textures/standard_routing_eastern.tga
+ally_texture		models/textures/standard_egypt_ally.tga
+
+faction				seleucid
+standard_texture	models/textures/standard_seleucid.tga
+rebels_texture		models/textures/standard_greek_rebels.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_seleucid_ally.tga
+
+faction				carthage
+standard_texture	models/textures/standard_carthage.tga
+rebels_texture		models/textures/standard_carthage_rebels.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_carthage_ally.tga
+
+faction				parthia
+standard_texture	models/textures/standard_parthia.tga
+rebels_texture		models/textures/standard_eastern_rebels.tga
+routing_texture		models/textures/standard_routing_eastern.tga
+ally_texture		models/textures/standard_parthia_ally.tga
+
+faction				pontus
+standard_texture	models/textures/standard_pontus.tga
+rebels_texture		models/textures/standard_eastern_rebels.tga
+routing_texture		models/textures/standard_routing_eastern.tga
+ally_texture		models/textures/standard_pontus_ally.tga
+
+faction				gauls
+standard_texture	models/textures/standard_gaul.tga
+rebels_texture		models/textures/standard_barb_rebels.tga
+routing_texture		models/textures/standard_routing_barbarian.tga
+ally_texture		models/textures/standard_gaul_ally.tga
+
+faction				germans
+standard_texture	models/textures/standard_german.tga
+rebels_texture		models/textures/standard_barb_rebels.tga
+routing_texture		models/textures/standard_routing_barbarian.tga
+ally_texture		models/textures/standard_german_ally.tga
+
+faction				britons
+standard_texture	models/textures/standard_briton.tga
+rebels_texture		models/textures/standard_barb_rebels.tga
+routing_texture		models/textures/standard_routing_barbarian.tga
+ally_texture		models/textures/standard_briton_ally.tga
+
+faction				armenia
+standard_texture	models/textures/standard_armenia.tga
+rebels_texture		models/textures/standard_eastern_rebels.tga
+routing_texture		models/textures/standard_routing_eastern.tga
+ally_texture		models/textures/standard_armenia_ally.tga
+
+faction				dacia
+standard_texture	models/textures/standard_dacia.tga
+rebels_texture		models/textures/standard_barb_rebels.tga
+routing_texture		models/textures/standard_routing_barbarian.tga
+ally_texture		models/textures/standard_dacia_ally.tga
+
+faction				greek_cities
+standard_texture	models/textures/standard_greek_cities.tga
+rebels_texture		models/textures/standard_greek_rebels.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_greek_cities_ally.tga
+
+faction				numidia
+standard_texture	models/textures/standard_numidia.tga
+rebels_texture		models/textures/standard_egyptian_rebels.tga
+routing_texture		models/textures/standard_routing_eastern.tga
+ally_texture		models/textures/standard_numidia_ally.tga
+
+faction				scythia
+standard_texture	models/textures/standard_scythia.tga
+rebels_texture		models/textures/standard_barb_rebels.tga
+routing_texture		models/textures/standard_routing_barbarian.tga
+ally_texture		models/textures/standard_scythia_ally.tga
+
+faction				spain
+standard_texture	models/textures/standard_spain.tga
+rebels_texture		models/textures/standard_barb_rebels.tga
+routing_texture		models/textures/standard_routing_barbarian.tga
+ally_texture		models/textures/standard_spain_ally.tga
+
+faction				thrace
+standard_texture	models/textures/standard_thrace.tga
+rebels_texture		models/textures/standard_greek_rebels.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_thrace_ally.tga
+
+faction				slave
+standard_texture	models/textures/standard_slave.tga
+rebels_texture		models/textures/standard_slave.tga
+routing_texture		models/textures/standard_routing.tga
+ally_texture		models/textures/standard_slave_ally.tga
+

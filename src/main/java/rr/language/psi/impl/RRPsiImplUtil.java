@@ -7,7 +7,21 @@ import rr.language.Util;
 import rr.language.psi.*;
 import rr.language.psi.references.*;
 
+import java.io.File;
+
 public class RRPsiImplUtil {
+    //<editor-fold desc="File refs">
+    public static PsiElement setName(RRTxtFile_ fileName, String newName) {
+        // TODO: Maybe implement if I find a way to properly link File to references too.
+        return fileName;
+    }
+
+    public static FileReference getReference(RRTxtFile_ ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.TXT_FILE).getPsi().getTextRangeInParent();
+        return new FileReference(ref, range);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Faction decl and refs">
     public static PsiElement setName(RRFactionNameDecl decl, String newName) {
         PsiElement id = RRElementFactory.createString(decl.getProject(), newName);

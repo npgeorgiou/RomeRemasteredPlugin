@@ -21,7 +21,11 @@
       DESCR_SM_FACTIONS_MARKER='regexp:;descr_sm_factions.txt.*'
       DESCR_SM_RESOURCES_MARKER='regexp:;descr_sm_resources.txt.*'
       FERAL_DESCR_PORTRAITS_VARIATION_MARKER='regexp:;feral_descr_portraits_variation.txt.*'
+      DESCR_BANNERS_MARKER='regexp:;descr_banners.txt.*'
+      DESCR_BUILDING_BATTLE_MARKER='regexp:;descr_building_battle.txt.*'
+      DESCR_CHARACTER_MARKER='regexp:;descr_character.txt.*'
       COMMENT='regexp:[;¬].*'
+//      EOL='regexp:[\r\n][\s]*'
       space='regexp:\s+'
       INT = 'regexp:[\+\-]?[0-9]+'
       FLOAT = 'regexp:[\+\-]?[0-9]+\.[0-9]+'
@@ -47,7 +51,8 @@
 
       // files
       TXT_FILE='regexp:[^\s+]*\.txt'
-      TGA_FILE='regexp:[^ ]*\.tga'
+      TGA_FILE='regexp:[^\s+]*\.tga'
+      CAS_FILE='regexp:[^\s+]*\.cas'
 
       // keywords
       // desr_strat
@@ -383,6 +388,47 @@
 
       // descr_faction_groups
       GROUP="group"
+
+      // descr_banners
+      BANNER="banner"
+      MODEL="model"
+      SKELETON="skeleton"
+      OUTLINE="outline"
+      STANDARD_TEXTURE="standard_texture"
+      REBELS_TEXTURE="rebels_texture"
+      ROUTING_TEXTURE="routing_texture"
+      ALLY_TEXTURE="ally_texture"
+
+      // descr_character
+      STARTING_ACTION_POINTS="starting_action_points"
+      ACTIONS="actions"
+      WAGE_BASE="wage_base"
+      STRAT_CARD="strat_card"
+      STRAT_MODEL="strat_model"
+      BATTLE_MODEL="battle_model"
+      BATTLE_EQUIP="battle_equip"
+
+      // descr_building_battle
+      TEXTURE_VARIANTS="texture_variants"
+      SNOWFALL="snowfall"
+      SNOWCOVER="snowcover"
+      SPOT_ITEMS="spot_items"
+      ANY="any"
+      STAT_CATS="stat_cats"
+      FULL_HEALTH="full_health"
+      BATTLE_STATS="battle_stats"
+      TRANSITION_SCRIPTS="transition_scripts"
+      TRANSITION="transition"
+      DURATION="duration"
+      PHYSICAL_SWITCH="physical_switch"
+      START_ITEMS="start_items"
+      END_ITEMS="end_items"
+      INCLUDE="include"
+      LOCALISED_NAME="localised_name"
+      MIN_HEALTH="min_health"
+      ITEM="item"
+      PHYSICAL_INFO="physical_info"
+
 
       // events
       PREBATTLE = "PreBattle"
@@ -1142,6 +1188,9 @@ RRFile ::= descr_strat|
           descr_sm_factions|
           descr_sm_resources|
           feral_descr_portraits_variation|
+          descr_banners|
+          descr_character|
+          descr_building_battle|
           kv_format|
 
 // ############### descr_strat start #################################
@@ -1152,7 +1201,7 @@ descr_strat ::= campaign_section
                 events_section?
                 factions_section
                 diplomacy_section
-                SCRIPT TXT_FILE (COMMA ONCE_ONLY)?
+                SCRIPT txt_file_ (COMMA ONCE_ONLY)?
 
 season ::= (SUMMER|WINTER)
 
@@ -1692,6 +1741,101 @@ culture_portrait_variation ::= culture_ref OCB
 private portrait_variation ::= INT COMMA INT COMMA INT COMMA ID
 // ############### feral_descr_portraits_variation end #################################
 
+// ############### descr_banners start #################################
+descr_banners ::= DESCR_BANNERS_MARKER
+                  culture_banner+
+                  faction_banner+
+culture_banner ::= BANNER culture_ref
+                   MODEL CAS_FILE
+                   SKELETON ID
+                   OUTLINE CAS_FILE
+                   MODEL CAS_FILE
+                   SKELETON ID
+                   OUTLINE CAS_FILE
+                   MODEL CAS_FILE
+                   SKELETON ID
+                   OUTLINE CAS_FILE {pin=1 recoverWhile=culture_banner_recover}
+private culture_banner_recover ::= !(BANNER|FACTION)
+faction_banner ::= FACTION faction_ref
+                   STANDARD_TEXTURE TGA_FILE
+                   REBELS_TEXTURE TGA_FILE
+                   ROUTING_TEXTURE TGA_FILE
+                   ALLY_TEXTURE TGA_FILE {pin=1 recoverWhile=faction_banner_recover}
+private faction_banner_recover ::= !FACTION
+// ############### descr_banners end #################################
+
+// ############### descr_character start #################################
+descr_character ::= DESCR_CHARACTER_MARKER
+                    STARTING_ACTION_POINTS INT
+                    character_type_def+
+
+character_type_def ::= TYPE character_type // TODO: Except of family. What is family? Its used elsewhere.
+                   ACTIONS <<list character_action>>
+                   WAGE_BASE INT
+                   character_type_faction_def+
+
+character_type_faction_def ::= FACTION faction_ref
+                               DICTIONARY INT                  // TODO: where is that dictionary?
+                               (STRAT_CARD TGA_FILE)?
+                               STRAT_MODEL ID                  // TODO: descr_model_strat.txt
+                               (BATTLE_MODEL ID)?              // TODO: where is that?
+                               (BATTLE_EQUIP (COMMA|ID|AND)*)? // TODO: gladius, chainmail shirt helmet and rectangular shield, wth is that
+                               {pin=1 recoverWhile=character_type_faction_def_recover}
+private character_type_faction_def_recover ::= !(FACTION|TYPE)
+
+character_action ::= ('moving_normal'|'moving_quickmarch'|'garrison'|'assault'|'attack'|'besiege'|'entrench'|'ambush'|'diplomacy'|'bribe'|'exchange'|'building_fort'|'building_watchtower'|'spying'|'assassinate'|'sabotage'|'quick_sail'|'blockade'|'disembark'|'exchange')
+// ############### descr_character end #################################
+
+// ############### descr_building_battle start #################################
+descr_building_battle ::= DESCR_BUILDING_BATTLE_MARKER
+                          texture_variants_
+                          spot_items_
+                          stat_categories
+                          transition_scripts_
+                          (INCLUDE txt_file_)+
+                          construction_site+
+
+texture_variants_ ::= TEXTURE_VARIANTS OCB texture_variant+ CCB
+texture_variant ::= TGA_FILE OCB
+                        (variant_condition TGA_FILE)+
+                    CCB
+spot_items_ ::= SPOT_ITEMS OCB spot_item+ CCB
+spot_item ::= ID OCB
+                (variant_condition ID)+
+              CCB
+
+variant_condition ::= ANY|(faction_or_culture_ref|WINTER|SNOWCOVER|SNOWFALL)+
+
+stat_categories ::= STAT_CATS OCB stat_category+ CCB
+stat_category ::= ID OCB
+                    FULL_HEALTH INT
+                    BATTLE_STATS ('flammability_none'|'flammability_high'|'flammability_low'|'impact_damage_none'|'impact_damage_high'|'impact_damage_medium')*
+                  CCB
+transition_scripts_ ::= TRANSITION_SCRIPTS OCB transition_script+ CCB
+transition_script ::= TRANSITION ID OCB
+                        DURATION INT
+                        PHYSICAL_SWITCH INT
+                        START_ITEMS OCB
+                          // Defined like that, as otherwise I ll have to use EOLs to get the separate entries
+                          (number|ID)+
+                        CCB
+                        END_ITEMS OCB
+                          (number|ID)+
+                        CCB
+                      CCB
+
+construction_site ::= ID OCB
+                        FULL_HEALTH INT
+                        LOCALISED_NAME ID
+                        LEVEL OCB
+                          MIN_HEALTH INT
+                          BATTLE_STATS
+                          ITEM ID
+                          PHYSICAL_INFO (NONE|CAS_FILE)
+                        CCB
+                      CCB
+// ############### descr_building_battle end #################################
+
 // ############### General things #################################
 // #### events & conditions
 event ::= (PREBATTLE|PREBATTLEWITHDRAWAL|BATTLEAICOMMENCED|BATTLEDELAYPHASECOMMENCED|BATTLEDEPLOYMENTPHASECOMMENCED|BATTLECONFLICTPHASECOMMENCED|BATTLEPLAYERUNITATTACKSENEMYUNIT|BATTLEENEMYUNITATTACKSPLAYERUNIT|BATTLEPLAYERATTACKSSETTLEMENTBUILDING|BATTLEENEMYATTACKSSETTLEMENTBUILDING|BATTLEUNITGOESBERSERK|BATTLEPLAYERUNITGOESBERSERK|BATTLEENEMYUNITGOESBERSERK|BATTLEUNITROUTS|BATTLEPLAYERUNITROUTS|BATTLEENEMYUNITROUTS|BATTLEPLAYERSIEGEENGINEDESTROYED|BATTLEENEMYSIEGEENGINEDESTROYED|POSTBATTLE|BATTLEARMYROUTED|BATTLEGENERALKILLED|BATTLEGENERALROUTED|BATTLEREINFORCEMENTSARRIVE|BATTLESIEGEENGINEDESTROYED|BATTLESIEGEENGINEDOCKSWALL|BATTLEGATESATTACKEDBYENGINE|BATTLEGATESATTACKEDBYPLAYERENGINE|BATTLEGATESATTACKEDBYENEMYENGINE|BATTLEBATTLEGATESDESTROYEDBYENGINE|BATTLEWALLSBREACHEDBYENGINE|BATTLEWALLSCAPTURED|BATTLEFINISHED|ENTEREDCITYVIEW|BATTLEMINIMAPACTION|BATTLEPLAYERUNITSELECTED|ENTERTACTICALMODE|BATTLEREINFORCEMENTSHACK|FACTIONTURNSTART|FACTIONWARDECLARED|HORDEFORMED|FACTIONTURNEND|HIREMERCENARIES|GENERALCAPTURERESIDENCE|GENERALCAPTUREWONDER|GENERALCAPTURESETTLEMENT|LEADERDESTROYEDFACTION|DISASTER|CHARACTERDAMAGEDBYDISASTER|GENERALASSAULTSRESIDENCE|OFFEREDFORADOPTION|LESSERGENERALOFFEREDFORADOPTION|OFFEREDFORMARRIAGE|BROTHERADOPTED|BECOMESFACTIONLEADER|BECOMESFACTIONHEIR|TAKEOFFICE|CEASEDFACTIONLEADER|CEASEDFACTIONHEIR|LEAVEOFFICE|UNGARRISONEDFORT|LOSTLEGIONARYEAGLE|CAPTUREDLEGIONARYEAGLE|RECAPTUREDLEGIONARYEAGLE|SENATEEXPOSURE|QUAESTORINVESTIGATIONMINOR|QUAESTORINVESTIGATION|QUAESTORINVESTIGATIONMAJOR|POPULARSUPPORTFOROVERTHROW|SENATEREADYTOOUTLAWFACTION|SENATEOUTLAWSFACTION|NEWTURNSTART|SCRIPTPROMPTCALLBACK|FACTIONDESTROYED|BIRTH|CHARACTERCOMESOFAGE|CHARACTERMARRIES|CHARACTERBECOMESAFATHER|CHARACTERTURNSTART|CHARACTERTURNEND|CHARACTERTURNENDINSETTLEMENT|GENERALDEVASTATESTILE|SPYMISSION|EXECUTESASPYONAMISSION|LEADERORDEREDSPYINGMISSION|ASSASSINATIONMISSION|EXECUTESANASSASSINONAMISSION|LEADERORDEREDASSASSINATION|SUFFERASSASSINATIONATTEMPT|SABOTAGEMISSION|LEADERORDEREDSABOTAGE|BRIBERYMISSION|LEADERORDEREDBRIBERY|ACCEPTBRIBE|REFUSEBRIBE|INSURRECTION|DIPLOMACYMISSION|LEADERORDEREDDIPLOMACY|LEADERSENATEMISSIONSUCCESS|LEADERSENATEMISSIONFAILED|CONSTRUCTIONITEMCLICKED|RECRUITMENTITEMCLICKED|RECRUITMENTPOPULATED|CONSTRUCTIONPOPULATED|AGENTLISTPOPULATED|MOVERETINUEPOPULATED|MOVERETINUEPRESSED|MOVERETINUEANCILLARYSELECTED|MOVERETINUEANCILLARYDESELECTED|MISSIONSELECTED|AGENTSELECTED|SCROLLDIDOPEN|UNITHASROUTED|BATTLEUNITACTIONSTATUS|DIPLOMACYSCROLLPOPULATED|ITEMDESELECTED|UNITINFOOPENED|ADVISORAUDIOSTOPPED|SETTLEMENTTURNSTART|SETTLEMENTTURNEND|NEWADMIRALCREATED|UNITTRAINED|GOVERNORUNITTRAINED|BUILDINGCOMPLETED|GOVERNORBUILDINGCOMPLETED|PLUGINCOMPLETED|GOVERNORPLUGINCOMPLETED|AGENTCREATED|GOVERNORAGENTCREATED|BUILDINGDESTROYED|GOVERNORBUILDINGDESTROYED|CITYRIOTS|GOVERNORCITYRIOTS|CITYREBELS|GOVERNORCITYREBELS|GOVERNORTHROWGAMES|GOVERNORTHROWRACES|UNGARRISONEDSETTLEMENT|ENSLAVEPOPULATION|EXTERMINATEPOPULATION|CITYSACKED|CHARACTERSELECTED|SETTLEMENTSELECTED|ENEMYSETTLEMENTSELECTED|MULTITURNMOVE|CHARACTERPANELOPEN|SETTLEMENTPANELOPEN|FINANCESPANELOPEN|FACTIONSUMMARYPANELOPEN|FAMILYTREEPANELOPEN|DIPLOMATICSTANDINGPANELOPEN|SENATEMISSIONSPANELOPEN|SENATEOFFICESPANELOPEN|DIPLOMACYPANELOPEN|PREBATTLEPANELOPEN|RECRUITMENTPANELOPEN|CONSTRUCTIONPANELOPEN|TRADEPANELOPEN|HIREMERCENARIESPANELOPEN|NAVALAUTORESOLVEPANELOPEN|INCOMINGMESSAGE|MESSAGEOPEN|REQUESTBUILDINGADVICE|REQUESTTRAININGADVICE|REQUESTMERCENARIESADVICE|BUTTONPRESSED|SHORTCUTTRIGGERED|SCROLLOPENED|SCROLLCLOSED|ADVICESUPRESSED|SCROLLADVICEREQUESTED|PREBATTLESCROLLADVICEREQUESTED|NAVALPREBATTLESCROLLADVICEREQUESTED|SETTLEMENTSCROLLADVICEREQUESTED|IDLE|ABANDONSHOWME|SCRIPTEDADVICE|DECLINEAUTOMATEDSETTLEMENTMANAGEMENT|ESCPRESSED|GAMERELOADED|FIRSTSTRATUPDATES|MOVIESTOPPED|SELECTIONASSISTPOSSIBLE|SETTLEMENTBUTTONPRESSED|WORLDSCRIPTTERMINATE|CAMPAIGNHUDSHOWN|CONTEXTPOPUPINTERACTION|DIPLOMACYCONSTRUCTINGOFFER|DIPLOMACYCONSTRUCTINGCOUNTEROFFER|DIPLOMACYOPPONENTPRESENTSOFFER|DIPLOMACYOPPONENTPRESENTSCOUNTEROFFER|FACTIONSUMMARY|FACTIONSENATE|FACTIONSENATEPOLICY|FACTIONSENATEMISSIONS|FACTIONSENATEOFFICIALS|FACTIONSENATEFLOOR|FACTIONFACTIONS|FACTIONDETAILS|FACTIONFAMILYTREE|FACTIONRANKINGS|FACTIONLISTS|SETTLEMENTCHARACTER|SETTLEMENTTRADE|SETTLEMENTOVERVIEW|SPYSELECTED|DIPLOMATSELECTED|ASSASSINSELECTED|FLEETSELECTED|CAMPAIGNMAPGESTURE|CAMPAIGNDOINGBADLY|BATTLEMAPGESTURE|HIDEBATTLEUI|FERALNEWSVISIBLE|AGENTHUBOPENED|MOVERETINUEOPENED|OWNFACTIONDETAILSOPENED|DIPLOMATICSTANDINGSHOWN|FACTIONFINANCESSHOWN|FAMILYTREESHOWN|SENDAGENTPANEL|SETTLEMENTDETAILSSHOWN|CHARACTERINFOSCREEN|FRIENDLYCHARACTERSELECTED|ENEMYCHARACTERSELECTED|FRIENDLYSETTLEMENTSELECTED|MAPOVERLAYOPENED|SIEGEDETAILSSHOWN|PREBATTLESCREEN|TACTICALMAPSHOWN|POSTBATTLESCREEN|UNITSGROUPED|ENTEREDBATTLE|ADVISOROPENED|FORMATIONTYPESSHOWN|MERCHANTSELECTED|NAVALCOMBATSTARTED|MERGEARMIESOPENED|ROUTESBLOCKADED|ELECTIONRESULTS|BATTLETOGGLEMENU|AMBUSHMODE|NEWSTABCLOSED|NEWSTABOPENED|BATTLENEWSTABOPENED|QUICKLISTSOPENED|EMBARGOISAVAILABLE|REBELCHARACTERSELECTED|HIGHTAXESCAUSEDISORDER|FAILEDTOENDTURN|
@@ -2003,7 +2147,7 @@ condition_ ::= (
                 I_LOCALFACTION ID|
                 TARGETFACTIONISLOCAL|
                 I_TURNNUMBER comparison_op INT|
-                I_MAPNAME TXT_FILE|
+                I_MAPNAME txt_file_|
                 I_THREADCOUNT ID comparison_op INT|
                 I_ISTRIGGERTRUE ID|
                 INCOMINGMESSAGETYPE ID|
@@ -2060,6 +2204,9 @@ KVF_array ::=  OSB (KVF_item|KVF_value COMMA)* CSB
 
 // #### Primitives ####
 private number ::= INT|FLOAT
+
+// #### Files ####
+txt_file_ ::= TXT_FILE {methods=[setName getReference]}
 
 // #### operators ####
 private comparison_op ::= EQUALS|LARGER|LARGER_OR_EQUAL|SMALLER|SMALLER_OR_EQUAL|

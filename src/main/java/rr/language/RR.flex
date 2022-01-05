@@ -28,6 +28,9 @@ DESCR_SM_RESOURCES_MARKER = ";descr_sm_resources.txt"[^\r\n]*
 FERAL_DESCR_AI_PERSONALITY_MARKER = ";feral_descr_ai_personality.txt"[^\r\n]*
 DESCR_FACTION_GROUPS_MARKER = ";descr_faction_groups.txt"[^\r\n]*
 FERAL_DESCR_PORTRAITS_VARIATION_MARKER = ";feral_descr_portraits_variation.txt"[^\r\n]*
+DESCR_BANNERS_MARKER = ";descr_banners.txt"[^\r\n]*
+DESCR_CHARACTER_MARKER = ";descr_character.txt"[^\r\n]*
+DESCR_BUILDING_BATTLE_MARKER = ";descr_building_battle.txt"[^\r\n]*
 
 COMMENT = [";""¬"][^\r\n]*
 INT = [\+\-]?[0-9]+
@@ -35,8 +38,9 @@ FLOAT = [\+\-]?[0-9]+\.[0-9]+
 STR_CHAR = [^\"\r\n\\]
 STRING = \" {STR_CHAR}* \"
 
-TXT_FILE=[^ \r\n]*\.txt
-TGA_FILE=[^ \r\n]*\.tga
+TXT_FILE=[^ \t\r\n]*\.txt
+TGA_FILE=[^ \t\r\n]*\.tga
+CAS_FILE=[^ \t\r\n]*\.cas
 
 SPEAR_BONUS_X = "spear_bonus_" {INT}
 // †ÎöÈ.íëé are in descr_names. Maybe just typos.
@@ -60,12 +64,17 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %xstate EXPORT_BUILDINGS
 %xstate EXPORT_BUILDINGS_NO_KEYWORDS
 
+%state DESCR_CHARACTER
+%xstate DESCR_CHARACTER_NO_KEYWORDS
+
 %state EXPORT_DESCR_TRAITS
 %state DESCR_NAMES
 %state DESCR_UNIT_VARIATION
 %xstate FERAL_DESCR_AI_PERSONALITY
 %state DESCR_FACTION_GROUPS
 %state FERAL_DESCR_PORTRAITS_VARIATION
+%state DESCR_BANNERS
+%state DESCR_BUILDING_BATTLE
 
 %state CONDITIONS
 
@@ -79,6 +88,9 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 {DESCR_FACTION_GROUPS_MARKER}            {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
 {DESCR_SM_RESOURCES_MARKER}              {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
 {FERAL_DESCR_PORTRAITS_VARIATION_MARKER} {yybegin(FERAL_DESCR_PORTRAITS_VARIATION); return RRTypes.FERAL_DESCR_PORTRAITS_VARIATION_MARKER;}
+{DESCR_BANNERS_MARKER}                   {yybegin(DESCR_BANNERS); return RRTypes.DESCR_BANNERS_MARKER;}
+{DESCR_CHARACTER_MARKER}                 {yybegin(DESCR_CHARACTER); return RRTypes.DESCR_CHARACTER_MARKER;}
+{DESCR_BUILDING_BATTLE_MARKER}           {yybegin(DESCR_BUILDING_BATTLE); return RRTypes.DESCR_BUILDING_BATTLE_MARKER;}
 
 
 {WS}             {return TokenType.WHITE_SPACE;}
@@ -99,6 +111,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 {TGA_FILE}       {return RRTypes.TGA_FILE;}
 {TXT_FILE}       {return RRTypes.TXT_FILE;}
+{CAS_FILE}       {return RRTypes.CAS_FILE;}
 
 // character_type
 "all"                                             {return RRTypes.ALL;}
@@ -868,6 +881,70 @@ true|false       {return RRTypes.BOOLEAN;}
     "rogue"      {return RRTypes.ROGUE;}
     "young"      {return RRTypes.YOUNG;}
     {ID}         {return RRTypes.ID;}
+}
+
+<DESCR_BANNERS>
+{
+    "banner"            {return RRTypes.BANNER;}
+    "model"             {return RRTypes.MODEL;}
+    "skeleton"          {return RRTypes.SKELETON;}
+    "outline"           {return RRTypes.OUTLINE;}
+    "faction"           {return RRTypes.FACTION;}
+    "standard_texture"  {return RRTypes.STANDARD_TEXTURE;}
+    "rebels_texture"    {return RRTypes.REBELS_TEXTURE;}
+    "routing_texture"   {return RRTypes.ROUTING_TEXTURE;}
+    "ally_texture"      {return RRTypes.ALLY_TEXTURE;}
+    {ID}                {return RRTypes.ID;}
+}
+
+<DESCR_BUILDING_BATTLE>
+{
+    "texture_variants"    {return RRTypes.TEXTURE_VARIANTS;}
+    "winter"              {return RRTypes.WINTER;}
+    "snowcover"           {return RRTypes.SNOWCOVER;}
+    "snowfall"            {return RRTypes.SNOWFALL;}
+    "spot_items"          {return RRTypes.SPOT_ITEMS;}
+    "any"                 {return RRTypes.ANY;}
+    "stat_cats"           {return RRTypes.STAT_CATS;}
+    "full_health"         {return RRTypes.FULL_HEALTH;}
+    "battle_stats"        {return RRTypes.BATTLE_STATS;}
+    "transition_scripts"  {return RRTypes.TRANSITION_SCRIPTS;}
+    "transition"          {return RRTypes.TRANSITION;}
+    "duration"            {return RRTypes.DURATION;}
+    "physical_switch"     {return RRTypes.PHYSICAL_SWITCH;}
+    "start_items"         {return RRTypes.START_ITEMS;}
+    "end_items"           {return RRTypes.END_ITEMS;}
+    "include"             {return RRTypes.INCLUDE;}
+    "localised_name"      {return RRTypes.LOCALISED_NAME;}
+    "level"               {return RRTypes.LEVEL;}
+    "min_health"          {return RRTypes.MIN_HEALTH;}
+    "item"                {return RRTypes.ITEM;}
+    "physical_info"       {return RRTypes.PHYSICAL_INFO;}
+    "none"                {return RRTypes.NONE;}
+    {ID}                  {return RRTypes.ID;}
+}
+
+<DESCR_CHARACTER>
+{
+    "type"                    {return RRTypes.TYPE;}
+    "faction"                 {return RRTypes.FACTION;}
+    "dictionary"              {return RRTypes.DICTIONARY;}
+    "starting_action_points"  {return RRTypes.STARTING_ACTION_POINTS;}
+    "actions"                 {return RRTypes.ACTIONS;}
+    "wage_base"               {return RRTypes.WAGE_BASE;}
+    "strat_card"              {return RRTypes.STRAT_CARD;}
+    "strat_model"             {yybegin(DESCR_CHARACTER_NO_KEYWORDS); return RRTypes.STRAT_MODEL;}
+    "battle_model"            {return RRTypes.BATTLE_MODEL;}
+    "battle_equip"            {return RRTypes.BATTLE_EQUIP;}
+    {ID}                      {return RRTypes.ID;}
+}
+<DESCR_CHARACTER_NO_KEYWORDS>{
+    {WS}            {return TokenType.WHITE_SPACE;}
+    {COMMENT}       {return RRTypes.COMMENT;}
+    "type"          {yybegin(DESCR_CHARACTER); return RRTypes.TYPE;}
+    "battle_model"  {yybegin(DESCR_CHARACTER); return RRTypes.BATTLE_MODEL;}
+    "faction"       {yybegin(DESCR_CHARACTER); return RRTypes.FACTION;}
+    {ID}            {return RRTypes.ID;}
 }
 
 <EXPORT_BUILDINGS>

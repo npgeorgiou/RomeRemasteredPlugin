@@ -28,7 +28,7 @@
         <lang.findUsagesProvider language="RomeRemastered" implementationClass="rr.language.RRFindUsagesProvider"/>
         <lang.refactoringSupport language="RomeRemastered"
                                  implementationClass="rr.language.RRRefactoringSupportProvider"/>
-
+        <codeInsight.lineMarkerProvider language="RomeRemastered" implementationClass="rr.language.RRLineMarkerProvider"/>
         <referencesSearch implementation="rr.language.RRReferencesSearch"/>
 
         <!-- Inspections -->
