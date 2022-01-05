@@ -29,7 +29,10 @@ public class RRCompletionContributor extends CompletionContributor {
         // TODO: This is stupid.
         // the reason I do this is that file autocompletion will not work, unless a dummy id that matches the *.txt
         // lexing rule is inserted, so that the parser will wrap it in a txt_fie_ element, on which getVariants can be called.
-        // instead, add . as a valid part of ids, and let txt files be lexed as ids.
+        // Default dummyIdentifier has a whitespace at the end ("IntellijIdeaRulezzz ") and that makes it not parsed as a txt file
+        // "foo" on the other hand, nicely merges with the existing text, for example resulting in "foosomefile.txt"
+        // This does not work in places that dont already have a file though, as "foo" by itself is not a valid TXT_FILE.
+        // Solution: Add . as a valid part of ids, and let txt files be lexed as ids.
         context.setDummyIdentifier("foo");
         super.beforeCompletion(context);
     }

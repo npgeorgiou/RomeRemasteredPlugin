@@ -21,17 +21,6 @@ LINE_WS = [ \t]
 EOL_WS = {EOL}+{LINE_WS}+
 WS      = ({EOL}|{LINE_WS})+
 
-EXPORT_BUILDINGS_MARKER = ";export_buildings.txt"[^\r\n]*
-DESCR_CULTURES_MARKER = ";descr_cultures.txt"[^\r\n]*
-DESCR_SM_FACTIONS_MARKER = ";descr_sm_factions.txt"[^\r\n]*
-DESCR_SM_RESOURCES_MARKER = ";descr_sm_resources.txt"[^\r\n]*
-FERAL_DESCR_AI_PERSONALITY_MARKER = ";feral_descr_ai_personality.txt"[^\r\n]*
-DESCR_FACTION_GROUPS_MARKER = ";descr_faction_groups.txt"[^\r\n]*
-FERAL_DESCR_PORTRAITS_VARIATION_MARKER = ";feral_descr_portraits_variation.txt"[^\r\n]*
-DESCR_BANNERS_MARKER = ";descr_banners.txt"[^\r\n]*
-DESCR_CHARACTER_MARKER = ";descr_character.txt"[^\r\n]*
-DESCR_BUILDING_BATTLE_MARKER = ";descr_building_battle.txt"[^\r\n]*
-
 COMMENT = [";""¬"][^\r\n]*
 INT = [\+\-]?[0-9]+
 FLOAT = [\+\-]?[0-9]+\.[0-9]+
@@ -75,22 +64,24 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state FERAL_DESCR_PORTRAITS_VARIATION
 %state DESCR_BANNERS
 %state DESCR_BUILDING_BATTLE
+%state DESCR_LBC_DB
 
 %state CONDITIONS
 
 %%
 <DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
 
-{EXPORT_BUILDINGS_MARKER}                {yybegin(EXPORT_BUILDINGS); return RRTypes.EXPORT_BUILDINGS_MARKER;}
-{DESCR_CULTURES_MARKER}                  {return RRTypes.DESCR_CULTURES_MARKER;}
-{DESCR_SM_FACTIONS_MARKER}               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
-{FERAL_DESCR_AI_PERSONALITY_MARKER}      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
-{DESCR_FACTION_GROUPS_MARKER}            {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
-{DESCR_SM_RESOURCES_MARKER}              {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
-{FERAL_DESCR_PORTRAITS_VARIATION_MARKER} {yybegin(FERAL_DESCR_PORTRAITS_VARIATION); return RRTypes.FERAL_DESCR_PORTRAITS_VARIATION_MARKER;}
-{DESCR_BANNERS_MARKER}                   {yybegin(DESCR_BANNERS); return RRTypes.DESCR_BANNERS_MARKER;}
-{DESCR_CHARACTER_MARKER}                 {yybegin(DESCR_CHARACTER); return RRTypes.DESCR_CHARACTER_MARKER;}
-{DESCR_BUILDING_BATTLE_MARKER}           {yybegin(DESCR_BUILDING_BATTLE); return RRTypes.DESCR_BUILDING_BATTLE_MARKER;}
+";export_buildings.txt"[^\r\n]*                {yybegin(EXPORT_BUILDINGS); return RRTypes.EXPORT_BUILDINGS_MARKER;}
+";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
+";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
+";feral_descr_ai_personality.txt"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
+";descr_faction_groups.txt"[^\r\n]*            {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
+";descr_sm_resources.txt"[^\r\n]*              {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
+";feral_descr_portraits_variation.txt"[^\r\n]* {yybegin(FERAL_DESCR_PORTRAITS_VARIATION); return RRTypes.FERAL_DESCR_PORTRAITS_VARIATION_MARKER;}
+";descr_banners.txt"[^\r\n]*                   {yybegin(DESCR_BANNERS); return RRTypes.DESCR_BANNERS_MARKER;}
+";descr_character.txt"[^\r\n]*                 {yybegin(DESCR_CHARACTER); return RRTypes.DESCR_CHARACTER_MARKER;}
+";descr_building_battle.txt"[^\r\n]*           {yybegin(DESCR_BUILDING_BATTLE); return RRTypes.DESCR_BUILDING_BATTLE_MARKER;}
+";descr_lbc_db.txt"[^\r\n]*                    {yybegin(DESCR_LBC_DB); return RRTypes.DESCR_LBC_DB_MARKER;}
 
 
 {WS}             {return TokenType.WHITE_SPACE;}
@@ -922,6 +913,13 @@ true|false       {return RRTypes.BOOLEAN;}
     "physical_info"       {return RRTypes.PHYSICAL_INFO;}
     "none"                {return RRTypes.NONE;}
     {ID}                  {return RRTypes.ID;}
+}
+
+<DESCR_LBC_DB>
+{
+    "faction"    {return RRTypes.FACTION;}
+    "model"      {return RRTypes.MODEL;}
+    {ID}         {return RRTypes.ID;}
 }
 
 <DESCR_CHARACTER>

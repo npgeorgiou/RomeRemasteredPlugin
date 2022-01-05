@@ -24,6 +24,7 @@
       DESCR_BANNERS_MARKER='regexp:;descr_banners.txt.*'
       DESCR_BUILDING_BATTLE_MARKER='regexp:;descr_building_battle.txt.*'
       DESCR_CHARACTER_MARKER='regexp:;descr_character.txt.*'
+      DESCR_LBC_DB_MARKER='regexp:;descr_lbc_db.txt.*'
       COMMENT='regexp:[;¬].*'
 //      EOL='regexp:[\r\n][\s]*'
       space='regexp:\s+'
@@ -1191,9 +1192,10 @@ RRFile ::= descr_strat|
           descr_banners|
           descr_character|
           descr_building_battle|
+          descr_lbc_db|
           kv_format|
 
-// ############### descr_strat start #################################
+// ############### descr_strat start ###############################
 descr_strat ::= campaign_section
                 landmark_section?
                 resources_section
@@ -1303,7 +1305,7 @@ coords ::= INT COMMA INT
 coords_with_xy ::= X INT COMMA Y INT
 // ############### descr_strat end #################################
 
-// ############### export_descr_unit start #################################
+// ############### export_descr_unit start ###############################
 export_descr_unit ::= unit_item_+
 unit_item_ ::= TYPE unit_name_decl
                DICTIONARY ID
@@ -1390,7 +1392,7 @@ unit_discipline ::= BERSERKER|IMPETUOUS|LOW|NORMAL|DISCIPLINED
 unit_training ::= UNTRAINED|TRAINED|HIGHLY_TRAINED
 // ############### export_descr_unit end #################################
 
-// ############### export_descr_buildings start #################################
+// ############### export_descr_buildings start ###############################
 export_descr_buildings ::= tags_
                            condition_alias*
                            building_tree+
@@ -1474,11 +1476,11 @@ is_toggled_c ::= IS_TOGGLED STRING                                              
 agent_type ::= DIPLOMAT|SPY|MERCHANT|ASSASSIN
 // ############### export_descr_buildings end #################################
 
-// ############### kv_format start #################################
+// ############### kv_format start ###############################
 kv_format ::= KVF_item
 // ############### kv_format end #################################
 
-// ############### export_descr_ancillaries start #################################
+// ############### export_descr_ancillaries start ###############################
 export_descr_ancillaries ::= ancillary_def+ ancillary_trigger_def+
 ancillary_def ::= ANCILLARY ancillary_name_decl
                     (HIDDEN)*
@@ -1507,7 +1509,7 @@ composite_condition ::= maybe_negated_condition (and_op maybe_negated_condition)
 maybe_negated_condition ::= NOT? condition_
 // ############### export_descr_ancillaries end #################################
 
-// ############### export_descr_traits start #################################
+// ############### export_descr_traits start ###############################
 export_descr_traits ::= trait_def+ trait_trigger_def+
 trait_def ::= TRAIT trait_name_decl
                 CHARACTERS list_of_character_types
@@ -1537,14 +1539,14 @@ trait_trigger_def ::= TRIGGER ID
 private trait_trigger_def_recover ::= !TRIGGER
 // ############### export_descr_traits end #################################
 
-// ############### descr_mercenaries start #################################
+// ############### descr_mercenaries start ###############################
 descr_mercenaries ::= mercenary_pool+
 mercenary_pool ::= POOL ID
                     REGIONS (region_ref COMMA?)+
                     (UNIT unit_ref COMMA EXP INT COST INT REPLENISH FLOAT DASH FLOAT MAX INT INITIAL INT)*
 // ############### descr_mercenaries end #################################
 
-// ############### descr_names start #################################
+// ############### descr_names start ###############################
 descr_names ::= names_for_faction+
 names_for_faction ::= FACTION COLON faction_ref EOL*
                     CHARACTERS_LC EOL*
@@ -1557,14 +1559,14 @@ names_for_faction ::= FACTION COLON faction_ref EOL*
 
 // ############### descr_names end #################################
 
-// ############### names start #################################
+// ############### names start ###############################
 names ::=
           (OCB ID CCB names_name)+
 names_name ::= ID* {recoverWhile=recover_names_name}
 private recover_names_name ::= !OCB
 // ############### names end #################################
 
-// ############### descr_regions start #################################
+// ############### descr_regions start ###############################
 descr_regions ::= region_def+
 region_def ::= region_name_decl
                  ID
@@ -1578,7 +1580,7 @@ region_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[se
 region_ref ::= ID {methods=[setName getReference]}
 // ############### descr_regions end #################################
 
-// ############### descr_unit_variation start #################################
+// ############### descr_unit_variation start ###############################
 descr_unit_variation ::= SKIN OCB skin_* CCB
                          ETHNICITIES OCB ethnicity_* CCB
                          REGION OCB ethnicity_makeup_* CCB
@@ -1606,13 +1608,13 @@ ethnicity_makeup_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" m
 ethnicity_makeup_ref ::= ID {methods=[setName getReference]}
 // ############### descr_unit_variation end #################################
 
-// ############### export_buildings start #################################
+// ############### export_buildings start ###############################
 export_buildings ::= EXPORT_BUILDINGS_MARKER
                      (OCB buried_building_tree_or_level_ref CCB STRING)+
 buried_building_tree_or_level_ref ::= ID {methods=[setName getReference]}
 // ############### export_buildings end #################################
 
-// ############### descr_cultures start #################################
+// ############### descr_cultures start ###############################
 descr_cultures ::= DESCR_CULTURES_MARKER
                    STRING COLON OSB
                      (culture_name_decl COLON KVF_value COMMA)+
@@ -1623,7 +1625,7 @@ culture_ref ::= ID {methods=[setName getReference]}
 str_culture_ref ::= STRING {methods=[setName getReference]}
 // ############### descr_cultures end #################################
 
-// ############### feral_descr_ai_personality start #################################
+// ############### feral_descr_ai_personality start ###############################
 feral_descr_ai_personality ::= FERAL_DESCR_AI_PERSONALITY_MARKER
                                ai_building_priority+
                                ai_military_priority+
@@ -1683,7 +1685,7 @@ ai_personality_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" met
 ai_personality_ref ::= ID {methods=[setName getReference]}
 // ############### feral_descr_ai_personality end #################################
 
-// ############### descr_faction_groups start #################################
+// ############### descr_faction_groups start ###############################
 descr_faction_groups ::= DESCR_FACTION_GROUPS_MARKER
                          faction_group*
 faction_group ::= GROUP faction_group_name_decl
@@ -1692,7 +1694,7 @@ faction_group_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" meth
 str_faction_group_ref ::= STRING {methods=[setName getReference]}
 // ############### descr_faction_groups end #################################
 
-// ############### descr_sm_factions start #################################
+// ############### descr_sm_factions start ###############################
 descr_sm_factions ::= DESCR_SM_FACTIONS_MARKER
                       STRING COLON OSB
                         faction_decl+
@@ -1710,7 +1712,7 @@ faction_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" method
 faction_ref ::= ID {methods=[setName getReference]}
 // ############### descr_sm_factions end #################################
 
-// ############### descr_sm_resources start #################################
+// ############### descr_sm_resources start ###############################
 descr_sm_resources ::= DESCR_SM_RESOURCES_MARKER
                        STRING COLON OSB
                         resource_decl+
@@ -1724,7 +1726,7 @@ resource_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" metho
 resource_ref ::= ID {methods=[setName getReference]}
 // ############### descr_sm_resources end #################################
 
-// ############### feral_descr_portraits_variation start #################################
+// ############### feral_descr_portraits_variation start ###############################
 feral_descr_portraits_variation ::= FERAL_DESCR_PORTRAITS_VARIATION_MARKER
                                     culture_portrait_variation+
 culture_portrait_variation ::= culture_ref OCB
@@ -1742,7 +1744,7 @@ culture_portrait_variation ::= culture_ref OCB
 private portrait_variation ::= INT COMMA INT COMMA INT COMMA ID
 // ############### feral_descr_portraits_variation end #################################
 
-// ############### descr_banners start #################################
+// ############### descr_banners start ###############################
 descr_banners ::= DESCR_BANNERS_MARKER
                   culture_banner+
                   faction_banner+
@@ -1765,7 +1767,7 @@ faction_banner ::= FACTION faction_ref
 private faction_banner_recover ::= !FACTION
 // ############### descr_banners end #################################
 
-// ############### descr_character start #################################
+// ############### descr_character start ###############################
 descr_character ::= DESCR_CHARACTER_MARKER
                     STARTING_ACTION_POINTS INT
                     character_type_def+
@@ -1787,7 +1789,7 @@ private character_type_faction_def_recover ::= !(FACTION|TYPE)
 character_action ::= ('moving_normal'|'moving_quickmarch'|'garrison'|'assault'|'attack'|'besiege'|'entrench'|'ambush'|'diplomacy'|'bribe'|'exchange'|'building_fort'|'building_watchtower'|'spying'|'assassinate'|'sabotage'|'quick_sail'|'blockade'|'disembark'|'exchange')
 // ############### descr_character end #################################
 
-// ############### descr_building_battle start #################################
+// ############### descr_building_battle start ###############################
 descr_building_battle ::= DESCR_BUILDING_BATTLE_MARKER
                           texture_variants_
                           spot_items_
@@ -1836,6 +1838,13 @@ construction_site ::= ID OCB
                         CCB
                       CCB
 // ############### descr_building_battle end #################################
+
+// ############### descr_lbc_db start ###############################
+descr_lbc_db ::= DESCR_LBC_DB_MARKER
+                 (FACTION faction_ref
+                 MODEL ID INT
+                 MODEL ID INT)+
+// ############### descr_lbc_db end #################################
 
 // ############### General things #################################
 // #### events & conditions

@@ -1,0 +1,88 @@
+;descr_lbc_db.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+faction romans_julii
+model roman_peasant			 40
+model roman_female_peasant   60
+
+faction romans_brutii
+model roman_peasant			 40
+model roman_female_peasant   60
+
+faction romans_scipii
+model roman_peasant			 40
+model roman_female_peasant   60
+
+faction romans_senate
+model roman_peasant			 40
+model roman_female_peasant   60
+
+faction macedon
+model roman_peasant			 40
+model greek_female_peasant   60
+
+faction egypt
+model egyptian_male_peasant			 40
+model egypt_female_peasant   60
+
+faction seleucid
+model roman_peasant			 40
+model greek_female_peasant   60
+
+faction carthage
+model eastern_male_peasant			 40
+model east_female_peasant   60
+
+faction parthia
+model eastern_male_peasant			 40
+model east_female_peasant   60
+
+faction pontus
+model eastern_male_peasant			 40
+model east_female_peasant   60
+
+faction gauls
+model barb_male_peasant			 40
+model barb_female_peasant   60
+
+faction germans
+model barb_male_peasant			 40
+model barb_female_peasant   60
+
+faction britons
+model barb_male_peasant			 40
+model barb_female_peasant   60
+
+faction armenia
+model eastern_male_peasant			 40
+model east_female_peasant   60
+
+faction dacia
+model barb_male_peasant			 40
+model barb_female_peasant   60
+
+faction greek_cities
+model roman_peasant			 40
+model greek_female_peasant   60
+
+faction numidia
+model eastern_male_peasant			 40
+model east_female_peasant   60
+
+faction scythia
+model barb_male_peasant			 40
+model barb_female_peasant   60
+
+faction spain
+model roman_peasant			 40
+model east_female_peasant   60
+
+faction thrace
+model roman_peasant			 40
+model greek_female_peasant   60
+
+faction slave
+model roman_peasant			 40
+model roman_female_peasant   60
+
+
+
