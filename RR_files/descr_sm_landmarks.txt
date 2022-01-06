@@ -1,0 +1,69 @@
+;descr_sm_landmarks.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
+; placements of the 7 Wonders Of The World
+
+; Colossus of Rhodes
+; Mausoleum at Halicarnassus
+; Temple of Artemis at Ephesus
+; Statue of Zeus at Olympia
+; Pharos at Alexandria
+; Pyramids of Giza
+; Sphinx
+; Hanging Gardens of Babylon - off the map, BUT STILL USED and moved onto the map.
+
+
+type				temple
+item				data/models_strat/wonder_artemis.cas
+image				data/ui/wonders/artemis.tga
+julii_rtm			data/rtm_data/temple_of_artemis/temple_of_artemis.rtm
+brutii_rtm			data/rtm_data/temple_of_artemis/temple_of_artemis.rtm
+scipii_rtm			data/rtm_data/temple_of_artemis/temple_of_artemis.rtm
+movie				data/fmv/wonders/wonder_artimis.wmv
+
+type				mausoleum
+item				data/models_strat/wonder_mausoleum.cas
+image				data/ui/wonders/mausoleum.tga
+julii_rtm			data/rtm_data/mausoleum_at_halicarnassus/mausoleum_at_halicarnassus.rtm
+brutii_rtm			data/rtm_data/mausoleum_at_halicarnassus/mausoleum_at_halicarnassus.rtm
+scipii_rtm			data/rtm_data/mausoleum_at_halicarnassus/mausoleum_at_halicarnassus.rtm
+movie				data/fmv/wonders/wonder_mausoleum.wmv
+
+type				pyramids_and_sphinx
+item				data/models_strat/wonder_pyramids.cas
+image				data/ui/wonders/pyramid.tga
+julii_rtm			data/rtm_data/pyramids_at_giza/pyramids_at_giza.rtm
+brutii_rtm			data/rtm_data/pyramids_at_giza/pyramids_at_giza.rtm
+scipii_rtm			data/rtm_data/pyramids_at_giza/pyramids_at_giza.rtm
+movie				data/fmv/wonders/wonder_pyramids.wmv
+
+type				pharos
+item				data/models_strat/wonder_pharos.cas
+image				data/ui/wonders/pharos.tga
+julii_rtm			data/rtm_data/pharos_at_alexandria/pharos_at_alexandria.rtm
+brutii_rtm			data/rtm_data/pharos_at_alexandria/pharos_at_alexandria.rtm
+scipii_rtm			data/rtm_data/pharos_at_alexandria/pharos_at_alexandria.rtm
+movie				data/fmv/wonders/wonder_pharos.wmv
+
+type				colossus
+item				data/models_strat/wonder_colossus.cas
+image				data/ui/wonders/colossus.tga
+julii_rtm			data/rtm_data/colossus_of_rhodes/colossus_of_rhodes.rtm
+brutii_rtm			data/rtm_data/colossus_of_rhodes/colossus_of_rhodes.rtm
+scipii_rtm			data/rtm_data/colossus_of_rhodes/colossus_of_rhodes.rtm
+movie				data/fmv/wonders/wonder_colossus.wmv
+
+type				statue
+item				data/models_strat/wonder_zeus.cas
+image				data/ui/wonders/zeus.tga
+julii_rtm			data/rtm_data/olympia/olympia.rtm
+brutii_rtm			data/rtm_data/olympia/olympia.rtm
+scipii_rtm			data/rtm_data/olympia/olympia.rtm
+movie				data/fmv/wonders/wonder_olympia.wmv
+
+type				gardens
+item				data/models_strat/wonder_gardens.cas
+image				data/ui/wonders/gardens.tga
+julii_rtm			data/rtm_data/hanging_gardens_of_babylon/hanging_gardens_of_babylon.rtm
+brutii_rtm			data/rtm_data/hanging_gardens_of_babylon/hanging_gardens_of_babylon.rtm
+scipii_rtm			data/rtm_data/hanging_gardens_of_babylon/hanging_gardens_of_babylon.rtm
+movie				data/fmv/wonders/wonder_hanging_gardens.wmv

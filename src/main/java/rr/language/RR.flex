@@ -27,9 +27,13 @@ FLOAT = [\+\-]?[0-9]+\.[0-9]+
 STR_CHAR = [^\"\r\n\\]
 STRING = \" {STR_CHAR}* \"
 
-TXT_FILE=[^ \t\r\n]*\.txt
-TGA_FILE=[^ \t\r\n]*\.tga
-CAS_FILE=[^ \t\r\n]*\.cas
+DIR_OR_FILE=[\w\d_]+
+PATH = {DIR_OR_FILE}(\/{DIR_OR_FILE})+
+TXT_FILE=({PATH}|{DIR_OR_FILE})\.(txt|TXT)
+TGA_FILE=({PATH}|{DIR_OR_FILE})\.(tga|TGA)
+CAS_FILE=({PATH}|{DIR_OR_FILE})\.(cas|CAS)
+RTM_FILE=({PATH}|{DIR_OR_FILE})\.(rtm|RTM)
+WMV_FILE=({PATH}|{DIR_OR_FILE})\.(wmv|WMV)
 
 SPEAR_BONUS_X = "spear_bonus_" {INT}
 // †ÎöÈ.íëé are in descr_names. Maybe just typos.
@@ -50,11 +54,14 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state EXPORT_DESCR_MERCENARIES
 %xstate EXPORT_DESCR_MERCENARIES_NO_KEYWORDS
 
-%xstate EXPORT_BUILDINGS
-%xstate EXPORT_BUILDINGS_NO_KEYWORDS
+%xstate TEXT_MAPPING
+%xstate TEXT_MAPPING_NO_KEYWORDS
 
 %state DESCR_CHARACTER
 %xstate DESCR_CHARACTER_NO_KEYWORDS
+
+%state DESCR_MODEL_BATTLE_AND_STRAT
+%xstate DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS
 
 %state EXPORT_DESCR_TRAITS
 %state DESCR_NAMES
@@ -65,13 +72,16 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_BANNERS
 %state DESCR_BUILDING_BATTLE
 %state DESCR_LBC_DB
+%state DESCR_OFFMAP_MODELS
+%state DESCR_SM_LANDMARKS
 
 %state CONDITIONS
 
 %%
 <DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
 
-";export_buildings.txt"[^\r\n]*                {yybegin(EXPORT_BUILDINGS); return RRTypes.EXPORT_BUILDINGS_MARKER;}
+";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
+";landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.LANDMARKS_MARKER;}
 ";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
 ";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
 ";feral_descr_ai_personality.txt"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
@@ -82,6 +92,10 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";descr_character.txt"[^\r\n]*                 {yybegin(DESCR_CHARACTER); return RRTypes.DESCR_CHARACTER_MARKER;}
 ";descr_building_battle.txt"[^\r\n]*           {yybegin(DESCR_BUILDING_BATTLE); return RRTypes.DESCR_BUILDING_BATTLE_MARKER;}
 ";descr_lbc_db.txt"[^\r\n]*                    {yybegin(DESCR_LBC_DB); return RRTypes.DESCR_LBC_DB_MARKER;}
+";descr_offmap_models.txt"[^\r\n]*             {yybegin(DESCR_OFFMAP_MODELS); return RRTypes.DESCR_OFFMAP_MODELS_MARKER;}
+";descr_sm_landmarks.txt"[^\r\n]*              {yybegin(DESCR_SM_LANDMARKS); return RRTypes.DESCR_SM_LANDMARKS_MARKER;}
+";descr_model_battle.txt"[^\r\n]*              {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_BATTLE_MARKER;}
+";descr_model_strat.txt"[^\r\n]*               {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_STRAT_MARKER;}
 
 
 {WS}             {return TokenType.WHITE_SPACE;}
@@ -103,6 +117,9 @@ true|false       {return RRTypes.BOOLEAN;}
 {TGA_FILE}       {return RRTypes.TGA_FILE;}
 {TXT_FILE}       {return RRTypes.TXT_FILE;}
 {CAS_FILE}       {return RRTypes.CAS_FILE;}
+{RTM_FILE}       {return RRTypes.RTM_FILE;}
+{WMV_FILE}       {return RRTypes.WMV_FILE;}
+{PATH}           {return RRTypes.PATH;}
 
 // character_type
 "all"                                             {return RRTypes.ALL;}
@@ -922,6 +939,88 @@ true|false       {return RRTypes.BOOLEAN;}
     {ID}         {return RRTypes.ID;}
 }
 
+<DESCR_OFFMAP_MODELS>
+{
+    "navy"              {return RRTypes.NAVY;}
+    "faction"           {return RRTypes.FACTION;}
+    "large"             {return RRTypes.LARGE;}
+    "medium"            {return RRTypes.MEDIUM;}
+    "small"             {return RRTypes.SMALL;}
+    "settlement"        {return RRTypes.SETTLEMENT;}
+    "culture"           {return RRTypes.CULTURE;}
+    "level"             {return RRTypes.LEVEL;}
+    "village"           {return RRTypes.VILLAGE;}
+    "town"              {return RRTypes.TOWN;}
+    "large_town"        {return RRTypes.LARGE_TOWN;}
+    "city"              {return RRTypes.CITY;}
+    "large_city"        {return RRTypes.LARGE_CITY;}
+    "huge_city"         {return RRTypes.HUGE_CITY;}
+    "wonder"            {return RRTypes.WONDER;}
+    "port"              {return RRTypes.PORT;}
+    "fishing_village"   {return RRTypes.FISHING_VILLAGE;}
+    "sea_port"          {return RRTypes.SEA_PORT;}
+    "shipwright"        {return RRTypes.SHIPWRIGHT;}
+    "dockyard"          {return RRTypes.DOCKYARD;}
+    {ID}                {return RRTypes.ID;}
+}
+
+<DESCR_SM_LANDMARKS>
+{
+    "type"          {return RRTypes.TYPE;}
+    "item"          {return RRTypes.ITEM;}
+    "image"         {return RRTypes.IMAGE;}
+    "julii_rtm"     {return RRTypes.JULII_RTM;}
+    "brutii_rtm"    {return RRTypes.BRUTII_RTM;}
+    "scipii_rtm"    {return RRTypes.SCIPII_RTM;}
+    "movie"         {return RRTypes.MOVIE;}
+    {ID}            {return RRTypes.ID;}
+}
+
+
+<DESCR_MODEL_BATTLE_AND_STRAT>
+{
+    "type"                  {yybegin(DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS); return RRTypes.TYPE;}
+    "scale"                 {return RRTypes.SCALE;}
+    "skeleton_horse"        {return RRTypes.SKELETON_HORSE;}
+    "skeleton_elephant"     {return RRTypes.SKELETON_ELEPHANT;}
+    "skeleton_chariot"      {return RRTypes.SKELETON_CHARIOT;}
+    "skeleton_camel"        {return RRTypes.SKELETON_CAMEL;}
+    "body"                  {return RRTypes.BODY;}
+    "male"                  {return RRTypes.MALE;}
+    "female"                {return RRTypes.FEMALE;}
+    "angry_face"            {return RRTypes.ANGRY_FACE;}
+    "medieval_features"     {return RRTypes.MEDIEVAL_FEATURES;}
+    "tired"                 {return RRTypes.TIRED_K;}
+    "yes"                   {return RRTypes.YES;}
+    "no"|"No"               {return RRTypes.NO;}
+    "Tired"                 {return RRTypes.TIRED_C;}
+    "VeryTired"             {return RRTypes.VERYTIRED;}
+    "aged"                  {return RRTypes.AGED;}
+    "pbr_texture"           {return RRTypes.PBR_TEXTURE;}
+    "texture"               {return RRTypes.TEXTURE;}
+    "no_variation"          {return RRTypes.NO_VARIATION;}
+    "model"                 {return RRTypes.MODEL;}
+    "model_flexi"           {return RRTypes.MODEL_FLEXI;}
+    "model_flexi_m"         {return RRTypes.MODEL_FLEXI_M;}
+    "model_flexi_c"         {return RRTypes.MODEL_FLEXI_C;}
+    "max"                   {return RRTypes.MAX;}
+    "Default"               {return RRTypes.DEFAULT;}
+    "Skinny"                {return RRTypes.SKINNY;}
+    "SkinnyAthletic"        {return RRTypes.SKINNYATHLETIC;}
+    "Athletic"              {return RRTypes.ATHLETIC;}
+    "Bulky"                 {return RRTypes.BULKY;}
+    "Overweight"            {return RRTypes.OVERWEIGHT;}
+    "ignore_registry"       {return RRTypes.IGNORE_REGISTRY;}
+    {ID}                    {return RRTypes.ID;}
+}
+<DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS>
+{
+    {WS}                      {return TokenType.WHITE_SPACE;}
+    {COMMENT}                 {return RRTypes.COMMENT;}
+    "skeleton"                {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.SKELETON;}
+    {ID}                      {return RRTypes.ID;}
+}
+
 <DESCR_CHARACTER>
 {
     "type"                    {return RRTypes.TYPE;}
@@ -945,18 +1044,18 @@ true|false       {return RRTypes.BOOLEAN;}
     {ID}            {return RRTypes.ID;}
 }
 
-<EXPORT_BUILDINGS>
+<TEXT_MAPPING>
 {
     {WS}         {return TokenType.WHITE_SPACE;}
     {COMMENT}    {return RRTypes.COMMENT;}
     "{"          {return RRTypes.OCB;}
-    "}"          {yybegin(EXPORT_BUILDINGS_NO_KEYWORDS);return RRTypes.CCB;}
+    "}"          {yybegin(TEXT_MAPPING_NO_KEYWORDS);return RRTypes.CCB;}
     {ID}         {return RRTypes.ID;}
 }
-<EXPORT_BUILDINGS_NO_KEYWORDS>{
+<TEXT_MAPPING_NO_KEYWORDS>{
     {WS}         {return TokenType.WHITE_SPACE;}
     {COMMENT}    {return RRTypes.COMMENT;}
-    "{"          {yybegin(EXPORT_BUILDINGS);return RRTypes.OCB;}
+    "{"          {yybegin(TEXT_MAPPING);return RRTypes.OCB;}
 
     [^\t{\r\n]* {return RRTypes.STRING;}
 }

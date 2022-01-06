@@ -437,6 +437,60 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Wonder decl and refs">
+    public static PsiElement setName(RRWonderNameDecl decl, String newName) {
+        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
+        decl.getFirstChild().replace(id);
+        return decl;
+    }
+
+    public static String getName(RRWonderNameDecl decl) {
+        return decl.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRWonderNameDecl decl) {
+        return decl.getFirstChild();
+    }
+
+    public static PsiElement setName(RRWonderRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static WonderReference getReference(RRWonderRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new WonderReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Wonder decl and refs">
+    public static PsiElement setName(RRModelNameDecl decl, String newName) {
+        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
+        decl.getFirstChild().replace(id);
+        return decl;
+    }
+
+    public static String getName(RRModelNameDecl decl) {
+        return decl.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRModelNameDecl decl) {
+        return decl.getFirstChild();
+    }
+
+    public static PsiElement setName(RRModelRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static ModelReference getReference(RRModelRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new ModelReference(ref, range);
+    }
+    //</editor-fold>
+
     public static String name(RRSettlementItem settlementItem) {
         return settlementItem.getNode().findChildByType(RRTypes.REGION_REF).getText();
     }

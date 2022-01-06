@@ -25,6 +25,12 @@
       DESCR_BUILDING_BATTLE_MARKER='regexp:;descr_building_battle.txt.*'
       DESCR_CHARACTER_MARKER='regexp:;descr_character.txt.*'
       DESCR_LBC_DB_MARKER='regexp:;descr_lbc_db.txt.*'
+      DESCR_MODEL_BATTLE_MARKER='regexp:;descr_model_battle.txt.*'
+      DESCR_MODEL_STRAT_MARKER='regexp:;descr_model_strat.txt.*'
+      DESCR_OFFMAP_MODELS_MARKER='regexp:;descr_offmap_models.txt.*'
+      LANDMARKS_MARKER='regexp:;landmarks.txt.*'
+      DESCR_SM_LANDMARKS_MARKER='regexp:;descr_sm_landmarks.txt.*'
+
       COMMENT='regexp:[;¬].*'
 //      EOL='regexp:[\r\n][\s]*'
       space='regexp:\s+'
@@ -50,10 +56,13 @@
       AMBERSANDS="&&"
       DASH="-"
 
-      // files
-      TXT_FILE='regexp:[^\s+]*\.txt'
-      TGA_FILE='regexp:[^\s+]*\.tga'
-      CAS_FILE='regexp:[^\s+]*\.cas'
+      // files and paths
+      TXT_FILE='regexp:[\w\d_]+(/[\w\d_]+)*\.(txt|TXT)'
+      TGA_FILE='regexp:[\w\d_]+(/[\w\d_]+)*\.(tga|TGA)'
+      CAS_FILE='regexp:[\w\d_]+(/[\w\d_]+)*\.(cas|CAS)'
+      RTM_FILE='regexp:[\w\d_]+(/[\w\d_]+)*\.(rtm|RTM)'
+      WMV_FILE='regexp:[\w\d_]+(/[\w\d_]+)*\.(wmv|WMV)'
+      PATH='regexp:[\w\d_]+(/[\w\d_]+)+'
 
       // keywords
       // desr_strat
@@ -430,6 +439,54 @@
       ITEM="item"
       PHYSICAL_INFO="physical_info"
 
+      // descr_offmap_models
+      NAVY="navy"
+      LARGE="large"
+      MEDIUM="medium"
+      SMALL="small"
+      WONDER="wonder"
+      PORT="port"
+      FISHING_VILLAGE="fishing_village"
+      SEA_PORT="sea_port"
+      SHIPWRIGHT="shipwright"
+      DOCKYARD="dockyard"
+
+      // descr_model_battle
+      SCALE="scale"
+      SKELETON_HORSE="skeleton_horse"
+      SKELETON_ELEPHANT="skeleton_elephant"
+      SKELETON_CHARIOT="skeleton_chariot"
+      SKELETON_CAMEL="skeleton_camel"
+      BODY="body"
+      ANGRY_FACE="angry_face"
+      YES="yes"
+      MEDIEVAL_FEATURES="medieval_features"
+      TIRED_K="tired"
+      TIRED_C="Tired"
+      VERYTIRED="VeryTired"
+      AGED="aged"
+      PBR_TEXTURE="pbr_texture"
+      TEXTURE="texture"
+      NO_VARIATION="no_variation"
+      MODEL_FLEXI="model_flexi"
+      MODEL_FLEXI_M="model_flexi_m"
+      MODEL_FLEXI_C="model_flexi_c"
+      DEFAULT="Default"
+      SKINNY="Skinny"
+      SKINNYATHLETIC="SkinnyAthletic"
+      ATHLETIC="Athletic"
+      BULKY="Bulky"
+      OVERWEIGHT="Overweight"
+
+      // descr_model_strat
+      IGNORE_REGISTRY="ignore_registry"
+
+      // descr_sm_landmarks
+      IMAGE="image"
+      JULII_RTM="julii_rtm"
+      BRUTII_RTM="brutii_rtm"
+      SCIPII_RTM="scipii_rtm"
+      MOVIE="movie"
 
       // events
       PREBATTLE = "PreBattle"
@@ -1193,6 +1250,11 @@ RRFile ::= descr_strat|
           descr_character|
           descr_building_battle|
           descr_lbc_db|
+          descr_model_battle|
+          descr_model_strat|
+          descr_offmap_models|
+          landmarks|
+          descr_sm_landmarks|
           kv_format|
 
 // ############### descr_strat start ###############################
@@ -1330,7 +1392,7 @@ unit_name_decl ::= ID+ {implements="rr.language.psi.RRNamedElement" methods=[set
 unit_ref ::= ID+ {methods=[setName getReference]}
 str_unit_ref ::= STRING {methods=[setName getReference]}
 faction_or_culture_ref ::= ID {methods=[setName getReference]}
-rebalance_block ::= SOLDIER ID COMMA INT COMMA INT COMMA number
+rebalance_block ::= SOLDIER model_ref COMMA INT COMMA INT COMMA number
                     (ENGINE ID)?
                     (SHIP ID+)?
                     (ANIMAL ID)?
@@ -1353,7 +1415,7 @@ rebalance_block ::= SOLDIER ID COMMA INT COMMA INT COMMA number
                     STAT_FIRE_DELAY INT
                     STAT_FOOD INT COMMA INT
                     STAT_COST INT COMMA INT COMMA INT COMMA INT COMMA INT COMMA INT
-                    {pin=2}
+                    {pin=1}
 
 unit_attribute ::= hide_type|
                     FRIGHTEN_FOOT|FRIGHTEN_MOUNTED|CAN_RUN_AMOK|WARCRY|
@@ -1398,7 +1460,6 @@ export_descr_buildings ::= tags_
                            building_tree+
 
 tags_ ::= TAGS OCB list_of_IDs CCB {pin=1}
-private tagsRecover ::= !(condition_alias|building_tree)
 
 condition_alias ::= ALIAS ID OCB
                        requirement
@@ -1780,8 +1841,8 @@ character_type_def ::= TYPE character_type // TODO: Except of family. What is fa
 character_type_faction_def ::= FACTION faction_ref
                                DICTIONARY INT                  // TODO: where is that dictionary?
                                (STRAT_CARD TGA_FILE)?
-                               STRAT_MODEL ID                  // TODO: descr_model_strat.txt
-                               (BATTLE_MODEL ID)?              // TODO: where is that?
+                               STRAT_MODEL model_ref
+                               (BATTLE_MODEL model_ref)?
                                (BATTLE_EQUIP (COMMA|ID|AND)*)? // TODO: gladius, chainmail shirt helmet and rectangular shield, wth is that
                                {pin=1 recoverWhile=character_type_faction_def_recover}
 private character_type_faction_def_recover ::= !(FACTION|TYPE)
@@ -1845,6 +1906,94 @@ descr_lbc_db ::= DESCR_LBC_DB_MARKER
                  MODEL ID INT
                  MODEL ID INT)+
 // ############### descr_lbc_db end #################################
+
+// ############### descr_model_battle start ###############################
+descr_model_battle ::= DESCR_MODEL_BATTLE_MARKER
+                       model_+
+model_ ::= TYPE model_name_decl
+           SKELETON <<list ID>> COMMA?
+           (SCALE FLOAT)?
+           (SKELETON_HORSE ID)?
+           (SKELETON_ELEPHANT ID)?
+           (SKELETON_CHARIOT ID)?
+           (SKELETON_CAMEL ID)?
+           (MALE|FEMALE)
+           (BODY (faction_ref COMMA)? bodytype)*
+           (ANGRY_FACE (NO|YES))?
+           (MEDIEVAL_FEATURES NO)?
+           (TIRED_K (faction_ref COMMA)? (NO|TIRED_C|VERYTIRED))*
+           (AGED (faction_ref COMMA)? FLOAT)*
+           model_pbr_texture+
+           model_texture+
+           model_model*
+           model_flexi_*
+private model_pbr_texture ::= PBR_TEXTURE (faction_ref COMMA)? TGA_FILE
+private model_texture ::= texture ((DEFAULT|faction_ref) COMMA)? TGA_FILE
+private model_model ::= NO_VARIATION? model (faction_ref COMMA)? capitalized_ethnicity PATH
+private model_flexi_   ::= NO_VARIATION? (MODEL_FLEXI|MODEL_FLEXI_M|MODEL_FLEXI_C)  CAS_FILE COMMA (MAX|INT)
+capitalized_ethnicity ::= 'African'|'Arabic'|'Caucasian'|'EastAsian'|'Egyptian'|'Indian'|'Mediterranean'
+private bodytype ::= DEFAULT|SKINNY|SKINNYATHLETIC|ATHLETIC|BULKY|OVERWEIGHT
+model_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+model_ref ::= ID {methods=[setName getReference]}
+// ############### descr_model_battle end #################################
+
+// ############### descr_model_strat start ###############################
+descr_model_strat ::= DESCR_MODEL_STRAT_MARKER
+                      IGNORE_REGISTRY
+                      model_+
+// ############### descr_model_strat end #################################
+
+// ############### descr_offmap_models start ###############################
+descr_offmap_models ::= DESCR_OFFMAP_MODELS_MARKER
+                        offmap_navy
+                        offmap_settlement
+                        offmap_wonder
+                        offmap_port
+offmap_navy ::= NAVY OCB
+                  (FACTION faction_ref OCB
+                    LARGE CAS_FILE INT INT
+                    MEDIUM CAS_FILE INT INT
+                    SMALL CAS_FILE INT INT
+                  CCB)+
+                CCB
+offmap_settlement ::= SETTLEMENT OCB
+                        (CULTURE culture_ref OCB
+                          (LEVEL settlement_level OCB
+                              CAS_FILE INT INT
+                          CCB)+
+                        CCB)+
+                      CCB
+offmap_wonder ::= WONDER OCB
+                    (wonder_ref CAS_FILE INT INT)*
+                  CCB
+offmap_port ::= PORT OCB
+                  (CULTURE culture_ref OCB
+                    (LEVEL port_level OCB
+                        CAS_FILE INT INT
+                    CCB)+
+                  CCB)+
+                CCB
+
+port_level ::= FISHING_VILLAGE|SEA_PORT|SHIPWRIGHT|DOCKYARD
+// ############### descr_offmap_models end #################################
+
+// ############### landmarks start ###############################
+landmarks ::= LANDMARKS_MARKER
+              (OCB ID CCB STRING)+
+// ############### landmarks end #################################
+
+// ############### descr_sm_landmarks start ###############################
+descr_sm_landmarks ::= DESCR_SM_LANDMARKS_MARKER
+                       (TYPE wonder_name_decl
+                       ITEM CAS_FILE
+                       IMAGE TGA_FILE
+                       JULII_RTM RTM_FILE
+                       BRUTII_RTM RTM_FILE
+                       SCIPII_RTM RTM_FILE
+                       MOVIE WMV_FILE)*
+wonder_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+wonder_ref ::= ID {methods=[setName getReference]}
+// ############### descr_sm_landmarks end #################################
 
 // ############### General things #################################
 // #### events & conditions

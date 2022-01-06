@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RRUtil {
 
@@ -80,6 +81,47 @@ public class RRUtil {
     public static Collection<String> findAllRegionsAsStrings(Project project) {
         return findAllRegions(project).stream()
             .map(it -> it.getFirstChild().getText())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRWonderNameDecl> findAllWonders(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_sm_landmarks.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrSmLandmarks.class).getWonderNameDeclList();
+    }
+
+    public static Collection<String> findAllWondersAsStrings(Project project) {
+        return findAllWonders(project).stream()
+            .map(it -> it.getText())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRModel_> findAllModels(Project project) {
+        RRFile battle_file = RRUtil.findRRFile("descr_model_battle.txt", project);
+        List<RRModel_> battle_models = new ArrayList<>();
+        if (battle_file != null) {
+            battle_models = battle_file.findChildByClass(RRDescrModelBattle.class).getModel_List();
+        }
+
+        RRFile strat_file = RRUtil.findRRFile("descr_model_strat.txt", project);
+        List<RRModel_> strat_models = new ArrayList<>();
+        if (battle_file != null) {
+            strat_models = strat_file.findChildByClass(RRDescrModelStrat.class).getModel_List();
+        }
+
+        return Stream.concat(
+            battle_models.stream(),
+            strat_models.stream()
+        ).collect(Collectors.toList());
+    }
+
+    public static Collection<String> findAllModelsAsStrings(Project project) {
+        return findAllModels(project).stream()
+            .map(it -> it.getModelNameDecl().getText())
             .collect(Collectors.toList());
     }
 

@@ -1,3 +1,5 @@
+;descr_offmap_models.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK
+
 navy
 {
 	faction romans_julii
@@ -351,16 +353,6 @@ settlement
 
 wonder
 {
-	;temple					data/models_strat/wonder_artemis.cas		        200 0
-	;pyramids_and_sphinx 			data/models_strat/wonder_pyramids.cas		200 0
-	;statue					data/models_strat/wonder_artemis.cas		        200 0
-	;mausoleum	    			data/models_strat/wonder_mausoleum.CAS		    200 0
-	;pharos					data/models_strat/wonder_pharos.cas			        200 0
-	;colossus					data/models_strat/wonder_colossus.cas			200 0
-	;stonehenge				data/models_strat/icon_colossus.cas			    	200 0
-	;barge					data/models_strat/icon_colossus.cas			    	200 0
-	;gardens					data/models_strat/wonder_gardens.cas			200 0
-
 	;; Changes for Rome HD
 	temple					data/models_building/rhd_temple_to_artemis.cas		        	200 0
 	pyramids_and_sphinx 			data/models_building/rhd_pyramids_of_giza.cas			200 0

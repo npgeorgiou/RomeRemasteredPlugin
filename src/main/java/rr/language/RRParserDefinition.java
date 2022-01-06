@@ -35,7 +35,9 @@ public class RRParserDefinition implements ParserDefinition {
     public static final TokenSet FILES = TokenSet.create(
         RRTypes.TGA_FILE,
         RRTypes.TXT_FILE,
-        RRTypes.CAS_FILE
+        RRTypes.CAS_FILE,
+        RRTypes.RTM_FILE,
+        RRTypes.WMV_FILE
     );
 
     //<editor-fold desc="FILE MARKERS">
@@ -46,7 +48,7 @@ public class RRParserDefinition implements ParserDefinition {
 
     //<editor-fold desc="CONSTANTS">
     public static final TokenSet CONSTANTS = TokenSet.create(
-        // descr_strat
+        // settlement levels
         RRTypes.VILLAGE,
         RRTypes.TOWN,
         RRTypes.LARGE_TOWN,
@@ -54,6 +56,12 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.LARGE_CITY,
         RRTypes.HUGE_CITY,
         RRTypes.DEFAULT_SET,
+
+        // port levels
+        RRTypes.FISHING_VILLAGE,
+        RRTypes.SEA_PORT,
+        RRTypes.SHIPWRIGHT,
+        RRTypes.DOCKYARD,
 
         // export_descr_unit
         RRTypes.NO,
@@ -264,8 +272,19 @@ public class RRParserDefinition implements ParserDefinition {
         // automanage_type
         RRTypes.TROOPS,
         RRTypes.BUILDINGS,
-        RRTypes.MECHANICS
-    );
+        RRTypes.MECHANICS,
+        // descr_model_battle
+        RRTypes.YES,
+        RRTypes.TIRED_C,
+        RRTypes.VERYTIRED,
+        RRTypes.DEFAULT,
+        RRTypes.SKINNY,
+        RRTypes.SKINNYATHLETIC,
+        RRTypes.ATHLETIC,
+        RRTypes.BULKY,
+        RRTypes.OVERWEIGHT
+
+        );
     //</editor-fold>
 
     //<editor-fold desc="KEYWORDS">
@@ -578,7 +597,43 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.LOCALISED_NAME,
         RRTypes.MIN_HEALTH,
         RRTypes.ITEM,
-        RRTypes.PHYSICAL_INFO
+        RRTypes.PHYSICAL_INFO,
+
+        // descr_offmap_models
+        RRTypes.NAVY,
+        RRTypes.LARGE,
+        RRTypes.MEDIUM,
+        RRTypes.SMALL,
+        RRTypes.WONDER,
+        RRTypes.PORT,
+
+        // descr_sm_landmarks
+        RRTypes.IMAGE,
+        RRTypes.JULII_RTM,
+        RRTypes.BRUTII_RTM,
+        RRTypes.SCIPII_RTM,
+        RRTypes.MOVIE,
+
+        // descr_model_battle
+        RRTypes.SCALE,
+        RRTypes.SKELETON_HORSE,
+        RRTypes.SKELETON_ELEPHANT,
+        RRTypes.SKELETON_CHARIOT,
+        RRTypes.SKELETON_CAMEL,
+        RRTypes.BODY,
+        RRTypes.TIRED_K,
+        RRTypes.AGED,
+        RRTypes.ANGRY_FACE,
+        RRTypes.MEDIEVAL_FEATURES,
+        RRTypes.PBR_TEXTURE,
+        RRTypes.TEXTURE,
+        RRTypes.NO_VARIATION,
+        RRTypes.MODEL_FLEXI,
+        RRTypes.MODEL_FLEXI_M,
+        RRTypes.MODEL_FLEXI_C,
+
+        // descr_model_strat
+        RRTypes.IGNORE_REGISTRY
         );
     //</editor-fold>
 

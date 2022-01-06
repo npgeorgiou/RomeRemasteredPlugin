@@ -12,6 +12,10 @@ import java.util.Collection;
 
 public class RRReferencesSearch extends QueryExecutorBase<PsiReference, ReferencesSearch.SearchParameters> {
 
+    public RRReferencesSearch() {
+        super(true);
+    }
+
     @Override
     public void processQuery(
         ReferencesSearch.SearchParameters queryParameters,

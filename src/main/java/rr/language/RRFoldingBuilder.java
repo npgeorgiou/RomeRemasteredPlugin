@@ -12,6 +12,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.psi.*;
+import rr.language.psi.impl.RROffmapWonderImpl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -302,6 +303,25 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
             }
             for (RRConstructionSite element : PsiTreeUtil.findChildrenOfType(file, RRConstructionSite.class)) {
                 fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+
+            //descr_offmap_models
+            for (RROffmapNavy element : PsiTreeUtil.findChildrenOfType(file, RROffmapNavy.class)) {
+                fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RROffmapSettlement element : PsiTreeUtil.findChildrenOfType(file, RROffmapSettlement.class)) {
+                fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RROffmapWonderImpl element : PsiTreeUtil.findChildrenOfType(file, RROffmapWonderImpl.class)) {
+                fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+            for (RROffmapPort element : PsiTreeUtil.findChildrenOfType(file, RROffmapPort.class)) {
+                fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
+            }
+
+            //descr_model_battle, descr_model_strat
+            for (RRModel_ element : PsiTreeUtil.findChildrenOfType(file, RRModel_.class)) {
+                fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
             }
         }
 
