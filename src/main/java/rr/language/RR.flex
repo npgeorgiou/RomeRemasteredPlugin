@@ -27,7 +27,7 @@ FLOAT = [\+\-]?[0-9]+\.[0-9]+
 STR_CHAR = [^\"\r\n\\]
 STRING = \" {STR_CHAR}* \"
 
-DIR_OR_FILE=[\w\d_]+
+DIR_OR_FILE=[\w\d_#&-]+
 PATH = {DIR_OR_FILE}(\/{DIR_OR_FILE})+
 TXT_FILE=({PATH}|{DIR_OR_FILE})\.(txt|TXT)
 TGA_FILE=({PATH}|{DIR_OR_FILE})\.(tga|TGA)
