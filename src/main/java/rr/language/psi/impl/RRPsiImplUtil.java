@@ -2,6 +2,7 @@ package rr.language.psi.impl;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.util.PsiTreeUtil;
 import rr.language.RRUtil;
 import rr.language.Util;
 import rr.language.psi.*;
@@ -23,18 +24,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Faction decl and refs">
-    public static PsiElement setName(RRFactionNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createString(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRFactionNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createString(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRFactionNameDecl decl) {
-        return Util.unquote(decl.getFirstChild().getText());
+    public static String getName(RRFactionNameDecl e) {
+        return Util.unquote(e.getFirstChild().getText());
     }
 
-    public static PsiElement getNameIdentifier(RRFactionNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRFactionNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRFactionRef ref, String newName) {
@@ -50,9 +51,9 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="FactionGroup decl and refs">
-    public static PsiElement setName(RRFactionGroupNameDecl decl, String newName) {
-        PsiElement newDecl = RRElementFactory.createId(decl.getProject(), newName);
-        return decl.replace(newDecl);
+    public static PsiElement setName(RRFactionGroupNameDecl e, String newName) {
+        PsiElement newId = RRElementFactory.createId(e.getProject(), newName);
+        return e.replace(newId);
     }
 
     public static String getName(RRFactionGroupNameDecl e) {
@@ -76,18 +77,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Culture decl and refs">
-    public static PsiElement setName(RRCultureNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createString(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRCultureNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createString(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRCultureNameDecl decl) {
-        return Util.unquote(decl.getFirstChild().getText());
+    public static String getName(RRCultureNameDecl e) {
+        return Util.unquote(e.getFirstChild().getText());
     }
 
-    public static PsiElement getNameIdentifier(RRCultureNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRCultureNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRCultureRef ref, String newName) {
@@ -198,18 +199,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Region decl and refs">
-    public static PsiElement setName(RRRegionNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRRegionNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRRegionNameDecl decl) {
-        return decl.getFirstChild().getText();
+    public static String getName(RRRegionNameDecl e) {
+        return e.getFirstChild().getText();
     }
 
-    public static PsiElement getNameIdentifier(RRRegionNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRRegionNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRRegionRef ref, String newName) {
@@ -225,18 +226,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Ancillaries decl and refs">
-    public static PsiElement setName(RRAncillaryNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRAncillaryNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRAncillaryNameDecl decl) {
-        return decl.getFirstChild().getText();
+    public static String getName(RRAncillaryNameDecl e) {
+        return e.getFirstChild().getText();
     }
 
-    public static PsiElement getNameIdentifier(RRAncillaryNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRAncillaryNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRAncillaryRef ref, String newName) {
@@ -252,18 +253,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Traits decl and refs">
-    public static PsiElement setName(RRTraitNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRTraitNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRTraitNameDecl decl) {
-        return decl.getFirstChild().getText();
+    public static String getName(RRTraitNameDecl e) {
+        return e.getFirstChild().getText();
     }
 
-    public static PsiElement getNameIdentifier(RRTraitNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRTraitNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRTraitRef ref, String newName) {
@@ -279,9 +280,9 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Unit decl and refs">
-    public static PsiElement setName(RRUnitNameDecl decl, String newName) {
-        PsiElement newDecl = RRElementFactory.createUnitNameDecl(decl.getProject(), newName);
-        return decl.replace(newDecl);
+    public static PsiElement setName(RRUnitNameDecl e, String newName) {
+        PsiElement elementWithDesiredChildren = RRElementFactory.createElementWithIds(e.getProject(), newName);
+        return Util.replaceChildrenOf(e, elementWithDesiredChildren);
     }
 
     public static String getName(RRUnitNameDecl e) {
@@ -292,9 +293,9 @@ public class RRPsiImplUtil {
         return e;
     }
 
-    public static PsiElement setName(RRUnitRef ref, String newName) {
-        RRUnitRef newRef = RRElementFactory.createUnitRef(ref.getProject(), newName);
-        return ref.replace(newRef);
+    public static PsiElement setName(RRUnitRef e, String newName) {
+        PsiElement elementWithDesiredChildren = RRElementFactory.createElementWithIds(e.getProject(), newName);
+        return Util.replaceChildrenOf(e, elementWithDesiredChildren);
     }
 
     public static UnitReference getReference(RRUnitRef ref) {
@@ -319,18 +320,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Ethnicity decl and refs">
-    public static PsiElement setName(RREthnicityNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RREthnicityNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RREthnicityNameDecl decl) {
-        return decl.getFirstChild().getText();
+    public static String getName(RREthnicityNameDecl e) {
+        return e.getFirstChild().getText();
     }
 
-    public static PsiElement getNameIdentifier(RREthnicityNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RREthnicityNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RREthnicityRef ref, String newName) {
@@ -357,18 +358,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="AIPersonality decl and refs">
-    public static PsiElement setName(RRAiPersonalityNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRAiPersonalityNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRAiPersonalityNameDecl decl) {
-        return decl.getFirstChild().getText();
+    public static String getName(RRAiPersonalityNameDecl e) {
+        return e.getFirstChild().getText();
     }
 
-    public static PsiElement getNameIdentifier(RRAiPersonalityNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRAiPersonalityNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRAiPersonalityRef ref, String newName) {
@@ -384,18 +385,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="EthnicityMakeup decl and refs">
-    public static PsiElement setName(RREthnicityMakeupNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RREthnicityMakeupNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RREthnicityMakeupNameDecl decl) {
-        return decl.getFirstChild().getText();
+    public static String getName(RREthnicityMakeupNameDecl e) {
+        return e.getFirstChild().getText();
     }
 
-    public static PsiElement getNameIdentifier(RREthnicityMakeupNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RREthnicityMakeupNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RREthnicityMakeupRef ref, String newName) {
@@ -411,18 +412,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Resource decl and refs">
-    public static PsiElement setName(RRResourceNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createString(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRResourceNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createString(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRResourceNameDecl decl) {
-        return Util.unquote(decl.getFirstChild().getText());
+    public static String getName(RRResourceNameDecl e) {
+        return Util.unquote(e.getFirstChild().getText());
     }
 
-    public static PsiElement getNameIdentifier(RRResourceNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRResourceNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRResourceRef ref, String newName) {
@@ -438,18 +439,18 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Wonder decl and refs">
-    public static PsiElement setName(RRWonderNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    public static PsiElement setName(RRWonderNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRWonderNameDecl decl) {
-        return decl.getText();
+    public static String getName(RRWonderNameDecl e) {
+        return e.getText();
     }
 
-    public static PsiElement getNameIdentifier(RRWonderNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRWonderNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRWonderRef ref, String newName) {
@@ -464,19 +465,19 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Wonder decl and refs">
-    public static PsiElement setName(RRModelNameDecl decl, String newName) {
-        PsiElement id = RRElementFactory.createId(decl.getProject(), newName);
-        decl.getFirstChild().replace(id);
-        return decl;
+    //<editor-fold desc="Model decl and refs">
+    public static PsiElement setName(RRModelNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
     }
 
-    public static String getName(RRModelNameDecl decl) {
-        return decl.getText();
+    public static String getName(RRModelNameDecl e) {
+        return e.getText();
     }
 
-    public static PsiElement getNameIdentifier(RRModelNameDecl decl) {
-        return decl.getFirstChild();
+    public static PsiElement getNameIdentifier(RRModelNameDecl e) {
+        return e.getFirstChild();
     }
 
     public static PsiElement setName(RRModelRef ref, String newName) {
@@ -488,6 +489,62 @@ public class RRPsiImplUtil {
     public static ModelReference getReference(RRModelRef ref) {
         TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
         return new ModelReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Mount decl and refs">
+    public static PsiElement setName(RRMountNameDecl e, String newName) {
+        PsiElement elementWithDesiredChildren = RRElementFactory.createElementWithIds(e.getProject(), newName);
+        return Util.replaceChildrenOf(e, elementWithDesiredChildren);
+    }
+
+    public static String getName(RRMountNameDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRMountNameDecl e) {
+        return e;
+    }
+
+    public static PsiElement setName(RRMountRef e, String newName) {
+        PsiElement elementWithDesiredChildren = RRElementFactory.createElementWithIds(e.getProject(), newName);
+        return Util.replaceChildrenOf(e, elementWithDesiredChildren);
+    }
+
+    public static MountReference getReference(RRMountRef ref) {
+        TextRange range = new TextRange(
+            ref.getFirstChild().getTextRangeInParent().getStartOffset(),
+            ref.getLastChild().getTextRangeInParent().getEndOffset()
+        );
+        return new MountReference(ref, range);
+    }
+
+    //</editor-fold>
+
+    //<editor-fold desc="Disaster decl and refs">
+    public static PsiElement setName(RRDisasterNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRDisasterNameDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRDisasterNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRDisasterRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static DisasterReference getReference(RRDisasterRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new DisasterReference(ref, range);
     }
     //</editor-fold>
 

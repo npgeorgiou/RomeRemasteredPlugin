@@ -212,6 +212,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.CAMEL,
         RRTypes.ELEPHANT,
         RRTypes.CHARIOT,
+        RRTypes.SCORPION_CART,
         // action status
         RRTypes.IDLING,
         RRTypes.HIDING,
@@ -657,7 +658,47 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.MODEL_FLEXI_C,
 
         // descr_model_strat
-        RRTypes.IGNORE_REGISTRY
+        RRTypes.IGNORE_REGISTRY,
+
+        // descr_disasters
+        RRTypes.DISASTER_LC,
+        RRTypes.YEAR,
+        RRTypes.POSITION,
+        RRTypes.SIZE,
+
+        // descr_mount
+        RRTypes.RADIUS,
+        RRTypes.X_RADIUS,
+        RRTypes.HEIGHT,
+        RRTypes.BANNER_HEIGHT,
+        RRTypes.BOUYANCY_OFFSET,
+        RRTypes.WATER_TRAIL_EFFECT,
+        RRTypes.WATER_TRAIL_EFFECT_RUNNING,
+        RRTypes.ROOT_NODE_HEIGHT,
+        RRTypes.RIDER_OFFSET,
+        RRTypes.ATTACK_DELAY,
+        RRTypes.DEAD_RADIUS,
+        RRTypes.TUSK_Z,
+        RRTypes.TUSK_RADIUS,
+        RRTypes.RIDERS,
+        RRTypes.AXLE_WIDTH,
+        RRTypes.WHEEL_RADIUS,
+        RRTypes.PIVOT_OFFSET,
+        RRTypes.POLE_LENGTH,
+        RRTypes.POLE_PIVOT,
+        RRTypes.POLE_CONNECT,
+        RRTypes.HARNESS_CONNECT,
+        RRTypes.SCYTHE_RADIUS,
+        RRTypes.REVS_PER_ATTACK,
+        RRTypes.HORSE_TYPE,
+        RRTypes.HORSES,
+        RRTypes.HORSE_OFFSET,
+        RRTypes.LODS,
+        RRTypes.LOD,
+        RRTypes.SCORPION_OFFSET,
+        RRTypes.SCORPION_HEIGHT,
+        RRTypes.SCORPION_FORWARD_LENGTH,
+        RRTypes.SCORPION_RELOAD_TICKS
         );
     //</editor-fold>
 

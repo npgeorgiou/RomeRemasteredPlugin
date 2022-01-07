@@ -23,7 +23,7 @@ WS      = ({EOL}|{LINE_WS})+
 
 COMMENT = [";""¬"][^\r\n]*
 INT = [\+\-]?[0-9]+
-FLOAT = [\+\-]?[0-9]+\.[0-9]+
+FLOAT = [\+\-]?[0-9]*\.[0-9]+
 STR_CHAR = [^\"\r\n\\]
 STRING = \" {STR_CHAR}* \"
 
@@ -63,6 +63,9 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_MODEL_BATTLE_AND_STRAT
 %xstate DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS
 
+%state DESCR_MOUNT
+%xstate DESCR_MOUNT_NO_KEYWORDS
+
 %state EXPORT_DESCR_TRAITS
 %state DESCR_NAMES
 %state DESCR_UNIT_VARIATION
@@ -74,6 +77,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_LBC_DB
 %state DESCR_OFFMAP_MODELS
 %state DESCR_SM_LANDMARKS
+%state DESCR_DISASTERS
 
 %state CONDITIONS
 
@@ -96,6 +100,8 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";descr_sm_landmarks.txt"[^\r\n]*              {yybegin(DESCR_SM_LANDMARKS); return RRTypes.DESCR_SM_LANDMARKS_MARKER;}
 ";descr_model_battle.txt"[^\r\n]*              {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_BATTLE_MARKER;}
 ";descr_model_strat.txt"[^\r\n]*               {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_STRAT_MARKER;}
+";descr_disasters.txt"[^\r\n]*                 {yybegin(DESCR_DISASTERS); return RRTypes.DESCR_DISASTERS_MARKER;}
+";descr_mount.txt"[^\r\n]*                     {yybegin(DESCR_MOUNT); return RRTypes.DESCR_MOUNT_MARKER;}
 
 
 {WS}             {return TokenType.WHITE_SPACE;}
@@ -122,48 +128,49 @@ true|false       {return RRTypes.BOOLEAN;}
 {PATH}           {return RRTypes.PATH;}
 
 // character_type
-"all"                                             {return RRTypes.ALL;}
-"family"                                          {return RRTypes.FAMILY;}
-"named character"                                 {return RRTypes.NAMED_CHARACTER;}
-"general"                                         {return RRTypes.GENERAL;}
-"admiral"                                         {return RRTypes.ADMIRAL;}
-"diplomat"                                        {return RRTypes.DIPLOMAT;}
-"spy"                                             {return RRTypes.SPY;}
-"assassin"                                        {return RRTypes.ASSASSIN;}
-"merchant"                                        {return RRTypes.MERCHANT;}
+"all"                          {return RRTypes.ALL;}
+"family"                       {return RRTypes.FAMILY;}
+"named character"              {return RRTypes.NAMED_CHARACTER;}
+"general"                      {return RRTypes.GENERAL;}
+"admiral"                      {return RRTypes.ADMIRAL;}
+"diplomat"                     {return RRTypes.DIPLOMAT;}
+"spy"                          {return RRTypes.SPY;}
+"assassin"                     {return RRTypes.ASSASSIN;}
+"merchant"                     {return RRTypes.MERCHANT;}
 // unit class
-"light"                                           {return RRTypes.LIGHT;}
-"heavy"                                           {return RRTypes.HEAVY;}
-"skirmish"                                        {return RRTypes.SKIRMISH;}
-"missile"                                         {return RRTypes.MISSILE;}
-"spearmen"                                        {return RRTypes.SPEARMEN;}
+"light"                        {return RRTypes.LIGHT;}
+"heavy"                        {return RRTypes.HEAVY;}
+"skirmish"                     {return RRTypes.SKIRMISH;}
+"missile"                      {return RRTypes.MISSILE;}
+"spearmen"                     {return RRTypes.SPEARMEN;}
 // unit category
-"infantry"                                        {return RRTypes.INFANTRY;}
-"cavalry"                                         {return RRTypes.CAVALRY;}
-"siege"                                           {return RRTypes.SIEGE;}
-"handler"                                         {return RRTypes.HANDLER;}
-"ship"                                            {return RRTypes.SHIP;}
-"non_combatant"                                   {return RRTypes.NON_COMBATANT;}
+"infantry"                     {return RRTypes.INFANTRY;}
+"cavalry"                      {return RRTypes.CAVALRY;}
+"siege"                        {return RRTypes.SIEGE;}
+"handler"                      {return RRTypes.HANDLER;}
+"ship"                         {return RRTypes.SHIP;}
+"non_combatant"                {return RRTypes.NON_COMBATANT;}
 // hide_type
-"hide_forest"                                     {return RRTypes.HIDE_FOREST;}
-"hide_improved_forest"                            {return RRTypes.HIDE_IMPROVED_FOREST;}
-"hide_long_grass"                                 {return RRTypes.HIDE_LONG_GRASS;}
-"hide_anywhere"                                   {return RRTypes.HIDE_ANYWHERE;}
+"hide_forest"                  {return RRTypes.HIDE_FOREST;}
+"hide_improved_forest"         {return RRTypes.HIDE_IMPROVED_FOREST;}
+"hide_long_grass"              {return RRTypes.HIDE_LONG_GRASS;}
+"hide_anywhere"                {return RRTypes.HIDE_ANYWHERE;}
 // formations
-"square"                                          {return RRTypes.SQUARE;}
-"square_hollow"                                   {return RRTypes.SQUARE_HOLLOW;}
-"horde"                                           {return RRTypes.HORDE;}
-"column"                                          {return RRTypes.COLUMN;}
-"phalanx"                                         {return RRTypes.PHALANX;}
-"testudo"                                         {return RRTypes.TESTUDO;}
-"wedge"                                           {return RRTypes.WEDGE;}
-"shield_wall"                                     {return RRTypes.SHIELD_WALL;}
-"schiltrom"                                       {return RRTypes.SCHILTROM;}
-// mount_class
-"horse"                                           {return RRTypes.HORSE;}
-"camel"                                           {return RRTypes.CAMEL;}
-"elephant"                                        {return RRTypes.ELEPHANT;}
-"chariot"                                         {return RRTypes.CHARIOT;}
+"square"                       {return RRTypes.SQUARE;}
+"square_hollow"                {return RRTypes.SQUARE_HOLLOW;}
+"horde"                        {return RRTypes.HORDE;}
+"column"                       {return RRTypes.COLUMN;}
+"phalanx"                      {return RRTypes.PHALANX;}
+"testudo"                      {return RRTypes.TESTUDO;}
+"wedge"                        {return RRTypes.WEDGE;}
+"shield_wall"                  {return RRTypes.SHIELD_WALL;}
+"schiltrom"                    {return RRTypes.SCHILTROM;}
+//
+"horse"                        {return RRTypes.HORSE;}
+"camel"                        {return RRTypes.CAMEL;}
+"elephant"                     {return RRTypes.ELEPHANT;}
+"chariot"                      {return RRTypes.CHARIOT;}
+"scorpion_cart"                {return RRTypes.SCORPION_CART;}
 
 // events
 "PreBattle"                             {return RRTypes.PREBATTLE;}
@@ -1003,6 +1010,25 @@ true|false       {return RRTypes.BOOLEAN;}
     {ID}            {return RRTypes.ID;}
 }
 
+<DESCR_DISASTERS>
+{
+    "disaster"          {return RRTypes.DISASTER_LC;}
+    "type"              {return RRTypes.TYPE;}
+    "year"              {return RRTypes.YEAR;}
+    "position"          {return RRTypes.POSITION;}
+    "size"              {return RRTypes.SIZE;}
+    "winter"            {return RRTypes.WINTER;}
+    "summer"            {return RRTypes.SUMMER;}
+    // disaster_type
+    "earthquake"        {return RRTypes.EARTHQUAKE;}
+    "flood"             {return RRTypes.FLOOD;}
+    "horde"             {return RRTypes.HORDE;}
+    "fire"              {return RRTypes.FIRE;}
+    "riot"              {return RRTypes.RIOT;}
+    "storm"             {return RRTypes.STORM;}
+    "volcano"           {return RRTypes.VOLCANO;}
+    {ID}                {return RRTypes.ID;}
+}
 
 <DESCR_MODEL_BATTLE_AND_STRAT>
 {
@@ -1046,6 +1072,54 @@ true|false       {return RRTypes.BOOLEAN;}
     {WS}                      {return TokenType.WHITE_SPACE;}
     {COMMENT}                 {return RRTypes.COMMENT;}
     "skeleton"                {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.SKELETON;}
+    {ID}                      {return RRTypes.ID;}
+}
+
+<DESCR_MOUNT>
+{
+    "type"                       {yybegin(DESCR_MOUNT_NO_KEYWORDS); return RRTypes.TYPE;}
+    "model"                      {yybegin(DESCR_MOUNT_NO_KEYWORDS); return RRTypes.MODEL;}
+    "radius"                     {return RRTypes.RADIUS;}
+    "x_radius"                   {return RRTypes.X_RADIUS;}
+    "height"                     {return RRTypes.HEIGHT;}
+    "mass"                       {return RRTypes.MASS;}
+    "banner_height"              {return RRTypes.BANNER_HEIGHT;}
+    "bouyancy_offset"            {return RRTypes.BOUYANCY_OFFSET;}
+    "water_trail_effect"         {return RRTypes.WATER_TRAIL_EFFECT;}
+    "water_trail_effect_running" {return RRTypes.WATER_TRAIL_EFFECT_RUNNING;}
+    "root_node_height"           {return RRTypes.ROOT_NODE_HEIGHT;}
+    "rider_offset"               {return RRTypes.RIDER_OFFSET;}
+    "attack_delay"               {return RRTypes.ATTACK_DELAY;}
+    "dead_radius"                {return RRTypes.DEAD_RADIUS;}
+    "tusk_z"                     {return RRTypes.TUSK_Z;}
+    "tusk_radius"                {return RRTypes.TUSK_RADIUS;}
+    "riders"                     {return RRTypes.RIDERS;}
+    "axle_width"                 {return RRTypes.AXLE_WIDTH;}
+    "wheel_radius"               {return RRTypes.WHEEL_RADIUS;}
+    "pivot_offset"               {return RRTypes.PIVOT_OFFSET;}
+    "pole_length"                {return RRTypes.POLE_LENGTH;}
+    "pole_pivot"                 {return RRTypes.POLE_PIVOT;}
+    "pole_connect"               {return RRTypes.POLE_CONNECT;}
+    "harness_connect"            {return RRTypes.HARNESS_CONNECT;}
+    "scythe_radius"              {return RRTypes.SCYTHE_RADIUS;}
+    "revs_per_attack"            {return RRTypes.REVS_PER_ATTACK;}
+    "horse_type"                 {yybegin(DESCR_MOUNT_NO_KEYWORDS); return RRTypes.HORSE_TYPE;}
+    "horse_offset"               {return RRTypes.HORSE_OFFSET;}
+    "lods"                       {return RRTypes.LODS;}
+    "lod"                        {return RRTypes.LOD;}
+    "scorpion_offset"            {return RRTypes.SCORPION_OFFSET;}
+    "scorpion_height"            {return RRTypes.SCORPION_HEIGHT;}
+    "scorpion_forward_length"    {return RRTypes.SCORPION_FORWARD_LENGTH;}
+    "scorpion_reload_ticks"      {return RRTypes.SCORPION_RELOAD_TICKS;}
+    {ID}                         {return RRTypes.ID;}
+}
+<DESCR_MOUNT_NO_KEYWORDS>
+{
+    {WS}                      {return TokenType.WHITE_SPACE;}
+    {COMMENT}                 {return RRTypes.COMMENT;}
+    "class"                   {yybegin(DESCR_MOUNT); return RRTypes.CLASS;}
+    "radius"                  {yybegin(DESCR_MOUNT); return RRTypes.RADIUS;}
+    "horses"                  {yybegin(DESCR_MOUNT); return RRTypes.HORSES;}
     {ID}                      {return RRTypes.ID;}
 }
 

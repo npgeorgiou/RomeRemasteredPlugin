@@ -1,5 +1,7 @@
 package rr.language;
 
+import com.intellij.psi.PsiElement;
+
 public class Util {
     public static String quote(String string) {
         return "\"" + string + "\"";
@@ -12,11 +14,21 @@ public class Util {
 
         return string;
     }
+
     public static String removeLastOccurrence(String str, String search) {
         if (str.endsWith(search)) {
             str = str.substring(0, str.length() - search.length());
         }
 
         return str;
+    }
+
+    public static PsiElement replaceChildrenOf(PsiElement of, PsiElement with) {
+        PsiElement firstChild = of.getFirstChild();
+        PsiElement lastChild = of.getLastChild();
+        of.addRange(with.getFirstChild(), with.getLastChild());
+        of.deleteChildRange(firstChild, lastChild);
+
+        return of;
     }
 }

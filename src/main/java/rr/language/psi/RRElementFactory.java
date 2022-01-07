@@ -14,9 +14,9 @@ public class RRElementFactory {
         return file.getFirstChild();
     }
 
-    public static RRUnitNameDecl createUnitNameDecl(Project project, String name) {
+    public static PsiElement createElementWithIds(Project project, String name) {
         String contents = "type             " + name + "\n" +
-                          "dictionary       foo";
+            "dictionary       foo";
         RRFile file = createFile(project, contents);
 
         return file.findChildByClass(RRExportDescrUnit.class).getUnitItem_List().get(0).getUnitNameDecl();
@@ -24,8 +24,8 @@ public class RRElementFactory {
 
     public static RRUnitRef createUnitRef(Project project, String name) {
         String contents = "pool foo\n" +
-                          "regions bar\n" +
-                          "unit " + name + ", exp 0 cost 0 replenish 0.0 - 0.0 max 0 initial 0";
+            "regions bar\n" +
+            "unit " + name + ", exp 0 cost 0 replenish 0.0 - 0.0 max 0 initial 0";
         RRFile file = createFile(project, contents);
 
         return file.findChildByClass(RRDescrMercenaries.class).getMercenaryPoolList().get(0).getUnitRefList().get(0);

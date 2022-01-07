@@ -6,6 +6,7 @@ import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import rr.language.psi.RRCoords;
+import rr.language.psi.RRCoordsNoComma;
 import rr.language.psi.RRCoordsWithXy;
 
 public class RRHighlightingAnnotator implements Annotator {
@@ -16,6 +17,10 @@ public class RRHighlightingAnnotator implements Annotator {
         }
 
         if (element instanceof RRCoordsWithXy) {
+            color(element, RRSyntaxHighlighter.COORDS_STYLE, holder);
+        }
+
+        if (element instanceof RRCoordsNoComma) {
             color(element, RRSyntaxHighlighter.COORDS_STYLE, holder);
         }
     }

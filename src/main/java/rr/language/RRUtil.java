@@ -100,6 +100,38 @@ public class RRUtil {
             .collect(Collectors.toList());
     }
 
+    public static Collection<RRDisaster_> findAllDisasters(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_disasters.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrDisasters.class).getDisaster_List();
+    }
+
+    public static Collection<String> findAllDisastersAsStrings(Project project) {
+        return findAllDisasters(project).stream()
+            .map(it -> it.getDisasterNameDecl().getText())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRMount_> findAllMounts(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_mount.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrMount.class).getMount_List();
+    }
+
+    public static Collection<String> findAllMountsAsStrings(Project project) {
+        return findAllMounts(project).stream()
+            .map(it -> it.getMountNameDecl().getText())
+            .collect(Collectors.toList());
+    }
+
     public static Collection<RRModel_> findAllModels(Project project) {
         RRFile battle_file = RRUtil.findRRFile("descr_model_battle.txt", project);
         List<RRModel_> battle_models = new ArrayList<>();
