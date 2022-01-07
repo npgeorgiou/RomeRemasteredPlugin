@@ -272,6 +272,15 @@ public class RRCompletionContributor extends CompletionContributor {
             .toArray(String[]::new);
     }
 
+    private String[] formations() {
+        return Stream.concat(
+                Arrays.stream(new String[]{
+                    "square", "phalanx", "horde", "testudo", "wedge", "schiltrom", "shield_wall"
+                }),
+                Arrays.stream(agentType()))
+            .toArray(String[]::new);
+    }
+
     private String[] events() {
         return new String[]{
             "PreBattle",
@@ -636,6 +645,7 @@ public class RRCompletionContributor extends CompletionContributor {
                     "can_run_amok",
                     "warcry",
                     "can_sap",
+                    "can_swim",
                     "hardy",
                     "very_hardy",
                     "sea_faring",
@@ -645,7 +655,11 @@ public class RRCompletionContributor extends CompletionContributor {
                     "mercenary_unit",
                     "druid",
                     "screeching_women",
-                    "no_custom")));
+                    "no_custom",
+                    "can_horde",
+                    "command",
+                    "legionary_name"
+                )));
 
         // formation  1.2, 1.8, 2.4, 2.4, 6, {formation} [, {formation}]
         Node export_descr_unit_formation = new RootNode(
@@ -659,12 +673,12 @@ public class RRCompletionContributor extends CompletionContributor {
             ),
             new Node(
                 inside(RRTypes.UNIT_FORMATION),
-                new HardcodedValues("square", "phalanx", "horde", "testudo", "wedge"),
+                new HardcodedValues(formations()),
                 new Node(
                     psiElement(RRTypes.COMMA),
                     new Null(),
                     new Node(
-                        new HardcodedValues("square", "phalanx", "horde", "testudo", "wedge")
+                        new HardcodedValues(formations())
                     )
                 )
             )
@@ -789,6 +803,11 @@ public class RRCompletionContributor extends CompletionContributor {
         Node export_descr_buildings_tag = new RootNode(psiElement(RRTypes.TAG),
             new Node(
                 new BuildingTags()));
+
+        // classification {type}
+        Node export_descr_buildings_classification = new RootNode(psiElement(RRTypes.CLASSIFICATION),
+            new Node(
+                new HardcodedValues(buildingCategory())));
 
         // requires {requirement}
         Node export_descr_buildings_requires = new RootNode(
@@ -936,6 +955,7 @@ public class RRCompletionContributor extends CompletionContributor {
         extendFor(export_descr_unit_ethnicity);
         extendFor(export_descr_buildings_settlement_level);
         extendFor(export_descr_buildings_tag);
+        extendFor(export_descr_buildings_classification);
         extendFor(export_descr_buildings_requires);
         extendFor(export_descr_buildings_capability);
         extendFor(export_descr_ancillaries_excluded);

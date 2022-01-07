@@ -57,6 +57,15 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.HUGE_CITY,
         RRTypes.DEFAULT_SET,
 
+        // building types
+        RRTypes.CORE,
+        RRTypes.DEFENCE,
+        RRTypes.MILITARY,
+        RRTypes.TRADE,
+        RRTypes.WATER,
+        RRTypes.CULTURE,
+        RRTypes.RELIGIOUS,
+
         // port levels
         RRTypes.FISHING_VILLAGE,
         RRTypes.SEA_PORT,
@@ -65,11 +74,14 @@ public class RRParserDefinition implements ParserDefinition {
 
         // export_descr_unit
         RRTypes.NO,
+
+        // unit attributes
         RRTypes.FRIGHTEN_FOOT,
         RRTypes.FRIGHTEN_MOUNTED,
         RRTypes.CAN_RUN_AMOK,
         RRTypes.WARCRY,
         RRTypes.CAN_SAP,
+        RRTypes.CAN_SWIM,
         RRTypes.HARDY,
         RRTypes.VERY_HARDY,
         RRTypes.SEA_FARING,
@@ -79,6 +91,9 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.DRUID,
         RRTypes.SCREECHING_WOMEN,
         RRTypes.NO_CUSTOM,
+        RRTypes.CAN_HORDE,
+        RRTypes.LEGIONARY_NAME,
+
         RRTypes.MELEE,
         RRTypes.THROWN,
         RRTypes.SIEGE_MISSILE,
@@ -118,7 +133,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.TRAINED,
         RRTypes.HIGHLY_TRAINED,
 
-        // export_descr_buildings
         // conflict types
         RRTypes.SUCCESSFULAMBUSH,
         RRTypes.FAILEDAMBUSH,
@@ -179,6 +193,8 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.PHALANX,
         RRTypes.TESTUDO,
         RRTypes.WEDGE,
+        RRTypes.SHIELD_WALL,
+        RRTypes.SCHILTROM,
         // special abilities
         RRTypes.DROP_ENGINES,
         RRTypes.FLAMING_AMMO,
@@ -189,10 +205,8 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.KILL_ELEPHANTS,
         RRTypes.MOVE_AND_SHOOT,
         RRTypes.CANTABRIAN_CIRCLE,
-        RRTypes.SHIELD_WALL,
         RRTypes.STEALTH,
         RRTypes.FEIGNED_ROUT,
-        RRTypes.SCHILTROM,
         // mount_class
         RRTypes.HORSE,
         RRTypes.CAMEL,
@@ -307,6 +321,12 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.RESOURCE_QUANTITY_DISABLED,
         RRTypes.RESOURCE,
         RRTypes.FACTION,
+        RRTypes.SETTLEMENT_TAX,
+        RRTypes.DEAD_UNTIL_RESURRECTED,
+        RRTypes.AI_DO_NOT_ATTACK,
+        RRTypes.AI_DO_NOT_ATTACK_FACTION,
+        RRTypes.SPAWN_SCRIPT,
+        RRTypes.REVOLT,
         RRTypes.SUPERFACTION,
         RRTypes.DENARI,
         RRTypes.SETTLEMENT,
@@ -358,6 +378,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.VOICE_TYPE,
         RRTypes.VOICE_INDEXES,
         RRTypes.SOLDIER,
+        RRTypes.SOLDIERS,
         RRTypes.ATTRIBUTES,
         RRTypes.FORMATION,
         RRTypes.STAT_HEALTH,
@@ -383,6 +404,8 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.DONT_ALLOW_MIXED,
         RRTypes.DONT_ALLOW_CUSTOM,
         RRTypes.TATTOO_COLOR,
+        RRTypes.UNIQUE_TATTOO,
+        RRTypes.EXCLUDE_TATTOO,
         RRTypes.OFFICER,
         RRTypes.ENGINE,
         RRTypes.ANIMAL,
@@ -396,11 +419,12 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.QUEUED,
         RRTypes.DISPLAY_STRING,
         RRTypes.TAG,
-        RRTypes.ICON,
+        RRTypes.CLASSIFICATION,
         RRTypes.LEVELS,
         RRTypes.PLUGINS,
         RRTypes.FACTIONS,
         RRTypes.CAPABILITY,
+        RRTypes.FACTION_CAPABILITY,
         RRTypes.TAXABLE_INCOME_BONUS,
         RRTypes.TRADE_BASE_INCOME_BONUS,
         RRTypes.TRADE_FLEET,

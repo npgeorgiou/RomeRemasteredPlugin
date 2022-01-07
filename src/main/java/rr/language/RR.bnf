@@ -84,12 +84,16 @@
       RESOURCE="resource"
       FACTION="faction"
       SUPERFACTION="superfaction"
+      DEAD_UNTIL_RESURRECTED="dead_until_resurrected"
+      AI_DO_NOT_ATTACK="ai_do_not_attack"
+      AI_DO_NOT_ATTACK_FACTION="ai_do_not_attack_faction"
       DENARI="denari"
       SETTLEMENT="settlement"
       LEVEL="level"
       REGION="region"
       YEAR_FOUNDED="year_founded"
       POPULATION="population"
+      SETTLEMENT_TAX="settlement_tax"
       PLAN_SET="plan_set"
       FACTION_CREATOR="faction_creator"
       VILLAGE="village"
@@ -131,6 +135,8 @@
       MISSION_QUEUE="mission_queue"
       X="x"
       Y="y"
+      SPAWN_SCRIPT="spawn_script"
+      REVOLT="revolt"
       SCRIPT="script"
       ONCE_ONLY="once_only"
 
@@ -141,13 +147,18 @@
       VOICE_TYPE="voice_type"
       VOICE_INDEXES="voice_indexes"
       SOLDIER="soldier"
+      SOLDIERS="soldiers"
+      DEFAULT_LC="default"
       ENGINE="engine"
       NO="no"
+
+      // unit attributes
       FRIGHTEN_FOOT="frighten_foot"
       FRIGHTEN_MOUNTED="frighten_mounted"
       CAN_RUN_AMOK="can_run_amok"
       WARCRY="warcry"
       CAN_SAP="can_sap"
+      CAN_SWIM="can_swim"
       HARDY="hardy"
       VERY_HARDY="very_hardy"
       SEA_FARING="sea_faring"
@@ -158,6 +169,9 @@
       DRUID="druid"
       SCREECHING_WOMEN="screeching_women"
       NO_CUSTOM="no_custom"
+      CAN_HORDE="can_horde"
+      LEGIONARY_NAME="legionary_name"
+
       MELEE="melee"
       THROWN="thrown"
       SIEGE_MISSILE="siege_missile"
@@ -220,6 +234,8 @@
       DONT_ALLOW_REGIONAL="don't_allow_regional"
       DONT_ALLOW_CUSTOM="don't_allow_custom"
       TATTOO_COLOR="tattoo_color"
+      UNIQUE_TATTOO="unique_tattoo"
+      EXCLUDE_TATTOO="exclude_tattoo"
       HAIR_COLOR="hair_color"
       HAIR_STYLE="hair_style"
       IS_FEMALE="is_female"
@@ -243,10 +259,12 @@
       CULTURE="culture"
       RELIGIOUS="religious"
       ICON="icon"
+      CLASSIFICATION="classification"
       LEVELS="levels"
       PLUGINS="plugins"
       FACTIONS="factions"
       CAPABILITY="capability"
+      FACTION_CAPABILITY="faction_capability"
       TAXABLE_INCOME_BONUS="taxable_income_bonus"
       TRADE_BASE_INCOME_BONUS="trade_base_income_bonus"
       TRADE_FLEET="trade_fleet"
@@ -1129,6 +1147,8 @@
       PHALANX="phalanx"
       TESTUDO="testudo"
       WEDGE="wedge"
+      SHIELD_WALL="shield_wall"
+      SCHILTROM="schiltrom"
       // special abilities
       DROP_ENGINES="drop_engines"
       FLAMING_AMMO="flaming_ammo"
@@ -1139,10 +1159,8 @@
       KILL_ELEPHANTS="kill_elephants"
       MOVE_AND_SHOOT="move_and_shoot"
       CANTABRIAN_CIRCLE="cantabrian_circle"
-      SHIELD_WALL="shield_wall"
       STEALTH="stealth"
       FEIGNED_ROUT="feigned_rout"
-      SCHILTROM="schiltrom"
       // mount_class
       HORSE = "horse"
       CAMEL = "camel"
@@ -1258,14 +1276,16 @@ RRFile ::= descr_strat|
           kv_format|
 
 // ############### descr_strat start ###############################
-descr_strat ::= campaign_section
+descr_strat ::=
+                campaign_section
                 landmark_section?
                 resources_section
                 sound_emitters_section?
                 events_section?
                 factions_section
                 diplomacy_section
-                SCRIPT txt_file_ (COMMA ONCE_ONLY)?
+                (SPAWN_SCRIPT faction_ref COMMA REVOLT COMMA txt_file_)*
+                 SCRIPT txt_file_ (COMMA ONCE_ONLY)?
 
 season ::= (SUMMER|WINTER)
 
@@ -1282,23 +1302,24 @@ campaign_section ::= CAMPAIGN ID
 private recover_campaign_section ::= !(landmark_section)
 
 landmark_section ::= landmark_item*
-landmark_item ::= LANDMARK ID INT COMMA INT
+landmark_item ::= LANDMARK wonder_ref coords
 
-resources_section ::=
-    resource_quantity_enabled_
-    resource_quantity_disabled_
+resources_section ::= (resource_quantity_enabled_ resource_quantity_disabled_)|resource_item*
 
 resource_quantity_enabled_ ::= RESOURCE_QUANTITY_ENABLED resource_item* END
 resource_quantity_disabled_ ::= RESOURCE_QUANTITY_DISABLED resource_item* END
 resource_item ::= RESOURCE resource_ref COMMA INT COMMA coords {pin=1 recoverWhile=recover_resource_item}
-private recover_resource_item ::= !(resource_item|END)
+private recover_resource_item ::= !(resource_item|END|FACTION)
+
 sound_emitters_section ::=
 events_section ::=
 
-factions_section ::= faction_item*
-
+factions_section ::= faction_item+
 faction_item ::= FACTION faction_ref COMMA ai_personality_ref
+                                 (AI_DO_NOT_ATTACK faction_ref)?
+                                 (AI_DO_NOT_ATTACK_FACTION faction_ref)?
                                  (SUPERFACTION ID)?
+                                 DEAD_UNTIL_RESURRECTED?
                                  DENARI INT
                                  settlement_item*
                                  character_item*
@@ -1311,6 +1332,7 @@ settlement_item ::= SETTLEMENT OCB
                           REGION region_ref
                           YEAR_FOUNDED INT
                           POPULATION INT
+                          (SETTLEMENT_TAX INT)?
                           PLAN_SET settlement_plan
                           FACTION_CREATOR faction_ref
                           building_item*
@@ -1323,28 +1345,30 @@ building_item ::= BUILDING OCB building_info CCB {pin=2}
 private building_info ::= TYPE building_tree_ref building_level_ref  {pin=1 recoverWhile=not_CCB}
 private not_CCB ::= !CCB
 
-character_item ::= CHARACTER (SUB_FACTION ID COMMA)? name_ COMMA character_type COMMA ((LEADER|HEIR) COMMA)? AGE INT COMMA COMMA coords_with_xy (COMMA PORTRAIT_INDEX INT)?
-                   (TRAITS list_of_trait_items)?
+character_item ::= CHARACTER
+                   (SUB_FACTION ID COMMA)?
+                   name_ COMMA
+                   character_type COMMA
+                   ((LEADER|HEIR) COMMA)?
+                   (character_skills COMMA?)?
+                   AGE INT COMMA COMMA
+                   coords_with_xy
+                   (COMMA PORTRAIT_INDEX INT)?
+
+                   (TRAITS <<optional_commas_list (trait_ref INT)>>)?
                    (ANCILLARIES <<list ancillary_ref>>)?
                    (ARMY army_unit_item*)?
+army_unit_item ::= UNIT unit_ref EXP INT ARMOUR INT WEAPON_LVL INT
 
 character_record_item ::= CHARACTER_RECORD name_ COMMA
-                     sex COMMA
-                     COMMAND INT COMMA
-                     INFLUENCE INT COMMA
-                     MANAGEMENT INT COMMA
-                     SUBTERFUGE INT COMMA
+                     (MALE|FEMALE) COMMA
+                     character_skills COMMA
                      AGE INT COMMA
                      ALIVE COMMA
                      NEVER_A_LEADER
-sex ::= (MALE|FEMALE)
 
-relative_item ::= RELATIVE name_ COMMA name_ COMMA (list_of_names COMMA)? end
-private list_of_names ::=  <<list name_>>
-
-private list_of_trait_items ::=  <<list trait_item>>
-trait_item ::= trait_ref INT
-army_unit_item ::= UNIT unit_ref EXP INT ARMOUR INT WEAPON_LVL INT
+character_skills ::= COMMAND INT COMMA INFLUENCE INT COMMA MANAGEMENT INT COMMA SUBTERFUGE INT
+relative_item ::= RELATIVE name_ COMMA name_ COMMA (<<list name_>> COMMA?)? end
 
 diplomacy_section ::= core_attitudes_item+
                       faction_relationships_item+
@@ -1357,7 +1381,7 @@ faction_relationships_item ::= FACTION_RELATIONSHIPS faction_ref COMMA INT <<lis
 private faction_relationships_recover ::= !(FACTION_RELATIONSHIPS|SUPERFACTION_SETUP|SCRIPT)
 
 superfaction_setup_item ::= SUPERFACTION_SETUP ID
-                            (DEFAULT_HOSTILE ID)*
+                            (DEFAULT_HOSTILE faction_ref)*
                             mission_queue_item*
 mission_queue_item ::= MISSION_QUEUE faction_ref OCB mission* CCB
 mission ::= ID INT ID (ID)?
@@ -1373,15 +1397,15 @@ unit_item_ ::= TYPE unit_name_decl
                DICTIONARY ID
                CATEGORY unit_category
                CLASS unit_class
-               VOICE_TYPE ID ID?
+               VOICE_TYPE ID culture_ref?
                (VOICE_INDEXES INT INT INT)?
                rebalance_block
-               OWNERSHIP <<list faction_or_culture_ref>>
+               OWNERSHIP <<list faction_or_culture_ref>> COMMA?
                (ETHNICITY faction_ref COMMA ethnicity_makeup_ref
-                         (COMMA DONT_ALLOW_MIXED)?
-                         (COMMA DONT_ALLOW_REGIONAL)?
-                         (COMMA DONT_ALLOW_CUSTOM)?
+                         (COMMA (DONT_ALLOW_MIXED|DONT_ALLOW_REGIONAL|DONT_ALLOW_CUSTOM))*
                          (TATTOO_COLOR ID)?
+                         (UNIQUE_TATTOO INT)?
+                         (EXCLUDE_TATTOO ID)?
                          (HAIR_COLOR ID)?
                          (HAIR_STYLE INT)?
                          (IS_FEMALE)?)*
@@ -1392,7 +1416,15 @@ unit_name_decl ::= ID+ {implements="rr.language.psi.RRNamedElement" methods=[set
 unit_ref ::= ID+ {methods=[setName getReference]}
 str_unit_ref ::= STRING {methods=[setName getReference]}
 faction_or_culture_ref ::= ID {methods=[setName getReference]}
-rebalance_block ::= SOLDIER model_ref COMMA INT COMMA INT COMMA number
+
+private soldier_ ::= SOLDIER model_ref COMMA INT COMMA INT COMMA number
+private soldiers_ ::= SOLDIERS INT COMMA INT COMMA number OCB
+                       DEFAULT_LC OCB
+                         model_ref+
+                       CCB
+                      CCB
+
+rebalance_block ::= (soldier_|soldiers_)
                     (ENGINE ID)?
                     (SHIP ID+)?
                     (ANIMAL ID)?
@@ -1417,12 +1449,13 @@ rebalance_block ::= SOLDIER model_ref COMMA INT COMMA INT COMMA number
                     STAT_COST INT COMMA INT COMMA INT COMMA INT COMMA INT COMMA INT
                     {pin=1}
 
+
 unit_attribute ::= hide_type|
                     FRIGHTEN_FOOT|FRIGHTEN_MOUNTED|CAN_RUN_AMOK|WARCRY|
                     CAN_SAP|HARDY|VERY_HARDY|SEA_FARING|CANTABRIAN_CIRCLE|
                     GENERAL_UNIT|GENERAL_UNIT_UPGRADE|COMMAND|MERCENARY_UNIT|DRUID|SCREECHING_WOMEN|
-                    NO_CUSTOM
-list_of_unit_attributes ::= <<list unit_attribute>> {recoverWhile=not_formation}
+                    NO_CUSTOM|CAN_HORDE|CAN_SWIM|LEGIONARY_NAME
+list_of_unit_attributes ::= <<list unit_attribute>> COMMA? {recoverWhile=not_formation}
 private not_formation ::= !FORMATION
 unit_formations::=  unit_formation (COMMA unit_formation)? {recoverWhile=not_stat_health}
 private not_stat_health ::= !STAT_HEALTH
@@ -1463,19 +1496,20 @@ tags_ ::= TAGS OCB list_of_IDs CCB {pin=1}
 
 condition_alias ::= ALIAS ID OCB
                        requirement
-                       DISPLAY_STRING ID
-                     CCB
-                     {pin=1 recoverWhile=aliasRecover}
+                       (DISPLAY_STRING ID)?
+                     CCB {pin=1 recoverWhile=aliasRecover}
 private aliasRecover ::= !(condition_alias|building_tree)
 
 building_tree ::= BUILDING building_tree_name_decl OCB
                         (TAG ID)?
-                        ICON ID
+                        (CLASSIFICATION building_category)?
+                        (ICON ID)?
                         LEVELS building_level_ref+ OCB
                           building_level+
                         CCB
                         PLUGINS OCB CCB
                       CCB {pin=1}
+building_category ::= CORE|DEFENCE|MILITARY|TRADE|WATER|CULTURE|RELIGIOUS|
 building_tree_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 building_tree_ref ::= ID {methods=[setName getReference]}
 building_level ::= building_level_name_decl requirement
@@ -1484,11 +1518,14 @@ building_level ::= building_level_name_decl requirement
                          CAPABILITY OCB
                            (capability_ requirement?)*
                          CCB
+                         (FACTION_CAPABILITY OCB
+                           (capability_ requirement?)*
+                         CCB)?
                          CONSTRUCTION INT
                          COST INT
                          SETTLEMENT_MIN settlement_level
                          UPGRADES OCB
-                           building_level_ref?
+                           building_level_ref*
                          CCB
                        CCB {pin=1}
 
@@ -1509,7 +1546,7 @@ private effect_capability ::= (
                         STAGE_RACES|STAGE_GAMES|
                         AGENT_LIMIT_SETTLEMENT agent_type|
                         DUMMY CAPABILITY_TRAITSANDRETINUE // what is that?
-                      ) BONUS? INT
+                      ) BONUS? number
 
 requirement ::= REQUIRES composite_c
 private composite_c ::= maybe_negated_c ((AND|OR) maybe_negated_c)* {pin=1}
@@ -1524,7 +1561,7 @@ private recover_c ::= !(
                        )
 
 alias_c ::= ID                                                                           {pin=1}
-factions_c ::= FACTIONS OCB <<list faction_or_culture_ref>> COMMA CCB                    {pin=1}
+factions_c ::= FACTIONS OCB {ALL|<<list faction_or_culture_ref>>} COMMA CCB                    {pin=1}
 major_event_c ::= MAJOR_EVENT STRING                                                     {pin=1} // kv_format.txt:
 resource_c ::= RESOURCE resource_ref                                                     {pin=1}
 hidden_resource_c ::= HIDDEN_RESOURCE resource_ref                                       {pin=1}
@@ -1577,7 +1614,7 @@ trait_def ::= TRAIT trait_name_decl
                 HIDDEN?
                 (EXCLUDECULTURES <<list ID>>)*
                 (NOGOINGBACKLEVEL INT)?
-                (ANTITRAITS <<list trait_ref>>)?
+                (ANTITRAITS <<optional_commas_list trait_ref>>)?
               trait_level*
               {pin=1 recoverWhile=trait_def_recover}
 trait_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
@@ -1920,17 +1957,17 @@ model_ ::= TYPE model_name_decl
            (MALE|FEMALE)
            (BODY (faction_ref COMMA)? bodytype)*
            (ANGRY_FACE (NO|YES))?
-           (MEDIEVAL_FEATURES NO)?
+           (MEDIEVAL_FEATURES (faction_ref COMMA)? (YES|NO))*
            (TIRED_K (faction_ref COMMA)? (NO|TIRED_C|VERYTIRED))*
            (AGED (faction_ref COMMA)? FLOAT)*
-           model_pbr_texture+
-           model_texture+
+           (model_pbr_texture|model_texture)+
            model_model*
            model_flexi_*
-private model_pbr_texture ::= PBR_TEXTURE (faction_ref COMMA)? TGA_FILE
+
+private model_pbr_texture ::= PBR_TEXTURE ((DEFAULT|faction_ref)COMMA)? TGA_FILE
 private model_texture ::= texture ((DEFAULT|faction_ref) COMMA)? TGA_FILE
 private model_model ::= NO_VARIATION? model (faction_ref COMMA)? capitalized_ethnicity PATH
-private model_flexi_   ::= NO_VARIATION? (MODEL_FLEXI|MODEL_FLEXI_M|MODEL_FLEXI_C)  CAS_FILE COMMA (MAX|INT)
+private model_flexi_   ::= NO_VARIATION? (MODEL_FLEXI|MODEL_FLEXI_M|MODEL_FLEXI_C)  CAS_FILE COMMA (MAX|INT)?
 capitalized_ethnicity ::= 'African'|'Arabic'|'Caucasian'|'EastAsian'|'Egyptian'|'Indian'|'Mediterranean'
 private bodytype ::= DEFAULT|SKINNY|SKINNYATHLETIC|ATHLETIC|BULKY|OVERWEIGHT
 model_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
@@ -2340,7 +2377,7 @@ battle_building_type ::= AMBIENT|MAJOR|WALL|TOWER|GATE
 unit_class ::= LIGHT|HEAVY|SKIRMISH|MISSILE|SPEARMEN
 unit_category ::= INFANTRY|CAVALRY|SIEGE|HANDLER|SHIP|NON_COMBATANT
 hide_type ::= HIDE_FOREST|HIDE_IMPROVED_FOREST|HIDE_LONG_GRASS|HIDE_ANYWHERE
-unit_formation::=  SQUARE|SQUARE_HOLLOW|COLUMN|HORDE|PHALANX|TESTUDO|WEDGE
+unit_formation::=  SQUARE|SQUARE_HOLLOW|COLUMN|HORDE|PHALANX|TESTUDO|WEDGE|SCHILTROM|SHIELD_WALL
 special_ability ::= TESTUDO|PHALANX|WEDGE|DROP_ENGINES|FLAMING_AMMO|WARCRY|CHANT|CURSE|BERSERK|RALLY|KILL_ELEPHANTS|MOVE_AND_SHOOT|CANTABRIAN_CIRCLE|SHIELD_WALL|STEALTH|FEIGNED_ROUT|SCHILTROM
 mount_class ::= HORSE|CAMEL|ELEPHANT|CHARIOT
 action_status ::= IDLING|HIDING|READY|REFORMING|MOVING|WITHDRAWING|MISSILES_FIRING|MISSILES_RELOADING|CHARGING|FIGHTING|PURSUING|ROUTING|FIGHTING_BACKS_TO_THE_WALLS|RUNNING_AMOK|RALLYING|DEAD|LEAVING_BATTLE|ENTERING_BATTLE|LEFT_BATTLE|
@@ -2373,6 +2410,7 @@ private and_op ::= (AND|AMBERSANDS)
 
 // #### Lists ####
 private meta list ::= <<item>> (COMMA <<item>>)*
+private meta optional_commas_list ::= <<item>> (COMMA? <<item>>)*
 private list_of_IDs ::=  <<list ID>>
 private list_of_mount_effects ::=  <<list (mount_class INT)>>
 private list_of_character_types ::=  <<list (character_type)>>

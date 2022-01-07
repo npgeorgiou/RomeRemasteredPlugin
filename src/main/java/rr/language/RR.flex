@@ -157,6 +157,8 @@ true|false       {return RRTypes.BOOLEAN;}
 "phalanx"                                         {return RRTypes.PHALANX;}
 "testudo"                                         {return RRTypes.TESTUDO;}
 "wedge"                                           {return RRTypes.WEDGE;}
+"shield_wall"                                     {return RRTypes.SHIELD_WALL;}
+"schiltrom"                                       {return RRTypes.SCHILTROM;}
 // mount_class
 "horse"                                           {return RRTypes.HORSE;}
 "camel"                                           {return RRTypes.CAMEL;}
@@ -459,6 +461,9 @@ true|false       {return RRTypes.BOOLEAN;}
     "resource"                   {return RRTypes.RESOURCE;}
     "faction"                    {return RRTypes.FACTION;}
     "superfaction"               {return RRTypes.SUPERFACTION;}
+    "dead_until_resurrected"     {return RRTypes.DEAD_UNTIL_RESURRECTED;}
+    "ai_do_not_attack"           {return RRTypes.AI_DO_NOT_ATTACK;}
+    "ai_do_not_attack_faction"   {return RRTypes.AI_DO_NOT_ATTACK_FACTION;}
     "denari"                     {return RRTypes.DENARI;}
     "settlement"                 {return RRTypes.SETTLEMENT;}
     "level"                      {return RRTypes.LEVEL;}
@@ -471,6 +476,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "region"                     {return RRTypes.REGION;}
     "year_founded"               {return RRTypes.YEAR_FOUNDED;}
     "population"                 {return RRTypes.POPULATION;}
+    "settlement_tax"             {return RRTypes.SETTLEMENT_TAX;}
     "plan_set"                   {return RRTypes.PLAN_SET;}
     "faction_creator"            {return RRTypes.FACTION_CREATOR;}
     "default_set"                {return RRTypes.DEFAULT_SET;}
@@ -509,6 +515,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "x"                          {return RRTypes.X;}
     "y"                          {return RRTypes.Y;}
     "script"                     {return RRTypes.SCRIPT;}
+    "spawn_script"               {return RRTypes.SPAWN_SCRIPT;}
+    "revolt"                     {return RRTypes.REVOLT;}
     "once_only"                  {return RRTypes.ONCE_ONLY;}
     {ID}                         {return RRTypes.ID;}
 }
@@ -532,15 +540,19 @@ true|false       {return RRTypes.BOOLEAN;}
     "voice_type"                    {return RRTypes.VOICE_TYPE;}
     "voice_indexes"                 {return RRTypes.VOICE_INDEXES;}
     "soldier"                       {yybegin(EXPORT_DESCR_UNIT_NO_KEYWORDS); return RRTypes.SOLDIER;}
+    "soldiers"                      {return RRTypes.SOLDIERS;}
+    "default"                       {return RRTypes.DEFAULT_LC;}
+    "mount"                         {yybegin(EXPORT_DESCR_UNIT_NO_KEYWORDS); return RRTypes.MOUNT;}
     "mount_effect"                  {return RRTypes.MOUNT_EFFECT;}
+    "officer"                       {return RRTypes.OFFICER;}
     "no"                            {return RRTypes.NO;}
     "frighten_foot"                 {return RRTypes.FRIGHTEN_FOOT;}
     "frighten_mounted"              {return RRTypes.FRIGHTEN_MOUNTED;}
     "can_run_amok"                  {return RRTypes.CAN_RUN_AMOK;}
     "warcry"                        {return RRTypes.WARCRY;}
     "can_sap"                       {return RRTypes.CAN_SAP;}
+    "can_swim"                      {return RRTypes.CAN_SWIM;}
     "hardy"                         {return RRTypes.HARDY;}
-    "command"                       {return RRTypes.COMMAND;}
     "very_hardy"                    {return RRTypes.VERY_HARDY;}
     "sea_faring"                    {return RRTypes.SEA_FARING;}
     "cantabrian_circle"             {return RRTypes.CANTABRIAN_CIRCLE;}
@@ -550,6 +562,9 @@ true|false       {return RRTypes.BOOLEAN;}
     "druid"                         {return RRTypes.DRUID;}
     "screeching_women"              {return RRTypes.SCREECHING_WOMEN;}
     "no_custom"                     {return RRTypes.NO_CUSTOM;}
+    "can_horde"                     {return RRTypes.CAN_HORDE;}
+    "command"                       {return RRTypes.COMMAND;}
+    "legionary_name"                {return RRTypes.LEGIONARY_NAME;}
     "melee"                         {return RRTypes.MELEE;}
     "thrown"                        {return RRTypes.THROWN;}
     "siege_missile"                 {return RRTypes.SIEGE_MISSILE;}
@@ -610,6 +625,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "don't_allow_regional"          {return RRTypes.DONT_ALLOW_REGIONAL;}
     "don't_allow_custom"            {return RRTypes.DONT_ALLOW_CUSTOM;}
     "tattoo_color"                  {return RRTypes.TATTOO_COLOR;}
+    "unique_tattoo"                 {return RRTypes.UNIQUE_TATTOO;}
+    "exclude_tattoo"                {return RRTypes.EXCLUDE_TATTOO;}
     "hair_color"                    {return RRTypes.HAIR_COLOR;}
     "hair_style"                    {return RRTypes.HAIR_STYLE;}
     "is_female"                     {return RRTypes.IS_FEMALE;}
@@ -646,10 +663,20 @@ true|false       {return RRTypes.BOOLEAN;}
     "queued"                        {return RRTypes.QUEUED;}
     "display_string"                {return RRTypes.DISPLAY_STRING;}
     "tag"                           {return RRTypes.TAG;}
+    "core"                          {return RRTypes.CORE;}
+    "defence"                       {return RRTypes.DEFENCE;}
+    "military"                      {return RRTypes.MILITARY;}
+    "trade"                         {return RRTypes.TRADE;}
+    "water"                         {return RRTypes.WATER;}
+    "culture"                       {return RRTypes.CULTURE;}
+    "religious"                     {return RRTypes.RELIGIOUS;}
     "icon"                          {yybegin(EXPORT_DESCR_BUILDINGS_NO_KEYWORDS);return RRTypes.ICON;}
+    "classification"                {return RRTypes.CLASSIFICATION;}
+    "levels"                        {return RRTypes.LEVELS;}
     "plugins"                       {return RRTypes.PLUGINS;}
     "factions"                      {return RRTypes.FACTIONS;}
     "capability"                    {return RRTypes.CAPABILITY;}
+    "faction_capability"            {return RRTypes.FACTION_CAPABILITY;}
     "taxable_income_bonus"          {return RRTypes.TAXABLE_INCOME_BONUS;}
     "trade_base_income_bonus"       {return RRTypes.TRADE_BASE_INCOME_BONUS;}
     "trade_fleet"                   {return RRTypes.TRADE_FLEET;}
@@ -998,6 +1025,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "aged"                  {return RRTypes.AGED;}
     "pbr_texture"           {return RRTypes.PBR_TEXTURE;}
     "texture"               {return RRTypes.TEXTURE;}
+    "default"               {return RRTypes.DEFAULT;}
     "no_variation"          {return RRTypes.NO_VARIATION;}
     "model"                 {return RRTypes.MODEL;}
     "model_flexi"           {return RRTypes.MODEL_FLEXI;}
