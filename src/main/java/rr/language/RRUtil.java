@@ -3,9 +3,12 @@ package rr.language;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.FileTypeIndex;
+import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
+import org.jetbrains.annotations.NotNull;
 import rr.language.psi.*;
 
 import java.util.ArrayList;
@@ -16,6 +19,23 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class RRUtil {
+
+    public static Collection<PsiFile> findAllTgaFiles(Project project) {
+        return FilenameIndex.getAllFilesByExt(project, "tga").stream()
+            .map(it -> PsiManager.getInstance(project).findFile(it))
+            .collect(Collectors.toList());
+    }
+
+    public static PsiFile findTgaFile(String path, Project project) {
+        Collection<PsiFile> files = findAllTgaFiles(project);
+        files.removeIf(it -> !it.getVirtualFile().getPath().endsWith("/".concat(path)));
+
+        if (files.isEmpty()) {
+            return null;
+        }
+
+        return files.iterator().next();
+    }
 
     public static Collection<RRFile> findAllRRFiles(Project project) {
         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(RRFileType.INSTANCE, GlobalSearchScope.allScope(project));

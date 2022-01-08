@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
 
-public class FileReference extends PsiReferenceBase<PsiElement> implements PsiReference {
+public class TxtFileReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
-    public FileReference(@NotNull PsiElement element, TextRange rangeInElement) {
+    public TxtFileReference(@NotNull PsiElement element, TextRange rangeInElement) {
         super(element, rangeInElement);
     }
 

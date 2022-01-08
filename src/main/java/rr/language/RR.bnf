@@ -1639,7 +1639,7 @@ export_descr_ancillaries ::= ancillary_def+ ancillary_trigger_def+
 ancillary_def ::= ANCILLARY ancillary_name_decl
                     (HIDDEN)*
                     (SHOWSTATS)*
-                    IMAGE TGA_FILE*
+                    IMAGE tga_file_*
                     (UNIQUE)*
                     (EXCLUDEDANCILLARIES <<list ancillary_ref>>)*
                     (EXCLUDECULTURES <<list culture_ref>>)*
@@ -1732,8 +1732,8 @@ descr_unit_variation ::= SKIN OCB skin_* CCB
                          ETHNICITIES OCB ethnicity_* CCB
                          REGION OCB ethnicity_makeup_* CCB
 skin_ ::= ID OCB
-            MALE TGA_FILE INT INT INT
-            FEMALE TGA_FILE INT INT INT
+            MALE tga_file_ INT INT INT
+            FEMALE tga_file_ INT INT INT
           CCB
 ethnicity_ ::= ethnicity_name_decl OCB
             HAIR_STYLES <<list (OP INT COMMA FLOAT CP)>>
@@ -1907,10 +1907,10 @@ culture_banner ::= BANNER culture_ref
                    OUTLINE CAS_FILE {pin=1 recoverWhile=culture_banner_recover}
 private culture_banner_recover ::= !(BANNER|FACTION)
 faction_banner ::= FACTION faction_ref
-                   STANDARD_TEXTURE TGA_FILE
-                   REBELS_TEXTURE TGA_FILE
-                   ROUTING_TEXTURE TGA_FILE
-                   ALLY_TEXTURE TGA_FILE {pin=1 recoverWhile=faction_banner_recover}
+                   STANDARD_TEXTURE tga_file_
+                   REBELS_TEXTURE tga_file_
+                   ROUTING_TEXTURE tga_file_
+                   ALLY_TEXTURE tga_file_ {pin=1 recoverWhile=faction_banner_recover}
 private faction_banner_recover ::= !FACTION
 // ############### descr_banners end #################################
 
@@ -1926,7 +1926,7 @@ character_type_def ::= TYPE character_type // TODO: Except of family. What is fa
 
 character_type_faction_def ::= FACTION faction_ref
                                DICTIONARY INT                  // TODO: where is that dictionary?
-                               (STRAT_CARD TGA_FILE)?
+                               (STRAT_CARD tga_file_)?
                                STRAT_MODEL model_ref
                                (BATTLE_MODEL model_ref)?
                                (BATTLE_EQUIP (COMMA|ID|AND)*)? // TODO: gladius, chainmail shirt helmet and rectangular shield, wth is that
@@ -1946,8 +1946,8 @@ descr_building_battle ::= DESCR_BUILDING_BATTLE_MARKER
                           construction_site+
 
 texture_variants_ ::= TEXTURE_VARIANTS OCB texture_variant+ CCB
-texture_variant ::= TGA_FILE OCB
-                        (variant_condition TGA_FILE)+
+texture_variant ::= tga_file_ OCB
+                        (variant_condition tga_file_)+
                     CCB
 spot_items_ ::= SPOT_ITEMS OCB spot_item+ CCB
 spot_item ::= ID OCB
@@ -2013,8 +2013,8 @@ model_ ::= TYPE model_name_decl
            model_model*
            model_flexi_*
 
-private model_pbr_texture ::= PBR_TEXTURE ((DEFAULT|faction_ref)COMMA)? TGA_FILE
-private model_texture ::= texture ((DEFAULT|faction_ref) COMMA)? TGA_FILE
+private model_pbr_texture ::= PBR_TEXTURE ((DEFAULT|faction_ref)COMMA)? tga_file_
+private model_texture ::= texture ((DEFAULT|faction_ref) COMMA)? tga_file_
 private model_model ::= NO_VARIATION? model (faction_ref COMMA)? capitalized_ethnicity PATH
 private model_flexi_   ::= NO_VARIATION? (MODEL_FLEXI|MODEL_FLEXI_M|MODEL_FLEXI_C)  CAS_FILE COMMA (MAX|INT)?
 capitalized_ethnicity ::= 'African'|'Arabic'|'Caucasian'|'EastAsian'|'Egyptian'|'Indian'|'Mediterranean'
@@ -2067,7 +2067,7 @@ port_level ::= FISHING_VILLAGE|SEA_PORT|SHIPWRIGHT|DOCKYARD
 descr_sm_landmarks ::= DESCR_SM_LANDMARKS_MARKER
                        (TYPE wonder_name_decl
                        ITEM CAS_FILE
-                       IMAGE TGA_FILE
+                       IMAGE tga_file_
                        JULII_RTM RTM_FILE
                        BRUTII_RTM RTM_FILE
                        SCIPII_RTM RTM_FILE
@@ -2537,6 +2537,7 @@ private number ::= INT|FLOAT
 
 // #### Files ####
 txt_file_ ::= TXT_FILE {methods=[setName getReference]}
+tga_file_ ::= TGA_FILE {methods=[setName getReference]}
 
 // #### operators ####
 private comparison_op ::= EQUALS|LARGER|LARGER_OR_EQUAL|SMALLER|SMALLER_OR_EQUAL|

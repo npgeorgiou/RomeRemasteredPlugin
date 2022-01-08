@@ -2,24 +2,33 @@ package rr.language.psi.impl;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.util.PsiTreeUtil;
 import rr.language.RRUtil;
 import rr.language.Util;
 import rr.language.psi.*;
 import rr.language.psi.references.*;
 
-import java.io.File;
-
 public class RRPsiImplUtil {
-    //<editor-fold desc="File refs">
+    //<editor-fold desc="txt refs">
     public static PsiElement setName(RRTxtFile_ fileName, String newName) {
         // TODO: Maybe implement if I find a way to properly link File to references too.
         return fileName;
     }
 
-    public static FileReference getReference(RRTxtFile_ ref) {
+    public static TxtFileReference getReference(RRTxtFile_ ref) {
         TextRange range = ref.getNode().findChildByType(RRTypes.TXT_FILE).getPsi().getTextRangeInParent();
-        return new FileReference(ref, range);
+        return new TxtFileReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="tga refs">
+    public static PsiElement setName(RRTgaFile_ fileName, String newName) {
+        // TODO: Maybe implement if I find a way to properly link File to references too.
+        return fileName;
+    }
+
+    public static TgaFileReference getReference(RRTgaFile_ ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.TGA_FILE).getPsi().getTextRangeInParent();
+        return new TgaFileReference(ref, range);
     }
     //</editor-fold>
 

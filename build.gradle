@@ -3,10 +3,13 @@ plugins {
     id 'java'
 }
 
+intellij {
+    plugins = ['lermitage.intellij.iconviewer:1.13.0.193']
+}
+
 apply plugin: 'java'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 
 sourceSets.main.java.srcDirs 'src/main/gen'
 
