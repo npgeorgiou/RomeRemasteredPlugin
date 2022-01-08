@@ -326,6 +326,8 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.RESOURCE_QUANTITY_ENABLED,
         RRTypes.RESOURCE_QUANTITY_DISABLED,
         RRTypes.RESOURCE,
+        RRTypes.AMBIENT_OBJECT,
+        RRTypes.INDEX,
         RRTypes.FACTION,
         RRTypes.SETTLEMENT_TAX,
         RRTypes.DEAD_UNTIL_RESURRECTED,
@@ -709,7 +711,11 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.CHANCE_LC,
         RRTypes.DESCRIPTION_LC,
         RRTypes.SCORPION_RELOAD_TICKS,
-        RRTypes.SCORPION_RELOAD_TICKS
+        RRTypes.SCORPION_RELOAD_TICKS,
+
+        // descr_items
+        RRTypes.MAX_DISTANCE,
+        RRTypes.MODEL_RIGID
         );
     //</editor-fold>
 

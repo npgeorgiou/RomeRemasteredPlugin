@@ -8,10 +8,12 @@ import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
+import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 import rr.language.psi.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
@@ -66,6 +68,23 @@ public class RRUtil {
         }
 
         return ((RRTextMappingFormat) file.getFirstChild()).getTextMappingItemList();
+    }
+
+    public static Collection<PsiElement> findEnumsInFile(String fileName, Project project) {
+        RRFile file = RRUtil.findRRFile(fileName, project);
+        return findEnumsInFile(file);
+    }
+
+    public static Collection<PsiElement> findEnumsInFile(RRFile file) {
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        PsiElement format = file.findChildByClass(RREnumsFormat.class);
+
+        return PsiTreeUtil.findChildrenOfType(format, PsiElement.class).stream()
+            .filter(it -> it.getNode().getElementType().toString().equals("RRTokenType.ID"))
+            .collect(Collectors.toList());
     }
 
     public static Collection<RRUnitItem_> findAllUnits(Project project) {
@@ -128,7 +147,7 @@ public class RRUtil {
 
     public static Collection<String> findAllRebelsAsStrings(Project project) {
         return findAllRebels(project).stream()
-            .map(it -> it.getFirstChild().getText())
+            .map(it -> it.getRebelsNameDecl().getText())
             .collect(Collectors.toList());
     }
 
@@ -270,6 +289,23 @@ public class RRUtil {
 
     public static Collection<String> findAllCulturesAsStrings(Project project) {
         return findAllCultures(project).stream()
+            .map(it -> Util.unquote(it.getText()))
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRAmbientObjectNameDecl> findAllAmbientObjects(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_sm_ambient_objects.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrSmAmbientObjects.class).getAmbientObjectDeclList().stream()
+            .map(it -> it.getAmbientObjectNameDecl()).collect(Collectors.toList());
+    }
+
+    public static Collection<String> findAllAmbientObjectsAsStrings(Project project) {
+        return findAllAmbientObjects(project).stream()
             .map(it -> Util.unquote(it.getText()))
             .collect(Collectors.toList());
     }

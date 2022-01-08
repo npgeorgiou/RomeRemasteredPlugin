@@ -36,10 +36,12 @@
                          displayName="Name not existing in names.txt" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.missingTextMapping.DescrNames"/>
-        <localInspection language="RomeRemastered" shortName="Missing_rebel_faction_text"
-                         displayName="Name not existing in rebel_faction_descr.txt" groupName="RR"
+
+        <localInspection language="RomeRemastered" shortName="Rebel_factions_missing_enums_and_descriptions"
+                         displayName="Rebel factions missing enums and descriptions" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.missingTextMapping.DescrRebelFactions"/>
+
         <localInspection language="RomeRemastered" shortName="Names_not_used"
                          displayName="Name not used in descr_names.txt" groupName="RR"
                          enabledByDefault="true" level="WARNING"

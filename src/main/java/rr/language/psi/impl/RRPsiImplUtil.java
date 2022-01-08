@@ -32,6 +32,33 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Ambient objects decl and refs">
+    public static PsiElement setName(RRAmbientObjectNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createString(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRAmbientObjectNameDecl e) {
+        return Util.unquote(e.getFirstChild().getText());
+    }
+
+    public static PsiElement getNameIdentifier(RRAmbientObjectNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRAmbientObjectRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static AmbiantObjectReference getReference(RRAmbientObjectRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new AmbiantObjectReference(ref, range);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Faction decl and refs">
     public static PsiElement setName(RRFactionNameDecl e, String newName) {
         PsiElement id = RRElementFactory.createString(e.getProject(), newName);
@@ -234,7 +261,11 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Rebels decl and refs">
+    //<editor-fold desc="Rebels">
+    public static PsiElement getDescription(RRRebelFaction e) {
+        return e.getNode().findChildByType(RRTypes.DESCRIPTION_LC).getPsi().getNextSibling().getNextSibling();
+    }
+
     public static PsiElement setName(RRRebelsNameDecl e, String newName) {
         PsiElement id = RRElementFactory.createId(e.getProject(), newName);
         e.getFirstChild().replace(id);

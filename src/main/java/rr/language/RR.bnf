@@ -14,6 +14,7 @@
 
   tokens = [
       // basic
+      DESCR_STRAT_MARKER='regexp:;descr_strat.txt.*'
       DESCR_CULTURES_MARKER='regexp:;descr_cultures.txt.*'
       FERAL_DESCR_AI_PERSONALITY_MARKER='regexp:;feral_descr_ai_personality.txt.*'
       DESCR_FACTION_GROUPS_MARKER='regexp:;descr_faction_groups.txt.*'
@@ -31,17 +32,22 @@
       DESCR_DISASTERS_MARKER='regexp:;descr_disasters.txt.*'
       DESCR_MOUNT_MARKER='regexp:;descr_mount.txt.*'
       DESCR_REBEL_FACTIONS_MARKER='regexp:;descr_rebel_factions.txt.*'
+      DESCR_ITEMS_MARKER='regexp:;descr_items.txt.*'
+      DESCR_SM_AMBIENT_OBJECTS_MARKER='regexp:;descr_sm_ambient_objects.txt.*'
 
       // text mapping markers
       // TODO: Do also buildings text in this generic way?
       EXPORT_BUILDINGS_MARKER='regexp:;export_buildings.txt.*'
       TEXT_MAPPING_MARKER='regexp:;(landmarks|names|rebel_faction_descr).txt.*'
 
-      COMMENT='regexp:[;¬/{2}].*'
+      // enums markers
+      ENUMS_MARKER='regexp:;(rebel_faction_descr_enums).txt.*'
+
+      COMMENT='regexp:[;¬].*'
 //      EOL='regexp:[\r\n][\s]*'
       space='regexp:\s+'
-      INT = 'regexp:[\+\-]?[0-9]+'
-      FLOAT = 'regexp:[\+\-]?[0-9]*\.[0-9]+'
+      INT = 'regexp:[+\-]?[0-9]+'
+      FLOAT = 'regexp:[+\-]?[0-9]*\.[0-9]+'
       STRING='regexp:\"([^\"\\]|\\.)*\"'
       BOOLEAN='regexp:(true|false)'
 
@@ -71,7 +77,7 @@
       PATH='regexp:[\w\d_]+(/[\w\d_]+)+'
 
       // keywords
-      // desr_strat
+      // descr_strat
       END="end"
       SUMMER="summer"
       WINTER="winter"
@@ -88,6 +94,8 @@
       RESOURCE_QUANTITY_ENABLED="resource_quantity_enabled"
       RESOURCE_QUANTITY_DISABLED="resource_quantity_disabled"
       RESOURCE="resource"
+      AMBIENT_OBJECT="ambient_object"
+      INDEX="index"
       FACTION="faction"
       SUPERFACTION="superfaction"
       DEAD_UNTIL_RESURRECTED="dead_until_resurrected"
@@ -559,6 +567,10 @@
       GLADIATOR_REVOLT='gladiator_revolt'
       BRIGANDS='brigands'
       PIRATES='pirates'
+
+      // descr_items
+      MAX_DISTANCE = "max_distance"
+      MODEL_RIGID = "model_rigid"
 
       // events
       PREBATTLE = "PreBattle"
@@ -1331,14 +1343,18 @@ RRFile ::= descr_strat|
           descr_disasters|
           descr_mount|
           descr_rebel_factions|
+          descr_items|
+          descr_sm_ambient_objects|
           text_mapping_format|
+          enums_format|
           kv_format|
 
 // ############### descr_strat start ###############################
-descr_strat ::=
+descr_strat ::= DESCR_STRAT_MARKER
                 campaign_section
                 landmark_section?
                 resources_section
+                ambient_objects
                 sound_emitters_section?
                 events_section?
                 factions_section
@@ -1364,11 +1380,13 @@ landmark_section ::= landmark_item*
 landmark_item ::= LANDMARK wonder_ref coords
 
 resources_section ::= (resource_quantity_enabled_ resource_quantity_disabled_)|resource_item*
-
 resource_quantity_enabled_ ::= RESOURCE_QUANTITY_ENABLED resource_item* END
 resource_quantity_disabled_ ::= RESOURCE_QUANTITY_DISABLED resource_item* END
 resource_item ::= RESOURCE resource_ref COMMA INT COMMA coords {pin=1 recoverWhile=recover_resource_item}
-private recover_resource_item ::= !(resource_item|END|FACTION)
+private recover_resource_item ::= !(resource_item|ambient_object_|END|FACTION)
+
+ambient_objects ::= ambient_object_*
+ambient_object_ ::= AMBIENT_OBJECT ambient_object_ref COMMA (TAG STRING COMMA)? coords_with_xy COMMA INDEX INT
 
 sound_emitters_section ::=
 events_section ::=
@@ -2151,11 +2169,35 @@ rebel_faction ::= REBEL_TYPE rebels_name_decl
                   CATEGORY rebel_category
                   CHANCE_LC INT
                   DESCRIPTION_LC ID
-                  (UNIT unit_ref)+
+                  (UNIT unit_ref)+ {methods=[getDescription]}
 rebels_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 rebels_ref ::= ID {methods=[setName getReference]}
 rebel_category ::= PEASANT_REVOLT|GLADIATOR_REVOLT|BRIGANDS|PIRATES
 // ############### descr_rebel_factions end #################################
+
+// ############### descr_items start #################################
+descr_items ::= DESCR_ITEMS_MARKER
+                (INCLUDE txt_file_)+
+                (TYPE ID
+                 LOD
+                 MAX_DISTANCE INT
+                 MODEL_RIGID CAS_FILE)+
+// ############### descr_items end #################################
+
+// ############### descr_sm_ambient_objects start #################################
+descr_sm_ambient_objects ::= DESCR_SM_AMBIENT_OBJECTS_MARKER
+                             STRING COLON OSB
+                               ambient_object_decl+
+                             CSB COMMA
+ambient_object_decl ::= ambient_object_name_decl COLON OCB
+                          STRING COLON OSB
+                            (STRING COMMA)+
+                          CSB COMMA
+                          STRING COLON BOOLEAN COMMA
+                        CCB COMMA
+ambient_object_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+ambient_object_ref ::= ID {methods=[setName getReference]}
+// ############### descr_sm_ambient_objects end #################################
 
 // ############### General things #################################
 // ############### text_mapping_format start ###############################
@@ -2164,6 +2206,11 @@ text_mapping_format ::= TEXT_MAPPING_MARKER
 text_mapping_item ::= OCB ID CCB STRING {pin=1 recoverWhile=text_mapping}
 private text_mapping ::= !OCB
 // ############### text_mapping_format end #################################
+
+// ############### enums_format start ###############################
+enums_format ::= ENUMS_MARKER
+                 ID+
+// ############### enums_format end #################################
 
 // ############### kv_format start ###############################
 kv_format ::= KVF_item

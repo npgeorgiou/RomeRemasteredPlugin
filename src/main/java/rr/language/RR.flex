@@ -81,13 +81,16 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_OFFMAP_MODELS
 %state DESCR_SM_LANDMARKS
 %state DESCR_DISASTERS
+%state DESCR_ITEMS
 %state TEXT_MAPPING
+%xstate ENUMS
 
 %state CONDITIONS
 
 %%
 <DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
 
+";descr_strat.txt"[^\r\n]*                     {yybegin(DESCR_STRAT); return RRTypes.DESCR_STRAT_MARKER;}
 ";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
 ";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
 ";feral_descr_ai_personality.txt"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
@@ -105,12 +108,17 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";descr_disasters.txt"[^\r\n]*                 {yybegin(DESCR_DISASTERS); return RRTypes.DESCR_DISASTERS_MARKER;}
 ";descr_mount.txt"[^\r\n]*                     {yybegin(DESCR_MOUNT); return RRTypes.DESCR_MOUNT_MARKER;}
 ";descr_rebel_factions.txt"[^\r\n]*            {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.DESCR_REBEL_FACTIONS_MARKER;}
+";descr_items.txt"[^\r\n]*                     {yybegin(DESCR_ITEMS); return RRTypes.DESCR_ITEMS_MARKER;}
+";descr_sm_ambient_objects.txt"[^\r\n]*        {return RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER;}
 
 // text mapping markers
 ";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
 ";landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 ";names.txt"[^\r\n]*                           {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 ";rebel_faction_descr.txt"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+
+// enum markers
+";rebel_faction_descr_enums.txt"[^\r\n]*       {yybegin(ENUMS); return RRTypes.ENUMS_MARKER;}
 
 {WS}             {return TokenType.WHITE_SPACE;}
 {COMMENT}        {return RRTypes.COMMENT;}
@@ -436,7 +444,6 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <YYINITIAL>
 {
-    "campaign"                  {yybegin(DESCR_STRAT); return RRTypes.CAMPAIGN;}
     "type"                      {yybegin(EXPORT_DESCR_UNIT_NO_KEYWORDS); return RRTypes.TYPE;}
     "tags"                      {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.TAGS;}
     "Ancillary"                 {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.ANCILLARY;}
@@ -471,6 +478,9 @@ true|false       {return RRTypes.BOOLEAN;}
     "brigand_spawn_value"        {return RRTypes.BRIGAND_SPAWN_VALUE;}
     "pirate_spawn_value"         {return RRTypes.PIRATE_SPAWN_VALUE;}
     "landmark"                   {return RRTypes.LANDMARK;}
+    "ambient_object"             {return RRTypes.AMBIENT_OBJECT;}
+    "tag"                        {return RRTypes.TAG;}
+    "index"                      {return RRTypes.INDEX;}
     "resource_quantity_enabled"  {return RRTypes.RESOURCE_QUANTITY_ENABLED;}
     "resource_quantity_disabled" {return RRTypes.RESOURCE_QUANTITY_DISABLED;}
     "resource"                   {return RRTypes.RESOURCE;}
@@ -1038,6 +1048,16 @@ true|false       {return RRTypes.BOOLEAN;}
     {ID}                {return RRTypes.ID;}
 }
 
+<DESCR_ITEMS>
+{
+    "include"           {return RRTypes.INCLUDE;}
+    "type"              {return RRTypes.TYPE;}
+    "lod"               {return RRTypes.LOD;}
+    "max_distance"      {return RRTypes.MAX_DISTANCE;}
+    "model_rigid"       {return RRTypes.MODEL_RIGID;}
+    {ID}                {return RRTypes.ID;}
+}
+
 <DESCR_MODEL_BATTLE_AND_STRAT>
 {
     "type"                  {yybegin(DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS); return RRTypes.TYPE;}
@@ -1191,6 +1211,13 @@ true|false       {return RRTypes.BOOLEAN;}
     "{"          {yybegin(TEXT_MAPPING);return RRTypes.OCB;}
 
     [^\t{\r\n]* {return RRTypes.STRING;}
+}
+
+<ENUMS>
+{
+    {WS}         {return TokenType.WHITE_SPACE;}
+    {COMMENT}    {return RRTypes.COMMENT;}
+    {ID}         {return RRTypes.ID;}
 }
 
 <CONDITIONS>
