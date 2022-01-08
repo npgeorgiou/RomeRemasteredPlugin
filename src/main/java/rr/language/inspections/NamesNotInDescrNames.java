@@ -4,10 +4,12 @@ import com.intellij.codeInspection.LocalInspectionToolSession;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 import rr.language.RRUtil;
-import rr.language.psi.*;
+import rr.language.psi.RRDescrNames;
+import rr.language.psi.RRFile;
+import rr.language.psi.RRTextMappingFormat;
+import rr.language.psi.RRVisitor;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -17,14 +19,16 @@ public class NamesNotInDescrNames extends Inspector {
     protected RRVisitor buildRRVisitor(@NotNull final ProblemsHolder holder, @NotNull LocalInspectionToolSession session) {
         return new RRVisitor() {
             @Override
-            public void visitNames(@NotNull RRNames element) {
+            public void visitTextMappingFormat(@NotNull RRTextMappingFormat element) {
+                if (!element.getContainingFile().getName().equals("names.txt")) {
+                    return;
+                }
 
-                Collection<PsiElement> names = PsiTreeUtil.findChildrenOfType(element, PsiElement.class).stream()
-                    .filter(it -> it.getNode().getElementType() == RRTypes.NAMES_NAME)
+                Collection<PsiElement> names = RRUtil.findTextMappingsInFile((RRFile) element.getContainingFile()).stream()
+                    .map(it -> it.getString())
                     .collect(Collectors.toList());
 
                 RRFile file = RRUtil.findRRFile("descr_names.txt", element.getProject());
-
                 if (file == null) {
                     return;
                 }
@@ -35,7 +39,6 @@ public class NamesNotInDescrNames extends Inspector {
                     .flatMap(it -> it.getName_List().stream())
                     .map(it -> it.getText())
                     .collect(Collectors.toList());
-
 
                 for (PsiElement name : names) {
                     if (!descr_names.contains(name.getText())) {

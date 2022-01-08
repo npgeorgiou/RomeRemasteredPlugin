@@ -225,6 +225,33 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Rebels decl and refs">
+    public static PsiElement setName(RRRebelsNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRRebelsNameDecl e) {
+        return e.getFirstChild().getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRRebelsNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRRebelsRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static RebelsReference getReference(RRRebelsRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new RebelsReference(ref, range);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Ancillaries decl and refs">
     public static PsiElement setName(RRAncillaryNameDecl e, String newName) {
         PsiElement id = RRElementFactory.createId(e.getProject(), newName);

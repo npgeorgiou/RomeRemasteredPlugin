@@ -6,7 +6,6 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
-import org.jetbrains.annotations.NotNull;
 import rr.language.psi.*;
 
 import java.util.ArrayList;
@@ -34,6 +33,19 @@ public class RRUtil {
         }
 
         return files.iterator().next();
+    }
+
+    public static Collection<RRTextMappingItem> findTextMappingsInFile(String fileName, Project project) {
+        RRFile file = RRUtil.findRRFile(fileName, project);
+        return findTextMappingsInFile(file);
+    }
+
+    public static Collection<RRTextMappingItem> findTextMappingsInFile(RRFile file) {
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return ((RRTextMappingFormat) file.getFirstChild()).getTextMappingItemList();
     }
 
     public static Collection<RRUnitItem_> findAllUnits(Project project) {
@@ -80,6 +92,22 @@ public class RRUtil {
 
     public static Collection<String> findAllRegionsAsStrings(Project project) {
         return findAllRegions(project).stream()
+            .map(it -> it.getFirstChild().getText())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRRebelFaction> findAllRebels(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_rebel_factions.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrRebelFactions.class).getRebelFactionList();
+    }
+
+    public static Collection<String> findAllRebelsAsStrings(Project project) {
+        return findAllRebels(project).stream()
             .map(it -> it.getFirstChild().getText())
             .collect(Collectors.toList());
     }

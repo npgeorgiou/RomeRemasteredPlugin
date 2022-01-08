@@ -21,7 +21,7 @@ LINE_WS = [ \t]
 EOL_WS = {EOL}+{LINE_WS}+
 WS      = ({EOL}|{LINE_WS})+
 
-COMMENT = [";""¬"][^\r\n]*
+COMMENT = [";""¬""//"][^\r\n]*
 INT = [\+\-]?[0-9]+
 FLOAT = [\+\-]?[0-9]*\.[0-9]+
 STR_CHAR = [^\"\r\n\\]
@@ -63,6 +63,9 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_MODEL_BATTLE_AND_STRAT
 %xstate DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS
 
+%xstate DESCR_REBEL_FACTIONS
+%xstate DESCR_REBEL_FACTIONS_REBEL_TYPE
+
 %state DESCR_MOUNT
 %xstate DESCR_MOUNT_NO_KEYWORDS
 
@@ -78,14 +81,13 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_OFFMAP_MODELS
 %state DESCR_SM_LANDMARKS
 %state DESCR_DISASTERS
+%state TEXT_MAPPING
 
 %state CONDITIONS
 
 %%
 <DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
 
-";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
-";landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.LANDMARKS_MARKER;}
 ";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
 ";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
 ";feral_descr_ai_personality.txt"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
@@ -102,7 +104,13 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";descr_model_strat.txt"[^\r\n]*               {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_STRAT_MARKER;}
 ";descr_disasters.txt"[^\r\n]*                 {yybegin(DESCR_DISASTERS); return RRTypes.DESCR_DISASTERS_MARKER;}
 ";descr_mount.txt"[^\r\n]*                     {yybegin(DESCR_MOUNT); return RRTypes.DESCR_MOUNT_MARKER;}
+";descr_rebel_factions.txt"[^\r\n]*            {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.DESCR_REBEL_FACTIONS_MARKER;}
 
+// text mapping markers
+";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
+";landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+";names.txt"[^\r\n]*                           {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+";rebel_faction_descr.txt"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 
 {WS}             {return TokenType.WHITE_SPACE;}
 {COMMENT}        {return RRTypes.COMMENT;}
@@ -765,7 +773,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "Condition"           {yybegin(CONDITIONS); return RRTypes.CONDITION;}
     "AcquireAncillary"    {yybegin(EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS); return RRTypes.ACQUIREANCILLARY;}
     "RemoveAncillary"     {return RRTypes.REMOVEANCILLARY;}
-    "chance"              {return RRTypes.CHANCE_LOWERCASE;}
+    "chance"              {return RRTypes.CHANCE_LC;}
     "and"                 {return RRTypes.AND;}
     "not"                 {return RRTypes.NOT;}
     {ID}                  {return RRTypes.ID;}
@@ -777,7 +785,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "Image"                   {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.IMAGE;}
     "Hidden"                  {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.HIDDEN;}
     "ShowStats"               {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.SHOWSTATS;}
-    "chance"                  {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.CHANCE_LOWERCASE;}
+    "chance"                  {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.CHANCE_LC;}
     {ID}                      {return RRTypes.ID;}
 }
 
@@ -1073,6 +1081,29 @@ true|false       {return RRTypes.BOOLEAN;}
     {COMMENT}                 {return RRTypes.COMMENT;}
     "skeleton"                {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.SKELETON;}
     {ID}                      {return RRTypes.ID;}
+}
+
+<DESCR_REBEL_FACTIONS>
+{
+    {WS}                 {return TokenType.WHITE_SPACE;}
+    {COMMENT}            {return RRTypes.COMMENT;}
+    {INT}                {return RRTypes.INT;}
+    "rebel_type"         {return RRTypes.REBEL_TYPE;}
+    "category"           {yybegin(DESCR_REBEL_FACTIONS_REBEL_TYPE); return RRTypes.CATEGORY;}
+    "description"        {return RRTypes.DESCRIPTION_LC;}
+    "unit"               {return RRTypes.UNIT;}
+    {ID}                 {return RRTypes.ID;}
+}
+<DESCR_REBEL_FACTIONS_REBEL_TYPE>
+{
+    {WS}                 {return TokenType.WHITE_SPACE;}
+    {COMMENT}            {return RRTypes.COMMENT;}
+    "peasant_revolt"     {return RRTypes.PEASANT_REVOLT;}
+    "gladiator_revolt"   {return RRTypes.GLADIATOR_REVOLT;}
+    "brigands"           {return RRTypes.BRIGANDS;}
+    "pirates"            {return RRTypes.PIRATES;}
+    "chance"             {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.CHANCE_LC;}
+    {ID}                 {return RRTypes.ID;}
 }
 
 <DESCR_MOUNT>

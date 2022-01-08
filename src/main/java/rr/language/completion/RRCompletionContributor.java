@@ -617,7 +617,7 @@ public class RRCompletionContributor extends CompletionContributor {
         // class {class}
         extend(
             CompletionType.BASIC,
-            psiElement().afterLeaf(psiElement(RRTypes.CLASS)),
+            psiElement().afterLeaf(psiElement(RRTypes.CLASS).inside(psiElement(RRTypes.UNIT_ITEM_))),
             new HardcodedValues(
                 "light",
                 "heavy",
@@ -921,6 +921,20 @@ public class RRCompletionContributor extends CompletionContributor {
         // regions {id} [{id}]...
         Node descr_mercenaries_regions = new RootNode(psiElement(RRTypes.REGIONS),
             new RepeatingNode(id(), null, new Regions()));
+
+        // descr_mount
+        // class {class}
+        extend(
+            CompletionType.BASIC,
+            psiElement().afterLeaf(psiElement(RRTypes.CLASS).inside(psiElement(RRTypes.MOUNT_))),
+            new HardcodedValues(
+                "horse",
+                "camel",
+                "elephant",
+                "chariot",
+                "scorpion_cart"
+            )
+        );
 
         // descr_regions
         // TODO: resources

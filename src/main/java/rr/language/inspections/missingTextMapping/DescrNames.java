@@ -1,22 +1,21 @@
-package rr.language.inspections;
+package rr.language.inspections.missingTextMapping;
 
 import com.intellij.codeInspection.LocalInspectionToolSession;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
-import rr.language.completion.providers.Ancillaries;
-import rr.language.psi.*;
+import rr.language.inspections.Inspector;
+import rr.language.psi.RRNamesForFaction;
+import rr.language.psi.RRTypes;
+import rr.language.psi.RRVisitor;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
-public class DescrNamesNotInNames extends Inspector {
+public class DescrNames extends Inspector {
     @NotNull
     protected RRVisitor buildRRVisitor(@NotNull final ProblemsHolder holder, @NotNull LocalInspectionToolSession session) {
         return new RRVisitor() {
@@ -27,18 +26,9 @@ public class DescrNamesNotInNames extends Inspector {
                     .filter(it -> it.getNode().getElementType() == RRTypes.NAME_)
                     .collect(Collectors.toList());
 
-                RRFile file = RRUtil.findRRFile("names.txt", element.getProject());
-
-                if (file == null) {
-                    return;
-                }
-
-                Collection<String> names = file
-                    .findChildByClass(RRNames.class)
-                    .getNamesNameList().stream()
-                    .map(it -> it.getText())
+                Collection<String> names = RRUtil.findTextMappingsInFile("names.txt", element.getProject()).stream()
+                    .map(it -> it.getString().getText())
                     .collect(Collectors.toList());
-
 
                 for (PsiElement descr_name : descr_names) {
                     if (!names.contains(descr_name.getText())) {

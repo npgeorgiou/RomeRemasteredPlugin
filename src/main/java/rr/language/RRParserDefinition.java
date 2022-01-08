@@ -297,8 +297,13 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.SKINNYATHLETIC,
         RRTypes.ATHLETIC,
         RRTypes.BULKY,
-        RRTypes.OVERWEIGHT
+        RRTypes.OVERWEIGHT,
 
+        // rebel types
+        RRTypes.PEASANT_REVOLT,
+        RRTypes.GLADIATOR_REVOLT,
+        RRTypes.BRIGANDS,
+        RRTypes.PIRATES
         );
     //</editor-fold>
 
@@ -485,7 +490,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.WHENTOTEST,
         RRTypes.CONDITION,
         RRTypes.ACQUIREANCILLARY,
-        RRTypes.CHANCE_LOWERCASE,
         RRTypes.REMOVEANCILLARY,
 
         // export_descr_traits
@@ -698,6 +702,13 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.SCORPION_OFFSET,
         RRTypes.SCORPION_HEIGHT,
         RRTypes.SCORPION_FORWARD_LENGTH,
+        RRTypes.SCORPION_RELOAD_TICKS,
+
+        // descr_rebel_factions
+        RRTypes.REBEL_TYPE,
+        RRTypes.CHANCE_LC,
+        RRTypes.DESCRIPTION_LC,
+        RRTypes.SCORPION_RELOAD_TICKS,
         RRTypes.SCORPION_RELOAD_TICKS
         );
     //</editor-fold>

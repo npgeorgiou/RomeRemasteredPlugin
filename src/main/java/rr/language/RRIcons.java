@@ -6,6 +6,6 @@ import javax.swing.*;
 
 public class RRIcons {
 
-    public static final Icon FILE = IconLoader.getIcon("/icons/image.png", RRIcons.class);
+    public static final Icon FILE = IconLoader.getIcon("/icons/rr.png", RRIcons.class);
 
 }

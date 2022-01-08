@@ -60,6 +60,8 @@ public class MarkFileTypeWithComment extends AnAction {
             "descr_model_strat.txt",
             "descr_disasters.txt",
             "descr_mount.txt",
+            "descr_rebel_factions.txt",
+            "rebel_faction_descr.txt",
         };
 
         Collection<RRFile> files = RRUtil.findAllRRFiles(project);
