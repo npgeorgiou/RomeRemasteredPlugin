@@ -41,8 +41,17 @@ public class RRUtil {
 
     public static Collection<RRFile> findAllRRFiles(Project project) {
         Collection<VirtualFile> virtualFiles = FileTypeIndex.getFiles(RRFileType.INSTANCE, GlobalSearchScope.allScope(project));
+
         return virtualFiles.stream()
-            .map(it -> (RRFile) PsiManager.getInstance(project).findFile(it))
+            .map(it -> {
+                // Very big files cant be cast to RRfiles.
+                try {
+                    return (RRFile) PsiManager.getInstance(project).findFile(it);
+                } catch (Exception e) {
+                    return null;
+                }
+            })
+            .filter(it -> it != null)
             .collect(Collectors.toList());
     }
 
@@ -273,6 +282,25 @@ public class RRUtil {
 
     public static Collection<String> findAllFactionsAsStrings(Project project) {
         return findAllFactions(project).stream()
+            .map(it -> Util.unquote(it.getText()))
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRReligionNameDecl> findAllReligions(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_beliefs.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrBeliefs.class)
+            .getReligionList().stream()
+            .map(it -> it.getReligionNameDecl())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<String> findAllReligionsAsStrings(Project project) {
+        return findAllReligions(project).stream()
             .map(it -> Util.unquote(it.getText()))
             .collect(Collectors.toList());
     }

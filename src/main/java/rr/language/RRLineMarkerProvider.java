@@ -40,7 +40,7 @@ public class RRLineMarkerProvider extends RelatedItemLineMarkerProvider {
         }
 
         if (isTgaFile) {
-            PsiFile file = RRUtil.findTgaFile(element.getText(), element.getProject());
+            PsiFile file = RRUtil.findTgaFile(Util.unquote(element.getText()), element.getProject());
 
             if (file == null) return;
 

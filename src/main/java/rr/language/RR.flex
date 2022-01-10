@@ -21,7 +21,7 @@ LINE_WS = [ \t]
 EOL_WS = {EOL}+{LINE_WS}+
 WS      = ({EOL}|{LINE_WS})+
 
-COMMENT = [";""¬""//"][^\r\n]*
+COMMENT = [";""¬"][^\r\n]*
 
 // Special things
 SPEAR_BONUS_X = "spear_bonus_" {INT}
@@ -116,6 +116,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";descr_rebel_factions.txt"[^\r\n]*            {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.DESCR_REBEL_FACTIONS_MARKER;}
 ";descr_items.txt"[^\r\n]*                     {yybegin(DESCR_ITEMS); return RRTypes.DESCR_ITEMS_MARKER;}
 ";descr_sm_ambient_objects.txt"[^\r\n]*        {return RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER;}
+";descr_beliefs.txt"[^\r\n]*                   {return RRTypes.DESCR_BELIEFS_MARKER;}
 
 // text mapping markers
 ";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
@@ -128,6 +129,11 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 
 // Special things
 <SCRIPTS_EVENTS_CONDITIONS>{LOCAL}          {return RRTypes.LOCAL;}
+{TGA_FILE}|\"{TGA_FILE}\" {return RRTypes.TGA_FILE;}
+{TXT_FILE}|\"{TXT_FILE}\" {return RRTypes.TXT_FILE;}
+{CAS_FILE}|\"{CAS_FILE}\" {return RRTypes.CAS_FILE;}
+{RTM_FILE}|\"{RTM_FILE}\" {return RRTypes.RTM_FILE;}
+{WMV_FILE}|\"{WMV_FILE}\" {return RRTypes.WMV_FILE;}
 
 {WS}             {return TokenType.WHITE_SPACE;}
 {COMMENT}        {return RRTypes.COMMENT;}
@@ -145,14 +151,11 @@ true|false       {return RRTypes.BOOLEAN;}
 "("              {return RRTypes.OP;}
 ")"              {return RRTypes.CP;}
 
-{TGA_FILE}       {return RRTypes.TGA_FILE;}
-{TXT_FILE}       {return RRTypes.TXT_FILE;}
-{CAS_FILE}       {return RRTypes.CAS_FILE;}
-{RTM_FILE}       {return RRTypes.RTM_FILE;}
-{WMV_FILE}       {return RRTypes.WMV_FILE;}
+
 {PATH}           {return RRTypes.PATH;}
 
 "not"                           {return RRTypes.NOT;}
+"!"                             {return RRTypes.EXCLAMATION;}
 "and"                           {return RRTypes.AND;}
 "&&"                            {return RRTypes.AMBERSANDS;}
 "or"                            {return RRTypes.OR;}
@@ -344,6 +347,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "can_swim"                      {return RRTypes.CAN_SWIM;}
     "hardy"                         {return RRTypes.HARDY;}
     "very_hardy"                    {return RRTypes.VERY_HARDY;}
+    "power_charge"                  {return RRTypes.POWER_CHARGE;}
     "sea_faring"                    {return RRTypes.SEA_FARING;}
     "cantabrian_circle"             {return RRTypes.CANTABRIAN_CIRCLE;}
     "general_unit"                  {return RRTypes.GENERAL_UNIT;}
@@ -352,6 +356,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "druid"                         {return RRTypes.DRUID;}
     "screeching_women"              {return RRTypes.SCREECHING_WOMEN;}
     "no_custom"                     {return RRTypes.NO_CUSTOM;}
+    "is_peasant"                    {return RRTypes.IS_PEASANT;}
     "can_horde"                     {return RRTypes.CAN_HORDE;}
     "command"                       {return RRTypes.COMMAND;}
     "legionary_name"                {return RRTypes.LEGIONARY_NAME;}
@@ -369,6 +374,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "none"                          {return RRTypes.NONE;}
     "knife"                         {return RRTypes.KNIFE;}
     "mace"                          {return RRTypes.MACE;}
+    "club"                          {return RRTypes.CLUB;}
     "axe"                           {return RRTypes.AXE;}
     "sword"                         {return RRTypes.SWORD;}
     "spear"                         {return RRTypes.SPEAR;}
@@ -421,6 +427,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "hair_style"                    {return RRTypes.HAIR_STYLE;}
     "is_female"                     {return RRTypes.IS_FEMALE;}
     "rebalance_statblock"           {return RRTypes.REBALANCE_STATBLOCK;}
+    "recruit_priority_offset"       {return RRTypes.RECRUIT_PRIORITY_OFFSET;}
     "ownership"                     {return RRTypes.OWNERSHIP;}
     "ethnicity"                     {return RRTypes.ETHNICITY;}
     {ID}                            {return RRTypes.ID;}
@@ -469,14 +476,24 @@ true|false       {return RRTypes.BOOLEAN;}
     "faction_capability"            {return RRTypes.FACTION_CAPABILITY;}
     "taxable_income_bonus"          {return RRTypes.TAXABLE_INCOME_BONUS;}
     "trade_base_income_bonus"       {return RRTypes.TRADE_BASE_INCOME_BONUS;}
+    "trade_level_bonus"             {return RRTypes.TRADE_LEVEL_BONUS;}
     "trade_fleet"                   {return RRTypes.TRADE_FLEET;}
     "farming_level"                 {return RRTypes.FARMING_LEVEL;}
     "road_level"                    {return RRTypes.ROAD_LEVEL;}
     "mine_resource"                 {return RRTypes.MINE_RESOURCE;}
     "happiness_bonus"               {return RRTypes.HAPPINESS_BONUS;}
     "law_bonus"                     {return RRTypes.LAW_BONUS;}
+    "religious_belief"              {return RRTypes.RELIGIOUS_BELIEF;}
     "population_health_bonus"       {return RRTypes.POPULATION_HEALTH_BONUS;}
     "population_growth_bonus"       {return RRTypes.POPULATION_GROWTH_BONUS;}
+    "construction_cost_bonus_military"  {return RRTypes.CONSTRUCTION_COST_BONUS_MILITARY;}
+    "construction_cost_bonus_religious" {return RRTypes.CONSTRUCTION_COST_BONUS_RELIGIOUS;}
+    "construction_cost_bonus_defensive" {return RRTypes.CONSTRUCTION_COST_BONUS_DEFENSIVE;}
+    "construction_cost_bonus_other"     {return RRTypes.CONSTRUCTION_COST_BONUS_OTHER;}
+    "construction_time_bonus_military"  {return RRTypes.CONSTRUCTION_TIME_BONUS_MILITARY;}
+    "construction_time_bonus_religious" {return RRTypes.CONSTRUCTION_TIME_BONUS_RELIGIOUS;}
+    "construction_time_bonus_defensive" {return RRTypes.CONSTRUCTION_TIME_BONUS_DEFENSIVE;}
+    "construction_time_bonus_other"     {return RRTypes.CONSTRUCTION_TIME_BONUS_OTHER;}
     "wall_level"                    {return RRTypes.WALL_LEVEL;}
     "tower_level"                   {return RRTypes.TOWER_LEVEL;}
     "gate_strength"                 {return RRTypes.GATE_STRENGTH;}
@@ -486,7 +503,10 @@ true|false       {return RRTypes.BOOLEAN;}
     "weapon_simple"                 {return RRTypes.WEAPON_SIMPLE;}
     "weapon_bladed"                 {return RRTypes.WEAPON_BLADED;}
     "weapon_missile"                {return RRTypes.WEAPON_MISSILE;}
+    "weapon_siege"                  {return RRTypes.WEAPON_SIEGE;}
+    "weapon_other"                  {return RRTypes.WEAPON_OTHER;}
     "armour"                        {return RRTypes.ARMOUR;}
+    "upgrade_bodyguard"             {return RRTypes.UPGRADE_BODYGUARD;}
     "stage_races"                   {return RRTypes.STAGE_RACES;}
     "stage_games"                   {return RRTypes.STAGE_GAMES;}
     "agent_limit_settlement"        {return RRTypes.AGENT_LIMIT_SETTLEMENT;}
@@ -506,6 +526,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "bonus"                         {return RRTypes.BONUS;}
     "is_toggled"                    {return RRTypes.IS_TOGGLED;}
     "major_event"                   {return RRTypes.MAJOR_EVENT;}
+    "is_player"                     {return RRTypes.IS_PLAYER;}
     "resource"                      {return RRTypes.RESOURCE;}
     "hidden_resource"               {return RRTypes.HIDDEN_RESOURCE;}
     "building_present"              {return RRTypes.BUILDING_PRESENT;}
@@ -626,54 +647,54 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <FERAL_DESCR_AI_PERSONALITY>
 {
-    {WS}                         {return TokenType.WHITE_SPACE;}
-    {COMMENT}                    {return RRTypes.COMMENT;}
-    {INT}                        {return RRTypes.INT;}
-    "building_priority"          {return RRTypes.BUILDING_PRIORITY;}
-    "population_growth_bonus"    {return RRTypes.POPULATION_GROWTH_BONUS;}
-    "population_loyalty_bonus"   {return RRTypes.POPULATION_LOYALTY_BONUS;}
-    "population_health_bonus"    {return RRTypes.POPULATION_HEALTH_BONUS;}
-    "trade_base_income_bonus"    {return RRTypes.TRADE_BASE_INCOME_BONUS;}
-    "trade_level_bonus"          {return RRTypes.TRADE_LEVEL_BONUS;}
-    "trade_fleet"                {return RRTypes.TRADE_FLEET;}
-    "taxable_income_bonus"       {return RRTypes.TAXABLE_INCOME_BONUS;}
-    "mine_resource_level"        {return RRTypes.MINE_RESOURCE_LEVEL;}
-    "farming_level"              {return RRTypes.FARMING_LEVEL;}
-    "road_level"                 {return RRTypes.ROAD_LEVEL;}
-    "gate_strength"              {return RRTypes.GATE_STRENGTH;}
-    "gate_defenses"              {return RRTypes.GATE_DEFENSES;}
-    "wall_level"                 {return RRTypes.WALL_LEVEL;}
-    "tower_level"                {return RRTypes.TOWER_LEVEL;}
-    "stage_games"                {return RRTypes.STAGE_GAMES;}
-    "stage_races"                {return RRTypes.STAGE_RACES;}
-    "weapon_bladed"              {return RRTypes.WEAPON_BLADED;}
-    "weapon_missile"             {return RRTypes.WEAPON_MISSILE;}
-    "armour"                     {return RRTypes.ARMOUR;}
-    "population_fire_risk_bonus" {return RRTypes.POPULATION_FIRE_RISK_BONUS;}
-    "bodyguard"                  {return RRTypes.BODYGUARD;}
-    "recruits_morale_bonus"      {return RRTypes.RECRUITS_MORALE_BONUS;}
-    "recruits_experience_bonus"  {return RRTypes.RECRUITS_EXPERIENCE_BONUS;}
-    "happiness_bonus"            {return RRTypes.HAPPINESS_BONUS;}
-    "law_bonus"                  {return RRTypes.LAW_BONUS;}
-    "military_priority"          {return RRTypes.MILITARY_PRIORITY;}
-    "mass"                       {return RRTypes.MASS;}
-    "infantry_light"             {return RRTypes.INFANTRY_LIGHT;}
-    "infantry_heavy"             {return RRTypes.INFANTRY_HEAVY;}
-    "infantry_missile"           {return RRTypes.INFANTRY_MISSILE;}
-    "infantry_spearmen"          {return RRTypes.INFANTRY_SPEARMEN;}
-    "cavalry_light"              {return RRTypes.CAVALRY_LIGHT;}
-    "cavalry_heavy"              {return RRTypes.CAVALRY_HEAVY;}
-    "cavalry_missile"            {return RRTypes.CAVALRY_MISSILE;}
-    "siege_artillery"            {return RRTypes.SIEGE_ARTILLERY;}
-    "special"                    {return RRTypes.SPECIAL;}
-    "sally_agression"            {return RRTypes.SALLY_AGRESSION;}
-    "sally_desperate"            {return RRTypes.SALLY_DESPERATE;}
-    "attack_risk_taker"          {return RRTypes.ATTACK_RISK_TAKER;}
-    "subterfuge_risk_taker"      {return RRTypes.SUBTERFUGE_RISK_TAKER;}
-    "diplomatic_priority"        {return RRTypes.DIPLOMATIC_PRIORITY;}
-    "aggresiveness"              {return RRTypes.AGGRESIVENESS;}
-    "personality"                {return RRTypes.PERSONALITY;}
-    {ID}                         {return RRTypes.ID;}
+    {WS}                                {return TokenType.WHITE_SPACE;}
+    {COMMENT}                           {return RRTypes.COMMENT;}
+    {INT}                               {return RRTypes.INT;}
+    "building_priority"                 {return RRTypes.BUILDING_PRIORITY;}
+    "population_growth_bonus"           {return RRTypes.POPULATION_GROWTH_BONUS;}
+    "population_loyalty_bonus"          {return RRTypes.POPULATION_LOYALTY_BONUS;}
+    "population_health_bonus"           {return RRTypes.POPULATION_HEALTH_BONUS;}
+    "trade_base_income_bonus"           {return RRTypes.TRADE_BASE_INCOME_BONUS;}
+    "trade_level_bonus"                 {return RRTypes.TRADE_LEVEL_BONUS;}
+    "trade_fleet"                       {return RRTypes.TRADE_FLEET;}
+    "taxable_income_bonus"              {return RRTypes.TAXABLE_INCOME_BONUS;}
+    "mine_resource_level"               {return RRTypes.MINE_RESOURCE_LEVEL;}
+    "farming_level"                     {return RRTypes.FARMING_LEVEL;}
+    "road_level"                        {return RRTypes.ROAD_LEVEL;}
+    "gate_strength"                     {return RRTypes.GATE_STRENGTH;}
+    "gate_defenses"                     {return RRTypes.GATE_DEFENSES;}
+    "wall_level"                        {return RRTypes.WALL_LEVEL;}
+    "tower_level"                       {return RRTypes.TOWER_LEVEL;}
+    "stage_games"                       {return RRTypes.STAGE_GAMES;}
+    "stage_races"                       {return RRTypes.STAGE_RACES;}
+    "weapon_bladed"                     {return RRTypes.WEAPON_BLADED;}
+    "weapon_missile"                    {return RRTypes.WEAPON_MISSILE;}
+    "armour"                            {return RRTypes.ARMOUR;}
+    "population_fire_risk_bonus"        {return RRTypes.POPULATION_FIRE_RISK_BONUS;}
+    "bodyguard"                         {return RRTypes.BODYGUARD;}
+    "recruits_morale_bonus"             {return RRTypes.RECRUITS_MORALE_BONUS;}
+    "recruits_experience_bonus"         {return RRTypes.RECRUITS_EXPERIENCE_BONUS;}
+    "happiness_bonus"                   {return RRTypes.HAPPINESS_BONUS;}
+    "law_bonus"                         {return RRTypes.LAW_BONUS;}
+    "military_priority"                 {return RRTypes.MILITARY_PRIORITY;}
+    "mass"                              {return RRTypes.MASS;}
+    "infantry_light"                    {return RRTypes.INFANTRY_LIGHT;}
+    "infantry_heavy"                    {return RRTypes.INFANTRY_HEAVY;}
+    "infantry_missile"                  {return RRTypes.INFANTRY_MISSILE;}
+    "infantry_spearmen"                 {return RRTypes.INFANTRY_SPEARMEN;}
+    "cavalry_light"                     {return RRTypes.CAVALRY_LIGHT;}
+    "cavalry_heavy"                     {return RRTypes.CAVALRY_HEAVY;}
+    "cavalry_missile"                   {return RRTypes.CAVALRY_MISSILE;}
+    "siege_artillery"                   {return RRTypes.SIEGE_ARTILLERY;}
+    "special"                           {return RRTypes.SPECIAL;}
+    "sally_agression"                   {return RRTypes.SALLY_AGRESSION;}
+    "sally_desperate"                   {return RRTypes.SALLY_DESPERATE;}
+    "attack_risk_taker"                 {return RRTypes.ATTACK_RISK_TAKER;}
+    "subterfuge_risk_taker"             {return RRTypes.SUBTERFUGE_RISK_TAKER;}
+    "diplomatic_priority"               {return RRTypes.DIPLOMATIC_PRIORITY;}
+    "aggresiveness"                     {return RRTypes.AGGRESIVENESS;}
+    "personality"                       {return RRTypes.PERSONALITY;}
+    {ID}                                {return RRTypes.ID;}
 }
 
 <DESCR_FACTION_GROUPS>
@@ -1838,7 +1859,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "battle_default_camera"                      {return RRTypes.BATTLE_DEFAULT_CAMERA;}
     "battle_general_camera"                      {return RRTypes.BATTLE_GENERAL_CAMERA;}
     "set_camera_bookmark"                        {return RRTypes.SET_CAMERA_BOOKMARK;}
-    "camera_position_at_bookmark_"               {return RRTypes.CAMERA_POSITION_AT_BOOKMARK_;}
+    "camera_position_at_bookmark"               {return RRTypes.CAMERA_POSITION_AT_BOOKMARK_;}
     "camera_zoom_to_bookmark"                    {return RRTypes.CAMERA_ZOOM_TO_BOOKMARK;}
     "camera_position"                            {return RRTypes.CAMERA_POSITION;}
     "camera_zoom_to"                             {return RRTypes.CAMERA_ZOOM_TO;}
@@ -1971,6 +1992,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "select_captial"                             {return RRTypes.SELECT_CAPTIAL;}
     "show_building_info"                         {return RRTypes.SHOW_BUILDING_INFO;}
     "show_unit_info"                             {return RRTypes.SHOW_UNIT_INFO;}
+    "tactical_view_locked"                       {return RRTypes.TACTICAL_VIEW_LOCKED;}
     // console commands
     "kill_character"                             {return RRTypes.KILL_CHARACTER;}
     "give_trait"                                 {return RRTypes.GIVE_TRAIT;}
@@ -2027,6 +2049,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "bot_left"                                   {return RRTypes.BOT_LEFT;}
     "bot_right"                                  {return RRTypes.BOT_RIGHT;}
     "run"                                        {return RRTypes.RUN;}
+    "walk"                                       {return RRTypes.WALK;}
+    "relative"                                   {return RRTypes.RELATIVE;}
     "absolute"                                   {return RRTypes.ABSOLUTE;}
     "loose"                                      {return RRTypes.LOOSE;}
     "tight"                                      {return RRTypes.TIGHT;}
@@ -2035,6 +2059,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "firm"                                       {return RRTypes.FIRM;}
     "shaken"                                     {return RRTypes.SHAKEN;}
     "wavering"                                   {return RRTypes.WAVERING;}
+    "tag"                                        {return RRTypes.TAG;}
     "tw"                                         {return RRTypes.TW;}
     "rts"                                        {return RRTypes.RTS;}
     "user_pref"                                  {return RRTypes.USER_PREF;}

@@ -22,9 +22,32 @@ public class RRParserDefinition implements ParserDefinition {
     public static final TokenSet COMMENTS = TokenSet.create(RRTypes.COMMENT);
 
     public static final TokenSet PUNCTUATIONS = TokenSet.create(
+        RRTypes.COMMA,
         RRTypes.OCB,
         RRTypes.CCB,
-        RRTypes.COMMA
+        RRTypes.OSB,
+        RRTypes.CSB,
+        RRTypes.OP,
+        RRTypes.CP,
+        RRTypes.COLON
+    );
+
+    public static final TokenSet OPERATORS = TokenSet.create(
+        RRTypes.NOT,
+        RRTypes.EXCLAMATION,
+        RRTypes.AND,
+        RRTypes.AMBERSANDS,
+        RRTypes.OR,
+        RRTypes.PIPES,
+        RRTypes.EQUALS,
+        RRTypes.LARGER,
+        RRTypes.LARGER_OR_EQUAL,
+        RRTypes.SMALLER,
+        RRTypes.SMALLER_OR_EQUAL,
+        RRTypes.PLUS,
+        RRTypes.DASH,
+        RRTypes.SLASH,
+        RRTypes.STAR
     );
 
     public static final TokenSet NUMBERS = TokenSet.create(
@@ -84,6 +107,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.CAN_SWIM,
         RRTypes.HARDY,
         RRTypes.VERY_HARDY,
+        RRTypes.POWER_CHARGE,
         RRTypes.SEA_FARING,
         RRTypes.GENERAL_UNIT,
         RRTypes.GENERAL_UNIT_UPGRADE,
@@ -91,6 +115,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.DRUID,
         RRTypes.SCREECHING_WOMEN,
         RRTypes.NO_CUSTOM,
+        RRTypes.IS_PEASANT,
         RRTypes.CAN_HORDE,
         RRTypes.LEGIONARY_NAME,
 
@@ -108,6 +133,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.NONE,
         RRTypes.KNIFE,
         RRTypes.MACE,
+        RRTypes.CLUB,
         RRTypes.AXE,
         RRTypes.SWORD,
         RRTypes.SPEAR,
@@ -323,6 +349,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.BOT_LEFT,
         RRTypes.BOT_RIGHT,
         RRTypes.RUN,
+        RRTypes.WALK,
         RRTypes.ABSOLUTE,
         RRTypes.LOOSE,
         RRTypes.TIGHT,
@@ -468,6 +495,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.STAT_FIRE_DELAY,
         RRTypes.STAT_FOOD,
         RRTypes.STAT_COST,
+        RRTypes.RECRUIT_PRIORITY_OFFSET,
         RRTypes.OWNERSHIP,
         RRTypes.ETHNICITY,
         RRTypes.REBALANCE_STATBLOCK,
@@ -506,6 +534,15 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.MINE_RESOURCE,
         RRTypes.HAPPINESS_BONUS,
         RRTypes.LAW_BONUS,
+        RRTypes.CONSTRUCTION_COST_BONUS_MILITARY,
+        RRTypes.CONSTRUCTION_COST_BONUS_RELIGIOUS,
+        RRTypes.CONSTRUCTION_COST_BONUS_DEFENSIVE,
+        RRTypes.CONSTRUCTION_COST_BONUS_OTHER,
+        RRTypes.CONSTRUCTION_TIME_BONUS_MILITARY,
+        RRTypes.CONSTRUCTION_TIME_BONUS_RELIGIOUS,
+        RRTypes.CONSTRUCTION_TIME_BONUS_DEFENSIVE,
+        RRTypes.CONSTRUCTION_TIME_BONUS_OTHER,
+        RRTypes.RELIGIOUS_BELIEF,
         RRTypes.POPULATION_HEALTH_BONUS,
         RRTypes.POPULATION_GROWTH_BONUS,
         RRTypes.WALL_LEVEL,
@@ -517,7 +554,10 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.WEAPON_SIMPLE,
         RRTypes.WEAPON_BLADED,
         RRTypes.WEAPON_MISSILE,
+        RRTypes.WEAPON_SIEGE,
+        RRTypes.WEAPON_OTHER,
         RRTypes.ARMOUR,
+        RRTypes.UPGRADE_BODYGUARD,
         RRTypes.STAGE_RACES,
         RRTypes.STAGE_GAMES,
         RRTypes.AGENT_LIMIT_SETTLEMENT,
@@ -533,13 +573,11 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.BONUS,
         RRTypes.IS_TOGGLED,
         RRTypes.MAJOR_EVENT,
+        RRTypes.IS_PLAYER,
         RRTypes.RESOURCE,
         RRTypes.HIDDEN_RESOURCE,
         RRTypes.BUILDING_PRESENT,
         RRTypes.BUILDING_PRESENT_MIN_LEVEL,
-        RRTypes.AND,
-        RRTypes.OR,
-        RRTypes.NOT,
 
         // export_descr_ancillaries
         RRTypes.ANCILLARY,
@@ -1648,6 +1686,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.SELECT_CAPTIAL,
         RRTypes.SHOW_BUILDING_INFO,
         RRTypes.SHOW_UNIT_INFO,
+        RRTypes.TACTICAL_VIEW_LOCKED,
         // console commands
         RRTypes.KILL_CHARACTER,
         RRTypes.GIVE_TRAIT,

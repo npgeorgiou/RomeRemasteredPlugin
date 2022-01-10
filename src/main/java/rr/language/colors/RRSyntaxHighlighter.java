@@ -24,6 +24,7 @@ public class RRSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey BOOLEAN_STYLE = createTextAttributesKey("RR_BOOLEAN", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey STRING_STYLE = createTextAttributesKey("RR_STRING", DefaultLanguageHighlighterColors.STRING);
     public static final TextAttributesKey PUNCTUATION_STYLE = createTextAttributesKey("RR_PUNCTUATION", DefaultLanguageHighlighterColors.BRACES);
+    public static final TextAttributesKey OPERATORS_STYLE = createTextAttributesKey("RR_OPERATORS", DefaultLanguageHighlighterColors.OPERATION_SIGN);
     public static final TextAttributesKey COORDS_STYLE = createTextAttributesKey("RR_COORDS", DefaultLanguageHighlighterColors.LABEL);
     public static final TextAttributesKey CONSTANTS_STYLE = createTextAttributesKey("RR_CONSTANTS", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey FILES_STYLE = createTextAttributesKey("RR_FILES", DefaultLanguageHighlighterColors.LABEL);
@@ -40,6 +41,7 @@ public class RRSyntaxHighlighter extends SyntaxHighlighterBase {
     static {
         fillMap(ATTRIBUTES, RRParserDefinition.FILE_TYPE_MARKERS, COMMENT_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.PUNCTUATIONS, PUNCTUATION_STYLE);
+        fillMap(ATTRIBUTES, RRParserDefinition.OPERATORS, OPERATORS_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.KEYWORDS, KEYWORDS_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.CONSTANTS, CONSTANTS_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.NUMBERS, NUMBER_STYLE);

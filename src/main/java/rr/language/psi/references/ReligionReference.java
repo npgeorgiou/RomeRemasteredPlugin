@@ -15,15 +15,15 @@ import rr.language.psi.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FactionReference extends PsiReferenceBase<PsiElement> implements PsiReference {
+public class ReligionReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
-    public FactionReference(@NotNull PsiElement element, TextRange rangeInElement) {
+    public ReligionReference(@NotNull PsiElement element, TextRange rangeInElement) {
         super(element, rangeInElement);
     }
 
     @Override
     public @Nullable PsiElement resolve() {
-        List<RRFactionNameDecl> items = RRUtil.findAllFactions(myElement.getProject()).stream()
+        List<RRReligionNameDecl> items = RRUtil.findAllReligions(myElement.getProject()).stream()
             .filter(it -> Util.unquote(myElement.getText()).equals(Util.unquote(it.getText())))
             .collect(Collectors.toList());
 
@@ -37,9 +37,9 @@ public class FactionReference extends PsiReferenceBase<PsiElement> implements Ps
     @Override
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
         if (myElement.getText().startsWith("\"")) {
-            ((RRStrFactionRef) myElement).setName(newName);
+            ((RRStrReligionRef) myElement).setName(newName);
         } else {
-            ((RRFactionRef) myElement).setName(newName);
+            ((RRReligionRef) myElement).setName(newName);
         }
 
         return myElement;
@@ -47,7 +47,7 @@ public class FactionReference extends PsiReferenceBase<PsiElement> implements Ps
 
     @Override
     public Object @NotNull [] getVariants() {
-        return RRUtil.findAllFactionsAsStrings(myElement.getProject()).stream()
+        return RRUtil.findAllReligionsAsStrings(myElement.getProject()).stream()
             .map(it -> LookupElementBuilder.create(it))
             .toArray();
     }

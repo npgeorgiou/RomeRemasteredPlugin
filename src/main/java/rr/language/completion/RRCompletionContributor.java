@@ -648,6 +648,7 @@ public class RRCompletionContributor extends CompletionContributor {
                     "can_swim",
                     "hardy",
                     "very_hardy",
+                    "power_charge",
                     "sea_faring",
                     "cantabrian_circle",
                     "general_unit",
@@ -722,7 +723,7 @@ public class RRCompletionContributor extends CompletionContributor {
                                                                         new Node(psiElement(RRTypes.COMMA), new Null(),
                                                                             new Node(
                                                                                 inside(RRTypes.UNIT_DAMAGE_SOUND_TYPE),
-                                                                                new HardcodedValues("none", "knife", "mace", "axe", "sword", "spear")))))))))))))))))));
+                                                                                new HardcodedValues("none", "knife", "mace", "club", "axe", "sword", "spear")))))))))))))))))));
 
         // stat_pri_attr  {attribute} [, {attribute}]...
         Node export_descr_unit_stat_pri_attr = new RootNode(psiElement().andOr(
@@ -831,6 +832,7 @@ public class RRCompletionContributor extends CompletionContributor {
                 new Node(id(), new BuildingTrees(),
                     new Node(new BuildingLevels(true)))),
             new Node(new HardcodedValues("is_toggled")),                 // TODO: autocomplete
+            new Node(new HardcodedValues("is_player")),
             new Node(new ConditionAliases())
         );
 
@@ -857,12 +859,22 @@ public class RRCompletionContributor extends CompletionContributor {
                 "agent",
                 "taxable_income_bonus",
                 "trade_base_income_bonus",
+                "trade_level_bonus",
                 "trade_fleet",
                 "farming_level",
                 "road_level",
                 "mine_resource",
                 "happiness_bonus",
                 "law_bonus",
+                "construction_cost_bonus_military",
+                "construction_cost_bonus_religious",
+                "construction_cost_bonus_defensive",
+                "construction_cost_bonus_other",
+                "construction_time_bonus_military",
+                "construction_time_bonus_religious",
+                "construction_time_bonus_defensive",
+                "construction_time_bonus_other",
+                "religious_belief",
                 "population_health_bonus",
                 "population_growth_bonus",
                 "wall_level",
@@ -874,6 +886,8 @@ public class RRCompletionContributor extends CompletionContributor {
                 "weapon_simple",
                 "weapon_bladed",
                 "weapon_missile",
+                "weapon_other",
+                "upgrade_bodyguard",
                 "armour",
                 "stage_races",
                 "dummy Capability_TraitsAndRetinue")),

@@ -8,6 +8,7 @@ import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
+import rr.language.Util;
 
 public class TgaFileReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
@@ -17,7 +18,7 @@ public class TgaFileReference extends PsiReferenceBase<PsiElement> implements Ps
 
     @Override
     public @Nullable PsiElement resolve() {
-        return RRUtil.findTgaFile(myElement.getText(), myElement.getProject());
+        return RRUtil.findTgaFile(Util.unquote(myElement.getText()), myElement.getProject());
     }
 
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {

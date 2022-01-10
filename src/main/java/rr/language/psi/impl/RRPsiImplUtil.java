@@ -162,6 +162,44 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Religion decl and refs">
+    public static PsiElement setName(RRReligionNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createString(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRReligionNameDecl e) {
+        return Util.unquote(e.getFirstChild().getText());
+    }
+
+    public static PsiElement getNameIdentifier(RRReligionNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRReligionRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static ReligionReference getReference(RRReligionRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new ReligionReference(ref, range);
+    }
+
+    public static PsiElement setName(RRStrReligionRef ref, String newName) {
+        PsiElement str = RRElementFactory.createString(ref.getProject(), newName);
+        ref.getFirstChild().replace(str);
+        return ref;
+    }
+
+    public static ReligionReference getReference(RRStrReligionRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.STRING).getPsi().getTextRangeInParent();
+        return new ReligionReference(ref, range);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Faction or Culture ref">
     public static PsiElement setName(RRFactionOrCultureRef ref, String newName) {
         PsiElement id = RRElementFactory.createId(ref.getProject(), newName);

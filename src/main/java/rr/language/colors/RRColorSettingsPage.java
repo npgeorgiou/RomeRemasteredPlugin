@@ -16,6 +16,7 @@ public class RRColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
             new AttributesDescriptor("Comments", RRSyntaxHighlighter.COMMENT_STYLE),
             new AttributesDescriptor("Punctuation", RRSyntaxHighlighter.PUNCTUATION_STYLE),
+            new AttributesDescriptor("Operators", RRSyntaxHighlighter.OPERATORS_STYLE),
             new AttributesDescriptor("Keywords", RRSyntaxHighlighter.KEYWORDS_STYLE),
             new AttributesDescriptor("Constants", RRSyntaxHighlighter.CONSTANTS_STYLE),
             new AttributesDescriptor("Identifiers", RRSyntaxHighlighter.ID_STYLE),

@@ -62,6 +62,7 @@ public class MarkFileTypeWithComment extends AnAction {
         "rebel_faction_descr_enums.txt",
         "descr_items.txt",
         "descr_sm_ambient_objects.txt",
+        "descr_beliefs.txt",
     };
 
     @Override
@@ -74,12 +75,6 @@ public class MarkFileTypeWithComment extends AnAction {
 
         for (RRFile file : files) {
             String fileName = file.getVirtualFile().getName();
-
-
-//            file.getText().contains("script")
-
-
-
 
             if (!Arrays.asList(addMarkersTo).contains(fileName)) {
                 continue;
