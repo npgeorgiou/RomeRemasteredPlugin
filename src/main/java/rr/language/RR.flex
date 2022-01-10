@@ -22,6 +22,11 @@ EOL_WS = {EOL}+{LINE_WS}+
 WS      = ({EOL}|{LINE_WS})+
 
 COMMENT = [";""¬""//"][^\r\n]*
+
+// Special things
+SPEAR_BONUS_X = "spear_bonus_" {INT}
+LOCAL = \"local\"|"local"
+
 INT = [\+\-]?[0-9]+
 FLOAT = [\+\-]?[0-9]*\.[0-9]+
 STR_CHAR = [^\"\r\n\\]
@@ -35,7 +40,6 @@ CAS_FILE=({PATH}|{DIR_OR_FILE})\.(cas|CAS)
 RTM_FILE=({PATH}|{DIR_OR_FILE})\.(rtm|RTM)
 WMV_FILE=({PATH}|{DIR_OR_FILE})\.(wmv|WMV)
 
-SPEAR_BONUS_X = "spear_bonus_" {INT}
 // †ÎöÈ.íëé are in descr_names. Maybe just typos.
 ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jletterdigit:])* ([:jletterdigit:])*
 
@@ -85,7 +89,9 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state TEXT_MAPPING
 %xstate ENUMS
 
-%state CONDITIONS
+%state SCRIPTS_EVENTS_CONDITIONS
+//%state CONDITIONS
+//%state EVENTS
 
 %%
 <DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
@@ -120,6 +126,9 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 // enum markers
 ";rebel_faction_descr_enums.txt"[^\r\n]*       {yybegin(ENUMS); return RRTypes.ENUMS_MARKER;}
 
+// Special things
+<SCRIPTS_EVENTS_CONDITIONS>{LOCAL}          {return RRTypes.LOCAL;}
+
 {WS}             {return TokenType.WHITE_SPACE;}
 {COMMENT}        {return RRTypes.COMMENT;}
 {INT}            {return RRTypes.INT;}
@@ -142,6 +151,12 @@ true|false       {return RRTypes.BOOLEAN;}
 {RTM_FILE}       {return RRTypes.RTM_FILE;}
 {WMV_FILE}       {return RRTypes.WMV_FILE;}
 {PATH}           {return RRTypes.PATH;}
+
+"not"                           {return RRTypes.NOT;}
+"and"                           {return RRTypes.AND;}
+"&&"                            {return RRTypes.AMBERSANDS;}
+"or"                            {return RRTypes.OR;}
+"||"                            {return RRTypes.PIPES;}
 
 // character_type
 "all"                          {return RRTypes.ALL;}
@@ -181,265 +196,20 @@ true|false       {return RRTypes.BOOLEAN;}
 "wedge"                        {return RRTypes.WEDGE;}
 "shield_wall"                  {return RRTypes.SHIELD_WALL;}
 "schiltrom"                    {return RRTypes.SCHILTROM;}
-//
+// mount type
 "horse"                        {return RRTypes.HORSE;}
 "camel"                        {return RRTypes.CAMEL;}
 "elephant"                     {return RRTypes.ELEPHANT;}
 "chariot"                      {return RRTypes.CHARIOT;}
 "scorpion_cart"                {return RRTypes.SCORPION_CART;}
+// settlement level
+"village"                      {return RRTypes.VILLAGE;}
+"town"                         {return RRTypes.TOWN;}
+"large_town"                   {return RRTypes.LARGE_TOWN;}
+"city"                         {return RRTypes.CITY;}
+"large_city"                   {return RRTypes.LARGE_CITY;}
+"huge_city"                    {return RRTypes.HUGE_CITY;}
 
-// events
-"PreBattle"                             {return RRTypes.PREBATTLE;}
-"PreBattleWithdrawal"                   {return RRTypes.PREBATTLEWITHDRAWAL;}
-"BattleAiCommenced"                     {return RRTypes.BATTLEAICOMMENCED;}
-"BattleDelayPhaseCommenced"             {return RRTypes.BATTLEDELAYPHASECOMMENCED;}
-"BattleDeploymentPhaseCommenced"        {return RRTypes.BATTLEDEPLOYMENTPHASECOMMENCED;}
-"BattleConflictPhaseCommenced"          {return RRTypes.BATTLECONFLICTPHASECOMMENCED;}
-"BattlePlayerUnitAttacksEnemyUnit"      {return RRTypes.BATTLEPLAYERUNITATTACKSENEMYUNIT;}
-"BattleEnemyUnitAttacksPlayerUnit"      {return RRTypes.BATTLEENEMYUNITATTACKSPLAYERUNIT;}
-"BattlePlayerAttacksSettlementBuilding" {return RRTypes.BATTLEPLAYERATTACKSSETTLEMENTBUILDING;}
-"BattleEnemyAttacksSettlementBuilding"  {return RRTypes.BATTLEENEMYATTACKSSETTLEMENTBUILDING;}
-"BattleUnitGoesBerserk"                 {return RRTypes.BATTLEUNITGOESBERSERK;}
-"BattlePlayerUnitGoesBerserk"           {return RRTypes.BATTLEPLAYERUNITGOESBERSERK;}
-"BattleEnemyUnitGoesBerserk"            {return RRTypes.BATTLEENEMYUNITGOESBERSERK;}
-"BattleUnitRouts"                       {return RRTypes.BATTLEUNITROUTS;}
-"BattlePlayerUnitRouts"                 {return RRTypes.BATTLEPLAYERUNITROUTS;}
-"BattleEnemyUnitRouts"                  {return RRTypes.BATTLEENEMYUNITROUTS;}
-"BattlePlayerSiegeEngineDestroyed"      {return RRTypes.BATTLEPLAYERSIEGEENGINEDESTROYED;}
-"BattleEnemySiegeEngineDestroyed"       {return RRTypes.BATTLEENEMYSIEGEENGINEDESTROYED;}
-"PostBattle"                            {return RRTypes.POSTBATTLE;}
-"BattleArmyRouted"                      {return RRTypes.BATTLEARMYROUTED;}
-"BattleGeneralKilled"                   {return RRTypes.BATTLEGENERALKILLED;}
-"BattleGeneralRouted"                   {return RRTypes.BATTLEGENERALROUTED;}
-"BattleReinforcementsArrive"            {return RRTypes.BATTLEREINFORCEMENTSARRIVE;}
-"BattleSiegeEngineDestroyed"            {return RRTypes.BATTLESIEGEENGINEDESTROYED;}
-"BattleSiegeEngineDocksWall"            {return RRTypes.BATTLESIEGEENGINEDOCKSWALL;}
-"BattleGatesAttackedByEngine"           {return RRTypes.BATTLEGATESATTACKEDBYENGINE;}
-"BattleGatesAttackedByPlayerEngine"     {return RRTypes.BATTLEGATESATTACKEDBYPLAYERENGINE;}
-"BattleGatesAttackedByEnemyEngine"      {return RRTypes.BATTLEGATESATTACKEDBYENEMYENGINE;}
-"BattleBattleGatesDestroyedByEngine"    {return RRTypes.BATTLEBATTLEGATESDESTROYEDBYENGINE;}
-"BattleWallsBreachedByEngine"           {return RRTypes.BATTLEWALLSBREACHEDBYENGINE;}
-"BattleWallsCaptured"                   {return RRTypes.BATTLEWALLSCAPTURED;}
-"BattleFinished"                        {return RRTypes.BATTLEFINISHED;}
-"EnteredCityView"                       {return RRTypes.ENTEREDCITYVIEW;}
-"BattleMinimapAction"                   {return RRTypes.BATTLEMINIMAPACTION;}
-"BattlePlayerUnitSelected"              {return RRTypes.BATTLEPLAYERUNITSELECTED;}
-"EnterTacticalMode"                     {return RRTypes.ENTERTACTICALMODE;}
-"BattleReinforcementsHack"              {return RRTypes.BATTLEREINFORCEMENTSHACK;}
-"FactionTurnStart"                      {return RRTypes.FACTIONTURNSTART;}
-"FactionWarDeclared"                    {return RRTypes.FACTIONWARDECLARED;}
-"HordeFormed"                           {return RRTypes.HORDEFORMED;}
-"FactionTurnEnd"                        {return RRTypes.FACTIONTURNEND;}
-"HireMercenaries"                       {return RRTypes.HIREMERCENARIES;}
-"GeneralCaptureResidence"               {return RRTypes.GENERALCAPTURERESIDENCE;}
-"GeneralCaptureWonder"                  {return RRTypes.GENERALCAPTUREWONDER;}
-"GeneralCaptureSettlement"              {return RRTypes.GENERALCAPTURESETTLEMENT;}
-"LeaderDestroyedFaction"                {return RRTypes.LEADERDESTROYEDFACTION;}
-"Disaster"                              {return RRTypes.DISASTER;}
-"CharacterDamagedByDisaster"            {return RRTypes.CHARACTERDAMAGEDBYDISASTER;}
-"GeneralAssaultsResidence"              {return RRTypes.GENERALASSAULTSRESIDENCE;}
-"OfferedForAdoption"                    {return RRTypes.OFFEREDFORADOPTION;}
-"LesserGeneralOfferedForAdoption"       {return RRTypes.LESSERGENERALOFFEREDFORADOPTION;}
-"OfferedForMarriage"                    {return RRTypes.OFFEREDFORMARRIAGE;}
-"BrotherAdopted"                        {return RRTypes.BROTHERADOPTED;}
-"BecomesFactionLeader"                  {return RRTypes.BECOMESFACTIONLEADER;}
-"BecomesFactionHeir"                    {return RRTypes.BECOMESFACTIONHEIR;}
-"TakeOffice"                            {return RRTypes.TAKEOFFICE;}
-"CeasedFactionLeader"                   {return RRTypes.CEASEDFACTIONLEADER;}
-"CeasedFactionHeir"                     {return RRTypes.CEASEDFACTIONHEIR;}
-"LeaveOffice"                           {return RRTypes.LEAVEOFFICE;}
-"UngarrisonedFort"                      {return RRTypes.UNGARRISONEDFORT;}
-"LostLegionaryEagle"                    {return RRTypes.LOSTLEGIONARYEAGLE;}
-"CapturedLegionaryEagle"                {return RRTypes.CAPTUREDLEGIONARYEAGLE;}
-"RecapturedLegionaryEagle"              {return RRTypes.RECAPTUREDLEGIONARYEAGLE;}
-"SenateExposure"                        {return RRTypes.SENATEEXPOSURE;}
-"QuaestorInvestigationMinor"            {return RRTypes.QUAESTORINVESTIGATIONMINOR;}
-"QuaestorInvestigation"                 {return RRTypes.QUAESTORINVESTIGATION;}
-"QuaestorInvestigationMajor"            {return RRTypes.QUAESTORINVESTIGATIONMAJOR;}
-"PopularSupportForOverthrow"            {return RRTypes.POPULARSUPPORTFOROVERTHROW;}
-"SenateReadyToOutlawFaction"            {return RRTypes.SENATEREADYTOOUTLAWFACTION;}
-"SenateOutlawsFaction"                  {return RRTypes.SENATEOUTLAWSFACTION;}
-"NewTurnStart"                          {return RRTypes.NEWTURNSTART;}
-"ScriptPromptCallback"                  {return RRTypes.SCRIPTPROMPTCALLBACK;}
-"FactionDestroyed"                      {return RRTypes.FACTIONDESTROYED;}
-"Birth"                                 {return RRTypes.BIRTH;}
-"CharacterComesOfAge"                   {return RRTypes.CHARACTERCOMESOFAGE;}
-"CharacterMarries"                      {return RRTypes.CHARACTERMARRIES;}
-"CharacterBecomesAFather"               {return RRTypes.CHARACTERBECOMESAFATHER;}
-"CharacterTurnStart"                    {return RRTypes.CHARACTERTURNSTART;}
-"CharacterTurnEnd"                      {return RRTypes.CHARACTERTURNEND;}
-"CharacterTurnEndInSettlement"          {return RRTypes.CHARACTERTURNENDINSETTLEMENT;}
-"GeneralDevastatesTile"                 {return RRTypes.GENERALDEVASTATESTILE;}
-"SpyMission"                            {return RRTypes.SPYMISSION;}
-"ExecutesASpyOnAMission"                {return RRTypes.EXECUTESASPYONAMISSION;}
-"LeaderOrderedSpyingMission"            {return RRTypes.LEADERORDEREDSPYINGMISSION;}
-"AssassinationMission"                  {return RRTypes.ASSASSINATIONMISSION;}
-"ExecutesAnAssassinOnAMission"          {return RRTypes.EXECUTESANASSASSINONAMISSION;}
-"LeaderOrderedAssassination"            {return RRTypes.LEADERORDEREDASSASSINATION;}
-"SufferAssassinationAttempt"            {return RRTypes.SUFFERASSASSINATIONATTEMPT;}
-"SabotageMission"                       {return RRTypes.SABOTAGEMISSION;}
-"LeaderOrderedSabotage"                 {return RRTypes.LEADERORDEREDSABOTAGE;}
-"BriberyMission"                        {return RRTypes.BRIBERYMISSION;}
-"LeaderOrderedBribery"                  {return RRTypes.LEADERORDEREDBRIBERY;}
-"AcceptBribe"                           {return RRTypes.ACCEPTBRIBE;}
-"RefuseBribe"                           {return RRTypes.REFUSEBRIBE;}
-"Insurrection"                          {return RRTypes.INSURRECTION;}
-"DiplomacyMission"                      {return RRTypes.DIPLOMACYMISSION;}
-"LeaderOrderedDiplomacy"                {return RRTypes.LEADERORDEREDDIPLOMACY;}
-"LeaderSenateMissionSuccess"            {return RRTypes.LEADERSENATEMISSIONSUCCESS;}
-"LeaderSenateMissionFailed"             {return RRTypes.LEADERSENATEMISSIONFAILED;}
-"ConstructionItemClicked"               {return RRTypes.CONSTRUCTIONITEMCLICKED;}
-"RecruitmentItemClicked"                {return RRTypes.RECRUITMENTITEMCLICKED;}
-"RecruitmentPopulated"                  {return RRTypes.RECRUITMENTPOPULATED;}
-"ConstructionPopulated"                 {return RRTypes.CONSTRUCTIONPOPULATED;}
-"AgentListPopulated"                    {return RRTypes.AGENTLISTPOPULATED;}
-"MoveRetinuePopulated"                  {return RRTypes.MOVERETINUEPOPULATED;}
-"MoveRetinuePressed"                    {return RRTypes.MOVERETINUEPRESSED;}
-"MoveRetinueAncillarySelected"          {return RRTypes.MOVERETINUEANCILLARYSELECTED;}
-"MoveRetinueAncillaryDeselected"        {return RRTypes.MOVERETINUEANCILLARYDESELECTED;}
-"MissionSelected"                       {return RRTypes.MISSIONSELECTED;}
-"AgentSelected"                         {return RRTypes.AGENTSELECTED;}
-"ScrollDidOpen"                         {return RRTypes.SCROLLDIDOPEN;}
-"UnitHasRouted"                         {return RRTypes.UNITHASROUTED;}
-"BattleUnitActionStatus"                {return RRTypes.BATTLEUNITACTIONSTATUS;}
-"DiplomacyScrollPopulated"              {return RRTypes.DIPLOMACYSCROLLPOPULATED;}
-"ItemDeselected"                        {return RRTypes.ITEMDESELECTED;}
-"UnitInfoOpened"                        {return RRTypes.UNITINFOOPENED;}
-"AdvisorAudioStopped"                   {return RRTypes.ADVISORAUDIOSTOPPED;}
-"SettlementTurnStart"                   {return RRTypes.SETTLEMENTTURNSTART;}
-"SettlementTurnEnd"                     {return RRTypes.SETTLEMENTTURNEND;}
-"NewAdmiralCreated"                     {return RRTypes.NEWADMIRALCREATED;}
-"UnitTrained"                           {return RRTypes.UNITTRAINED;}
-"GovernorUnitTrained"                   {return RRTypes.GOVERNORUNITTRAINED;}
-"BuildingCompleted"                     {return RRTypes.BUILDINGCOMPLETED;}
-"GovernorBuildingCompleted"             {return RRTypes.GOVERNORBUILDINGCOMPLETED;}
-"PlugInCompleted"                       {return RRTypes.PLUGINCOMPLETED;}
-"GovernorPlugInCompleted"               {return RRTypes.GOVERNORPLUGINCOMPLETED;}
-"AgentCreated"                          {return RRTypes.AGENTCREATED;}
-"GovernorAgentCreated"                  {return RRTypes.GOVERNORAGENTCREATED;}
-"BuildingDestroyed"                     {return RRTypes.BUILDINGDESTROYED;}
-"GovernorBuildingDestroyed"             {return RRTypes.GOVERNORBUILDINGDESTROYED;}
-"CityRiots"                             {return RRTypes.CITYRIOTS;}
-"GovernorCityRiots"                     {return RRTypes.GOVERNORCITYRIOTS;}
-"CityRebels"                            {return RRTypes.CITYREBELS;}
-"GovernorCityRebels"                    {return RRTypes.GOVERNORCITYREBELS;}
-"GovernorThrowGames"                    {return RRTypes.GOVERNORTHROWGAMES;}
-"GovernorThrowRaces"                    {return RRTypes.GOVERNORTHROWRACES;}
-"UngarrisonedSettlement"                {return RRTypes.UNGARRISONEDSETTLEMENT;}
-"EnslavePopulation"                     {return RRTypes.ENSLAVEPOPULATION;}
-"ExterminatePopulation"                 {return RRTypes.EXTERMINATEPOPULATION;}
-"CitySacked"                            {return RRTypes.CITYSACKED;}
-"CharacterSelected"                     {return RRTypes.CHARACTERSELECTED;}
-"SettlementSelected"                    {return RRTypes.SETTLEMENTSELECTED;}
-"EnemySettlementSelected"               {return RRTypes.ENEMYSETTLEMENTSELECTED;}
-"MultiTurnMove"                         {return RRTypes.MULTITURNMOVE;}
-"CharacterPanelOpen"                    {return RRTypes.CHARACTERPANELOPEN;}
-"SettlementPanelOpen"                   {return RRTypes.SETTLEMENTPANELOPEN;}
-"FinancesPanelOpen"                     {return RRTypes.FINANCESPANELOPEN;}
-"FactionSummaryPanelOpen"               {return RRTypes.FACTIONSUMMARYPANELOPEN;}
-"FamilyTreePanelOpen"                   {return RRTypes.FAMILYTREEPANELOPEN;}
-"DiplomaticStandingPanelOpen"           {return RRTypes.DIPLOMATICSTANDINGPANELOPEN;}
-"SenateMissionsPanelOpen"               {return RRTypes.SENATEMISSIONSPANELOPEN;}
-"SenateOfficesPanelOpen"                {return RRTypes.SENATEOFFICESPANELOPEN;}
-"DiplomacyPanelOpen"                    {return RRTypes.DIPLOMACYPANELOPEN;}
-"PreBattlePanelOpen"                    {return RRTypes.PREBATTLEPANELOPEN;}
-"RecruitmentPanelOpen"                  {return RRTypes.RECRUITMENTPANELOPEN;}
-"ConstructionPanelOpen"                 {return RRTypes.CONSTRUCTIONPANELOPEN;}
-"TradePanelOpen"                        {return RRTypes.TRADEPANELOPEN;}
-"HireMercenariesPanelOpen"              {return RRTypes.HIREMERCENARIESPANELOPEN;}
-"NavalAutoResolvePanelOpen"             {return RRTypes.NAVALAUTORESOLVEPANELOPEN;}
-"IncomingMessage"                       {return RRTypes.INCOMINGMESSAGE;}
-"MessageOpen"                           {return RRTypes.MESSAGEOPEN;}
-"RequestBuildingAdvice"                 {return RRTypes.REQUESTBUILDINGADVICE;}
-"RequestTrainingAdvice"                 {return RRTypes.REQUESTTRAININGADVICE;}
-"RequestMercenariesAdvice"              {return RRTypes.REQUESTMERCENARIESADVICE;}
-"ButtonPressed"                         {return RRTypes.BUTTONPRESSED;}
-"ShortcutTriggered"                     {return RRTypes.SHORTCUTTRIGGERED;}
-"ScrollOpened"                          {return RRTypes.SCROLLOPENED;}
-"ScrollClosed"                          {return RRTypes.SCROLLCLOSED;}
-"AdviceSupressed"                       {return RRTypes.ADVICESUPRESSED;}
-"ScrollAdviceRequested"                 {return RRTypes.SCROLLADVICEREQUESTED;}
-"PreBattleScrollAdviceRequested"        {return RRTypes.PREBATTLESCROLLADVICEREQUESTED;}
-"NavalPreBattleScrollAdviceRequested"   {return RRTypes.NAVALPREBATTLESCROLLADVICEREQUESTED;}
-"SettlementScrollAdviceRequested"       {return RRTypes.SETTLEMENTSCROLLADVICEREQUESTED;}
-"Idle"                                  {return RRTypes.IDLE;}
-"AbandonShowMe"                         {return RRTypes.ABANDONSHOWME;}
-"ScriptedAdvice"                        {return RRTypes.SCRIPTEDADVICE;}
-"DeclineAutomatedSettlementManagement"  {return RRTypes.DECLINEAUTOMATEDSETTLEMENTMANAGEMENT;}
-"EscPressed"                            {return RRTypes.ESCPRESSED;}
-"GameReloaded"                          {return RRTypes.GAMERELOADED;}
-"FirstStratUpdates"                     {return RRTypes.FIRSTSTRATUPDATES;}
-"MovieStopped"                          {return RRTypes.MOVIESTOPPED;}
-"SelectionAssistPossible"               {return RRTypes.SELECTIONASSISTPOSSIBLE;}
-"SettlementButtonPressed"               {return RRTypes.SETTLEMENTBUTTONPRESSED;}
-"WorldScriptTerminate"                  {return RRTypes.WORLDSCRIPTTERMINATE;}
-"CampaignHudShown"                      {return RRTypes.CAMPAIGNHUDSHOWN;}
-"ContextPopupInteraction"               {return RRTypes.CONTEXTPOPUPINTERACTION;}
-"DiplomacyConstructingOffer"            {return RRTypes.DIPLOMACYCONSTRUCTINGOFFER;}
-"DiplomacyConstructingCounterOffer"     {return RRTypes.DIPLOMACYCONSTRUCTINGCOUNTEROFFER;}
-"DiplomacyOpponentPresentsOffer"        {return RRTypes.DIPLOMACYOPPONENTPRESENTSOFFER;}
-"DiplomacyOpponentPresentsCounterOffer" {return RRTypes.DIPLOMACYOPPONENTPRESENTSCOUNTEROFFER;}
-"FactionSummary"                        {return RRTypes.FACTIONSUMMARY;}
-"FactionSenate"                         {return RRTypes.FACTIONSENATE;}
-"FactionSenatePolicy"                   {return RRTypes.FACTIONSENATEPOLICY;}
-"FactionSenateMissions"                 {return RRTypes.FACTIONSENATEMISSIONS;}
-"FactionSenateOfficials"                {return RRTypes.FACTIONSENATEOFFICIALS;}
-"FactionSenateFloor"                    {return RRTypes.FACTIONSENATEFLOOR;}
-"FactionFactions"                       {return RRTypes.FACTIONFACTIONS;}
-"FactionDetails"                        {return RRTypes.FACTIONDETAILS;}
-"FactionFamilyTree"                     {return RRTypes.FACTIONFAMILYTREE;}
-"FactionRankings"                       {return RRTypes.FACTIONRANKINGS;}
-"FactionLists"                          {return RRTypes.FACTIONLISTS;}
-"SettlementCharacter"                   {return RRTypes.SETTLEMENTCHARACTER;}
-"SettlementTrade"                       {return RRTypes.SETTLEMENTTRADE;}
-"SettlementOverview"                    {return RRTypes.SETTLEMENTOVERVIEW;}
-"SpySelected"                           {return RRTypes.SPYSELECTED;}
-"DiplomatSelected"                      {return RRTypes.DIPLOMATSELECTED;}
-"AssassinSelected"                      {return RRTypes.ASSASSINSELECTED;}
-"FleetSelected"                         {return RRTypes.FLEETSELECTED;}
-"CampaignMapGesture"                    {return RRTypes.CAMPAIGNMAPGESTURE;}
-"CampaignDoingBadly"                    {return RRTypes.CAMPAIGNDOINGBADLY;}
-"BattleMapGesture"                      {return RRTypes.BATTLEMAPGESTURE;}
-"HideBattleUI"                          {return RRTypes.HIDEBATTLEUI;}
-"FeralNewsVisible"                      {return RRTypes.FERALNEWSVISIBLE;}
-"AgentHubOpened"                        {return RRTypes.AGENTHUBOPENED;}
-"MoveRetinueOpened"                     {return RRTypes.MOVERETINUEOPENED;}
-"OwnFactionDetailsOpened"               {return RRTypes.OWNFACTIONDETAILSOPENED;}
-"DiplomaticStandingShown"               {return RRTypes.DIPLOMATICSTANDINGSHOWN;}
-"FactionFinancesShown"                  {return RRTypes.FACTIONFINANCESSHOWN;}
-"FamilyTreeShown"                       {return RRTypes.FAMILYTREESHOWN;}
-"SendAgentPanel"                        {return RRTypes.SENDAGENTPANEL;}
-"SettlementDetailsShown"                {return RRTypes.SETTLEMENTDETAILSSHOWN;}
-"CharacterInfoScreen"                   {return RRTypes.CHARACTERINFOSCREEN;}
-"FriendlyCharacterSelected"             {return RRTypes.FRIENDLYCHARACTERSELECTED;}
-"EnemyCharacterSelected"                {return RRTypes.ENEMYCHARACTERSELECTED;}
-"FriendlySettlementSelected"            {return RRTypes.FRIENDLYSETTLEMENTSELECTED;}
-"MapOverlayOpened"                      {return RRTypes.MAPOVERLAYOPENED;}
-"SiegeDetailsShown"                     {return RRTypes.SIEGEDETAILSSHOWN;}
-"PreBattleScreen"                       {return RRTypes.PREBATTLESCREEN;}
-"TacticalMapShown"                      {return RRTypes.TACTICALMAPSHOWN;}
-"PostBattleScreen"                      {return RRTypes.POSTBATTLESCREEN;}
-"UnitsGrouped"                          {return RRTypes.UNITSGROUPED;}
-"EnteredBattle"                         {return RRTypes.ENTEREDBATTLE;}
-"AdvisorOpened"                         {return RRTypes.ADVISOROPENED;}
-"FormationTypesShown"                   {return RRTypes.FORMATIONTYPESSHOWN;}
-"MerchantSelected"                      {return RRTypes.MERCHANTSELECTED;}
-"NavalCombatStarted"                    {return RRTypes.NAVALCOMBATSTARTED;}
-"MergeArmiesOpened"                     {return RRTypes.MERGEARMIESOPENED;}
-"RoutesBlockaded"                       {return RRTypes.ROUTESBLOCKADED;}
-"ElectionResults"                       {return RRTypes.ELECTIONRESULTS;}
-"BattleToggleMenu"                      {return RRTypes.BATTLETOGGLEMENU;}
-"AmbushMode"                            {return RRTypes.AMBUSHMODE;}
-"NewsTabClosed"                         {return RRTypes.NEWSTABCLOSED;}
-"NewsTabOpened"                         {return RRTypes.NEWSTABOPENED;}
-"BattleNewsTabOpened"                   {return RRTypes.BATTLENEWSTABOPENED;}
-"QuickListsOpened"                      {return RRTypes.QUICKLISTSOPENED;}
-"EmbargoIsAvailable"                    {return RRTypes.EMBARGOISAVAILABLE;}
-"RebelCharacterSelected"                {return RRTypes.REBELCHARACTERSELECTED;}
-"HighTaxesCauseDisorder"                {return RRTypes.HIGHTAXESCAUSEDISORDER;}
-"FailedToEndTurn"                       {return RRTypes.FAILEDTOENDTURN;}
-"AcquisitionMission"                    {return RRTypes.ACQUISITIONMISSION;}
-"SufferAcquisitionAttempt"              {return RRTypes.SUFFERACQUISITIONATTEMPT;}
 
 
 <YYINITIAL>
@@ -451,6 +221,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "pool"                      {yybegin(EXPORT_DESCR_MERCENARIES); return RRTypes.POOL;}
     "faction"                   {yybegin(DESCR_NAMES); return RRTypes.FACTION;}
     "skin"                      {yybegin(DESCR_UNIT_VARIATION); return RRTypes.SKIN;}
+    "script"                    {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.SCRIPT;}
 
     // Here because descr_regions has no starting anchor on which I can start a sublexer.
     // Idea: Automatically add a comment on top of each file, with the file name, and use it as an ancor.
@@ -492,12 +263,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "denari"                     {return RRTypes.DENARI;}
     "settlement"                 {return RRTypes.SETTLEMENT;}
     "level"                      {return RRTypes.LEVEL;}
-    "village"                    {return RRTypes.VILLAGE;}
-    "town"                       {return RRTypes.TOWN;}
-    "large_town"                 {return RRTypes.LARGE_TOWN;}
-    "city"                       {return RRTypes.CITY;}
-    "large_city"                 {return RRTypes.LARGE_CITY;}
-    "huge_city"                  {return RRTypes.HUGE_CITY;}
     "region"                     {return RRTypes.REGION;}
     "year_founded"               {return RRTypes.YEAR_FOUNDED;}
     "population"                 {return RRTypes.POPULATION;}
@@ -733,12 +498,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "construction"                  {return RRTypes.CONSTRUCTION;}
     "cost"                          {return RRTypes.COST;}
     "settlement_min"                {return RRTypes.SETTLEMENT_MIN;}
-    "village"                       {return RRTypes.VILLAGE;}
-    "town"                          {return RRTypes.TOWN;}
-    "large_town"                    {return RRTypes.LARGE_TOWN;}
-    "city"                          {return RRTypes.CITY;}
-    "large_city"                    {return RRTypes.LARGE_CITY;}
-    "huge_city"                     {return RRTypes.HUGE_CITY;}
     "diplomat"                      {return RRTypes.DIPLOMAT;}
     "spy"                           {return RRTypes.SPY;}
     "assassin"                      {return RRTypes.ASSASSIN;}
@@ -751,9 +510,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "hidden_resource"               {return RRTypes.HIDDEN_RESOURCE;}
     "building_present"              {return RRTypes.BUILDING_PRESENT;}
     "building_present_min_level"    {return RRTypes.BUILDING_PRESENT_MIN_LEVEL;}
-    "and"                           {return RRTypes.AND;}
-    "or"                            {return RRTypes.OR;}
-    "not"                           {return RRTypes.NOT;}
     {ID}                            {return RRTypes.ID;}
 }
 <EXPORT_DESCR_BUILDINGS_NO_KEYWORDS>
@@ -779,13 +535,10 @@ true|false       {return RRTypes.BOOLEAN;}
     "Hidden"              {return RRTypes.HIDDEN;}
     "ShowStats"           {return RRTypes.SHOWSTATS;}
     "Trigger"             {return RRTypes.TRIGGER;}
-    "WhenToTest"          {return RRTypes.WHENTOTEST;}
-    "Condition"           {yybegin(CONDITIONS); return RRTypes.CONDITION;}
+    "WhenToTest"          {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.WHENTOTEST;}
     "AcquireAncillary"    {yybegin(EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS); return RRTypes.ACQUIREANCILLARY;}
     "RemoveAncillary"     {return RRTypes.REMOVEANCILLARY;}
     "chance"              {return RRTypes.CHANCE_LC;}
-    "and"                 {return RRTypes.AND;}
-    "not"                 {return RRTypes.NOT;}
     {ID}                  {return RRTypes.ID;}
 }
 <EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS>
@@ -812,18 +565,14 @@ true|false       {return RRTypes.BOOLEAN;}
     "GainMessage"         {return RRTypes.GAINMESSAGE;}
     "Epithet"             {return RRTypes.EPITHET;}
     "Level"               {return RRTypes.LEVEL;}
-    "WhenToTest"          {return RRTypes.WHENTOTEST;}
+    "WhenToTest"          {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.WHENTOTEST;}
     "LoseMessage"         {return RRTypes.LOSEMESSAGE;}
     "Threshold"           {return RRTypes.THRESHOLD;}
     "Effect"              {return RRTypes.EFFECT;}
     "Affects"             {return RRTypes.AFFECTS;}
     "Trigger"             {return RRTypes.TRIGGER;}
-    "Condition"           {yybegin(CONDITIONS); return RRTypes.CONDITION;}
     "Chance"              {return RRTypes.CHANCE;}
     "Lose"                {return RRTypes.LOSE;}
-    "and"                 {return RRTypes.AND;}
-    "not"                 {return RRTypes.NOT;}
-    "&&"                  {return RRTypes.AMBERSANDS;}
     {ID}                  {return RRTypes.ID;}
 }
 
@@ -1001,12 +750,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "settlement"        {return RRTypes.SETTLEMENT;}
     "culture"           {return RRTypes.CULTURE;}
     "level"             {return RRTypes.LEVEL;}
-    "village"           {return RRTypes.VILLAGE;}
-    "town"              {return RRTypes.TOWN;}
-    "large_town"        {return RRTypes.LARGE_TOWN;}
-    "city"              {return RRTypes.CITY;}
-    "large_city"        {return RRTypes.LARGE_CITY;}
-    "huge_city"         {return RRTypes.HUGE_CITY;}
     "wonder"            {return RRTypes.WONDER;}
     "port"              {return RRTypes.PORT;}
     "fishing_village"   {return RRTypes.FISHING_VILLAGE;}
@@ -1210,7 +953,7 @@ true|false       {return RRTypes.BOOLEAN;}
     {COMMENT}    {return RRTypes.COMMENT;}
     "{"          {yybegin(TEXT_MAPPING);return RRTypes.OCB;}
 
-    [^\t{\r\n]* {return RRTypes.STRING;}
+    [^\t{\r\n]+ {return RRTypes.STRING;}
 }
 
 <ENUMS>
@@ -1220,24 +963,290 @@ true|false       {return RRTypes.BOOLEAN;}
     {ID}         {return RRTypes.ID;}
 }
 
-<CONDITIONS>
+//<SCRIPT>
+//{
+//
+//    {ID}                                          {return RRTypes.ID;}
+//}
+//
+//<CONDITIONS>
+//{
+//    {ID}                                              {return RRTypes.ID;}
+//}
+
+<SCRIPTS_EVENTS_CONDITIONS>
 {
-    {WS}                                              {return TokenType.WHITE_SPACE;}
-    {COMMENT}                                         {return RRTypes.COMMENT;}
-    {INT}                                             {return RRTypes.INT;}
-    {FLOAT}                                           {return RRTypes.FLOAT;}
+    // Local thingy
+    {LOCAL}                                 {return RRTypes.LOCAL;}
+
+    // Stuff that need to be captured but belong to the surrounging "context"
+    "Condition"                             {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.CONDITION;}
+
+    // Events
+    "PreBattle"                             {return RRTypes.PREBATTLE;}
+    "PreBattleWithdrawal"                   {return RRTypes.PREBATTLEWITHDRAWAL;}
+    "BattleAiCommenced"                     {return RRTypes.BATTLEAICOMMENCED;}
+    "BattleDelayPhaseCommenced"             {return RRTypes.BATTLEDELAYPHASECOMMENCED;}
+    "BattleDeploymentPhaseCommenced"        {return RRTypes.BATTLEDEPLOYMENTPHASECOMMENCED;}
+    "BattleConflictPhaseCommenced"          {return RRTypes.BATTLECONFLICTPHASECOMMENCED;}
+    "BattlePlayerUnitAttacksEnemyUnit"      {return RRTypes.BATTLEPLAYERUNITATTACKSENEMYUNIT;}
+    "BattleEnemyUnitAttacksPlayerUnit"      {return RRTypes.BATTLEENEMYUNITATTACKSPLAYERUNIT;}
+    "BattlePlayerAttacksSettlementBuilding" {return RRTypes.BATTLEPLAYERATTACKSSETTLEMENTBUILDING;}
+    "BattleEnemyAttacksSettlementBuilding"  {return RRTypes.BATTLEENEMYATTACKSSETTLEMENTBUILDING;}
+    "BattleUnitGoesBerserk"                 {return RRTypes.BATTLEUNITGOESBERSERK;}
+    "BattlePlayerUnitGoesBerserk"           {return RRTypes.BATTLEPLAYERUNITGOESBERSERK;}
+    "BattleEnemyUnitGoesBerserk"            {return RRTypes.BATTLEENEMYUNITGOESBERSERK;}
+    "BattleUnitRouts"                       {return RRTypes.BATTLEUNITROUTS;}
+    "BattlePlayerUnitRouts"                 {return RRTypes.BATTLEPLAYERUNITROUTS;}
+    "BattleEnemyUnitRouts"                  {return RRTypes.BATTLEENEMYUNITROUTS;}
+    "BattlePlayerSiegeEngineDestroyed"      {return RRTypes.BATTLEPLAYERSIEGEENGINEDESTROYED;}
+    "BattleEnemySiegeEngineDestroyed"       {return RRTypes.BATTLEENEMYSIEGEENGINEDESTROYED;}
+    "PostBattle"                            {return RRTypes.POSTBATTLE;}
+    "BattleArmyRouted"                      {return RRTypes.BATTLEARMYROUTED;}
+    "BattleGeneralKilled"                   {return RRTypes.BATTLEGENERALKILLED;}
+    "BattleGeneralRouted"                   {return RRTypes.BATTLEGENERALROUTED;}
+    "BattleReinforcementsArrive"            {return RRTypes.BATTLEREINFORCEMENTSARRIVE;}
+    "BattleSiegeEngineDestroyed"            {return RRTypes.BATTLESIEGEENGINEDESTROYED;}
+    "BattleSiegeEngineDocksWall"            {return RRTypes.BATTLESIEGEENGINEDOCKSWALL;}
+    "BattleGatesAttackedByEngine"           {return RRTypes.BATTLEGATESATTACKEDBYENGINE;}
+    "BattleGatesAttackedByPlayerEngine"     {return RRTypes.BATTLEGATESATTACKEDBYPLAYERENGINE;}
+    "BattleGatesAttackedByEnemyEngine"      {return RRTypes.BATTLEGATESATTACKEDBYENEMYENGINE;}
+    "BattleBattleGatesDestroyedByEngine"    {return RRTypes.BATTLEBATTLEGATESDESTROYEDBYENGINE;}
+    "BattleWallsBreachedByEngine"           {return RRTypes.BATTLEWALLSBREACHEDBYENGINE;}
+    "BattleWallsCaptured"                   {return RRTypes.BATTLEWALLSCAPTURED;}
+    "BattleFinished"                        {return RRTypes.BATTLEFINISHED;}
+    "EnteredCityView"                       {return RRTypes.ENTEREDCITYVIEW;}
+    "BattleMinimapAction"                   {return RRTypes.BATTLEMINIMAPACTION;}
+    "BattlePlayerUnitSelected"              {return RRTypes.BATTLEPLAYERUNITSELECTED;}
+    "EnterTacticalMode"                     {return RRTypes.ENTERTACTICALMODE;}
+    "BattleReinforcementsHack"              {return RRTypes.BATTLEREINFORCEMENTSHACK;}
+    "FactionTurnStart"                      {return RRTypes.FACTIONTURNSTART;}
+    "FactionWarDeclared"                    {return RRTypes.FACTIONWARDECLARED;}
+    "HordeFormed"                           {return RRTypes.HORDEFORMED;}
+    "FactionTurnEnd"                        {return RRTypes.FACTIONTURNEND;}
+    "HireMercenaries"                       {return RRTypes.HIREMERCENARIES;}
+    "GeneralCaptureResidence"               {return RRTypes.GENERALCAPTURERESIDENCE;}
+    "GeneralCaptureWonder"                  {return RRTypes.GENERALCAPTUREWONDER;}
+    "GeneralCaptureSettlement"              {return RRTypes.GENERALCAPTURESETTLEMENT;}
+    "LeaderDestroyedFaction"                {return RRTypes.LEADERDESTROYEDFACTION;}
+    "Disaster"                              {return RRTypes.DISASTER;}
+    "CharacterDamagedByDisaster"            {return RRTypes.CHARACTERDAMAGEDBYDISASTER;}
+    "GeneralAssaultsResidence"              {return RRTypes.GENERALASSAULTSRESIDENCE;}
+    "OfferedForAdoption"                    {return RRTypes.OFFEREDFORADOPTION;}
+    "LesserGeneralOfferedForAdoption"       {return RRTypes.LESSERGENERALOFFEREDFORADOPTION;}
+    "OfferedForMarriage"                    {return RRTypes.OFFEREDFORMARRIAGE;}
+    "BrotherAdopted"                        {return RRTypes.BROTHERADOPTED;}
+    "BecomesFactionLeader"                  {return RRTypes.BECOMESFACTIONLEADER;}
+    "BecomesFactionHeir"                    {return RRTypes.BECOMESFACTIONHEIR;}
+    "TakeOffice"                            {return RRTypes.TAKEOFFICE;}
+    "CeasedFactionLeader"                   {return RRTypes.CEASEDFACTIONLEADER;}
+    "CeasedFactionHeir"                     {return RRTypes.CEASEDFACTIONHEIR;}
+    "LeaveOffice"                           {return RRTypes.LEAVEOFFICE;}
+    "UngarrisonedFort"                      {return RRTypes.UNGARRISONEDFORT;}
+    "LostLegionaryEagle"                    {return RRTypes.LOSTLEGIONARYEAGLE;}
+    "CapturedLegionaryEagle"                {return RRTypes.CAPTUREDLEGIONARYEAGLE;}
+    "RecapturedLegionaryEagle"              {return RRTypes.RECAPTUREDLEGIONARYEAGLE;}
+    "SenateExposure"                        {return RRTypes.SENATEEXPOSURE;}
+    "QuaestorInvestigationMinor"            {return RRTypes.QUAESTORINVESTIGATIONMINOR;}
+    "QuaestorInvestigation"                 {return RRTypes.QUAESTORINVESTIGATION;}
+    "QuaestorInvestigationMajor"            {return RRTypes.QUAESTORINVESTIGATIONMAJOR;}
+    "PopularSupportForOverthrow"            {return RRTypes.POPULARSUPPORTFOROVERTHROW;}
+    "SenateReadyToOutlawFaction"            {return RRTypes.SENATEREADYTOOUTLAWFACTION;}
+    "SenateOutlawsFaction"                  {return RRTypes.SENATEOUTLAWSFACTION;}
+    "NewTurnStart"                          {return RRTypes.NEWTURNSTART;}
+    "ScriptPromptCallback"                  {return RRTypes.SCRIPTPROMPTCALLBACK;}
+    "FactionDestroyed"                      {return RRTypes.FACTIONDESTROYED;}
+    "Birth"                                 {return RRTypes.BIRTH;}
+    "CharacterComesOfAge"                   {return RRTypes.CHARACTERCOMESOFAGE;}
+    "CharacterMarries"                      {return RRTypes.CHARACTERMARRIES;}
+    "CharacterBecomesAFather"               {return RRTypes.CHARACTERBECOMESAFATHER;}
+    "CharacterTurnStart"                    {return RRTypes.CHARACTERTURNSTART;}
+    "CharacterTurnEnd"                      {return RRTypes.CHARACTERTURNEND;}
+    "CharacterTurnEndInSettlement"          {return RRTypes.CHARACTERTURNENDINSETTLEMENT;}
+    "GeneralDevastatesTile"                 {return RRTypes.GENERALDEVASTATESTILE;}
+    "SpyMission"                            {return RRTypes.SPYMISSION;}
+    "ExecutesASpyOnAMission"                {return RRTypes.EXECUTESASPYONAMISSION;}
+    "LeaderOrderedSpyingMission"            {return RRTypes.LEADERORDEREDSPYINGMISSION;}
+    "AssassinationMission"                  {return RRTypes.ASSASSINATIONMISSION;}
+    "ExecutesAnAssassinOnAMission"          {return RRTypes.EXECUTESANASSASSINONAMISSION;}
+    "LeaderOrderedAssassination"            {return RRTypes.LEADERORDEREDASSASSINATION;}
+    "SufferAssassinationAttempt"            {return RRTypes.SUFFERASSASSINATIONATTEMPT;}
+    "SabotageMission"                       {return RRTypes.SABOTAGEMISSION;}
+    "LeaderOrderedSabotage"                 {return RRTypes.LEADERORDEREDSABOTAGE;}
+    "BriberyMission"                        {return RRTypes.BRIBERYMISSION;}
+    "LeaderOrderedBribery"                  {return RRTypes.LEADERORDEREDBRIBERY;}
+    "AcceptBribe"                           {return RRTypes.ACCEPTBRIBE;}
+    "RefuseBribe"                           {return RRTypes.REFUSEBRIBE;}
+    "Insurrection"                          {return RRTypes.INSURRECTION;}
+    "DiplomacyMission"                      {return RRTypes.DIPLOMACYMISSION;}
+    "LeaderOrderedDiplomacy"                {return RRTypes.LEADERORDEREDDIPLOMACY;}
+    "LeaderSenateMissionSuccess"            {return RRTypes.LEADERSENATEMISSIONSUCCESS;}
+    "LeaderSenateMissionFailed"             {return RRTypes.LEADERSENATEMISSIONFAILED;}
+    "ConstructionItemClicked"               {return RRTypes.CONSTRUCTIONITEMCLICKED;}
+    "RecruitmentItemClicked"                {return RRTypes.RECRUITMENTITEMCLICKED;}
+    "RecruitmentPopulated"                  {return RRTypes.RECRUITMENTPOPULATED;}
+    "ConstructionPopulated"                 {return RRTypes.CONSTRUCTIONPOPULATED;}
+    "AgentListPopulated"                    {return RRTypes.AGENTLISTPOPULATED;}
+    "MoveRetinuePopulated"                  {return RRTypes.MOVERETINUEPOPULATED;}
+    "MoveRetinuePressed"                    {return RRTypes.MOVERETINUEPRESSED;}
+    "MoveRetinueAncillarySelected"          {return RRTypes.MOVERETINUEANCILLARYSELECTED;}
+    "MoveRetinueAncillaryDeselected"        {return RRTypes.MOVERETINUEANCILLARYDESELECTED;}
+    "MissionSelected"                       {return RRTypes.MISSIONSELECTED;}
+    "AgentSelected"                         {return RRTypes.AGENTSELECTED;}
+    "ScrollDidOpen"                         {return RRTypes.SCROLLDIDOPEN;}
+    "UnitHasRouted"                         {return RRTypes.UNITHASROUTED;}
+    "BattleUnitActionStatus"                {return RRTypes.BATTLEUNITACTIONSTATUS;}
+    "DiplomacyScrollPopulated"              {return RRTypes.DIPLOMACYSCROLLPOPULATED;}
+    "ItemDeselected"                        {return RRTypes.ITEMDESELECTED;}
+    "UnitInfoOpened"                        {return RRTypes.UNITINFOOPENED;}
+    "AdvisorAudioStopped"                   {return RRTypes.ADVISORAUDIOSTOPPED;}
+    "SettlementTurnStart"                   {return RRTypes.SETTLEMENTTURNSTART;}
+    "SettlementTurnEnd"                     {return RRTypes.SETTLEMENTTURNEND;}
+    "NewAdmiralCreated"                     {return RRTypes.NEWADMIRALCREATED;}
+    "UnitTrained"                           {return RRTypes.UNITTRAINED;}
+    "GovernorUnitTrained"                   {return RRTypes.GOVERNORUNITTRAINED;}
+    "BuildingCompleted"                     {return RRTypes.BUILDINGCOMPLETED;}
+    "GovernorBuildingCompleted"             {return RRTypes.GOVERNORBUILDINGCOMPLETED;}
+    "PlugInCompleted"                       {return RRTypes.PLUGINCOMPLETED;}
+    "GovernorPlugInCompleted"               {return RRTypes.GOVERNORPLUGINCOMPLETED;}
+    "AgentCreated"                          {return RRTypes.AGENTCREATED;}
+    "GovernorAgentCreated"                  {return RRTypes.GOVERNORAGENTCREATED;}
+    "BuildingDestroyed"                     {return RRTypes.BUILDINGDESTROYED;}
+    "GovernorBuildingDestroyed"             {return RRTypes.GOVERNORBUILDINGDESTROYED;}
+    "CityRiots"                             {return RRTypes.CITYRIOTS;}
+    "GovernorCityRiots"                     {return RRTypes.GOVERNORCITYRIOTS;}
+    "CityRebels"                            {return RRTypes.CITYREBELS;}
+    "GovernorCityRebels"                    {return RRTypes.GOVERNORCITYREBELS;}
+    "GovernorThrowGames"                    {return RRTypes.GOVERNORTHROWGAMES;}
+    "GovernorThrowRaces"                    {return RRTypes.GOVERNORTHROWRACES;}
+    "UngarrisonedSettlement"                {return RRTypes.UNGARRISONEDSETTLEMENT;}
+    "EnslavePopulation"                     {return RRTypes.ENSLAVEPOPULATION;}
+    "ExterminatePopulation"                 {return RRTypes.EXTERMINATEPOPULATION;}
+    "CitySacked"                            {return RRTypes.CITYSACKED;}
+    "CharacterSelected"                     {return RRTypes.CHARACTERSELECTED;}
+    "SettlementSelected"                    {return RRTypes.SETTLEMENTSELECTED;}
+    "EnemySettlementSelected"               {return RRTypes.ENEMYSETTLEMENTSELECTED;}
+    "MultiTurnMove"                         {return RRTypes.MULTITURNMOVE;}
+    "CharacterPanelOpen"                    {return RRTypes.CHARACTERPANELOPEN;}
+    "SettlementPanelOpen"                   {return RRTypes.SETTLEMENTPANELOPEN;}
+    "FinancesPanelOpen"                     {return RRTypes.FINANCESPANELOPEN;}
+    "FactionSummaryPanelOpen"               {return RRTypes.FACTIONSUMMARYPANELOPEN;}
+    "FamilyTreePanelOpen"                   {return RRTypes.FAMILYTREEPANELOPEN;}
+    "DiplomaticStandingPanelOpen"           {return RRTypes.DIPLOMATICSTANDINGPANELOPEN;}
+    "SenateMissionsPanelOpen"               {return RRTypes.SENATEMISSIONSPANELOPEN;}
+    "SenateOfficesPanelOpen"                {return RRTypes.SENATEOFFICESPANELOPEN;}
+    "DiplomacyPanelOpen"                    {return RRTypes.DIPLOMACYPANELOPEN;}
+    "PreBattlePanelOpen"                    {return RRTypes.PREBATTLEPANELOPEN;}
+    "RecruitmentPanelOpen"                  {return RRTypes.RECRUITMENTPANELOPEN;}
+    "ConstructionPanelOpen"                 {return RRTypes.CONSTRUCTIONPANELOPEN;}
+    "TradePanelOpen"                        {return RRTypes.TRADEPANELOPEN;}
+    "HireMercenariesPanelOpen"              {return RRTypes.HIREMERCENARIESPANELOPEN;}
+    "NavalAutoResolvePanelOpen"             {return RRTypes.NAVALAUTORESOLVEPANELOPEN;}
+    "IncomingMessage"                       {return RRTypes.INCOMINGMESSAGE;}
+    "MessageOpen"                           {return RRTypes.MESSAGEOPEN;}
+    "RequestBuildingAdvice"                 {return RRTypes.REQUESTBUILDINGADVICE;}
+    "RequestTrainingAdvice"                 {return RRTypes.REQUESTTRAININGADVICE;}
+    "RequestMercenariesAdvice"              {return RRTypes.REQUESTMERCENARIESADVICE;}
+    "ButtonPressed"                         {return RRTypes.BUTTONPRESSED;}
+    "ShortcutTriggered"                     {return RRTypes.SHORTCUTTRIGGERED;}
+    "ScrollOpened"                          {return RRTypes.SCROLLOPENED;}
+    "ScrollClosed"                          {return RRTypes.SCROLLCLOSED;}
+    "AdviceSupressed"                       {return RRTypes.ADVICESUPRESSED;}
+    "ScrollAdviceRequested"                 {return RRTypes.SCROLLADVICEREQUESTED;}
+    "PreBattleScrollAdviceRequested"        {return RRTypes.PREBATTLESCROLLADVICEREQUESTED;}
+    "NavalPreBattleScrollAdviceRequested"   {return RRTypes.NAVALPREBATTLESCROLLADVICEREQUESTED;}
+    "SettlementScrollAdviceRequested"       {return RRTypes.SETTLEMENTSCROLLADVICEREQUESTED;}
+    "Idle"                                  {return RRTypes.IDLE;}
+    "AbandonShowMe"                         {return RRTypes.ABANDONSHOWME;}
+    "ScriptedAdvice"                        {return RRTypes.SCRIPTEDADVICE;}
+    "DeclineAutomatedSettlementManagement"  {return RRTypes.DECLINEAUTOMATEDSETTLEMENTMANAGEMENT;}
+    "EscPressed"                            {return RRTypes.ESCPRESSED;}
+    "GameReloaded"                          {return RRTypes.GAMERELOADED;}
+    "FirstStratUpdates"                     {return RRTypes.FIRSTSTRATUPDATES;}
+    "MovieStopped"                          {return RRTypes.MOVIESTOPPED;}
+    "SelectionAssistPossible"               {return RRTypes.SELECTIONASSISTPOSSIBLE;}
+    "SettlementButtonPressed"               {return RRTypes.SETTLEMENTBUTTONPRESSED;}
+    "WorldScriptTerminate"                  {return RRTypes.WORLDSCRIPTTERMINATE;}
+    "CampaignHudShown"                      {return RRTypes.CAMPAIGNHUDSHOWN;}
+    "ContextPopupInteraction"               {return RRTypes.CONTEXTPOPUPINTERACTION;}
+    "DiplomacyConstructingOffer"            {return RRTypes.DIPLOMACYCONSTRUCTINGOFFER;}
+    "DiplomacyConstructingCounterOffer"     {return RRTypes.DIPLOMACYCONSTRUCTINGCOUNTEROFFER;}
+    "DiplomacyOpponentPresentsOffer"        {return RRTypes.DIPLOMACYOPPONENTPRESENTSOFFER;}
+    "DiplomacyOpponentPresentsCounterOffer" {return RRTypes.DIPLOMACYOPPONENTPRESENTSCOUNTEROFFER;}
+    "FactionSummary"                        {return RRTypes.FACTIONSUMMARY;}
+    "FactionSenate"                         {return RRTypes.FACTIONSENATE;}
+    "FactionSenatePolicy"                   {return RRTypes.FACTIONSENATEPOLICY;}
+    "FactionSenateMissions"                 {return RRTypes.FACTIONSENATEMISSIONS;}
+    "FactionSenateOfficials"                {return RRTypes.FACTIONSENATEOFFICIALS;}
+    "FactionSenateFloor"                    {return RRTypes.FACTIONSENATEFLOOR;}
+    "FactionFactions"                       {return RRTypes.FACTIONFACTIONS;}
+    "FactionDetails"                        {return RRTypes.FACTIONDETAILS;}
+    "FactionFamilyTree"                     {return RRTypes.FACTIONFAMILYTREE;}
+    "FactionRankings"                       {return RRTypes.FACTIONRANKINGS;}
+    "FactionLists"                          {return RRTypes.FACTIONLISTS;}
+    "SettlementCharacter"                   {return RRTypes.SETTLEMENTCHARACTER;}
+    "SettlementTrade"                       {return RRTypes.SETTLEMENTTRADE;}
+    "SettlementOverview"                    {return RRTypes.SETTLEMENTOVERVIEW;}
+    "SpySelected"                           {return RRTypes.SPYSELECTED;}
+    "DiplomatSelected"                      {return RRTypes.DIPLOMATSELECTED;}
+    "AssassinSelected"                      {return RRTypes.ASSASSINSELECTED;}
+    "FleetSelected"                         {return RRTypes.FLEETSELECTED;}
+    "CampaignMapGesture"                    {return RRTypes.CAMPAIGNMAPGESTURE;}
+    "CampaignDoingBadly"                    {return RRTypes.CAMPAIGNDOINGBADLY;}
+    "BattleMapGesture"                      {return RRTypes.BATTLEMAPGESTURE;}
+    "HideBattleUI"                          {return RRTypes.HIDEBATTLEUI;}
+    "FeralNewsVisible"                      {return RRTypes.FERALNEWSVISIBLE;}
+    "AgentHubOpened"                        {return RRTypes.AGENTHUBOPENED;}
+    "MoveRetinueOpened"                     {return RRTypes.MOVERETINUEOPENED;}
+    "OwnFactionDetailsOpened"               {return RRTypes.OWNFACTIONDETAILSOPENED;}
+    "DiplomaticStandingShown"               {return RRTypes.DIPLOMATICSTANDINGSHOWN;}
+    "FactionFinancesShown"                  {return RRTypes.FACTIONFINANCESSHOWN;}
+    "FamilyTreeShown"                       {return RRTypes.FAMILYTREESHOWN;}
+    "SendAgentPanel"                        {return RRTypes.SENDAGENTPANEL;}
+    "SettlementDetailsShown"                {return RRTypes.SETTLEMENTDETAILSSHOWN;}
+    "CharacterInfoScreen"                   {return RRTypes.CHARACTERINFOSCREEN;}
+    "FriendlyCharacterSelected"             {return RRTypes.FRIENDLYCHARACTERSELECTED;}
+    "EnemyCharacterSelected"                {return RRTypes.ENEMYCHARACTERSELECTED;}
+    "FriendlySettlementSelected"            {return RRTypes.FRIENDLYSETTLEMENTSELECTED;}
+    "MapOverlayOpened"                      {return RRTypes.MAPOVERLAYOPENED;}
+    "SiegeDetailsShown"                     {return RRTypes.SIEGEDETAILSSHOWN;}
+    "PreBattleScreen"                       {return RRTypes.PREBATTLESCREEN;}
+    "TacticalMapShown"                      {return RRTypes.TACTICALMAPSHOWN;}
+    "PostBattleScreen"                      {return RRTypes.POSTBATTLESCREEN;}
+    "UnitsGrouped"                          {return RRTypes.UNITSGROUPED;}
+    "EnteredBattle"                         {return RRTypes.ENTEREDBATTLE;}
+    "AdvisorOpened"                         {return RRTypes.ADVISOROPENED;}
+    "FormationTypesShown"                   {return RRTypes.FORMATIONTYPESSHOWN;}
+    "MerchantSelected"                      {return RRTypes.MERCHANTSELECTED;}
+    "NavalCombatStarted"                    {return RRTypes.NAVALCOMBATSTARTED;}
+    "MergeArmiesOpened"                     {return RRTypes.MERGEARMIESOPENED;}
+    "RoutesBlockaded"                       {return RRTypes.ROUTESBLOCKADED;}
+    "ElectionResults"                       {return RRTypes.ELECTIONRESULTS;}
+    "BattleToggleMenu"                      {return RRTypes.BATTLETOGGLEMENU;}
+    "AmbushMode"                            {return RRTypes.AMBUSHMODE;}
+    "NewsTabClosed"                         {return RRTypes.NEWSTABCLOSED;}
+    "NewsTabOpened"                         {return RRTypes.NEWSTABOPENED;}
+    "BattleNewsTabOpened"                   {return RRTypes.BATTLENEWSTABOPENED;}
+    "QuickListsOpened"                      {return RRTypes.QUICKLISTSOPENED;}
+    "EmbargoIsAvailable"                    {return RRTypes.EMBARGOISAVAILABLE;}
+    "RebelCharacterSelected"                {return RRTypes.REBELCHARACTERSELECTED;}
+    "HighTaxesCauseDisorder"                {return RRTypes.HIGHTAXESCAUSEDISORDER;}
+    "FailedToEndTurn"                       {return RRTypes.FAILEDTOENDTURN;}
+    "AcquisitionMission"                    {return RRTypes.ACQUISITIONMISSION;}
+    "SufferAcquisitionAttempt"              {return RRTypes.SUFFERACQUISITIONATTEMPT;}
+
+    // conditions
+    // operators
     ","                                               {return RRTypes.COMMA;}
     "="                                               {return RRTypes.EQUALS;}
     ">"                                               {return RRTypes.LARGER;}
     ">="                                              {return RRTypes.LARGER_OR_EQUAL;}
     "<"                                               {return RRTypes.SMALLER;}
     "<="                                              {return RRTypes.SMALLER_OR_EQUAL;}
-
     // Returns
     "AcquireAncillary"                                {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.ACQUIREANCILLARY;}
     "RemoveAncillary"                                 {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.REMOVEANCILLARY;}
     "Affects"                                         {yybegin(EXPORT_DESCR_TRAITS); return RRTypes.AFFECTS;}
-
     // conditions
     "I_InBattle"                                      {return RRTypes.I_INBATTLE;}
     "WonBattle"                                       {return RRTypes.WONBATTLE;}
@@ -1566,7 +1575,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "SettlementMerchantTradingWith"                   {return RRTypes.SETTLEMENTMERCHANTTRADINGWITH;}
     "SettlementOwnedBy"                               {return RRTypes.SETTLEMENTOWNEDBY;}
     "FactionBuildingExists"                           {return RRTypes.FACTIONBUILDINGEXISTS;}
-
     // condition params (system constants)
     // conflict types
     "SuccessfulAmbush"                                {return RRTypes.SUCCESSFULAMBUSH;}
@@ -1682,10 +1690,355 @@ true|false       {return RRTypes.BOOLEAN;}
     "Buildings"                                       {return RRTypes.BUILDINGS;}
     "Mechanics"                                       {return RRTypes.MECHANICS;}
 
-    "and"                                             {return RRTypes.AND;}
-    "not"                                             {return RRTypes.NOT;}
-    "&&"                                              {return RRTypes.AMBERSANDS;}
-    {ID}                                              {return RRTypes.ID;}
+    // Scripts
+    // basic scripts stuff
+    "script"                                     {return RRTypes.SCRIPT;}
+    "end_script"                                 {return RRTypes.END_SCRIPT;}
+    "return"                                     {return RRTypes.RETURN;}
+    "if"                                         {return RRTypes.IF;}
+    "if_not"                                     {return RRTypes.IF_NOT;}
+    "end_if"                                     {return RRTypes.END_IF;}
+    "while"                                      {return RRTypes.WHILE;}
+    "while_not"                                  {return RRTypes.WHILE_NOT;}
+    "end_while"                                  {return RRTypes.END_WHILE;}
+    "for_each"                                   {return RRTypes.FOR_EACH;}
+    "end_for"                                    {return RRTypes.END_FOR;}
+    "in"                                         {return RRTypes.IN;}
+    "world"                                      {return RRTypes.WORLD;}
+    "settlement"                                 {return RRTypes.SETTLEMENT;}
+    "character"                                  {return RRTypes.CHARACTER;}
+    "unit"                                       {return RRTypes.UNIT;}
+    "army"                                       {return RRTypes.ARMY;}
+    "faction"                                    {return RRTypes.FACTION;}
+
+
+    // commands
+    "senate_mission_help_player"                 {return RRTypes.SENATE_MISSION_HELP_PLAYER;}
+    "senate_mission_assassination"               {return RRTypes.SENATE_MISSION_ASSASSINATION;}
+    "senate_mission_cease_hostilities"           {return RRTypes.SENATE_MISSION_CEASE_HOSTILITIES;}
+    "senate_mission_declare_war"                 {return RRTypes.SENATE_MISSION_DECLARE_WAR;}
+    "senate_mission_broker_peace"                {return RRTypes.SENATE_MISSION_BROKER_PEACE;}
+    "senate_mission_take_city"                   {return RRTypes.SENATE_MISSION_TAKE_CITY;}
+    "move_to_settlement"                         {return RRTypes.MOVE_TO_SETTLEMENT;}
+    "snap_to_settlement"                         {return RRTypes.SNAP_TO_SETTLEMENT;}
+    "clear_restrict_strat_movement"              {return RRTypes.CLEAR_RESTRICT_STRAT_MOVEMENT;}
+    "restrict_strat_movement"                    {return RRTypes.RESTRICT_STRAT_MOVEMENT;}
+    "disable_diplomacy_ui"                       {return RRTypes.DISABLE_DIPLOMACY_UI;}
+    "enable_diplomacy_voices"                    {return RRTypes.ENABLE_DIPLOMACY_VOICES;}
+    "enable_unit_voices"                         {return RRTypes.ENABLE_UNIT_VOICES;}
+    "hide_ui_element"                            {return RRTypes.HIDE_UI_ELEMENT;}
+    "show_ui_element"                            {return RRTypes.SHOW_UI_ELEMENT;}
+    "enable_ui_card"                             {return RRTypes.ENABLE_UI_CARD;}
+    "disable_ui_card"                            {return RRTypes.DISABLE_UI_CARD;}
+    "disable_all_ui_cards"                       {return RRTypes.DISABLE_ALL_UI_CARDS;}
+    "enable_all_ui_cards"                        {return RRTypes.ENABLE_ALL_UI_CARDS;}
+    "disable_agent_hub_all"                      {return RRTypes.DISABLE_AGENT_HUB_ALL;}
+    "enable_agent_hub_all"                       {return RRTypes.ENABLE_AGENT_HUB_ALL;}
+    "disable_agent_hub"                          {return RRTypes.DISABLE_AGENT_HUB;}
+    "enable_agent_hub"                           {return RRTypes.ENABLE_AGENT_HUB;}
+    "point_at_agent_hub"                         {return RRTypes.POINT_AT_AGENT_HUB;}
+    "set_marriage_allowed"                       {return RRTypes.SET_MARRIAGE_ALLOWED;}
+    "trigger_marriage_proposal"                  {return RRTypes.TRIGGER_MARRIAGE_PROPOSAL;}
+    "deselect_current_selection"                 {return RRTypes.DESELECT_CURRENT_SELECTION;}
+    "force_autoresolve_outcome"                  {return RRTypes.FORCE_AUTORESOLVE_OUTCOME;}
+    "force_diplomacy"                            {return RRTypes.FORCE_DIPLOMACY;}
+    "create_mercenary_pool"                      {return RRTypes.CREATE_MERCENARY_POOL;}
+    "force_agent_succeed"                        {return RRTypes.FORCE_AGENT_SUCCEED;}
+    "allow_campaign_battles"                     {return RRTypes.ALLOW_CAMPAIGN_BATTLES;}
+    "spawn_character_child"                      {return RRTypes.SPAWN_CHARACTER_CHILD;}
+    "stop_point_at_indicator"                    {return RRTypes.STOP_POINT_AT_INDICATOR;}
+    "stop_all_point_at_indicators"               {return RRTypes.STOP_ALL_POINT_AT_INDICATORS;}
+    "set_battle"                                 {return RRTypes.SET_BATTLE;}
+    "restrict_battle_movement"                   {return RRTypes.RESTRICT_BATTLE_MOVEMENT;}
+    "clear_restrict_battle_movement"             {return RRTypes.CLEAR_RESTRICT_BATTLE_MOVEMENT;}
+    "point_at_diplomacy_offer"                   {return RRTypes.POINT_AT_DIPLOMACY_OFFER;}
+    "point_at_move_retinue"                      {return RRTypes.POINT_AT_MOVE_RETINUE;}
+    "disable_move_retinue_all"                   {return RRTypes.DISABLE_MOVE_RETINUE_ALL;}
+    "enable_move_retinue_all"                    {return RRTypes.ENABLE_MOVE_RETINUE_ALL;}
+    "disable_move_retinue"                       {return RRTypes.DISABLE_MOVE_RETINUE;}
+    "enable_move_retinue"                        {return RRTypes.ENABLE_MOVE_RETINUE;}
+    "block_unit_selection"                       {return RRTypes.BLOCK_UNIT_SELECTION;}
+    "forced_gate_success"                        {return RRTypes.FORCED_GATE_SUCCESS;}
+    "strat_selection_unblocker"                  {return RRTypes.STRAT_SELECTION_UNBLOCKER;}
+    "clear_strat_selection_unblocker"            {return RRTypes.CLEAR_STRAT_SELECTION_UNBLOCKER;}
+    "open_stop_tutorial_confirmation_dialog"     {return RRTypes.OPEN_STOP_TUTORIAL_CONFIRMATION_DIALOG;}
+    "set_label"                                  {return RRTypes.SET_LABEL;}
+    "goto"                                       {return RRTypes.GOTO;}
+    "force_deselect_trigger"                     {return RRTypes.FORCE_DESELECT_TRIGGER;}
+    "box_drag_selection"                         {return RRTypes.BOX_DRAG_SELECTION;}
+    "force_settlement_tab"                       {return RRTypes.FORCE_SETTLEMENT_TAB;}
+    "click_drag_move"                            {return RRTypes.CLICK_DRAG_MOVE;}
+    "toggle_minimap"                             {return RRTypes.TOGGLE_MINIMAP;}
+    "close_news_panel"                           {return RRTypes.CLOSE_NEWS_PANEL;}
+    "ui_card_selection_lock"                     {return RRTypes.UI_CARD_SELECTION_LOCK;}
+    "disable_specific_shortcut"                  {return RRTypes.DISABLE_SPECIFIC_SHORTCUT;}
+    "set_advice_page"                            {return RRTypes.SET_ADVICE_PAGE;}
+    "advance_completed_tasks"                    {return RRTypes.ADVANCE_COMPLETED_TASKS;}
+    "set_min_formation_width"                    {return RRTypes.SET_MIN_FORMATION_WIDTH;}
+    "script_log"                                 {return RRTypes.SCRIPT_LOG;}
+    "ai_active_set"                              {return RRTypes.AI_ACTIVE_SET;}
+    "release_unit"                               {return RRTypes.RELEASE_UNIT;}
+    "hiding_enabled_set"                         {return RRTypes.HIDING_ENABLED_SET;}
+    "swimming_enabled_set"                       {return RRTypes.SWIMMING_ENABLED_SET;}
+    "pause_battle"                               {return RRTypes.PAUSE_BATTLE;}
+    "unit_immediate_place"                       {return RRTypes.UNIT_IMMEDIATE_PLACE;}
+    "unit_order_halt"                            {return RRTypes.UNIT_ORDER_HALT;}
+    "unit_order_move"                            {return RRTypes.UNIT_ORDER_MOVE;}
+    "unit_order_move_to_orientation"             {return RRTypes.UNIT_ORDER_MOVE_TO_ORIENTATION;}
+    "unit_order_move_relative"                   {return RRTypes.UNIT_ORDER_MOVE_RELATIVE;}
+    "unit_order_attack_unit"                     {return RRTypes.UNIT_ORDER_ATTACK_UNIT;}
+    "unit_order_attack_closest_unit"             {return RRTypes.UNIT_ORDER_ATTACK_CLOSEST_UNIT;}
+    "unit_order_change_formation"                {return RRTypes.UNIT_ORDER_CHANGE_FORMATION;}
+    "unit_order_move_to_missile_range"           {return RRTypes.UNIT_ORDER_MOVE_TO_MISSILE_RANGE;}
+    "unit_order_turn"                            {return RRTypes.UNIT_ORDER_TURN;}
+    "unit_set_morale"                            {return RRTypes.UNIT_SET_MORALE;}
+    "unit_unset_morale"                          {return RRTypes.UNIT_UNSET_MORALE;}
+    "unit_set_weapon_upgrade"                    {return RRTypes.UNIT_SET_WEAPON_UPGRADE;}
+    "unit_set_armour_upgrade"                    {return RRTypes.UNIT_SET_ARMOUR_UPGRADE;}
+    "unit_set_experience"                        {return RRTypes.UNIT_SET_EXPERIENCE;}
+    "kill_unit"                                  {return RRTypes.KILL_UNIT;}
+    "reduce_unit_strength"                       {return RRTypes.REDUCE_UNIT_STRENGTH;}
+    "unit_set_guard_mode"                        {return RRTypes.UNIT_SET_GUARD_MODE;}
+    "unit_set_skirmish_mode"                     {return RRTypes.UNIT_SET_SKIRMISH_MODE;}
+    "unit_set_fire_at_will_mode"                 {return RRTypes.UNIT_SET_FIRE_AT_WILL_MODE;}
+    "unit_set_formation_spacing"                 {return RRTypes.UNIT_SET_FORMATION_SPACING;}
+    "unit_taunt"                                 {return RRTypes.UNIT_TAUNT;}
+    "unit_use_special_ability"                   {return RRTypes.UNIT_USE_SPECIAL_ABILITY;}
+    "unit_group_enable_automation"               {return RRTypes.UNIT_GROUP_ENABLE_AUTOMATION;}
+    "unit_group_automate_defend_position"        {return RRTypes.UNIT_GROUP_AUTOMATE_DEFEND_POSITION;}
+    "unit_group_automate_attack"                 {return RRTypes.UNIT_GROUP_AUTOMATE_ATTACK;}
+    "unit_group_immediate_place"                 {return RRTypes.UNIT_GROUP_IMMEDIATE_PLACE;}
+    "unit_group_order_halt"                      {return RRTypes.UNIT_GROUP_ORDER_HALT;}
+    "unit_group_order_move_formed"               {return RRTypes.UNIT_GROUP_ORDER_MOVE_FORMED;}
+    "unit_group_order_move_unformed"             {return RRTypes.UNIT_GROUP_ORDER_MOVE_UNFORMED;}
+    "unit_group_order_relative_move_formed"      {return RRTypes.UNIT_GROUP_ORDER_RELATIVE_MOVE_FORMED;}
+    "unit_group_order_relative_move_unformed"    {return RRTypes.UNIT_GROUP_ORDER_RELATIVE_MOVE_UNFORMED;}
+    "unit_group_move_to_missile_range_of_unit"   {return RRTypes.UNIT_GROUP_MOVE_TO_MISSILE_RANGE_OF_UNIT;}
+    "unit_group_move_to_missile_range_of_group"  {return RRTypes.UNIT_GROUP_MOVE_TO_MISSILE_RANGE_OF_GROUP;}
+    "unit_group_order_attack_unit"               {return RRTypes.UNIT_GROUP_ORDER_ATTACK_UNIT;}
+    "unit_group_order_attack_group"              {return RRTypes.UNIT_GROUP_ORDER_ATTACK_GROUP;}
+    "unit_group_order_change_group_formation"    {return RRTypes.UNIT_GROUP_ORDER_CHANGE_GROUP_FORMATION;}
+    "unit_group_order_turn"                      {return RRTypes.UNIT_GROUP_ORDER_TURN;}
+    "unit_group_set_morale"                      {return RRTypes.UNIT_GROUP_SET_MORALE;}
+    "unit_group_unset_morale"                    {return RRTypes.UNIT_GROUP_UNSET_MORALE;}
+    "unit_group_change_unit_formation"           {return RRTypes.UNIT_GROUP_CHANGE_UNIT_FORMATION;}
+    "unit_group_set_guard_mode"                  {return RRTypes.UNIT_GROUP_SET_GUARD_MODE;}
+    "unit_group_set_skirmish_mode"               {return RRTypes.UNIT_GROUP_SET_SKIRMISH_MODE;}
+    "unit_group_set_fire_at_will_mode"           {return RRTypes.UNIT_GROUP_SET_FIRE_AT_WILL_MODE;}
+    "unit_group_set_formation_spacing"           {return RRTypes.UNIT_GROUP_SET_FORMATION_SPACING;}
+    "force_ai_control"                           {return RRTypes.FORCE_AI_CONTROL;}
+    "finish_battle"                              {return RRTypes.FINISH_BATTLE;}
+    "move_strat_camera"                          {return RRTypes.MOVE_STRAT_CAMERA;}
+    "set_strat_camera_speed"                     {return RRTypes.SET_STRAT_CAMERA_SPEED;}
+    "snap_strat_camera"                          {return RRTypes.SNAP_STRAT_CAMERA;}
+    "zoom_strat_camera"                          {return RRTypes.ZOOM_STRAT_CAMERA;}
+    "camera_restrictions_set"                    {return RRTypes.CAMERA_RESTRICTIONS_SET;}
+    "camera_event_cuts_active_set"               {return RRTypes.CAMERA_EVENT_CUTS_ACTIVE_SET;}
+    "camera_default_mode_set"                    {return RRTypes.CAMERA_DEFAULT_MODE_SET;}
+    "battle_default_camera"                      {return RRTypes.BATTLE_DEFAULT_CAMERA;}
+    "battle_general_camera"                      {return RRTypes.BATTLE_GENERAL_CAMERA;}
+    "set_camera_bookmark"                        {return RRTypes.SET_CAMERA_BOOKMARK;}
+    "camera_position_at_bookmark_"               {return RRTypes.CAMERA_POSITION_AT_BOOKMARK_;}
+    "camera_zoom_to_bookmark"                    {return RRTypes.CAMERA_ZOOM_TO_BOOKMARK;}
+    "camera_position"                            {return RRTypes.CAMERA_POSITION;}
+    "camera_zoom_to"                             {return RRTypes.CAMERA_ZOOM_TO;}
+    "camera_look_at_position"                    {return RRTypes.CAMERA_LOOK_AT_POSITION;}
+    "camera_look_at_unit"                        {return RRTypes.CAMERA_LOOK_AT_UNIT;}
+    "camera_track_unit"                          {return RRTypes.CAMERA_TRACK_UNIT;}
+    "camera_zoom_to_unit"                        {return RRTypes.CAMERA_ZOOM_TO_UNIT;}
+    "e_camera_zoom_to_unit"                      {return RRTypes.E_CAMERA_ZOOM_TO_UNIT;}
+    "inhibit_camera_input"                       {return RRTypes.INHIBIT_CAMERA_INPUT;}
+    "declare_prologue"                           {return RRTypes.DECLARE_PROLOGUE;}
+    "terminate_prologue"                         {return RRTypes.TERMINATE_PROLOGUE;}
+    "provoke_rebellion"                          {return RRTypes.PROVOKE_REBELLION;}
+    "move"                                       {return RRTypes.MOVE;}
+    "reposition_character"                       {return RRTypes.REPOSITION_CHARACTER;}
+    "replenish_action_points"                    {return RRTypes.REPLENISH_ACTION_POINTS;}
+    "replenish_units"                            {return RRTypes.REPLENISH_UNITS;}
+    "spawn_character"                            {return RRTypes.SPAWN_CHARACTER;}
+    "spawn_army"                                 {return RRTypes.SPAWN_ARMY;}
+    "engage_armies"                              {return RRTypes.ENGAGE_ARMIES;}
+    "disable_popups"                             {return RRTypes.DISABLE_POPUPS;}
+    "start_benchmark"                            {return RRTypes.START_BENCHMARK;}
+    "end_benchmark"                              {return RRTypes.END_BENCHMARK;}
+    "disable_pause_shortcut_in_campaign"         {return RRTypes.DISABLE_PAUSE_SHORTCUT_IN_CAMPAIGN;}
+    "override_superfaction_popularity"           {return RRTypes.OVERRIDE_SUPERFACTION_POPULARITY;}
+    "set_faction_senate_standing"                {return RRTypes.SET_FACTION_SENATE_STANDING;}
+    "set_faction_people_standing"                {return RRTypes.SET_FACTION_PEOPLE_STANDING;}
+    "message_prompt"                             {return RRTypes.MESSAGE_PROMPT;}
+    "include_script"                             {return RRTypes.INCLUDE_SCRIPT;}
+    "terminate_script"                           {return RRTypes.TERMINATE_SCRIPT;}
+    "break"                                      {return RRTypes.BREAK;}
+    "spawn_battle"                               {return RRTypes.SPAWN_BATTLE;}
+    "set_ao_visible"                             {return RRTypes.SET_AO_VISIBLE;}
+    "set_all_ao_visible"                         {return RRTypes.SET_ALL_AO_VISIBLE;}
+    "monitor_conditions"                         {return RRTypes.MONITOR_CONDITIONS;}
+    "end_monitor"                                {return RRTypes.END_MONITOR;}
+    "monitor_event"                              {return RRTypes.MONITOR_EVENT;}
+    "terminate_monitor"                          {return RRTypes.TERMINATE_MONITOR;}
+    "console_command"                            {return RRTypes.CONSOLE_COMMAND;}
+    "declare_counter"                            {return RRTypes.DECLARE_COUNTER;}
+    "declare_persistent_counter"                 {return RRTypes.DECLARE_PERSISTENT_COUNTER;}
+    "inc_counter"                                {return RRTypes.INC_COUNTER;}
+    "set_counter"                                {return RRTypes.SET_COUNTER;}
+    "counter_operation"                          {return RRTypes.COUNTER_OPERATION;}
+    "store_counter"                              {return RRTypes.STORE_COUNTER;}
+    "retrieve_counter"                           {return RRTypes.RETRIEVE_COUNTER;}
+    "prepare_for_battle"                         {return RRTypes.PREPARE_FOR_BATTLE;}
+    "declare_show_me"                            {return RRTypes.DECLARE_SHOW_ME;}
+    "label_unit"                                 {return RRTypes.LABEL_UNIT;}
+    "label_location"                             {return RRTypes.LABEL_LOCATION;}
+    "define_unit_group"                          {return RRTypes.DEFINE_UNIT_GROUP;}
+    "undefine_unit_group"                        {return RRTypes.UNDEFINE_UNIT_GROUP;}
+    "remove_unit_from_group"                     {return RRTypes.REMOVE_UNIT_FROM_GROUP;}
+    "declare_timer"                              {return RRTypes.DECLARE_TIMER;}
+    "restart_timer"                              {return RRTypes.RESTART_TIMER;}
+    "heed_pause"                                 {return RRTypes.HEED_PAUSE;}
+    "wait"                                       {return RRTypes.WAIT;}
+    "campaign_wait"                              {return RRTypes.CAMPAIGN_WAIT;}
+    "battle_wait"                                {return RRTypes.BATTLE_WAIT;}
+    "suspend_during_battle"                      {return RRTypes.SUSPEND_DURING_BATTLE;}
+    "set_music_state"                            {return RRTypes.SET_MUSIC_STATE;}
+    "release_music_control"                      {return RRTypes.RELEASE_MUSIC_CONTROL;}
+    "play_sound_event"                           {return RRTypes.PLAY_SOUND_EVENT;}
+    "play_sound_flourish"                        {return RRTypes.PLAY_SOUND_FLOURISH;}
+    "stop_sound_event"                           {return RRTypes.STOP_SOUND_EVENT;}
+    "point_at_character"                         {return RRTypes.POINT_AT_CHARACTER;}
+    "point_at_settlement"                        {return RRTypes.POINT_AT_SETTLEMENT;}
+    "e_point_at_settlement"                      {return RRTypes.E_POINT_AT_SETTLEMENT;}
+    "point_at_strat_position"                    {return RRTypes.POINT_AT_STRAT_POSITION;}
+    "point_at_strat_position_alt"                {return RRTypes.POINT_AT_STRAT_POSITION_ALT;}
+    "point_at_message"                           {return RRTypes.POINT_AT_MESSAGE;}
+    "ui_flash_start"                             {return RRTypes.UI_FLASH_START;}
+    "ui_flash_stop"                              {return RRTypes.UI_FLASH_STOP;}
+    "settlement_flash_start"                     {return RRTypes.SETTLEMENT_FLASH_START;}
+    "settlement_flash_stop"                      {return RRTypes.SETTLEMENT_FLASH_STOP;}
+    "character_flash_start"                      {return RRTypes.CHARACTER_FLASH_START;}
+    "character_flash_stop"                       {return RRTypes.CHARACTER_FLASH_STOP;}
+    "point_at_location"                          {return RRTypes.POINT_AT_LOCATION;}
+    "point_at_unit_pos"                          {return RRTypes.POINT_AT_UNIT_POS;}
+    "point_at_unit_group_pos"                    {return RRTypes.POINT_AT_UNIT_GROUP_POS;}
+    "remove_battle_map_arrow"                    {return RRTypes.REMOVE_BATTLE_MAP_ARROW;}
+    "point_at_card"                              {return RRTypes.POINT_AT_CARD;}
+    "point_at_unit_card"                         {return RRTypes.POINT_AT_UNIT_CARD;}
+    "e_point_at_unit_card"                       {return RRTypes.E_POINT_AT_UNIT_CARD;}
+    "show_mouse_button_animation"                {return RRTypes.SHOW_MOUSE_BUTTON_ANIMATION;}
+    "show_movie"                                 {return RRTypes.SHOW_MOVIE;}
+    "hide_ui"                                    {return RRTypes.HIDE_UI;}
+    "show_ui"                                    {return RRTypes.SHOW_UI;}
+    "disable_ui"                                 {return RRTypes.DISABLE_UI;}
+    "enable_ui"                                  {return RRTypes.ENABLE_UI;}
+    "disable_entire_ui"                          {return RRTypes.DISABLE_ENTIRE_UI;}
+    "enable_entire_ui"                           {return RRTypes.ENABLE_ENTIRE_UI;}
+    "set_cards_selectable"                       {return RRTypes.SET_CARDS_SELECTABLE;}
+    "disable_cursor"                             {return RRTypes.DISABLE_CURSOR;}
+    "enable_cursor"                              {return RRTypes.ENABLE_CURSOR;}
+    "rename_settlement_in_region"                {return RRTypes.RENAME_SETTLEMENT_IN_REGION;}
+    "add_religion"                               {return RRTypes.ADD_RELIGION;}
+    "add_hidden_resource"                        {return RRTypes.ADD_HIDDEN_RESOURCE;}
+    "remove_hidden_resource"                     {return RRTypes.REMOVE_HIDDEN_RESOURCE;}
+    "destroy_building"                           {return RRTypes.DESTROY_BUILDING;}
+    "reveal_tile"                                {return RRTypes.REVEAL_TILE;}
+    "hide_all_revealed_tiles"                    {return RRTypes.HIDE_ALL_REVEALED_TILES;}
+    "play_video"                                 {return RRTypes.PLAY_VIDEO;}
+    "advance_advice_thread"                      {return RRTypes.ADVANCE_ADVICE_THREAD;}
+    "dismiss_advice"                             {return RRTypes.DISMISS_ADVICE;}
+    "dismiss_advisor"                            {return RRTypes.DISMISS_ADVISOR;}
+    "suspend_unscripted_advice"                  {return RRTypes.SUSPEND_UNSCRIPTED_ADVICE;}
+    "select_character"                           {return RRTypes.SELECT_CHARACTER;}
+    "e_select_character"                         {return RRTypes.E_SELECT_CHARACTER;}
+    "select_settlement"                          {return RRTypes.SELECT_SETTLEMENT;}
+    "e_select_settlement"                        {return RRTypes.E_SELECT_SETTLEMENT;}
+    "call_object_shortcut"                       {return RRTypes.CALL_OBJECT_SHORTCUT;}
+    "simulate_mouse_click"                       {return RRTypes.SIMULATE_MOUSE_CLICK;}
+    "select_ui_element"                          {return RRTypes.SELECT_UI_ELEMENT;}
+    "disable_shortcuts"                          {return RRTypes.DISABLE_SHORTCUTS;}
+    "filter_unit_commands"                       {return RRTypes.FILTER_UNIT_COMMANDS;}
+    "filter_unit_group_commands"                 {return RRTypes.FILTER_UNIT_GROUP_COMMANDS;}
+    "filter_unit_selection_commands"             {return RRTypes.FILTER_UNIT_SELECTION_COMMANDS;}
+    "filter_settlement_commands"                 {return RRTypes.FILTER_SETTLEMENT_COMMANDS;}
+    "filter_character_commands"                  {return RRTypes.FILTER_CHARACTER_COMMANDS;}
+    "filter_all_ui_commands"                     {return RRTypes.FILTER_ALL_UI_COMMANDS;}
+    "ui_indicator"                               {return RRTypes.UI_INDICATOR;}
+    "ui_indicator_remove"                        {return RRTypes.UI_INDICATOR_REMOVE;}
+    "steal_esc_key"                              {return RRTypes.STEAL_ESC_KEY;}
+    "highlight_recruitment_item"                 {return RRTypes.HIGHLIGHT_RECRUITMENT_ITEM;}
+    "highlight_construction_item"                {return RRTypes.HIGHLIGHT_CONSTRUCTION_ITEM;}
+    "show_annotations"                           {return RRTypes.SHOW_ANNOTATIONS;}
+    "e_select_unit"                              {return RRTypes.E_SELECT_UNIT;}
+    "open_siege_scroll"                          {return RRTypes.OPEN_SIEGE_SCROLL;}
+    "control_feral_anim"                         {return RRTypes.CONTROL_FERAL_ANIM;}
+    "select_captial"                             {return RRTypes.SELECT_CAPTIAL;}
+    "show_building_info"                         {return RRTypes.SHOW_BUILDING_INFO;}
+    "show_unit_info"                             {return RRTypes.SHOW_UNIT_INFO;}
+    // console commands
+    "kill_character"                             {return RRTypes.KILL_CHARACTER;}
+    "give_trait"                                 {return RRTypes.GIVE_TRAIT;}
+    "process_cq"                                 {return RRTypes.PROCESS_CQ;}
+    "add_population"                             {return RRTypes.ADD_POPULATION;}
+    "capture_settlement"                         {return RRTypes.CAPTURE_SETTLEMENT;}
+    "add_money"                                  {return RRTypes.ADD_MONEY;}
+    "diplomatic_stance"                          {return RRTypes.DIPLOMATIC_STANCE;}
+    "date"                                       {return RRTypes.DATE;}
+    "season"                                     {return RRTypes.SEASON;}
+    "create_building"                            {return RRTypes.CREATE_BUILDING;}
+    "create_unit"                                {return RRTypes.CREATE_UNIT;}
+    "destroy_unit"                               {return RRTypes.DESTROY_UNIT;}
+    // command params
+    "+"                                          {return RRTypes.PLUS;}
+    "-"                                          {return RRTypes.DASH;}
+    "/"                                          {return RRTypes.SLASH;}
+    "*"                                          {return RRTypes.STAR;}
+    "summer"                                     {return RRTypes.SUMMER;}
+    "winter"                                     {return RRTypes.WINTER;}
+    "faction"                                    {return RRTypes.FACTION;}
+    "character"                                  {return RRTypes.CHARACTER;}
+    "command"                                    {return RRTypes.COMMAND;}
+    "influence"                                  {return RRTypes.INFLUENCE;}
+    "management"                                 {return RRTypes.MANAGEMENT;}
+    "subterfuge"                                 {return RRTypes.SUBTERFUGE;}
+    "soldiers"                                   {return RRTypes.SOLDIERS;}
+    "age"                                        {return RRTypes.AGE;}
+    "x"                                          {return RRTypes.X;}
+    "y"                                          {return RRTypes.Y;}
+    "exp"                                        {return RRTypes.EXP;}
+    "armour"                                     {return RRTypes.ARMOUR;}
+    "weapon_lvl"                                 {return RRTypes.WEAPON_LVL;}
+    "end"                                        {return RRTypes.END;}
+    "allied"                                     {return RRTypes.ALLIED;}
+    "neutral"                                    {return RRTypes.NEUTRAL;}
+    "war"                                        {return RRTypes.WAR;}
+    "on"                                         {return RRTypes.ON;}
+    "off"                                        {return RRTypes.OFF;}
+    "circle"                                     {return RRTypes.CIRCLE;}
+    "arrow"                                      {return RRTypes.ARROW;}
+    "accept"                                     {return RRTypes.ACCEPT;}
+    "reject"                                     {return RRTypes.REJECT;}
+    "show"                                       {return RRTypes.SHOW;}
+    "hide"                                       {return RRTypes.HIDE;}
+    "units"                                      {return RRTypes.UNITS;}
+    "passengers"                                 {return RRTypes.PASSENGERS;}
+    "up"                                         {return RRTypes.UP;}
+    "down"                                       {return RRTypes.DOWN;}
+    "left"                                       {return RRTypes.LEFT;}
+    "right"                                      {return RRTypes.RIGHT;}
+    "top_left"                                   {return RRTypes.TOP_LEFT;}
+    "top_right"                                  {return RRTypes.TOP_RIGHT;}
+    "bot_left"                                   {return RRTypes.BOT_LEFT;}
+    "bot_right"                                  {return RRTypes.BOT_RIGHT;}
+    "run"                                        {return RRTypes.RUN;}
+    "absolute"                                   {return RRTypes.ABSOLUTE;}
+    "loose"                                      {return RRTypes.LOOSE;}
+    "tight"                                      {return RRTypes.TIGHT;}
+    "beserk"                                     {return RRTypes.BESERK;}
+    "high"                                       {return RRTypes.HIGH;}
+    "firm"                                       {return RRTypes.FIRM;}
+    "shaken"                                     {return RRTypes.SHAKEN;}
+    "wavering"                                   {return RRTypes.WAVERING;}
+    "tw"                                         {return RRTypes.TW;}
+    "rts"                                        {return RRTypes.RTS;}
+    "user_pref"                                  {return RRTypes.USER_PREF;}
+    {ID}         {return RRTypes.ID;}
 }
 
 [^]                                 { return TokenType.BAD_CHARACTER;}

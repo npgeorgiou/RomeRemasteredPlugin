@@ -1,5 +1,6 @@
 package rr.language.psi.impl;
 
+import com.intellij.openapi.util.NlsSafe;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import rr.language.RRUtil;
@@ -82,6 +83,17 @@ public class RRPsiImplUtil {
 
     public static FactionReference getReference(RRFactionRef ref) {
         TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new FactionReference(ref, range);
+    }
+
+    public static PsiElement setName(RRStrFactionRef ref, String newName) {
+        PsiElement str = RRElementFactory.createString(ref.getProject(), newName);
+        ref.getFirstChild().replace(str);
+        return ref;
+    }
+
+    public static FactionReference getReference(RRStrFactionRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.STRING).getPsi().getTextRangeInParent();
         return new FactionReference(ref, range);
     }
     //</editor-fold>
@@ -258,6 +270,33 @@ public class RRPsiImplUtil {
     public static RegionReference getReference(RRRegionRef ref) {
         TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
         return new RegionReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Settlement decl and refs">
+    public static PsiElement setName(RRSettlementNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRSettlementNameDecl e) {
+        return e.getFirstChild().getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRSettlementNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRSettlementRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static SettlementReference getReference(RRSettlementRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new SettlementReference(ref, range);
     }
     //</editor-fold>
 

@@ -26,6 +26,7 @@ public class RRColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Files", RRSyntaxHighlighter.FILES_STYLE),
             new AttributesDescriptor("Events", RRSyntaxHighlighter.EVENTS_STYLE),
             new AttributesDescriptor("Conditions", RRSyntaxHighlighter.CONDITIONS_STYLE),
+            new AttributesDescriptor("Commands", RRSyntaxHighlighter.COMMANDS_STYLE),
     };
 
     @Nullable

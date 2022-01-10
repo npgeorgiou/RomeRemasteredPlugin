@@ -10,8 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
 import rr.language.Util;
-import rr.language.psi.RRFactionNameDecl;
-import rr.language.psi.RRFactionRef;
+import rr.language.psi.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ public class FactionReference extends PsiReferenceBase<PsiElement> implements Ps
     @Override
     public @Nullable PsiElement resolve() {
         List<RRFactionNameDecl> factions = RRUtil.findAllFactions(myElement.getProject()).stream()
-            .filter(it -> myElement.getText().equals(Util.unquote(it.getText())))
+            .filter(it -> Util.unquote(myElement.getText()).equals(Util.unquote(it.getText())))
             .collect(Collectors.toList());
 
         if (factions.isEmpty()) {
@@ -37,7 +36,12 @@ public class FactionReference extends PsiReferenceBase<PsiElement> implements Ps
 
     @Override
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
-        ((RRFactionRef) myElement).setName(newName);
+        if (myElement.getText().startsWith("\"")) {
+            ((RRStrFactionRef) myElement).setName(newName);
+        } else {
+            ((RRFactionRef) myElement).setName(newName);
+        }
+
         return myElement;
     }
 

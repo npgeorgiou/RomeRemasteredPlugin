@@ -7,6 +7,7 @@ import com.intellij.openapi.application.Result;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
@@ -26,51 +27,59 @@ public class MarkFileTypeWithComment extends AnAction {
         e.getPresentation().setEnabledAndVisible(project != null);
     }
 
+    String[] addMarkersTo = new String[]{
+        "export_buildings.txt",
+        "names.txt",
+        "descr_regions.txt",
+        "descr_mercenaries.txt",
+        "descr_strat.txt",
+        "descr_cultures.txt",
+        "descr_names.txt",
+        "descr_sm_major_events.txt",
+        "descr_unit_variation.txt",
+        "export_descr_ancillaries.txt",
+        "export_descr_buildings.txt",
+        "export_descr_character_traits.txt",
+        "export_descr_unit.txt",
+        "feral_descr_ai_personality.txt",
+        "descr_faction_groups.txt",
+        "descr_sm_factions.txt",
+        "descr_sm_resources.txt",
+        "feral_descr_portraits_variation.txt",
+        "descr_banners.txt",
+        "descr_character.txt",
+        "descr_building_battle.txt",
+        "descr_lbc_db.txt",
+        "descr_offmap_models.txt",
+        "landmarks.txt",
+        "descr_sm_landmarks.txt",
+        "descr_model_battle.txt",
+        "descr_model_strat.txt",
+        "descr_disasters.txt",
+        "descr_mount.txt",
+        "descr_rebel_factions.txt",
+        "rebel_faction_descr.txt",
+        "rebel_faction_descr_enums.txt",
+        "descr_items.txt",
+        "descr_sm_ambient_objects.txt",
+    };
+
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
         Project project = event.getProject();
 
-        String[] addMarkersTo = new String[]{
-            "export_buildings.txt",
-            "names.txt",
-            "descr_regions.txt",
-            "descr_mercenaries.txt",
-            "descr_strat.txt",
-            "descr_cultures.txt",
-            "descr_names.txt",
-            "descr_sm_major_events.txt",
-            "descr_unit_variation.txt",
-            "export_descr_ancillaries.txt",
-            "export_descr_buildings.txt",
-            "export_descr_character_traits.txt",
-            "export_descr_unit.txt",
-            "feral_descr_ai_personality.txt",
-            "descr_faction_groups.txt",
-            "descr_sm_factions.txt",
-            "descr_sm_resources.txt",
-            "feral_descr_portraits_variation.txt",
-            "descr_banners.txt",
-            "descr_character.txt",
-            "descr_building_battle.txt",
-            "descr_lbc_db.txt",
-            "descr_offmap_models.txt",
-            "landmarks.txt",
-            "descr_sm_landmarks.txt",
-            "descr_model_battle.txt",
-            "descr_model_strat.txt",
-            "descr_disasters.txt",
-            "descr_mount.txt",
-            "descr_rebel_factions.txt",
-            "rebel_faction_descr.txt",
-            "rebel_faction_descr_enums.txt",
-            "descr_items.txt",
-            "descr_sm_ambient_objects.txt",
-        };
+
 
         Collection<RRFile> files = RRUtil.findAllRRFiles(project);
 
         for (RRFile file : files) {
             String fileName = file.getVirtualFile().getName();
+
+
+//            file.getText().contains("script")
+
+
+
 
             if (!Arrays.asList(addMarkersTo).contains(fileName)) {
                 continue;
@@ -97,4 +106,8 @@ public class MarkFileTypeWithComment extends AnAction {
             );
         }
     }
+//
+//    private boolean isScript(VirtualFile file) {
+//        text = file.
+//    }
 }

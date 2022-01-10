@@ -8,19 +8,17 @@ import org.jetbrains.annotations.NotNull;
 import rr.language.psi.RRCoords;
 import rr.language.psi.RRCoordsNoComma;
 import rr.language.psi.RRCoordsWithXy;
+import rr.language.psi.RRCoordsXyz;
 
 public class RRHighlightingAnnotator implements Annotator {
     @Override
     public void annotate(@NotNull final PsiElement element, @NotNull AnnotationHolder holder) {
-        if (element instanceof RRCoords) {
-            color(element, RRSyntaxHighlighter.COORDS_STYLE, holder);
-        }
-
-        if (element instanceof RRCoordsWithXy) {
-            color(element, RRSyntaxHighlighter.COORDS_STYLE, holder);
-        }
-
-        if (element instanceof RRCoordsNoComma) {
+        if (
+            element instanceof RRCoords ||
+            element instanceof RRCoordsWithXy ||
+            element instanceof RRCoordsNoComma ||
+            element instanceof RRCoordsXyz
+        ) {
             color(element, RRSyntaxHighlighter.COORDS_STYLE, holder);
         }
     }

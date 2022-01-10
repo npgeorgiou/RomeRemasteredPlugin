@@ -40,6 +40,9 @@
       EXPORT_BUILDINGS_MARKER='regexp:;export_buildings.txt.*'
       TEXT_MAPPING_MARKER='regexp:;(landmarks|names|rebel_faction_descr).txt.*'
 
+      // Keywords that can also be strings.
+      LOCAL='regexp:"local"|local'
+
       // enums markers
       ENUMS_MARKER='regexp:;(rebel_faction_descr_enums).txt.*'
 
@@ -66,7 +69,11 @@
       SMALLER="<"
       SMALLER_OR_EQUAL="<="
       AMBERSANDS="&&"
+      PIPES="||"
+      PLUS="+"
       DASH="-"
+      SLASH="/"
+      STAR="*"
 
       // files and paths
       TXT_FILE='regexp:[\w\d_]+(/[\w\d_]+)*\.(txt|TXT)'
@@ -1019,7 +1026,7 @@
       FACTIONCULTURETYPE = "FactionCultureType"
       TARGETFACTIONCULTURETYPE = "TargetFactionCultureType"
       TRAINEDUNITCATEGORY = "TrainedUnitCategory"
-      UNITCATEGORY = "UnitCategory"
+      UnitCategory = "UnitCategory"
       SENATEMISSIONTIMEREMAINING = "SenateMissionTimeRemaining"
       MEDIANTAXLEVEL = "MedianTaxLevel"
       MODETAXLEVEL = "ModeTaxLevel"
@@ -1309,6 +1316,329 @@
       BUILDINGS = "Buildings"
       MECHANICS = "Mechanics"
 
+      // commands
+      SENATE_MISSION_HELP_PLAYER="senate_mission_help_player"
+      SENATE_MISSION_ASSASSINATION="senate_mission_assassination"
+      SENATE_MISSION_CEASE_HOSTILITIES="senate_mission_cease_hostilities"
+      SENATE_MISSION_DECLARE_WAR="senate_mission_declare_war"
+      SENATE_MISSION_BROKER_PEACE="senate_mission_broker_peace"
+      SENATE_MISSION_TAKE_CITY="senate_mission_take_city"
+      MOVE_TO_SETTLEMENT="move_to_settlement"
+      SNAP_TO_SETTLEMENT="snap_to_settlement"
+      CLEAR_RESTRICT_STRAT_MOVEMENT="clear_restrict_strat_movement"
+      RESTRICT_STRAT_MOVEMENT="restrict_strat_movement"
+      DISABLE_DIPLOMACY_UI="disable_diplomacy_ui"
+      ENABLE_DIPLOMACY_VOICES="enable_diplomacy_voices"
+      ENABLE_UNIT_VOICES="enable_unit_voices"
+      HIDE_UI_ELEMENT="hide_ui_element"
+      SHOW_UI_ELEMENT="show_ui_element"
+      ENABLE_UI_CARD="enable_ui_card"
+      DISABLE_UI_CARD="disable_ui_card"
+      DISABLE_ALL_UI_CARDS="disable_all_ui_cards"
+      ENABLE_ALL_UI_CARDS="enable_all_ui_cards"
+      DISABLE_AGENT_HUB_ALL="disable_agent_hub_all"
+      ENABLE_AGENT_HUB_ALL="enable_agent_hub_all"
+      DISABLE_AGENT_HUB="disable_agent_hub"
+      ENABLE_AGENT_HUB="enable_agent_hub"
+      POINT_AT_AGENT_HUB="point_at_agent_hub"
+      SET_MARRIAGE_ALLOWED="set_marriage_allowed"
+      TRIGGER_MARRIAGE_PROPOSAL="trigger_marriage_proposal"
+      DESELECT_CURRENT_SELECTION="deselect_current_selection"
+      FORCE_AUTORESOLVE_OUTCOME="force_autoresolve_outcome"
+      FORCE_DIPLOMACY="force_diplomacy"
+      CREATE_MERCENARY_POOL="create_mercenary_pool"
+      FORCE_AGENT_SUCCEED="force_agent_succeed"
+      ALLOW_CAMPAIGN_BATTLES="allow_campaign_battles"
+      SPAWN_CHARACTER_CHILD="spawn_character_child"
+      STOP_POINT_AT_INDICATOR="stop_point_at_indicator"
+      STOP_ALL_POINT_AT_INDICATORS="stop_all_point_at_indicators"
+      SET_BATTLE="set_battle"
+      RESTRICT_BATTLE_MOVEMENT="restrict_battle_movement"
+      CLEAR_RESTRICT_BATTLE_MOVEMENT="clear_restrict_battle_movement"
+      POINT_AT_DIPLOMACY_OFFER="point_at_diplomacy_offer"
+      POINT_AT_MOVE_RETINUE="point_at_move_retinue"
+      DISABLE_MOVE_RETINUE_ALL="disable_move_retinue_all"
+      ENABLE_MOVE_RETINUE_ALL="enable_move_retinue_all"
+      DISABLE_MOVE_RETINUE="disable_move_retinue"
+      ENABLE_MOVE_RETINUE="enable_move_retinue"
+      BLOCK_UNIT_SELECTION="block_unit_selection"
+      FORCED_GATE_SUCCESS="forced_gate_success"
+      STRAT_SELECTION_UNBLOCKER="strat_selection_unblocker"
+      CLEAR_STRAT_SELECTION_UNBLOCKER="clear_strat_selection_unblocker"
+      OPEN_STOP_TUTORIAL_CONFIRMATION_DIALOG="open_stop_tutorial_confirmation_dialog"
+      SET_LABEL="set_label"
+      GOTO="goto"
+      FORCE_DESELECT_TRIGGER="force_deselect_trigger"
+      BOX_DRAG_SELECTION="box_drag_selection"
+      FORCE_SETTLEMENT_TAB="force_settlement_tab"
+      CLICK_DRAG_MOVE="click_drag_move"
+      TOGGLE_MINIMAP="toggle_minimap"
+      CLOSE_NEWS_PANEL="close_news_panel"
+      UI_CARD_SELECTION_LOCK="ui_card_selection_lock"
+      DISABLE_SPECIFIC_SHORTCUT="disable_specific_shortcut"
+      SET_ADVICE_PAGE="set_advice_page"
+      ADVANCE_COMPLETED_TASKS="advance_completed_tasks"
+      SET_MIN_FORMATION_WIDTH="set_min_formation_width"
+      SCRIPT_LOG="script_log"
+      AI_ACTIVE_SET="ai_active_set"
+      RELEASE_UNIT="release_unit"
+      HIDING_ENABLED_SET="hiding_enabled_set"
+      SWIMMING_ENABLED_SET="swimming_enabled_set"
+      PAUSE_BATTLE="pause_battle"
+      UNIT_IMMEDIATE_PLACE="unit_immediate_place"
+      UNIT_ORDER_HALT="unit_order_halt"
+      UNIT_ORDER_MOVE="unit_order_move"
+      UNIT_ORDER_MOVE_TO_ORIENTATION="unit_order_move_to_orientation"
+      UNIT_ORDER_MOVE_RELATIVE="unit_order_move_relative"
+      UNIT_ORDER_ATTACK_UNIT="unit_order_attack_unit"
+      UNIT_ORDER_ATTACK_CLOSEST_UNIT="unit_order_attack_closest_unit"
+      UNIT_ORDER_CHANGE_FORMATION="unit_order_change_formation"
+      UNIT_ORDER_MOVE_TO_MISSILE_RANGE="unit_order_move_to_missile_range"
+      UNIT_ORDER_TURN="unit_order_turn"
+      UNIT_SET_MORALE="unit_set_morale"
+      UNIT_UNSET_MORALE="unit_unset_morale"
+      UNIT_SET_WEAPON_UPGRADE="unit_set_weapon_upgrade"
+      UNIT_SET_ARMOUR_UPGRADE="unit_set_armour_upgrade"
+      UNIT_SET_EXPERIENCE="unit_set_experience"
+      KILL_UNIT="kill_unit"
+      REDUCE_UNIT_STRENGTH="reduce_unit_strength"
+      UNIT_SET_GUARD_MODE="unit_set_guard_mode"
+      UNIT_SET_SKIRMISH_MODE="unit_set_skirmish_mode"
+      UNIT_SET_FIRE_AT_WILL_MODE="unit_set_fire_at_will_mode"
+      UNIT_SET_FORMATION_SPACING="unit_set_formation_spacing"
+      UNIT_TAUNT="unit_taunt"
+      UNIT_USE_SPECIAL_ABILITY="unit_use_special_ability"
+      UNIT_GROUP_ENABLE_AUTOMATION="unit_group_enable_automation"
+      UNIT_GROUP_AUTOMATE_DEFEND_POSITION="unit_group_automate_defend_position"
+      UNIT_GROUP_AUTOMATE_ATTACK="unit_group_automate_attack"
+      UNIT_GROUP_IMMEDIATE_PLACE="unit_group_immediate_place"
+      UNIT_GROUP_ORDER_HALT="unit_group_order_halt"
+      UNIT_GROUP_ORDER_MOVE_FORMED="unit_group_order_move_formed"
+      UNIT_GROUP_ORDER_MOVE_UNFORMED="unit_group_order_move_unformed"
+      UNIT_GROUP_ORDER_RELATIVE_MOVE_FORMED="unit_group_order_relative_move_formed"
+      UNIT_GROUP_ORDER_RELATIVE_MOVE_UNFORMED="unit_group_order_relative_move_unformed"
+      UNIT_GROUP_MOVE_TO_MISSILE_RANGE_OF_UNIT="unit_group_move_to_missile_range_of_unit"
+      UNIT_GROUP_MOVE_TO_MISSILE_RANGE_OF_GROUP="unit_group_move_to_missile_range_of_group"
+      UNIT_GROUP_ORDER_ATTACK_UNIT="unit_group_order_attack_unit"
+      UNIT_GROUP_ORDER_ATTACK_GROUP="unit_group_order_attack_group"
+      UNIT_GROUP_ORDER_CHANGE_GROUP_FORMATION="unit_group_order_change_group_formation"
+      UNIT_GROUP_ORDER_TURN="unit_group_order_turn"
+      UNIT_GROUP_SET_MORALE="unit_group_set_morale"
+      UNIT_GROUP_UNSET_MORALE="unit_group_unset_morale"
+      UNIT_GROUP_CHANGE_UNIT_FORMATION="unit_group_change_unit_formation"
+      UNIT_GROUP_SET_GUARD_MODE="unit_group_set_guard_mode"
+      UNIT_GROUP_SET_SKIRMISH_MODE="unit_group_set_skirmish_mode"
+      UNIT_GROUP_SET_FIRE_AT_WILL_MODE="unit_group_set_fire_at_will_mode"
+      UNIT_GROUP_SET_FORMATION_SPACING="unit_group_set_formation_spacing"
+      FORCE_AI_CONTROL="force_ai_control"
+      FINISH_BATTLE="finish_battle"
+      MOVE_STRAT_CAMERA="move_strat_camera"
+      SET_STRAT_CAMERA_SPEED="set_strat_camera_speed"
+      SNAP_STRAT_CAMERA="snap_strat_camera"
+      ZOOM_STRAT_CAMERA="zoom_strat_camera"
+      CAMERA_RESTRICTIONS_SET="camera_restrictions_set"
+      CAMERA_EVENT_CUTS_ACTIVE_SET="camera_event_cuts_active_set"
+      CAMERA_DEFAULT_MODE_SET="camera_default_mode_set"
+      BATTLE_DEFAULT_CAMERA="battle_default_camera"
+      BATTLE_GENERAL_CAMERA="battle_general_camera"
+      SET_CAMERA_BOOKMARK="set_camera_bookmark"
+      CAMERA_POSITION_AT_BOOKMARK_="camera_position_at_bookmark_"
+      CAMERA_ZOOM_TO_BOOKMARK="camera_zoom_to_bookmark"
+      CAMERA_POSITION="camera_position"
+      CAMERA_ZOOM_TO="camera_zoom_to"
+      CAMERA_LOOK_AT_POSITION="camera_look_at_position"
+      CAMERA_LOOK_AT_UNIT="camera_look_at_unit"
+      CAMERA_TRACK_UNIT="camera_track_unit"
+      CAMERA_ZOOM_TO_UNIT="camera_zoom_to_unit"
+      E_CAMERA_ZOOM_TO_UNIT="e_camera_zoom_to_unit"
+      INHIBIT_CAMERA_INPUT="inhibit_camera_input"
+      DECLARE_PROLOGUE="declare_prologue"
+      TERMINATE_PROLOGUE="terminate_prologue"
+      PROVOKE_REBELLION="provoke_rebellion"
+      MOVE="move"
+      REPOSITION_CHARACTER="reposition_character"
+      REPLENISH_ACTION_POINTS="replenish_action_points"
+      REPLENISH_UNITS="replenish_units"
+      SPAWN_CHARACTER="spawn_character"
+      SPAWN_ARMY="spawn_army"
+      ENGAGE_ARMIES="engage_armies"
+      DISABLE_POPUPS="disable_popups"
+      START_BENCHMARK="start_benchmark"
+      END_BENCHMARK="end_benchmark"
+      DISABLE_PAUSE_SHORTCUT_IN_CAMPAIGN="disable_pause_shortcut_in_campaign"
+      OVERRIDE_SUPERFACTION_POPULARITY="override_superfaction_popularity"
+      SET_FACTION_SENATE_STANDING="set_faction_senate_standing"
+      SET_FACTION_PEOPLE_STANDING="set_faction_people_standing"
+      MESSAGE_PROMPT="message_prompt"
+      INCLUDE_SCRIPT="include_script"
+      TERMINATE_SCRIPT="terminate_script"
+      BREAK="break"
+      SPAWN_BATTLE="spawn_battle"
+      SET_AO_VISIBLE="set_ao_visible"
+      SET_ALL_AO_VISIBLE="set_all_ao_visible"
+      MONITOR_CONDITIONS="monitor_conditions"
+      END_MONITOR="end_monitor"
+      MONITOR_EVENT="monitor_event"
+      TERMINATE_MONITOR="terminate_monitor"
+      CONSOLE_COMMAND="console_command"
+      DECLARE_COUNTER="declare_counter"
+      DECLARE_PERSISTENT_COUNTER="declare_persistent_counter"
+      INC_COUNTER="inc_counter"
+      SET_COUNTER="set_counter"
+      COUNTER_OPERATION="counter_operation"
+      STORE_COUNTER="store_counter"
+      RETRIEVE_COUNTER="retrieve_counter"
+      PREPARE_FOR_BATTLE="prepare_for_battle"
+      DECLARE_SHOW_ME="declare_show_me"
+      LABEL_UNIT="label_unit"
+      LABEL_LOCATION="label_location"
+      DEFINE_UNIT_GROUP="define_unit_group"
+      UNDEFINE_UNIT_GROUP="undefine_unit_group"
+      REMOVE_UNIT_FROM_GROUP="remove_unit_from_group"
+      DECLARE_TIMER="declare_timer"
+      RESTART_TIMER="restart_timer"
+      HEED_PAUSE="heed_pause"
+      WAIT="wait"
+      CAMPAIGN_WAIT="campaign_wait"
+      BATTLE_WAIT="battle_wait"
+      SUSPEND_DURING_BATTLE="suspend_during_battle"
+      SET_MUSIC_STATE="set_music_state"
+      RELEASE_MUSIC_CONTROL="release_music_control"
+      PLAY_SOUND_EVENT="play_sound_event"
+      PLAY_SOUND_FLOURISH="play_sound_flourish"
+      STOP_SOUND_EVENT="stop_sound_event"
+      POINT_AT_CHARACTER="point_at_character"
+      POINT_AT_SETTLEMENT="point_at_settlement"
+      E_POINT_AT_SETTLEMENT="e_point_at_settlement"
+      POINT_AT_STRAT_POSITION="point_at_strat_position"
+      POINT_AT_STRAT_POSITION_ALT="point_at_strat_position_alt"
+      POINT_AT_MESSAGE="point_at_message"
+      UI_FLASH_START="ui_flash_start"
+      UI_FLASH_STOP="ui_flash_stop"
+      SETTLEMENT_FLASH_START="settlement_flash_start"
+      SETTLEMENT_FLASH_STOP="settlement_flash_stop"
+      CHARACTER_FLASH_START="character_flash_start"
+      CHARACTER_FLASH_STOP="character_flash_stop"
+      POINT_AT_LOCATION="point_at_location"
+      POINT_AT_UNIT_POS="point_at_unit_pos"
+      POINT_AT_UNIT_GROUP_POS="point_at_unit_group_pos"
+      REMOVE_BATTLE_MAP_ARROW="remove_battle_map_arrow"
+      POINT_AT_CARD="point_at_card"
+      POINT_AT_UNIT_CARD="point_at_unit_card"
+      E_POINT_AT_UNIT_CARD="e_point_at_unit_card"
+      SHOW_MOUSE_BUTTON_ANIMATION="show_mouse_button_animation"
+      SHOW_MOVIE="show_movie"
+      HIDE_UI="hide_ui"
+      SHOW_UI="show_ui"
+      DISABLE_UI="disable_ui"
+      ENABLE_UI="enable_ui"
+      DISABLE_ENTIRE_UI="disable_entire_ui"
+      ENABLE_ENTIRE_UI="enable_entire_ui"
+      SET_CARDS_SELECTABLE="set_cards_selectable"
+      DISABLE_CURSOR="disable_cursor"
+      ENABLE_CURSOR="enable_cursor"
+      RENAME_SETTLEMENT_IN_REGION="rename_settlement_in_region"
+      ADD_RELIGION="add_religion"
+      ADD_HIDDEN_RESOURCE="add_hidden_resource"
+      REMOVE_HIDDEN_RESOURCE="remove_hidden_resource"
+      DESTROY_BUILDING="destroy_building"
+      REVEAL_TILE="reveal_tile"
+      HIDE_ALL_REVEALED_TILES="hide_all_revealed_tiles"
+      PLAY_VIDEO="play_video"
+      ADVANCE_ADVICE_THREAD="advance_advice_thread"
+      DISMISS_ADVICE="dismiss_advice"
+      DISMISS_ADVISOR="dismiss_advisor"
+      SUSPEND_UNSCRIPTED_ADVICE="suspend_unscripted_advice"
+      SELECT_CHARACTER="select_character"
+      E_SELECT_CHARACTER="e_select_character"
+      SELECT_SETTLEMENT="select_settlement"
+      E_SELECT_SETTLEMENT="e_select_settlement"
+      CALL_OBJECT_SHORTCUT="call_object_shortcut"
+      SIMULATE_MOUSE_CLICK="simulate_mouse_click"
+      SELECT_UI_ELEMENT="select_ui_element"
+      DISABLE_SHORTCUTS="disable_shortcuts"
+      FILTER_UNIT_COMMANDS="filter_unit_commands"
+      FILTER_UNIT_GROUP_COMMANDS="filter_unit_group_commands"
+      FILTER_UNIT_SELECTION_COMMANDS="filter_unit_selection_commands"
+      FILTER_SETTLEMENT_COMMANDS="filter_settlement_commands"
+      FILTER_CHARACTER_COMMANDS="filter_character_commands"
+      FILTER_ALL_UI_COMMANDS="filter_all_ui_commands"
+      UI_INDICATOR="ui_indicator"
+      UI_INDICATOR_REMOVE="ui_indicator_remove"
+      STEAL_ESC_KEY="steal_esc_key"
+      HIGHLIGHT_RECRUITMENT_ITEM="highlight_recruitment_item"
+      HIGHLIGHT_CONSTRUCTION_ITEM="highlight_construction_item"
+      SHOW_ANNOTATIONS="show_annotations"
+      E_SELECT_UNIT="e_select_unit"
+      OPEN_SIEGE_SCROLL="open_siege_scroll"
+      CONTROL_FERAL_ANIM="control_feral_anim"
+      SELECT_CAPTIAL="select_captial"
+      SHOW_BUILDING_INFO="show_building_info"
+      SHOW_UNIT_INFO="show_unit_info"
+
+      // console commands
+      KILL_CHARACTER="kill_character"
+      GIVE_TRAIT="give_trait"
+      PROCESS_CQ="process_cq"
+      ADD_POPULATION="add_population"
+      CAPTURE_SETTLEMENT="capture_settlement"
+      ADD_MONEY="add_money"
+      DIPLOMATIC_STANCE="diplomatic_stance"
+      DATE="date"
+      SEASON="season"
+      CREATE_BUILDING="create_building"
+      CREATE_UNIT="create_unit"
+      DESTROY_UNIT="destroy_unit"
+
+      // scripts
+      SCRIPT="script"
+      END_SCRIPT="end_script"
+      RETURN="return"
+      IF="if"
+      IF_NOT="if_not"
+      END_IF="end_if"
+      WHILE="while"
+      WHILE_NOT="while_not"
+      END_WHILE="end_while"
+      FOR_EACH="for_each"
+      IN="in"
+      END_FOR="end_for"
+      WORLD="world"
+
+      // command params
+      ON="on"
+      OFF="off"
+      CIRCLE="circle"
+      ARROW="arrow"
+      ACCEPT="accept"
+      REJECT="reject"
+      SHOW="show"
+      HIDE="hide"
+      UNITS="units"
+      PASSENGERS="passengers"
+      UP="up"
+      DOWN="down"
+      LEFT="left"
+      RIGHT="right"
+      TOP_LEFT="top_left"
+      TOP_RIGHT="top_right"
+      BOT_LEFT="bot_left"
+      BOT_RIGHT="bot_right"
+      RUN="run"
+      ABSOLUTE="absolute"
+      LOOSE="loose"
+      TIGHT="tight"
+      BESERK="beserk"
+      HIGH="high"
+      FIRM="firm"
+      SHAKEN="shaken"
+      WAVERING="wavering"
+      TW="tw"
+      RTS="rts"
+      USER_PREF="user_pref"
+      ALLIED="allied"
+      NEUTRAL="neutral"
+
       // †ÎöÈ.íëé are in descr_names. Maybe just typos.
       ID = "regexp:[a-zA-Z0-9_+\-!?'†ÎöÈ.íëé]+"
     ]
@@ -1348,6 +1678,7 @@ RRFile ::= descr_strat|
           text_mapping_format|
           enums_format|
           kv_format|
+          script_|
 
 // ############### descr_strat start ###############################
 descr_strat ::= DESCR_STRAT_MARKER
@@ -1362,14 +1693,14 @@ descr_strat ::= DESCR_STRAT_MARKER
                 (SPAWN_SCRIPT faction_ref COMMA REVOLT COMMA txt_file_)*
                  SCRIPT txt_file_ (COMMA ONCE_ONLY)?
 
-private season ::= (SUMMER|WINTER)
+private season_enum ::= (SUMMER|WINTER)
 
 campaign_section ::= CAMPAIGN ID
                      PLAYABLE ID* END
                      UNLOCKABLE ID* END
                      NONPLAYABLE ID* END
-                     START_DATE INT season
-                     END_DATE INT season
+                     START_DATE INT season_enum
+                     END_DATE INT season_enum
                      MARIAN_REFORMS_DISABLED?
                      (BRIGAND_SPAWN_VALUE INT)?
                      (PIRATE_SPAWN_VALUE INT)?
@@ -1405,16 +1736,16 @@ faction_item ::= FACTION faction_ref COMMA ai_personality_ref
 private faction_recover ::= !(FACTION|CORE_ATTITUDES)
 
 settlement_item ::= SETTLEMENT OCB
-                          LEVEL settlement_level
-                          REGION region_ref
-                          YEAR_FOUNDED INT
-                          POPULATION INT
-                          (SETTLEMENT_TAX INT)?
-                          PLAN_SET settlement_plan
-                          FACTION_CREATOR faction_ref
-                          building_item*
-                        CCB
-                        {methods=[name]}
+                      LEVEL settlement_level
+                      REGION region_ref
+                      YEAR_FOUNDED INT
+                      POPULATION INT
+                      (SETTLEMENT_TAX INT)?
+                      PLAN_SET settlement_plan
+                      FACTION_CREATOR faction_ref
+                      building_item*
+                    CCB
+                    {methods=[name]}
 settlement_level ::= VILLAGE|TOWN|LARGE_TOWN|CITY|LARGE_CITY|HUGE_CITY
 settlement_plan ::= DEFAULT_SET|
 
@@ -1444,6 +1775,7 @@ character_record_item ::= CHARACTER_RECORD name_ COMMA
                      ALIVE COMMA
                      NEVER_A_LEADER
 
+character_attribute ::= COMMAND|INFLUENCE|MANAGEMENT|SUBTERFUGE
 character_skills ::= COMMAND INT COMMA INFLUENCE INT COMMA MANAGEMENT INT COMMA SUBTERFUGE INT
 relative_item ::= RELATIVE name_ COMMA name_ COMMA (<<list name_>> COMMA?)? end
 
@@ -1460,13 +1792,10 @@ private faction_relationships_recover ::= !(FACTION_RELATIONSHIPS|SUPERFACTION_S
 superfaction_setup_item ::= SUPERFACTION_SETUP ID
                             (DEFAULT_HOSTILE faction_ref)*
                             mission_queue_item*
-mission_queue_item ::= MISSION_QUEUE faction_ref OCB mission* CCB
-mission ::= ID INT ID (ID)?
+mission_queue_item ::= MISSION_QUEUE faction_ref OCB mission_* CCB
+mission_ ::= ID INT ID (ID)?
 
 name_ ::= ID+
-coords ::= INT COMMA INT
-coords_no_comma ::= INT INT
-coords_with_xy ::= X INT COMMA Y INT
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -1508,7 +1837,7 @@ rebalance_block ::= (soldier_|soldiers_)
                     (ANIMAL ID)?
                     (MOUNT mount_ref)?
                     (OFFICER ID)*
-                    (MOUNT_EFFECT list_of_mount_effects)?
+                    (MOUNT_EFFECT  <<list (mount_class INT)>>)?
                     ATTRIBUTES list_of_unit_attributes
                     FORMATION number COMMA number COMMA number COMMA number COMMA INT COMMA unit_formations
                     STAT_HEALTH INT COMMA INT
@@ -1570,7 +1899,7 @@ export_descr_buildings ::= tags_
                            condition_alias*
                            building_tree+
 
-tags_ ::= TAGS OCB list_of_IDs CCB {pin=1}
+tags_ ::= TAGS OCB <<list ID>> CCB {pin=1}
 
 condition_alias ::= ALIAS ID OCB
                        requirement
@@ -1662,7 +1991,7 @@ ancillary_def ::= ANCILLARY ancillary_name_decl
                     (EXCLUDEDANCILLARIES <<list ancillary_ref>>)*
                     (EXCLUDECULTURES <<list culture_ref>>)*
                     DESCRIPTION ID
-                    EFFECTSDESCRIPTION list_of_IDs
+                    EFFECTSDESCRIPTION <<list ID>>
                     (EFFECT ID INT)*
                     (FAKEEFFECT ID INT)*
                   {pin=1 recoverWhile=ancillary_def_recover}
@@ -1672,19 +2001,16 @@ private ancillary_def_recover ::= !(ANCILLARY|TRIGGER)
 
 ancillary_trigger_def ::= TRIGGER ID
                             WHENTOTEST event
-                            (CONDITION composite_condition)?
+                            (CONDITION condition_)?
                             (ACQUIREANCILLARY|REMOVEANCILLARY) ancillary_ref CHANCE_LC INT
                           {pin=1 recoverWhile=ancillary_trigger_def_recover}
 private ancillary_trigger_def_recover ::= !TRIGGER
-
-composite_condition ::= maybe_negated_condition (and_op maybe_negated_condition)*
-maybe_negated_condition ::= NOT? condition_
 // ############### export_descr_ancillaries end #################################
 
 // ############### export_descr_traits start ###############################
 export_descr_traits ::= trait_def+ trait_trigger_def+
 trait_def ::= TRAIT trait_name_decl
-                CHARACTERS list_of_character_types
+                CHARACTERS <<list (character_type)>>
                 HIDDEN?
                 (EXCLUDECULTURES <<list ID>>)*
                 (NOGOINGBACKLEVEL INT)?
@@ -1705,7 +2031,7 @@ trait_level ::= LEVEL ID
 
 trait_trigger_def ::= TRIGGER ID
                         WHENTOTEST event
-                        (CONDITION composite_condition)?
+                        (CONDITION condition_)?
                       (AFFECTS trait_ref LOSE? INT CHANCE INT)*
                       {pin=1 recoverWhile=trait_trigger_def_recover}
 private trait_trigger_def_recover ::= !TRIGGER
@@ -1734,7 +2060,7 @@ names_for_faction ::= FACTION COLON faction_ref EOL*
 // ############### descr_regions start ###############################
 descr_regions ::= region_def+
 region_def ::= region_name_decl
-                 ID
+                 settlement_name_decl
                  faction_ref
                  rebels_ref
                  INT INT INT
@@ -1743,6 +2069,8 @@ region_def ::= region_name_decl
                  INT
 region_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 region_ref ::= ID {methods=[setName getReference]}
+settlement_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+settlement_ref ::= ID {methods=[setName getReference]}
 // ############### descr_regions end #################################
 
 // ############### descr_unit_variation start ###############################
@@ -1875,6 +2203,7 @@ faction_decl ::= faction_name_decl COLON OCB
 
 faction_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 faction_ref ::= ID {methods=[setName getReference]}
+str_faction_ref ::= STRING {methods=[setName getReference]}
 // ############### descr_sm_factions end #################################
 
 // ############### descr_sm_resources start ###############################
@@ -1951,7 +2280,7 @@ character_type_faction_def ::= FACTION faction_ref
                                {pin=1 recoverWhile=character_type_faction_def_recover}
 private character_type_faction_def_recover ::= !(FACTION|TYPE)
 
-character_action ::= ('moving_normal'|'moving_quickmarch'|'garrison'|'assault'|'attack'|'besiege'|'entrench'|'ambush'|'diplomacy'|'bribe'|'exchange'|'building_fort'|'building_watchtower'|'spying'|'assassinate'|'sabotage'|'quick_sail'|'blockade'|'disembark'|'exchange')
+character_action ::= ('moving_normal'|'moving_quickmarch'|'garrison'|'assault'|'attack'|'besiege'|'entrench'|'ambush'|'diplomacy'|'bribe'|'exchange'|'building_fort'|'building_watchtower'|'spying'|'assassinate'|'sabotage'|'quick_sail'|'blockade'|'disembark')
 // ############### descr_character end #################################
 
 // ############### descr_building_battle start ###############################
@@ -2102,7 +2431,7 @@ disaster_ ::= DISASTER_LC disaster_name_decl OCB
                 YEAR INT
                 POSITION coords_no_comma
                 SIZE INT
-                season?
+                season_enum?
               CCB
 disaster_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 disaster_ref ::= ID {methods=[setName getReference]}
@@ -2200,6 +2529,11 @@ ambient_object_ref ::= ID {methods=[setName getReference]}
 // ############### descr_sm_ambient_objects end #################################
 
 // ############### General things #################################
+// ############### Conditions ###############################
+private condition_ ::= condition_part_ ((and_op|or_op) condition_part_)*
+private condition_part_ ::= NOT?  (parenthesis_condition_|condition_atom)
+private parenthesis_condition_ ::= OP condition_ CP
+
 // ############### text_mapping_format start ###############################
 text_mapping_format ::= TEXT_MAPPING_MARKER
                         text_mapping_item+
@@ -2221,340 +2555,372 @@ KVF_object ::= OCB (KVF_key COLON KVF_value COMMA)* CCB
 KVF_array ::=  OSB (KVF_item|KVF_value COMMA)* CSB
 // ############### kv_format end #################################
 
-// #### events & conditions
+// ############### script start ###############################
+religion_name_decl ::= //TODO: DO ME
+religion_ref ::= //TODO: DO ME
+
+script_ ::= SCRIPT
+              statement+
+            END_SCRIPT
+statement ::= control_structure|command_
+
+control_structure ::= if_|if_not_|monitor_conditions_|monitor_event_|while_|while_not_|for_each_|return_
+if_ ::= IF condition_ statement* END_IF                                       {pin=1}
+if_not_ ::= IF_NOT condition_ statement* END_IF                               {pin=1}
+monitor_conditions_ ::= MONITOR_CONDITIONS condition_ statement* END_MONITOR  {pin=1}
+monitor_event_ ::= MONITOR_EVENT event condition_ statement* END_MONITOR      {pin=1}
+while_ ::= WHILE condition_ statement* END_WHILE                              {pin=1}
+while_not_ ::= WHILE_NOT condition_ statement* END_WHILE                      {pin=1}
+for_each_ ::= FOR_EACH iterator_type IN scope statement* END_FOR              {pin=1}
+return_ ::= RETURN BOOLEAN                                                    {pin=1}
+iterator_type ::= SETTLEMENT|CHARACTER|UNIT|ARMY|FACTION
+scope ::= (
+            FACTION <<local_or str_faction_ref>>?|
+            CHARACTER <<local_or STRING>>?|
+            SETTLEMENT|
+            WORLD|
+            ARMY
+          )
+// ############### script end #################################
+
+// #### events ####
 event ::= (PREBATTLE|PREBATTLEWITHDRAWAL|BATTLEAICOMMENCED|BATTLEDELAYPHASECOMMENCED|BATTLEDEPLOYMENTPHASECOMMENCED|BATTLECONFLICTPHASECOMMENCED|BATTLEPLAYERUNITATTACKSENEMYUNIT|BATTLEENEMYUNITATTACKSPLAYERUNIT|BATTLEPLAYERATTACKSSETTLEMENTBUILDING|BATTLEENEMYATTACKSSETTLEMENTBUILDING|BATTLEUNITGOESBERSERK|BATTLEPLAYERUNITGOESBERSERK|BATTLEENEMYUNITGOESBERSERK|BATTLEUNITROUTS|BATTLEPLAYERUNITROUTS|BATTLEENEMYUNITROUTS|BATTLEPLAYERSIEGEENGINEDESTROYED|BATTLEENEMYSIEGEENGINEDESTROYED|POSTBATTLE|BATTLEARMYROUTED|BATTLEGENERALKILLED|BATTLEGENERALROUTED|BATTLEREINFORCEMENTSARRIVE|BATTLESIEGEENGINEDESTROYED|BATTLESIEGEENGINEDOCKSWALL|BATTLEGATESATTACKEDBYENGINE|BATTLEGATESATTACKEDBYPLAYERENGINE|BATTLEGATESATTACKEDBYENEMYENGINE|BATTLEBATTLEGATESDESTROYEDBYENGINE|BATTLEWALLSBREACHEDBYENGINE|BATTLEWALLSCAPTURED|BATTLEFINISHED|ENTEREDCITYVIEW|BATTLEMINIMAPACTION|BATTLEPLAYERUNITSELECTED|ENTERTACTICALMODE|BATTLEREINFORCEMENTSHACK|FACTIONTURNSTART|FACTIONWARDECLARED|HORDEFORMED|FACTIONTURNEND|HIREMERCENARIES|GENERALCAPTURERESIDENCE|GENERALCAPTUREWONDER|GENERALCAPTURESETTLEMENT|LEADERDESTROYEDFACTION|DISASTER|CHARACTERDAMAGEDBYDISASTER|GENERALASSAULTSRESIDENCE|OFFEREDFORADOPTION|LESSERGENERALOFFEREDFORADOPTION|OFFEREDFORMARRIAGE|BROTHERADOPTED|BECOMESFACTIONLEADER|BECOMESFACTIONHEIR|TAKEOFFICE|CEASEDFACTIONLEADER|CEASEDFACTIONHEIR|LEAVEOFFICE|UNGARRISONEDFORT|LOSTLEGIONARYEAGLE|CAPTUREDLEGIONARYEAGLE|RECAPTUREDLEGIONARYEAGLE|SENATEEXPOSURE|QUAESTORINVESTIGATIONMINOR|QUAESTORINVESTIGATION|QUAESTORINVESTIGATIONMAJOR|POPULARSUPPORTFOROVERTHROW|SENATEREADYTOOUTLAWFACTION|SENATEOUTLAWSFACTION|NEWTURNSTART|SCRIPTPROMPTCALLBACK|FACTIONDESTROYED|BIRTH|CHARACTERCOMESOFAGE|CHARACTERMARRIES|CHARACTERBECOMESAFATHER|CHARACTERTURNSTART|CHARACTERTURNEND|CHARACTERTURNENDINSETTLEMENT|GENERALDEVASTATESTILE|SPYMISSION|EXECUTESASPYONAMISSION|LEADERORDEREDSPYINGMISSION|ASSASSINATIONMISSION|EXECUTESANASSASSINONAMISSION|LEADERORDEREDASSASSINATION|SUFFERASSASSINATIONATTEMPT|SABOTAGEMISSION|LEADERORDEREDSABOTAGE|BRIBERYMISSION|LEADERORDEREDBRIBERY|ACCEPTBRIBE|REFUSEBRIBE|INSURRECTION|DIPLOMACYMISSION|LEADERORDEREDDIPLOMACY|LEADERSENATEMISSIONSUCCESS|LEADERSENATEMISSIONFAILED|CONSTRUCTIONITEMCLICKED|RECRUITMENTITEMCLICKED|RECRUITMENTPOPULATED|CONSTRUCTIONPOPULATED|AGENTLISTPOPULATED|MOVERETINUEPOPULATED|MOVERETINUEPRESSED|MOVERETINUEANCILLARYSELECTED|MOVERETINUEANCILLARYDESELECTED|MISSIONSELECTED|AGENTSELECTED|SCROLLDIDOPEN|UNITHASROUTED|BATTLEUNITACTIONSTATUS|DIPLOMACYSCROLLPOPULATED|ITEMDESELECTED|UNITINFOOPENED|ADVISORAUDIOSTOPPED|SETTLEMENTTURNSTART|SETTLEMENTTURNEND|NEWADMIRALCREATED|UNITTRAINED|GOVERNORUNITTRAINED|BUILDINGCOMPLETED|GOVERNORBUILDINGCOMPLETED|PLUGINCOMPLETED|GOVERNORPLUGINCOMPLETED|AGENTCREATED|GOVERNORAGENTCREATED|BUILDINGDESTROYED|GOVERNORBUILDINGDESTROYED|CITYRIOTS|GOVERNORCITYRIOTS|CITYREBELS|GOVERNORCITYREBELS|GOVERNORTHROWGAMES|GOVERNORTHROWRACES|UNGARRISONEDSETTLEMENT|ENSLAVEPOPULATION|EXTERMINATEPOPULATION|CITYSACKED|CHARACTERSELECTED|SETTLEMENTSELECTED|ENEMYSETTLEMENTSELECTED|MULTITURNMOVE|CHARACTERPANELOPEN|SETTLEMENTPANELOPEN|FINANCESPANELOPEN|FACTIONSUMMARYPANELOPEN|FAMILYTREEPANELOPEN|DIPLOMATICSTANDINGPANELOPEN|SENATEMISSIONSPANELOPEN|SENATEOFFICESPANELOPEN|DIPLOMACYPANELOPEN|PREBATTLEPANELOPEN|RECRUITMENTPANELOPEN|CONSTRUCTIONPANELOPEN|TRADEPANELOPEN|HIREMERCENARIESPANELOPEN|NAVALAUTORESOLVEPANELOPEN|INCOMINGMESSAGE|MESSAGEOPEN|REQUESTBUILDINGADVICE|REQUESTTRAININGADVICE|REQUESTMERCENARIESADVICE|BUTTONPRESSED|SHORTCUTTRIGGERED|SCROLLOPENED|SCROLLCLOSED|ADVICESUPRESSED|SCROLLADVICEREQUESTED|PREBATTLESCROLLADVICEREQUESTED|NAVALPREBATTLESCROLLADVICEREQUESTED|SETTLEMENTSCROLLADVICEREQUESTED|IDLE|ABANDONSHOWME|SCRIPTEDADVICE|DECLINEAUTOMATEDSETTLEMENTMANAGEMENT|ESCPRESSED|GAMERELOADED|FIRSTSTRATUPDATES|MOVIESTOPPED|SELECTIONASSISTPOSSIBLE|SETTLEMENTBUTTONPRESSED|WORLDSCRIPTTERMINATE|CAMPAIGNHUDSHOWN|CONTEXTPOPUPINTERACTION|DIPLOMACYCONSTRUCTINGOFFER|DIPLOMACYCONSTRUCTINGCOUNTEROFFER|DIPLOMACYOPPONENTPRESENTSOFFER|DIPLOMACYOPPONENTPRESENTSCOUNTEROFFER|FACTIONSUMMARY|FACTIONSENATE|FACTIONSENATEPOLICY|FACTIONSENATEMISSIONS|FACTIONSENATEOFFICIALS|FACTIONSENATEFLOOR|FACTIONFACTIONS|FACTIONDETAILS|FACTIONFAMILYTREE|FACTIONRANKINGS|FACTIONLISTS|SETTLEMENTCHARACTER|SETTLEMENTTRADE|SETTLEMENTOVERVIEW|SPYSELECTED|DIPLOMATSELECTED|ASSASSINSELECTED|FLEETSELECTED|CAMPAIGNMAPGESTURE|CAMPAIGNDOINGBADLY|BATTLEMAPGESTURE|HIDEBATTLEUI|FERALNEWSVISIBLE|AGENTHUBOPENED|MOVERETINUEOPENED|OWNFACTIONDETAILSOPENED|DIPLOMATICSTANDINGSHOWN|FACTIONFINANCESSHOWN|FAMILYTREESHOWN|SENDAGENTPANEL|SETTLEMENTDETAILSSHOWN|CHARACTERINFOSCREEN|FRIENDLYCHARACTERSELECTED|ENEMYCHARACTERSELECTED|FRIENDLYSETTLEMENTSELECTED|MAPOVERLAYOPENED|SIEGEDETAILSSHOWN|PREBATTLESCREEN|TACTICALMAPSHOWN|POSTBATTLESCREEN|UNITSGROUPED|ENTEREDBATTLE|ADVISOROPENED|FORMATIONTYPESSHOWN|MERCHANTSELECTED|NAVALCOMBATSTARTED|MERGEARMIESOPENED|ROUTESBLOCKADED|ELECTIONRESULTS|BATTLETOGGLEMENU|AMBUSHMODE|NEWSTABCLOSED|NEWSTABOPENED|BATTLENEWSTABOPENED|QUICKLISTSOPENED|EMBARGOISAVAILABLE|REBELCHARACTERSELECTED|HIGHTAXESCAUSEDISORDER|FAILEDTOENDTURN|
 ACQUISITIONMISSION|SUFFERACQUISITIONATTEMPT)// Events in this line are not documented, but used
-condition_ ::= (
-                I_INBATTLE|
-                WONBATTLE|
-                I_WONBATTLE ID|
-                ROUTS|
-                ALLY_ROUTS|
-                GENERALHPLOSTRATIOINBATTLE comparison_op number|
-                GENERALNUMKILLSINBATTLE comparison_op number|
-                GENERALFOUGHTINCOMBAT|
-                PERCENTAGEOFARMYKILLED comparison_op number|
-                I_PERCENTAGEOFARMYKILLED INT INT comparison_op INT|
-                PERCENTAGEENEMYKILLED comparison_op number|
-                PERCENTAGEBODYGUARDKILLED comparison_op number|
-                PERCENTAGEROUTEDOFFFIELD comparison_op number|
-                NUMKILLEDGENERALS comparison_op number|
-                PERCENTAGEUNITCATEGORY unit_category comparison_op number|
-                NUMFRIENDSINBATTLE comparison_op number|
-                NUMENEMIESINBATTLE comparison_op number|
-                GENERALFOUGHTFACTION ID|
-                GENERALFOUGHTCULTURE ID|
-                I_CONFLICTTYPE conflict_type|
-                ISNIGHTBATTLE|
-                BATTLESUCCESS comparison_op battle_success|
-                BATTLEODDS comparison_op number|
-                WASATTACKER|
-                I_BATTLEAIATTACKING|
-                I_BATTLEAIATTACKINGSETTLEMENT|
-                I_BATTLEAIDEFENDINGSETTLEMENT|
-                I_BATTLEAIDEFENDINGHILL|
-                I_BATTLEAIDEFENDINGCROSSING|
-                I_BATTLEAISCOUTING|
-                I_BATTLEISRIVERBATTLE|
-                I_BATTLEISSIEGEBATTLE|
-                I_BATTLEISSALLYOUTBATTLE|
-                I_BATTLEISFORTBATTLE|
-                I_BATTLEATTACKERNUMSIEGEENGINES siege_engine_class|
-                I_BATTLEATTACKERNUMARTILLERYCANPENETRATEWALLS comparison_op INT|
-                I_BATTLEDEFENDERNUMNONMISSILEUNITSONWALLS comparison_op INT|
-                I_BATTLEDEFENDERNUMMISSILEUNITSONWALLS comparison_op INT|
-                I_BATTLESETTLEMENTWALLSBREACHED|
-                I_BATTLESETTLEMENTGATEDESTROYED|
-                I_BATTLESETTLEMENTTOWERDEFENCE tower_defence_type|
-                I_BATTLESETTLEMENTGATEDEFENCE gate_defence_type|
-                I_BATTLESETTLEMENTFORTIFICATIONLEVEL comparison_op INT|
-                BATTLEBUILDINGTYPE EQUALS battle_building_type|
-                I_BATTLESETTLEMENTGATESTRENGTH comparison_op INT|
-                I_BATTLENUMBEROFRIVERCROSSINGS comparison_op INT|
-                BATTLEPLAYERUNITCLASS EQUALS unit_class|
-                BATTLEENEMYUNITCLASS EQUALS unit_class|
-                BATTLEPLAYERUNITCATEGORY EQUALS unit_category|
-                BATTLEENEMYUNITCATEGORY EQUALS unit_category|
-                BATTLEPLAYERUNITSIEGEENGINECLASS EQUALS siege_engine_class|
-                BATTLEENEMYUNITSIEGEENGINECLASS EQUALS siege_engine_class|
-                BATTLEPLAYERUNITONWALLS|
-                BATTLEENEMYUNITONWALLS|
-                BATTLEPLAYERCURRENTFORMATION EQUALS unit_formation|
-                BATTLEENEMYCURRENTFORMATION EQUALS unit_formation|
-                BATTLEPLAYERUNITCLOSEFORMATION|
-                BATTLEENEMYUNITCLOSEFORMATION|
-                BATTLEPLAYERUNITSPECIALABILITYSUPPORTED comparison_op special_ability|
-                BATTLESELECTEDPLAYERUNITSPECIALABILITYSUPPORTED comparison_op special_ability|
-                BATTLEENEMYUNITSPECIALABILITYSUPPORTED comparison_op special_ability|
-                BATTLEPLAYERUNITSPECIALABILITYACTIVE|
-                BATTLEENEMYUNITSPECIALABILITYACTIVE|
-                BATTLEPLAYERMOUNTCLASS comparison_op mount_class|
-                BATTLEENEMYMOUNTCLASS comparison_op mount_class|
-                BATTLEPLAYERUNITMELEESTRENGTH comparison_op number|
-                BATTLEENEMYUNITMELEESTRENGTH comparison_op number|
-                BATTLEPLAYERUNITMISSILESTRENGTH comparison_op number|
-                BATTLEENEMYUNITMISSILESTRENGTH comparison_op number|
-                BATTLEPLAYERUNITSPECIALFORMATION EQUALS unit_formation|
-                BATTLEENEMYUNITSPECIALFORMATION EQUALS unit_formation|
-                BATTLEPLAYERUNITENGAGED|
-                BATTLEENEMYUNITENGAGED|
-                BATTLEPLAYERACTIONSTATUS EQUALS action_status|
-                BATTLEENEMYACTIONSTATUS EQUALS action_status|
-                BATTLEPLAYERUNITMOVINGFAST|
-                BATTLEENEMYUNITMOVINGFAST|
-                BATTLERANGEOFATTACK comparison_op number|
-                BATTLEDIRECTIONOFATTACK EQUALS attack_direction|
-                BATTLEISMELEEATTACK|
-                I_BATTLEPLAYERARMYPERCENTAGEOFUNITCLASS unit_class comparison_op number|
-                I_BATTLEENEMYARMYPERCENTAGEOFUNITCLASS unit_class comparison_op number|
-                I_BATTLEPLAYERARMYPERCENTAGEOFUNITCATEGORY unit_category comparison_op number|
-                I_BATTLEENEMYARMYPERCENTAGEOFUNITCATEGORY unit_category comparison_op number|
-                I_BATTLEPLAYERARMYPERCENTAGEOFMOUNTCLASS mount_class comparison_op number|
-                I_BATTLEENEMYARMYPERCENTAGEOFMOUNTCLASS mount_class comparison_op number|
-                I_BATTLEPLAYERARMYPERCENTAGEOFCLASSANDCATEGORY unit_class unit_category comparison_op number|
-                I_BATTLEENEMYARMYPERCENTAGEOFCLASSANDCATEGORY unit_class unit_category comparison_op number|
-                I_BATTLEPLAYERARMYPERCENTAGEOFSPECIALABILITY special_ability comparison_op number|
-                I_BATTLEENEMYARMYPERCENTAGEOFSPECIALABILITY special_ability comparison_op number|
-                I_BATTLEPLAYERARMYPERCENTAGECANHIDE hide_type comparison_op number|
-                I_BATTLEENEMYARMYPERCENTAGECANHIDE hide_type comparison_op number|
-                I_BATTLEPLAYERARMYPERCENTAGECANSWIM comparison_op number|
-                I_BATTLEENEMYARMYPERCENTAGECANSWIM comparison_op number|
-                I_BATTLEPLAYERARMYISATTACKER|
-                I_BATTLEPLAYERALLIANCEODDSINFAVOUR comparison_op INT|
-                I_BATTLEPLAYERALLIANCEODDSAGAINST comparison_op INT|
-                TOTALSIEGEWEAPONS comparison_op INT|
-                I_BATTLESTARTED|
-                I_BATTLEFINISHED|
-                I_BATTLEEND|
-                I_BATTLEENDPENDING|
-                I_ISUNITMOVEFASTSET ID|
-                I_ISUNITMOVING ID|
-                I_ISUNITIDLE ID|
-                I_ISUNITROUTING ID|
-                I_ISUNITUNDERFIRE ID|
-                I_ISUNITENGAGED ID|
-                I_ISUNITENGAGEDWITHUNIT ID ID|
-                I_UNITFORMATION ID EQUALS unit_formation|
-                I_PERCENTAGEUNITKILLED ID comparison_op INT|
-                I_UNITPERCENTAGEAMMOLEFT ID comparison_op INT|
-                I_UNITDISTANCEFROMPOSITION ID INT INT comparison_op INT|
-                I_UNITDISTANCEFROMLINE ID ID ID comparison_op INT|
-                I_UNITDISTANCEFROMUNIT ID ID comparison_op INT|
-                I_UNITINRANGEOFUNIT ID ID|
-                I_UNITDESTROYED ID|
-                I_UNITENEMYUNITINRADIUS ID INT|
-                I_ISUNITGROUPMOVING ID|
-                I_ISUNITGROUPENGAGED ID|
-                I_ISUNITGROUPIDLE ID|
-                I_ISUNITGROUPDESTROYED ID|
-                I_PERCENTAGEUNITGROUPKILLED ID comparison_op INT|
-                I_UNITGROUPFORMATION ID EQUALS ID|
-                I_UNITGROUPDISTANCEFROMPOSITION ID INT comparison_op INT|
-                I_UNITGROUPDISTANCEFROMGROUP ID ID comparison_op INT|
-                I_UNITGROUPINRANGEOFUNIT ID ID|
-                I_UNITINRANGEOFUNITGROUP ID ID|
-                I_UNITGROUPINRANGEOFUNITGROUP ID ID|
-                I_PLAYERINRANGEOFUNITGROUP ID|
-                I_PLAYERINRANGEOFUNIT ID|
-                I_UNITTYPESELECTED ID|
-                UNITTYPE ID|
-                I_UNITSELECTED ID|
-                I_MULTIPLEUNITSSELECTED|
-                I_SPECIFICUNITSSELECTED ID*|
-                I_ISCAMERAZOOMINGTOUNIT ID|
-                I_BATTLEENEMYARMYPERCENTAGEOFMATCHINGUNITS ID comparison_op number|
-                I_BATTLEENEMYARMYNUMBEROFMATCHINGUNITS ID comparison_op INT|
-                I_BATTLEPLAYERARMYPERCENTAGEOFMATCHINGUNITS ID comparison_op number|
-                I_BATTLEPLAYERARMYNUMBEROFMATCHINGUNITS ID comparison_op INT|
-                LOCALPLAYERHASMANUALREINFORCEMENTS|
-                LOCALPLAYERHASAIREINFORCEMENTS|
-                TRAIT ID comparison_op INT|
-                HASANCILLARY ID|
-                FATHERTRAIT ID comparison_op INT|
-                FACTIONLEADERTRAIT ID comparison_op INT|
-                ATTRIBUTE ID comparison_op INT|
-                REMAININGMPPERCENTAGE comparison_op number|
-                I_REMAININGMPPERCENTAGE name_ comparison_op number|
-                I_CHARACTERCANMOVE name_|
-                NOACTIONTHISTURN|
-                AGENTTYPE EQUALS character_type|
-                TRAINEDAGENTTYPE EQUALS character_type|
-                DISASTERTYPE disaster_type|
-                CULTURETYPE ID|
-                ORIGINALFACTIONTYPE ID|
-                ORIGINALCULTURETYPE ID|
-                ISGENERAL|
-                ISADMIRAL|
-                REMASTEREDEDUCATION|
-                ENDEDINSETTLEMENT|
-                ISFACTIONLEADER|
-                ISFACTIONHEIR|
-                ISMARRIED|
-                ATSEA|
-                INENEMYLANDS|
-                INBARBARIANLANDS|
-                INUNCIVILISEDLANDS|
-                ISBESIEGING|
-                ISUNDERSIEGE|
-                I_WITHDRAWSBEFOREBATTLE|
-                ENDEDINENEMYZOC|
-                ADVISEACTION EQUALS character_action_advice|
-                I_CHARACTERTYPENEARCHARACTERTYPE ID character_type INT ID character_type|
-                I_CHARACTERTYPENEARTILE ID character_type INT coords|
-                I_CHARACTERNAMENEARTILE name_ character_type INT coords|
-                TRADINGRESOURCE ID?|
-                REGIONTRADINGRESOURCE ID|
-                TRADINGEXOTIC|
-                DISTANCECAPITAL comparison_op INT|
-                DISTANCEHOME comparison_op INT|
-                TRADINGGROUP ID|
-                REGIONMERCHANTCOUNT comparison_op INT|
-                PRECIOUSMINECOUNT comparison_op INT|
-                ISFROMFACTION ID|
-                NIGHTBATTLESENABLED|
-                WORLDWIDEANCILLARYEXISTS|
-                HASOFFICE ID|
-                FACTIONTYPE ID|
-                TARGETFACTIONTYPE ID|
-                FACTIONCULTURETYPE ID|
-                TARGETFACTIONCULTURETYPE ID|
-                TRAINEDUNITCATEGORY unit_category|
-                UNITCATEGORY EQUALS unit_category|
-                SENATEMISSIONTIMEREMAINING comparison_op INT|
-                MEDIANTAXLEVEL comparison_op tax_level|
-                MODETAXLEVEL comparison_op tax_level|
-                I_MODETAXLEVEL ID comparison_op tax_level|
-                MISSIONSUCCESSLEVEL comparison_op success_level|
-                MISSIONSUCCEEDED|
-                MISSIONFACTIONTARGETTYPE ID|
-                MISSIONCULTURETARGETTYPE ID|
-                DIPLOMATICSTANCEFROMCHARACTER name_ comparison_op diplomatic_stance|
-                DIPLOMATICSTANCEFROMFACTION ID comparison_op diplomatic_stance|
-                FACTIONHASALLIES|
-                LOSINGMONEY|
-                I_LOSINGMONEY ID|
-                FACTIONISALIVE ID|
-                SUPPORTCOSTSPERCENTAGE comparison_op number|
-                TREASURY comparison_op INT|
-                ONAWARFOOTING|
-                I_FACTIONBESIEGING ID|
-                I_FACTIONBESIEGED ID|
-                I_NUMBEROFSETTLEMENTS ID comparison_op INT|
-                I_NUMBEROFHEIRS ID comparison_op INT|
-                I_FACTIONNEARTILE ID INT coords|
-                SETTLEMENTSTAKEN comparison_op INT|
-                BATTLESFOUGHT comparison_op INT|
-                BATTLESWON comparison_op INT|
-                BATTLESLOST comparison_op INT|
-                DEFENSIVESIEGESFOUGHT comparison_op INT|
-                DEFENSIVESIEGESWON comparison_op INT|
-                OFFENSIVESIEGESFOUGHT comparison_op INT|
-                OFFENSIVESIEGESWON comparison_op INT|
-                FACTIONWIDEANCILLARYEXISTS ID true|
-                ISALLY ID|
-                ISPROTECTORATE ID|
-                ISPROTECTOR ID|
-                ISSAMESUPERFACTION ID|
-                LOCALPLAYERBATTLESFOUGHT comparison_op INT|
-                TOGGLED ID+|
-                MAJOREVENTACTIVE STRING ID|
-                RANDOMPERCENT comparison_op INT|
-                TRUECONDITION|
-                WORLDWIDEANCILLARYEXISTS ID BOOLEAN|
-                I_ISTUTORIALENABLED|
-                I_ISPLAYERTURN|
-                CONSTRUCTIONITEMCLICKED ID|
-                RECRUITMENTITEMCLICKED name_|
-                CHARACTERNAME name_|
-                SCROLLDIDOPEN ID|
-                UNITHASROUTED ID|
-                BATTLEUNITACTIONSTATUS ID action_status|
-                I_AMOUNTOFUNITINSETTLEMENT ID INT name_|
-                I_UNITCARDSELECTED name_ INT|
-                I_COMPARECOUNTER ID comparison_op INT|
-                TESTFACTION ID|
-                LANGIS ID|
-                I_TIMERELAPSED ID ID comparison_op INT|
-                I_SOUNDPLAYING ID|
-                HASRESOURCE ID|
-                SETTLEMENTREVOLTINGFROM ID|
-                ISCAPITAL|
-                SETTLEMENTNAME ID|
-                GOVERNORBUILDINGEXISTS EQUALS ID|
-                SETTLEMENTBUILDINGEXISTS comparison_op ID|
-                HOMESETTLEMENTBUILDINGEXISTS comparison_op ID|
-                SETTLEMENTORDERLEVEL law comparison_op INT|
-                SETTLEMENTCAPABILITYLEVEL ID comparison_op INT|
-                BUILDINGFINISHEDBYGOVERNOR EQUALS ID|
-                SETTLEMENTBUILDINGFINISHED comparison_op ID|
-                GOVERNORPLUGINEXISTS comparison_op ID|
-                GOVERNORPLUGINFINISHED comparison_op ID|
-                GOVERNORTAXLEVEL comparison_op tax_level|
-                SETTLEMENTTAXLEVEL comparison_op tax_level|
-                GOVERNORINRESIDENCE|
-                GOVERNORLOYALTYLEVEL comparison_op loyalty_to_governor_level|
-                SETTLEMENTLOYALTYLEVEL comparison_op loyalty_to_governor_level|
-                RIOTRISK comparison_op 30|
-                BUILDINGQUEUEIDLEDESPITECASH|
-                TRAININGQUEUEIDLEDESPITECASH|
-                I_SETTLEMENTEXISTS ID|
-                I_SETTLEMENTOWNER ID EQUALS ID|
-                I_SETTLEMENTOWNERCULTURE ID EQUALS ID|
-                I_SETTLEMENTLEVEL ID comparison_op settlement_level|
-                ADVISEFINANCIALBUILD EQUALS ID|
-                ADVISEBUILD EQUALS ID|
-                ADVISERECRUIT EQUALS name_|
-                SETTLEMENTPOPULATIONMAXEDOUT|
-                SETTLEMENTPOPULATIONTOOLOW|
-                SETTLEMENTAUTOMANAGED automanage_type|
-                FERALSETTLEMENTAUTOMANAGED automanage_type|
-                PERCENTAGEOFPOPULATIONINGARRISON comparison_op INT|
-                GARRISONTOPOPULATIONRATIO comparison_op number|
-                GARRISONSETTLEMENTRATIO comparison_op number|
-                HEALTHPERCENTAGE comparison_op INT|
-                SETTLEMENTHASPLAGUE|
-                ISFORTGARRISONED|
-                ISSETTLEMENTGARRISONED|
-                ISSETTLEMENTRIOTING|
-                I_NUMBERUNITSINSETTLEMENT ID ID comparison_op INT|
-                I_ADVISORSPEECHPLAYING|
-                CHARACTERISLOCAL|
-                TARGETCHARACTERISLOCAL|
-                SETTLEMENTISLOCAL|
-                TARGETSETTLEMENTISLOCAL|
-                REGIONISLOCAL|
-                TARGETREGIONISLOCAL|
-                ARMYISLOCAL|
-                ARMYISGARRISON|
-                TARGETARMYISLOCAL|
-                FACTIONISLOCAL|
-                I_LOCALFACTION ID|
-                TARGETFACTIONISLOCAL|
-                I_TURNNUMBER comparison_op INT|
-                I_MAPNAME txt_file_|
-                I_THREADCOUNT ID comparison_op INT|
-                I_ISTRIGGERTRUE ID|
-                INCOMINGMESSAGETYPE ID|
-                I_ADVISORVERBOSITY comparison_op INT|
-                I_ADVISORVISIBLE|
-                I_CHARACTERSELECTED name_|
-                I_AGENTSELECTED character_type|
-                I_SETTLEMENTSELECTED ID|
-                SHORTCUTTRIGGERED ID ID|
-                I_ADVANCEDSTATSSCROLLISOPEN|
-                BUTTONPRESSED ID|
-                SCROLLOPENED ID|
-                SCROLLCLOSED ID|
-                SCROLLADVICEREQUESTED ID|
-                I_ANNOTATIONDISPLAYED ID|
-                FERALUITYPE ID|
-                MERCHANTISAVAILABLETOBUILD|
-                SETTLEMENTHASDAMAGEDBUILDING|
-                LOCALPLAYERHASREINFORCEMENTS|
-                SETTLEMENTMERCHANTTRADINGWITH ID|       // This is not documented but used.
-                SETTLEMENTOWNEDBY ID|                   // This is not documented but used.
-                FACTIONBUILDINGEXISTS comparison_op ID| // This is not documented but used.
-              )
+// #### conditions ####
+condition_atom ::= i_inbattle_|wonbattle_|i_wonbattle_|routs_|ally_routs_|generalhplostratioinbattle_|generalnumkillsinbattle_|generalfoughtincombat_|percentageofarmykilled_|i_percentageofarmykilled_|percentageenemykilled_|percentagebodyguardkilled_|percentageroutedofffield_|numkilledgenerals_|percentageunitcategory_|numfriendsinbattle_|numenemiesinbattle_|generalfoughtfaction_|generalfoughtculture_|i_conflicttype_|isnightbattle_|battlesuccess_|battleodds_|wasattacker_|i_battleaiattacking_|i_battleaiattackingsettlement_|i_battleaidefendingsettlement_|i_battleaidefendinghill_|i_battleaidefendingcrossing_|i_battleaiscouting_|i_battleisriverbattle_|i_battleissiegebattle_|i_battleissallyoutbattle_|i_battleisfortbattle_|i_battleattackernumsiegeengines_|i_battleattackernumartillerycanpenetratewalls_|i_battledefendernumnonmissileunitsonwalls_|i_battledefendernummissileunitsonwalls_|i_battlesettlementwallsbreached_|i_battlesettlementgatedestroyed_|i_battlesettlementtowerdefence_|i_battlesettlementgatedefence_|i_battlesettlementfortificationlevel_|battlebuildingtype_|i_battlesettlementgatestrength_|i_battlenumberofrivercrossings_|battleplayerunitclass_|battleenemyunitclass_|battleplayerunitcategory_|battleenemyunitcategory_|battleplayerunitsiegeengineclass_|battleenemyunitsiegeengineclass_|battleplayerunitonwalls_|battleenemyunitonwalls_|battleplayercurrentformation_|battleenemycurrentformation_|battleplayerunitcloseformation_|battleenemyunitcloseformation_|battleplayerunitspecialabilitysupported_|battleselectedplayerunitspecialabilitysupported_|battleenemyunitspecialabilitysupported_|battleplayerunitspecialabilityactive_|battleenemyunitspecialabilityactive_|battleplayermountclass_|battleenemymountclass_|battleplayerunitmeleestrength_|battleenemyunitmeleestrength_|battleplayerunitmissilestrength_|battleenemyunitmissilestrength_|battleplayerunitspecialformation_|battleenemyunitspecialformation_|battleplayerunitengaged_|battleenemyunitengaged_|battleplayeractionstatus_|battleenemyactionstatus_|battleplayerunitmovingfast_|battleenemyunitmovingfast_|battlerangeofattack_|battledirectionofattack_|battleismeleeattack_|i_battleplayerarmypercentageofunitclass_|i_battleenemyarmypercentageofunitclass_|i_battleplayerarmypercentageofunitcategory_|i_battleenemyarmypercentageofunitcategory_|i_battleplayerarmypercentageofmountclass_|i_battleenemyarmypercentageofmountclass_|i_battleplayerarmypercentageofclassandcategory_|i_battleenemyarmypercentageofclassandcategory_|i_battleplayerarmypercentageofspecialability_|i_battleenemyarmypercentageofspecialability_|i_battleplayerarmypercentagecanhide_|i_battleenemyarmypercentagecanhide_|i_battleplayerarmypercentagecanswim_|i_battleenemyarmypercentagecanswim_|i_battleplayerarmyisattacker_|i_battleplayerallianceoddsinfavour_|i_battleplayerallianceoddsagainst_|totalsiegeweapons_|i_battlestarted_|i_battlefinished_|i_battleend_|i_battleendpending_|i_isunitmovefastset_|i_isunitmoving_|i_isunitidle_|i_isunitrouting_|i_isunitunderfire_|i_isunitengaged_|i_isunitengagedwithunit_|i_unitformation_|i_percentageunitkilled_|i_unitpercentageammoleft_|i_unitdistancefromposition_|i_unitdistancefromline_|i_unitdistancefromunit_|i_unitinrangeofunit_|i_unitdestroyed_|i_unitenemyunitinradius_|i_isunitgroupmoving_|i_isunitgroupengaged_|i_isunitgroupidle_|i_isunitgroupdestroyed_|i_percentageunitgroupkilled_|i_unitgroupformation_|i_unitgroupdistancefromposition_|i_unitgroupdistancefromgroup_|i_unitgroupinrangeofunit_|i_unitinrangeofunitgroup_|i_unitgroupinrangeofunitgroup_|i_playerinrangeofunitgroup_|i_playerinrangeofunit_|i_unittypeselected_|unittype_|i_unitselected_|i_multipleunitsselected_|i_specificunitsselected_|i_iscamerazoomingtounit_|i_battleenemyarmypercentageofmatchingunits_|i_battleenemyarmynumberofmatchingunits_|i_battleplayerarmypercentageofmatchingunits_|i_battleplayerarmynumberofmatchingunits_|localplayerhasmanualreinforcements_|localplayerhasaireinforcements_|trait_|hasancillary_|fathertrait_|factionleadertrait_|attribute_|remainingmppercentage_|i_remainingmppercentage_|i_charactercanmove_|noactionthisturn_|agenttype_|trainedagenttype_|disastertype_|culturetype_|originalfactiontype_|originalculturetype_|isgeneral_|isadmiral_|remasterededucation_|endedinsettlement_|isfactionleader_|isfactionheir_|ismarried_|atsea_|inenemylands_|inbarbarianlands_|inuncivilisedlands_|isbesieging_|isundersiege_|i_withdrawsbeforebattle_|endedinenemyzoc_|adviseaction_|i_charactertypenearcharactertype_|i_charactertypeneartile_|i_characternameneartile_|tradingresource_|regiontradingresource_|tradingexotic_|distancecapital_|distancehome_|tradinggroup_|regionmerchantcount_|preciousminecount_|isfromfaction_|nightbattlesenabled_|hasoffice_|factiontype_|targetfactiontype_|factionculturetype_|targetfactionculturetype_|trainedunitcategory_|unitcategory_|senatemissiontimeremaining_|mediantaxlevel_|modetaxlevel_|i_modetaxlevel_|missionsuccesslevel_|missionsucceeded_|missionfactiontargettype_|missionculturetargettype_|diplomaticstancefromcharacter_|diplomaticstancefromfaction_|factionhasallies_|losingmoney_|i_losingmoney_|factionisalive_|supportcostspercentage_|treasury_|onawarfooting_|i_factionbesieging_|i_factionbesieged_|i_numberofsettlements_|i_numberofheirs_|i_factionneartile_|settlementstaken_|battlesfought_|battleswon_|battleslost_|defensivesiegesfought_|defensivesiegeswon_|offensivesiegesfought_|offensivesiegeswon_|factionwideancillaryexists_|isally_|isprotectorate_|isprotector_|issamesuperfaction_|localplayerbattlesfought_|toggled_|majoreventactive_|randompercent_|truecondition_|worldwideancillaryexists_|i_istutorialenabled_|i_isplayerturn_|constructionitemclicked_|recruitmentitemclicked_|charactername_|scrolldidopen_|unithasrouted_|battleunitactionstatus_|i_amountofunitinsettlement_|i_unitcardselected_|i_comparecounter_|testfaction_|langis_|i_timerelapsed_|i_soundplaying_|hasresource_|settlementrevoltingfrom_|iscapital_|settlementname_|governorbuildingexists_|settlementbuildingexists_|homesettlementbuildingexists_|settlementorderlevel_|settlementcapabilitylevel_|buildingfinishedbygovernor_|settlementbuildingfinished_|governorpluginexists_|governorpluginfinished_|governortaxlevel_|settlementtaxlevel_|governorinresidence_|governorloyaltylevel_|settlementloyaltylevel_|riotrisk_|buildingqueueidledespitecash_|trainingqueueidledespitecash_|i_settlementexists_|i_settlementowner_|i_settlementownerculture_|i_settlementlevel_|advisefinancialbuild_|advisebuild_|adviserecruit_|settlementpopulationmaxedout_|settlementpopulationtoolow_|settlementautomanaged_|feralsettlementautomanaged_|percentageofpopulationingarrison_|garrisontopopulationratio_|garrisonsettlementratio_|healthpercentage_|settlementhasplague_|isfortgarrisoned_|issettlementgarrisoned_|issettlementrioting_|i_numberunitsinsettlement_|i_advisorspeechplaying_|characterislocal_|targetcharacterislocal_|settlementislocal_|targetsettlementislocal_|regionislocal_|targetregionislocal_|armyislocal_|armyisgarrison_|targetarmyislocal_|factionislocal_|i_localfaction_|targetfactionislocal_|i_turnnumber_|i_mapname_|i_threadcount_|i_istriggertrue_|incomingmessagetype_|i_advisorverbosity_|i_advisorvisible_|i_characterselected_|i_agentselected_|i_settlementselected_|shortcuttriggered_|i_advancedstatsscrollisopen_|buttonpressed_|scrollopened_|scrollclosed_|scrolladvicerequested_|i_annotationdisplayed_|feraluitype_|merchantisavailabletobuild_|settlementhasdamagedbuilding_|localplayerhasreinforcements_|settlementmerchanttradingwith_|settlementownedby_|factionbuildingexists_
+{recoverWhile=condition_recover}
+private condition_recover ::= !(ends_of_conditions|statement)
+private ends_of_conditions ::= END_IF|END_WHILE|END_MONITOR|CP|and_op|or_op
+
+i_inbattle_ ::= I_INBATTLE {pin=1}
+wonbattle_ ::= WONBATTLE {pin=1}
+i_wonbattle_ ::= I_WONBATTLE faction_ref {pin=1}
+routs_ ::= ROUTS {pin=1}
+ally_routs_ ::= ALLY_ROUTS {pin=1}
+generalhplostratioinbattle_ ::= GENERALHPLOSTRATIOINBATTLE comparison_op number {pin=1}
+generalnumkillsinbattle_ ::= GENERALNUMKILLSINBATTLE comparison_op number {pin=1}
+generalfoughtincombat_ ::= GENERALFOUGHTINCOMBAT {pin=1}
+percentageofarmykilled_ ::= PERCENTAGEOFARMYKILLED comparison_op number {pin=1}
+i_percentageofarmykilled_ ::= I_PERCENTAGEOFARMYKILLED INT INT comparison_op INT {pin=1}
+percentageenemykilled_ ::= PERCENTAGEENEMYKILLED comparison_op number {pin=1}
+percentagebodyguardkilled_ ::= PERCENTAGEBODYGUARDKILLED comparison_op number {pin=1}
+percentageroutedofffield_ ::= PERCENTAGEROUTEDOFFFIELD comparison_op number {pin=1}
+numkilledgenerals_ ::= NUMKILLEDGENERALS comparison_op number {pin=1}
+percentageunitcategory_ ::= PERCENTAGEUNITCATEGORY unit_category comparison_op number {pin=1}
+numfriendsinbattle_ ::= NUMFRIENDSINBATTLE comparison_op number {pin=1}
+numenemiesinbattle_ ::= NUMENEMIESINBATTLE comparison_op number {pin=1}
+generalfoughtfaction_ ::= GENERALFOUGHTFACTION faction_ref {pin=1}
+generalfoughtculture_ ::= GENERALFOUGHTCULTURE culture_ref {pin=1}
+i_conflicttype_ ::= I_CONFLICTTYPE conflict_type {pin=1}
+isnightbattle_ ::= ISNIGHTBATTLE {pin=1}
+battlesuccess_ ::= BATTLESUCCESS comparison_op battle_success {pin=1}
+battleodds_ ::= BATTLEODDS comparison_op number {pin=1}
+wasattacker_ ::= WASATTACKER {pin=1}
+i_battleaiattacking_ ::= I_BATTLEAIATTACKING {pin=1}
+i_battleaiattackingsettlement_ ::= I_BATTLEAIATTACKINGSETTLEMENT {pin=1}
+i_battleaidefendingsettlement_ ::= I_BATTLEAIDEFENDINGSETTLEMENT {pin=1}
+i_battleaidefendinghill_ ::= I_BATTLEAIDEFENDINGHILL {pin=1}
+i_battleaidefendingcrossing_ ::= I_BATTLEAIDEFENDINGCROSSING {pin=1}
+i_battleaiscouting_ ::= I_BATTLEAISCOUTING {pin=1}
+i_battleisriverbattle_ ::= I_BATTLEISRIVERBATTLE {pin=1}
+i_battleissiegebattle_ ::= I_BATTLEISSIEGEBATTLE {pin=1}
+i_battleissallyoutbattle_ ::= I_BATTLEISSALLYOUTBATTLE {pin=1}
+i_battleisfortbattle_ ::= I_BATTLEISFORTBATTLE {pin=1}
+i_battleattackernumsiegeengines_ ::= I_BATTLEATTACKERNUMSIEGEENGINES siege_engine_class {pin=1}
+i_battleattackernumartillerycanpenetratewalls_ ::= I_BATTLEATTACKERNUMARTILLERYCANPENETRATEWALLS comparison_op INT {pin=1}
+i_battledefendernumnonmissileunitsonwalls_ ::= I_BATTLEDEFENDERNUMNONMISSILEUNITSONWALLS comparison_op INT {pin=1}
+i_battledefendernummissileunitsonwalls_ ::= I_BATTLEDEFENDERNUMMISSILEUNITSONWALLS comparison_op INT {pin=1}
+i_battlesettlementwallsbreached_ ::= I_BATTLESETTLEMENTWALLSBREACHED {pin=1}
+i_battlesettlementgatedestroyed_ ::= I_BATTLESETTLEMENTGATEDESTROYED {pin=1}
+i_battlesettlementtowerdefence_ ::= I_BATTLESETTLEMENTTOWERDEFENCE tower_defence_type {pin=1}
+i_battlesettlementgatedefence_ ::= I_BATTLESETTLEMENTGATEDEFENCE gate_defence_type {pin=1}
+i_battlesettlementfortificationlevel_ ::= I_BATTLESETTLEMENTFORTIFICATIONLEVEL comparison_op INT {pin=1}
+battlebuildingtype_ ::= BATTLEBUILDINGTYPE EQUALS battle_building_type {pin=1}
+i_battlesettlementgatestrength_ ::= I_BATTLESETTLEMENTGATESTRENGTH comparison_op INT {pin=1}
+i_battlenumberofrivercrossings_ ::= I_BATTLENUMBEROFRIVERCROSSINGS comparison_op INT {pin=1}
+battleplayerunitclass_ ::= BATTLEPLAYERUNITCLASS EQUALS unit_class {pin=1}
+battleenemyunitclass_ ::= BATTLEENEMYUNITCLASS EQUALS unit_class {pin=1}
+battleplayerunitcategory_ ::= BATTLEPLAYERUNITCATEGORY EQUALS unit_category {pin=1}
+battleenemyunitcategory_ ::= BATTLEENEMYUNITCATEGORY EQUALS unit_category {pin=1}
+battleplayerunitsiegeengineclass_ ::= BATTLEPLAYERUNITSIEGEENGINECLASS EQUALS siege_engine_class {pin=1}
+battleenemyunitsiegeengineclass_ ::= BATTLEENEMYUNITSIEGEENGINECLASS EQUALS siege_engine_class {pin=1}
+battleplayerunitonwalls_ ::= BATTLEPLAYERUNITONWALLS {pin=1}
+battleenemyunitonwalls_ ::= BATTLEENEMYUNITONWALLS {pin=1}
+battleplayercurrentformation_ ::= BATTLEPLAYERCURRENTFORMATION EQUALS unit_formation {pin=1}
+battleenemycurrentformation_ ::= BATTLEENEMYCURRENTFORMATION EQUALS unit_formation {pin=1}
+battleplayerunitcloseformation_ ::= BATTLEPLAYERUNITCLOSEFORMATION {pin=1}
+battleenemyunitcloseformation_ ::= BATTLEENEMYUNITCLOSEFORMATION {pin=1}
+battleplayerunitspecialabilitysupported_ ::= BATTLEPLAYERUNITSPECIALABILITYSUPPORTED comparison_op special_ability {pin=1}
+battleselectedplayerunitspecialabilitysupported_ ::= BATTLESELECTEDPLAYERUNITSPECIALABILITYSUPPORTED comparison_op special_ability {pin=1}
+battleenemyunitspecialabilitysupported_ ::= BATTLEENEMYUNITSPECIALABILITYSUPPORTED comparison_op special_ability {pin=1}
+battleplayerunitspecialabilityactive_ ::= BATTLEPLAYERUNITSPECIALABILITYACTIVE {pin=1}
+battleenemyunitspecialabilityactive_ ::= BATTLEENEMYUNITSPECIALABILITYACTIVE {pin=1}
+battleplayermountclass_ ::= BATTLEPLAYERMOUNTCLASS comparison_op mount_class {pin=1}
+battleenemymountclass_ ::= BATTLEENEMYMOUNTCLASS comparison_op mount_class {pin=1}
+battleplayerunitmeleestrength_ ::= BATTLEPLAYERUNITMELEESTRENGTH comparison_op number {pin=1}
+battleenemyunitmeleestrength_ ::= BATTLEENEMYUNITMELEESTRENGTH comparison_op number {pin=1}
+battleplayerunitmissilestrength_ ::= BATTLEPLAYERUNITMISSILESTRENGTH comparison_op number {pin=1}
+battleenemyunitmissilestrength_ ::= BATTLEENEMYUNITMISSILESTRENGTH comparison_op number {pin=1}
+battleplayerunitspecialformation_ ::= BATTLEPLAYERUNITSPECIALFORMATION EQUALS unit_formation {pin=1}
+battleenemyunitspecialformation_ ::= BATTLEENEMYUNITSPECIALFORMATION EQUALS unit_formation {pin=1}
+battleplayerunitengaged_ ::= BATTLEPLAYERUNITENGAGED {pin=1}
+battleenemyunitengaged_ ::= BATTLEENEMYUNITENGAGED {pin=1}
+battleplayeractionstatus_ ::= BATTLEPLAYERACTIONSTATUS EQUALS action_status {pin=1}
+battleenemyactionstatus_ ::= BATTLEENEMYACTIONSTATUS EQUALS action_status {pin=1}
+battleplayerunitmovingfast_ ::= BATTLEPLAYERUNITMOVINGFAST {pin=1}
+battleenemyunitmovingfast_ ::= BATTLEENEMYUNITMOVINGFAST {pin=1}
+battlerangeofattack_ ::= BATTLERANGEOFATTACK comparison_op number {pin=1}
+battledirectionofattack_ ::= BATTLEDIRECTIONOFATTACK EQUALS attack_direction {pin=1}
+battleismeleeattack_ ::= BATTLEISMELEEATTACK {pin=1}
+i_battleplayerarmypercentageofunitclass_ ::= I_BATTLEPLAYERARMYPERCENTAGEOFUNITCLASS unit_class comparison_op number {pin=1}
+i_battleenemyarmypercentageofunitclass_ ::= I_BATTLEENEMYARMYPERCENTAGEOFUNITCLASS unit_class comparison_op number {pin=1}
+i_battleplayerarmypercentageofunitcategory_ ::= I_BATTLEPLAYERARMYPERCENTAGEOFUNITCATEGORY unit_category comparison_op number {pin=1}
+i_battleenemyarmypercentageofunitcategory_ ::= I_BATTLEENEMYARMYPERCENTAGEOFUNITCATEGORY unit_category comparison_op number {pin=1}
+i_battleplayerarmypercentageofmountclass_ ::= I_BATTLEPLAYERARMYPERCENTAGEOFMOUNTCLASS mount_class comparison_op number {pin=1}
+i_battleenemyarmypercentageofmountclass_ ::= I_BATTLEENEMYARMYPERCENTAGEOFMOUNTCLASS mount_class comparison_op number {pin=1}
+i_battleplayerarmypercentageofclassandcategory_ ::= I_BATTLEPLAYERARMYPERCENTAGEOFCLASSANDCATEGORY unit_class unit_category comparison_op number {pin=1}
+i_battleenemyarmypercentageofclassandcategory_ ::= I_BATTLEENEMYARMYPERCENTAGEOFCLASSANDCATEGORY unit_class unit_category comparison_op number {pin=1}
+i_battleplayerarmypercentageofspecialability_ ::= I_BATTLEPLAYERARMYPERCENTAGEOFSPECIALABILITY special_ability comparison_op number {pin=1}
+i_battleenemyarmypercentageofspecialability_ ::= I_BATTLEENEMYARMYPERCENTAGEOFSPECIALABILITY special_ability comparison_op number {pin=1}
+i_battleplayerarmypercentagecanhide_ ::= I_BATTLEPLAYERARMYPERCENTAGECANHIDE hide_type comparison_op number {pin=1}
+i_battleenemyarmypercentagecanhide_ ::= I_BATTLEENEMYARMYPERCENTAGECANHIDE hide_type comparison_op number {pin=1}
+i_battleplayerarmypercentagecanswim_ ::= I_BATTLEPLAYERARMYPERCENTAGECANSWIM comparison_op number {pin=1}
+i_battleenemyarmypercentagecanswim_ ::= I_BATTLEENEMYARMYPERCENTAGECANSWIM comparison_op number {pin=1}
+i_battleplayerarmyisattacker_ ::= I_BATTLEPLAYERARMYISATTACKER {pin=1}
+i_battleplayerallianceoddsinfavour_ ::= I_BATTLEPLAYERALLIANCEODDSINFAVOUR comparison_op INT {pin=1}
+i_battleplayerallianceoddsagainst_ ::= I_BATTLEPLAYERALLIANCEODDSAGAINST comparison_op INT {pin=1}
+totalsiegeweapons_ ::= TOTALSIEGEWEAPONS comparison_op INT {pin=1}
+i_battlestarted_ ::= I_BATTLESTARTED {pin=1}
+i_battlefinished_ ::= I_BATTLEFINISHED {pin=1}
+i_battleend_ ::= I_BATTLEEND {pin=1}
+i_battleendpending_ ::= I_BATTLEENDPENDING {pin=1}
+i_isunitmovefastset_ ::= I_ISUNITMOVEFASTSET ID {pin=1}
+i_isunitmoving_ ::= I_ISUNITMOVING ID {pin=1}
+i_isunitidle_ ::= I_ISUNITIDLE ID {pin=1}
+i_isunitrouting_ ::= I_ISUNITROUTING ID {pin=1}
+i_isunitunderfire_ ::= I_ISUNITUNDERFIRE ID {pin=1}
+i_isunitengaged_ ::= I_ISUNITENGAGED ID {pin=1}
+i_isunitengagedwithunit_ ::= I_ISUNITENGAGEDWITHUNIT ID ID {pin=1}
+i_unitformation_ ::= I_UNITFORMATION ID EQUALS unit_formation {pin=1}
+i_percentageunitkilled_ ::= I_PERCENTAGEUNITKILLED ID comparison_op INT {pin=1}
+i_unitpercentageammoleft_ ::= I_UNITPERCENTAGEAMMOLEFT ID comparison_op INT {pin=1}
+i_unitdistancefromposition_ ::= I_UNITDISTANCEFROMPOSITION ID INT INT comparison_op INT {pin=1}
+i_unitdistancefromline_ ::= I_UNITDISTANCEFROMLINE ID ID ID comparison_op INT {pin=1}
+i_unitdistancefromunit_ ::= I_UNITDISTANCEFROMUNIT ID ID comparison_op INT {pin=1}
+i_unitinrangeofunit_ ::= I_UNITINRANGEOFUNIT ID ID {pin=1}
+i_unitdestroyed_ ::= I_UNITDESTROYED ID {pin=1}
+i_unitenemyunitinradius_ ::= I_UNITENEMYUNITINRADIUS ID INT {pin=1}
+i_isunitgroupmoving_ ::= I_ISUNITGROUPMOVING ID {pin=1}
+i_isunitgroupengaged_ ::= I_ISUNITGROUPENGAGED ID {pin=1}
+i_isunitgroupidle_ ::= I_ISUNITGROUPIDLE ID {pin=1}
+i_isunitgroupdestroyed_ ::= I_ISUNITGROUPDESTROYED ID {pin=1}
+i_percentageunitgroupkilled_ ::= I_PERCENTAGEUNITGROUPKILLED ID comparison_op INT {pin=1}
+i_unitgroupformation_ ::= I_UNITGROUPFORMATION ID EQUALS ID {pin=1}
+i_unitgroupdistancefromposition_ ::= I_UNITGROUPDISTANCEFROMPOSITION ID INT comparison_op INT {pin=1}
+i_unitgroupdistancefromgroup_ ::= I_UNITGROUPDISTANCEFROMGROUP ID ID comparison_op INT {pin=1}
+i_unitgroupinrangeofunit_ ::= I_UNITGROUPINRANGEOFUNIT ID ID {pin=1}
+i_unitinrangeofunitgroup_ ::= I_UNITINRANGEOFUNITGROUP ID ID {pin=1}
+i_unitgroupinrangeofunitgroup_ ::= I_UNITGROUPINRANGEOFUNITGROUP ID ID {pin=1}
+i_playerinrangeofunitgroup_ ::= I_PLAYERINRANGEOFUNITGROUP ID {pin=1}
+i_playerinrangeofunit_ ::= I_PLAYERINRANGEOFUNIT ID {pin=1}
+i_unittypeselected_ ::= I_UNITTYPESELECTED unit_ref {pin=1}
+unittype_ ::= UNITTYPE unit_ref {pin=1}
+i_unitselected_ ::= I_UNITSELECTED ID {pin=1}
+i_multipleunitsselected_ ::= I_MULTIPLEUNITSSELECTED {pin=1}
+i_specificunitsselected_ ::= I_SPECIFICUNITSSELECTED ID* {pin=1}
+i_iscamerazoomingtounit_ ::= I_ISCAMERAZOOMINGTOUNIT ID {pin=1}
+i_battleenemyarmypercentageofmatchingunits_ ::= I_BATTLEENEMYARMYPERCENTAGEOFMATCHINGUNITS ID comparison_op number {pin=1}
+i_battleenemyarmynumberofmatchingunits_ ::= I_BATTLEENEMYARMYNUMBEROFMATCHINGUNITS ID comparison_op INT {pin=1}
+i_battleplayerarmypercentageofmatchingunits_ ::= I_BATTLEPLAYERARMYPERCENTAGEOFMATCHINGUNITS ID comparison_op number {pin=1}
+i_battleplayerarmynumberofmatchingunits_ ::= I_BATTLEPLAYERARMYNUMBEROFMATCHINGUNITS ID comparison_op INT {pin=1}
+localplayerhasmanualreinforcements_ ::= LOCALPLAYERHASMANUALREINFORCEMENTS {pin=1}
+localplayerhasaireinforcements_ ::= LOCALPLAYERHASAIREINFORCEMENTS {pin=1}
+trait_ ::= trait trait_ref comparison_op INT {pin=1}
+hasancillary_ ::= HASANCILLARY ancillary_ref {pin=1}
+fathertrait_ ::= FATHERTRAIT trait_ref comparison_op INT {pin=1}
+factionleadertrait_ ::= FACTIONLEADERTRAIT trait_ref comparison_op INT {pin=1}
+attribute_ ::= ATTRIBUTE character_attribute comparison_op INT {pin=1}
+remainingmppercentage_ ::= REMAININGMPPERCENTAGE comparison_op number {pin=1}
+i_remainingmppercentage_ ::= I_REMAININGMPPERCENTAGE name_ comparison_op number {pin=1}
+i_charactercanmove_ ::= I_CHARACTERCANMOVE name_ {pin=1}
+noactionthisturn_ ::= NOACTIONTHISTURN {pin=1}
+agenttype_ ::= AGENTTYPE EQUALS character_type {pin=1}
+trainedagenttype_ ::= TRAINEDAGENTTYPE EQUALS character_type {pin=1}
+disastertype_ ::= DISASTERTYPE disaster_type {pin=1}
+culturetype_ ::= CULTURETYPE culture_ref {pin=1}
+originalfactiontype_ ::= ORIGINALFACTIONTYPE faction_ref {pin=1}
+originalculturetype_ ::= ORIGINALCULTURETYPE culture_ref {pin=1}
+isgeneral_ ::= ISGENERAL {pin=1}
+isadmiral_ ::= ISADMIRAL {pin=1}
+remasterededucation_ ::= REMASTEREDEDUCATION {pin=1}
+endedinsettlement_ ::= ENDEDINSETTLEMENT {pin=1}
+isfactionleader_ ::= ISFACTIONLEADER {pin=1}
+isfactionheir_ ::= ISFACTIONHEIR {pin=1}
+ismarried_ ::= ISMARRIED {pin=1}
+atsea_ ::= ATSEA {pin=1}
+inenemylands_ ::= INENEMYLANDS {pin=1}
+inbarbarianlands_ ::= INBARBARIANLANDS {pin=1}
+inuncivilisedlands_ ::= INUNCIVILISEDLANDS {pin=1}
+isbesieging_ ::= ISBESIEGING {pin=1}
+isundersiege_ ::= ISUNDERSIEGE {pin=1}
+i_withdrawsbeforebattle_ ::= I_WITHDRAWSBEFOREBATTLE {pin=1}
+endedinenemyzoc_ ::= ENDEDINENEMYZOC {pin=1}
+adviseaction_ ::= ADVISEACTION EQUALS character_action_advice {pin=1}
+i_charactertypenearcharactertype_ ::= I_CHARACTERTYPENEARCHARACTERTYPE faction_ref character_type INT faction_ref character_type {pin=1}
+i_charactertypeneartile_ ::= I_CHARACTERTYPENEARTILE faction_ref character_type INT coords {pin=1}
+i_characternameneartile_ ::= I_CHARACTERNAMENEARTILE name_ character_type INT coords {pin=1}
+tradingresource_ ::= TRADINGRESOURCE resource_ref? {pin=1}
+regiontradingresource_ ::= REGIONTRADINGRESOURCE resource_ref {pin=1}
+tradingexotic_ ::= TRADINGEXOTIC {pin=1}
+distancecapital_ ::= DISTANCECAPITAL comparison_op INT {pin=1}
+distancehome_ ::= DISTANCEHOME comparison_op INT {pin=1}
+tradinggroup_ ::= TRADINGGROUP ID {pin=1}
+regionmerchantcount_ ::= REGIONMERCHANTCOUNT comparison_op INT {pin=1}
+preciousminecount_ ::= PRECIOUSMINECOUNT comparison_op INT {pin=1}
+isfromfaction_ ::= ISFROMFACTION faction_ref {pin=1}
+nightbattlesenabled_ ::= NIGHTBATTLESENABLED {pin=1}
+hasoffice_ ::= HASOFFICE ID {pin=1}
+factiontype_ ::= FACTIONTYPE faction_ref {pin=1}
+targetfactiontype_ ::= TARGETFACTIONTYPE faction_ref {pin=1}
+factionculturetype_ ::= FACTIONCULTURETYPE culture_ref {pin=1}
+targetfactionculturetype_ ::= TARGETFACTIONCULTURETYPE culture_ref {pin=1}
+trainedunitcategory_ ::= TRAINEDUNITCATEGORY unit_category {pin=1}
+unitcategory_ ::= UNITCATEGORY EQUALS unit_category {pin=1}
+senatemissiontimeremaining_ ::= SENATEMISSIONTIMEREMAINING comparison_op INT {pin=1}
+mediantaxlevel_ ::= MEDIANTAXLEVEL comparison_op tax_level {pin=1}
+modetaxlevel_ ::= MODETAXLEVEL comparison_op tax_level {pin=1}
+i_modetaxlevel_ ::= I_MODETAXLEVEL faction_ref comparison_op tax_level {pin=1}
+missionsuccesslevel_ ::= MISSIONSUCCESSLEVEL comparison_op success_level {pin=1}
+missionsucceeded_ ::= MISSIONSUCCEEDED {pin=1}
+missionfactiontargettype_ ::= MISSIONFACTIONTARGETTYPE faction_ref {pin=1}
+missionculturetargettype_ ::= MISSIONCULTURETARGETTYPE culture_ref {pin=1}
+diplomaticstancefromcharacter_ ::= DIPLOMATICSTANCEFROMCHARACTER name_ comparison_op diplomatic_stance_for_conditions {pin=1}
+diplomaticstancefromfaction_ ::= DIPLOMATICSTANCEFROMFACTION faction_ref comparison_op diplomatic_stance_for_conditions {pin=1}
+factionhasallies_ ::= FACTIONHASALLIES {pin=1}
+losingmoney_ ::= LOSINGMONEY {pin=1}
+i_losingmoney_ ::= I_LOSINGMONEY faction_ref {pin=1}
+factionisalive_ ::= FACTIONISALIVE faction_ref {pin=1}
+supportcostspercentage_ ::= SUPPORTCOSTSPERCENTAGE comparison_op number {pin=1}
+treasury_ ::= TREASURY comparison_op INT {pin=1}
+onawarfooting_ ::= ONAWARFOOTING {pin=1}
+i_factionbesieging_ ::= I_FACTIONBESIEGING faction_ref {pin=1}
+i_factionbesieged_ ::= I_FACTIONBESIEGED faction_ref {pin=1}
+i_numberofsettlements_ ::= I_NUMBEROFSETTLEMENTS faction_ref comparison_op INT {pin=1}
+i_numberofheirs_ ::= I_NUMBEROFHEIRS faction_ref comparison_op INT {pin=1}
+i_factionneartile_ ::= I_FACTIONNEARTILE faction_ref INT coords {pin=1}
+settlementstaken_ ::= SETTLEMENTSTAKEN comparison_op INT {pin=1}
+battlesfought_ ::= BATTLESFOUGHT comparison_op INT {pin=1}
+battleswon_ ::= BATTLESWON comparison_op INT {pin=1}
+battleslost_ ::= BATTLESLOST comparison_op INT {pin=1}
+defensivesiegesfought_ ::= DEFENSIVESIEGESFOUGHT comparison_op INT {pin=1}
+defensivesiegeswon_ ::= DEFENSIVESIEGESWON comparison_op INT {pin=1}
+offensivesiegesfought_ ::= OFFENSIVESIEGESFOUGHT comparison_op INT {pin=1}
+offensivesiegeswon_ ::= OFFENSIVESIEGESWON comparison_op INT {pin=1}
+factionwideancillaryexists_ ::= FACTIONWIDEANCILLARYEXISTS ancillary_ref BOOLEAN {pin=1}
+isally_ ::= ISALLY faction_ref {pin=1}
+isprotectorate_ ::= ISPROTECTORATE faction_ref {pin=1}
+isprotector_ ::= ISPROTECTOR faction_ref {pin=1}
+issamesuperfaction_ ::= ISSAMESUPERFACTION faction_ref {pin=1}
+localplayerbattlesfought_ ::= LOCALPLAYERBATTLESFOUGHT comparison_op INT {pin=1}
+toggled_ ::= TOGGLED ID+ {pin=1}
+majoreventactive_ ::= MAJOREVENTACTIVE STRING <<local_or faction_ref>> {pin=1}
+randompercent_ ::= RANDOMPERCENT comparison_op INT {pin=1}
+truecondition_ ::= TRUECONDITION {pin=1}
+worldwideancillaryexists_ ::= WORLDWIDEANCILLARYEXISTS ancillary_ref BOOLEAN {pin=1}
+i_istutorialenabled_ ::= I_ISTUTORIALENABLED {pin=1}
+i_isplayerturn_ ::= I_ISPLAYERTURN {pin=1}
+constructionitemclicked_ ::= CONSTRUCTIONITEMCLICKED building_level_ref {pin=1}
+recruitmentitemclicked_ ::= RECRUITMENTITEMCLICKED name_ {pin=1}
+charactername_ ::= CHARACTERNAME name_ {pin=1}
+scrolldidopen_ ::= SCROLLDIDOPEN ID {pin=1}
+unithasrouted_ ::= UNITHASROUTED ID {pin=1}
+battleunitactionstatus_ ::= BATTLEUNITACTIONSTATUS ID action_status {pin=1}
+i_amountofunitinsettlement_ ::= I_AMOUNTOFUNITINSETTLEMENT settlement_ref INT name_ {pin=1}
+i_unitcardselected_ ::= I_UNITCARDSELECTED name_ INT {pin=1}
+i_comparecounter_ ::= I_COMPARECOUNTER ID comparison_op INT {pin=1}
+testfaction_ ::= TESTFACTION faction_ref {pin=1}
+langis_ ::= LANGIS ID {pin=1}
+i_timerelapsed_ ::= I_TIMERELAPSED ID comparison_op INT {pin=1}
+i_soundplaying_ ::= I_SOUNDPLAYING ID {pin=1}
+hasresource_ ::= HASRESOURCE resource_ref {pin=1}
+settlementrevoltingfrom_ ::= SETTLEMENTREVOLTINGFROM faction_ref {pin=1}
+iscapital_ ::= ISCAPITAL {pin=1}
+settlementname_ ::= SETTLEMENTNAME settlement_ref {pin=1}
+governorbuildingexists_ ::= GOVERNORBUILDINGEXISTS EQUALS building_level_ref {pin=1}
+settlementbuildingexists_ ::= SETTLEMENTBUILDINGEXISTS comparison_op building_level_ref {pin=1}
+homesettlementbuildingexists_ ::= HOMESETTLEMENTBUILDINGEXISTS comparison_op building_level_ref {pin=1}
+settlementorderlevel_ ::= SETTLEMENTORDERLEVEL law comparison_op INT {pin=1}
+settlementcapabilitylevel_ ::= SETTLEMENTCAPABILITYLEVEL ID comparison_op INT {pin=1}
+buildingfinishedbygovernor_ ::= BUILDINGFINISHEDBYGOVERNOR EQUALS building_level_ref {pin=1}
+settlementbuildingfinished_ ::= SETTLEMENTBUILDINGFINISHED comparison_op building_level_ref {pin=1}
+governorpluginexists_ ::= GOVERNORPLUGINEXISTS comparison_op ID {pin=1}
+governorpluginfinished_ ::= GOVERNORPLUGINFINISHED comparison_op ID {pin=1}
+governortaxlevel_ ::= GOVERNORTAXLEVEL comparison_op tax_level {pin=1}
+settlementtaxlevel_ ::= SETTLEMENTTAXLEVEL comparison_op tax_level {pin=1}
+governorinresidence_ ::= GOVERNORINRESIDENCE {pin=1}
+governorloyaltylevel_ ::= GOVERNORLOYALTYLEVEL comparison_op loyalty_to_governor_level {pin=1}
+settlementloyaltylevel_ ::= SETTLEMENTLOYALTYLEVEL comparison_op loyalty_to_governor_level {pin=1}
+riotrisk_ ::= RIOTRISK comparison_op INT {pin=1}
+buildingqueueidledespitecash_ ::= BUILDINGQUEUEIDLEDESPITECASH {pin=1}
+trainingqueueidledespitecash_ ::= TRAININGQUEUEIDLEDESPITECASH {pin=1}
+i_settlementexists_ ::= I_SETTLEMENTEXISTS settlement_ref {pin=1}
+i_settlementowner_ ::= I_SETTLEMENTOWNER <<local_or settlement_ref>> EQUALS faction_ref {pin=1}
+i_settlementownerculture_ ::= I_SETTLEMENTOWNERCULTURE <<local_or settlement_ref>> EQUALS culture_ref {pin=1}
+i_settlementlevel_ ::= I_SETTLEMENTLEVEL <<local_or settlement_ref>> comparison_op settlement_level {pin=1}
+advisefinancialbuild_ ::= ADVISEFINANCIALBUILD EQUALS ID {pin=1}
+advisebuild_ ::= ADVISEBUILD EQUALS ID {pin=1}
+adviserecruit_ ::= ADVISERECRUIT EQUALS name_ {pin=1}
+settlementpopulationmaxedout_ ::= SETTLEMENTPOPULATIONMAXEDOUT {pin=1}
+settlementpopulationtoolow_ ::= SETTLEMENTPOPULATIONTOOLOW {pin=1}
+settlementautomanaged_ ::= SETTLEMENTAUTOMANAGED automanage_type {pin=1}
+feralsettlementautomanaged_ ::= FERALSETTLEMENTAUTOMANAGED automanage_type {pin=1}
+percentageofpopulationingarrison_ ::= PERCENTAGEOFPOPULATIONINGARRISON comparison_op INT {pin=1}
+garrisontopopulationratio_ ::= GARRISONTOPOPULATIONRATIO comparison_op number {pin=1}
+garrisonsettlementratio_ ::= GARRISONSETTLEMENTRATIO comparison_op number {pin=1}
+healthpercentage_ ::= HEALTHPERCENTAGE comparison_op INT {pin=1}
+settlementhasplague_ ::= SETTLEMENTHASPLAGUE {pin=1}
+isfortgarrisoned_ ::= ISFORTGARRISONED {pin=1}
+issettlementgarrisoned_ ::= ISSETTLEMENTGARRISONED {pin=1}
+issettlementrioting_ ::= ISSETTLEMENTRIOTING {pin=1}
+i_numberunitsinsettlement_ ::= I_NUMBERUNITSINSETTLEMENT settlement_ref ID comparison_op INT {pin=1}
+i_advisorspeechplaying_ ::= I_ADVISORSPEECHPLAYING {pin=1}
+characterislocal_ ::= CHARACTERISLOCAL {pin=1}
+targetcharacterislocal_ ::= TARGETCHARACTERISLOCAL {pin=1}
+settlementislocal_ ::= SETTLEMENTISLOCAL {pin=1}
+targetsettlementislocal_ ::= TARGETSETTLEMENTISLOCAL {pin=1}
+regionislocal_ ::= REGIONISLOCAL {pin=1}
+targetregionislocal_ ::= TARGETREGIONISLOCAL {pin=1}
+armyislocal_ ::= ARMYISLOCAL {pin=1}
+armyisgarrison_ ::= ARMYISGARRISON {pin=1}
+targetarmyislocal_ ::= TARGETARMYISLOCAL {pin=1}
+factionislocal_ ::= FACTIONISLOCAL {pin=1}
+i_localfaction_ ::= I_LOCALFACTION faction_ref {pin=1}
+targetfactionislocal_ ::= TARGETFACTIONISLOCAL {pin=1}
+i_turnnumber_ ::= I_TURNNUMBER comparison_op INT {pin=1}
+i_mapname_ ::= I_MAPNAME txt_file_ {pin=1}
+i_threadcount_ ::= I_THREADCOUNT ID comparison_op INT {pin=1}
+i_istriggertrue_ ::= I_ISTRIGGERTRUE ID {pin=1}
+incomingmessagetype_ ::= INCOMINGMESSAGETYPE ID {pin=1}
+i_advisorverbosity_ ::= I_ADVISORVERBOSITY comparison_op INT {pin=1}
+i_advisorvisible_ ::= I_ADVISORVISIBLE {pin=1}
+i_characterselected_ ::= I_CHARACTERSELECTED name_ {pin=1}
+i_agentselected_ ::= I_AGENTSELECTED character_type {pin=1}
+i_settlementselected_ ::= I_SETTLEMENTSELECTED settlement_ref {pin=1}
+shortcuttriggered_ ::= SHORTCUTTRIGGERED ID ID {pin=1}
+i_advancedstatsscrollisopen_ ::= I_ADVANCEDSTATSSCROLLISOPEN {pin=1}
+buttonpressed_ ::= BUTTONPRESSED ID {pin=1}
+scrollopened_ ::= SCROLLOPENED ID {pin=1}
+scrollclosed_ ::= SCROLLCLOSED ID {pin=1}
+scrolladvicerequested_ ::= SCROLLADVICEREQUESTED ID {pin=1}
+i_annotationdisplayed_ ::= I_ANNOTATIONDISPLAYED ID {pin=1}
+feraluitype_ ::= FERALUITYPE ID {pin=1}
+merchantisavailabletobuild_ ::= MERCHANTISAVAILABLETOBUILD {pin=1}
+settlementhasdamagedbuilding_ ::= SETTLEMENTHASDAMAGEDBUILDING {pin=1}
+localplayerhasreinforcements_ ::= LOCALPLAYERHASREINFORCEMENTS {pin=1}
+settlementmerchanttradingwith_ ::= SETTLEMENTMERCHANTTRADINGWITH faction_ref {pin=1} // This is not documented but used
+settlementownedby_ ::= SETTLEMENTOWNEDBY faction_ref {pin=1}                         // This is not documented but used
+factionbuildingexists_ ::= FACTIONBUILDINGEXISTS comparison_op ID {pin=1}            // This is not documented but used
+
 // Condition parameters
 conflict_type ::= SUCCESSFULAMBUSH|FAILEDAMBUSH|NORMAL|SIEGE|SALLYBESIEGER|NAVAL|WITHDRAW
 battle_success ::= CLOSE|AVERAGE|CLEAR|CRUSHING
@@ -2575,9 +2941,321 @@ character_action_advice ::= ATTACK_ENEMY|ATTACK_SETTLEMENT|MERGE_ARMIES|PATROL_R
 character_type ::= ALL|FAMILY|NAMED_CHARACTER|GENERAL|ADMIRAL|agent_type
 tax_level ::= TAX_LOW|TAX_NORMAL|TAX_HIGH|TAX_EXTORTIONATE
 success_level ::= NOT_SUCCESSFUL|SLIGHTLY_SUCCESSFUL|PARTLY_SUCCESSFUL|HIGHLY_SUCCESSFUL
-diplomatic_stance ::= ALLIED|SUSPICIOUS|NEUTRAL|HOSTILE|ATWAR
+diplomatic_stance_for_conditions ::= ALLIED|SUSPICIOUS|NEUTRAL|HOSTILE|ATWAR
 loyalty_to_governor_level ::= LOYALTY_REVOLTING|LOYALTY_RIOTING|LOYALTY_DISILLUSIONED|LOYALTY_CONTENT|LOYALTY_HAPPY
 automanage_type ::= TROOPS|BUILDINGS|MECHANICS
+
+// #### Commands ####
+command_ ::= senate_mission_help_player_|senate_mission_assassination_|senate_mission_cease_hostilities_|senate_mission_declare_war_|senate_mission_broker_peace_|senate_mission_take_city_|move_to_settlement_|snap_to_settlement_|clear_restrict_strat_movement_|restrict_strat_movement_|disable_diplomacy_ui_|enable_diplomacy_voices_|enable_unit_voices_|hide_ui_element_|show_ui_element_|enable_ui_card_|disable_ui_card_|disable_all_ui_cards_|enable_all_ui_cards_|disable_agent_hub_all_|enable_agent_hub_all_|disable_agent_hub_|enable_agent_hub_|point_at_agent_hub_|set_marriage_allowed_|trigger_marriage_proposal_|deselect_current_selection_|force_autoresolve_outcome_|force_diplomacy_|create_mercenary_pool_|force_agent_succeed_|allow_campaign_battles_|spawn_character_child_|stop_point_at_indicator_|stop_all_point_at_indicators_|set_battle_|restrict_battle_movement_|clear_restrict_battle_movement_|point_at_diplomacy_offer_|point_at_move_retinue_|disable_move_retinue_all_|enable_move_retinue_all_|disable_move_retinue_|enable_move_retinue_|block_unit_selection_|forced_gate_success_|strat_selection_unblocker_|clear_strat_selection_unblocker_|open_stop_tutorial_confirmation_dialog_|set_label_|goto_|force_deselect_trigger_|box_drag_selection_|force_settlement_tab_|click_drag_move_|toggle_minimap_|close_news_panel_|ui_card_selection_lock_|disable_specific_shortcut_|set_advice_page_|advance_completed_tasks_|set_min_formation_width_|script_log_|ai_active_set_|release_unit_|hiding_enabled_set_|swimming_enabled_set_|pause_battle_|unit_immediate_place_|unit_order_halt_|unit_order_move_|unit_order_move_to_orientation_|unit_order_move_relative_|unit_order_attack_unit_|unit_order_attack_closest_unit_|unit_order_change_formation_|unit_order_move_to_missile_range_|unit_order_turn_|unit_set_morale_|unit_unset_morale_|unit_set_weapon_upgrade_|unit_set_armour_upgrade_|unit_set_experience_|kill_unit_|reduce_unit_strength_|unit_set_guard_mode_|unit_set_skirmish_mode_|unit_set_fire_at_will_mode_|unit_set_formation_spacing_|unit_taunt_|unit_use_special_ability_|unit_group_enable_automation_|unit_group_automate_defend_position_|unit_group_automate_attack_|unit_group_immediate_place_|unit_group_order_halt_|unit_group_order_move_formed_|unit_group_order_move_unformed_|unit_group_order_relative_move_formed_|unit_group_order_relative_move_unformed_|unit_group_move_to_missile_range_of_unit_|unit_group_move_to_missile_range_of_group_|unit_group_order_attack_unit_|unit_group_order_attack_group_|unit_group_order_change_group_formation_|unit_group_order_turn_|unit_group_set_morale_|unit_group_unset_morale_|unit_group_change_unit_formation_|unit_group_set_guard_mode_|unit_group_set_skirmish_mode_|unit_group_set_fire_at_will_mode_|unit_group_set_formation_spacing_|force_ai_control_|finish_battle_|move_strat_camera_|set_strat_camera_speed_|snap_strat_camera_|zoom_strat_camera_|camera_restrictions_set_|camera_event_cuts_active_set_|camera_default_mode_set_|battle_default_camera_|battle_general_camera_|set_camera_bookmark_|camera_position_at_bookmark__|camera_zoom_to_bookmark_|camera_position_|camera_zoom_to_|camera_look_at_position_|camera_look_at_unit_|camera_track_unit_|camera_zoom_to_unit_|e_camera_zoom_to_unit_|inhibit_camera_input_|declare_prologue_|terminate_prologue_|provoke_rebellion_|move_|reposition_character_|replenish_action_points_|replenish_units_|spawn_character_|spawn_army_|engage_armies_|disable_popups_|start_benchmark_|end_benchmark_|disable_pause_shortcut_in_campaign_|override_superfaction_popularity_|set_faction_senate_standing_|set_faction_people_standing_|message_prompt_|include_script_|terminate_script_|break_|spawn_battle_|set_ao_visible_|set_all_ao_visible_|terminate_monitor_|declare_counter_|declare_persistent_counter_|inc_counter_|set_counter_|counter_operation_|store_counter_|retrieve_counter_|prepare_for_battle_|declare_show_me_|label_unit_|label_location_|define_unit_group_|undefine_unit_group_|remove_unit_from_group_|declare_timer_|restart_timer_|heed_pause_|wait_|campaign_wait_|battle_wait_|suspend_during_battle_|set_music_state_|release_music_control_|play_sound_event_|play_sound_flourish_|stop_sound_event_|point_at_character_|point_at_settlement_|e_point_at_settlement_|point_at_strat_position_|point_at_strat_position_alt_|point_at_message_|ui_flash_start_|ui_flash_stop_|settlement_flash_start_|settlement_flash_stop_|character_flash_start_|character_flash_stop_|point_at_location_|point_at_unit_pos_|point_at_unit_group_pos_|remove_battle_map_arrow_|point_at_card_|point_at_unit_card_|e_point_at_unit_card_|show_mouse_button_animation_|show_movie_|hide_ui_|show_ui_|disable_ui_|enable_ui_|disable_entire_ui_|enable_entire_ui_|set_cards_selectable_|disable_cursor_|enable_cursor_|rename_settlement_in_region_|add_religion_|add_hidden_resource_|remove_hidden_resource_|destroy_building_|reveal_tile_|hide_all_revealed_tiles_|play_video_|advance_advice_thread_|dismiss_advice_|dismiss_advisor_|suspend_unscripted_advice_|select_character_|e_select_character_|select_settlement_|e_select_settlement_|call_object_shortcut_|simulate_mouse_click_|select_ui_element_|disable_shortcuts_|filter_unit_commands_|filter_unit_group_commands_|filter_unit_selection_commands_|filter_settlement_commands_|filter_character_commands_|filter_all_ui_commands_|ui_indicator_|ui_indicator_remove_|steal_esc_key_|highlight_recruitment_item_|highlight_construction_item_|show_annotations_|e_select_unit_|open_siege_scroll_|control_feral_anim_|select_captial_|show_building_info_|show_unit_info_|console_command_
+{recoverWhile=command_recover}
+private command_recover ::= !(ends_of_commands|statement)
+private ends_of_commands ::= END_IF|END_WHILE|END_MONITOR|END_FOR|END_SCRIPT
+
+senate_mission_help_player_ ::= SENATE_MISSION_HELP_PLAYER senate_reward {pin=1}
+senate_mission_assassination_ ::= SENATE_MISSION_ASSASSINATION senate_reward name_ {pin=1}
+senate_mission_cease_hostilities_ ::= SENATE_MISSION_CEASE_HOSTILITIES senate_reward faction_ref {pin=1}
+senate_mission_declare_war_ ::= SENATE_MISSION_DECLARE_WAR senate_reward faction_ref {pin=1}
+senate_mission_broker_peace_ ::= SENATE_MISSION_BROKER_PEACE senate_reward faction_ref {pin=1}
+senate_mission_take_city_ ::= SENATE_MISSION_TAKE_CITY senate_reward settlement_ref BOOLEAN {pin=1}
+move_to_settlement_ ::= MOVE_TO_SETTLEMENT settlement_ref {pin=1}
+snap_to_settlement_ ::= SNAP_TO_SETTLEMENT settlement_ref {pin=1}
+clear_restrict_strat_movement_ ::= CLEAR_RESTRICT_STRAT_MOVEMENT {pin=1}
+restrict_strat_movement_ ::= RESTRICT_STRAT_MOVEMENT faction_ref coords {pin=1}
+disable_diplomacy_ui_ ::= DISABLE_DIPLOMACY_UI {pin=1}
+enable_diplomacy_voices_ ::= ENABLE_DIPLOMACY_VOICES on_off {pin=1}
+enable_unit_voices_ ::= ENABLE_UNIT_VOICES on_off {pin=1}
+hide_ui_element_ ::= HIDE_UI_ELEMENT ID {pin=1}
+show_ui_element_ ::= SHOW_UI_ELEMENT ID {pin=1}
+enable_ui_card_ ::= ENABLE_UI_CARD ui_card_type ID INT {pin=1}
+disable_ui_card_ ::= DISABLE_UI_CARD ui_card_type ID INT {pin=1}
+disable_all_ui_cards_ ::= DISABLE_ALL_UI_CARDS ui_card_type {pin=1}
+enable_all_ui_cards_ ::= ENABLE_ALL_UI_CARDS ui_card_type {pin=1}
+disable_agent_hub_all_ ::= DISABLE_AGENT_HUB_ALL agent_hub_targets {pin=1}
+enable_agent_hub_all_ ::= ENABLE_AGENT_HUB_ALL agent_hub_targets {pin=1}
+disable_agent_hub_ ::= DISABLE_AGENT_HUB name_ {pin=1}
+enable_agent_hub_ ::= ENABLE_AGENT_HUB name_ {pin=1}
+point_at_agent_hub_ ::= POINT_AT_AGENT_HUB  (agent name_ | mission_ INT) point_shape? {pin=1}
+set_marriage_allowed_ ::= SET_MARRIAGE_ALLOWED on_off {pin=1}
+trigger_marriage_proposal_ ::= TRIGGER_MARRIAGE_PROPOSAL {pin=1}
+deselect_current_selection_ ::= DESELECT_CURRENT_SELECTION {pin=1}
+force_autoresolve_outcome_ ::= FORCE_AUTORESOLVE_OUTCOME faction_ref {pin=1}
+force_diplomacy_ ::= FORCE_DIPLOMACY accept_reject yes_no {pin=1}
+create_mercenary_pool_ ::= CREATE_MERCENARY_POOL {pin=1}
+force_agent_succeed_ ::= FORCE_AGENT_SUCCEED yes_no {pin=1}
+allow_campaign_battles_ ::= ALLOW_CAMPAIGN_BATTLES yes_no {pin=1}
+spawn_character_child_ ::= SPAWN_CHARACTER_CHILD faction_ref COMMA INT COMMA season_enum COMMA name_ COMMA  name_ COMMA name_ {pin=1}
+stop_point_at_indicator_ ::= STOP_POINT_AT_INDICATOR {pin=1}
+stop_all_point_at_indicators_ ::= STOP_ALL_POINT_AT_INDICATORS {pin=1}
+set_battle_ ::= SET_BATTLE txt_file_ {pin=1}
+restrict_battle_movement_ ::= RESTRICT_BATTLE_MOVEMENT {pin=1}
+clear_restrict_battle_movement_ ::= CLEAR_RESTRICT_BATTLE_MOVEMENT {pin=1}
+point_at_diplomacy_offer_ ::= POINT_AT_DIPLOMACY_OFFER ID point_shape? {pin=1}
+point_at_move_retinue_ ::= POINT_AT_MOVE_RETINUE (CHARACTER|ANCILLARY) {pin=1}
+disable_move_retinue_all_ ::= DISABLE_MOVE_RETINUE_ALL (CHARACTER|ANCILLARY) {pin=1}
+enable_move_retinue_all_ ::= ENABLE_MOVE_RETINUE_ALL (CHARACTER|ANCILLARY) {pin=1}
+disable_move_retinue_ ::= DISABLE_MOVE_RETINUE (CHARACTER name_ | ANCILLARY ancillary_ref) {pin=1}
+enable_move_retinue_ ::= ENABLE_MOVE_RETINUE (CHARACTER name_ | ANCILLARY ancillary_ref) {pin=1}
+block_unit_selection_ ::= BLOCK_UNIT_SELECTION on_off unit_ref {pin=1}
+forced_gate_success_ ::= FORCED_GATE_SUCCESS on_off INT? {pin=1}
+strat_selection_unblocker_ ::= STRAT_SELECTION_UNBLOCKER (SETTLEMENT on_off settlement_ref) | (CHARACTER on_off name_) {pin=1}
+clear_strat_selection_unblocker_ ::= CLEAR_STRAT_SELECTION_UNBLOCKER {pin=1}
+open_stop_tutorial_confirmation_dialog_ ::= OPEN_STOP_TUTORIAL_CONFIRMATION_DIALOG {pin=1}
+set_label_ ::= SET_LABEL ID {pin=1}
+goto_ ::= GOTO ID {pin=1}
+force_deselect_trigger_ ::= FORCE_DESELECT_TRIGGER {pin=1}
+box_drag_selection_ ::= BOX_DRAG_SELECTION on_off {pin=1}
+force_settlement_tab_ ::= FORCE_SETTLEMENT_TAB settlement_tab {pin=1}
+click_drag_move_ ::= CLICK_DRAG_MOVE on_off {pin=1}
+toggle_minimap_ ::= TOGGLE_MINIMAP {pin=1}
+close_news_panel_ ::= CLOSE_NEWS_PANEL {pin=1}
+ui_card_selection_lock_ ::= UI_CARD_SELECTION_LOCK on_off {pin=1}
+disable_specific_shortcut_ ::= DISABLE_SPECIFIC_SHORTCUT ID ID BOOLEAN {pin=1}
+set_advice_page_ ::= SET_ADVICE_PAGE INT {pin=1}
+advance_completed_tasks_ ::= ADVANCE_COMPLETED_TASKS INT {pin=1}
+set_min_formation_width_ ::= SET_MIN_FORMATION_WIDTH INT {pin=1}
+script_log_ ::= SCRIPT_LOG STRING {pin=1}
+ai_active_set_ ::= AI_ACTIVE_SET on_off {pin=1}
+release_unit_ ::= RELEASE_UNIT ID {pin=1}
+hiding_enabled_set_ ::= HIDING_ENABLED_SET BOOLEAN {pin=1}
+swimming_enabled_set_ ::= SWIMMING_ENABLED_SET BOOLEAN {pin=1}
+pause_battle_ ::= PAUSE_BATTLE {pin=1}
+unit_immediate_place_ ::= UNIT_IMMEDIATE_PLACE ID ID INT INT? {pin=1}
+unit_order_halt_ ::= UNIT_ORDER_HALT ID {pin=1}
+unit_order_move_ ::= UNIT_ORDER_MOVE ID INT INT RUN? {pin=1}
+unit_order_move_to_orientation_ ::= UNIT_ORDER_MOVE_TO_ORIENTATION ID INT INT INT INT NUN? {pin=1}
+unit_order_move_relative_ ::= UNIT_ORDER_MOVE_RELATIVE ID INT INT RUN? {pin=1}
+unit_order_attack_unit_ ::= UNIT_ORDER_ATTACK_UNIT ID ID RUN? {pin=1}
+unit_order_attack_closest_unit_ ::= UNIT_ORDER_ATTACK_CLOSEST_UNIT ID INT RUN? {pin=1}
+unit_order_change_formation_ ::= UNIT_ORDER_CHANGE_FORMATION ID unit_formation {pin=1}
+unit_order_move_to_missile_range_ ::= UNIT_ORDER_MOVE_TO_MISSILE_RANGE ID ID RUN? {pin=1}
+unit_order_turn_ ::= UNIT_ORDER_TURN ID INT (RELATIVE|ABSOLUTE) {pin=1}
+unit_set_morale_ ::= UNIT_SET_MORALE ID morale {pin=1}
+unit_unset_morale_ ::= UNIT_UNSET_MORALE ID {pin=1}
+unit_set_weapon_upgrade_ ::= UNIT_SET_WEAPON_UPGRADE ID INT {pin=1}
+unit_set_armour_upgrade_ ::= UNIT_SET_ARMOUR_UPGRADE ID INT {pin=1}
+unit_set_experience_ ::= UNIT_SET_EXPERIENCE ID INT {pin=1}
+kill_unit_ ::= KILL_UNIT ID {pin=1}
+reduce_unit_strength_ ::= REDUCE_UNIT_STRENGTH ID INT {pin=1}
+unit_set_guard_mode_ ::= UNIT_SET_GUARD_MODE INT on_off {pin=1}
+unit_set_skirmish_mode_ ::= UNIT_SET_SKIRMISH_MODE ID on_off {pin=1}
+unit_set_fire_at_will_mode_ ::= UNIT_SET_FIRE_AT_WILL_MODE ID on_off {pin=1}
+unit_set_formation_spacing_ ::= UNIT_SET_FORMATION_SPACING ID (LOOSE|TIGHT) {pin=1}
+unit_taunt_ ::= UNIT_TAUNT ID {pin=1}
+unit_use_special_ability_ ::= UNIT_USE_SPECIAL_ABILITY ID {pin=1}
+unit_group_enable_automation_ ::= UNIT_GROUP_ENABLE_AUTOMATION ID BOOLEAN {pin=1}
+unit_group_automate_defend_position_ ::= UNIT_GROUP_AUTOMATE_DEFEND_POSITION ID coords_no_comma INT {pin=1}
+unit_group_automate_attack_ ::= UNIT_GROUP_AUTOMATE_ATTACK ID ID {pin=1}
+unit_group_immediate_place_ ::= UNIT_GROUP_IMMEDIATE_PLACE ID coords_no_comma INT {pin=1}
+unit_group_order_halt_ ::= UNIT_GROUP_ORDER_HALT ID {pin=1}
+unit_group_order_move_formed_ ::= UNIT_GROUP_ORDER_MOVE_FORMED ID coords_no_comma RUN? {pin=1}
+unit_group_order_move_unformed_ ::= UNIT_GROUP_ORDER_MOVE_UNFORMED ID coords_no_comma RUN? {pin=1}
+unit_group_order_relative_move_formed_ ::= UNIT_GROUP_ORDER_RELATIVE_MOVE_FORMED ID coords_no_comma RUN? {pin=1}
+unit_group_order_relative_move_unformed_ ::= UNIT_GROUP_ORDER_RELATIVE_MOVE_UNFORMED ID coords_no_comma RUN? {pin=1}
+unit_group_move_to_missile_range_of_unit_ ::= UNIT_GROUP_MOVE_TO_MISSILE_RANGE_OF_UNIT ID ID RUN? {pin=1}
+unit_group_move_to_missile_range_of_group_ ::= UNIT_GROUP_MOVE_TO_MISSILE_RANGE_OF_GROUP ID ID RUN? {pin=1}
+unit_group_order_attack_unit_ ::= UNIT_GROUP_ORDER_ATTACK_UNIT ID ID RUN? {pin=1}
+unit_group_order_attack_group_ ::= UNIT_GROUP_ORDER_ATTACK_GROUP ID ID RUN? {pin=1}
+unit_group_order_change_group_formation_ ::= UNIT_GROUP_ORDER_CHANGE_GROUP_FORMATION ID ID {pin=1}
+unit_group_order_turn_ ::= UNIT_GROUP_ORDER_TURN ID INT RELATIVE? {pin=1}
+unit_group_set_morale_ ::= UNIT_GROUP_SET_MORALE ID morale {pin=1}
+unit_group_unset_morale_ ::= UNIT_GROUP_UNSET_MORALE ID {pin=1}
+unit_group_change_unit_formation_ ::= UNIT_GROUP_CHANGE_UNIT_FORMATION ID unit_formation {pin=1}
+unit_group_set_guard_mode_ ::= UNIT_GROUP_SET_GUARD_MODE ID on_off {pin=1}
+unit_group_set_skirmish_mode_ ::= UNIT_GROUP_SET_SKIRMISH_MODE ID on_off {pin=1}
+unit_group_set_fire_at_will_mode_ ::= UNIT_GROUP_SET_FIRE_AT_WILL_MODE ID on_off {pin=1}
+unit_group_set_formation_spacing_ ::= UNIT_GROUP_SET_FORMATION_SPACING ID (LOOSE|TIGHT) {pin=1}
+force_ai_control_ ::= FORCE_AI_CONTROL {pin=1}
+finish_battle_ ::= FINISH_BATTLE {pin=1}
+move_strat_camera_ ::= MOVE_STRAT_CAMERA coords {pin=1}
+set_strat_camera_speed_ ::= SET_STRAT_CAMERA_SPEED INT {pin=1}
+snap_strat_camera_ ::= SNAP_STRAT_CAMERA coords {pin=1}
+zoom_strat_camera_ ::= ZOOM_STRAT_CAMERA number {pin=1}
+camera_restrictions_set_ ::= CAMERA_RESTRICTIONS_SET on_off {pin=1}
+camera_event_cuts_active_set_ ::= CAMERA_EVENT_CUTS_ACTIVE_SET on_off {pin=1}
+camera_default_mode_set_ ::= CAMERA_DEFAULT_MODE_SET camera_mode {pin=1}
+battle_default_camera_ ::= BATTLE_DEFAULT_CAMERA {pin=1}
+battle_general_camera_ ::= BATTLE_GENERAL_CAMERA {pin=1}
+set_camera_bookmark_ ::= SET_CAMERA_BOOKMARK INT coords_xyz coords_xyz {pin=1}
+camera_position_at_bookmark__ ::= CAMERA_POSITION_AT_BOOKMARK_ INT {pin=1}
+camera_zoom_to_bookmark_ ::= CAMERA_ZOOM_TO_BOOKMARK INT INT {pin=1}
+camera_position_ ::= CAMERA_POSITION coords_xyz coords_xyz {pin=1}
+camera_zoom_to_ ::= CAMERA_ZOOM_TO coords_xyz coords_xyz INT {pin=1}
+camera_look_at_position_ ::= CAMERA_LOOK_AT_POSITION FLOAT FLOAT {pin=1}
+camera_look_at_unit_ ::= CAMERA_LOOK_AT_UNIT ID {pin=1}
+camera_track_unit_ ::= CAMERA_TRACK_UNIT ID direction INT INT INT? {pin=1}
+camera_zoom_to_unit_ ::= CAMERA_ZOOM_TO_UNIT ID {pin=1}
+e_camera_zoom_to_unit_ ::= E_CAMERA_ZOOM_TO_UNIT ID {pin=1}
+inhibit_camera_input_ ::= INHIBIT_CAMERA_INPUT BOOLEAN {pin=1}
+declare_prologue_ ::= DECLARE_PROLOGUE {pin=1}
+terminate_prologue_ ::= TERMINATE_PROLOGUE {pin=1}
+provoke_rebellion_ ::= PROVOKE_REBELLION <<local_or settlement_ref>> {pin=1}
+move_ ::= MOVE name_ coords {pin=1}
+reposition_character_ ::= REPOSITION_CHARACTER name_ coords {pin=1}
+replenish_action_points_ ::= REPLENISH_ACTION_POINTS name_ {pin=1}
+replenish_units_ ::= REPLENISH_UNITS name_ {pin=1}
+spawn_character_ ::= SPAWN_CHARACTER faction_ref name_ COMMA character_type COMMA character_skills COMMA AGE INT COMMA coords_with_xy {pin=1}
+spawn_army_ ::= SPAWN_ARMY
+  FACTION faction_ref
+  CHARACTER name_ COMMA character_type COMMA character_skills COMMA AGE INT COMMA coords_with_xy
+  (UNIT unit_ref COMMA (SOLDIERS INT)? (EXP INT)? (ARMOUR INT)? (WEAPON_LVL INT)?)*
+END {pin=1}
+engage_armies_ ::= ENGAGE_ARMIES name_ COMMA name_ {pin=1}
+disable_popups_ ::= DISABLE_POPUP {pin=1}
+start_benchmark_ ::= START_BENCHMARK ID {pin=1}
+end_benchmark_ ::= END_BENCHMAR {pin=1}
+disable_pause_shortcut_in_campaign_ ::= DISABLE_PAUSE_SHORTCUT_IN_CAMPAIGN BOOLEAN {pin=1}
+override_superfaction_popularity_ ::= OVERRIDE_SUPERFACTION_POPULARITY faction_ref BOOLEAN {pin=1}
+set_faction_senate_standing_ ::= SET_FACTION_SENATE_STANDING faction_ref (INT|ID) {pin=1}
+set_faction_people_standing_ ::= SET_FACTION_PEOPLE_STANDING faction_ref (INT|ID) {pin=1}
+message_prompt_ ::= MESSAGE_PROMPT OCB ID ID ID ID ID? CCB {pin=1}
+include_script_ ::= INCLUDE_SCRIPT txt_file_ {pin=1}
+terminate_script_ ::= TERMINATE_SCRIP {pin=1}
+break_ ::= BREAK {pin=1}
+spawn_battle_ ::= SPAWN_BATTLE PATH {pin=1}
+set_ao_visible_ ::= SET_AO_VISIBLE STRING show_hide region_ref? {pin=1}
+set_all_ao_visible_ ::= SET_ALL_AO_VISIBLE STRING show_hide {pin=1}
+terminate_monitor_ ::= TERMINATE_MONITOR {pin=1}
+declare_counter_ ::= DECLARE_COUNTER ID {pin=1}
+declare_persistent_counter_ ::= DECLARE_PERSISTENT_COUNTER ID {pin=1}
+inc_counter_ ::= INC_COUNTER ID INT {pin=1}
+set_counter_ ::= SET_COUNTER ID INT {pin=1}
+counter_operation_ ::= COUNTER_OPERATION ID EQUALS ID math_op ID {pin=1}
+store_counter_ ::= STORE_COUNTER ID scope ID {pin=1}
+retrieve_counter_ ::= RETRIEVE_COUNTER ID scope ID {pin=1}
+prepare_for_battle_ ::= PREPARE_FOR_BATTLE {pin=1}
+declare_show_me_ ::= DECLARE_SHOW_ME {pin=1}
+label_unit_ ::= LABEL_UNIT INT INT INT ID {pin=1}
+label_location_ ::= LABEL_LOCATION coords_no_comma ID {pin=1}
+define_unit_group_ ::= DEFINE_UNIT_GROUP ID ID* {pin=1}
+undefine_unit_group_ ::= UNDEFINE_UNIT_GROUP ID {pin=1}
+remove_unit_from_group_ ::= REMOVE_UNIT_FROM_GROUP ID ID {pin=1}
+declare_timer_ ::= DECLARE_TIMER ID {pin=1}
+restart_timer_ ::= RESTART_TIMER ID {pin=1}
+heed_pause_ ::= HEED_PAUSE on_off {pin=1}
+wait_ ::= WAIT number {pin=1}
+campaign_wait_ ::= CAMPAIGN_WAIT number {pin=1}
+battle_wait_ ::= BATTLE_WAIT number {pin=1}
+suspend_during_battle_ ::= SUSPEND_DURING_BATTLE on_off {pin=1}
+set_music_state_ ::= SET_MUSIC_STATE ('tension'|'mobilize'|'battle'|'custom') {pin=1}
+release_music_control_ ::= RELEASE_MUSIC_CONTRO {pin=1}
+play_sound_event_ ::= PLAY_SOUND_EVENT ID {pin=1}
+play_sound_flourish_ ::= PLAY_SOUND_FLOURISH ID 'force_no_fade'? {pin=1}
+stop_sound_event_ ::= STOP_SOUND_EVENT ID {pin=1}
+point_at_character_ ::= POINT_AT_CHARACTER name_ {pin=1}
+point_at_settlement_ ::= POINT_AT_SETTLEMENT settlement_ref {pin=1}
+e_point_at_settlement_ ::= E_POINT_AT_SETTLEMEN {pin=1}
+point_at_strat_position_ ::= POINT_AT_STRAT_POSITION coords {pin=1}
+point_at_strat_position_alt_ ::= POINT_AT_STRAT_POSITION_AL {pin=1}
+point_at_message_ ::= POINT_AT_MESSAGE (ID|INT) direction? {pin=1}
+ui_flash_start_ ::= UI_FLASH_START ID {pin=1}
+ui_flash_stop_ ::= UI_FLASH_STO {pin=1}
+settlement_flash_start_ ::= SETTLEMENT_FLASH_START settlement_ref {pin=1}
+settlement_flash_stop_ ::= SETTLEMENT_FLASH_STOP settlement_ref {pin=1}
+character_flash_start_ ::= CHARACTER_FLASH_START name_ {pin=1}
+character_flash_stop_ ::= CHARACTER_FLASH_STOP name_ {pin=1}
+point_at_location_ ::= POINT_AT_LOCATION (coords|ID) {pin=1}
+point_at_unit_pos_ ::= POINT_AT_UNIT_POS ID {pin=1}
+point_at_unit_group_pos_ ::= POINT_AT_UNIT_GROUP_POS ID {pin=1}
+remove_battle_map_arrow_ ::= REMOVE_BATTLE_MAP_ARRO {pin=1}
+point_at_card_ ::= POINT_AT_CARD ui_card_type ID INT {pin=1}
+point_at_unit_card_ ::= POINT_AT_UNIT_CARD ID direction? {pin=1}
+e_point_at_unit_card_ ::= E_POINT_AT_UNIT_CARD direction? {pin=1}
+show_mouse_button_animation_ ::= SHOW_MOUSE_BUTTON_ANIMATION left_right BOOLEAN {pin=1}
+show_movie_ ::= SHOW_MOVIE WMV_FILE INT INT INT INT END_SHOW_MOVIE {pin=1}
+hide_ui_ ::= HIDE_U {pin=1}
+show_ui_ ::= SHOW_UI {pin=1}
+disable_ui_ ::= DISABLE_UI ID {pin=1}
+enable_ui_ ::= ENABLE_UI ID {pin=1}
+disable_entire_ui_ ::= DISABLE_ENTIRE_U {pin=1}
+enable_entire_ui_ ::= ENABLE_ENTIRE_UI {pin=1}
+set_cards_selectable_ ::= SET_CARDS_SELECTABLE BOOLEAN {pin=1}
+disable_cursor_ ::= DISABLE_CURSO {pin=1}
+enable_cursor_ ::= ENABLE_CURSOR {pin=1}
+rename_settlement_in_region_ ::= RENAME_SETTLEMENT_IN_REGION region_ref STRING {pin=1}
+add_religion_ ::= ADD_RELIGION religion_ref region_ref INT {pin=1}
+add_hidden_resource_ ::= ADD_HIDDEN_RESOURCE <<local_or region_ref>> resource_ref {pin=1}
+remove_hidden_resource_ ::= REMOVE_HIDDEN_RESOURCE <<local_or region_ref>> resource_ref {pin=1}
+destroy_building_ ::= DESTROY_BUILDING <<local_or settlement_ref>> building_level_ref {pin=1}
+reveal_tile_ ::= REVEAL_TILE coords {pin=1}
+hide_all_revealed_tiles_ ::= HIDE_ALL_REVEALED_TILE {pin=1}
+play_video_ ::= PLAY_VIDEO WMV_FILE {pin=1}
+advance_advice_thread_ ::= ADVANCE_ADVICE_THREAD ID 'no_dismiss' {pin=1}
+dismiss_advice_ ::= DISMISS_ADVIC {pin=1}
+dismiss_advisor_ ::= DISMISS_ADVISOR {pin=1}
+suspend_unscripted_advice_ ::= SUSPEND_UNSCRIPTED_ADVICE BOOLEAN {pin=1}
+select_character_ ::= SELECT_CHARACTER name_ {pin=1}
+e_select_character_ ::= E_SELECT_CHARACTE {pin=1}
+select_settlement_ ::= SELECT_SETTLEMENT settlement_ref {pin=1}
+e_select_settlement_ ::= E_SELECT_SETTLEMEN {pin=1}
+call_object_shortcut_ ::= CALL_OBJECT_SHORTCUT ID ID? {pin=1}
+simulate_mouse_click_ ::= SIMULATE_MOUSE_CLICK ('lclick_down'|'lclick_up'|'rclick_down'|'rclick_up'|'ldbl_click') {pin=1}
+select_ui_element_ ::= SELECT_UI_ELEMENT ID {pin=1}
+disable_shortcuts_ ::= DISABLE_SHORTCUTS ID? BOOLEAN {pin=1}
+filter_unit_commands_ ::= FILTER_UNIT_COMMANDS on_off ID? {pin=1}
+filter_unit_group_commands_ ::= FILTER_UNIT_GROUP_COMMANDS on_off ID? {pin=1}
+filter_unit_selection_commands_ ::= FILTER_UNIT_SELECTION_COMMANDS on_off {pin=1}
+filter_settlement_commands_ ::= FILTER_SETTLEMENT_COMMANDS on_off settlement_ref {pin=1}
+filter_character_commands_ ::= FILTER_CHARACTER_COMMANDS on_off name_ {pin=1}
+filter_all_ui_commands_ ::= FILTER_ALL_UI_COMMANDS on_off {pin=1}
+ui_indicator_ ::= UI_INDICATOR
+  INT
+  ('circle'|'new_arrow_down '|'arrow_down_left'|'arrow_down_right'|'arrow_up_left'|'arrow_up_right')
+  (
+    coords_no_comma|
+    'track' coords_xyz|
+    'track_3d' coords_xyz INT|
+    'track_ground' coords_no_comma|
+    'track_ground_3d' coords_no_comma INT|
+    'track_unit' ID|
+    'track_unit_3d' ID INT|
+  )
+  ('colour' INT INT INT)?
+  ('scale' number)?
+  ('period' number)?
+  'loop'? {pin=1}
+ui_indicator_remove_ ::= UI_INDICATOR_REMOVE INT {pin=1}
+steal_esc_key_ ::= STEAL_ESC_KEY on_off {pin=1}
+highlight_recruitment_item_ ::= HIGHLIGHT_RECRUITMENT_ITEM unit_ref {pin=1}
+highlight_construction_item_ ::= HIGHLIGHT_CONSTRUCTION_ITEM building_level_ref {pin=1}
+show_annotations_ ::= SHOW_ANNOTATIONS TXT_FILE {pin=1}
+e_select_unit_ ::= E_SELECT_UNIT {pin=1}
+open_siege_scroll_ ::= OPEN_SIEGE_SCROLL {pin=1}
+control_feral_anim_ ::= CONTROL_FERAL_ANIM ID ID 'reverse' {pin=1}
+select_captial_ ::= SELECT_CAPTIAL {pin=1}
+show_building_info_ ::= SHOW_BUILDING_INFO {pin=1}
+show_unit_info_ ::= SHOW_UNIT_INFO {pin=1}
+console_command_ ::= CONSOLE_COMMAND c_command_ {pin=1}
+
+c_command_ ::= kill_character_|give_trait_|process_cq_|add_population_|capture_settlement_|add_money_|diplomatic_stance_|give_trait_c|date_|season_|create_building_|create_unit_|destroy_unit_
+kill_character_ ::= KILL_CHARACTER <<local_or STRING>> {pin=1}
+give_trait_ ::= GIVE_TRAIT <<local_or STRING>> trait_ref INT {pin=1}
+process_cq_ ::= PROCESS_CQ <<local_or settlement_ref>> {pin=1}
+add_population_ ::= ADD_POPULATION <<local_or settlement_ref>> INT {pin=1}
+capture_settlement_ ::= CAPTURE_SETTLEMENT <<local_or settlement_ref>> {pin=1}
+add_money_ ::= ADD_MONEY faction_ref? INT {pin=1}
+diplomatic_stance_ ::= DIPLOMATIC_STANCE faction_ref faction_ref diplomatic_stance_for_command {pin=1}
+give_trait_c ::= give_trait_
+date_ ::= DATE INT
+season_ ::= SEASON season_enum
+create_building_ ::= CREATE_BUILDING <<local_or settlement_ref>> building_level_ref
+create_unit_ ::= CREATE_UNIT (name_|settlement_ref) str_unit_ref INT
+destroy_unit_ ::= DESTROY_UNIT (name_|settlement_ref) str_unit_ref INT
+private diplomatic_stance_for_command ::= ALLIED|NEUTRAL|WAR
+
+// #### Commands params ####
+senate_reward ::= "TODO:DO_ME" //TODO:DOME
+on_off ::= (ON|OFF)
+ui_card_type ::= (UNIT|CHARACTER|BUILDING)
+agent_hub_targets ::= (AGENT|MISSION)
+point_shape ::= (CIRCLE|SQUARE|ARROW)
+accept_reject ::= (ACCEPT|REJECT)
+yes_no ::= (YES|NO)
+show_hide ::= (SHOW|HIDE)
+settlement_tab ::=(UNITS|BUILDINGS|CHARACTERS|PASSENGERS)
+left_right ::= LEFT|RIGHT
+direction ::=(UP|DOWN|left_right|TOP_LEFT|TOP_RIGHT|BOT_LEFT|BOT_RIGHT)
+morale::=(BERSERK|IMPETUOUS|HIGH|FIRM|SHAKEN|WAVERING|ROUTING)
+camera_mode::=(TW|RTS|GENERAL|USER_PREF)
 
 // #### Primitives ####
 private number ::= INT|FLOAT
@@ -2587,12 +3265,19 @@ txt_file_ ::= TXT_FILE {methods=[setName getReference]}
 tga_file_ ::= TGA_FILE {methods=[setName getReference]}
 
 // #### operators ####
+private math_op ::= (PLUS|DASH|SLASH|STAR)
 private comparison_op ::= EQUALS|LARGER|LARGER_OR_EQUAL|SMALLER|SMALLER_OR_EQUAL|
 private and_op ::= (AND|AMBERSANDS)
+private or_op ::= (OR|PIPES)
 
-// #### Lists ####
+// #### coordinates ####
+coords ::= INT COMMA INT
+coords_no_comma ::= INT INT
+coords_with_xy ::= X INT COMMA Y INT
+coords_xyz ::= INT INT INT
+
+// #### metas ####
+private meta local_or ::= LOCAL|<<item>>
+
 private meta list ::= <<item>> (COMMA <<item>>)*
 private meta optional_commas_list ::= <<item>> (COMMA? <<item>>)*
-private list_of_IDs ::=  <<list ID>>
-private list_of_mount_effects ::=  <<list (mount_class INT)>>
-private list_of_character_types ::=  <<list (character_type)>>

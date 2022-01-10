@@ -135,6 +135,24 @@ public class RRUtil {
             .collect(Collectors.toList());
     }
 
+    public static Collection<RRSettlementNameDecl> findAllSettlements(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_regions.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrRegions.class).getRegionDefList().stream()
+            .map(it -> it.getSettlementNameDecl())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<String> findAllSettlementsAsStrings(Project project) {
+        return findAllSettlements(project).stream()
+            .map(it -> it.getFirstChild().getText())
+            .collect(Collectors.toList());
+    }
+
     public static Collection<RRRebelFaction> findAllRebels(Project project) {
         RRFile file = RRUtil.findRRFile("descr_rebel_factions.txt", project);
 

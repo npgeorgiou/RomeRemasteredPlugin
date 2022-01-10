@@ -9,45 +9,43 @@ import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
-import rr.language.Util;
-import rr.language.psi.*;
+import rr.language.psi.RRRegionDef;
+import rr.language.psi.RRRegionRef;
+import rr.language.psi.RRSettlementNameDecl;
+import rr.language.psi.RRSettlementRef;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UnitReference extends PsiReferenceBase<PsiElement> implements PsiReference {
+public class SettlementReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
-    public UnitReference(@NotNull PsiElement element, TextRange rangeInElement) {
+    public SettlementReference(@NotNull PsiElement element, TextRange rangeInElement) {
         super(element, rangeInElement);
     }
 
     @Override
     public @Nullable PsiElement resolve() {
-        List<RRUnitItem_> units = RRUtil.findAllUnits(myElement.getProject()).stream()
-            .filter(it -> it.getUnitNameDecl().getText().equals(Util.unquote(myElement.getText())))
+        List<RRSettlementNameDecl> items = RRUtil.findAllSettlements(myElement.getProject()).stream()
+            .filter(it -> it.getFirstChild().getText().equals(myElement.getText()))
             .collect(Collectors.toList());
 
-        if (units.isEmpty()) {
+        if (items.isEmpty()) {
             return null;
         }
 
-        return units.get(0).getUnitNameDecl();
+        return items.get(0).getFirstChild();
     }
 
     @Override
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
-        if (myElement.getText().startsWith("\"")) {
-            ((RRStrUnitRef) myElement).setName(newName);
-        } else {
-            ((RRUnitRef) myElement).setName(newName);
-        }
-
+        ((RRSettlementRef) myElement).setName(newName);
         return myElement;
     }
 
-    @Override
+
+
     public Object @NotNull [] getVariants() {
-        return RRUtil.findAllUnitsAsStrings(myElement.getProject()).stream()
+        return RRUtil.findAllSettlementsAsStrings(myElement.getProject()).stream()
             .map(it -> LookupElementBuilder.create(it))
             .toArray();
     }
