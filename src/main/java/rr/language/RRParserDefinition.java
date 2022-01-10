@@ -40,6 +40,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.OR,
         RRTypes.PIPES,
         RRTypes.EQUALS,
+        RRTypes.NOT_EQUALS,
         RRTypes.LARGER,
         RRTypes.LARGER_OR_EQUAL,
         RRTypes.SMALLER,
@@ -79,6 +80,10 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.LARGE_CITY,
         RRTypes.HUGE_CITY,
         RRTypes.DEFAULT_SET,
+
+        //diplomatic_stance
+        RRTypes.ALLIED_TO,
+        RRTypes.AT_WAR_WITH,
 
         // building types
         RRTypes.CORE,
@@ -330,6 +335,8 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.BRIGANDS,
         RRTypes.PIRATES,
         // command params
+        RRTypes.SUDO,
+        RRTypes.LABEL,
         RRTypes.ON,
         RRTypes.OFF,
         RRTypes.CIRCLE,
@@ -339,9 +346,17 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.SHOW,
         RRTypes.HIDE,
         RRTypes.UNITS,
+        RRTypes.BUILDINGS,
         RRTypes.PASSENGERS,
+        RRTypes.RECRUITMENT,
+        RRTypes.MERCENARIES,
+        RRTypes.FIELD_CONSTRUCTION,
+        RRTypes.BUILDING,
+        RRTypes.AGENT_UCF,
+        RRTypes.MISSION_UCF,
         RRTypes.UP,
         RRTypes.DOWN,
+        RRTypes.BACK,
         RRTypes.LEFT,
         RRTypes.RIGHT,
         RRTypes.TOP_LEFT,
@@ -363,6 +378,10 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.USER_PREF,
 
         // command params
+        RRTypes.COMMAND_UCF,
+        RRTypes.INFLUENCE_UCF,
+        RRTypes.MANAGEMENT_UCF,
+        RRTypes.SUBTERFUGE_UCF,
         RRTypes.LOCAL,
         RRTypes.ON,
         RRTypes.OFF,
@@ -833,7 +852,12 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.FOR_EACH,
         RRTypes.IN,
         RRTypes.END_FOR,
-        RRTypes.WORLD
+        RRTypes.WORLD,
+
+        // commands stuff
+        RRTypes.SUDO,
+        RRTypes.CHARACTER_UCF
+
     );
     //</editor-fold>
 
@@ -1553,6 +1577,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.BATTLE_DEFAULT_CAMERA,
         RRTypes.BATTLE_GENERAL_CAMERA,
         RRTypes.SET_CAMERA_BOOKMARK,
+        RRTypes.USE_CAMERA_BOOKMARK,
         RRTypes.CAMERA_POSITION_AT_BOOKMARK_,
         RRTypes.CAMERA_ZOOM_TO_BOOKMARK,
         RRTypes.CAMERA_POSITION,
@@ -1585,11 +1610,13 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.TERMINATE_SCRIPT,
         RRTypes.BREAK,
         RRTypes.SPAWN_BATTLE,
+        RRTypes.END_BATTLE,
         RRTypes.SET_AO_VISIBLE,
         RRTypes.SET_ALL_AO_VISIBLE,
         RRTypes.MONITOR_CONDITIONS,
-        RRTypes.END_MONITOR,
+        RRTypes.MONITOR,
         RRTypes.MONITOR_EVENT,
+        RRTypes.END_MONITOR,
         RRTypes.TERMINATE_MONITOR,
         RRTypes.CONSOLE_COMMAND,
         RRTypes.DECLARE_COUNTER,
@@ -1690,6 +1717,7 @@ public class RRParserDefinition implements ParserDefinition {
         // console commands
         RRTypes.KILL_CHARACTER,
         RRTypes.GIVE_TRAIT,
+        RRTypes.GIVE_ANCILLARY,
         RRTypes.PROCESS_CQ,
         RRTypes.ADD_POPULATION,
         RRTypes.CAPTURE_SETTLEMENT,
@@ -1699,6 +1727,12 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.SEASON,
         RRTypes.CREATE_BUILDING,
         RRTypes.CREATE_UNIT,
+        RRTypes.QUIT_GAME,
+        RRTypes.TOGGLE_FOW,
+        RRTypes.SET_FOW,
+        RRTypes.BECOME_PROTECTOR,
+        RRTypes.FORCE_BATTLE_VICTORY,
+        RRTypes.INVULNERABLE_GENERAL,
         RRTypes.DESTROY_UNIT
     );
     //</editor-fold>

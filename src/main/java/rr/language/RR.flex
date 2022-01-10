@@ -33,7 +33,7 @@ STR_CHAR = [^\"\r\n\\]
 STRING = \" {STR_CHAR}* \"
 
 DIR_OR_FILE=[\w\d_#&-]+
-PATH = {DIR_OR_FILE}(\/{DIR_OR_FILE})+
+PATH = {DIR_OR_FILE}([/\\]{DIR_OR_FILE})+
 TXT_FILE=({PATH}|{DIR_OR_FILE})\.(txt|TXT)
 TGA_FILE=({PATH}|{DIR_OR_FILE})\.(tga|TGA)
 CAS_FILE=({PATH}|{DIR_OR_FILE})\.(cas|CAS)
@@ -302,6 +302,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "relative"                   {return RRTypes.RELATIVE;}
     "core_attitudes"             {return RRTypes.CORE_ATTITUDES;}
     "faction_relationships"      {return RRTypes.FACTION_RELATIONSHIPS;}
+    "allied_to"                  {return RRTypes.ALLIED_TO;}
+    "at_war_with"                {return RRTypes.AT_WAR_WITH;}
     "superfaction_setup"         {return RRTypes.SUPERFACTION_SETUP;}
     "default_hostile"            {return RRTypes.DEFAULT_HOSTILE;}
     "mission_queue"              {return RRTypes.MISSION_QUEUE;}
@@ -1260,6 +1262,8 @@ true|false       {return RRTypes.BOOLEAN;}
     // operators
     ","                                               {return RRTypes.COMMA;}
     "="                                               {return RRTypes.EQUALS;}
+    "=="                                              {return RRTypes.EQUALS;}
+    "!="                                              {return RRTypes.NOT_EQUALS;}
     ">"                                               {return RRTypes.LARGER;}
     ">="                                              {return RRTypes.LARGER_OR_EQUAL;}
     "<"                                               {return RRTypes.SMALLER;}
@@ -1859,7 +1863,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "battle_default_camera"                      {return RRTypes.BATTLE_DEFAULT_CAMERA;}
     "battle_general_camera"                      {return RRTypes.BATTLE_GENERAL_CAMERA;}
     "set_camera_bookmark"                        {return RRTypes.SET_CAMERA_BOOKMARK;}
-    "camera_position_at_bookmark"               {return RRTypes.CAMERA_POSITION_AT_BOOKMARK_;}
+    "use_camera_bookmark"                        {return RRTypes.USE_CAMERA_BOOKMARK;}
+    "camera_position_at_bookmark"                {return RRTypes.CAMERA_POSITION_AT_BOOKMARK_;}
     "camera_zoom_to_bookmark"                    {return RRTypes.CAMERA_ZOOM_TO_BOOKMARK;}
     "camera_position"                            {return RRTypes.CAMERA_POSITION;}
     "camera_zoom_to"                             {return RRTypes.CAMERA_ZOOM_TO;}
@@ -1891,11 +1896,13 @@ true|false       {return RRTypes.BOOLEAN;}
     "terminate_script"                           {return RRTypes.TERMINATE_SCRIPT;}
     "break"                                      {return RRTypes.BREAK;}
     "spawn_battle"                               {return RRTypes.SPAWN_BATTLE;}
+    "end_battle"                                 {return RRTypes.END_BATTLE;}
     "set_ao_visible"                             {return RRTypes.SET_AO_VISIBLE;}
     "set_all_ao_visible"                         {return RRTypes.SET_ALL_AO_VISIBLE;}
     "monitor_conditions"                         {return RRTypes.MONITOR_CONDITIONS;}
-    "end_monitor"                                {return RRTypes.END_MONITOR;}
+    "monitor"                                    {return RRTypes.MONITOR;}
     "monitor_event"                              {return RRTypes.MONITOR_EVENT;}
+    "end_monitor"                                {return RRTypes.END_MONITOR;}
     "terminate_monitor"                          {return RRTypes.TERMINATE_MONITOR;}
     "console_command"                            {return RRTypes.CONSOLE_COMMAND;}
     "declare_counter"                            {return RRTypes.DECLARE_COUNTER;}
@@ -1996,6 +2003,7 @@ true|false       {return RRTypes.BOOLEAN;}
     // console commands
     "kill_character"                             {return RRTypes.KILL_CHARACTER;}
     "give_trait"                                 {return RRTypes.GIVE_TRAIT;}
+    "give_ancillary"                             {return RRTypes.GIVE_ANCILLARY;}
     "process_cq"                                 {return RRTypes.PROCESS_CQ;}
     "add_population"                             {return RRTypes.ADD_POPULATION;}
     "capture_settlement"                         {return RRTypes.CAPTURE_SETTLEMENT;}
@@ -2006,14 +2014,31 @@ true|false       {return RRTypes.BOOLEAN;}
     "create_building"                            {return RRTypes.CREATE_BUILDING;}
     "create_unit"                                {return RRTypes.CREATE_UNIT;}
     "destroy_unit"                               {return RRTypes.DESTROY_UNIT;}
+    "quit_game"                                  {return RRTypes.QUIT_GAME;}
+    "toggle_fow"                                 {return RRTypes.TOGGLE_FOW;}
+    "set_fow"                                    {return RRTypes.SET_FOW;}
+    "become_protector"                           {return RRTypes.BECOME_PROTECTOR;}
+    "invulnerable_general"                       {return RRTypes.INVULNERABLE_GENERAL;}
+    "force_battle_victory"                       {return RRTypes.FORCE_BATTLE_VICTORY;}
     // command params
     "+"                                          {return RRTypes.PLUS;}
     "-"                                          {return RRTypes.DASH;}
     "/"                                          {return RRTypes.SLASH;}
     "*"                                          {return RRTypes.STAR;}
+    "Ancillary"                                  {return RRTypes.ANCILLARY;}
+    "Character"                                  {return RRTypes.CHARACTER_UCF;}
+    "scale"                                      {return RRTypes.SCALE;}
+    "yes"                                        {return RRTypes.YES;}
+    "no"                                         {return RRTypes.NO;}
+    "sudo"                                       {return RRTypes.SUDO;}
     "summer"                                     {return RRTypes.SUMMER;}
     "winter"                                     {return RRTypes.WINTER;}
+    "Command"                                    {return RRTypes.COMMAND_UCF;}
+    "Influence"                                  {return RRTypes.INFLUENCE_UCF;}
+    "Management"                                 {return RRTypes.MANAGEMENT_UCF;}
+    "Subterfuge"                                 {return RRTypes.SUBTERFUGE_UCF;}
     "faction"                                    {return RRTypes.FACTION;}
+    "sub_faction"                                {return RRTypes.SUB_FACTION;}
     "character"                                  {return RRTypes.CHARACTER;}
     "command"                                    {return RRTypes.COMMAND;}
     "influence"                                  {return RRTypes.INFLUENCE;}
@@ -2031,6 +2056,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "neutral"                                    {return RRTypes.NEUTRAL;}
     "war"                                        {return RRTypes.WAR;}
     "on"                                         {return RRTypes.ON;}
+    "label"                                      {return RRTypes.LABEL;}
     "off"                                        {return RRTypes.OFF;}
     "circle"                                     {return RRTypes.CIRCLE;}
     "arrow"                                      {return RRTypes.ARROW;}
@@ -2039,9 +2065,19 @@ true|false       {return RRTypes.BOOLEAN;}
     "show"                                       {return RRTypes.SHOW;}
     "hide"                                       {return RRTypes.HIDE;}
     "units"                                      {return RRTypes.UNITS;}
+    "characters"                                 {return RRTypes.CHARACTERS_LC;}
+    "buildings"                                  {return RRTypes.BUILDINGS;}
     "passengers"                                 {return RRTypes.PASSENGERS;}
+    "recruitment"                                {return RRTypes.RECRUITMENT;}
+    "mercenaries"                                {return RRTypes.MERCENARIES;}
+    "field_construction"                         {return RRTypes.FIELD_CONSTRUCTION;}
+    "building"                                   {return RRTypes.BUILDING;}
+    "construction"                               {return RRTypes.CONSTRUCTION;}
+    "Agent"                                      {return RRTypes.AGENT_UCF;}
+    "Mission"                                    {return RRTypes.MISSION_UCF;}
     "up"                                         {return RRTypes.UP;}
     "down"                                       {return RRTypes.DOWN;}
+    "back"                                       {return RRTypes.BACK;}
     "left"                                       {return RRTypes.LEFT;}
     "right"                                      {return RRTypes.RIGHT;}
     "top_left"                                   {return RRTypes.TOP_LEFT;}
