@@ -1736,7 +1736,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "army"                                       {return RRTypes.ARMY;}
     "faction"                                    {return RRTypes.FACTION;}
 
-
     // commands
     "senate_mission_help_player"                 {return RRTypes.SENATE_MISSION_HELP_PLAYER;}
     "senate_mission_assassination"               {return RRTypes.SENATE_MISSION_ASSASSINATION;}
@@ -2019,12 +2018,21 @@ true|false       {return RRTypes.BOOLEAN;}
     "set_fow"                                    {return RRTypes.SET_FOW;}
     "become_protector"                           {return RRTypes.BECOME_PROTECTOR;}
     "invulnerable_general"                       {return RRTypes.INVULNERABLE_GENERAL;}
+    "provoke_rebellion"                          {return RRTypes.PROVOKE_REBELLION;}
+    "change_character_faction"                   {return RRTypes.CHANGE_CHARACTER_FACTION;}
+    "add_income"                                 {return RRTypes.ADD_INCOME;}
+    "add_expenditure"                            {return RRTypes.ADD_EXPENDITURE;}
+    "give_everything"                            {return RRTypes.GIVE_EVERYTHING;}
+    "control"                                    {return RRTypes.CONTROL;}
     "force_battle_victory"                       {return RRTypes.FORCE_BATTLE_VICTORY;}
     // command params
     "+"                                          {return RRTypes.PLUS;}
     "-"                                          {return RRTypes.DASH;}
     "/"                                          {return RRTypes.SLASH;}
     "*"                                          {return RRTypes.STAR;}
+    "local_character"                            {return RRTypes.LOCAL_CHARACTER;}
+    "local_faction"                              {return RRTypes.LOCAL_FACTION;}
+    "local_settlement"                           {return RRTypes.LOCAL_SETTLEMENT;}
     "Ancillary"                                  {return RRTypes.ANCILLARY;}
     "Character"                                  {return RRTypes.CHARACTER_UCF;}
     "scale"                                      {return RRTypes.SCALE;}

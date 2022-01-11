@@ -1631,6 +1631,12 @@
       FORCE_BATTLE_VICTORY="force_battle_victory"
       BECOME_PROTECTOR="become_protector"
       INVULNERABLE_GENERAL="invulnerable_general"
+      PROVOKE_REBELLION="provoke_rebellion"
+      CHANGE_CHARACTER_FACTION="change_character_faction"
+      ADD_INCOME="add_income"
+      ADD_EXPENDITURE="add_expenditure"
+      GIVE_EVERYTHING="give_everything"
+      CONTROL="control"
 
       // scripts
       SCRIPT="script"
@@ -1648,6 +1654,9 @@
       WORLD="world"
 
       // command params
+      LOCAL_CHARACTER="local_character"
+      LOCAL_FACTION="local_faction"
+      LOCAL_SETTLEMENT="local_settlement"
       LABEL="label"
       CHARACTER_UCF="Character"
       ON="on"
@@ -1843,7 +1852,11 @@ superfaction_setup_item ::= SUPERFACTION_SETUP ID
 mission_queue_item ::= MISSION_QUEUE faction_ref OCB mission_* CCB
 mission_ ::= ID INT ID (ID)?
 
-name_ ::= ID+
+name_ ::= (ID|keywords_that_may_be_in_names)+
+// TODO: Go through all tokens and add dangerious ones here.
+// Then on highlighting make all unit_reds/decls have identifier color.
+// Then rethink sublexers.
+keywords_that_may_be_in_names ::= (GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|HORSE|X|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO)
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -1868,8 +1881,8 @@ unit_item_ ::= TYPE unit_name_decl
                (REBALANCE_STATBLOCK rebalance_block)?
                {pin=2}
 
-unit_name_decl ::= ID+ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
-unit_ref ::= ID+ {methods=[setName getReference]}
+unit_name_decl ::= name_ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+unit_ref ::= name_ {methods=[setName getReference]}
 str_unit_ref ::= STRING {methods=[setName getReference]}
 faction_or_culture_ref ::= ID {methods=[setName getReference]}
 
@@ -2845,8 +2858,8 @@ i_withdrawsbeforebattle_ ::= I_WITHDRAWSBEFOREBATTLE {pin=1}
 endedinenemyzoc_ ::= ENDEDINENEMYZOC {pin=1}
 adviseaction_ ::= ADVISEACTION EQUALS character_action_advice {pin=1}
 i_charactertypenearcharactertype_ ::= I_CHARACTERTYPENEARCHARACTERTYPE faction_ref character_type INT faction_ref character_type {pin=1}
-i_charactertypeneartile_ ::= I_CHARACTERTYPENEARTILE faction_ref (character_type|'named_character') COMMA number COMMA? coords {pin=1}
-i_characternameneartile_ ::= I_CHARACTERNAMENEARTILE faction_ref COMMA name_ COMMA number coords {pin=1}
+i_charactertypeneartile_ ::= I_CHARACTERTYPENEARTILE (LOCAL_FACTION|faction_ref) (character_type|'named_character') COMMA? number COMMA? coords {pin=1}
+i_characternameneartile_ ::= I_CHARACTERNAMENEARTILE (LOCAL_FACTION|faction_ref) COMMA name_ COMMA number coords {pin=1}
 tradingresource_ ::= TRADINGRESOURCE resource_ref? {pin=1}
 regiontradingresource_ ::= REGIONTRADINGRESOURCE resource_ref {pin=1}
 tradingexotic_ ::= TRADINGEXOTIC {pin=1}
@@ -2901,7 +2914,7 @@ isprotector_ ::= ISPROTECTOR faction_ref {pin=1}
 issamesuperfaction_ ::= ISSAMESUPERFACTION faction_ref {pin=1}
 localplayerbattlesfought_ ::= LOCALPLAYERBATTLESFOUGHT comparison_op INT {pin=1}
 toggled_ ::= TOGGLED ID+ {pin=1}
-majoreventactive_ ::= MAJOREVENTACTIVE STRING <<local_or faction_ref>> {pin=1}
+majoreventactive_ ::= MAJOREVENTACTIVE STRING <<local_or faction_ref>>? {pin=1}
 randompercent_ ::= RANDOMPERCENT comparison_op INT {pin=1}
 truecondition_ ::= TRUECONDITION {pin=1}
 worldwideancillaryexists_ ::= WORLDWIDEANCILLARYEXISTS ancillary_ref BOOLEAN {pin=1}
@@ -2942,7 +2955,7 @@ riotrisk_ ::= RIOTRISK comparison_op INT {pin=1}
 buildingqueueidledespitecash_ ::= BUILDINGQUEUEIDLEDESPITECASH {pin=1}
 trainingqueueidledespitecash_ ::= TRAININGQUEUEIDLEDESPITECASH {pin=1}
 i_settlementexists_ ::= I_SETTLEMENTEXISTS settlement_ref {pin=1}
-i_settlementowner_ ::= I_SETTLEMENTOWNER <<local_or settlement_ref>> EQUALS faction_ref {pin=1}
+i_settlementowner_ ::= I_SETTLEMENTOWNER <<local_or settlement_ref>> equality_op faction_ref {pin=1}
 i_settlementownerculture_ ::= I_SETTLEMENTOWNERCULTURE <<local_or settlement_ref>> EQUALS culture_ref {pin=1}
 i_settlementlevel_ ::= I_SETTLEMENTLEVEL <<local_or settlement_ref>> comparison_op settlement_level {pin=1}
 advisefinancialbuild_ ::= ADVISEFINANCIALBUILD EQUALS ID {pin=1}
@@ -3173,7 +3186,7 @@ inhibit_camera_input_ ::= INHIBIT_CAMERA_INPUT BOOLEAN {pin=1}
 declare_prologue_ ::= DECLARE_PROLOGUE {pin=1}
 terminate_prologue_ ::= TERMINATE_PROLOGUE ID? {pin=1}
 provoke_rebellion_ ::= PROVOKE_REBELLION <<local_or settlement_ref>> {pin=1}
-move_ ::= MOVE name_ coords {pin=1}
+move_ ::= MOVE name_ COMMA? coords {pin=1}
 reposition_character_ ::= REPOSITION_CHARACTER name_ COMMA coords {pin=1}
 replenish_action_points_ ::= REPLENISH_ACTION_POINTS name_ {pin=1}
 replenish_units_ ::= REPLENISH_UNITS name_ {pin=1}
@@ -3282,7 +3295,7 @@ reveal_tile_ ::= REVEAL_TILE coords {pin=1}
 hide_all_revealed_tiles_ ::= HIDE_ALL_REVEALED_TILE {pin=1}
 play_video_ ::= PLAY_VIDEO wmv_file_ {pin=1}
 advance_advice_thread_ ::= ADVANCE_ADVICE_THREAD ID 'no_dismiss'? {pin=1}
-dismiss_advice_ ::= DISMISS_ADVIC {pin=1}
+dismiss_advice_ ::= DISMISS_ADVICE {pin=1}
 dismiss_advisor_ ::= DISMISS_ADVISOR {pin=1}
 suspend_unscripted_advice_ ::= SUSPEND_UNSCRIPTED_ADVICE BOOLEAN {pin=1}
 select_character_ ::= SELECT_CHARACTER name_ {pin=1}
@@ -3329,12 +3342,12 @@ show_unit_info_ ::= SHOW_UNIT_INFO {pin=1}
 tactical_view_locked_ ::= TACTICAL_VIEW_LOCKED BOOLEAN {pin=1} // undocumented
 console_command_ ::= CONSOLE_COMMAND c_command_ {pin=1}
 
-c_command_ ::= give_ancillary_|invulnerable_general_|set_fow_|become_protector_|force_battle_victory_|toggle_fow_|quit_game_|kill_character_|give_trait_|process_cq_|add_population_|capture_settlement_|add_money_|diplomatic_stance_|give_trait_c|date_|season_|create_building_|create_unit_|destroy_unit_
+c_command_ ::= change_character_faction_|add_income_|add_expenditure_|give_ancillary_|control_|give_everything_|invulnerable_general_|set_fow_|become_protector_|force_battle_victory_|toggle_fow_|quit_game_|kill_character_|give_trait_|process_cq_|add_population_|capture_settlement_|add_money_|diplomatic_stance_|give_trait_c|date_|season_|create_building_|create_unit_|destroy_unit_
 kill_character_ ::= KILL_CHARACTER <<local_or STRING>> {pin=1}
 give_trait_ ::= GIVE_TRAIT <<local_or STRING>> trait_ref INT {pin=1}
 give_ancillary_ ::= GIVE_ANCILLARY STRING ancillary_ref
 process_cq_ ::= PROCESS_CQ <<local_or settlement_ref>> {pin=1}
-add_population_ ::= ADD_POPULATION <<local_or settlement_ref>> INT {pin=1}
+add_population_ ::= ADD_POPULATION <<local_or settlement_ref>> COMMA? INT {pin=1}
 capture_settlement_ ::= CAPTURE_SETTLEMENT <<local_or settlement_ref>> {pin=1}
 add_money_ ::= ADD_MONEY faction_ref? COMMA? INT {pin=1}
 diplomatic_stance_ ::= DIPLOMATIC_STANCE faction_ref faction_ref diplomatic_stance_for_command {pin=1}
@@ -3342,15 +3355,21 @@ give_trait_c ::= give_trait_
 date_ ::= DATE INT {pin=1}
 season_ ::= SEASON season_enum {pin=1}
 create_building_ ::= CREATE_BUILDING <<local_or settlement_ref>> building_level_ref {pin=1}
-create_unit_ ::= CREATE_UNIT (name_|settlement_ref) str_unit_ref INT? {pin=1}
-destroy_unit_ ::= DESTROY_UNIT (name_|settlement_ref) str_unit_ref INT {pin=1}
+create_unit_ ::= CREATE_UNIT (LOCAL_CHARACTER|STRING|LOCAL_SETTLEMENT|settlement_ref) str_unit_ref INT? {pin=1}
+destroy_unit_ ::= DESTROY_UNIT (LOCAL_CHARACTER|STRING|LOCAL_SETTLEMENT|settlement_ref) str_unit_ref INT? {pin=1}
 quit_game_ ::= SUDO? QUIT_GAME {pin=2}
 toggle_fow_ ::= TOGGLE_FOW
 set_fow_ ::= SET_FOW on_off
 force_battle_victory_ ::= SUDO? FORCE_BATTLE_VICTORY
 become_protector_ ::= BECOME_PROTECTOR faction_ref faction_ref
 invulnerable_general_ ::= INVULNERABLE_GENERAL STRING
+give_everything_ ::= GIVE_EVERYTHING faction_ref faction_ref
+change_character_faction_ ::= CHANGE_CHARACTER_FACTION (LOCAL_CHARACTER|name_) (LOCAL_FACTION|faction_ref)
+add_income_ ::= ADD_INCOME (LOCAL_FACTION|faction_ref|LOCAL_SETTLEMENT|settlement_ref) ID INT
+add_expenditure_ ::= ADD_EXPENDITURE (LOCAL_FACTION|faction_ref|LOCAL_SETTLEMENT|settlement_ref) ID INT
+control_ ::= CONTROL faction_ref
 private diplomatic_stance_for_command ::= ALLIED|NEUTRAL|WAR
+
 
 // #### Commands params ####
 senate_reward ::= ID //TODO:DOME
@@ -3382,7 +3401,8 @@ file_ ::= txt_file_|tga_file_|cas_file_|wmv_file_
 
 // #### operators ####
 private math_op ::= (PLUS|DASH|SLASH|STAR)
-private comparison_op ::= EQUALS|NOT_EQUALS|LARGER|LARGER_OR_EQUAL|SMALLER|SMALLER_OR_EQUAL|
+private equality_op ::= EQUALS|NOT_EQUALS
+private comparison_op ::= equality_op|LARGER|LARGER_OR_EQUAL|SMALLER|SMALLER_OR_EQUAL|
 private and_op ::= (AND|AMBERSANDS)
 private or_op ::= (OR|PIPES)
 
@@ -3398,6 +3418,7 @@ color_ ::= 'blue'
 
 // #### metas ####
 private meta local_or ::= LOCAL|<<item>>
+private meta local_character_or ::= LOCAL|<<item>>
 
 private meta list ::= <<item>> (COMMA <<item>>)*
 private meta optional_commas_list ::= <<item>> (COMMA? <<item>>)*

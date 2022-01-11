@@ -383,6 +383,9 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.MANAGEMENT_UCF,
         RRTypes.SUBTERFUGE_UCF,
         RRTypes.LOCAL,
+        RRTypes.LOCAL_CHARACTER,
+        RRTypes.LOCAL_FACTION,
+        RRTypes.LOCAL_SETTLEMENT,
         RRTypes.ON,
         RRTypes.OFF,
         RRTypes.CIRCLE,
@@ -1733,6 +1736,12 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.BECOME_PROTECTOR,
         RRTypes.FORCE_BATTLE_VICTORY,
         RRTypes.INVULNERABLE_GENERAL,
+        RRTypes.PROVOKE_REBELLION,
+        RRTypes.CHANGE_CHARACTER_FACTION,
+        RRTypes.ADD_INCOME,
+        RRTypes.ADD_EXPENDITURE,
+        RRTypes.GIVE_EVERYTHING,
+        RRTypes.CONTROL,
         RRTypes.DESTROY_UNIT
     );
     //</editor-fold>
