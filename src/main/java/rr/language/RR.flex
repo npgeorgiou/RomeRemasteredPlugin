@@ -69,8 +69,10 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_OFFMAP_MODELS
 %state DESCR_SM_LANDMARKS
 %state DESCR_DISASTERS
-%state DESCR_PALETTE_MARKER
 %state DESCR_ITEMS
+%state DESCR_SHIP
+%state DESCR_PROJECTILE
+%state DESCR_ANIMALS
 %state TEXT_MAPPING
 %xstate ENUMS
 
@@ -103,6 +105,9 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";descr_sm_ambient_objects.txt"[^\r\n]*        {return RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER;}
 ";descr_beliefs.txt"[^\r\n]*                   {return RRTypes.DESCR_BELIEFS_MARKER;}
 ";descr_palette.txt"[^\r\n]*                   {return RRTypes.DESCR_PALETTE_MARKER;}
+";descr_ship.txt"[^\r\n]*                      {yybegin(DESCR_SHIP);return RRTypes.DESCR_SHIP_MARKER;}
+";descr_projectile_new.txt"[^\r\n]*            {yybegin(DESCR_PROJECTILE);return RRTypes.DESCR_PROJECTILE_MARKER;}
+";descr_animals.txt"[^\r\n]*                   {yybegin(DESCR_ANIMALS);return RRTypes.DESCR_ANIMALS_MARKER;}
 
 // text mapping markers
 ";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
@@ -226,11 +231,6 @@ true|false       {return RRTypes.BOOLEAN;}
 
 }
 
-// Unfortunately, RR allows free text instead of IDs in some places.
-// This means that some what the lexer identifies as a keyword
-// for example: "ancillaries druid", or "unit city militia exp 1 armour 0 weapon_lvl 0"
-// Identified as keywords    ^^^^^            ^^^^
-// Solution: Identify these places and start a sub-lexer.
 <DESCR_STRAT>
 {
     "end"                        {return RRTypes.END;}
@@ -770,6 +770,87 @@ true|false       {return RRTypes.BOOLEAN;}
     "max_distance"      {return RRTypes.MAX_DISTANCE;}
     "model_rigid"       {return RRTypes.MODEL_RIGID;}
     {ID}                {return RRTypes.ID;}
+}
+
+<DESCR_SHIP>
+{
+    "type"                     {return RRTypes.TYPE;}
+    "ship_type"                {return RRTypes.SHIP_TYPE;}
+    "flag"                     {return RRTypes.FLAG;}
+    "transport"                {return RRTypes.TRANSPORT;}
+    "war"                      {return RRTypes.WAR;}
+    "carrying_capacity"        {return RRTypes.CARRYING_CAPACITY;}
+    "speed"                    {return RRTypes.SPEED;}
+    "power"                    {return RRTypes.POWER;}
+    "sail"                     {return RRTypes.SAIL;}
+    "oars"                     {return RRTypes.OARS;}
+    "artillery"                {return RRTypes.ARTILLERY;}
+    "flame"                    {return RRTypes.FLAME;}
+    "rock"                     {return RRTypes.ROCK;}
+    "size"                     {return RRTypes.SIZE;}
+    "ram"                      {return RRTypes.RAM;}
+    "yes"                      {return RRTypes.YES;}
+    "no"                       {return RRTypes.NO;}
+    "durability"               {return RRTypes.DURABILITY;}
+    "armour"                   {return RRTypes.ARMOUR;}
+    "depth"                    {return RRTypes.DEPTH;}
+    "beam"                     {return RRTypes.BEAM;}
+    {ID}                       {return RRTypes.ID;}
+}
+
+<DESCR_PROJECTILE>
+{
+    "projectile"             {return RRTypes.PROJECTILE;}
+    "flaming"                {return RRTypes.FLAMING;}
+    "effect"                 {return RRTypes.EFFECT;}
+    "end_effect"             {return RRTypes.END_EFFECT;}
+    "effect_offset"          {return RRTypes.EFFECT_OFFSET;}
+    "damage"                 {return RRTypes.DAMAGE;}
+    "damage_to_troops"       {return RRTypes.DAMAGE_TO_TROOPS;}
+    "radius"                 {return RRTypes.RADIUS;}
+    "mass"                   {return RRTypes.MASS;}
+    "area"                   {return RRTypes.AREA;}
+    "accuracy_vs_units"      {return RRTypes.ACCURACY_VS_UNITS;}
+    "accuracy_vs_buildings"  {return RRTypes.ACCURACY_VS_BUILDINGS;}
+    "affected_by_rain"       {return RRTypes.AFFECTED_BY_RAIN;}
+    "fiery"                  {return RRTypes.FIERY;}
+    "min_angle"              {return RRTypes.MIN_ANGLE;}
+    "max_angle"              {return RRTypes.MAX_ANGLE;}
+    "never_high"             {return RRTypes.NEVER_HIGH;}
+    "velocity"               {return RRTypes.VELOCITY;}
+    "ground_shatter"         {return RRTypes.GROUND_SHATTER;}
+    "min_velocity"           {return RRTypes.MIN_VELOCITY;}
+    "bounce"                 {return RRTypes.BOUNCE;}
+    "display"                {return RRTypes.DISPLAY;}
+    "effect_only"            {return RRTypes.EFFECT_ONLY;}
+    "model"                  {return RRTypes.MODEL;}
+    "triangle"               {return RRTypes.TRIANGLE;}
+    "texture"                {return RRTypes.TEXTURE;}
+    "tail"                   {return RRTypes.TAIL;}
+    "length"                 {return RRTypes.LENGTH;}
+    "tail_tex0"              {return RRTypes.TAIL_TEX0;}
+    "tail_tex1"              {return RRTypes.TAIL_TEX1;}
+    "head_tex"               {return RRTypes.HEAD_TEX;}
+    "end"                    {return RRTypes.END;}
+    "max"                    {return RRTypes.MAX;}
+    {ID}                     {return RRTypes.ID;}
+}
+
+<DESCR_ANIMALS>
+{
+    "type"           {return RRTypes.TYPE;}
+    "class"          {return RRTypes.CLASS;}
+    "wardog"         {return RRTypes.WARDOG;}
+    "pig"            {return RRTypes.PIG;}
+    "hound"          {return RRTypes.HOUND;}
+    "model"          {return RRTypes.MODEL;}
+    "radius"         {return RRTypes.RADIUS;}
+    "x_radius"       {return RRTypes.X_RADIUS;}
+    "height"         {return RRTypes.HEIGHT;}
+    "width"          {return RRTypes.WIDTH;}
+    "offset"         {return RRTypes.OFFSET;}
+    "mass"           {return RRTypes.MASS;}
+    {ID}             {return RRTypes.ID;}
 }
 
 <DESCR_MODEL_BATTLE_AND_STRAT>

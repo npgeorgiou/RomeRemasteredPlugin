@@ -372,6 +372,11 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
             fold(element, element.getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
+        //descr_projectiles_new
+        for (RRProjectile_ element : PsiTreeUtil.findChildrenOfType(file, RRProjectile_.class)) {
+            fold(element, element.getProjectileNameDecl().getNextSibling(), element.getLastChild(), "...", folds);
+        }
+
         return folds.toArray(new FoldingDescriptor[folds.size()]);
     }
 

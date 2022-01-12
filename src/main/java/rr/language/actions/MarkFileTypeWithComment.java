@@ -64,6 +64,9 @@ public class MarkFileTypeWithComment extends AnAction {
         "descr_sm_ambient_objects.txt",
         "descr_beliefs.txt",
         "descr_palette.txt",
+        "descr_ship.txt",
+        "descr_projectile_new.txt",
+        "descr_animals.txt",
     };
 
     @Override

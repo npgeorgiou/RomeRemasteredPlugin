@@ -28,7 +28,7 @@ public class NamesNotInDescrNames extends Inspector {
                     .map(it -> it.getString())
                     .collect(Collectors.toList());
 
-                RRFile file = RRUtil.findRRFile("descr_names.txt", element.getProject());
+                var file = RRUtil.findRRFile("descr_names.txt", element.getProject());
                 if (file == null) {
                     return;
                 }

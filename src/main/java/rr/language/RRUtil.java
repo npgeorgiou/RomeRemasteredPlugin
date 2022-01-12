@@ -194,6 +194,38 @@ public class RRUtil {
             .collect(Collectors.toList());
     }
 
+    public static Collection<RRProjectile_> findAllProjectiles(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_projectile_new.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrProjectile.class).getProjectile_List();
+    }
+
+    public static Collection<String> findAllProjectilesAsStrings(Project project) {
+        return findAllProjectiles(project).stream()
+            .map(it -> it.getProjectileNameDecl().getText())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRAnimal_> findAllAnimals(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_animals.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrAnimals.class).getAnimal_List();
+    }
+
+    public static Collection<String> findAllAnimalsAsStrings(Project project) {
+        return findAllAnimals(project).stream()
+            .map(it -> it.getAnimalNameDecl().getText())
+            .collect(Collectors.toList());
+    }
+
     public static Collection<RRDisaster_> findAllDisasters(Project project) {
         RRFile file = RRUtil.findRRFile("descr_disasters.txt", project);
 
@@ -223,6 +255,22 @@ public class RRUtil {
     public static Collection<String> findAllMountsAsStrings(Project project) {
         return findAllMounts(project).stream()
             .map(it -> it.getMountNameDecl().getText())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRShip_> findAllShips(Project project) {
+        RRFile file = RRUtil.findRRFile("descr_ship.txt", project);
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return file.findChildByClass(RRDescrShip.class).getShip_List();
+    }
+
+    public static Collection<String> findAllShipsAsStrings(Project project) {
+        return findAllShips(project).stream()
+            .map(it -> it.getShipNameDecl().getText())
             .collect(Collectors.toList());
     }
 

@@ -631,7 +631,7 @@ public class RRPsiImplUtil {
     }
 
     public static ModelReference getReference(RRModelRef ref) {
-        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        TextRange range = ref.getFirstChild().getTextRangeInParent();
         return new ModelReference(ref, range);
     }
     //</editor-fold>
@@ -663,6 +663,88 @@ public class RRPsiImplUtil {
         return new MountReference(ref, range);
     }
 
+    //</editor-fold>
+
+    //<editor-fold desc="Ship decl and refs">
+    public static PsiElement setName(RRShipNameDecl e, String newName) {
+        PsiElement elementWithDesiredChildren = RRElementFactory.createElementWithIds(e.getProject(), newName);
+        return Util.replaceChildrenOf(e, elementWithDesiredChildren);
+    }
+
+    public static String getName(RRShipNameDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRShipNameDecl e) {
+        return e;
+    }
+
+    public static PsiElement setName(RRShipRef e, String newName) {
+        PsiElement elementWithDesiredChildren = RRElementFactory.createElementWithIds(e.getProject(), newName);
+        return Util.replaceChildrenOf(e, elementWithDesiredChildren);
+    }
+
+    public static ShipReference getReference(RRShipRef ref) {
+        TextRange range = new TextRange(
+            ref.getFirstChild().getTextRangeInParent().getStartOffset(),
+            ref.getLastChild().getTextRangeInParent().getEndOffset()
+        );
+        return new ShipReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Projectile decl and refs">
+    public static PsiElement setName(RRProjectileNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRProjectileNameDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRProjectileNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRProjectileRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static ProjectileReference getReference(RRProjectileRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new ProjectileReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Animal decl and refs">
+    public static PsiElement setName(RRAnimalNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRAnimalNameDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRAnimalNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRAnimalRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static AnimalReference getReference(RRAnimalRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new AnimalReference(ref, range);
+    }
     //</editor-fold>
 
     //<editor-fold desc="Disaster decl and refs">

@@ -31,11 +31,14 @@
       DESCR_SM_LANDMARKS_MARKER='regexp:;descr_sm_landmarks.txt.*'
       DESCR_DISASTERS_MARKER='regexp:;descr_disasters.txt.*'
       DESCR_MOUNT_MARKER='regexp:;descr_mount.txt.*'
+      DESCR_SHIP_MARKER='regexp:;descr_ship.txt.*'
       DESCR_REBEL_FACTIONS_MARKER='regexp:;descr_rebel_factions.txt.*'
       DESCR_ITEMS_MARKER='regexp:;descr_items.txt.*'
       DESCR_SM_AMBIENT_OBJECTS_MARKER='regexp:;descr_sm_ambient_objects.txt.*'
       DESCR_BELIEFS_MARKER='regexp:;descr_beliefs.txt.*'
       DESCR_PALETTE_MARKER='regexp:;descr_palette.txt.*'
+      DESCR_PROJECTILE_MARKER='regexp:;descr_projectile_new.txt.*'
+      DESCR_ANIMALS_MARKER='regexp:;descr_animals.txt.*'
 
       // text mapping markers
       // TODO: Do also buildings text in this generic way?
@@ -595,6 +598,56 @@
       SCORPION_HEIGHT="scorpion_height"
       SCORPION_FORWARD_LENGTH="scorpion_forward_length"
       SCORPION_RELOAD_TICKS="scorpion_reload_ticks"
+
+      // descr_ship
+      SHIP_TYPE="ship_type"
+      FLAG="flag"
+      TRANSPORT="transport"
+      WAR="war"
+      CARRYING_CAPACITY="carrying_capacity"
+      SPEED="speed"
+      POWER="power"
+      SAIL="sail"
+      OARS="oars"
+      ARTILLERY="artillery"
+      FLAME="flame"
+      ROCK="rock"
+      DURABILITY="durability"
+      DEPTH="depth"
+      BEAM="beam"
+
+      // descr_projectile
+      PROJECTILE="projectile"
+      FLAMING="flaming"
+      END_EFFECT="end_effect"
+      EFFECT_OFFSET="effect_offset"
+      DAMAGE="damage"
+      DAMAGE_TO_TROOPS="damage_to_troops"
+      ACCURACY_VS_UNITS="accuracy_vs_units"
+      ACCURACY_VS_BUILDINGS="accuracy_vs_buildings"
+      AFFECTED_BY_RAIN="affected_by_rain"
+      FIERY="fiery"
+      MIN_ANGLE="min_angle"
+      MAX_ANGLE="max_angle"
+      NEVER_HIGH="never_high"
+      VELOCITY="velocity"
+      GROUND_SHATTER="ground_shatter"
+      MIN_VELOCITY="min_velocity"
+      BOUNCE="bounce"
+      DISPLAY="display"
+      EFFECT_ONLY="effect_only"
+      TRIANGLE="triangle"
+      TAIL="tail"
+      TAIL_TEX0="tail_tex0"
+      TAIL_TEX1="tail_tex1"
+      HEAD_TEX="head_tex"
+
+      //descr_animals
+      WARDOG="wardog"
+      PIG="pig"
+      HOUND="hound"
+      WIDTH="width"
+      OFFSET="offset"
 
       // descr_rebel_factions
       REBEL_TYPE='rebel_type'
@@ -1739,6 +1792,9 @@ RRFile ::= descr_strat|
           descr_sm_landmarks|
           descr_disasters|
           descr_mount|
+          descr_ship|
+          descr_projectile|
+          descr_animals|
           descr_rebel_factions|
           descr_items|
           descr_sm_ambient_objects|
@@ -1870,7 +1926,7 @@ private safe_id ::= ID|keywords_that_may_be_in_ids
 // TODO: Go through all tokens and add dangerous ones here.
 // Then on highlighting make all unit_reds/decls have identifier color.
 // Then rethink sublexers.
-keywords_that_may_be_in_ids ::= agent_type|TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
+keywords_that_may_be_in_ids ::= agent_type|WARDOG|PIG|HOUND|ARROW|TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -1909,8 +1965,8 @@ private soldiers_ ::= SOLDIERS INT COMMA INT COMMA number OCB
 
 rebalance_block ::= (soldier_|soldiers_)
                     (ENGINE ID)?
-                    (SHIP name_)?
-                    (ANIMAL ID)?
+                    (SHIP ship_ref)?
+                    (ANIMAL animal_ref)?
                     (
                       MOUNT mount_ref|
                       OFFICER ID*
@@ -1947,7 +2003,7 @@ private not_stat_health ::= !STAT_HEALTH
 
 unit_weapon_info::=  INT COMMA
                      INT COMMA
-                     (NO|ID) COMMA // descr_projectile and descr_projectile_new
+                     (NO|projectile_ref) COMMA
                      INT COMMA
                      INT COMMA
                      (NO|unit_weapon_type) COMMA
@@ -2580,6 +2636,82 @@ scorpion_cart_specific ::= SCORPION_OFFSET number COMMA number COMMA number
 mount_name_decl ::= name_ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 mount_ref ::= name_ {methods=[setName getReference]}
 // ############### descr_mount end #################################
+
+// ############### descr_ship start ###############################
+descr_ship ::= DESCR_SHIP_MARKER
+                (ship_)*
+ship_ ::= TYPE ship_name_decl
+          SHIP_TYPE (FLAG|TRANSPORT|WAR)
+          CARRYING_CAPACITY INT
+          SIZE INT
+          SPEED INT
+          POWER (SAIL|OARS)
+          ARTILLERY (FLAME|ROCK)
+          RAM yes_no
+          DURABILITY INT
+          ARMOUR INT
+          DEPTH INT
+          BEAM INT
+
+ship_name_decl ::= name_ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+ship_ref ::= name_ {methods=[setName getReference]}
+// ############### descr_ship end #################################
+
+// ############### descr_projectile start ###############################
+descr_projectile ::= DESCR_PROJECTILE_MARKER
+                     (projectile_)+
+projectile_ ::= PROJECTILE projectile_name_decl
+                  (FLAMING projectile_ref)?
+                  (EFFECT ID)?
+                  (END_EFFECT ID)?
+                  (EFFECT_OFFSET number)?
+                  DAMAGE INT
+                  (DAMAGE_TO_TROOPS INT)?
+                  RADIUS number
+                  (MASS number)?
+                  (AREA number)?
+                  (ACCURACY_VS_UNITS number)?
+                  (ACCURACY_VS_BUILDINGS number)?
+                  AFFECTED_BY_RAIN?
+                  FIERY?
+                  MIN_ANGLE INT
+                  MAX_ANGLE INT
+                  NEVER_HIGH?
+                  VELOCITY INT
+                  (GROUND_SHATTER)?
+                  (MIN_VELOCITY INT)?
+                  (BOUNCE number number number number)?
+                  DISPLAY ('thrown_weapon'|'particle_trail'|'aimed'|'shatter_dust'|'shatter_debris'|'vanish_debris'|'invert_model_z')*
+                  EFFECT_ONLY?
+                  (MODEL cas_file_ COMMA (number|MAX))*
+                  (TRIANGLE)?
+                  (TEXTURE TGA_FILE)?
+                  (TAIL number)?
+                  (LENGTH number)?
+                  (TAIL_TEX0 INT number)?
+                  (TAIL_TEX1 INT number)?
+                  (HEAD_TEX INT number)?
+                END?
+projectile_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+projectile_ref ::= safe_id {methods=[setName getReference]}
+// ############### descr_projectile end #################################
+
+// ############### descr_animals start ###############################
+descr_animals ::= DESCR_ANIMALS_MARKER
+                  (animal_)+
+animal_ ::= TYPE animal_name_decl
+            CLASS (WARDOG|PIG|HOUND)
+            MODEL model_ref
+            RADIUS number
+            X_RADIUS number
+            HEIGHT number
+            WIDTH number
+            OFFSET number
+            MASS number
+
+animal_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+animal_ref ::= safe_id {methods=[setName getReference]}
+// ############### descr_animals end #################################
 
 // ############### descr_rebel_factions end #################################
 descr_rebel_factions ::= DESCR_REBEL_FACTIONS_MARKER

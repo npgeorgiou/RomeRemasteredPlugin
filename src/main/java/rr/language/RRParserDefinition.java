@@ -329,11 +329,20 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.ATHLETIC,
         RRTypes.BULKY,
         RRTypes.OVERWEIGHT,
-        // rebel types
-        RRTypes.PEASANT_REVOLT,
-        RRTypes.GLADIATOR_REVOLT,
-        RRTypes.BRIGANDS,
-        RRTypes.PIRATES,
+        // ship type
+        RRTypes.FLAG,
+        RRTypes.TRANSPORT,
+        RRTypes.WAR,
+        RRTypes.SAIL,
+        RRTypes.OARS,
+        // ship artillery
+        RRTypes.FLAME,
+        RRTypes.ROCK,
+        // animal class
+        RRTypes.WARDOG,
+        RRTypes.PIG,
+        RRTypes.HOUND,
+
         // command params
         RRTypes.SUDO,
         RRTypes.LABEL,
@@ -376,8 +385,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.TW,
         RRTypes.RTS,
         RRTypes.USER_PREF,
-
-        // command params
         RRTypes.COMMAND_UCF,
         RRTypes.INFLUENCE_UCF,
         RRTypes.MANAGEMENT_UCF,
@@ -415,10 +422,8 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.WAVERING,
         RRTypes.TW,
         RRTypes.RTS,
-        RRTypes.USER_PREF,
-        RRTypes.WAR
+        RRTypes.USER_PREF
     );
-
     //</editor-fold>
 
     //<editor-fold desc="KEYWORDS">
@@ -850,6 +855,47 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.BEGIN_COLOURMAP,
         RRTypes.COLOUR,
         RRTypes.END_COLOURMAP,
+
+        // descr_ship
+        RRTypes.SHIP_TYPE,
+        RRTypes.CARRYING_CAPACITY,
+        RRTypes.SPEED,
+        RRTypes.POWER,
+        RRTypes.ARTILLERY,
+        RRTypes.DURABILITY,
+        RRTypes.DEPTH,
+        RRTypes.BEAM,
+
+        // descr_projectiles_new
+        RRTypes.PROJECTILE,
+        RRTypes.FLAMING,
+        RRTypes.END_EFFECT,
+        RRTypes.EFFECT_OFFSET,
+        RRTypes.DAMAGE,
+        RRTypes.DAMAGE_TO_TROOPS,
+        RRTypes.ACCURACY_VS_UNITS,
+        RRTypes.ACCURACY_VS_BUILDINGS,
+        RRTypes.AFFECTED_BY_RAIN,
+        RRTypes.FIERY,
+        RRTypes.MIN_ANGLE,
+        RRTypes.MAX_ANGLE,
+        RRTypes.NEVER_HIGH,
+        RRTypes.VELOCITY,
+        RRTypes.GROUND_SHATTER,
+        RRTypes.MIN_VELOCITY,
+        RRTypes.BOUNCE,
+        RRTypes.DISPLAY,
+        RRTypes.EFFECT_ONLY,
+        RRTypes.TRIANGLE,
+        RRTypes.TAIL,
+        RRTypes.LENGTH,
+        RRTypes.TAIL_TEX0,
+        RRTypes.TAIL_TEX1,
+        RRTypes.HEAD_TEX,
+
+        // descr_projectiles_new
+        RRTypes.WIDTH,
+        RRTypes.OFFSET,
 
         // basic scripts stuff
         RRTypes.SCRIPT,
