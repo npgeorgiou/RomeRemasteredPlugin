@@ -427,6 +427,8 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.END,
         RRTypes.SUMMER,
         RRTypes.WINTER,
+        RRTypes.SPRING,
+        RRTypes.AUTUMN,
         RRTypes.CAMPAIGN,
         RRTypes.PLAYABLE,
         RRTypes.UNLOCKABLE,

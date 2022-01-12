@@ -94,6 +94,8 @@
       END="end"
       SUMMER="summer"
       WINTER="winter"
+      SPRING="spring"
+      AUTUMN="autumn"
       CAMPAIGN="campaign"
       PLAYABLE="playable"
       UNLOCKABLE="unlockable"
@@ -1751,7 +1753,7 @@ descr_strat ::= DESCR_STRAT_MARKER
                 (SPAWN_SCRIPT faction_ref COMMA REVOLT COMMA txt_file_)*
                  SCRIPT txt_file_ (COMMA ONCE_ONLY)?
 
-private season_enum ::= (SUMMER|WINTER)
+private season_enum ::= (SPRING|SUMMER|WINTER|AUTUMN)
 
 campaign_section ::= CAMPAIGN ID
                      PLAYABLE ID* END
@@ -1853,11 +1855,11 @@ superfaction_setup_item ::= SUPERFACTION_SETUP ID
 mission_queue_item ::= MISSION_QUEUE faction_ref OCB mission_* CCB
 mission_ ::= ID INT ID (ID)?
 
-name_ ::= (ID|keywords_that_may_be_in_names)+
-// TODO: Go through all tokens and add dangerious ones here.
+name_ ::= (ID|keywords_that_may_be_in_unit_names)+
+// TODO: Go through all tokens and add dangerous ones here.
 // Then on highlighting make all unit_reds/decls have identifier color.
 // Then rethink sublexers.
-keywords_that_may_be_in_names ::= (LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL)
+keywords_that_may_be_in_unit_names ::= (LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL)
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -2107,8 +2109,10 @@ private trait_trigger_def_recover ::= !TRIGGER
 // ############### descr_mercenaries start ###############################
 descr_mercenaries ::= mercenary_pool+
 mercenary_pool ::= POOL ID
-                    REGIONS (region_ref COMMA?)+
-                    (UNIT unit_ref COMMA EXP INT COST INT REPLENISH FLOAT DASH FLOAT MAX INT INITIAL INT)*
+                    mercenary_pool_regions
+                    mercenary_pool_unit+
+mercenary_pool_regions ::= REGIONS (region_ref COMMA?)+
+private mercenary_pool_unit ::= UNIT unit_ref COMMA EXP INT COST INT REPLENISH FLOAT DASH FLOAT MAX INT INITIAL INT
 // ############### descr_mercenaries end #################################
 
 // ############### descr_names start ###############################
@@ -2652,13 +2656,16 @@ script_ ::= SCRIPT
               statement+
             END_SCRIPT
 statement ::= control_structure|command_
+private not_statement ::= !statement
 
-control_structure ::= if_|if_not_|monitor_|monitor_conditions_|monitor_event_|spawn_battle_|benchmark_|while_|while_not_|for_each_|return_
+private control_structure ::= if_|if_not_|monitor_|monitor_conditions_|monitor_event_|spawn_battle_|benchmark_|while_|while_not_|for_each_|return_
+
 if_ ::= IF condition_ statement* END_IF                                       {pin=1}
 if_not_ ::= IF_NOT condition_ statement* END_IF                               {pin=1}
 monitor_ ::= MONITOR condition_ statement* END_MONITOR                        {pin=1} // I think thats the same as monitor_conditions
 monitor_conditions_ ::= MONITOR_CONDITIONS condition_ statement* END_MONITOR  {pin=1}
-monitor_event_ ::= MONITOR_EVENT event condition_? statement* END_MONITOR     {pin=1}
+monitor_event_ ::= MONITOR_EVENT event_and_condition_ statement* END_MONITOR  {pin=1}
+private event_and_condition_ ::= event condition_?  {recoverWhile=not_statement}
 while_ ::= WHILE condition_ statement* END_WHILE                              {pin=1}
 while_not_ ::= WHILE_NOT condition_ statement* END_WHILE                      {pin=1}
 for_each_ ::= FOR_EACH iterator_type IN scope statement* END_FOR              {pin=1}
@@ -2921,7 +2928,7 @@ truecondition_ ::= TRUECONDITION {pin=1}
 worldwideancillaryexists_ ::= WORLDWIDEANCILLARYEXISTS ancillary_ref BOOLEAN {pin=1}
 i_istutorialenabled_ ::= I_ISTUTORIALENABLED {pin=1}
 i_isplayerturn_ ::= I_ISPLAYERTURN EQUALS INT {pin=1}
-constructionitemclicked_ ::= CONSTRUCTIONITEMCLICKED field_construction_item|building_level_ref {pin=1}
+constructionitemclicked_ ::= CONSTRUCTIONITEMCLICKED (field_construction_item|building_level_ref) {pin=1}
 recruitmentitemclicked_ ::= RECRUITMENTITEMCLICKED name_ {pin=1}
 charactername_ ::= CHARACTERNAME name_ {pin=1}
 scrolldidopen_ ::= SCROLLDIDOPEN ID {pin=1}
@@ -3071,7 +3078,10 @@ trigger_marriage_proposal_ ::= TRIGGER_MARRIAGE_PROPOSAL INT {pin=1}
 deselect_current_selection_ ::= DESELECT_CURRENT_SELECTION {pin=1}
 force_autoresolve_outcome_ ::= FORCE_AUTORESOLVE_OUTCOME (faction_ref|yes_no) {pin=1}
 force_diplomacy_ ::= FORCE_DIPLOMACY accept_reject COMMA yes_no {pin=1}
-create_mercenary_pool_ ::= CREATE_MERCENARY_POOL {pin=1}
+create_mercenary_pool_ ::= CREATE_MERCENARY_POOL ID
+                             mercenary_pool_regions
+                             mercenary_pool_unit+
+                           END {pin=1}
 force_agent_succeed_ ::= FORCE_AGENT_SUCCEED yes_no {pin=1}
 allow_campaign_battles_ ::= ALLOW_CAMPAIGN_BATTLES yes_no {pin=1}
 spawn_character_child_ ::= SPAWN_CHARACTER_CHILD faction_ref COMMA
@@ -3079,7 +3089,7 @@ AGE INT COMMA
 'birth_season' season_enum COMMA
 'father' name_ COMMA
 'name' name_ COMMA
-'surname' NAME
+'surname' name_
 {pin=1}
 stop_point_at_indicator_ ::= STOP_POINT_AT_INDICATOR {pin=1}
 stop_all_point_at_indicators_ ::= STOP_ALL_POINT_AT_INDICATORS {pin=1}
@@ -3378,7 +3388,7 @@ private diplomatic_stance_for_command ::= ALLIED|NEUTRAL|WAR
 // #### Commands params ####
 settlement_order_type ::= 'garrison'|'law'|'fun'|'influence'|'tax_bonus'|'triumph'|'wonder'|'boom'|'squalour'|'distance_to_capital'|'culture_penalty'|'no_governance'|'tax_penalty'|'turmoil'|'underpopulation'|'besieged'|'blockaded'|'recession'|'entertained'|'health'|'governor_religion_unrest'|'leader_religion_unrest'
 field_construction_item::='watchtower'|
-senate_reward ::= ID //TODO:DOME
+senate_reward ::= ID //TODO:DO ME
 unit_command_type ::= MOVE|RUN|'move_rot'|'change_formation'
 on_off ::= (ON|OFF)
 run_walk ::= (RUN|WALK)

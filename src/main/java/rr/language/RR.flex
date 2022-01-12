@@ -2033,6 +2033,11 @@ true|false       {return RRTypes.BOOLEAN;}
     "-"                                          {return RRTypes.DASH;}
     "/"                                          {return RRTypes.SLASH;}
     "*"                                          {return RRTypes.STAR;}
+    "regions"                                    {return RRTypes.REGIONS;}
+    "cost"                                       {return RRTypes.COST;}
+    "replenish"                                  {return RRTypes.REPLENISH;}
+    "max"                                        {return RRTypes.MAX;}
+    "initial"                                    {return RRTypes.INITIAL;}
     "local_character"                            {return RRTypes.LOCAL_CHARACTER;}
     "local_faction"                              {return RRTypes.LOCAL_FACTION;}
     "local_settlement"                           {return RRTypes.LOCAL_SETTLEMENT;}
@@ -2044,6 +2049,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "sudo"                                       {return RRTypes.SUDO;}
     "summer"                                     {return RRTypes.SUMMER;}
     "winter"                                     {return RRTypes.WINTER;}
+    "spring"                                     {return RRTypes.SPRING;}
+    "autumn"                                     {return RRTypes.AUTUMN;}
     "Command"                                    {return RRTypes.COMMAND_UCF;}
     "Influence"                                  {return RRTypes.INFLUENCE_UCF;}
     "Management"                                 {return RRTypes.MANAGEMENT_UCF;}
