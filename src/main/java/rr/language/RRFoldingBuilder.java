@@ -340,6 +340,37 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
             fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
+        //scripts
+        for (RRIf_ element : PsiTreeUtil.findChildrenOfType(file, RRIf_.class)) {
+            fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRIfNot_ element : PsiTreeUtil.findChildrenOfType(file, RRIfNot_.class)) {
+            fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRWhile_ element : PsiTreeUtil.findChildrenOfType(file, RRWhile_.class)) {
+            fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRWhileNot_ element : PsiTreeUtil.findChildrenOfType(file, RRWhileNot_.class)) {
+            fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRForEach_ element : PsiTreeUtil.findChildrenOfType(file, RRForEach_.class)) {
+            fold(element, element.getScope().getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRMonitor_ element : PsiTreeUtil.findChildrenOfType(file, RRMonitor_.class)) {
+            fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRMonitorConditions_ element : PsiTreeUtil.findChildrenOfType(file, RRMonitorConditions_.class)) {
+            fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRMonitorEvent_ element : PsiTreeUtil.findChildrenOfType(file, RRMonitorEvent_.class)) {
+            fold(element, element.getEvent().getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRSpawnBattle_ element : PsiTreeUtil.findChildrenOfType(file, RRSpawnBattle_.class)) {
+            fold(element, element.getPath().getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRBenchmark_ element : PsiTreeUtil.findChildrenOfType(file, RRBenchmark_.class)) {
+            fold(element, element.getId().getNextSibling(), element.getLastChild(), "...", folds);
+        }
 
         return folds.toArray(new FoldingDescriptor[folds.size()]);
     }

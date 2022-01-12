@@ -2022,6 +2022,9 @@ true|false       {return RRTypes.BOOLEAN;}
     "change_character_faction"                   {return RRTypes.CHANGE_CHARACTER_FACTION;}
     "add_income"                                 {return RRTypes.ADD_INCOME;}
     "add_expenditure"                            {return RRTypes.ADD_EXPENDITURE;}
+    "disable_ai"                                 {return RRTypes.DISABLE_AI;}
+    "surrender_regions"                          {return RRTypes.SURRENDER_REGIONS;}
+    "run_ai"                                     {return RRTypes.RUN_AI;}
     "give_everything"                            {return RRTypes.GIVE_EVERYTHING;}
     "control"                                    {return RRTypes.CONTROL;}
     "force_battle_victory"                       {return RRTypes.FORCE_BATTLE_VICTORY;}
@@ -2099,6 +2102,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "loose"                                      {return RRTypes.LOOSE;}
     "tight"                                      {return RRTypes.TIGHT;}
     "beserk"                                     {return RRTypes.BESERK;}
+    "impetuous"                                  {return RRTypes.IMPETUOUS;}
     "high"                                       {return RRTypes.HIGH;}
     "firm"                                       {return RRTypes.FIRM;}
     "shaken"                                     {return RRTypes.SHAKEN;}

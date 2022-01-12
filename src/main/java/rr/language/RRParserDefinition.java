@@ -1740,6 +1740,9 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.CHANGE_CHARACTER_FACTION,
         RRTypes.ADD_INCOME,
         RRTypes.ADD_EXPENDITURE,
+        RRTypes.DISABLE_AI,
+        RRTypes.SURRENDER_REGIONS,
+        RRTypes.RUN_AI,
         RRTypes.GIVE_EVERYTHING,
         RRTypes.CONTROL,
         RRTypes.DESTROY_UNIT

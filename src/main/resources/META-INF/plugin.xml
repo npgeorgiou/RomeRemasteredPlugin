@@ -30,6 +30,7 @@
                                  implementationClass="rr.language.RRRefactoringSupportProvider"/>
         <codeInsight.lineMarkerProvider language="RomeRemastered" implementationClass="rr.language.RRLineMarkerProvider"/>
         <referencesSearch implementation="rr.language.RRReferencesSearch"/>
+        <iconProvider implementation="rr.language.RRIconProvider"/>
 
         <!-- Inspections -->
         <localInspection language="RomeRemastered" shortName="Missing_name_text"

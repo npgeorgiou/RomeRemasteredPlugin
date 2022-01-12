@@ -1635,6 +1635,9 @@
       CHANGE_CHARACTER_FACTION="change_character_faction"
       ADD_INCOME="add_income"
       ADD_EXPENDITURE="add_expenditure"
+      DISABLE_AI="disable_ai"
+      SURRENDER_REGIONS="surrender_regions"
+      RUN_AI="run_ai"
       GIVE_EVERYTHING="give_everything"
       CONTROL="control"
 
@@ -1708,7 +1711,6 @@ RRFile ::= descr_strat|
           descr_regions|
           descr_mercenaries|
           descr_names|
-          names|
           descr_unit_variation|
           export_buildings|
           descr_cultures|
@@ -1724,7 +1726,6 @@ RRFile ::= descr_strat|
           descr_model_battle|
           descr_model_strat|
           descr_offmap_models|
-          landmarks|
           descr_sm_landmarks|
           descr_disasters|
           descr_mount|
@@ -1856,7 +1857,7 @@ name_ ::= (ID|keywords_that_may_be_in_names)+
 // TODO: Go through all tokens and add dangerious ones here.
 // Then on highlighting make all unit_reds/decls have identifier color.
 // Then rethink sublexers.
-keywords_that_may_be_in_names ::= (GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|HORSE|X|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO|FOO)
+keywords_that_may_be_in_names ::= (LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL)
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -2898,7 +2899,7 @@ i_factionbesieging_ ::= I_FACTIONBESIEGING faction_ref {pin=1}
 i_factionbesieged_ ::= I_FACTIONBESIEGED faction_ref {pin=1}
 i_numberofsettlements_ ::= I_NUMBEROFSETTLEMENTS faction_ref comparison_op INT {pin=1}
 i_numberofheirs_ ::= I_NUMBEROFHEIRS faction_ref comparison_op INT {pin=1}
-i_factionneartile_ ::= I_FACTIONNEARTILE faction_ref INT coords {pin=1}
+i_factionneartile_ ::= I_FACTIONNEARTILE faction_ref INT COMMA? (coords|coords_no_comma) {pin=1}
 settlementstaken_ ::= SETTLEMENTSTAKEN comparison_op INT {pin=1}
 battlesfought_ ::= BATTLESFOUGHT comparison_op INT {pin=1}
 battleswon_ ::= BATTLESWON comparison_op INT {pin=1}
@@ -2920,7 +2921,7 @@ truecondition_ ::= TRUECONDITION {pin=1}
 worldwideancillaryexists_ ::= WORLDWIDEANCILLARYEXISTS ancillary_ref BOOLEAN {pin=1}
 i_istutorialenabled_ ::= I_ISTUTORIALENABLED {pin=1}
 i_isplayerturn_ ::= I_ISPLAYERTURN EQUALS INT {pin=1}
-constructionitemclicked_ ::= CONSTRUCTIONITEMCLICKED building_level_ref {pin=1}
+constructionitemclicked_ ::= CONSTRUCTIONITEMCLICKED field_construction_item|building_level_ref {pin=1}
 recruitmentitemclicked_ ::= RECRUITMENTITEMCLICKED name_ {pin=1}
 charactername_ ::= CHARACTERNAME name_ {pin=1}
 scrolldidopen_ ::= SCROLLDIDOPEN ID {pin=1}
@@ -2940,7 +2941,7 @@ settlementname_ ::= SETTLEMENTNAME settlement_ref {pin=1}
 governorbuildingexists_ ::= GOVERNORBUILDINGEXISTS EQUALS building_level_ref {pin=1}
 settlementbuildingexists_ ::= SETTLEMENTBUILDINGEXISTS comparison_op building_level_ref {pin=1}
 homesettlementbuildingexists_ ::= HOMESETTLEMENTBUILDINGEXISTS comparison_op building_level_ref {pin=1}
-settlementorderlevel_ ::= SETTLEMENTORDERLEVEL law comparison_op INT {pin=1}
+settlementorderlevel_ ::= SETTLEMENTORDERLEVEL settlement_order_type comparison_op INT {pin=1}
 settlementcapabilitylevel_ ::= SETTLEMENTCAPABILITYLEVEL ID comparison_op INT {pin=1}
 buildingfinishedbygovernor_ ::= BUILDINGFINISHEDBYGOVERNOR EQUALS building_level_ref {pin=1}
 settlementbuildingfinished_ ::= SETTLEMENTBUILDINGFINISHED comparison_op building_level_ref {pin=1}
@@ -2997,7 +2998,7 @@ i_advisorvisible_ ::= I_ADVISORVISIBLE {pin=1}
 i_characterselected_ ::= I_CHARACTERSELECTED name_ {pin=1}
 i_agentselected_ ::= I_AGENTSELECTED character_type {pin=1}
 i_settlementselected_ ::= I_SETTLEMENTSELECTED settlement_ref {pin=1}
-shortcuttriggered_ ::= SHORTCUTTRIGGERED ID COLON COLON ID {pin=1}
+shortcuttriggered_ ::= SHORTCUTTRIGGERED ID (COLON COLON)? ID {pin=1}
 i_advancedstatsscrollisopen_ ::= I_ADVANCEDSTATSSCROLLISOPEN {pin=1}
 buttonpressed_ ::= BUTTONPRESSED ID {pin=1}
 scrollopened_ ::= SCROLLOPENED ID {pin=1}
@@ -3058,7 +3059,7 @@ enable_unit_voices_ ::= ENABLE_UNIT_VOICES on_off {pin=1}
 hide_ui_element_ ::= HIDE_UI_ELEMENT ID {pin=1}
 show_ui_element_ ::= SHOW_UI_ELEMENT ID {pin=1}
 disable_ui_card_ ::= DISABLE_UI_CARD ui_card_type COMMA? INT {pin=1}
-disable_all_ui_cards_ ::= DISABLE_ALL_UI_CARDS ui_card_type {pin=1}
+disable_all_ui_cards_ ::= DISABLE_ALL_UI_CARDS ui_card_type? {pin=1}
 enable_all_ui_cards_ ::= ENABLE_ALL_UI_CARDS ui_card_type? {pin=1}
 disable_agent_hub_all_ ::= DISABLE_AGENT_HUB_ALL agent_hub_targets {pin=1}
 enable_agent_hub_all_ ::= ENABLE_AGENT_HUB_ALL agent_hub_targets {pin=1}
@@ -3171,7 +3172,7 @@ camera_event_cuts_active_set_ ::= CAMERA_EVENT_CUTS_ACTIVE_SET on_off {pin=1}
 camera_default_mode_set_ ::= CAMERA_DEFAULT_MODE_SET camera_mode {pin=1}
 battle_default_camera_ ::= BATTLE_DEFAULT_CAMERA {pin=1}
 battle_general_camera_ ::= BATTLE_GENERAL_CAMERA {pin=1}
-set_camera_bookmark_ ::= SET_CAMERA_BOOKMARK INT COMMA coords_xyz coords_xyz {pin=1}
+set_camera_bookmark_ ::= SET_CAMERA_BOOKMARK INT COMMA coords_xyz COMMA? coords_xyz {pin=1}
 use_camera_bookmark_ ::= USE_CAMERA_BOOKMARK INT {pin=1} // undocumented
 camera_position_at_bookmark__ ::= CAMERA_POSITION_AT_BOOKMARK_ INT {pin=1}
 camera_zoom_to_bookmark_ ::= CAMERA_ZOOM_TO_BOOKMARK INT number? {pin=1}
@@ -3210,7 +3211,7 @@ break_ ::= BREAK {pin=1}
 set_ao_visible_ ::= SET_AO_VISIBLE STRING show_hide region_ref? {pin=1}
 set_all_ao_visible_ ::= SET_ALL_AO_VISIBLE STRING show_hide {pin=1}
 terminate_monitor_ ::= TERMINATE_MONITOR {pin=1}
-declare_counter_ ::= DECLARE_COUNTER ID (EQUALS INT)? {pin=1}
+declare_counter_ ::= DECLARE_COUNTER ID {pin=1}
 declare_persistent_counter_ ::= DECLARE_PERSISTENT_COUNTER ID {pin=1}
 inc_counter_ ::= INC_COUNTER ID INT {pin=1}
 set_counter_ ::= SET_COUNTER ID INT {pin=1}
@@ -3239,7 +3240,7 @@ stop_sound_event_ ::= STOP_SOUND_EVENT ID {pin=1}
 point_at_character_ ::= POINT_AT_CHARACTER COMMA? ('slot' INT COMMA)? name_ (COMMA point_shape)? {pin=1}
 point_at_settlement_ ::= POINT_AT_SETTLEMENT (COMMA? 'slot' INT)? (COMMA? settlement_ref)? (COMMA? point_shape)? {pin=1}
 e_point_at_settlement_ ::= E_POINT_AT_SETTLEMEN {pin=1}
-point_at_strat_position_ ::= POINT_AT_STRAT_POSITION COMMA? 'slot' INT COMMA coords (COMMA 'y_offset' INT)? {pin=1}
+point_at_strat_position_ ::= POINT_AT_STRAT_POSITION (COMMA? 'slot' INT)? COMMA? coords (COMMA 'y_offset' INT)? {pin=1}
 point_at_strat_position_alt_ ::= POINT_AT_STRAT_POSITION_ALT COMMA 'slot' INT COMMA coords COMMA 'y_offset' INT {pin=1}
 point_at_message_ ::= POINT_AT_MESSAGE (ID|INT) direction? {pin=1}
 ui_flash_start_ ::= UI_FLASH_START ID (COMMA? point_shape)? (COMMA? direction)? (COMMA SCALE number number)? {pin=1}
@@ -3259,13 +3260,13 @@ enable_ui_card_ ::= ENABLE_UI_CARD (
                       CONSTRUCTION COMMA? building_level_ref|
                       BUILDING COMMA? building_level_ref COMMA INT|
                       MERCENARIES COMMA? unit_ref|
-                      FIELD_CONSTRUCTION COMMA? ('watchtower'|)
+                      FIELD_CONSTRUCTION COMMA? field_construction_item
                     ) (COMMA point_shape)? (COMMA color_ INT)? {pin=1}
 point_at_card_ ::= POINT_AT_CARD (
                      CHARACTER COMMA? name_|
                      UNIT (COMMA? 'slot' INT)? (
-                       COMMA name_ |
-                       (COMMA unit_ref)? COMMA INT
+                       (COMMA unit_ref)? COMMA INT |
+                       COMMA name_
                      )?|
                      RECRUITMENT COMMA? unit_ref|
                      CONSTRUCTION COMMA? building_level_ref|
@@ -3308,7 +3309,7 @@ select_ui_element_ ::= SELECT_UI_ELEMENT ID {pin=1}
 disable_shortcuts_ ::= DISABLE_SHORTCUTS ((ID COLON COLON ID)|ID)? BOOLEAN {pin=1}
 filter_unit_commands_ ::= FILTER_UNIT_COMMANDS on_off ID? unit_command_type?{pin=1}
 filter_unit_group_commands_ ::= FILTER_UNIT_GROUP_COMMANDS on_off ID? {pin=1}
-filter_unit_selection_commands_ ::= FILTER_UNIT_SELECTION_COMMANDS on_off {pin=1}
+filter_unit_selection_commands_ ::= FILTER_UNIT_SELECTION_COMMANDS on_off ID?{pin=1}
 filter_settlement_commands_ ::= FILTER_SETTLEMENT_COMMANDS on_off settlement_ref {pin=1}
 filter_character_commands_ ::= FILTER_CHARACTER_COMMANDS on_off name_ {pin=1}
 filter_all_ui_commands_ ::= FILTER_ALL_UI_COMMANDS on_off {pin=1}
@@ -3342,20 +3343,20 @@ show_unit_info_ ::= SHOW_UNIT_INFO {pin=1}
 tactical_view_locked_ ::= TACTICAL_VIEW_LOCKED BOOLEAN {pin=1} // undocumented
 console_command_ ::= CONSOLE_COMMAND c_command_ {pin=1}
 
-c_command_ ::= change_character_faction_|add_income_|add_expenditure_|give_ancillary_|control_|give_everything_|invulnerable_general_|set_fow_|become_protector_|force_battle_victory_|toggle_fow_|quit_game_|kill_character_|give_trait_|process_cq_|add_population_|capture_settlement_|add_money_|diplomatic_stance_|give_trait_c|date_|season_|create_building_|create_unit_|destroy_unit_
+c_command_ ::= change_character_faction_|disable_ai_|surrender_regions_|run_ai_|add_income_|add_expenditure_|give_ancillary_|control_|give_everything_|invulnerable_general_|set_fow_|become_protector_|force_battle_victory_|toggle_fow_|quit_game_|kill_character_|give_trait_|process_cq_|add_population_|capture_settlement_|add_money_|diplomatic_stance_|give_trait_c|date_|season_|create_building_|create_unit_|destroy_unit_
 kill_character_ ::= KILL_CHARACTER <<local_or STRING>> {pin=1}
 give_trait_ ::= GIVE_TRAIT <<local_or STRING>> trait_ref INT {pin=1}
 give_ancillary_ ::= GIVE_ANCILLARY STRING ancillary_ref
 process_cq_ ::= PROCESS_CQ <<local_or settlement_ref>> {pin=1}
 add_population_ ::= ADD_POPULATION <<local_or settlement_ref>> COMMA? INT {pin=1}
-capture_settlement_ ::= CAPTURE_SETTLEMENT <<local_or settlement_ref>> {pin=1}
+capture_settlement_ ::= CAPTURE_SETTLEMENT <<local_or settlement_ref>> faction_ref{pin=1}
 add_money_ ::= ADD_MONEY faction_ref? COMMA? INT {pin=1}
 diplomatic_stance_ ::= DIPLOMATIC_STANCE faction_ref faction_ref diplomatic_stance_for_command {pin=1}
 give_trait_c ::= give_trait_
 date_ ::= DATE INT {pin=1}
 season_ ::= SEASON season_enum {pin=1}
 create_building_ ::= CREATE_BUILDING <<local_or settlement_ref>> building_level_ref {pin=1}
-create_unit_ ::= CREATE_UNIT (LOCAL_CHARACTER|STRING|LOCAL_SETTLEMENT|settlement_ref) str_unit_ref INT? {pin=1}
+create_unit_ ::= CREATE_UNIT (LOCAL_CHARACTER|STRING|LOCAL_SETTLEMENT|settlement_ref) str_unit_ref INT? INT? INT? INT?{pin=1}
 destroy_unit_ ::= DESTROY_UNIT (LOCAL_CHARACTER|STRING|LOCAL_SETTLEMENT|settlement_ref) str_unit_ref INT? {pin=1}
 quit_game_ ::= SUDO? QUIT_GAME {pin=2}
 toggle_fow_ ::= TOGGLE_FOW
@@ -3368,10 +3369,15 @@ change_character_faction_ ::= CHANGE_CHARACTER_FACTION (LOCAL_CHARACTER|name_) (
 add_income_ ::= ADD_INCOME (LOCAL_FACTION|faction_ref|LOCAL_SETTLEMENT|settlement_ref) ID INT
 add_expenditure_ ::= ADD_EXPENDITURE (LOCAL_FACTION|faction_ref|LOCAL_SETTLEMENT|settlement_ref) ID INT
 control_ ::= CONTROL faction_ref
+disable_ai_ ::= DISABLE_AI
+surrender_regions_ ::= SURRENDER_REGIONS faction_ref faction_ref
+run_ai_ ::= RUN_AI
 private diplomatic_stance_for_command ::= ALLIED|NEUTRAL|WAR
 
 
 // #### Commands params ####
+settlement_order_type ::= 'garrison'|'law'|'fun'|'influence'|'tax_bonus'|'triumph'|'wonder'|'boom'|'squalour'|'distance_to_capital'|'culture_penalty'|'no_governance'|'tax_penalty'|'turmoil'|'underpopulation'|'besieged'|'blockaded'|'recession'|'entertained'|'health'|'governor_religion_unrest'|'leader_religion_unrest'
+field_construction_item::='watchtower'|
 senate_reward ::= ID //TODO:DOME
 unit_command_type ::= MOVE|RUN|'move_rot'|'change_formation'
 on_off ::= (ON|OFF)
