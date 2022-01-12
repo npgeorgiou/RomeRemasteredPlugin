@@ -21,7 +21,7 @@ LINE_WS = [ \t]
 EOL_WS = {EOL}+{LINE_WS}+
 WS      = ({EOL}|{LINE_WS})+
 
-COMMENT = [";""¬"][^\r\n]*
+COMMENT = (";"|"¬"|"//")[^\r\n]*
 
 // Special things
 SPEAR_BONUS_X = "spear_bonus_" {INT}
@@ -43,41 +43,27 @@ WMV_FILE=({PATH}|{DIR_OR_FILE})\.(wmv|WMV)
 // †ÎöÈ.íëé are in descr_names. Maybe just typos.
 ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jletterdigit:])* ([:jletterdigit:])*
 
-%state DESCR_STRAT
-%xstate DESCR_STRAT_NO_KEYWORDS
-
-%state EXPORT_DESCR_BUILDINGS
-
-%state EXPORT_DESCR_UNIT
-
-%state EXPORT_DESCR_ANCILLARIES
-%xstate EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS
-
-%state EXPORT_DESCR_MERCENARIES
-%xstate EXPORT_DESCR_MERCENARIES_NO_KEYWORDS
-
 %xstate TEXT_MAPPING
 %xstate TEXT_MAPPING_NO_KEYWORDS
 
-%state DESCR_CHARACTER
-%xstate DESCR_CHARACTER_NO_KEYWORDS
 
-%state DESCR_MODEL_BATTLE_AND_STRAT
-%xstate DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS
-
-%xstate DESCR_REBEL_FACTIONS
-%xstate DESCR_REBEL_FACTIONS_REBEL_TYPE
-
-%state DESCR_MOUNT
-%xstate DESCR_MOUNT_NO_KEYWORDS
-
+%state DESCR_STRAT
+%state EXPORT_DESCR_BUILDINGS
+%state EXPORT_DESCR_UNIT
+%state EXPORT_DESCR_MERCENARIES
+%state EXPORT_DESCR_ANCILLARIES
 %state EXPORT_DESCR_TRAITS
 %state DESCR_NAMES
+%state DESCR_CHARACTER
+%state DESCR_MOUNT
 %state DESCR_UNIT_VARIATION
 %xstate FERAL_DESCR_AI_PERSONALITY
+%state DESCR_REBEL_FACTIONS
+%xstate DESCR_REBEL_FACTIONS_NO_KEYWORDS
 %state DESCR_FACTION_GROUPS
 %state FERAL_DESCR_PORTRAITS_VARIATION
 %state DESCR_BANNERS
+%state DESCR_MODEL_BATTLE_AND_STRAT
 %state DESCR_BUILDING_BATTLE
 %state DESCR_LBC_DB
 %state DESCR_OFFMAP_MODELS
@@ -281,9 +267,10 @@ true|false       {return RRTypes.BOOLEAN;}
     "age"                        {return RRTypes.AGE;}
     "portrait_index"             {return RRTypes.PORTRAIT_INDEX;}
     "traits"                     {return RRTypes.TRAITS;}
-    "ancillaries"                {yybegin(DESCR_STRAT_NO_KEYWORDS); return RRTypes.ANCILLARIES;}
+    "ancillaries"                {return RRTypes.ANCILLARIES;}
     "army"                       {return RRTypes.ARMY;}
-    "unit"                       {yybegin(DESCR_STRAT_NO_KEYWORDS); return RRTypes.UNIT;}
+    "exp"                        {return RRTypes.EXP;}
+    "unit"                       {return RRTypes.UNIT;}
     "armour"                     {return RRTypes.ARMOUR;}
     "weapon_lvl"                 {return RRTypes.WEAPON_LVL;}
     "character"                  {return RRTypes.CHARACTER;}
@@ -315,17 +302,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "revolt"                     {return RRTypes.REVOLT;}
     "once_only"                  {return RRTypes.ONCE_ONLY;}
     {ID}                         {return RRTypes.ID;}
-}
-<DESCR_STRAT_NO_KEYWORDS>
-{
-    {WS}                      {return TokenType.WHITE_SPACE;}
-    {COMMENT}                 {return RRTypes.COMMENT;}
-    ","                       {return RRTypes.COMMA;}
-    "exp"                     {yybegin(DESCR_STRAT); return RRTypes.EXP;}
-    "army"                    {yybegin(DESCR_STRAT); return RRTypes.ARMY;}
-    "character"               {yybegin(DESCR_STRAT); return RRTypes.CHARACTER;}
-    "character_record"        {yybegin(DESCR_STRAT); return RRTypes.CHARACTER_RECORD;}
-    {ID}                      {return RRTypes.ID;}
 }
 
 <EXPORT_DESCR_UNIT>
@@ -526,7 +502,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <EXPORT_DESCR_ANCILLARIES>
 {
-    "Ancillary"           {yybegin(EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS); return RRTypes.ANCILLARY;}
+    "Ancillary"           {return RRTypes.ANCILLARY;}
     "Image"               {return RRTypes.IMAGE;}
     "Unique"              {return RRTypes.UNIQUE;}
     "ExcludedAncillaries" {return RRTypes.EXCLUDEDANCILLARIES;}
@@ -539,20 +515,10 @@ true|false       {return RRTypes.BOOLEAN;}
     "ShowStats"           {return RRTypes.SHOWSTATS;}
     "Trigger"             {return RRTypes.TRIGGER;}
     "WhenToTest"          {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.WHENTOTEST;}
-    "AcquireAncillary"    {yybegin(EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS); return RRTypes.ACQUIREANCILLARY;}
+    "AcquireAncillary"    {return RRTypes.ACQUIREANCILLARY;}
     "RemoveAncillary"     {return RRTypes.REMOVEANCILLARY;}
     "chance"              {return RRTypes.CHANCE_LC;}
     {ID}                  {return RRTypes.ID;}
-}
-<EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS>
-{
-    {WS}                      {return TokenType.WHITE_SPACE;}
-    {COMMENT}                 {return RRTypes.COMMENT;}
-    "Image"                   {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.IMAGE;}
-    "Hidden"                  {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.HIDDEN;}
-    "ShowStats"               {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.SHOWSTATS;}
-    "chance"                  {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.CHANCE_LC;}
-    {ID}                      {return RRTypes.ID;}
 }
 
 <EXPORT_DESCR_TRAITS>
@@ -584,21 +550,13 @@ true|false       {return RRTypes.BOOLEAN;}
     "pool"             {return RRTypes.POOL;}
     "-"                {return RRTypes.DASH;}
     "regions"          {return RRTypes.REGIONS;}
-    "unit"             {yybegin(EXPORT_DESCR_MERCENARIES_NO_KEYWORDS); return RRTypes.UNIT;}
+    "unit"             {return RRTypes.UNIT;}
     "exp"              {return RRTypes.EXP;}
     "cost"             {return RRTypes.COST;}
     "replenish"        {return RRTypes.REPLENISH;}
     "max"              {return RRTypes.MAX;}
     "initial"          {return RRTypes.INITIAL;}
     {ID}               {return RRTypes.ID;}
-}
-<EXPORT_DESCR_MERCENARIES_NO_KEYWORDS>
-{
-    {WS}                      {return TokenType.WHITE_SPACE;}
-    {COMMENT}                 {return RRTypes.COMMENT;}
-    ","                       {return RRTypes.COMMA;}
-    "exp"                     {yybegin(EXPORT_DESCR_MERCENARIES); return RRTypes.EXP;}
-    {ID}                      {return RRTypes.ID;}
 }
 
 <DESCR_NAMES>
@@ -806,8 +764,9 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <DESCR_MODEL_BATTLE_AND_STRAT>
 {
-    "type"                  {yybegin(DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS); return RRTypes.TYPE;}
+    "type"                  {return RRTypes.TYPE;}
     "scale"                 {return RRTypes.SCALE;}
+    "skeleton"              {return RRTypes.SKELETON;}
     "skeleton_horse"        {return RRTypes.SKELETON_HORSE;}
     "skeleton_elephant"     {return RRTypes.SKELETON_ELEPHANT;}
     "skeleton_chariot"      {return RRTypes.SKELETON_CHARIOT;}
@@ -841,41 +800,32 @@ true|false       {return RRTypes.BOOLEAN;}
     "ignore_registry"       {return RRTypes.IGNORE_REGISTRY;}
     {ID}                    {return RRTypes.ID;}
 }
-<DESCR_MODEL_BATTLE_AND_STRAT_NO_KEYWORDS>
-{
-    {WS}                      {return TokenType.WHITE_SPACE;}
-    {COMMENT}                 {return RRTypes.COMMENT;}
-    "skeleton"                {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.SKELETON;}
-    {ID}                      {return RRTypes.ID;}
-}
 
 <DESCR_REBEL_FACTIONS>
 {
-    {WS}                 {return TokenType.WHITE_SPACE;}
-    {COMMENT}            {return RRTypes.COMMENT;}
-    {INT}                {return RRTypes.INT;}
     "rebel_type"         {return RRTypes.REBEL_TYPE;}
-    "category"           {yybegin(DESCR_REBEL_FACTIONS_REBEL_TYPE); return RRTypes.CATEGORY;}
-    "description"        {return RRTypes.DESCRIPTION_LC;}
-    "unit"               {return RRTypes.UNIT;}
-    {ID}                 {return RRTypes.ID;}
-}
-<DESCR_REBEL_FACTIONS_REBEL_TYPE>
-{
-    {WS}                 {return TokenType.WHITE_SPACE;}
-    {COMMENT}            {return RRTypes.COMMENT;}
+    "category"           {return RRTypes.CATEGORY;}
     "peasant_revolt"     {return RRTypes.PEASANT_REVOLT;}
     "gladiator_revolt"   {return RRTypes.GLADIATOR_REVOLT;}
     "brigands"           {return RRTypes.BRIGANDS;}
     "pirates"            {return RRTypes.PIRATES;}
-    "chance"             {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.CHANCE_LC;}
+    "chance"             {return RRTypes.CHANCE_LC;}
+    "description"        {yybegin(DESCR_REBEL_FACTIONS_NO_KEYWORDS); return RRTypes.DESCRIPTION_LC;}
+    "unit"               {return RRTypes.UNIT;}
     {ID}                 {return RRTypes.ID;}
 }
-
+<DESCR_REBEL_FACTIONS_NO_KEYWORDS>
+{
+    {WS}                 {return TokenType.WHITE_SPACE;}
+    {COMMENT}            {return RRTypes.COMMENT;}
+    "unit"               {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.UNIT;}
+    {ID}                 {return RRTypes.ID;}
+}
 <DESCR_MOUNT>
 {
-    "type"                       {yybegin(DESCR_MOUNT_NO_KEYWORDS); return RRTypes.TYPE;}
-    "model"                      {yybegin(DESCR_MOUNT_NO_KEYWORDS); return RRTypes.MODEL;}
+    "type"                       {return RRTypes.TYPE;}
+    "model"                      {return RRTypes.MODEL;}
+    "class"                      {return RRTypes.CLASS;}
     "radius"                     {return RRTypes.RADIUS;}
     "x_radius"                   {return RRTypes.X_RADIUS;}
     "height"                     {return RRTypes.HEIGHT;}
@@ -900,7 +850,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "harness_connect"            {return RRTypes.HARNESS_CONNECT;}
     "scythe_radius"              {return RRTypes.SCYTHE_RADIUS;}
     "revs_per_attack"            {return RRTypes.REVS_PER_ATTACK;}
-    "horse_type"                 {yybegin(DESCR_MOUNT_NO_KEYWORDS); return RRTypes.HORSE_TYPE;}
+    "horse_type"                 {return RRTypes.HORSE_TYPE;}
+    "horses"                     {return RRTypes.HORSES;}
     "horse_offset"               {return RRTypes.HORSE_OFFSET;}
     "lods"                       {return RRTypes.LODS;}
     "lod"                        {return RRTypes.LOD;}
@@ -909,15 +860,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "scorpion_forward_length"    {return RRTypes.SCORPION_FORWARD_LENGTH;}
     "scorpion_reload_ticks"      {return RRTypes.SCORPION_RELOAD_TICKS;}
     {ID}                         {return RRTypes.ID;}
-}
-<DESCR_MOUNT_NO_KEYWORDS>
-{
-    {WS}                      {return TokenType.WHITE_SPACE;}
-    {COMMENT}                 {return RRTypes.COMMENT;}
-    "class"                   {yybegin(DESCR_MOUNT); return RRTypes.CLASS;}
-    "radius"                  {yybegin(DESCR_MOUNT); return RRTypes.RADIUS;}
-    "horses"                  {yybegin(DESCR_MOUNT); return RRTypes.HORSES;}
-    {ID}                      {return RRTypes.ID;}
 }
 
 <DESCR_CHARACTER>
@@ -929,18 +871,10 @@ true|false       {return RRTypes.BOOLEAN;}
     "actions"                 {return RRTypes.ACTIONS;}
     "wage_base"               {return RRTypes.WAGE_BASE;}
     "strat_card"              {return RRTypes.STRAT_CARD;}
-    "strat_model"             {yybegin(DESCR_CHARACTER_NO_KEYWORDS); return RRTypes.STRAT_MODEL;}
+    "strat_model"             {return RRTypes.STRAT_MODEL;}
     "battle_model"            {return RRTypes.BATTLE_MODEL;}
     "battle_equip"            {return RRTypes.BATTLE_EQUIP;}
     {ID}                      {return RRTypes.ID;}
-}
-<DESCR_CHARACTER_NO_KEYWORDS>{
-    {WS}            {return TokenType.WHITE_SPACE;}
-    {COMMENT}       {return RRTypes.COMMENT;}
-    "type"          {yybegin(DESCR_CHARACTER); return RRTypes.TYPE;}
-    "battle_model"  {yybegin(DESCR_CHARACTER); return RRTypes.BATTLE_MODEL;}
-    "faction"       {yybegin(DESCR_CHARACTER); return RRTypes.FACTION;}
-    {ID}            {return RRTypes.ID;}
 }
 
 <TEXT_MAPPING>

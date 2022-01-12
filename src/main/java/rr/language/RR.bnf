@@ -1863,7 +1863,7 @@ private safe_id ::= ID|keywords_that_may_be_in_ids
 // TODO: Go through all tokens and add dangerous ones here.
 // Then on highlighting make all unit_reds/decls have identifier color.
 // Then rethink sublexers.
-keywords_that_may_be_in_ids ::= TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
+keywords_that_may_be_in_ids ::= agent_type|TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -2068,8 +2068,8 @@ ancillary_def ::= ANCILLARY ancillary_name_decl
                     (EFFECT ID INT)*
                     (FAKEEFFECT ID INT)*
                   {pin=1 recoverWhile=ancillary_def_recover}
-ancillary_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
-ancillary_ref ::= ID {methods=[setName getReference]}
+ancillary_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+ancillary_ref ::= safe_id {methods=[setName getReference]}
 private ancillary_def_recover ::= !(ANCILLARY|TRIGGER)
 
 ancillary_trigger_def ::= TRIGGER ID
@@ -2449,7 +2449,7 @@ private model_model ::= NO_VARIATION? model (faction_ref COMMA)? capitalized_eth
 private model_flexi_   ::= NO_VARIATION? (MODEL_FLEXI|MODEL_FLEXI_M|MODEL_FLEXI_C)  cas_file_ COMMA (MAX|INT)?
 capitalized_ethnicity ::= 'African'|'Arabic'|'Caucasian'|'EastAsian'|'Egyptian'|'Indian'|'Mediterranean'
 private bodytype ::= DEFAULT|SKINNY|SKINNYATHLETIC|ATHLETIC|BULKY|OVERWEIGHT
-model_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+model_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 model_ref ::= safe_id {methods=[setName getReference]}
 // ############### descr_model_battle end #################################
 
@@ -2570,7 +2570,7 @@ scorpion_cart_specific ::= SCORPION_OFFSET number COMMA number COMMA number
                            SCORPION_FORWARD_LENGTH number
                            SCORPION_RELOAD_TICKS number
 
-mount_name_decl ::= ID* {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+mount_name_decl ::= name_ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 mount_ref ::= name_ {methods=[setName getReference]}
 // ############### descr_mount end #################################
 
@@ -2582,8 +2582,8 @@ rebel_faction ::= REBEL_TYPE rebels_name_decl
                   CHANCE_LC INT
                   DESCRIPTION_LC ID
                   (UNIT unit_ref)+ {methods=[getDescription]}
-rebels_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
-rebels_ref ::= ID {methods=[setName getReference]}
+rebels_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+rebels_ref ::= safe_id {methods=[setName getReference]}
 rebel_category ::= PEASANT_REVOLT|GLADIATOR_REVOLT|BRIGANDS|PIRATES
 // ############### descr_rebel_factions end #################################
 

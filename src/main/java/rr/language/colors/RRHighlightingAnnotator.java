@@ -24,8 +24,14 @@ public class RRHighlightingAnnotator implements Annotator {
         if (
             element instanceof RRUnitNameDecl ||
                 element instanceof RRUnitRef ||
+                element instanceof RRAncillaryNameDecl ||
+                element instanceof RRAncillaryRef ||
+                element instanceof RRModelNameDecl ||
                 element instanceof RRModelRef ||
-                element instanceof RRMountRef
+                element instanceof RRMountNameDecl ||
+                element instanceof RRMountRef ||
+                element instanceof RRRebelsNameDecl ||
+                element instanceof RRRebelsRef
         ) {
             color(element, RRSyntaxHighlighter.ID_STYLE, holder);
         }
