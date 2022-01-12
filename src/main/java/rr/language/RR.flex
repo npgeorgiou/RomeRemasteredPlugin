@@ -242,6 +242,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "winter"                     {return RRTypes.WINTER;}
     "campaign"                   {return RRTypes.CAMPAIGN;}
     "playable"                   {return RRTypes.PLAYABLE;}
+    "options bi"                 {return RRTypes.OPTIONS_BI;}
     "unlockable"                 {return RRTypes.UNLOCKABLE;}
     "nonplayable"                {return RRTypes.NONPLAYABLE;}
     "start_date"                 {return RRTypes.START_DATE;}
@@ -294,7 +295,9 @@ true|false       {return RRTypes.BOOLEAN;}
     "management"                 {return RRTypes.MANAGEMENT;}
     "subterfuge"                 {return RRTypes.SUBTERFUGE;}
     "alive"                      {return RRTypes.ALIVE;}
+    "dead"                       {return RRTypes.DEAD;}
     "never_a_leader"             {return RRTypes.NEVER_A_LEADER;}
+    "past_leader"                {return RRTypes.PAST_LEADER;}
     "male"                       {return RRTypes.MALE;}
     "female"                     {return RRTypes.FEMALE;}
     "relative"                   {return RRTypes.RELATIVE;}

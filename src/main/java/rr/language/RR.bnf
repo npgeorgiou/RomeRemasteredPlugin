@@ -97,6 +97,7 @@
       SPRING="spring"
       AUTUMN="autumn"
       CAMPAIGN="campaign"
+      OPTIONS_BI="options bi"
       PLAYABLE="playable"
       UNLOCKABLE="unlockable"
       NONPLAYABLE="nonplayable"
@@ -150,6 +151,7 @@
       SUBTERFUGE="subterfuge"
       ALIVE="alive"
       NEVER_A_LEADER="never_a_leader"
+      PAST_LEADER="past_leader"
       MALE="male"
       FEMALE="female"
       RELATIVE="relative"
@@ -1756,9 +1758,10 @@ descr_strat ::= DESCR_STRAT_MARKER
 private season_enum ::= (SPRING|SUMMER|WINTER|AUTUMN)
 
 campaign_section ::= CAMPAIGN ID
-                     PLAYABLE ID* END
-                     UNLOCKABLE ID* END
-                     NONPLAYABLE ID* END
+                     OPTIONS_BI?
+                     PLAYABLE faction_ref* END
+                     UNLOCKABLE faction_ref* END
+                     NONPLAYABLE faction_ref* END
                      START_DATE INT season_enum
                      END_DATE INT season_enum
                      MARIAN_REFORMS_DISABLED?
@@ -1813,7 +1816,7 @@ building_item ::= BUILDING OCB building_info CCB {pin=2}
 private building_info ::= TYPE building_tree_ref building_level_ref  {pin=1 recoverWhile=not_CCB}
 private not_CCB ::= !CCB
 
-character_item ::= CHARACTER
+character_item ::= CHARACTER COMMA?
                    (SUB_FACTION ID COMMA)?
                    name_ COMMA
                    character_type COMMA
@@ -1832,8 +1835,8 @@ character_record_item ::= CHARACTER_RECORD name_ COMMA
                      (MALE|FEMALE) COMMA
                      character_skills COMMA
                      AGE INT COMMA
-                     ALIVE COMMA
-                     NEVER_A_LEADER
+                     (ALIVE|DEAD INT)
+                     (COMMA (NEVER_A_LEADER|PAST_LEADER))?
 
 character_attribute ::= COMMAND_UCF|INFLUENCE_UCF|MANAGEMENT_UCF|SUBTERFUGE_UCF
 character_skills ::= COMMAND INT COMMA INFLUENCE INT COMMA MANAGEMENT INT COMMA SUBTERFUGE INT
