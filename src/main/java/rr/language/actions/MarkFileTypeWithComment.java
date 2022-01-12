@@ -63,13 +63,12 @@ public class MarkFileTypeWithComment extends AnAction {
         "descr_items.txt",
         "descr_sm_ambient_objects.txt",
         "descr_beliefs.txt",
+        "descr_palette.txt",
     };
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
         Project project = event.getProject();
-
-
 
         Collection<RRFile> files = RRUtil.findAllRRFiles(project);
 

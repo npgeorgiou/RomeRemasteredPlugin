@@ -69,6 +69,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %state DESCR_OFFMAP_MODELS
 %state DESCR_SM_LANDMARKS
 %state DESCR_DISASTERS
+%state DESCR_PALETTE_MARKER
 %state DESCR_ITEMS
 %state TEXT_MAPPING
 %xstate ENUMS
@@ -101,6 +102,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";descr_items.txt"[^\r\n]*                     {yybegin(DESCR_ITEMS); return RRTypes.DESCR_ITEMS_MARKER;}
 ";descr_sm_ambient_objects.txt"[^\r\n]*        {return RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER;}
 ";descr_beliefs.txt"[^\r\n]*                   {return RRTypes.DESCR_BELIEFS_MARKER;}
+";descr_palette.txt"[^\r\n]*                   {return RRTypes.DESCR_PALETTE_MARKER;}
 
 // text mapping markers
 ";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
@@ -210,10 +212,18 @@ true|false       {return RRTypes.BOOLEAN;}
     "skin"                      {yybegin(DESCR_UNIT_VARIATION); return RRTypes.SKIN;}
     "script"                    {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.SCRIPT;}
 
-    // Here because descr_regions has no starting anchor on which I can start a sublexer.
-    // Idea: Automatically add a comment on top of each file, with the file name, and use it as an ancor.
     "none"               {return RRTypes.NONE;}
+      // descr_palette
+    "begin_colourmap"             {return RRTypes.BEGIN_COLOURMAP;}
+    "colour"                      {return RRTypes.COLOUR;}
+    "end_colourmap"               {return RRTypes.END_COLOURMAP;}
+    "summer"                      {return RRTypes.SUMMER;}
+    "winter"                      {return RRTypes.WINTER;}
+    "spring"                      {return RRTypes.SPRING;}
+    "autumn"                      {return RRTypes.AUTUMN;}
+
     {ID}                 {return RRTypes.ID;}
+
 }
 
 // Unfortunately, RR allows free text instead of IDs in some places.

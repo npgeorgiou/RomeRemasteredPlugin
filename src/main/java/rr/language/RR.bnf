@@ -35,6 +35,7 @@
       DESCR_ITEMS_MARKER='regexp:;descr_items.txt.*'
       DESCR_SM_AMBIENT_OBJECTS_MARKER='regexp:;descr_sm_ambient_objects.txt.*'
       DESCR_BELIEFS_MARKER='regexp:;descr_beliefs.txt.*'
+      DESCR_PALETTE_MARKER='regexp:;descr_palette.txt.*'
 
       // text mapping markers
       // TODO: Do also buildings text in this generic way?
@@ -607,6 +608,11 @@
       // descr_items
       MAX_DISTANCE = "max_distance"
       MODEL_RIGID = "model_rigid"
+
+      // descr_palette
+      BEGIN_COLOURMAP = "begin_colourmap"
+      COLOUR = "colour"
+      END_COLOURMAP = "end_colourmap"
 
       // events
       PREBATTLE = "PreBattle"
@@ -1737,6 +1743,7 @@ RRFile ::= descr_strat|
           descr_items|
           descr_sm_ambient_objects|
           descr_beliefs|
+          descr_palette|
           text_mapping_format|
           enums_format|
           kv_format|
@@ -1755,7 +1762,7 @@ descr_strat ::= DESCR_STRAT_MARKER
                 (SPAWN_SCRIPT faction_ref COMMA REVOLT COMMA txt_file_)*
                  SCRIPT txt_file_ (COMMA ONCE_ONLY)?
 
-private season_enum ::= (SPRING|SUMMER|WINTER|AUTUMN)
+private season_enum ::= SPRING|SUMMER|WINTER|AUTUMN
 
 campaign_section ::= CAMPAIGN ID
                      OPTIONS_BI?
@@ -2603,7 +2610,7 @@ descr_sm_ambient_objects ::= DESCR_SM_AMBIENT_OBJECTS_MARKER
                              CSB COMMA
 ambient_object_decl ::= ambient_object_name_decl COLON OCB
                           STRING COLON OSB
-                            (STRING COMMA)+
+                            (CAS_FILE COMMA)+
                           CSB COMMA
                           STRING COLON BOOLEAN COMMA
                         CCB COMMA
@@ -2627,6 +2634,14 @@ religion_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" metho
 religion_ref ::= ID {methods=[setName getReference]}
 str_religion_ref ::= STRING {methods=[setName getReference]}
 // ############### descr_beliefs end #################################
+
+// ############### descr_palette start #################################
+descr_palette ::= DESCR_PALETTE_MARKER
+                  (BEGIN_COLOURMAP season_enum
+                  (COLOUR rgb ID)+
+                  END_COLOURMAP)+
+rgb ::= FLOAT FLOAT FLOAT
+// ############### descr_palette end #################################
 
 // ############### General things #################################
 // ############### Conditions ###############################
@@ -3196,7 +3211,7 @@ camera_look_at_position_ ::= CAMERA_LOOK_AT_POSITION FLOAT FLOAT {pin=1}
 camera_look_at_unit_ ::= CAMERA_LOOK_AT_UNIT ID {pin=1}
 camera_track_unit_ ::= CAMERA_TRACK_UNIT ID front_back_left_right INT INT number? {pin=1}
 camera_zoom_to_unit_ ::= CAMERA_ZOOM_TO_UNIT ID {pin=1}
-e_camera_zoom_to_unit_ ::= E_CAMERA_ZOOM_TO_UNIT ID {pin=1}
+e_camera_zoom_to_unit_ ::= E_CAMERA_ZOOM_TO_UNIT ID? {pin=1}
 inhibit_camera_input_ ::= INHIBIT_CAMERA_INPUT BOOLEAN {pin=1}
 declare_prologue_ ::= DECLARE_PROLOGUE {pin=1}
 terminate_prologue_ ::= TERMINATE_PROLOGUE ID? {pin=1}
@@ -3316,7 +3331,7 @@ suspend_unscripted_advice_ ::= SUSPEND_UNSCRIPTED_ADVICE BOOLEAN {pin=1}
 select_character_ ::= SELECT_CHARACTER name_ {pin=1}
 e_select_character_ ::= E_SELECT_CHARACTE {pin=1}
 select_settlement_ ::= SELECT_SETTLEMENT settlement_ref {pin=1}
-e_select_settlement_ ::= E_SELECT_SETTLEMEN {pin=1}
+e_select_settlement_ ::= E_SELECT_SETTLEMENT {pin=1}
 call_object_shortcut_ ::= CALL_OBJECT_SHORTCUT ID ID? {pin=1}
 simulate_mouse_click_ ::= SIMULATE_MOUSE_CLICK ('lclick_down'|'lclick_up'|'rclick_down'|'rclick_up'|'ldbl_click') {pin=1}
 select_ui_element_ ::= SELECT_UI_ELEMENT ID {pin=1}
