@@ -1846,7 +1846,7 @@ diplomacy_section ::= core_attitudes_item+
 core_attitudes_item ::= CORE_ATTITUDES faction_ref COMMA INT <<list faction_ref>> {pin=1 recoverWhile=core_attitudes_recover}
 private core_attitudes_recover ::= !(CORE_ATTITUDES|FACTION_RELATIONSHIPS)
 
-faction_relationships_item ::= FACTION_RELATIONSHIPS faction_ref COMMA ((100|ALLIED_TO)|(600|AT_WAR_WITH)) <<list faction_ref>> {pin=1 recoverWhile=faction_relationships_recover}
+faction_relationships_item ::= FACTION_RELATIONSHIPS faction_ref COMMA (INT|ALLIED_TO|AT_WAR_WITH) <<list faction_ref>> {pin=1 recoverWhile=faction_relationships_recover}
 private faction_relationships_recover ::= !(FACTION_RELATIONSHIPS|SUPERFACTION_SETUP|SCRIPT)
 
 superfaction_setup_item ::= SUPERFACTION_SETUP ID
