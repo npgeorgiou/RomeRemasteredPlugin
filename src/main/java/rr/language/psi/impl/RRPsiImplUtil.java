@@ -28,7 +28,7 @@ public class RRPsiImplUtil {
     }
 
     public static TgaFileReference getReference(RRTgaFile_ ref) {
-        TextRange range = ref.getNode().findChildByType(RRTypes.TGA_FILE).getPsi().getTextRangeInParent();
+        TextRange range = ref.getFirstChild().getTextRangeInParent();
         return new TgaFileReference(ref, range);
     }
     //</editor-fold>

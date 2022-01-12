@@ -12,6 +12,9 @@ import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import org.jetbrains.annotations.NotNull;
 import rr.language.psi.RRFile;
+import rr.language.psi.RRTgaFile_;
+import rr.language.psi.RRTxtFile_;
+import rr.language.psi.references.TgaFileReference;
 
 import javax.swing.*;
 import javax.swing.text.IconView;
@@ -23,8 +26,8 @@ public class RRLineMarkerProvider extends RelatedItemLineMarkerProvider {
     protected void collectNavigationMarkers(@NotNull PsiElement element,
                                             @NotNull Collection<? super RelatedItemLineMarkerInfo<?>> result
     ) {
-        boolean isTxtFile = element.getNode().getElementType().toString().equals("RRTokenType.TXT_FILE");
-        boolean isTgaFile = element.getNode().getElementType().toString().equals("RRTokenType.TGA_FILE");
+        boolean isTxtFile = element instanceof RRTxtFile_;
+        boolean isTgaFile = element instanceof RRTgaFile_;
 
         if (isTxtFile) {
             RRFile file = RRUtil.findRRFile(element.getText(), element.getProject());
@@ -40,9 +43,10 @@ public class RRLineMarkerProvider extends RelatedItemLineMarkerProvider {
         }
 
         if (isTgaFile) {
-            PsiFile file = RRUtil.findTgaFile(Util.unquote(element.getText()), element.getProject());
+            PsiFile file = (new TgaFileReference(element)).resolve();
 
-            if (file == null) return;
+            if (file == null)
+                return;
 
             RelatedItemLineMarkerInfo<PsiElement> marker = NavigationGutterIconBuilder.create(RRIcons.TGA_FILE)
                 .setTarget(file)

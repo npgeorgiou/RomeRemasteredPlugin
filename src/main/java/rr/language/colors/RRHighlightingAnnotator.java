@@ -1,4 +1,5 @@
 package rr.language.colors;
+
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.lang.annotation.HighlightSeverity;
@@ -12,12 +13,25 @@ public class RRHighlightingAnnotator implements Annotator {
     public void annotate(@NotNull final PsiElement element, @NotNull AnnotationHolder holder) {
         if (
             element instanceof RRCoords ||
-            element instanceof RRCoordsWithXy ||
-            element instanceof RRCoordsNoComma ||
-            element instanceof RRCoordsXyz ||
-            element instanceof RRCoordsXyzNoComma
+                element instanceof RRCoordsWithXy ||
+                element instanceof RRCoordsNoComma ||
+                element instanceof RRCoordsXyz ||
+                element instanceof RRCoordsXyzNoComma
         ) {
             color(element, RRSyntaxHighlighter.COORDS_STYLE, holder);
+        }
+
+        if (
+            element instanceof RRUnitNameDecl ||
+                element instanceof RRUnitRef ||
+                element instanceof RRModelRef ||
+                element instanceof RRMountRef
+        ) {
+            color(element, RRSyntaxHighlighter.ID_STYLE, holder);
+        }
+
+        if (element instanceof RRTgaFile_) {
+            color(element, RRSyntaxHighlighter.FILES_STYLE, holder);
         }
     }
 

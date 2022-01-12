@@ -47,10 +47,8 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %xstate DESCR_STRAT_NO_KEYWORDS
 
 %state EXPORT_DESCR_BUILDINGS
-%xstate EXPORT_DESCR_BUILDINGS_NO_KEYWORDS
 
 %state EXPORT_DESCR_UNIT
-%xstate EXPORT_DESCR_UNIT_NO_KEYWORDS
 
 %state EXPORT_DESCR_ANCILLARIES
 %xstate EXPORT_DESCR_ANCILLARIES_NO_KEYWORDS
@@ -217,7 +215,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <YYINITIAL>
 {
-    "type"                      {yybegin(EXPORT_DESCR_UNIT_NO_KEYWORDS); return RRTypes.TYPE;}
+    "type"                      {yybegin(EXPORT_DESCR_UNIT); return RRTypes.TYPE;}
     "tags"                      {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.TAGS;}
     "Ancillary"                 {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.ANCILLARY;}
     "Trait"                     {yybegin(EXPORT_DESCR_TRAITS); return RRTypes.TRAIT;}
@@ -329,15 +327,20 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <EXPORT_DESCR_UNIT>
 {
-    "type"                          {yybegin(EXPORT_DESCR_UNIT_NO_KEYWORDS); return RRTypes.TYPE;}
+    "type"                          {return RRTypes.TYPE;}
+    "dictionary"                    {return RRTypes.DICTIONARY;}
     "category"                      {return RRTypes.CATEGORY;}
     "class"                         {return RRTypes.CLASS;}
     "voice_type"                    {return RRTypes.VOICE_TYPE;}
     "voice_indexes"                 {return RRTypes.VOICE_INDEXES;}
-    "soldier"                       {yybegin(EXPORT_DESCR_UNIT_NO_KEYWORDS); return RRTypes.SOLDIER;}
+    "soldier"                       {return RRTypes.SOLDIER;}
     "soldiers"                      {return RRTypes.SOLDIERS;}
+    "engine"                        {return RRTypes.ENGINE;}
+    "ship"                          {return RRTypes.SHIP;}
+    "animal"                        {return RRTypes.ANIMAL;}
+    "attributes"                    {return RRTypes.ATTRIBUTES;}
     "default"                       {return RRTypes.DEFAULT_LC;}
-    "mount"                         {yybegin(EXPORT_DESCR_UNIT_NO_KEYWORDS); return RRTypes.MOUNT;}
+    "mount"                         {return RRTypes.MOUNT;}
     "mount_effect"                  {return RRTypes.MOUNT_EFFECT;}
     "officer"                       {return RRTypes.OFFICER;}
     "no"                            {return RRTypes.NO;}
@@ -434,24 +437,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "ethnicity"                     {return RRTypes.ETHNICITY;}
     {ID}                            {return RRTypes.ID;}
 }
-<EXPORT_DESCR_UNIT_NO_KEYWORDS>
-{
-    {WS}                      {return TokenType.WHITE_SPACE;}
-    {COMMENT}                 {return RRTypes.COMMENT;}
-    {INT}                     {return RRTypes.INT;}
-    {FLOAT}                   {return RRTypes.FLOAT;}
-    ","                       {return RRTypes.COMMA;}
-
-    "dictionary"              {yybegin(EXPORT_DESCR_UNIT); return RRTypes.DICTIONARY;}
-    "engine"                  {return RRTypes.ENGINE;}
-    "ship"                    {return RRTypes.SHIP;}
-    "animal"                  {return RRTypes.ANIMAL;}
-    "mount"                   {return RRTypes.MOUNT;}
-    "officer"                 {return RRTypes.OFFICER;}
-    "mount_effect"            {yybegin(EXPORT_DESCR_UNIT); return RRTypes.MOUNT_EFFECT;}
-    "attributes"              {yybegin(EXPORT_DESCR_UNIT); return RRTypes.ATTRIBUTES;}
-    {ID}                      {return RRTypes.ID;}
-}
 
 <EXPORT_DESCR_BUILDINGS>
 {
@@ -469,7 +454,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "water"                         {return RRTypes.WATER;}
     "culture"                       {return RRTypes.CULTURE;}
     "religious"                     {return RRTypes.RELIGIOUS;}
-    "icon"                          {yybegin(EXPORT_DESCR_BUILDINGS_NO_KEYWORDS);return RRTypes.ICON;}
+    "icon"                          {return RRTypes.ICON;}
     "classification"                {return RRTypes.CLASSIFICATION;}
     "levels"                        {return RRTypes.LEVELS;}
     "plugins"                       {return RRTypes.PLUGINS;}
@@ -534,14 +519,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "building_present"              {return RRTypes.BUILDING_PRESENT;}
     "building_present_min_level"    {return RRTypes.BUILDING_PRESENT_MIN_LEVEL;}
     {ID}                            {return RRTypes.ID;}
-}
-<EXPORT_DESCR_BUILDINGS_NO_KEYWORDS>
-{
-    {WS}                      {return TokenType.WHITE_SPACE;}
-    {COMMENT}                 {return RRTypes.COMMENT;}
-    "levels"                  {return RRTypes.LEVELS;}
-    "{"                       {yybegin(EXPORT_DESCR_BUILDINGS);return RRTypes.OCB;}
-    {ID}                      {return RRTypes.ID;}
 }
 
 <EXPORT_DESCR_ANCILLARIES>

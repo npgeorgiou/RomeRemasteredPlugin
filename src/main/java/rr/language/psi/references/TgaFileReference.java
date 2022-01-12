@@ -1,6 +1,8 @@
 package rr.language.psi.references;
 
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
+import com.intellij.openapi.util.Condition;
+import com.intellij.openapi.util.NlsSafe;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
@@ -9,6 +11,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
 import rr.language.Util;
+import rr.language.psi.RRBuildingTree;
+import rr.language.psi.RRResourceDecl;
+
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class TgaFileReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
@@ -16,9 +24,19 @@ public class TgaFileReference extends PsiReferenceBase<PsiElement> implements Ps
         super(element, rangeInElement);
     }
 
+    public TgaFileReference(@NotNull PsiElement element) {
+        super(element);
+    }
+
     @Override
-    public @Nullable PsiElement resolve() {
-        return RRUtil.findTgaFile(Util.unquote(myElement.getText()), myElement.getProject());
+    public @Nullable PsiFile resolve() {
+        String name = Util.unquote(myElement.getText());
+
+        if (isBuildingIcon()) {
+            name = "ui/building_icons/" + myElement.getText() + ".tga";
+        }
+
+        return RRUtil.findTgaFile(name, myElement.getProject());
     }
 
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
@@ -28,8 +46,22 @@ public class TgaFileReference extends PsiReferenceBase<PsiElement> implements Ps
 
     @Override
     public Object @NotNull [] getVariants() {
-        return RRUtil.findAllRRFiles(myElement.getProject()).stream()
-            .map(it -> LookupElementBuilder.create(it.getVirtualFile().getName()))
+        Predicate<PsiFile> filter = it -> true;
+        Function<PsiFile, String> map = it -> it.getVirtualFile().getName();
+
+        if (isBuildingIcon()) {
+            filter = it -> it.getVirtualFile().getPath().contains("ui/building_icons/");
+            map = it -> it.getVirtualFile().getName().replace(".tga", "");
+        }
+
+        return RRUtil.findAllTgaFiles(myElement.getProject()).stream()
+            .filter(filter)
+            .map(map)
+            .map(it -> LookupElementBuilder.create(it))
             .toArray();
+    }
+
+    private boolean isBuildingIcon() {
+        return myElement.getParent() instanceof RRBuildingTree;
     }
 }
