@@ -55,7 +55,7 @@ public class FactionOrCultureReference extends PsiReferenceBase<PsiElement> impl
     public Object @NotNull [] getVariants() {
         return Stream.concat(
                 RRUtil.findAllFactionsAsStrings(myElement.getProject()).stream(),
-                RRUtil.findAllFactionsAsStrings(myElement.getProject()).stream()
+                RRUtil.findAllCulturesAsStrings(myElement.getProject()).stream()
             ).map(it -> LookupElementBuilder.create(it))
             .toArray();
     }

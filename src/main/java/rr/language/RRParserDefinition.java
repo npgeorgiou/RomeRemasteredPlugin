@@ -856,11 +856,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.MAX_DISTANCE,
         RRTypes.MODEL_RIGID,
 
-        // descr_palette
-        RRTypes.BEGIN_COLOURMAP,
-        RRTypes.COLOUR,
-        RRTypes.END_COLOURMAP,
-
         // descr_ship
         RRTypes.SHIP_TYPE,
         RRTypes.CARRYING_CAPACITY,

@@ -84,9 +84,20 @@ public class MarkFileTypeWithComment extends AnAction {
                 continue;
             }
 
-            if (file.getFirstChild().getText().startsWith(";" + fileName)) {
+            if (
+                file.getFirstChild().getText().startsWith(";" + fileName) ||
+                file.getFirstChild().getText().startsWith("¬" + fileName)
+            ) {
                 continue;
             }
+
+
+            // For now skip that. This file bugs when it has a ; comment on top.
+            // I could put a ¬ comment, but ¬ char behaves weirdly when you add it to a string
+            if (fileName.endsWith("export_vnvs.txt")) {
+                continue;
+            }
+
 
             PsiElement newline = RRElementFactory.createNewline(project);
             PsiElement comment = RRElementFactory.createComment(

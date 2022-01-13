@@ -37,7 +37,6 @@
       DESCR_ITEMS_MARKER='regexp:;descr_items.txt.*'
       DESCR_SM_AMBIENT_OBJECTS_MARKER='regexp:;descr_sm_ambient_objects.txt.*'
       DESCR_BELIEFS_MARKER='regexp:;descr_beliefs.txt.*'
-      DESCR_PALETTE_MARKER='regexp:;descr_palette.txt.*'
       DESCR_PROJECTILE_MARKER='regexp:;descr_projectile_new.txt.*'
       DESCR_ANIMALS_MARKER='regexp:;descr_animals.txt.*'
 
@@ -666,11 +665,6 @@
       // descr_items
       MAX_DISTANCE = "max_distance"
       MODEL_RIGID = "model_rigid"
-
-      // descr_palette
-      BEGIN_COLOURMAP = "begin_colourmap"
-      COLOUR = "colour"
-      END_COLOURMAP = "end_colourmap"
 
       // events
       PREBATTLE = "PreBattle"
@@ -1804,7 +1798,6 @@ RRFile ::= descr_strat|
           descr_items|
           descr_sm_ambient_objects|
           descr_beliefs|
-          descr_palette|
           text_mapping_format|
           enums_format|
           kv_format|
@@ -2350,7 +2343,16 @@ faction_decl ::= faction_name_decl COLON OCB
                    STRING COLON OSB (<<list str_faction_group_ref>> COMMA)? CSB COMMA
                    KVF_item
                    KVF_item
-                   KVF_item
+                   STRING COLON OCB
+                     STRING COLON OSB rgb CSB COMMA
+                     STRING COLON OSB rgb CSB COMMA
+                     STRING COLON OCB
+                       STRING COLON OSB rgb CSB COMMA
+                       STRING COLON OSB rgb CSB COMMA
+                       STRING COLON OSB rgb CSB COMMA
+                       STRING COLON OSB rgb CSB COMMA
+                     CCB COMMA
+                   CCB COMMA
                    KVF_item
                    KVF_item
                    KVF_item
@@ -2358,6 +2360,7 @@ faction_decl ::= faction_name_decl COLON OCB
                    KVF_item+
                  CCB COMMA
 
+rgb ::= INT COMMA INT COMMA INT COMMA
 faction_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 faction_ref ::= ID {methods=[setName getReference]}
 str_faction_ref ::= STRING {methods=[setName getReference]}
@@ -2777,14 +2780,6 @@ religion_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" metho
 religion_ref ::= ID {methods=[setName getReference]}
 str_religion_ref ::= STRING {methods=[setName getReference]}
 // ############### descr_beliefs end #################################
-
-// ############### descr_palette start #################################
-descr_palette ::= DESCR_PALETTE_MARKER
-                  (BEGIN_COLOURMAP season_enum
-                  (COLOUR rgb ID)+
-                  END_COLOURMAP)+
-rgb ::= FLOAT FLOAT FLOAT
-// ############### descr_palette end #################################
 
 // ############### General things #################################
 // ############### Conditions ###############################

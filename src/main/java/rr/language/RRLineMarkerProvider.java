@@ -78,14 +78,14 @@ public class RRLineMarkerProvider extends RelatedItemLineMarkerProvider {
     }
 
     private Icon createIconFor(RRRgb element) {
-        String[] colors = element.getText().split("\\s+");
-        int red = Math.round(Float.parseFloat(colors[0]) * 255);
-        int green = Math.round(Float.parseFloat(colors[1]) * 255);
-        int blue = Math.round(Float.parseFloat(colors[2]) * 255);
+        String[] colors = element.getText().split(",\\s*");
+        int red = Integer.parseInt(colors[0]);
+        int green = Integer.parseInt(colors[1]);
+        int blue = Integer.parseInt(colors[2]);
 
         BufferedImage image = ImageUtil.createImage(10, 10, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = image.createGraphics();
-        graphics.setPaint(new JBColor(new Color(0, 0, 128), new Color(red, green, blue)));
+        graphics.setPaint(new Color(red, green, blue));
         graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
 
         return new ImageIcon(image);

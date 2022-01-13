@@ -103,7 +103,6 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jl
 ";descr_items.txt"[^\r\n]*                     {yybegin(DESCR_ITEMS); return RRTypes.DESCR_ITEMS_MARKER;}
 ";descr_sm_ambient_objects.txt"[^\r\n]*        {return RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER;}
 ";descr_beliefs.txt"[^\r\n]*                   {return RRTypes.DESCR_BELIEFS_MARKER;}
-";descr_palette.txt"[^\r\n]*                   {return RRTypes.DESCR_PALETTE_MARKER;}
 ";descr_ship.txt"[^\r\n]*                      {yybegin(DESCR_SHIP);return RRTypes.DESCR_SHIP_MARKER;}
 ";descr_projectile_new.txt"[^\r\n]*            {yybegin(DESCR_PROJECTILE);return RRTypes.DESCR_PROJECTILE_MARKER;}
 ";descr_animals.txt"[^\r\n]*                   {yybegin(DESCR_ANIMALS);return RRTypes.DESCR_ANIMALS_MARKER;}
@@ -219,14 +218,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "script"                    {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.SCRIPT;}
 
     "none"               {return RRTypes.NONE;}
-      // descr_palette
-    "begin_colourmap"             {return RRTypes.BEGIN_COLOURMAP;}
-    "colour"                      {return RRTypes.COLOUR;}
-    "end_colourmap"               {return RRTypes.END_COLOURMAP;}
-    "summer"                      {return RRTypes.SUMMER;}
-    "winter"                      {return RRTypes.WINTER;}
-    "spring"                      {return RRTypes.SPRING;}
-    "autumn"                      {return RRTypes.AUTUMN;}
 
     {ID}                 {return RRTypes.ID;}
 
