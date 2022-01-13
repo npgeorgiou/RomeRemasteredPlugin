@@ -53,17 +53,17 @@ public class RRLineMarkerProvider extends RelatedItemLineMarkerProvider {
         }
 
         if (isTgaFile) {
-            PsiFile file = (new TgaFileReference(element)).resolve();
-
-            if (file == null) return;
-
-            RelatedItemLineMarkerInfo<PsiElement> marker = NavigationGutterIconBuilder.create(RRIcons.TGA_FILE)
-                .setTarget(file)
-                .setTooltipText("Navigate to file")
-                .createLineMarkerInfo(element);
-
-            result.add(marker);
-            return;
+//            PsiFile file = (new TgaFileReference(element)).resolve();
+//
+//            if (file == null) return;
+//
+//            RelatedItemLineMarkerInfo<PsiElement> marker = NavigationGutterIconBuilder.create(RRIcons.TGA_FILE)
+//                .setTarget(file)
+//                .setTooltipText("Navigate to file")
+//                .createLineMarkerInfo(element);
+//
+//            result.add(marker);
+//            return;
         }
 
         if (isRGB) {

@@ -43,6 +43,16 @@
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.missingTextMapping.DescrRebelFactions"/>
 
+        <localInspection language="RomeRemastered" shortName="Ancillaries_missing_descriptions"
+                         displayName="Ancillaries missing descriptions" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.missingTextMapping.DescrAncillaries"/>
+
+        <localInspection language="RomeRemastered" shortName="Traits_missing_descriptions"
+                         displayName="Traits missing descriptions" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.missingTextMapping.DescrTraits"/>
+
         <localInspection language="RomeRemastered" shortName="Names_not_used"
                          displayName="Name not used in descr_names.txt" groupName="RR"
                          enabledByDefault="true" level="WARNING"

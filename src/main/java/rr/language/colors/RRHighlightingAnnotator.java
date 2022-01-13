@@ -34,6 +34,8 @@ public class RRHighlightingAnnotator implements Annotator {
                 element instanceof RRShipRef ||
                 element instanceof RRAnimalNameDecl ||
                 element instanceof RRAnimalRef ||
+                element instanceof RRTraitNameDecl ||
+                element instanceof RRTraitRef ||
                 element instanceof RRRebelsNameDecl ||
                 element instanceof RRRebelsRef
         ) {

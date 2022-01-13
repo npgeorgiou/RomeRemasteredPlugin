@@ -538,14 +538,11 @@ public class RRUtil {
 
     public static <T extends PsiElement> T previousSibling(
         T element,
-        Predicate<PsiElement> stopCondition,
         Predicate<PsiElement> foundCondition
     ) {
         PsiElement prev = element;
 
         while ((prev = prev.getPrevSibling()) != null) {
-            if (stopCondition != null && stopCondition.test(prev)) break;
-
             if (foundCondition.test(prev)) return (T) prev;
         }
 
@@ -554,14 +551,11 @@ public class RRUtil {
 
     public static <T extends PsiElement> T nextSibling(
         T element,
-        Predicate<PsiElement> stopCondition,
         Predicate<PsiElement> foundCondition
     ) {
         PsiElement next = element;
 
         while ((next = next.getNextSibling()) != null) {
-            if (stopCondition != null && stopCondition.test(next)) break;
-
             if (foundCondition.test(next)) return (T) next;
         }
 

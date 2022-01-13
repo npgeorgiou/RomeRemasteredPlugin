@@ -62,7 +62,8 @@ public class DeleteNotLoadedFiles extends AnAction {
         "descr_world_map.txt",
         "lookup_battle_descriptions.txt",
         "lookup_campaign_descriptions.txt",
-        "menu_text_descr.txt"
+        "menu_text_descr.txt",
+        "export_descr_vnvs_enums.txt",
     };
 
     @Override

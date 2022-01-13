@@ -1,5 +1,6 @@
 package rr.language.psi.references;
 
+import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
@@ -16,6 +17,7 @@ import rr.language.psi.RRBuriedBuildingTreeOrLevelRef;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BuildingTreeOrLevelReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
@@ -57,5 +59,13 @@ public class BuildingTreeOrLevelReference extends PsiReferenceBase<PsiElement> i
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
         ((RRBuriedBuildingTreeOrLevelRef) myElement).setName(newName);
         return myElement;
+    }
+
+    public Object @NotNull [] getVariants() {
+        return Stream.concat(
+                RRUtil.findAllBuildingTreesAsStrings(myElement.getProject()).stream(),
+                RRUtil.findAllBuildingLevelsAsStrings(myElement.getProject()).stream()
+            ).map(it -> LookupElementBuilder.create(it))
+            .toArray();
     }
 }

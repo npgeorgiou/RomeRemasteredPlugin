@@ -67,6 +67,8 @@ public class MarkFileTypeWithComment extends AnAction {
         "descr_ship.txt",
         "descr_projectile_new.txt",
         "descr_animals.txt",
+        "export_vnvs.txt",
+        "export_ancillaries.txt",
     };
 
     @Override

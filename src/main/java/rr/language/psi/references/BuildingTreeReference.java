@@ -1,5 +1,6 @@
 package rr.language.psi.references;
 
+import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
@@ -36,5 +37,11 @@ public class BuildingTreeReference extends PsiReferenceBase<PsiElement> implemen
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
         ((RRBuildingTreeRef) myElement).setName(newName);
         return myElement;
+    }
+
+    public Object @NotNull [] getVariants() {
+        return RRUtil.findAllBuildingTreesAsStrings(myElement.getProject()).stream()
+            .map(it -> LookupElementBuilder.create(it))
+            .toArray();
     }
 }

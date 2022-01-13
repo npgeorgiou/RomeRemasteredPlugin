@@ -1,5 +1,6 @@
 package rr.language.psi.references;
 
+import com.intellij.codeInsight.lookup.LookupElementBuilder;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
@@ -43,5 +44,11 @@ public class AncillaryReference extends PsiReferenceBase<PsiElement> implements 
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
         ((RRAncillaryRef) myElement).setName(newName);
         return myElement;
+    }
+
+    public Object @NotNull [] getVariants() {
+        return RRUtil.findAllAncillariesAsStrings(myElement.getProject()).stream()
+            .map(it -> LookupElementBuilder.create(it))
+            .toArray();
     }
 }

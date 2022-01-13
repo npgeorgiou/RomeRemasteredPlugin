@@ -610,6 +610,9 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.BUILDING_PRESENT,
         RRTypes.BUILDING_PRESENT_MIN_LEVEL,
 
+        // descr_region
+        RRTypes.LEGION,
+
         // export_descr_ancillaries
         RRTypes.ANCILLARY,
         RRTypes.IMAGE,
@@ -620,6 +623,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.EFFECTSDESCRIPTION,
         RRTypes.EFFECT,
         RRTypes.FAKEEFFECT,
+        RRTypes.RELIGIOUS_BELIEF,
         RRTypes.HIDDEN,
         RRTypes.SHOWSTATS,
         RRTypes.TRIGGER,
@@ -633,6 +637,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.CHARACTERS,
         RRTypes.NOGOINGBACKLEVEL,
         RRTypes.ANTITRAITS,
+        RRTypes.MAXALLOWED,
         RRTypes.DESCRIPTION,
         RRTypes.EFFECTSDESCRIPTION,
         RRTypes.GAINMESSAGE,

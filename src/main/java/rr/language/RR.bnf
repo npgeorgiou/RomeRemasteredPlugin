@@ -15,6 +15,7 @@
   tokens = [
       // basic
       DESCR_STRAT_MARKER='regexp:;descr_strat.txt.*'
+      EXPORT_DESCR_BUILDINGS_MARKER='regexp:;export_descr_buildings.txt.*'
       DESCR_CULTURES_MARKER='regexp:;descr_cultures.txt.*'
       FERAL_DESCR_AI_PERSONALITY_MARKER='regexp:;feral_descr_ai_personality.txt.*'
       DESCR_FACTION_GROUPS_MARKER='regexp:;descr_faction_groups.txt.*'
@@ -386,6 +387,7 @@
       CHARACTERS = "Characters"
       NOGOINGBACKLEVEL = "NoGoingBackLevel"
       ANTITRAITS = "AntiTraits"
+      MAXALLOWED = "MaxAllowed"
       LEVEL = "Level"
       GAINMESSAGE = "GainMessage"
       EPITHET = "Epithet"
@@ -406,6 +408,9 @@
       CHARACTERS_LC = "characters"
       SURNAMES = "surnames"
       WOMEN = "women"
+
+      // descr_regions
+      LEGION = "legion"
 
       // descr_unit_variation
       SKIN = "skin"
@@ -1762,7 +1767,7 @@
       NEUTRAL="neutral"
 
       // †ÎöÈ.íëé are in descr_names. Maybe just typos.
-      ID = "regexp:[a-zA-Z0-9_+\-!?'†ÎöÈ.íëé]+"
+      ID = "regexp:[a-zA-Z0-9_+\-&!?'†ÎöÈ.íëé]+"
     ]
 }
 
@@ -1858,7 +1863,8 @@ faction_item ::= FACTION faction_ref COMMA ai_personality_ref
                                  settlement_item*
                                  character_item*
                                  character_record_item*
-                                 relative_item*  {pin=1 recoverWhile=faction_recover}
+                                 relative_item*
+                                 {pin=1 recoverWhile=faction_recover}
 private faction_recover ::= !(FACTION|CORE_ATTITUDES)
 
 settlement_item ::= SETTLEMENT OCB
@@ -1889,7 +1895,7 @@ character_item ::= CHARACTER COMMA?
                    coords_with_xy
                    (COMMA PORTRAIT_INDEX INT)?
 
-                   (TRAITS <<optional_commas_list (trait_ref INT)>>)?
+                   (TRAITS <<optional_commas_list (trait_ref INT)>> COMMA?)?
                    (ANCILLARIES <<list ancillary_ref>>)?
                    (ARMY army_unit_item*)?
 army_unit_item ::= UNIT unit_ref EXP INT ARMOUR INT WEAPON_LVL INT
@@ -1901,7 +1907,7 @@ character_record_item ::= CHARACTER_RECORD name_ COMMA
                      (ALIVE|DEAD INT)
                      (COMMA (NEVER_A_LEADER|PAST_LEADER))?
 
-character_attribute ::= COMMAND_UCF|INFLUENCE_UCF|MANAGEMENT_UCF|SUBTERFUGE_UCF
+character_main_attribute ::= COMMAND_UCF|INFLUENCE_UCF|MANAGEMENT_UCF|SUBTERFUGE_UCF
 character_skills ::= COMMAND INT COMMA INFLUENCE INT COMMA MANAGEMENT INT COMMA SUBTERFUGE INT
 relative_item ::= RELATIVE name_ COMMA name_ COMMA (<<list name_>> COMMA?)? end
 
@@ -1921,12 +1927,10 @@ superfaction_setup_item ::= SUPERFACTION_SETUP ID
 mission_queue_item ::= MISSION_QUEUE faction_ref OCB mission_* CCB
 mission_ ::= ID INT ID (ID)?
 
+nameWithNumber_ ::= (safe_id)+ INT?
 name_ ::= safe_id+
 private safe_id ::= ID|keywords_that_may_be_in_ids
-// TODO: Go through all tokens and add dangerous ones here.
-// Then on highlighting make all unit_reds/decls have identifier color.
-// Then rethink sublexers.
-keywords_that_may_be_in_ids ::= agent_type|WARDOG|PIG|HOUND|ARROW|TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
+keywords_that_may_be_in_ids ::= agent_type|SHIP|IDLE|HIDDEN|MISSILE|WARDOG|PIG|HOUND|ARROW|TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -1951,8 +1955,8 @@ unit_item_ ::= TYPE unit_name_decl
                (REBALANCE_STATBLOCK rebalance_block)?
                {pin=2}
 
-unit_name_decl ::= name_ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
-unit_ref ::= name_ {methods=[setName getReference]}
+unit_name_decl ::= nameWithNumber_ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+unit_ref ::= nameWithNumber_ {methods=[setName getReference]}
 str_unit_ref ::= STRING {methods=[setName getReference]}
 faction_or_culture_ref ::= ID {methods=[setName getReference]}
 
@@ -1964,13 +1968,13 @@ private soldiers_ ::= SOLDIERS INT COMMA INT COMMA number OCB
                       CCB
 
 rebalance_block ::= (soldier_|soldiers_)
-                    (ENGINE ID)?
-                    (SHIP ship_ref)?
-                    (ANIMAL animal_ref)?
                     (
+                      ENGINE ID|
+                      SHIP ship_ref|
+                      ANIMAL animal_ref|
                       MOUNT mount_ref|
-                      OFFICER ID*
-                    )* // RTR has them reversed in order
+                      OFFICER model_ref*
+                    )* // Mods mix the order of these things in order
                     (MOUNT_EFFECT  <<list (mount_class INT)>>)?
                     ATTRIBUTES list_of_unit_attributes
                     FORMATION number COMMA number COMMA number COMMA number COMMA INT COMMA unit_formations
@@ -1978,7 +1982,7 @@ rebalance_block ::= (soldier_|soldiers_)
                     STAT_PRI unit_weapon_info
                     STAT_PRI_ATTR (NO|list_of_unit_weapon_attributes)
                     STAT_SEC (NO|unit_weapon_info)
-                    STAT_SEC_ATTR (NO|list_of_unit_weapon_attributes)
+                    STAT_SEC_ATTR (NO|list_of_unit_weapon_attributes) COMMA?
                     STAT_PRI_ARMOUR INT COMMA INT COMMA INT COMMA unit_sound_when_hit (COMMA unit_sound_when_hit)?
                     STAT_SEC_ARMOUR INT COMMA INT COMMA unit_sound_when_hit
                     STAT_HEAT INT
@@ -2004,7 +2008,7 @@ private not_stat_health ::= !STAT_HEALTH
 unit_weapon_info::=  INT COMMA
                      INT COMMA
                      (NO|projectile_ref) COMMA
-                     INT COMMA
+                     number COMMA
                      INT COMMA
                      (NO|unit_weapon_type) COMMA
                      (NO|unit_tech_type)  COMMA
@@ -2029,7 +2033,8 @@ unit_training ::= UNTRAINED|TRAINED|HIGHLY_TRAINED
 // ############### export_descr_unit end #################################
 
 // ############### export_descr_buildings start ###############################
-export_descr_buildings ::= tags_
+export_descr_buildings ::= EXPORT_DESCR_BUILDINGS_MARKER
+                           tags_?
                            condition_alias*
                            building_tree+
 
@@ -2048,7 +2053,7 @@ building_tree ::= BUILDING building_tree_name_decl OCB
                         LEVELS building_level_ref+ OCB
                           building_level+
                         CCB
-                        PLUGINS OCB CCB
+                        (PLUGINS OCB CCB)?
                       CCB {pin=1}
 building_category ::= CORE|DEFENCE|MILITARY|TRADE|WATER|CULTURE|RELIGIOUS|
 building_tree_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
@@ -2079,7 +2084,7 @@ private agent_recruit_capability ::=  AGENT agent_type INT
 private effect_capability ::= (
                         TAXABLE_INCOME_BONUS|TRADE_BASE_INCOME_BONUS|TRADE_LEVEL_BONUS| TRADE_FLEET|FARMING_LEVEL|ROAD_LEVEL|MINE_RESOURCE|
                         HAPPINESS_BONUS|LAW_BONUS|(RELIGIOUS_BELIEF religion_ref)|
-                        POPULATION_HEALTH_BONUS|POPULATION_GROWTH_BONUS|
+                        POPULATION_HEALTH_BONUS|POPULATION_GROWTH_BONUS|POPULATION_LOYALTY_BONUS|
                         WALL_LEVEL|TOWER_LEVEL|GATE_STRENGTH|GATE_DEFENCES|
                         RECRUITS_EXP_BONUS|RECRUITS_MORALE_BONUS|
                         CONSTRUCTION_COST_BONUS_MILITARY|CONSTRUCTION_COST_BONUS_RELIGIOUS|CONSTRUCTION_COST_BONUS_DEFENSIVE|CONSTRUCTION_COST_BONUS_OTHER|
@@ -2124,12 +2129,13 @@ ancillary_def ::= ANCILLARY ancillary_name_decl
                     (SHOWSTATS)*
                     IMAGE tga_file_*
                     (UNIQUE)*
-                    (EXCLUDEDANCILLARIES <<list ancillary_ref>>)*
+                    (EXCLUDEDANCILLARIES <<list ancillary_ref>> COMMA?)*
                     (EXCLUDECULTURES <<list culture_ref>>)*
                     DESCRIPTION ID
                     EFFECTSDESCRIPTION <<list ID>>
-                    (EFFECT ID INT)*
-                    (FAKEEFFECT ID INT)*
+                    (EFFECT character_attribute_ INT)*
+                    (FAKEEFFECT character_attribute_ INT)*
+                    (RELIGIOUS_BELIEF religion_ref INT)*
                   {pin=1 recoverWhile=ancillary_def_recover}
 ancillary_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 ancillary_ref ::= safe_id {methods=[setName getReference]}
@@ -2138,9 +2144,12 @@ private ancillary_def_recover ::= !(ANCILLARY|TRIGGER)
 ancillary_trigger_def ::= TRIGGER ID
                             WHENTOTEST event
                             (CONDITION condition_)?
-                            (ACQUIREANCILLARY|REMOVEANCILLARY) ancillary_ref CHANCE_LC INT
+                            (ACQUIREANCILLARY|REMOVEANCILLARY) ancillary_ref (CHANCE_LC|CHANCE) INT
+                            ((AFFECTS trait_ref LOSE? INT CHANCE INT)*)?
                           {pin=1 recoverWhile=ancillary_trigger_def_recover}
 private ancillary_trigger_def_recover ::= !TRIGGER
+
+private character_attribute_ ::= character_main_attribute|'Finance'|'Conditional'|'ElephantCommand'|'MovementPoints'|'Loyalty'|'TroopMorale'|'Fertility'|'PersonalSecurity'|'PublicSecurity'|'Negotiation'|'HitPoints'|'Attack'|'Defence'|'Ambush'|'Law'|'SiegeAttack'|'SiegeDefence'|'Unrest'|'Construction'|'LineOfSight'|'Trading'|'Squalor'|'BribeResistance'|'Bribery'|'TrainingAgents'|'Farming'|'Mining'|'SiegeEngineering'|'NightBattle'|'NavalCommand'|'InfantryCommand'|'CavalryCommand'|'Combat_V_Roman'|'Combat_V_Greek'|'Combat_V_Slave'|'Combat_V_Carthaginian'|'Combat_V_Eastern'|'Combat_V_Barbarian'|'Combat_V_Egyptian'|'Combat_V_Nomad'|'Combat_V_Hun'|'TaxCollection'|'PopularStanding'|'SenateStanding'|'LocalPopularity'|'Electability'|'Looting'|'TrainingAnimalUnits'|'BodyguardValour'|'BattleSurgery'|'TrainingUnits'|'SlaveTrading'|'Health'|'GrainTrading'|'FootInTheDoor'
 // ############### export_descr_ancillaries end #################################
 
 // ############### export_descr_traits start ###############################
@@ -2150,21 +2159,22 @@ trait_def ::= TRAIT trait_name_decl
                 HIDDEN?
                 (EXCLUDECULTURES <<list ID>>)*
                 (NOGOINGBACKLEVEL INT)?
-                (ANTITRAITS <<optional_commas_list trait_ref>>)?
+                (ANTITRAITS <<optional_commas_list trait_ref>> COMMA?)?
+                (MAXALLOWED INT)?
               trait_level*
               {pin=1 recoverWhile=trait_def_recover}
-trait_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
-trait_ref ::= ID {methods=[setName getReference]}
+trait_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+trait_ref ::= safe_id {methods=[setName getReference]}
 private trait_def_recover ::= !(TRAIT|TRIGGER)
-trait_level ::= LEVEL ID
+trait_level ::= LEVEL safe_id
                   DESCRIPTION ID
                   EFFECTSDESCRIPTION ID
                   (GAINMESSAGE ID)?
                   (LOSEMESSAGE ID)?
                   (EPITHET ID)?
                   THRESHOLD INT
-                  (EFFECT ID INT)*
-
+                  (EFFECT character_attribute_ INT)*
+                  (RELIGIOUS_BELIEF religion_ref INT)*
 trait_trigger_def ::= TRIGGER ID
                         WHENTOTEST event
                         (CONDITION condition_)?
@@ -2175,7 +2185,7 @@ private trait_trigger_def_recover ::= !TRIGGER
 
 // ############### descr_mercenaries start ###############################
 descr_mercenaries ::= mercenary_pool+
-mercenary_pool ::= POOL ID
+mercenary_pool ::= POOL name_
                     mercenary_pool_regions
                     mercenary_pool_unit+
 mercenary_pool_regions ::= REGIONS (region_ref COMMA?)+
@@ -2198,6 +2208,7 @@ names_for_faction ::= FACTION COLON faction_ref EOL*
 // ############### descr_regions start ###############################
 descr_regions ::= region_def+
 region_def ::= region_name_decl
+                 (LEGION COLON ID)?
                  settlement_name_decl
                  faction_ref
                  rebels_ref
@@ -2596,7 +2607,7 @@ mount_ ::= TYPE mount_name_decl
                BANNER_HEIGHT INT
                BOUYANCY_OFFSET number
                WATER_TRAIL_EFFECT ID
-               WATER_TRAIL_EFFECT_RUNNING ID
+               (WATER_TRAIL_EFFECT_RUNNING ID)?
                (
                  (ROOT_NODE_HEIGHT number
                   elephant_specific?
@@ -2698,7 +2709,7 @@ projectile_ref ::= safe_id {methods=[setName getReference]}
 
 // ############### descr_animals start ###############################
 descr_animals ::= DESCR_ANIMALS_MARKER
-                  (animal_)+
+                  animal_*
 animal_ ::= TYPE animal_name_decl
             CLASS (WARDOG|PIG|HOUND)
             MODEL model_ref
@@ -2989,7 +3000,7 @@ trait_ ::= trait trait_ref comparison_op INT {pin=1}
 hasancillary_ ::= HASANCILLARY ancillary_ref {pin=1}
 fathertrait_ ::= FATHERTRAIT trait_ref comparison_op INT {pin=1}
 factionleadertrait_ ::= FACTIONLEADERTRAIT trait_ref comparison_op INT {pin=1}
-attribute_ ::= ATTRIBUTE character_attribute comparison_op INT {pin=1}
+attribute_ ::= ATTRIBUTE character_attribute_ comparison_op INT {pin=1}
 remainingmppercentage_ ::= REMAININGMPPERCENTAGE comparison_op number {pin=1}
 i_remainingmppercentage_ ::= I_REMAININGMPPERCENTAGE name_ comparison_op number {pin=1}
 i_charactercanmove_ ::= I_CHARACTERCANMOVE name_ {pin=1}
@@ -3066,7 +3077,7 @@ defensivesiegesfought_ ::= DEFENSIVESIEGESFOUGHT comparison_op INT {pin=1}
 defensivesiegeswon_ ::= DEFENSIVESIEGESWON comparison_op INT {pin=1}
 offensivesiegesfought_ ::= OFFENSIVESIEGESFOUGHT comparison_op INT {pin=1}
 offensivesiegeswon_ ::= OFFENSIVESIEGESWON comparison_op INT {pin=1}
-factionwideancillaryexists_ ::= FACTIONWIDEANCILLARYEXISTS ancillary_ref BOOLEAN {pin=1}
+factionwideancillaryexists_ ::= FACTIONWIDEANCILLARYEXISTS ancillary_ref BOOLEAN? {pin=1}
 isally_ ::= ISALLY faction_ref {pin=1}
 isprotectorate_ ::= ISPROTECTORATE faction_ref {pin=1}
 isprotector_ ::= ISPROTECTOR faction_ref {pin=1}
@@ -3076,7 +3087,7 @@ toggled_ ::= TOGGLED ID+ {pin=1}
 majoreventactive_ ::= MAJOREVENTACTIVE STRING <<local_or faction_ref>>? {pin=1}
 randompercent_ ::= RANDOMPERCENT comparison_op INT {pin=1}
 truecondition_ ::= TRUECONDITION {pin=1}
-worldwideancillaryexists_ ::= WORLDWIDEANCILLARYEXISTS ancillary_ref BOOLEAN {pin=1}
+worldwideancillaryexists_ ::= WORLDWIDEANCILLARYEXISTS ancillary_ref BOOLEAN? {pin=1}
 i_istutorialenabled_ ::= I_ISTUTORIALENABLED {pin=1}
 i_isplayerturn_ ::= I_ISPLAYERTURN EQUALS INT {pin=1}
 constructionitemclicked_ ::= CONSTRUCTIONITEMCLICKED (field_construction_item|building_level_ref) {pin=1}
@@ -3096,7 +3107,7 @@ hasresource_ ::= HASRESOURCE resource_ref {pin=1}
 settlementrevoltingfrom_ ::= SETTLEMENTREVOLTINGFROM faction_ref {pin=1}
 iscapital_ ::= ISCAPITAL {pin=1}
 settlementname_ ::= SETTLEMENTNAME settlement_ref {pin=1}
-governorbuildingexists_ ::= GOVERNORBUILDINGEXISTS EQUALS building_level_ref {pin=1}
+governorbuildingexists_ ::= GOVERNORBUILDINGEXISTS comparison_op building_level_ref {pin=1}
 settlementbuildingexists_ ::= SETTLEMENTBUILDINGEXISTS comparison_op building_level_ref {pin=1}
 homesettlementbuildingexists_ ::= HOMESETTLEMENTBUILDINGEXISTS comparison_op building_level_ref {pin=1}
 settlementorderlevel_ ::= SETTLEMENTORDERLEVEL settlement_order_type comparison_op INT {pin=1}
@@ -3118,7 +3129,7 @@ i_settlementowner_ ::= I_SETTLEMENTOWNER <<local_or settlement_ref>> equality_op
 i_settlementownerculture_ ::= I_SETTLEMENTOWNERCULTURE <<local_or settlement_ref>> EQUALS culture_ref {pin=1}
 i_settlementlevel_ ::= I_SETTLEMENTLEVEL <<local_or settlement_ref>> comparison_op settlement_level {pin=1}
 advisefinancialbuild_ ::= ADVISEFINANCIALBUILD EQUALS ID {pin=1}
-advisebuild_ ::= ADVISEBUILD EQUALS ID {pin=1}
+advisebuild_ ::= ADVISEBUILD comparison_op ID {pin=1}
 adviserecruit_ ::= ADVISERECRUIT EQUALS name_ {pin=1}
 settlementpopulationmaxedout_ ::= SETTLEMENTPOPULATIONMAXEDOUT {pin=1}
 settlementpopulationtoolow_ ::= SETTLEMENTPOPULATIONTOOLOW {pin=1}
@@ -3538,7 +3549,7 @@ private diplomatic_stance_for_command ::= ALLIED|NEUTRAL|WAR
 
 // #### Commands params ####
 settlement_order_type ::= 'garrison'|'law'|'fun'|'influence'|'tax_bonus'|'triumph'|'wonder'|'boom'|'squalour'|'distance_to_capital'|'culture_penalty'|'no_governance'|'tax_penalty'|'turmoil'|'underpopulation'|'besieged'|'blockaded'|'recession'|'entertained'|'health'|'governor_religion_unrest'|'leader_religion_unrest'
-field_construction_item::='watchtower'|
+field_construction_item::='watchtower'
 senate_reward ::= ID //TODO:DO ME
 unit_command_type ::= MOVE|RUN|'move_rot'|'change_formation'
 on_off ::= (ON|OFF)

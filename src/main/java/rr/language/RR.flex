@@ -41,7 +41,7 @@ RTM_FILE=({PATH}|{DIR_OR_FILE})\.(rtm|RTM)
 WMV_FILE=({PATH}|{DIR_OR_FILE})\.(wmv|WMV)
 
 // †ÎöÈ.íëé are in descr_names. Maybe just typos.
-ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jletterdigit:])* ([:jletterdigit:])*
+ID = ([:jletterdigit:])+ (\+|\'|\-|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jletterdigit:])* ([:jletterdigit:])*
 
 %xstate TEXT_MAPPING
 %xstate TEXT_MAPPING_NO_KEYWORDS
@@ -77,13 +77,12 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 %xstate ENUMS
 
 %state SCRIPTS_EVENTS_CONDITIONS
-//%state CONDITIONS
-//%state EVENTS
 
 %%
 <DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
 
 ";descr_strat.txt"[^\r\n]*                     {yybegin(DESCR_STRAT); return RRTypes.DESCR_STRAT_MARKER;}
+";export_descr_buildings.txt"[^\r\n]*          {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.EXPORT_DESCR_BUILDINGS_MARKER;}
 ";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
 ";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
 ";feral_descr_ai_personality.txt"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
@@ -114,6 +113,8 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jlett
 ";landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 ";names.txt"[^\r\n]*                           {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 ";rebel_faction_descr.txt"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+";export_vnvs.txt"[^\r\n]*                     {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+";export_ancillaries.txt"[^\r\n]*              {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 
 // enum markers
 ";rebel_faction_descr_enums.txt"[^\r\n]*       {yybegin(ENUMS); return RRTypes.ENUMS_MARKER;}
@@ -204,12 +205,12 @@ true|false       {return RRTypes.BOOLEAN;}
 "large_city"                   {return RRTypes.LARGE_CITY;}
 "huge_city"                    {return RRTypes.HUGE_CITY;}
 
-
+// descr_region
+"legion"                      {return RRTypes.LEGION;}
 
 <YYINITIAL>
 {
     "type"                      {yybegin(EXPORT_DESCR_UNIT); return RRTypes.TYPE;}
-    "tags"                      {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.TAGS;}
     "Ancillary"                 {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.ANCILLARY;}
     "Trait"                     {yybegin(EXPORT_DESCR_TRAITS); return RRTypes.TRAIT;}
     "pool"                      {yybegin(EXPORT_DESCR_MERCENARIES); return RRTypes.POOL;}
@@ -429,6 +430,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <EXPORT_DESCR_BUILDINGS>
 {
+    "tags"                          {return RRTypes.TAGS;}
     "alias"                         {return RRTypes.ALIAS;}
     "requires"                      {return RRTypes.REQUIRES;}
     "no_building_tagged"            {return RRTypes.NO_BUILDING_TAGGED;}
@@ -462,6 +464,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "religious_belief"              {return RRTypes.RELIGIOUS_BELIEF;}
     "population_health_bonus"       {return RRTypes.POPULATION_HEALTH_BONUS;}
     "population_growth_bonus"       {return RRTypes.POPULATION_GROWTH_BONUS;}
+    "population_loyalty_bonus"      {return RRTypes.POPULATION_LOYALTY_BONUS;}
     "construction_cost_bonus_military"  {return RRTypes.CONSTRUCTION_COST_BONUS_MILITARY;}
     "construction_cost_bonus_religious" {return RRTypes.CONSTRUCTION_COST_BONUS_RELIGIOUS;}
     "construction_cost_bonus_defensive" {return RRTypes.CONSTRUCTION_COST_BONUS_DEFENSIVE;}
@@ -520,14 +523,21 @@ true|false       {return RRTypes.BOOLEAN;}
     "Description"         {return RRTypes.DESCRIPTION;}
     "EffectsDescription"  {return RRTypes.EFFECTSDESCRIPTION;}
     "Effect"              {return RRTypes.EFFECT;}
+    "Command"             {return RRTypes.COMMAND_UCF;}
+    "Influence"           {return RRTypes.INFLUENCE_UCF;}
+    "Management"          {return RRTypes.MANAGEMENT_UCF;}
+    "Subterfuge"          {return RRTypes.SUBTERFUGE_UCF;}
     "FakeEffect"          {return RRTypes.FAKEEFFECT;}
+    "Religious_Belief"    {return RRTypes.RELIGIOUS_BELIEF;}
     "Hidden"              {return RRTypes.HIDDEN;}
     "ShowStats"           {return RRTypes.SHOWSTATS;}
     "Trigger"             {return RRTypes.TRIGGER;}
     "WhenToTest"          {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.WHENTOTEST;}
     "AcquireAncillary"    {return RRTypes.ACQUIREANCILLARY;}
     "RemoveAncillary"     {return RRTypes.REMOVEANCILLARY;}
+    "Affects"             {return RRTypes.AFFECTS;}
     "chance"              {return RRTypes.CHANCE_LC;}
+    "Chance"              {return RRTypes.CHANCE;}
     {ID}                  {return RRTypes.ID;}
 }
 
@@ -539,6 +549,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "NoGoingBackLevel"    {return RRTypes.NOGOINGBACKLEVEL;}
     "ExcludeCultures"     {return RRTypes.EXCLUDECULTURES;}
     "AntiTraits"          {return RRTypes.ANTITRAITS;}
+    "Religious_Belief"    {return RRTypes.RELIGIOUS_BELIEF;}
+    "MaxAllowed"          {return RRTypes.MAXALLOWED;}
     "Description"         {return RRTypes.DESCRIPTION;}
     "EffectsDescription"  {return RRTypes.EFFECTSDESCRIPTION;}
     "GainMessage"         {return RRTypes.GAINMESSAGE;}
@@ -548,6 +560,10 @@ true|false       {return RRTypes.BOOLEAN;}
     "LoseMessage"         {return RRTypes.LOSEMESSAGE;}
     "Threshold"           {return RRTypes.THRESHOLD;}
     "Effect"              {return RRTypes.EFFECT;}
+    "Command"             {return RRTypes.COMMAND_UCF;}
+    "Influence"           {return RRTypes.INFLUENCE_UCF;}
+    "Management"          {return RRTypes.MANAGEMENT_UCF;}
+    "Subterfuge"          {return RRTypes.SUBTERFUGE_UCF;}
     "Affects"             {return RRTypes.AFFECTS;}
     "Trigger"             {return RRTypes.TRIGGER;}
     "Chance"              {return RRTypes.CHANCE;}
