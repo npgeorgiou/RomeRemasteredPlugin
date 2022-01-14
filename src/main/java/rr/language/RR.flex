@@ -50,9 +50,9 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jl
 %state DESCR_STRAT
 %state EXPORT_DESCR_BUILDINGS
 %state EXPORT_DESCR_UNIT
-%state EXPORT_DESCR_MERCENARIES
+%state DESCR_MERCENARIES
 %state EXPORT_DESCR_ANCILLARIES
-%state EXPORT_DESCR_TRAITS
+%state EXPORT_DESCR_CHARACTER_TRAITS
 %state DESCR_NAMES
 %state DESCR_CHARACTER
 %state DESCR_MOUNT
@@ -85,6 +85,14 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jl
 ";export_descr_buildings.txt"[^\r\n]*          {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.EXPORT_DESCR_BUILDINGS_MARKER;}
 ";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
 ";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
+";descr_mercenaries.txt"[^\r\n]*               {yybegin(DESCR_MERCENARIES); return RRTypes.DESCR_MERCENARIES_MARKER;}
+";descr_names.txt"[^\r\n]*                     {yybegin(DESCR_NAMES); return RRTypes.DESCR_NAMES_MARKER;}
+";descr_unit_variation.txt"[^\r\n]*            {yybegin(DESCR_UNIT_VARIATION); return RRTypes.DESCR_UNIT_VARIATION_MARKER;}
+";descr_regions.txt"[^\r\n]*                   {return RRTypes.DESCR_REGIONS_MARKER;}
+";descr_sm_major_events.txt"[^\r\n]*           {return RRTypes.DESCR_SM_MAJOR_EVENTS_MARKER;}
+";export_descr_ancillaries.txt"[^\r\n]*        {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.EXPORT_DESCR_ANCILLARIES_MARKER;}
+";export_descr_character_traits.txt"[^\r\n]*   {yybegin(EXPORT_DESCR_CHARACTER_TRAITS); return RRTypes.EXPORT_DESCR_CHARACTER_TRAITS_MARKER;}
+";export_descr_unit.txt"[^\r\n]*               {yybegin(EXPORT_DESCR_UNIT); return RRTypes.EXPORT_DESCR_UNIT_MARKER;}
 ";feral_descr_ai_personality.txt"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
 ";descr_faction_groups.txt"[^\r\n]*            {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
 ";descr_sm_resources.txt"[^\r\n]*              {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
@@ -209,12 +217,6 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <YYINITIAL>
 {
-    "type"                      {yybegin(EXPORT_DESCR_UNIT); return RRTypes.TYPE;}
-    "Ancillary"                 {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.ANCILLARY;}
-    "Trait"                     {yybegin(EXPORT_DESCR_TRAITS); return RRTypes.TRAIT;}
-    "pool"                      {yybegin(EXPORT_DESCR_MERCENARIES); return RRTypes.POOL;}
-    "faction"                   {yybegin(DESCR_NAMES); return RRTypes.FACTION;}
-    "skin"                      {yybegin(DESCR_UNIT_VARIATION); return RRTypes.SKIN;}
     "script"                    {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.SCRIPT;}
 
     "none"               {return RRTypes.NONE;}
@@ -532,7 +534,7 @@ true|false       {return RRTypes.BOOLEAN;}
     {ID}                  {return RRTypes.ID;}
 }
 
-<EXPORT_DESCR_TRAITS>
+<EXPORT_DESCR_CHARACTER_TRAITS>
 {
     "Trait"               {return RRTypes.TRAIT;}
     "Characters"          {return RRTypes.CHARACTERS;}
@@ -562,7 +564,7 @@ true|false       {return RRTypes.BOOLEAN;}
     {ID}                  {return RRTypes.ID;}
 }
 
-<EXPORT_DESCR_MERCENARIES>
+<DESCR_MERCENARIES>
 {
     "pool"             {return RRTypes.POOL;}
     "-"                {return RRTypes.DASH;}
@@ -587,6 +589,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <DESCR_UNIT_VARIATION>
 {
+    "skin"              {return RRTypes.SKIN;}
     "male"              {return RRTypes.MALE;}
     "female"            {return RRTypes.FEMALE;}
     "ethnicities"       {return RRTypes.ETHNICITIES;}
@@ -1283,7 +1286,7 @@ true|false       {return RRTypes.BOOLEAN;}
     // Returns
     "AcquireAncillary"                                {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.ACQUIREANCILLARY;}
     "RemoveAncillary"                                 {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.REMOVEANCILLARY;}
-    "Affects"                                         {yybegin(EXPORT_DESCR_TRAITS); return RRTypes.AFFECTS;}
+    "Affects"                                         {yybegin(EXPORT_DESCR_CHARACTER_TRAITS); return RRTypes.AFFECTS;}
     // conditions
     "I_InBattle"                                      {return RRTypes.I_INBATTLE;}
     "WonBattle"                                       {return RRTypes.WONBATTLE;}

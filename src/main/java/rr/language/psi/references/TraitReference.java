@@ -28,7 +28,7 @@ public class TraitReference extends PsiReferenceBase<PsiElement> implements PsiR
             return null;
         }
 
-        List<RRTraitDef> traits = file.findChildByClass(RRExportDescrTraits.class)
+        List<RRTraitDef> traits = file.findChildByClass(RRExportDescrCharacterTraits.class)
             .getTraitDefList().stream()
             .filter(it -> it.getTraitNameDecl().getText().equals(myElement.getText()))
             .collect(Collectors.toList());

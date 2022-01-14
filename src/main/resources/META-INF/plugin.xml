@@ -107,17 +107,25 @@
 
     <actions>
         <action
-                id="rr.language.actions.MarkFileTypeWithComment"
-                class="rr.language.actions.MarkFileTypeWithComment"
-                text="Add Special Comment at Beginning of Files (Needed for Plugin)"
+                id="rr.language.actions.AddFileTypeComments"
+                class="rr.language.actions.AddFileTypeComments"
+                text="PLUGIN: Add File Type Comment"
                 description="Add special comment at beginning of files (Needed for plugin)"
+        >
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+        <action
+                id="rr.language.actions.RemoveFileTypeComments"
+                class="rr.language.actions.RemoveFileTypeComments"
+                text="PLUGIN: Remove File Type Comment"
+                description="Remove special comment at beginning of files (Needed for game to run)"
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
         <action
                 id="rr.language.actions.CreateExportBuildingsFile"
                 class="rr.language.actions.CreateExportBuildingsFile"
-                text="Create Export_Buildings.Txt File"
+                text="BUILDINGS: Create Export_Buildings.Txt File"
                 description="Create export_buildings.txt file"
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>
@@ -125,7 +133,7 @@
         <action
                 id="rr.language.actions.DeleteNotLoadedFiles"
                 class="rr.language.actions.DeleteNotLoadedFiles"
-                text="Delete not Needed Files (Previous RTW Versions' Leftovers)"
+                text="CLEANUP: Delete not Needed Files (Previous RTW Versions' Leftovers)"
                 description="Delete not needed files (previous RTW versions' leftovers)"
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>

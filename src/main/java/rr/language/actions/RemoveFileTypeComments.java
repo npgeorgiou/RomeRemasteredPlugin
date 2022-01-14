@@ -2,23 +2,23 @@ package rr.language.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
-import com.intellij.openapi.application.Result;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiWhiteSpace;
+import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 import rr.language.RRUtil;
-import rr.language.psi.RRElementFactory;
 import rr.language.psi.RRFile;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Scanner;
 
-public class MarkFileTypeWithComment extends AnAction {
+public class RemoveFileTypeComments extends AnAction {
 
     @Override
     public void update(AnActionEvent e) {
@@ -84,40 +84,30 @@ public class MarkFileTypeWithComment extends AnAction {
                 continue;
             }
 
-            if (
-                file.getFirstChild().getText().startsWith(";" + fileName) ||
-                file.getFirstChild().getText().startsWith("¬" + fileName)
-            ) {
+            if (!file.getFirstChild().getText().startsWith(";" + fileName)) {
                 continue;
             }
 
+            WriteCommandAction.writeCommandAction(project).withName("Foo").run(() -> {
+                // Marker could be the first child of the file, if the syntax is wrong
+                // and the parsing couldn't create the first wrapper.
+                PsiElement marker = null;
+                if (
+                    file.getFirstChild().getText().startsWith(";" + fileName) &&
+                        file.getFirstChild().getText().endsWith("TO WORK")
+                ) {
+                    marker = file.getFirstChild();
+                } else {
+                    marker = file.getFirstChild().getFirstChild();
+                }
 
-            // For now skip that. This file bugs when it has a ; comment on top.
-            // I could put a ¬ comment, but ¬ char behaves weirdly when you add it to a string
-            if (fileName.endsWith("export_vnvs.txt")) {
-                continue;
-            }
+                marker.delete();
 
-
-            PsiElement newline = RRElementFactory.createNewline(project);
-            PsiElement comment = RRElementFactory.createComment(
-                project,
-                fileName + " DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK"
-            );
-
-            WriteCommandAction.writeCommandAction(project).withName("Foo").run(() ->
-                file.addBefore(comment, file.getFirstChild())
-            );
-            WriteCommandAction.writeCommandAction(project).withName("Foo").run(() ->
-                file.addAfter(newline, file.getFirstChild())
-            );
-            WriteCommandAction.writeCommandAction(project).withName("Foo").run(() ->
-                file.addAfter(newline, file.getFirstChild())
-            );
+                var foo = file.getFirstChild();
+                if (file.getFirstChild() instanceof PsiWhiteSpace) {
+                    file.getFirstChild().delete();
+                }
+            });
         }
     }
-//
-//    private boolean isScript(VirtualFile file) {
-//        text = file.
-//    }
 }

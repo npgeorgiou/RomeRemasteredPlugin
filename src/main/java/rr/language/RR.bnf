@@ -17,6 +17,14 @@
       DESCR_STRAT_MARKER='regexp:;descr_strat.txt.*'
       EXPORT_DESCR_BUILDINGS_MARKER='regexp:;export_descr_buildings.txt.*'
       DESCR_CULTURES_MARKER='regexp:;descr_cultures.txt.*'
+      DESCR_MERCENARIES_MARKER='regexp:;descr_mercenaries.txt.*'
+      DESCR_NAMES_MARKER='regexp:;descr_names.txt.*'
+      DESCR_UNIT_VARIATION_MARKER='regexp:;descr_unit_variation.txt.*'
+      DESCR_REGIONS_MARKER='regexp:;descr_regions.txt.*'
+      DESCR_SM_MAJOR_EVENTS_MARKER='regexp:;descr_sm_major_events.txt.*'
+      EXPORT_DESCR_ANCILLARIES_MARKER='regexp:;export_descr_ancillaries.txt.*'
+      EXPORT_DESCR_CHARACTER_TRAITS_MARKER='regexp:;export_descr_character_traits.txt.*'
+      EXPORT_DESCR_UNIT_MARKER='regexp:;export_descr_unit.txt.*'
       FERAL_DESCR_AI_PERSONALITY_MARKER='regexp:;feral_descr_ai_personality.txt.*'
       DESCR_FACTION_GROUPS_MARKER='regexp:;descr_faction_groups.txt.*'
       DESCR_SM_FACTIONS_MARKER='regexp:;descr_sm_factions.txt.*'
@@ -1769,7 +1777,7 @@ RRFile ::= descr_strat|
           export_descr_unit|
           export_descr_buildings|
           export_descr_ancillaries|
-          export_descr_traits|
+          export_descr_character_traits|
           descr_regions|
           descr_mercenaries|
           descr_names|
@@ -1927,7 +1935,8 @@ keywords_that_may_be_in_ids ::= agent_type|SHIP|IDLE|HIDDEN|MISSILE|WARDOG|PIG|H
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
-export_descr_unit ::= unit_item_+
+export_descr_unit ::= EXPORT_DESCR_UNIT_MARKER
+                      unit_item_+
 unit_item_ ::= TYPE unit_name_decl
                DICTIONARY ID
                CATEGORY unit_category
@@ -2116,7 +2125,9 @@ agent_type ::= DIPLOMAT|SPY|MERCHANT|ASSASSIN
 // ############### export_descr_buildings end #################################
 
 // ############### export_descr_ancillaries start ###############################
-export_descr_ancillaries ::= ancillary_def+ ancillary_trigger_def+
+export_descr_ancillaries ::= EXPORT_DESCR_ANCILLARIES_MARKER
+                             ancillary_def+
+                             ancillary_trigger_def+
 ancillary_def ::= ANCILLARY ancillary_name_decl
                     (HIDDEN)*
                     (SHOWSTATS)*
@@ -2146,7 +2157,8 @@ private character_attribute_ ::= character_main_attribute|'Finance'|'Conditional
 // ############### export_descr_ancillaries end #################################
 
 // ############### export_descr_traits start ###############################
-export_descr_traits ::= trait_def+ trait_trigger_def+
+export_descr_character_traits ::= EXPORT_DESCR_CHARACTER_TRAITS_MARKER
+                                  trait_def+ trait_trigger_def+
 trait_def ::= TRAIT trait_name_decl
                 CHARACTERS <<list (character_type)>>
                 HIDDEN?
@@ -2177,7 +2189,8 @@ private trait_trigger_def_recover ::= !TRIGGER
 // ############### export_descr_traits end #################################
 
 // ############### descr_mercenaries start ###############################
-descr_mercenaries ::= mercenary_pool+
+descr_mercenaries ::= DESCR_MERCENARIES_MARKER
+                      mercenary_pool+
 mercenary_pool ::= POOL name_
                     mercenary_pool_regions
                     mercenary_pool_unit+
@@ -2186,7 +2199,8 @@ private mercenary_pool_unit ::= UNIT unit_ref COMMA EXP INT COST INT REPLENISH F
 // ############### descr_mercenaries end #################################
 
 // ############### descr_names start ###############################
-descr_names ::= names_for_faction+
+descr_names ::= DESCR_NAMES_MARKER
+                names_for_faction+
 names_for_faction ::= FACTION COLON faction_ref EOL*
                     CHARACTERS_LC EOL*
                       (name_ EOL)*
@@ -2194,12 +2208,11 @@ names_for_faction ::= FACTION COLON faction_ref EOL*
                       (name_ EOL)*)?
                     WOMEN EOL*
                       (name_ EOL*)*
-
-
 // ############### descr_names end #################################
 
 // ############### descr_regions start ###############################
-descr_regions ::= region_def+
+descr_regions ::= DESCR_REGIONS_MARKER
+                  region_def+
 region_def ::= region_name_decl
                  (LEGION COLON ID)?
                  settlement_name_decl
@@ -2217,7 +2230,8 @@ settlement_ref ::= ID {methods=[setName getReference]}
 // ############### descr_regions end #################################
 
 // ############### descr_unit_variation start ###############################
-descr_unit_variation ::= SKIN OCB skin_* CCB
+descr_unit_variation ::= DESCR_UNIT_VARIATION_MARKER
+                         SKIN OCB skin_* CCB
                          ETHNICITIES OCB ethnicity_* CCB
                          REGION OCB ethnicity_makeup_* CCB
 skin_ ::= ID OCB

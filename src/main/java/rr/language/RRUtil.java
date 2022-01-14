@@ -487,7 +487,7 @@ public class RRUtil {
             return new ArrayList<>();
         }
 
-        return file.findChildByClass(RRExportDescrTraits.class).getTraitDefList();
+        return file.findChildByClass(RRExportDescrCharacterTraits.class).getTraitDefList();
     }
 
     public static Collection<String> findAllTraitsAsStrings(Project project) {
