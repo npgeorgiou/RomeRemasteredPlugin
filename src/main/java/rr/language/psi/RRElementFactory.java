@@ -52,7 +52,7 @@ public class RRElementFactory {
 
     public static PsiElement createNewline(Project project) {
         // TODO: That should be working. Extremely weird. Before deploying, fix that.
-        // return PsiParserFacade.SERVICE.getInstance(project).createWhiteSpaceFromText(System.lineSeparator());
+//         return PsiParserFacade.SERVICE.getInstance(project).createWhiteSpaceFromText(System.lineSeparator());
         return PsiParserFacade.SERVICE.getInstance(project).createWhiteSpaceFromText("\n");
     }
 }

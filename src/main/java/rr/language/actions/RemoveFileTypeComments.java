@@ -91,7 +91,7 @@ public class RemoveFileTypeComments extends AnAction {
             WriteCommandAction.writeCommandAction(project).withName("Foo").run(() -> {
                 // Marker could be the first child of the file, if the syntax is wrong
                 // and the parsing couldn't create the first wrapper.
-                PsiElement marker = null;
+                PsiElement marker;
                 if (
                     file.getFirstChild().getText().startsWith(";" + fileName) &&
                         file.getFirstChild().getText().endsWith("TO WORK")
@@ -103,10 +103,12 @@ public class RemoveFileTypeComments extends AnAction {
 
                 marker.delete();
 
-                var foo = file.getFirstChild();
                 if (file.getFirstChild() instanceof PsiWhiteSpace) {
                     file.getFirstChild().delete();
                 }
+//                if (file.getFirstChild() instanceof PsiWhiteSpace) {
+//                    file.getFirstChild().delete();
+//                }
             });
         }
     }

@@ -96,10 +96,10 @@ public class AddFileTypeComments extends AnAction {
             );
 
             WriteCommandAction.writeCommandAction(project).withName("Foo").run(() ->
-                file.addBefore(comment, file.getFirstChild())
+                file.addBefore(newline, file.getFirstChild())
             );
             WriteCommandAction.writeCommandAction(project).withName("Foo").run(() ->
-                file.addAfter(newline, file.getFirstChild())
+                file.addBefore(comment, file.getFirstChild())
             );
         }
     }
