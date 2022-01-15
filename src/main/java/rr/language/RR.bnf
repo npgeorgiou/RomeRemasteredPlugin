@@ -2357,7 +2357,7 @@ faction_decl ::= faction_name_decl COLON OCB
                    STRING COLON OSB (<<list str_faction_group_ref>> COMMA)? CSB COMMA
                    KVF_item
                    KVF_item
-                   STRING COLON OCB
+                   (STRING COLON OCB
                      STRING COLON OSB rgb CSB COMMA
                      STRING COLON OSB rgb CSB COMMA
                      STRING COLON OCB
@@ -2366,7 +2366,17 @@ faction_decl ::= faction_name_decl COLON OCB
                        STRING COLON OSB rgb CSB COMMA
                        STRING COLON OSB rgb CSB COMMA
                      CCB COMMA
-                   CCB COMMA
+                   CCB COMMA | KVF_item)
+                   (STRING COLON OCB
+                     STRING COLON OSB rgb CSB COMMA
+                     STRING COLON OSB rgb CSB COMMA
+                     STRING COLON OCB
+                       STRING COLON OSB rgb CSB COMMA
+                       STRING COLON OSB rgb CSB COMMA
+                       STRING COLON OSB rgb CSB COMMA
+                       STRING COLON OSB rgb CSB COMMA
+                     CCB COMMA
+                   CCB COMMA | KVF_item)
                    KVF_item
                    KVF_item
                    KVF_item

@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
@@ -102,13 +103,20 @@ public class RemoveFileTypeComments extends AnAction {
                 }
 
                 marker.delete();
+            });
 
+            WriteCommandAction.writeCommandAction(project).withName("Foo").run(() -> {
                 if (file.getFirstChild() instanceof PsiWhiteSpace) {
                     file.getFirstChild().delete();
                 }
-//                if (file.getFirstChild() instanceof PsiWhiteSpace) {
-//                    file.getFirstChild().delete();
-//                }
+            });
+
+            WriteCommandAction.writeCommandAction(project).withName("Foo").run(() -> {
+                if (file.getFirstChild() instanceof PsiErrorElement) {
+                    if (file.getFirstChild().getNextSibling() instanceof PsiWhiteSpace) {
+                        file.getFirstChild().getNextSibling().delete();
+                    }
+                }
             });
         }
     }

@@ -5,11 +5,15 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
+import jnr.posix.JavaLibCHelper;
 import org.jetbrains.annotations.NotNull;
+import rr.language.RRParserDefinition;
 import rr.language.RRUtil;
 import rr.language.psi.RRElementFactory;
 import rr.language.psi.RRFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -68,6 +72,11 @@ public class AddFileTypeComments extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
+        // Example of how to use Grammar-kit to parse files, instead of Antlr. LightPsi file is used only for that,
+        // remove it from project. It was just for this test.
+        //File file = new File("C:\\Users\\nikol\\AppData\\Local\\Feral Interactive\\Total War ROME REMASTERED\\Mods\\Local Mods\\playground\\data\\descr_banners.txt");
+        //var foo = LightPsi.parseFile(file, new RRParserDefinition());
+
         Project project = event.getProject();
 
         Collection<RRFile> files = RRUtil.findAllRRFiles(project);
