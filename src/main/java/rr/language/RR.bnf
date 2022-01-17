@@ -2083,40 +2083,37 @@ capability_ ::= (unit_recruit_capability|agent_recruit_capability|effect_capabil
 private capability_recover ::= !(capability_|requirement|CCB)
 private unit_recruit_capability ::=  RECRUIT str_unit_ref INT
 private agent_recruit_capability ::=  AGENT agent_type INT
-private effect_capability ::= (
-                        TAXABLE_INCOME_BONUS|TRADE_BASE_INCOME_BONUS|TRADE_LEVEL_BONUS| TRADE_FLEET|FARMING_LEVEL|ROAD_LEVEL|MINE_RESOURCE|
-                        HAPPINESS_BONUS|LAW_BONUS|(RELIGIOUS_BELIEF religion_ref)|
-                        POPULATION_HEALTH_BONUS|POPULATION_GROWTH_BONUS|POPULATION_LOYALTY_BONUS|
-                        WALL_LEVEL|TOWER_LEVEL|GATE_STRENGTH|GATE_DEFENCES|
-                        RECRUITS_EXP_BONUS|RECRUITS_MORALE_BONUS|
-                        CONSTRUCTION_COST_BONUS_MILITARY|CONSTRUCTION_COST_BONUS_RELIGIOUS|CONSTRUCTION_COST_BONUS_DEFENSIVE|CONSTRUCTION_COST_BONUS_OTHER|
-                        CONSTRUCTION_TIME_BONUS_MILITARY|CONSTRUCTION_TIME_BONUS_RELIGIOUS|CONSTRUCTION_TIME_BONUS_DEFENSIVE|CONSTRUCTION_TIME_BONUS_OTHER|
-                        WEAPON_SIMPLE|WEAPON_BLADED|WEAPON_MISSILE|WEAPON_SIEGE|WEAPON_OTHER|ARMOUR|UPGRADE_BODYGUARD|
-                        STAGE_RACES|STAGE_GAMES|
-                        AGENT_LIMIT_SETTLEMENT agent_type|
-                        DUMMY CAPABILITY_TRAITSANDRETINUE // what is that?
-                      ) BONUS? number
-
+private effect_capability ::= (effect_capability_enum|RELIGIOUS_BELIEF religion_ref|AGENT_LIMIT_SETTLEMENT agent_type) BONUS? number
+private effect_capability_enum ::= TAXABLE_INCOME_BONUS|TRADE_BASE_INCOME_BONUS|TRADE_LEVEL_BONUS|TRADE_FLEET|FARMING_LEVEL|ROAD_LEVEL|MINE_RESOURCE|
+                                   HAPPINESS_BONUS|LAW_BONUS|
+                                   POPULATION_HEALTH_BONUS|POPULATION_GROWTH_BONUS|
+                                   WALL_LEVEL|TOWER_LEVEL|GATE_STRENGTH|GATE_DEFENCES|
+                                   RECRUITS_EXP_BONUS|RECRUITS_MORALE_BONUS|
+                                   CONSTRUCTION_COST_BONUS_MILITARY|CONSTRUCTION_COST_BONUS_RELIGIOUS|CONSTRUCTION_COST_BONUS_DEFENSIVE|CONSTRUCTION_COST_BONUS_OTHER|
+                                   CONSTRUCTION_TIME_BONUS_MILITARY|CONSTRUCTION_TIME_BONUS_RELIGIOUS|CONSTRUCTION_TIME_BONUS_DEFENSIVE|CONSTRUCTION_TIME_BONUS_OTHER|
+                                   EXTRA_RECRUITMENT_POINTS|EXTRA_CONSTRUCTION_POINTS|
+                                   WEAPON_SIMPLE|WEAPON_BLADED|WEAPON_MISSILE|WEAPON_SIEGE|WEAPON_OTHER|ARMOUR|UPGRADE_BODYGUARD|
+                                   STAGE_RACES|STAGE_GAMES|
+                                   DUMMY CAPABILITY_TRAITSANDRETINUE
 requirement ::= REQUIRES composite_c
 private composite_c ::= maybe_negated_c ((AND|OR) maybe_negated_c)* {pin=1}
 private maybe_negated_c ::= NOT? building_condition
-building_condition ::= (alias_c|factions_c|major_event_c|is_player_c|resource_c|hidden_resource_c|no_tag_c|building_min_level_c|building_c|is_toggled_c)
-private recover_c ::= !(
-                        capability_|
-                        DISPLAY_STRING|CAPABILITY|
-                        CCB|OCB|
-                        AND|OR
-                        FACTIONS|MAJOR_EVENT|RESOURCE|HIDDEN_RESOURCE|NO_BUILDING_TAGGED|BUILDING_PRESENT|BUILDING_PRESENT_MIN_LEVEL|IS_TOGGLED
-                       )
+building_condition ::= (alias_c|port_c|building_factions_c|capability_c|religion_c|majority_religion_c|official_religion_c|factions_c|major_event_c|is_player_c|resource_c|hidden_resource_c|no_building_tagged_c|building_min_level_c|building_present_c|is_toggled_c)
 
 alias_c ::= ID                                                                           {pin=1}
-factions_c ::= FACTIONS OCB {ALL|<<list faction_or_culture_ref>>} COMMA CCB                    {pin=1}
+port_c ::= PORT                                                                          {pin=1}
+building_factions_c ::= BUILDING_FACTIONS OCB {ALL|<<list faction_or_culture_ref>>} COMMA CCB     {pin=1}
+capability_c ::= CAPABILITY effect_capability_enum INT                                   {pin=1}
+religion_c ::= RELIGION religion_ref comparison_op INT                                   {pin=1}
+majority_religion_c ::= MAJORITY_RELIGION religion_ref                                   {pin=1}
+official_religion_c ::= OFFICIAL_RELIGION religion_ref                                   {pin=1}
+factions_c ::= FACTIONS OCB {ALL|<<list faction_or_culture_ref>>} COMMA CCB              {pin=1}
 major_event_c ::= MAJOR_EVENT STRING                                                     {pin=1} // TODO: where are these?
 is_player_c ::= IS_PLAYER
-resource_c ::= RESOURCE resource_ref                                                     {pin=1}
+resource_c ::= RESOURCE resource_ref FACTIONWIDE?                                        {pin=1}
 hidden_resource_c ::= HIDDEN_RESOURCE resource_ref                                       {pin=1}
-no_tag_c ::= NO_BUILDING_TAGGED ID QUEUED?                                               {pin=1}
-building_c ::= BUILDING_PRESENT building_tree_ref                                        {pin=1}
+no_building_tagged_c ::= NO_BUILDING_TAGGED ID QUEUED? FACTIONWIDE?                      {pin=1}
+building_present_c ::= BUILDING_PRESENT building_tree_ref                                {pin=1}
 building_min_level_c ::= BUILDING_PRESENT_MIN_LEVEL building_tree_ref building_level_ref {pin=1}
 is_toggled_c ::= IS_TOGGLED STRING                                                       {pin=1} // TODO: toggles\remastered\campaign.txt
 
@@ -2791,15 +2788,15 @@ ambient_object_ref ::= ID {methods=[setName getReference]}
 // ############### descr_beliefs start #################################
 descr_beliefs ::= DESCR_BELIEFS_MARKER
                   STRING COLON OSB
-                    religion+
+                    religion_+
                   CSB COMMA
-religion ::= religion_name_decl COLON OCB
-               KVF_item
-               STRING COLON tga_file_ COMMA
-               STRING COLON tga_file_ COMMA
-               STRING COLON tga_file_ COMMA
-               KVF_item+
-             CCB COMMA
+religion_ ::= religion_name_decl COLON OCB
+                KVF_item
+                STRING COLON tga_file_ COMMA
+                STRING COLON tga_file_ COMMA
+                STRING COLON tga_file_ COMMA
+                KVF_item+
+              CCB COMMA
 religion_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 religion_ref ::= ID {methods=[setName getReference]}
 str_religion_ref ::= STRING {methods=[setName getReference]}
@@ -3117,7 +3114,7 @@ unithasrouted_ ::= UNITHASROUTED unit_ref {pin=1}
 battleunitactionstatus_ ::= BATTLEUNITACTIONSTATUS ID action_status {pin=1}
 i_amountofunitinsettlement_ ::= I_AMOUNTOFUNITINSETTLEMENT settlement_ref INT name_ {pin=1}
 i_unitcardselected_ ::= I_UNITCARDSELECTED (COMMA? unit_ref COMMA INT)+ {pin=1}
-i_comparecounter_ ::= I_COMPARECOUNTER ID comparison_op INT {pin=1}
+i_comparecounter_ ::= I_COMPARECOUNTER ID comparison_op (ID|INT) {pin=1}
 testfaction_ ::= TESTFACTION faction_ref {pin=1}
 langis_ ::= LANGIS ID {pin=1}
 i_timerelapsed_ ::= I_TIMERELAPSED ID? comparison_op INT {pin=1}

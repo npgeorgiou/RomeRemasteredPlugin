@@ -49,6 +49,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jl
 
 %state DESCR_STRAT
 %state EXPORT_DESCR_BUILDINGS
+%xstate EXPORT_DESCR_BUILDINGS_NO_KEYWORDS
 %state EXPORT_DESCR_UNIT
 %state DESCR_MERCENARIES
 %state EXPORT_DESCR_ANCILLARIES
@@ -150,6 +151,15 @@ true|false       {return RRTypes.BOOLEAN;}
 "("              {return RRTypes.OP;}
 ")"              {return RRTypes.CP;}
 
+// operators
+","              {return RRTypes.COMMA;}
+"="              {return RRTypes.EQUALS;}
+"=="             {return RRTypes.EQUALS;}
+"!="             {return RRTypes.NOT_EQUALS;}
+">"              {return RRTypes.LARGER;}
+">="             {return RRTypes.LARGER_OR_EQUAL;}
+"<"              {return RRTypes.SMALLER;}
+"<="             {return RRTypes.SMALLER_OR_EQUAL;}
 
 {PATH}           {return RRTypes.PATH;}
 
@@ -438,7 +448,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "water"                         {return RRTypes.WATER;}
     "culture"                       {return RRTypes.CULTURE;}
     "religious"                     {return RRTypes.RELIGIOUS;}
-    "icon"                          {return RRTypes.ICON;}
+    "icon"                          {yybegin(EXPORT_DESCR_BUILDINGS_NO_KEYWORDS); return RRTypes.ICON;}
     "classification"                {return RRTypes.CLASSIFICATION;}
     "levels"                        {return RRTypes.LEVELS;}
     "plugins"                       {return RRTypes.PLUGINS;}
@@ -466,6 +476,8 @@ true|false       {return RRTypes.BOOLEAN;}
     "construction_time_bonus_religious" {return RRTypes.CONSTRUCTION_TIME_BONUS_RELIGIOUS;}
     "construction_time_bonus_defensive" {return RRTypes.CONSTRUCTION_TIME_BONUS_DEFENSIVE;}
     "construction_time_bonus_other"     {return RRTypes.CONSTRUCTION_TIME_BONUS_OTHER;}
+    "extra_recruitment_points"      {return RRTypes.EXTRA_RECRUITMENT_POINTS;}
+    "extra_construction_points"     {return RRTypes.EXTRA_CONSTRUCTION_POINTS;}
     "wall_level"                    {return RRTypes.WALL_LEVEL;}
     "tower_level"                   {return RRTypes.TOWER_LEVEL;}
     "gate_strength"                 {return RRTypes.GATE_STRENGTH;}
@@ -496,6 +508,12 @@ true|false       {return RRTypes.BOOLEAN;}
     "merchant"                      {return RRTypes.MERCHANT;}
     "upgrades"                      {return RRTypes.UPGRADES;}
     "bonus"                         {return RRTypes.BONUS;}
+    "port"                          {return RRTypes.PORT;}
+    "building_factions"             {return RRTypes.BUILDING_FACTIONS;}
+    "religion"                      {return RRTypes.RELIGION;}
+    "majority_religion"             {return RRTypes.MAJORITY_RELIGION;}
+    "official_religion"             {return RRTypes.OFFICIAL_RELIGION;}
+    "factionwide"                   {return RRTypes.FACTIONWIDE;}
     "is_toggled"                    {return RRTypes.IS_TOGGLED;}
     "major_event"                   {return RRTypes.MAJOR_EVENT;}
     "is_player"                     {return RRTypes.IS_PLAYER;}
@@ -504,6 +522,12 @@ true|false       {return RRTypes.BOOLEAN;}
     "building_present"              {return RRTypes.BUILDING_PRESENT;}
     "building_present_min_level"    {return RRTypes.BUILDING_PRESENT_MIN_LEVEL;}
     {ID}                            {return RRTypes.ID;}
+}
+<EXPORT_DESCR_BUILDINGS_NO_KEYWORDS> {
+    {WS}         {return TokenType.WHITE_SPACE;}
+    {COMMENT}    {return RRTypes.COMMENT;}
+    "levels"     {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.LEVELS;}
+    {ID}         {return RRTypes.ID;}
 }
 
 <EXPORT_DESCR_ANCILLARIES>
@@ -1274,15 +1298,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "SufferAcquisitionAttempt"              {return RRTypes.SUFFERACQUISITIONATTEMPT;}
 
     // conditions
-    // operators
-    ","                                               {return RRTypes.COMMA;}
-    "="                                               {return RRTypes.EQUALS;}
-    "=="                                              {return RRTypes.EQUALS;}
-    "!="                                              {return RRTypes.NOT_EQUALS;}
-    ">"                                               {return RRTypes.LARGER;}
-    ">="                                              {return RRTypes.LARGER_OR_EQUAL;}
-    "<"                                               {return RRTypes.SMALLER;}
-    "<="                                              {return RRTypes.SMALLER_OR_EQUAL;}
+
     // Returns
     "AcquireAncillary"                                {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.ACQUIREANCILLARY;}
     "RemoveAncillary"                                 {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.REMOVEANCILLARY;}

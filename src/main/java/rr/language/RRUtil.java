@@ -340,7 +340,7 @@ public class RRUtil {
         }
 
         return file.findChildByClass(RRDescrBeliefs.class)
-            .getReligionList().stream()
+            .getReligion_List().stream()
             .map(it -> it.getReligionNameDecl())
             .collect(Collectors.toList());
     }

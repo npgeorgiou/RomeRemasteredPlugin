@@ -143,7 +143,7 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
         }
 
         for (RRBuildingLevel element : PsiTreeUtil.findChildrenOfType(file, RRBuildingLevel.class)) {
-            fold(element, element.getNode().findChildByType(RRTypes.REQUIREMENT).getPsi(), element.getLastChild(), "...", folds);
+            fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
         // export_descr_ancillaries
@@ -336,7 +336,7 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
         }
 
         //descr_beliefs
-        for (RRReligion element : PsiTreeUtil.findChildrenOfType(file, RRReligion.class)) {
+        for (RRReligion_ element : PsiTreeUtil.findChildrenOfType(file, RRReligion_.class)) {
             fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
