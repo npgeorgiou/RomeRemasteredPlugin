@@ -8,10 +8,21 @@ import rr.language.RRFileType;
 import rr.language.RRLanguage;
 import rr.language.Util;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 public class RRElementFactory {
     public static PsiElement createId(Project project, String id) {
         RRFile file = createFile(project, id);
         return file.getFirstChild();
+    }
+
+    public static RRScript_ createScript(Project project, String content) {
+        String contents = "script" + "\n" +
+            content + "\n" +
+            "end_script";
+        RRFile file = createFile(project, contents);
+        return file.findChildByClass(RRScript_.class);
     }
 
     public static PsiElement createElementWithIds(Project project, String name) {

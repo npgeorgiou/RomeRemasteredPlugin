@@ -78,7 +78,13 @@ public class RRLineMarkerProvider extends RelatedItemLineMarkerProvider {
     }
 
     private Icon createIconFor(RRRgb element) {
-        String[] colors = element.getText().split(",\\s*");
+        String[] colors;
+        if (element.getText().contains(",")) {
+            colors = element.getText().split(",\\s*");
+        } else {
+            colors = element.getText().split("\\s+");
+        }
+
         int red = Integer.parseInt(colors[0]);
         int green = Integer.parseInt(colors[1]);
         int blue = Integer.parseInt(colors[2]);

@@ -363,13 +363,16 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
             fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
         }
         for (RRMonitorEvent_ element : PsiTreeUtil.findChildrenOfType(file, RRMonitorEvent_.class)) {
-            fold(element, element.getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
         }
         for (RRSpawnBattle_ element : PsiTreeUtil.findChildrenOfType(file, RRSpawnBattle_.class)) {
-            fold(element, element.getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
         }
         for (RRBenchmark_ element : PsiTreeUtil.findChildrenOfType(file, RRBenchmark_.class)) {
-            fold(element, element.getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+            fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
+        }
+        for (RRMacroDef_ element : PsiTreeUtil.findChildrenOfType(file, RRMacroDef_.class)) {
+            fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
         //descr_projectiles_new

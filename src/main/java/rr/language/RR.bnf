@@ -1724,6 +1724,10 @@
       FOR_EACH="for_each"
       IN="in"
       END_FOR="end_for"
+      MACRO="macro"
+      END_MACRO="end_macro"
+      MACRO_DEF="macro_def"
+      END_MACRO_DEF="end_macro_def"
       WORLD="world"
 
       // command params
@@ -2215,7 +2219,7 @@ region_def ::= region_name_decl
                  settlement_name_decl
                  faction_ref
                  rebels_ref
-                 INT INT INT
+                 rgb
                  (NONE|<<list resource_ref>>)
                  INT
                  INT
@@ -2381,7 +2385,7 @@ faction_decl ::= faction_name_decl COLON OCB
                    KVF_item+
                  CCB COMMA
 
-rgb ::= INT COMMA INT COMMA INT COMMA
+rgb ::= INT COMMA INT COMMA INT COMMA | INT INT INT
 faction_name_decl ::= STRING {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 faction_ref ::= ID {methods=[setName getReference]}
 str_faction_ref ::= STRING {methods=[setName getReference]}
@@ -2833,10 +2837,17 @@ KVF_array ::=  OSB (KVF_item|KVF_value COMMA)* CSB
 script_ ::= SCRIPT
               statement+
             END_SCRIPT
-statement ::= control_structure|command_
+statement ::= macro_|macro_def_|control_structure|command_
 private not_statement ::= !statement
 
 private control_structure ::= if_|if_not_|monitor_|monitor_conditions_|monitor_event_|spawn_battle_|benchmark_|while_|while_not_|for_each_|return_
+macro_ ::= MACRO macro_name macro_arg* END_MACRO  {pin=1} // that's my own thing.
+macro_def_ ::= MACRO_DEF macro_name macro_param*
+                 statement*
+               END_MACRO_DEF {pin=1} // that's my own thing.
+macro_name ::= ID
+macro_param ::= ID
+macro_arg ::= ID
 
 if_ ::= IF condition_ statement* END_IF                                       {pin=1}
 if_not_ ::= IF_NOT condition_ statement* END_IF                               {pin=1}
@@ -3114,7 +3125,7 @@ unithasrouted_ ::= UNITHASROUTED unit_ref {pin=1}
 battleunitactionstatus_ ::= BATTLEUNITACTIONSTATUS ID action_status {pin=1}
 i_amountofunitinsettlement_ ::= I_AMOUNTOFUNITINSETTLEMENT settlement_ref INT name_ {pin=1}
 i_unitcardselected_ ::= I_UNITCARDSELECTED (COMMA? unit_ref COMMA INT)+ {pin=1}
-i_comparecounter_ ::= I_COMPARECOUNTER ID comparison_op (ID|INT) {pin=1}
+i_comparecounter_ ::= I_COMPARECOUNTER counter_ref comparison_op (ID|INT) {pin=1}
 testfaction_ ::= TESTFACTION faction_ref {pin=1}
 langis_ ::= LANGIS ID {pin=1}
 i_timerelapsed_ ::= I_TIMERELAPSED ID? comparison_op INT {pin=1}
@@ -3226,7 +3237,7 @@ automanage_type ::= TROOPS|BUILDINGS|MECHANICS
 command_ ::= senate_mission_help_player_|senate_mission_assassination_|senate_mission_cease_hostilities_|senate_mission_declare_war_|senate_mission_broker_peace_|senate_mission_take_city_|move_to_settlement_|snap_to_settlement_|clear_restrict_strat_movement_|restrict_strat_movement_|disable_diplomacy_ui_|enable_diplomacy_voices_|enable_unit_voices_|hide_ui_element_|show_ui_element_|enable_ui_card_|disable_ui_card_|disable_all_ui_cards_|enable_all_ui_cards_|disable_agent_hub_all_|enable_agent_hub_all_|disable_agent_hub_|enable_agent_hub_|point_at_agent_hub_|set_marriage_allowed_|trigger_marriage_proposal_|deselect_current_selection_|force_autoresolve_outcome_|force_diplomacy_|create_mercenary_pool_|force_agent_succeed_|allow_campaign_battles_|spawn_character_child_|stop_point_at_indicator_|stop_all_point_at_indicators_|set_battle_|restrict_battle_movement_|clear_restrict_battle_movement_|point_at_diplomacy_offer_|point_at_move_retinue_|disable_move_retinue_all_|enable_move_retinue_all_|disable_move_retinue_|enable_move_retinue_|block_unit_selection_|forced_gate_success_|strat_selection_unblocker_|clear_strat_selection_unblocker_|open_stop_tutorial_confirmation_dialog_|set_label_|goto_|force_deselect_trigger_|box_drag_selection_|force_settlement_tab_|click_drag_move_|toggle_minimap_|close_news_panel_|ui_card_selection_lock_|disable_specific_shortcut_|set_advice_page_|advance_completed_tasks_|set_min_formation_width_|script_log_|ai_active_set_|release_unit_|hiding_enabled_set_|swimming_enabled_set_|pause_battle_|unit_immediate_place_|unit_order_halt_|unit_order_move_|unit_order_move_to_orientation_|unit_order_move_relative_|unit_order_attack_unit_|unit_order_attack_closest_unit_|unit_order_change_formation_|unit_order_move_to_missile_range_|unit_order_turn_|unit_set_morale_|unit_unset_morale_|unit_set_weapon_upgrade_|unit_set_armour_upgrade_|unit_set_experience_|kill_unit_|reduce_unit_strength_|unit_set_guard_mode_|unit_set_skirmish_mode_|unit_set_fire_at_will_mode_|unit_set_formation_spacing_|unit_taunt_|unit_use_special_ability_|unit_group_enable_automation_|unit_group_automate_defend_position_|unit_group_automate_attack_|unit_group_immediate_place_|unit_group_order_halt_|unit_group_order_move_formed_|unit_group_order_move_unformed_|unit_group_order_relative_move_formed_|unit_group_order_relative_move_unformed_|unit_group_move_to_missile_range_of_unit_|unit_group_move_to_missile_range_of_group_|unit_group_order_attack_unit_|unit_group_order_attack_group_|unit_group_order_change_group_formation_|unit_group_order_turn_|unit_group_set_morale_|unit_group_unset_morale_|unit_group_change_unit_formation_|unit_group_set_guard_mode_|unit_group_set_skirmish_mode_|unit_group_set_fire_at_will_mode_|unit_group_set_formation_spacing_|force_ai_control_|finish_battle_|move_strat_camera_|set_strat_camera_speed_|snap_strat_camera_|zoom_strat_camera_|camera_restrictions_set_|camera_event_cuts_active_set_|camera_default_mode_set_|battle_default_camera_|battle_general_camera_|set_camera_bookmark_|use_camera_bookmark_|camera_position_at_bookmark__|camera_zoom_to_bookmark_|camera_position_|camera_zoom_to_|camera_look_at_position_|camera_look_at_unit_|camera_track_unit_|camera_zoom_to_unit_|e_camera_zoom_to_unit_|inhibit_camera_input_|declare_prologue_|terminate_prologue_|provoke_rebellion_|move_|reposition_character_|replenish_action_points_|replenish_units_|spawn_character_|spawn_army_|engage_armies_|disable_popups_|end_benchmark_|disable_pause_shortcut_in_campaign_|override_superfaction_popularity_|set_faction_senate_standing_|set_faction_people_standing_|message_prompt_|include_script_|terminate_script_|break_|set_ao_visible_|set_all_ao_visible_|terminate_monitor_|declare_counter_|declare_persistent_counter_|inc_counter_|set_counter_|counter_operation_|store_counter_|retrieve_counter_|prepare_for_battle_|declare_show_me_|label_unit_|label_location_|define_unit_group_|undefine_unit_group_|remove_unit_from_group_|declare_timer_|restart_timer_|heed_pause_|wait_|campaign_wait_|battle_wait_|suspend_during_battle_|set_music_state_|release_music_control_|play_sound_event_|play_sound_flourish_|stop_sound_event_|point_at_character_|point_at_settlement_|e_point_at_settlement_|point_at_strat_position_|point_at_strat_position_alt_|point_at_message_|ui_flash_start_|ui_flash_stop_|settlement_flash_start_|settlement_flash_stop_|character_flash_start_|character_flash_stop_|point_at_location_|point_at_unit_pos_|point_at_unit_group_pos_|remove_battle_map_arrow_|point_at_card_|point_at_unit_card_|e_point_at_unit_card_|show_mouse_button_animation_|show_movie_|hide_ui_|show_ui_|disable_ui_|enable_ui_|disable_entire_ui_|enable_entire_ui_|set_cards_selectable_|disable_cursor_|enable_cursor_|rename_settlement_in_region_|add_religion_|add_hidden_resource_|remove_hidden_resource_|destroy_building_|reveal_tile_|hide_all_revealed_tiles_|play_video_|advance_advice_thread_|dismiss_advice_|dismiss_advisor_|suspend_unscripted_advice_|select_character_|e_select_character_|select_settlement_|e_select_settlement_|call_object_shortcut_|simulate_mouse_click_|select_ui_element_|disable_shortcuts_|filter_unit_commands_|filter_unit_group_commands_|filter_unit_selection_commands_|filter_settlement_commands_|filter_character_commands_|filter_all_ui_commands_|ui_indicator_|ui_indicator_remove_|steal_esc_key_|highlight_recruitment_item_|highlight_construction_item_|show_annotations_|e_select_unit_|open_siege_scroll_|control_feral_anim_|select_captial_|show_building_info_|show_unit_info_|tactical_view_locked_|console_command_
 {recoverWhile=command_recover}
 private command_recover ::= !(ends_of_commands|statement)
-private ends_of_commands ::= END_IF|END_WHILE|END_FOR|END_MONITOR|END_BATTLE|END_BENCHMARK|END_SCRIPT
+private ends_of_commands ::= END_IF|END_WHILE|END_FOR|END_MONITOR|END_BATTLE|END_BENCHMARK|END_SCRIPT|END_MACRO|END_MACRO_DEF
 
 senate_mission_help_player_ ::= SENATE_MISSION_HELP_PLAYER senate_reward {pin=1}
 senate_mission_assassination_ ::= SENATE_MISSION_ASSASSINATION senate_reward name_ {pin=1}
@@ -3399,13 +3410,13 @@ break_ ::= BREAK {pin=1}
 set_ao_visible_ ::= SET_AO_VISIBLE STRING show_hide region_ref? {pin=1}
 set_all_ao_visible_ ::= SET_ALL_AO_VISIBLE STRING show_hide {pin=1}
 terminate_monitor_ ::= TERMINATE_MONITOR {pin=1}
-declare_counter_ ::= DECLARE_COUNTER ID {pin=1}
-declare_persistent_counter_ ::= DECLARE_PERSISTENT_COUNTER ID {pin=1}
-inc_counter_ ::= INC_COUNTER ID INT {pin=1}
-set_counter_ ::= SET_COUNTER ID INT {pin=1}
-counter_operation_ ::= COUNTER_OPERATION ID EQUALS ID math_op ID {pin=1}
-store_counter_ ::= STORE_COUNTER ID scope ID {pin=1}
-retrieve_counter_ ::= RETRIEVE_COUNTER ID scope ID {pin=1}
+declare_counter_ ::= DECLARE_COUNTER counter_name_decl {pin=1}
+declare_persistent_counter_ ::= DECLARE_PERSISTENT_COUNTER counter_name_decl {pin=1}
+inc_counter_ ::= INC_COUNTER counter_ref INT {pin=1}
+set_counter_ ::= SET_COUNTER counter_ref (INT|counter_ref) {pin=1}
+counter_operation_ ::= COUNTER_OPERATION counter_ref EQUALS counter_ref math_op counter_ref {pin=1}
+store_counter_ ::= STORE_COUNTER counter_ref scope counter_ref {pin=1}
+retrieve_counter_ ::= RETRIEVE_COUNTER counter_ref scope counter_ref {pin=1}
 prepare_for_battle_ ::= PREPARE_FOR_BATTLE {pin=1}
 declare_show_me_ ::= DECLARE_SHOW_ME {pin=1}
 label_unit_ ::= LABEL_UNIT INT INT INT ID {pin=1}
@@ -3582,7 +3593,8 @@ front_back_left_right ::= FRONT|BACK|left_right
 direction ::=(UP|DOWN|left_right|TOP_LEFT|TOP_RIGHT|BOT_LEFT|BOT_RIGHT)
 morale::=(BERSERK|IMPETUOUS|HIGH|FIRM|SHAKEN|WAVERING|ROUTING)
 camera_mode::=(TW|RTS|GENERAL|USER_PREF)
-
+counter_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+counter_ref ::= safe_id {methods=[setName getReference]}
 // #### Primitives ####
 private number ::= INT|FLOAT
 

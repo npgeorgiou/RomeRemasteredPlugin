@@ -11,6 +11,7 @@ import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import rr.language.psi.*;
 
+import javax.swing.text.Element;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -237,6 +238,22 @@ public class RRUtil {
     public static Collection<String> findAllDisastersAsStrings(Project project) {
         return findAllDisasters(project).stream()
             .map(it -> it.getDisasterNameDecl().getText())
+            .collect(Collectors.toList());
+    }
+
+    public static Collection<RRCounterNameDecl> findAllCounters(PsiElement element) {
+        RRFile file = (RRFile) element.getContainingFile();
+
+        if (file == null) {
+            return new ArrayList<>();
+        }
+
+        return PsiTreeUtil.findChildrenOfAnyType(file, RRCounterNameDecl.class);
+    }
+
+    public static Collection<String> findAllCountersAsStrings(PsiElement element) {
+        return findAllCounters(element).stream()
+            .map(it -> it.getText())
             .collect(Collectors.toList());
     }
 

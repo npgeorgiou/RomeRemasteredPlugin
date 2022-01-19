@@ -115,6 +115,14 @@
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
         <action
+                id="rr.language.actions.ExpandMacros"
+                class="rr.language.actions.ExpandMacros"
+                text="PLUGIN: Expand macros"
+                description="Expand macros"
+        >
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action
                 id="rr.language.actions.RemoveFileTypeComments"
                 class="rr.language.actions.RemoveFileTypeComments"
                 text="PLUGIN: Remove File Type Comment"

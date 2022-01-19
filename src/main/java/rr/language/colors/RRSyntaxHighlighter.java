@@ -31,7 +31,7 @@ public class RRSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey EVENTS_STYLE = createTextAttributesKey("RR_EVENTS", DefaultLanguageHighlighterColors.CLASS_NAME);
     public static final TextAttributesKey CONDITIONS_STYLE = createTextAttributesKey("RR_CONDITIONS", DefaultLanguageHighlighterColors.FUNCTION_CALL);
     public static final TextAttributesKey COMMANDS_STYLE = createTextAttributesKey("RR_COMMANDS", DefaultLanguageHighlighterColors.FUNCTION_CALL);
-
+    public static final TextAttributesKey CUSTOM_SCRIPT_HELPERS_STYLE = createTextAttributesKey("RR_CUSTOM_SCRIPT_HELPERS", DefaultLanguageHighlighterColors.LABEL);
     public static final TextAttributesKey KEYWORDS_STYLE = createTextAttributesKey("RR_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey ID_STYLE = createTextAttributesKey("RR_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
 
@@ -49,6 +49,7 @@ public class RRSyntaxHighlighter extends SyntaxHighlighterBase {
         fillMap(ATTRIBUTES, RRParserDefinition.EVENTS, EVENTS_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.CONDITIONS, CONDITIONS_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.COMMANDS, COMMANDS_STYLE);
+        fillMap(ATTRIBUTES, RRParserDefinition.CUSTOM_SCRIPT_HELPERS, CUSTOM_SCRIPT_HELPERS_STYLE);
         fillMap(ATTRIBUTES, BOOLEAN_STYLE, RRTypes.BOOLEAN);
         fillMap(ATTRIBUTES, STRING_STYLE, RRTypes.STRING);
         fillMap(ATTRIBUTES, ID_STYLE, RRTypes.ID);

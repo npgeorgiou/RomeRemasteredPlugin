@@ -774,6 +774,33 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Counter decl and refs">
+    public static PsiElement setName(RRCounterNameDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRCounterNameDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRCounterNameDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRCounterRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static CounterReference getReference(RRCounterRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new CounterReference(ref, range);
+    }
+    //</editor-fold>
+
     public static String name(RRSettlementItem settlementItem) {
         return settlementItem.getNode().findChildByType(RRTypes.REGION_REF).getText();
     }

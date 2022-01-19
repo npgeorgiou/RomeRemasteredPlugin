@@ -70,6 +70,15 @@ public class RRParserDefinition implements ParserDefinition {
     );
     //</editor-fold>
 
+    //<editor-fold desc="CUSTOM_SCRIPT_HELPER_KEYWORDS">
+    public static final TokenSet CUSTOM_SCRIPT_HELPERS = TokenSet.create(
+        RRTypes.MACRO,
+        RRTypes.END_MACRO,
+        RRTypes.MACRO_DEF,
+        RRTypes.END_MACRO_DEF
+    );
+    //</editor-fold>
+
     //<editor-fold desc="CONSTANTS">
     public static final TokenSet CONSTANTS = TokenSet.create(
         // settlement levels
@@ -908,6 +917,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.SCRIPT,
         RRTypes.END_SCRIPT,
         RRTypes.RETURN,
+        RRTypes.BREAK,
         RRTypes.IF,
         RRTypes.IF_NOT,
         RRTypes.END_IF,
@@ -1673,7 +1683,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.MESSAGE_PROMPT,
         RRTypes.INCLUDE_SCRIPT,
         RRTypes.TERMINATE_SCRIPT,
-        RRTypes.BREAK,
         RRTypes.SPAWN_BATTLE,
         RRTypes.END_BATTLE,
         RRTypes.SET_AO_VISIBLE,
