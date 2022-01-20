@@ -43,7 +43,12 @@ public class RRLineMarkerProvider extends RelatedItemLineMarkerProvider {
 
             if (file == null) return;
 
-            RelatedItemLineMarkerInfo<PsiElement> marker = NavigationGutterIconBuilder.create(RRIcons.FILE)
+            var icon = RRIcons.FILE;
+            if (RRUtil.isScript(file)) {
+                icon = RRIcons.SCRIPT_FILE;
+            }
+
+            RelatedItemLineMarkerInfo<PsiElement> marker = NavigationGutterIconBuilder.create(icon)
                 .setTarget(file)
                 .setTooltipText("Navigate to file")
                 .createLineMarkerInfo(element);

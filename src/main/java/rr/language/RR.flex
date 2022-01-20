@@ -41,7 +41,8 @@ RTM_FILE=({PATH}|{DIR_OR_FILE})\.(rtm|RTM)
 WMV_FILE=({PATH}|{DIR_OR_FILE})\.(wmv|WMV)
 
 // †ÎöÈ.íëé are in descr_names. Maybe just typos.
-ID = ([:jletterdigit:])+ (\+|\'|\-|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jletterdigit:])* ([:jletterdigit:])*
+// # is used for macro string interpolation
+ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jletterdigit:])* ([:jletterdigit:])*
 
 %xstate TEXT_MAPPING
 %xstate TEXT_MAPPING_NO_KEYWORDS
@@ -495,7 +496,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "stage_games"                   {return RRTypes.STAGE_GAMES;}
     "agent_limit_settlement"        {return RRTypes.AGENT_LIMIT_SETTLEMENT;}
     "dummy"                         {return RRTypes.DUMMY;}
-    "Capability_TraitsAndRetinue"   {return RRTypes.CAPABILITY_TRAITSANDRETINUE;}
     "ai_destruction_hint"           {return RRTypes.AI_DESTRUCTION_HINT;}
     "recruit"                       {return RRTypes.RECRUIT;}
     "agent"                         {return RRTypes.AGENT;}

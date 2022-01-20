@@ -29,6 +29,7 @@ public class TxtFileReference extends PsiReferenceBase<PsiElement> implements Ps
     @Override
     public Object @NotNull [] getVariants() {
         return RRUtil.findAllRRFiles(myElement.getProject()).stream()
+            .filter(it -> RRUtil.isScript(it))
             .map(it -> LookupElementBuilder.create(it.getVirtualFile().getName()))
             .toArray();
     }

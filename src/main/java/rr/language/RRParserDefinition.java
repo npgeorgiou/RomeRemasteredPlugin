@@ -604,7 +604,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.STAGE_GAMES,
         RRTypes.AGENT_LIMIT_SETTLEMENT,
         RRTypes.DUMMY,
-        RRTypes.CAPABILITY_TRAITSANDRETINUE,
         RRTypes.AI_DESTRUCTION_HINT,
         RRTypes.RECRUIT,
         RRTypes.AGENT,

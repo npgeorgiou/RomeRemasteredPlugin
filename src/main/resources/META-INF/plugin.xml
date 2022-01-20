@@ -119,8 +119,10 @@
                 class="rr.language.actions.ExpandMacros"
                 text="PLUGIN: Expand macros"
                 description="Expand macros"
+
         >
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut first-keystroke="shift G" keymap="$default"/>
         </action>
         <action
                 id="rr.language.actions.RemoveFileTypeComments"

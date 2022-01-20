@@ -26,13 +26,12 @@ import static com.intellij.patterns.PlatformPatterns.psiElement;
 public class RRCompletionContributor extends CompletionContributor {
     @Override
     public void beforeCompletion(@NotNull CompletionInitializationContext context) {
-        // TODO: This is stupid.
         // the reason I do this is that file autocompletion will not work, unless a dummy id that matches the *.txt
         // lexing rule is inserted, so that the parser will wrap it in a txt_fie_ element, on which getVariants can be called.
         // Default dummyIdentifier has a whitespace at the end ("IntellijIdeaRulezzz ") and that makes it not parsed as a txt file
         // "foo" on the other hand, nicely merges with the existing text, for example resulting in "foosomefile.txt"
         // This does not work in places that dont already have a file though, as "foo" by itself is not a valid TXT_FILE.
-        // Solution: Add . as a valid part of ids, and let txt files be lexed as ids.
+        // Solution: Add ID as a valid child of txt_file_
         context.setDummyIdentifier("foo");
         super.beforeCompletion(context);
     }
@@ -1443,11 +1442,8 @@ public class RRCompletionContributor extends CompletionContributor {
             ),
             new Node(new HardcodedValues("factions")),                   // TODO: autocomplete
             new Node(new HardcodedValues("major_event")),                // TODO: autocomplete
-            new Node(
-                psiElement(RRTypes.RESOURCE),
-                new HardcodedValues("resource"),
-                new Node(
-                    new Resources())),
+            new Node(psiElement(RRTypes.RESOURCE), new HardcodedValues("resource"),
+                new Node(new Resources())),
             new Node(new HardcodedValues("hidden_resource")),            // TODO: autocomplete
             new Node(psiElement(RRTypes.NO_BUILDING_TAGGED), new HardcodedValues("no_building_tagged"),
                 new Node(new BuildingTags())),
@@ -1461,12 +1457,17 @@ public class RRCompletionContributor extends CompletionContributor {
             new Node(new ConditionAliases())
         );
 
-        // category {category}
+        // recruit {category}
         extend(
             CompletionType.BASIC,
             psiElement().afterLeaf(psiElement(RRTypes.RECRUIT)),
             new Units((it) -> Util.quote(it))
         );
+
+        Node create_unit = new RootNode(psiElement(RRTypes.CREATE_UNIT),
+            new Node(id(), null,
+                new Node(new Units((it) -> Util.quote(it)))));
+
 
         // TODO: finish that
         // capability {
@@ -1514,8 +1515,7 @@ public class RRCompletionContributor extends CompletionContributor {
                 "weapon_other",
                 "upgrade_bodyguard",
                 "armour",
-                "stage_races",
-                "dummy Capability_TraitsAndRetinue")),
+                "stage_races")),
             new Node(
                 psiElement(RRTypes.AGENT_LIMIT_SETTLEMENT),
                 new HardcodedValues("agent_limit_settlement"),
@@ -1598,7 +1598,8 @@ public class RRCompletionContributor extends CompletionContributor {
         Node if_ = new RootNode(psiElement(RRTypes.IF),
             new Node(new HardcodedValues(conditions())));
 
-        Node command = new RootNode(inside(RRTypes.SCRIPT_).and(beforeNewline()),
+        Node command = new RootNode(
+            any(inside(RRTypes.SCRIPT_), inside(RRTypes.IF_)).and(beforeNewline()),
             new Node(new HardcodedValues(commands())));
 
         // console_command
@@ -1638,6 +1639,7 @@ public class RRCompletionContributor extends CompletionContributor {
         extendFor(if_);
         extendFor(command);
         extendFor(console_command);
+        extendFor(create_unit);
     }
 
     private PsiElementPattern.Capture<PsiElement> sequence(PsiElementPattern.Capture<PsiElement>... patterns) {
@@ -1828,11 +1830,10 @@ class BeforeNewline extends PatternCondition<PsiElement> {
 
     @Override
     public boolean accepts(@NotNull PsiElement element, ProcessingContext context) {
-        PsiElement foo = PsiTreeUtil.nextLeaf(element);
+        PsiElement nextLeaf = PsiTreeUtil.nextLeaf(element);
 
-        if (foo instanceof PsiWhiteSpace) {
-            boolean aaa = foo.textContains('\n');
-            return foo.textContains('\n');
+        if (nextLeaf instanceof PsiWhiteSpace) {
+            return nextLeaf.textContains('\n');
         }
 
         return false;

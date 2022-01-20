@@ -16,7 +16,7 @@ public class RRPsiImplUtil {
     }
 
     public static TxtFileReference getReference(RRTxtFile_ ref) {
-        TextRange range = ref.getNode().findChildByType(RRTypes.TXT_FILE).getPsi().getTextRangeInParent();
+        TextRange range = ref.getFirstChild().getTextRangeInParent();
         return new TxtFileReference(ref, range);
     }
     //</editor-fold>
@@ -458,7 +458,7 @@ public class RRPsiImplUtil {
     }
 
     public static UnitReference getReference(RRStrUnitRef ref) {
-        TextRange range = ref.getNode().findChildByType(RRTypes.STRING).getPsi().getTextRangeInParent();
+        TextRange range = ref.getFirstChild().getTextRangeInParent();
         return new UnitReference(ref, range);
     }
     //</editor-fold>

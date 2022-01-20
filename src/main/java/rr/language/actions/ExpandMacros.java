@@ -5,18 +5,20 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.tree.TokenSet;
 import com.intellij.psi.util.PsiTreeUtil;
+import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import rr.language.RRUtil;
-import rr.language.psi.*;
+import rr.language.psi.RRElementFactory;
+import rr.language.psi.RRMacroDef_;
+import rr.language.psi.RRMacro_;
+import rr.language.psi.RRStatement;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Collection;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ExpandMacros extends AnAction {
@@ -44,11 +46,17 @@ public class ExpandMacros extends AnAction {
             macroDef.delete();
         }
 
+        var text = copy.getText();
+        var interpolations = StringUtils.substringsBetween(text, "#", "#");
+        Set<String> uniqueInterpolations = new HashSet<>(Arrays.asList(interpolations));
+        for (var interpolation : uniqueInterpolations) {
+            text = text.replace("#" + interpolation + "#", interpolation);
+        }
+
         var path = file.getPath().replace("#", "@");
         try {
-            String str = copy.getText();
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-            writer.write(str);
+            writer.write(text);
 
             writer.close();
         } catch (IOException e) {
@@ -75,16 +83,30 @@ public class ExpandMacros extends AnAction {
                             " " + paramsIterator.next().getText(),
                             " " + argsIterator.next().getText()
                         );
-                        System.out.println(1);
-                        System.out.println(1);
                     }
 
-                    var script = RRElementFactory.createScript(project, expandedString);
-
-                    var createdMacroDef = script.getStatementList().get(0).getMacroDef_();
+                    var createdMacroDef = RRElementFactory.createScript(project, expandedString).
+                        getStatementList().get(0).getMacroDef_();
 
                     for (RRStatement s : createdMacroDef.getStatementList()) {
                         expandMacrosIn(s, macroDefs, project);
+                    }
+
+                    // Take care of indentation of inserted elements.
+                    var wsToAdd = PsiTreeUtil.prevLeaf(macroUsage).getText().replace("\n", "");
+                    var createdWss = RRUtil.collectLeaves(
+                        createdMacroDef,
+                        it -> Arrays.stream(it.getNode().getChildren(TokenSet.WHITE_SPACE))
+                            .map(astNode -> astNode.getPsi())
+                            .collect(Collectors.toList()),
+                        new ArrayList<>()
+                    );
+
+                    for (var createdWs : createdWss) {
+                        if (createdWs.getText().contains("\n")) {
+                            var newWs = RRElementFactory.createWhitespace(createdWs.getText() + wsToAdd, project);
+                            createdWs.replace(newWs);
+                        }
                     }
 
                     macroUsage.getParent().addRangeAfter(

@@ -5,9 +5,11 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
+import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
+import com.intellij.psi.tree.TokenSet;
 import com.intellij.psi.util.PsiTreeUtil;
 import rr.language.psi.*;
 
@@ -15,6 +17,8 @@ import javax.swing.text.Element;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -98,11 +102,11 @@ public class RRUtil {
     public static Collection<RRUnitItem_> findAllUnits(Project project) {
         RRFile file = RRUtil.findRRFile("export_descr_unit.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportDescrUnit.class))
+            .map(it -> it.getUnitItem_List());
 
-        return file.findChildByClass(RRExportDescrUnit.class).getUnitItem_List();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllUnitsAsStrings(Project project) {
@@ -114,11 +118,11 @@ public class RRUtil {
     public static Collection<RRAiPersonality> findAllAiPersonalities(Project project) {
         RRFile file = RRUtil.findRRFile("feral_descr_ai_personality.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRFeralDescrAiPersonality.class))
+            .map(it -> it.getAiPersonalityList());
 
-        return file.findChildByClass(RRFeralDescrAiPersonality.class).getAiPersonalityList();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllAiPersonalitiesAsStrings(Project project) {
@@ -130,11 +134,11 @@ public class RRUtil {
     public static Collection<RRRegionDef> findAllRegions(Project project) {
         RRFile file = RRUtil.findRRFile("descr_regions.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrRegions.class))
+            .map(it -> it.getRegionDefList());
 
-        return file.findChildByClass(RRDescrRegions.class).getRegionDefList();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllRegionsAsStrings(Project project) {
@@ -146,12 +150,11 @@ public class RRUtil {
     public static Collection<RRSettlementNameDecl> findAllSettlements(Project project) {
         RRFile file = RRUtil.findRRFile("descr_regions.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRDescrRegions.class).getRegionDefList().stream()
-            .map(it -> it.getSettlementNameDecl())
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrRegions.class))
+            .map(it -> it.getRegionDefList())
+            .orElse(new ArrayList<>())
+            .stream().map(it -> it.getSettlementNameDecl())
             .collect(Collectors.toList());
     }
 
@@ -164,11 +167,11 @@ public class RRUtil {
     public static Collection<RRRebelFaction> findAllRebels(Project project) {
         RRFile file = RRUtil.findRRFile("descr_rebel_factions.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrRebelFactions.class))
+            .map(it -> it.getRebelFactionList());
 
-        return file.findChildByClass(RRDescrRebelFactions.class).getRebelFactionList();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllRebelsAsStrings(Project project) {
@@ -180,11 +183,11 @@ public class RRUtil {
     public static Collection<RRWonderNameDecl> findAllWonders(Project project) {
         RRFile file = RRUtil.findRRFile("descr_sm_landmarks.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrSmLandmarks.class))
+            .map(it -> it.getWonderNameDeclList());
 
-        return file.findChildByClass(RRDescrSmLandmarks.class).getWonderNameDeclList();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllWondersAsStrings(Project project) {
@@ -196,11 +199,11 @@ public class RRUtil {
     public static Collection<RRProjectile_> findAllProjectiles(Project project) {
         RRFile file = RRUtil.findRRFile("descr_projectile_new.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrProjectile.class))
+            .map(it -> it.getProjectile_List());
 
-        return file.findChildByClass(RRDescrProjectile.class).getProjectile_List();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllProjectilesAsStrings(Project project) {
@@ -212,11 +215,11 @@ public class RRUtil {
     public static Collection<RRAnimal_> findAllAnimals(Project project) {
         RRFile file = RRUtil.findRRFile("descr_animals.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrAnimals.class))
+            .map(it -> it.getAnimal_List());
 
-        return file.findChildByClass(RRDescrAnimals.class).getAnimal_List();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllAnimalsAsStrings(Project project) {
@@ -228,11 +231,11 @@ public class RRUtil {
     public static Collection<RRDisaster_> findAllDisasters(Project project) {
         RRFile file = RRUtil.findRRFile("descr_disasters.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrDisasters.class))
+            .map(it -> it.getDisaster_List());
 
-        return file.findChildByClass(RRDescrDisasters.class).getDisaster_List();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllDisastersAsStrings(Project project) {
@@ -260,11 +263,11 @@ public class RRUtil {
     public static Collection<RRMount_> findAllMounts(Project project) {
         RRFile file = RRUtil.findRRFile("descr_mount.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrMount.class))
+            .map(it -> it.getMount_List());
 
-        return file.findChildByClass(RRDescrMount.class).getMount_List();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllMountsAsStrings(Project project) {
@@ -276,11 +279,11 @@ public class RRUtil {
     public static Collection<RRShip_> findAllShips(Project project) {
         RRFile file = RRUtil.findRRFile("descr_ship.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrShip.class))
+            .map(it -> it.getShip_List());
 
-        return file.findChildByClass(RRDescrShip.class).getShip_List();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllShipsAsStrings(Project project) {
@@ -291,20 +294,18 @@ public class RRUtil {
 
     public static Collection<RRModel_> findAllModels(Project project) {
         RRFile battle_file = RRUtil.findRRFile("descr_model_battle.txt", project);
-        List<RRModel_> battle_models = new ArrayList<>();
-        if (battle_file != null) {
-            battle_models = battle_file.findChildByClass(RRDescrModelBattle.class).getModel_List();
-        }
+        var battle_models = Optional.ofNullable(battle_file)
+            .map(it -> it.findChildByClass(RRDescrModelBattle.class))
+            .map(it -> it.getModel_List());
 
         RRFile strat_file = RRUtil.findRRFile("descr_model_strat.txt", project);
-        List<RRModel_> strat_models = new ArrayList<>();
-        if (battle_file != null) {
-            strat_models = strat_file.findChildByClass(RRDescrModelStrat.class).getModel_List();
-        }
+        var strat_models = Optional.ofNullable(strat_file)
+            .map(it -> it.findChildByClass(RRDescrModelStrat.class))
+            .map(it -> it.getModel_List());
 
         return Stream.concat(
-            battle_models.stream(),
-            strat_models.stream()
+            battle_models.orElse(new ArrayList<>()).stream(),
+            strat_models.orElse(new ArrayList<>()).stream()
         ).collect(Collectors.toList());
     }
 
@@ -317,11 +318,11 @@ public class RRUtil {
     public static Collection<RREthnicityMakeup_> findAllEthnicityMakeups(Project project) {
         RRFile file = RRUtil.findRRFile("descr_unit_variation.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
+        var opt = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrUnitVariation.class))
+            .map(it -> it.getEthnicityMakeup_List());
 
-        return file.findChildByClass(RRDescrUnitVariation.class).getEthnicityMakeup_List();
+        return opt.orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllEthnicityMakeupsAsStrings(Project project) {
@@ -333,13 +334,11 @@ public class RRUtil {
     public static Collection<RRFactionNameDecl> findAllFactions(Project project) {
         RRFile file = RRUtil.findRRFile("descr_sm_factions.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRDescrSmFactions.class)
-            .getFactionDeclList().stream()
-            .map(it -> it.getFactionNameDecl())
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrSmFactions.class))
+            .map(it -> it.getFactionDeclList())
+            .orElse(new ArrayList<>())
+            .stream().map(it -> it.getFactionNameDecl())
             .collect(Collectors.toList());
     }
 
@@ -352,13 +351,11 @@ public class RRUtil {
     public static Collection<RRReligionNameDecl> findAllReligions(Project project) {
         RRFile file = RRUtil.findRRFile("descr_beliefs.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRDescrBeliefs.class)
-            .getReligion_List().stream()
-            .map(it -> it.getReligionNameDecl())
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrBeliefs.class))
+            .map(it -> it.getReligion_List())
+            .orElse(new ArrayList<>())
+            .stream().map(it -> it.getReligionNameDecl())
             .collect(Collectors.toList());
     }
 
@@ -371,13 +368,10 @@ public class RRUtil {
     public static Collection<RRFactionGroup> findAllFactionGroups(Project project) {
         RRFile file = RRUtil.findRRFile("descr_faction_groups.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRDescrFactionGroups.class)
-            .getFactionGroupList().stream()
-            .collect(Collectors.toList());
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrFactionGroups.class))
+            .map(it -> it.getFactionGroupList())
+            .orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllFactionGroupsAsStrings(Project project) {
@@ -389,11 +383,10 @@ public class RRUtil {
     public static Collection<RRCultureNameDecl> findAllCultures(Project project) {
         RRFile file = RRUtil.findRRFile("descr_cultures.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRDescrCultures.class).getCultureNameDeclList();
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrCultures.class))
+            .map(it -> it.getCultureNameDeclList())
+            .orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllCulturesAsStrings(Project project) {
@@ -405,12 +398,12 @@ public class RRUtil {
     public static Collection<RRAmbientObjectNameDecl> findAllAmbientObjects(Project project) {
         RRFile file = RRUtil.findRRFile("descr_sm_ambient_objects.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRDescrSmAmbientObjects.class).getAmbientObjectDeclList().stream()
-            .map(it -> it.getAmbientObjectNameDecl()).collect(Collectors.toList());
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrSmAmbientObjects.class))
+            .map(it -> it.getAmbientObjectDeclList())
+            .orElse(new ArrayList<>())
+            .stream().map(it -> it.getAmbientObjectNameDecl())
+            .collect(Collectors.toList());
     }
 
     public static Collection<String> findAllAmbientObjectsAsStrings(Project project) {
@@ -422,22 +415,18 @@ public class RRUtil {
     public static Collection<RRResourceNameDecl> findAllResources(boolean hidden, Project project) {
         RRFile file = RRUtil.findRRFile("descr_sm_resources.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
         Predicate<RRResourceDecl> filter = it -> true;
         if (hidden) {
             filter = it -> Util.unquote(it.getResourceType().getText()).equals("hidden");
         }
 
-        List<RRResourceNameDecl> resources = file.findChildByClass(RRDescrSmResources.class)
-            .getResourceDeclList().stream()
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRDescrSmResources.class))
+            .map(it -> it.getResourceDeclList())
+            .orElse(new ArrayList<>()).stream()
             .filter(filter)
             .map(it -> it.getResourceNameDecl())
             .collect(Collectors.toList());
-
-        return resources;
     }
 
     public static Collection<String> findAllResourcesAsStrings(boolean hidden, Project project) {
@@ -449,11 +438,10 @@ public class RRUtil {
     public static Collection<RRBuildingTree> findAllBuildingTrees(Project project) {
         RRFile file = RRUtil.findRRFile("export_descr_buildings.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRExportDescrBuildings.class).getBuildingTreeList();
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportDescrBuildings.class))
+            .map(it -> it.getBuildingTreeList())
+            .orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllBuildingTreesAsStrings(Project project) {
@@ -465,12 +453,10 @@ public class RRUtil {
     public static Collection<RRBuildingLevel> findAllBuildingLevels(Project project) {
         RRFile file = RRUtil.findRRFile("export_descr_buildings.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRExportDescrBuildings.class)
-            .getBuildingTreeList().stream()
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportDescrBuildings.class))
+            .map(it -> it.getBuildingTreeList())
+            .orElse(new ArrayList<>()).stream()
             .flatMap(it -> it.getBuildingLevelList().stream())
             .collect(Collectors.toList());
     }
@@ -484,11 +470,10 @@ public class RRUtil {
     public static Collection<RRAncillaryDef> findAllAncillaries(Project project) {
         RRFile file = RRUtil.findRRFile("export_descr_ancillaries.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRExportDescrAncillaries.class).getAncillaryDefList();
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportDescrAncillaries.class))
+            .map(it -> it.getAncillaryDefList())
+            .orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllAncillariesAsStrings(Project project) {
@@ -500,11 +485,10 @@ public class RRUtil {
     public static Collection<RRTraitDef> findAllTraits(Project project) {
         RRFile file = RRUtil.findRRFile("export_descr_character_traits.txt", project);
 
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        return file.findChildByClass(RRExportDescrCharacterTraits.class).getTraitDefList();
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportDescrCharacterTraits.class))
+            .map(it -> it.getTraitDefList())
+            .orElse(new ArrayList<>());
     }
 
     public static Collection<String> findAllTraitsAsStrings(Project project) {
@@ -526,6 +510,24 @@ public class RRUtil {
         }
 
         return name;
+    }
+
+    public static boolean isScript(PsiFile file) {
+        return file.getText().contains("script\n");
+    }
+
+    public static Collection<PsiElement> collectLeaves(
+        PsiElement element,
+        Function<PsiElement, Collection<PsiElement>> mapper,
+        Collection<PsiElement> acc
+    ) {
+        acc.addAll(mapper.apply(element));
+
+        for (var child : element.getChildren()) {
+            collectLeaves(child, mapper, acc);
+        }
+
+        return acc;
     }
 
     public static Collection<PsiElement> getSiblingsBetween(PsiElement start, PsiElement end) {

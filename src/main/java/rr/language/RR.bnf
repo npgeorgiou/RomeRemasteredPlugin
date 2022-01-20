@@ -349,7 +349,6 @@
       STAGE_GAMES="stage_games"
       AGENT_LIMIT_SETTLEMENT="agent_limit_settlement"
       DUMMY="dummy"
-      CAPABILITY_TRAITSANDRETINUE="Capability_TraitsAndRetinue"
       AI_DESTRUCTION_HINT="ai_destruction_hint"
       RECRUIT="recruit"
       AGENT="agent"
@@ -1773,7 +1772,8 @@
       NEUTRAL="neutral"
 
       // †ÎöÈ.íëé are in descr_names. Maybe just typos.
-      ID = "regexp:[a-zA-Z0-9_+\-&!?'†ÎöÈ.íëé]+"
+      // # is used for macro string interpolation
+      ID = "regexp:[a-zA-Z0-9_+\-#&!?'†ÎöÈ.íëé]+"
     ]
 }
 
@@ -2098,7 +2098,7 @@ private effect_capability_enum ::= TAXABLE_INCOME_BONUS|TRADE_BASE_INCOME_BONUS|
                                    EXTRA_RECRUITMENT_POINTS|EXTRA_CONSTRUCTION_POINTS|
                                    WEAPON_SIMPLE|WEAPON_BLADED|WEAPON_MISSILE|WEAPON_SIEGE|WEAPON_OTHER|ARMOUR|UPGRADE_BODYGUARD|
                                    STAGE_RACES|STAGE_GAMES|
-                                   DUMMY CAPABILITY_TRAITSANDRETINUE
+                                   DUMMY ID
 requirement ::= REQUIRES composite_c
 private composite_c ::= maybe_negated_c ((AND|OR) maybe_negated_c)* {pin=1}
 private maybe_negated_c ::= NOT? building_condition
@@ -3415,7 +3415,7 @@ declare_persistent_counter_ ::= DECLARE_PERSISTENT_COUNTER counter_name_decl {pi
 inc_counter_ ::= INC_COUNTER counter_ref INT {pin=1}
 set_counter_ ::= SET_COUNTER counter_ref (INT|counter_ref) {pin=1}
 counter_operation_ ::= COUNTER_OPERATION counter_ref EQUALS counter_ref math_op counter_ref {pin=1}
-store_counter_ ::= STORE_COUNTER counter_ref scope counter_ref {pin=1}
+store_counter_ ::= STORE_COUNTER counter_ref scope counter_name_decl {pin=1}
 retrieve_counter_ ::= RETRIEVE_COUNTER counter_ref scope counter_ref {pin=1}
 prepare_for_battle_ ::= PREPARE_FOR_BATTLE {pin=1}
 declare_show_me_ ::= DECLARE_SHOW_ME {pin=1}
@@ -3599,7 +3599,7 @@ counter_ref ::= safe_id {methods=[setName getReference]}
 private number ::= INT|FLOAT
 
 // #### Files ####
-txt_file_ ::= TXT_FILE {methods=[setName getReference]}
+txt_file_ ::= TXT_FILE|ID {methods=[setName getReference]} // See RRCompletionContributor::beforeCompletion
 tga_file_ ::= TGA_FILE|safe_id {methods=[setName getReference]}
 cas_file_ ::= CAS_FILE {methods=[setName getReference]}
 wmv_file_ ::= WMV_FILE {methods=[setName getReference]}
@@ -3624,7 +3624,6 @@ color_ ::= 'blue'
 
 // #### metas ####
 private meta local_or ::= LOCAL|<<item>>
-private meta local_character_or ::= LOCAL|<<item>>
 
 private meta list ::= <<item>> (COMMA <<item>>)*
 private meta optional_commas_list ::= <<item>> (COMMA? <<item>>)*
