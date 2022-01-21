@@ -18,7 +18,6 @@
       EXPORT_DESCR_BUILDINGS_MARKER='regexp:;export_descr_buildings.txt.*'
       DESCR_CULTURES_MARKER='regexp:;descr_cultures.txt.*'
       DESCR_MERCENARIES_MARKER='regexp:;descr_mercenaries.txt.*'
-      DESCR_NAMES_MARKER='regexp:;descr_names.txt.*'
       DESCR_UNIT_VARIATION_MARKER='regexp:;descr_unit_variation.txt.*'
       DESCR_REGIONS_MARKER='regexp:;descr_regions.txt.*'
       DESCR_SM_MAJOR_EVENTS_MARKER='regexp:;descr_sm_major_events.txt.*'
@@ -410,10 +409,6 @@
       MAX = "max"
       INITIAL = "initial"
 
-      // descr_names
-      CHARACTERS_LC = "characters"
-      SURNAMES = "surnames"
-      WOMEN = "women"
 
       // descr_regions
       LEGION = "legion"
@@ -1771,9 +1766,8 @@
       ALLIED="allied"
       NEUTRAL="neutral"
 
-      // †ÎöÈ.íëé are in descr_names. Maybe just typos.
       // # is used for macro string interpolation
-      ID = "regexp:[a-zA-Z0-9_+\-#&!?'†ÎöÈ.íëé]+"
+      ID = "regexp:[a-zA-Z0-9_+\-#&!?']+"
     ]
 }
 
@@ -1784,7 +1778,6 @@ RRFile ::= descr_strat|
           export_descr_character_traits|
           descr_regions|
           descr_mercenaries|
-          descr_names|
           descr_unit_variation|
           export_buildings|
           descr_cultures|
@@ -2198,18 +2191,6 @@ mercenary_pool ::= POOL name_
 mercenary_pool_regions ::= REGIONS (region_ref COMMA?)+
 private mercenary_pool_unit ::= UNIT unit_ref COMMA EXP INT COST INT REPLENISH FLOAT DASH FLOAT MAX INT INITIAL INT
 // ############### descr_mercenaries end #################################
-
-// ############### descr_names start ###############################
-descr_names ::= DESCR_NAMES_MARKER
-                names_for_faction+
-names_for_faction ::= FACTION COLON faction_ref EOL*
-                    CHARACTERS_LC EOL*
-                      (name_ EOL)*
-                    (SURNAMES EOL*
-                      (name_ EOL)*)?
-                    WOMEN EOL*
-                      (name_ EOL*)*
-// ############### descr_names end #################################
 
 // ############### descr_regions start ###############################
 descr_regions ::= DESCR_REGIONS_MARKER

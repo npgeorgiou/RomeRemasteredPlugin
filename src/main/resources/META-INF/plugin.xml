@@ -33,11 +33,6 @@
         <iconProvider implementation="rr.language.RRIconProvider"/>
 
         <!-- Inspections -->
-        <localInspection language="RomeRemastered" shortName="Missing_name_text"
-                         displayName="Name not existing in names.txt" groupName="RR"
-                         enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.missingTextMapping.DescrNames"/>
-
         <localInspection language="RomeRemastered" shortName="Rebel_factions_missing_enums_and_descriptions"
                          displayName="Rebel factions missing enums and descriptions" groupName="RR"
                          enabledByDefault="true" level="WARNING"
@@ -53,10 +48,6 @@
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.missingTextMapping.DescrTraits"/>
 
-        <localInspection language="RomeRemastered" shortName="Names_not_used"
-                         displayName="Name not used in descr_names.txt" groupName="RR"
-                         enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.NamesNotInDescrNames"/>
         <localInspection language="RomeRemastered" shortName="Duplicate_mercenary_pool_regions"
                          displayName="Duplicate mercenary pool regions" groupName="RR"
                          enabledByDefault="true" level="WARNING"
@@ -117,12 +108,12 @@
         <action
                 id="rr.language.actions.ExpandMacros"
                 class="rr.language.actions.ExpandMacros"
-                text="PLUGIN: Expand macros"
+                text="PLUGIN: Expand Macros"
                 description="Expand macros"
 
         >
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-            <keyboard-shortcut first-keystroke="shift G" keymap="$default"/>
+            <keyboard-shortcut first-keystroke="alt G" keymap="$default"/>
         </action>
         <action
                 id="rr.language.actions.RemoveFileTypeComments"

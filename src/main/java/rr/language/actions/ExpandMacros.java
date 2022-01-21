@@ -47,11 +47,15 @@ public class ExpandMacros extends AnAction {
         }
 
         var text = copy.getText();
+
         var interpolations = StringUtils.substringsBetween(text, "#", "#");
-        Set<String> uniqueInterpolations = new HashSet<>(Arrays.asList(interpolations));
-        for (var interpolation : uniqueInterpolations) {
-            text = text.replace("#" + interpolation + "#", interpolation);
+        if (interpolations != null) {
+            Set<String> uniqueInterpolations = new HashSet<>(Arrays.asList(interpolations));
+            for (var interpolation : uniqueInterpolations) {
+                text = text.replace("#" + interpolation + "#", interpolation);
+            }
         }
+
 
         var path = file.getPath().replace("#", "@");
         try {

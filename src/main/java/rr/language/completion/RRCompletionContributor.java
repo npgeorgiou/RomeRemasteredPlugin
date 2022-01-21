@@ -1599,7 +1599,20 @@ public class RRCompletionContributor extends CompletionContributor {
             new Node(new HardcodedValues(conditions())));
 
         Node command = new RootNode(
-            any(inside(RRTypes.SCRIPT_), inside(RRTypes.IF_)).and(beforeNewline()),
+            any(
+                inside(RRTypes.SCRIPT_),
+                inside(RRTypes.IF_),
+                inside(RRTypes.IF_NOT_),
+                inside(RRTypes.MONITOR_),
+                inside(RRTypes.MONITOR_CONDITIONS_),
+                inside(RRTypes.MONITOR_EVENT),
+                inside(RRTypes.SPAWN_BATTLE),
+                inside(RRTypes.BENCHMARK_),
+                inside(RRTypes.WHILE_),
+                inside(RRTypes.WHILE_NOT_),
+                inside(RRTypes.FOR_EACH_),
+                inside(RRTypes.MACRO_DEF_)
+            ).and(beforeNewline()),
             new Node(new HardcodedValues(commands())));
 
         // console_command

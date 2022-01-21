@@ -32,7 +32,7 @@ FLOAT = [\+\-]?[0-9]*\.[0-9]+
 STR_CHAR = [^\"\r\n\\]
 STRING = \" {STR_CHAR}* \"
 
-DIR_OR_FILE=[\w\d_#&-]+
+DIR_OR_FILE=[\w\d_#@&-]+
 PATH = {DIR_OR_FILE}([/\\]{DIR_OR_FILE})+
 TXT_FILE=({PATH}|{DIR_OR_FILE})\.(txt|TXT)
 TGA_FILE=({PATH}|{DIR_OR_FILE})\.(tga|TGA)
@@ -40,9 +40,8 @@ CAS_FILE=({PATH}|{DIR_OR_FILE})\.(cas|CAS)
 RTM_FILE=({PATH}|{DIR_OR_FILE})\.(rtm|RTM)
 WMV_FILE=({PATH}|{DIR_OR_FILE})\.(wmv|WMV)
 
-// †ÎöÈ.íëé are in descr_names. Maybe just typos.
 // # is used for macro string interpolation
-ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[:jletterdigit:])* ([:jletterdigit:])*
+ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigit:])*
 
 %xstate TEXT_MAPPING
 %xstate TEXT_MAPPING_NO_KEYWORDS
@@ -55,7 +54,6 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[
 %state DESCR_MERCENARIES
 %state EXPORT_DESCR_ANCILLARIES
 %state EXPORT_DESCR_CHARACTER_TRAITS
-%state DESCR_NAMES
 %state DESCR_CHARACTER
 %state DESCR_MOUNT
 %state DESCR_UNIT_VARIATION
@@ -81,14 +79,11 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|\†|\Î|\ö|\È|\.|\í|\ë|\é|[
 %state SCRIPTS_EVENTS_CONDITIONS
 
 %%
-<DESCR_NAMES>{EOL_WS} {return RRTypes.EOL;}
-
 ";descr_strat.txt"[^\r\n]*                     {yybegin(DESCR_STRAT); return RRTypes.DESCR_STRAT_MARKER;}
 ";export_descr_buildings.txt"[^\r\n]*          {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.EXPORT_DESCR_BUILDINGS_MARKER;}
 ";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
 ";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
 ";descr_mercenaries.txt"[^\r\n]*               {yybegin(DESCR_MERCENARIES); return RRTypes.DESCR_MERCENARIES_MARKER;}
-";descr_names.txt"[^\r\n]*                     {yybegin(DESCR_NAMES); return RRTypes.DESCR_NAMES_MARKER;}
 ";descr_unit_variation.txt"[^\r\n]*            {yybegin(DESCR_UNIT_VARIATION); return RRTypes.DESCR_UNIT_VARIATION_MARKER;}
 ";descr_regions.txt"[^\r\n]*                   {return RRTypes.DESCR_REGIONS_MARKER;}
 ";descr_sm_major_events.txt"[^\r\n]*           {return RRTypes.DESCR_SM_MAJOR_EVENTS_MARKER;}
@@ -600,15 +595,6 @@ true|false       {return RRTypes.BOOLEAN;}
     "max"              {return RRTypes.MAX;}
     "initial"          {return RRTypes.INITIAL;}
     {ID}               {return RRTypes.ID;}
-}
-
-<DESCR_NAMES>
-{
-    "faction"      {return RRTypes.FACTION;}
-    "characters"   {return RRTypes.CHARACTERS_LC;}
-    "surnames"     {return RRTypes.SURNAMES;}
-    "women"        {return RRTypes.WOMEN;}
-    {ID}           {return RRTypes.ID;}
 }
 
 <DESCR_UNIT_VARIATION>

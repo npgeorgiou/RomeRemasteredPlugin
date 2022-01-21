@@ -674,11 +674,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.MAX,
         RRTypes.INITIAL,
 
-        // descr_names
-        RRTypes.CHARACTERS_LC,
-        RRTypes.SURNAMES,
-        RRTypes.WOMEN,
-
         // descr_unit_variation
         RRTypes.SKIN,
         RRTypes.ETHNICITIES,

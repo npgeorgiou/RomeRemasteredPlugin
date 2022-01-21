@@ -35,7 +35,6 @@ public class RemoveFileTypeComments extends AnAction {
         "descr_mercenaries.txt",
         "descr_strat.txt",
         "descr_cultures.txt",
-        "descr_names.txt",
         "descr_sm_major_events.txt",
         "descr_unit_variation.txt",
         "export_descr_ancillaries.txt",
