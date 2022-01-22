@@ -1718,10 +1718,10 @@
       FOR_EACH="for_each"
       IN="in"
       END_FOR="end_for"
-      MACRO="macro"
-      END_MACRO="end_macro"
-      MACRO_DEF="macro_def"
-      END_MACRO_DEF="end_macro_def"
+      MACRO="#macro"
+      END_MACRO="#end_macro"
+      MACRO_DEF="#macro_def"
+      END_MACRO_DEF="#end_macro_def"
       WORLD="world"
 
       // command params
@@ -1766,7 +1766,7 @@
       ALLIED="allied"
       NEUTRAL="neutral"
 
-      // # is used for macro string interpolation
+      // # is used for macros
       ID = "regexp:[a-zA-Z0-9_+\-#&!?']+"
     ]
 }
@@ -2822,10 +2822,12 @@ statement ::= macro_|macro_def_|control_structure|command_
 private not_statement ::= !statement
 
 private control_structure ::= if_|if_not_|monitor_|monitor_conditions_|monitor_event_|spawn_battle_|benchmark_|while_|while_not_|for_each_|return_
-macro_ ::= MACRO macro_name macro_arg* END_MACRO  {pin=1} // that's my own thing.
+
+// macros are my own thing.
+macro_ ::= MACRO macro_name macro_arg* END_MACRO  {pin=1}
 macro_def_ ::= MACRO_DEF macro_name macro_param*
                  statement*
-               END_MACRO_DEF {pin=1} // that's my own thing.
+               END_MACRO_DEF {pin=1}
 macro_name ::= ID
 macro_param ::= ID
 macro_arg ::= ID

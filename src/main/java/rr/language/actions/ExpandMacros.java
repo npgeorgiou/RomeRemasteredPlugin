@@ -46,21 +46,10 @@ public class ExpandMacros extends AnAction {
             macroDef.delete();
         }
 
-        var text = copy.getText();
-
-        var interpolations = StringUtils.substringsBetween(text, "#", "#");
-        if (interpolations != null) {
-            Set<String> uniqueInterpolations = new HashSet<>(Arrays.asList(interpolations));
-            for (var interpolation : uniqueInterpolations) {
-                text = text.replace("#" + interpolation + "#", interpolation);
-            }
-        }
-
-
         var path = file.getPath().replace("#", "@");
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-            writer.write(text);
+            writer.write(copy.getText());
 
             writer.close();
         } catch (IOException e) {

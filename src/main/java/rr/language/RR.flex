@@ -40,7 +40,7 @@ CAS_FILE=({PATH}|{DIR_OR_FILE})\.(cas|CAS)
 RTM_FILE=({PATH}|{DIR_OR_FILE})\.(rtm|RTM)
 WMV_FILE=({PATH}|{DIR_OR_FILE})\.(wmv|WMV)
 
-// # is used for macro string interpolation
+// # is used for macros
 ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigit:])*
 
 %xstate TEXT_MAPPING
@@ -1745,10 +1745,10 @@ true|false       {return RRTypes.BOOLEAN;}
     "end_while"                                  {return RRTypes.END_WHILE;}
     "for_each"                                   {return RRTypes.FOR_EACH;}
     "end_for"                                    {return RRTypes.END_FOR;}
-    "macro"                                      {return RRTypes.MACRO;}
-    "end_macro"                                  {return RRTypes.END_MACRO;}
-    "macro_def"                                  {return RRTypes.MACRO_DEF;}
-    "end_macro_def"                              {return RRTypes.END_MACRO_DEF;}
+    "#macro"                                     {return RRTypes.MACRO;}
+    "#end_macro"                                 {return RRTypes.END_MACRO;}
+    "#macro_def"                                 {return RRTypes.MACRO_DEF;}
+    "#end_macro_def"                             {return RRTypes.END_MACRO_DEF;}
     "in"                                         {return RRTypes.IN;}
     "world"                                      {return RRTypes.WORLD;}
     "settlement"                                 {return RRTypes.SETTLEMENT;}
