@@ -113,12 +113,12 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 ";descr_animals.txt"[^\r\n]*                   {yybegin(DESCR_ANIMALS);return RRTypes.DESCR_ANIMALS_MARKER;}
 
 // text mapping markers
-";export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
-";landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-";names.txt"[^\r\n]*                           {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-";rebel_faction_descr.txt"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-";export_vnvs.txt"[^\r\n]*                     {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-";export_ancillaries.txt"[^\r\n]*              {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
+"¬landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬names.txt"[^\r\n]*                           {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬rebel_faction_descr.txt"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬export_vnvs.txt"[^\r\n]*                     {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_VNVS_MARKER;}
+"¬export_ancillaries.txt"[^\r\n]*              {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_ANCILLARIES_MARKER;}
 
 // enum markers
 ";rebel_faction_descr_enums.txt"[^\r\n]*       {yybegin(ENUMS); return RRTypes.ENUMS_MARKER;}
@@ -345,7 +345,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "sea_faring"                    {return RRTypes.SEA_FARING;}
     "cantabrian_circle"             {return RRTypes.CANTABRIAN_CIRCLE;}
     "general_unit"                  {return RRTypes.GENERAL_UNIT;}
-    "general_unit_upgrade \"marian_reforms\"" {return RRTypes.GENERAL_UNIT_UPGRADE;}
+    "general_unit_upgrade"          {return RRTypes.GENERAL_UNIT_UPGRADE;}
     "mercenary_unit"                {return RRTypes.MERCENARY_UNIT;}
     "druid"                         {return RRTypes.DRUID;}
     "screeching_women"              {return RRTypes.SCREECHING_WOMEN;}
@@ -503,7 +503,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "merchant"                      {return RRTypes.MERCHANT;}
     "upgrades"                      {return RRTypes.UPGRADES;}
     "bonus"                         {return RRTypes.BONUS;}
-    "port"                          {return RRTypes.PORT;}
+//    "port"                          {return RRTypes.PORT;}
     "building_factions"             {return RRTypes.BUILDING_FACTIONS;}
     "religion"                      {return RRTypes.RELIGION;}
     "majority_religion"             {return RRTypes.MAJORITY_RELIGION;}

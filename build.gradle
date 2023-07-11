@@ -8,8 +8,8 @@ intellij {
 }
 
 apply plugin: 'java'
-sourceCompatibility = 10
-targetCompatibility = 10
+sourceCompatibility = 11
+targetCompatibility = 11
 
 sourceSets.main.java.srcDirs 'src/main/gen'
 
@@ -36,4 +36,10 @@ patchPluginXml {
 }
 test {
     useJUnitPlatform()
+}
+tasks {
+    runIde {
+        jvmArgs(["-Didea.max.intellisense.filesize=20000", "-Xmx3G"])
+        maxHeapSize = "3g"
+    }
 }

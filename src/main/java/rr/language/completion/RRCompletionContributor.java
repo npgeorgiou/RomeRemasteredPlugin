@@ -1161,6 +1161,69 @@ public class RRCompletionContributor extends CompletionContributor {
         };
     }
 
+    private String[] characterAttributes() {
+        return new String[]{
+            "Command",
+            "Influence",
+            "Management",
+            "Subterfuge",
+            "Finance",
+            "Conditional",
+            "ElephantCommand",
+            "MovementPoints",
+            "Loyalty",
+            "Fertility",
+            "PersonalSecurity",
+            "PublicSecurity",
+            "Negotiation",
+            "HitPoints",
+            "Attack",
+            "Defence",
+            "Ambush",
+            "Law",
+            "SiegeAttack",
+            "SiegeDefence",
+            "Unrest",
+            "Construction",
+            "LineOfSight",
+            "Trading",
+            "Squalor",
+            "BribeResistance",
+            "Bribery",
+            "TrainingAgents",
+            "Farming",
+            "Mining",
+            "SiegeEngineering",
+            "NightBattle",
+            "NavalCommand",
+            "InfantryCommand",
+            "CavalryCommand",
+            "Combat_V_Roman",
+            "Combat_V_Greek",
+            "Combat_V_Slave",
+            "Combat_V_Carthaginian",
+            "Combat_V_Eastern",
+            "Combat_V_Barbarian",
+            "Combat_V_Egyptian",
+            "Combat_V_Nomad",
+            "Combat_V_Hun",
+            "TaxCollection",
+            "PopularStanding",
+            "SenateStanding",
+            "LocalPopularity",
+            "Electability",
+            "Looting",
+            "TrainingAnimalUnits",
+            "BodyguardValour",
+            "BattleSurgery",
+            "TrainingUnits",
+            "SlaveTrading",
+            "Health",
+            "GrainTrading",
+            "FootInTheDoor"
+        };
+    }
+
     public RRCompletionContributor() {
         // descr_strat
 
@@ -1535,13 +1598,18 @@ public class RRCompletionContributor extends CompletionContributor {
                 null,
                 new Ancillaries()));
 
+        // ExcludedAncillaries {id}, {id}
+        Node export_descr_ancillaries_effect = new RootNode(
+            psiElement(RRTypes.EFFECT),
+            new Node(new HardcodedValues(characterAttributes())));
+
         // AcquireAncillary {id}
         Node export_descr_ancillaries_acquire = new RootNode(
             psiElement(RRTypes.ACQUIREANCILLARY),
             new Node(
                 new Ancillaries()));
 
-        // export_descr_ancillaries
+        // export_descr_character_traits
         // AntiTraits {id}, {id}
         Node export_descr_traits_antitraits = new RootNode(psiElement(RRTypes.ANTITRAITS),
             new RepeatingNode(
@@ -1590,9 +1658,14 @@ public class RRCompletionContributor extends CompletionContributor {
             new Node(new HardcodedValues(events())));
 
         // monitor_event
-        Node monitor_event = new RootNode(psiElement(RRTypes.MONITOR_EVENT),
-            new Node(any(events()), new HardcodedValues(events()),
-                new Node(new HardcodedValues(conditions()))));
+        Node monitor_event = new RootNode(
+            psiElement(RRTypes.MONITOR_EVENT),
+            new Node(
+                any(events()),
+                new HardcodedValues(events()),
+                new Node(new HardcodedValues(conditions()))
+            )
+        );
 
         // if
         Node if_ = new RootNode(psiElement(RRTypes.IF),
@@ -1627,6 +1700,7 @@ public class RRCompletionContributor extends CompletionContributor {
         extendFor(descr_strat_traits);
         extendFor(descr_strat_ancillaries);
         extendFor(descr_strat_core_attitudes_and_faction_relationships);
+
         extendFor(export_descr_unit_attributes);
         extendFor(export_descr_unit_formation);
         extendFor(export_descr_unit_stat_pri);
@@ -1636,15 +1710,20 @@ public class RRCompletionContributor extends CompletionContributor {
         extendFor(export_descr_unit_stat_mental);
         extendFor(export_descr_unit_ownership);
         extendFor(export_descr_unit_ethnicity);
+
         extendFor(export_descr_buildings_settlement_level);
         extendFor(export_descr_buildings_tag);
         extendFor(export_descr_buildings_classification);
         extendFor(export_descr_buildings_requires);
         extendFor(export_descr_buildings_capability);
+
         extendFor(export_descr_ancillaries_excluded);
+        extendFor(export_descr_ancillaries_effect);
         extendFor(export_descr_ancillaries_acquire);
+
         extendFor(export_descr_traits_antitraits);
         extendFor(export_descr_traits_affects);
+
         extendFor(descr_mercenaries_regions);
         extendFor(unit);
         extendFor(when_to_test);

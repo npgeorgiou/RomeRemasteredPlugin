@@ -19,7 +19,7 @@ public class DescrAncillaries extends Inspector {
         return new RRVisitor() {
             @Override
             public void visitAncillaryDef(@NotNull RRAncillaryDef element) {
-                Collection<String> uiTextKeys = RRUtil.findTextMappingsInFile("export_ancillaries.txt", element.getProject()).stream()
+                Collection<String> uiTextKeys = RRUtil.findAllAncillaryDescriptions(element.getProject()).stream()
                     .map(it -> it.getId().getText())
                     .collect(Collectors.toList());
 

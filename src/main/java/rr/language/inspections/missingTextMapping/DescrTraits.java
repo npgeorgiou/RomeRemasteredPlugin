@@ -22,7 +22,7 @@ public class DescrTraits extends Inspector {
         return new RRVisitor() {
             @Override
             public void visitTraitDef(@NotNull RRTraitDef element) {
-                Collection<String> uiTextKeys = RRUtil.findTextMappingsInFile("export_vnvs.txt", element.getProject()).stream()
+                Collection<String> uiTextKeys = RRUtil.findAllTraitDescriptions(element.getProject()).stream()
                     .map(it -> it.getId().getText())
                     .collect(Collectors.toList());
 

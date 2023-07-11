@@ -50,7 +50,9 @@
       // text mapping markers
       // TODO: Do also buildings text in this generic way?
       EXPORT_BUILDINGS_MARKER='regexp:;export_buildings.txt.*'
-      TEXT_MAPPING_MARKER='regexp:;(landmarks|names|rebel_faction_descr).txt.*'
+      TEXT_MAPPING_MARKER='regexp:¬(landmarks|names|rebel_faction_descr).txt.*'
+      EXPORT_VNVS_MARKER='regexp:¬export_vnvs.txt.*'
+      EXPORT_ANCILLARIES_MARKER='regexp:¬export_ancillaries.txt.*'
 
       // Keywords that can also be strings.
       LOCAL='regexp:"local"|local'
@@ -1804,6 +1806,8 @@ RRFile ::= descr_strat|
           descr_sm_ambient_objects|
           descr_beliefs|
           text_mapping_format|
+          export_ancillaries|
+          export_vnvs|
           enums_format|
           kv_format|
           script_|
@@ -1877,7 +1881,7 @@ settlement_item ::= SETTLEMENT OCB
                     CCB
                     {methods=[name]}
 settlement_level ::= VILLAGE|TOWN|LARGE_TOWN|CITY|LARGE_CITY|HUGE_CITY
-settlement_plan ::= DEFAULT_SET|
+settlement_plan ::= DEFAULT_SET|ID
 
 building_item ::= BUILDING OCB building_info CCB {pin=2}
 private building_info ::= TYPE building_tree_ref building_level_ref  {pin=1 recoverWhile=not_CCB}
@@ -1939,7 +1943,7 @@ unit_item_ ::= TYPE unit_name_decl
                CATEGORY unit_category
                CLASS unit_class
                VOICE_TYPE ID culture_ref?
-               (VOICE_INDEXES INT INT INT)?
+               (VOICE_INDEXES INT INT? INT?)?
                rebalance_block
                (RECRUIT_PRIORITY_OFFSET INT)?
                OWNERSHIP <<list faction_or_culture_ref>> COMMA?
@@ -1997,7 +2001,7 @@ rebalance_block ::= (soldier_|soldiers_)
 unit_attribute ::= hide_type|
                     FRIGHTEN_FOOT|FRIGHTEN_MOUNTED|CAN_RUN_AMOK|WARCRY|
                     CAN_SAP|HARDY|VERY_HARDY|POWER_CHARGE|SEA_FARING|CANTABRIAN_CIRCLE|
-                    GENERAL_UNIT|GENERAL_UNIT_UPGRADE|COMMAND|MERCENARY_UNIT|DRUID|SCREECHING_WOMEN|
+                    GENERAL_UNIT|GENERAL_UNIT_UPGRADE STRING|COMMAND|MERCENARY_UNIT|DRUID|SCREECHING_WOMEN|
                     NO_CUSTOM|IS_PEASANT|CAN_HORDE|CAN_SWIM|LEGIONARY_NAME
 list_of_unit_attributes ::= <<list unit_attribute>> COMMA? {recoverWhile=not_formation}
 private not_formation ::= !FORMATION
@@ -2077,13 +2081,17 @@ building_level ::= building_level_name_decl requirement?
 building_level_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 building_level_ref ::= ID {methods=[setName getReference]}
 capability_ ::= (unit_recruit_capability|agent_recruit_capability|effect_capability) {recoverWhile=capability_recover}
-private capability_recover ::= !(capability_|requirement|CCB)
-private unit_recruit_capability ::=  RECRUIT str_unit_ref INT
-private agent_recruit_capability ::=  AGENT agent_type INT
-private effect_capability ::= (effect_capability_enum|RELIGIOUS_BELIEF religion_ref|AGENT_LIMIT_SETTLEMENT agent_type) BONUS? number
+private capability_recover ::= !(requirement|capability_|CCB)
+private unit_recruit_capability ::=  RECRUIT str_unit_ref INT {pin=1}
+private agent_recruit_capability ::=  AGENT agent_type INT    {pin=1}
+private effect_capability ::= (
+                                effect_capability_enum|
+                                RELIGIOUS_BELIEF religion_ref|
+                                AGENT_LIMIT_SETTLEMENT agent_type
+                              ) BONUS? number                 {pin=1}
 private effect_capability_enum ::= TAXABLE_INCOME_BONUS|TRADE_BASE_INCOME_BONUS|TRADE_LEVEL_BONUS|TRADE_FLEET|FARMING_LEVEL|ROAD_LEVEL|MINE_RESOURCE|
                                    HAPPINESS_BONUS|LAW_BONUS|
-                                   POPULATION_HEALTH_BONUS|POPULATION_GROWTH_BONUS|
+                                   POPULATION_HEALTH_BONUS|POPULATION_GROWTH_BONUS|POPULATION_LOYALTY_BONUS|
                                    WALL_LEVEL|TOWER_LEVEL|GATE_STRENGTH|GATE_DEFENCES|
                                    RECRUITS_EXP_BONUS|RECRUITS_MORALE_BONUS|
                                    CONSTRUCTION_COST_BONUS_MILITARY|CONSTRUCTION_COST_BONUS_RELIGIOUS|CONSTRUCTION_COST_BONUS_DEFENSIVE|CONSTRUCTION_COST_BONUS_OTHER|
@@ -2092,7 +2100,8 @@ private effect_capability_enum ::= TAXABLE_INCOME_BONUS|TRADE_BASE_INCOME_BONUS|
                                    WEAPON_SIMPLE|WEAPON_BLADED|WEAPON_MISSILE|WEAPON_SIEGE|WEAPON_OTHER|ARMOUR|UPGRADE_BODYGUARD|
                                    STAGE_RACES|STAGE_GAMES|
                                    DUMMY ID
-requirement ::= REQUIRES composite_c
+requirement ::= REQUIRES composite_c {pin=1}
+
 private composite_c ::= maybe_negated_c ((AND|OR) maybe_negated_c)* {pin=1}
 private maybe_negated_c ::= NOT? building_condition
 building_condition ::= (alias_c|port_c|building_factions_c|capability_c|religion_c|majority_religion_c|official_religion_c|factions_c|major_event_c|is_player_c|resource_c|hidden_resource_c|no_building_tagged_c|building_min_level_c|building_present_c|is_toggled_c)
@@ -2129,30 +2138,34 @@ ancillary_def ::= ANCILLARY ancillary_name_decl
                     (UNIQUE)*
                     (EXCLUDEDANCILLARIES <<list ancillary_ref>> COMMA?)*
                     (EXCLUDECULTURES <<list culture_ref>>)*
-                    DESCRIPTION ID
-                    EFFECTSDESCRIPTION <<list ID>>
+                    DESCRIPTION ancillary_descr_ref
+                    EFFECTSDESCRIPTION <<list ancillary_descr_ref>>
                     (EFFECT character_attribute_ INT)*
                     (FAKEEFFECT character_attribute_ INT)*
                     (RELIGIOUS_BELIEF religion_ref INT)*
                   {pin=1 recoverWhile=ancillary_def_recover}
 ancillary_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 ancillary_ref ::= safe_id {methods=[setName getReference]}
+ancillary_descr_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+ancillary_descr_ref ::= ID {methods=[setName getReference]}
+
 private ancillary_def_recover ::= !(ANCILLARY|TRIGGER)
 
 ancillary_trigger_def ::= TRIGGER ID
                             WHENTOTEST event
                             (CONDITION condition_)?
-                            (ACQUIREANCILLARY|REMOVEANCILLARY) ancillary_ref (CHANCE_LC|CHANCE) INT
-                            ((AFFECTS trait_ref LOSE? INT CHANCE INT)*)?
+                            ((ACQUIREANCILLARY|REMOVEANCILLARY) ancillary_ref (CHANCE_LC|CHANCE) INT)*
+                            (AFFECTS trait_ref LOSE? INT CHANCE INT)*
                           {pin=1 recoverWhile=ancillary_trigger_def_recover}
 private ancillary_trigger_def_recover ::= !TRIGGER
 
 private character_attribute_ ::= character_main_attribute|'Finance'|'Conditional'|'ElephantCommand'|'MovementPoints'|'Loyalty'|'TroopMorale'|'Fertility'|'PersonalSecurity'|'PublicSecurity'|'Negotiation'|'HitPoints'|'Attack'|'Defence'|'Ambush'|'Law'|'SiegeAttack'|'SiegeDefence'|'Unrest'|'Construction'|'LineOfSight'|'Trading'|'Squalor'|'BribeResistance'|'Bribery'|'TrainingAgents'|'Farming'|'Mining'|'SiegeEngineering'|'NightBattle'|'NavalCommand'|'InfantryCommand'|'CavalryCommand'|'Combat_V_Roman'|'Combat_V_Greek'|'Combat_V_Slave'|'Combat_V_Carthaginian'|'Combat_V_Eastern'|'Combat_V_Barbarian'|'Combat_V_Egyptian'|'Combat_V_Nomad'|'Combat_V_Hun'|'TaxCollection'|'PopularStanding'|'SenateStanding'|'LocalPopularity'|'Electability'|'Looting'|'TrainingAnimalUnits'|'BodyguardValour'|'BattleSurgery'|'TrainingUnits'|'SlaveTrading'|'Health'|'GrainTrading'|'FootInTheDoor'
 // ############### export_descr_ancillaries end #################################
 
-// ############### export_descr_traits start ###############################
+// ############### export_descr_character_traits start ###############################
 export_descr_character_traits ::= EXPORT_DESCR_CHARACTER_TRAITS_MARKER
-                                  trait_def+ trait_trigger_def+
+                                  trait_def+
+                                  trait_trigger_def+
 trait_def ::= TRAIT trait_name_decl
                 CHARACTERS <<list (character_type)>>
                 HIDDEN?
@@ -2166,21 +2179,23 @@ trait_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods
 trait_ref ::= safe_id {methods=[setName getReference]}
 private trait_def_recover ::= !(TRAIT|TRIGGER)
 trait_level ::= LEVEL safe_id
-                  DESCRIPTION ID
-                  EFFECTSDESCRIPTION ID
-                  (GAINMESSAGE ID)?
-                  (LOSEMESSAGE ID)?
-                  (EPITHET ID)?
+                  DESCRIPTION trait_descr_ref
+                  EFFECTSDESCRIPTION trait_descr_ref
+                  (GAINMESSAGE trait_descr_ref)?
+                  (LOSEMESSAGE trait_descr_ref)?
+                  (EPITHET trait_descr_ref)?
                   THRESHOLD INT
                   (EFFECT character_attribute_ INT)*
                   (RELIGIOUS_BELIEF religion_ref INT)*
+trait_descr_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+trait_descr_ref ::= ID {methods=[setName getReference]}
 trait_trigger_def ::= TRIGGER ID
                         WHENTOTEST event
                         (CONDITION condition_)?
                       (AFFECTS trait_ref LOSE? INT CHANCE INT)*
                       {pin=1 recoverWhile=trait_trigger_def_recover}
 private trait_trigger_def_recover ::= !TRIGGER
-// ############### export_descr_traits end #################################
+// ############### export_descr_character_traits end #################################
 
 // ############### descr_mercenaries start ###############################
 descr_mercenaries ::= DESCR_MERCENARIES_MARKER
@@ -2242,7 +2257,7 @@ ethnicity_makeup_ref ::= ID {methods=[setName getReference]}
 
 // ############### export_buildings start ###############################
 export_buildings ::= EXPORT_BUILDINGS_MARKER
-                     (OCB buried_building_tree_or_level_ref CCB STRING)+
+                     (OCB buried_building_tree_or_level_ref CCB STRING+)+
 buried_building_tree_or_level_ref ::= ID {methods=[setName getReference]}
 // ############### export_buildings end #################################
 
@@ -2501,9 +2516,10 @@ construction_site ::= ID OCB
 
 // ############### descr_lbc_db start ###############################
 descr_lbc_db ::= DESCR_LBC_DB_MARKER
-                 (FACTION faction_ref
-                 MODEL ID INT
-                 MODEL ID INT)+
+                 (
+                 FACTION faction_ref
+                 (MODEL ID INT)+
+                 )+
 // ############### descr_lbc_db end #################################
 
 // ############### descr_model_battle start ###############################
@@ -2529,7 +2545,7 @@ model_ ::= TYPE model_name_decl
 private model_pbr_texture ::= PBR_TEXTURE ((DEFAULT|faction_ref)COMMA)? tga_file_
 private model_texture ::= texture ((DEFAULT|faction_ref) COMMA|COMMA)? tga_file_
 private model_model ::= NO_VARIATION? model (faction_ref COMMA)? capitalized_ethnicity PATH
-private model_flexi_   ::= NO_VARIATION? (MODEL_FLEXI|MODEL_FLEXI_M|MODEL_FLEXI_C)  cas_file_ COMMA (MAX|INT)?
+private model_flexi_   ::= NO_VARIATION? (MODEL_FLEXI|MODEL_FLEXI_M|MODEL_FLEXI_C)  cas_file_ (COMMA (MAX|INT))?
 capitalized_ethnicity ::= 'African'|'Arabic'|'Caucasian'|'EastAsian'|'Egyptian'|'Indian'|'Mediterranean'
 private bodytype ::= DEFAULT|SKINNY|SKINNYATHLETIC|ATHLETIC|BULKY|OVERWEIGHT
 model_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
@@ -2796,9 +2812,21 @@ private parenthesis_condition_ ::= OP condition_ CP
 // ############### text_mapping_format start ###############################
 text_mapping_format ::= TEXT_MAPPING_MARKER
                         text_mapping_item+
-text_mapping_item ::= OCB ID CCB STRING {pin=1 recoverWhile=text_mapping}
-private text_mapping ::= !OCB
+text_mapping_item ::= OCB ID CCB STRING+ {pin=1 recoverWhile=not_OCB}
+private not_OCB ::= !OCB
 // ############### text_mapping_format end #################################
+
+// ############### export_ancillaries start ###############################
+export_ancillaries ::= EXPORT_ANCILLARIES_MARKER
+                       (export_ancillaries_item)+
+export_ancillaries_item ::= OCB ancillary_descr_decl CCB STRING+ {pin=1 recoverWhile=not_OCB}
+// ############### export_ancillaries end #################################
+
+// ############### export_vnvs start ###############################
+export_vnvs ::= EXPORT_VNVS_MARKER
+                (export_vnvs_item)+
+export_vnvs_item ::= OCB trait_descr_decl CCB STRING+ {pin=1 recoverWhile=not_OCB}
+// ############### export_vnvs end #################################
 
 // ############### enums_format start ###############################
 enums_format ::= ENUMS_MARKER
@@ -3303,7 +3331,7 @@ unit_order_halt_ ::= UNIT_ORDER_HALT ID {pin=1}
 unit_order_move_ ::= UNIT_ORDER_MOVE ID (coords|coords_no_comma|ID) run_walk? {pin=1}
 unit_order_move_to_orientation_ ::= UNIT_ORDER_MOVE_TO_ORIENTATION ID ID INT INT INT INT run_walk? {pin=1}
 unit_order_move_relative_ ::= UNIT_ORDER_MOVE_RELATIVE ID INT INT run_walk? {pin=1}
-unit_order_attack_unit_ ::= UNIT_ORDER_ATTACK_UNIT ID ID run_walk? {pin=1}
+unit_order_attack_unit_ ::= UNIT_ORDER_ATTACK_UNIT safe_id safe_id run_walk? {pin=1}
 unit_order_attack_closest_unit_ ::= UNIT_ORDER_ATTACK_CLOSEST_UNIT ID INT run_walk? {pin=1}
 unit_order_change_formation_ ::= UNIT_ORDER_CHANGE_FORMATION ID unit_formation {pin=1}
 unit_order_move_to_missile_range_ ::= UNIT_ORDER_MOVE_TO_MISSILE_RANGE ID ID run_walk? {pin=1}
@@ -3402,7 +3430,7 @@ store_counter_ ::= STORE_COUNTER counter_ref scope counter_name_decl {pin=1}
 retrieve_counter_ ::= RETRIEVE_COUNTER counter_ref scope counter_ref {pin=1}
 prepare_for_battle_ ::= PREPARE_FOR_BATTLE {pin=1}
 declare_show_me_ ::= DECLARE_SHOW_ME {pin=1}
-label_unit_ ::= LABEL_UNIT INT INT INT ID {pin=1}
+label_unit_ ::= LABEL_UNIT INT INT INT safe_id {pin=1}
 label_location_ ::= LABEL_LOCATION (coords|coords_no_comma) ID {pin=1}
 define_unit_group_ ::= DEFINE_UNIT_GROUP ID ID* {pin=1}
 undefine_unit_group_ ::= UNDEFINE_UNIT_GROUP ID {pin=1}

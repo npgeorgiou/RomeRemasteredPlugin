@@ -18,9 +18,7 @@ public class NonExistingTrait extends Inspector {
         return new RRVisitor() {
             @Override
             public void visitTraitRef(@NotNull RRTraitRef element) {
-                Collection<String> all = RRUtil.findAllTraits(element.getProject()).stream()
-                    .map(it -> it.getTraitNameDecl().getText())
-                    .collect(Collectors.toList());
+                Collection<String> all = RRUtil.findAllTraitsAsStrings(element.getProject());
 
                 if (!all.contains(element.getText())) {
                     holder.registerProblem(element, "Non existing trait", ProblemHighlightType.ERROR);

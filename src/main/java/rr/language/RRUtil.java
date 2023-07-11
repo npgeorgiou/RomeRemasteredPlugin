@@ -5,19 +5,13 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.tree.TokenSet;
 import com.intellij.psi.util.PsiTreeUtil;
 import rr.language.psi.*;
 
-import javax.swing.text.Element;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -482,18 +476,53 @@ public class RRUtil {
             .collect(Collectors.toList());
     }
 
-    public static Collection<RRTraitDef> findAllTraits(Project project) {
-        RRFile file = RRUtil.findRRFile("export_descr_character_traits.txt", project);
+    public static List<RRAncillaryDescrDecl> findAllAncillaryDescriptions(Project project) {
+        RRFile file = RRUtil.findRRFile("export_ancillaries.txt", project);
 
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportAncillaries.class))
+            .map(it -> it.getExportAncillariesItemList())
+            .orElse(new ArrayList<>()).stream()
+            .map(it -> it.getAncillaryDescrDecl())
+            .collect(Collectors.toList());
+    }
+
+    private static Collection<RRTraitDef> findAllTraits(Project project) {
+        RRFile file = RRUtil.findRRFile("export_descr_character_traits.txt", project);
         return Optional.ofNullable(file)
             .map(it -> it.findChildByClass(RRExportDescrCharacterTraits.class))
             .map(it -> it.getTraitDefList())
             .orElse(new ArrayList<>());
     }
 
+    // I do that because the Traits file is huge, and the NonExistingTrait Inspection
+    // would otherwise re-read that huge file many times in order to check it.
+    private static Map<Long, List<String>> findAllTraitsAsStringsCache = new HashMap<>();
     public static Collection<String> findAllTraitsAsStrings(Project project) {
-        return findAllTraits(project).stream()
+        RRFile file = RRUtil.findRRFile("export_descr_character_traits.txt", project);
+        var modificationStamp = file.getVirtualFile().getModificationStamp();
+
+        if (findAllTraitsAsStringsCache.containsKey(modificationStamp)) {
+            return findAllTraitsAsStringsCache.get(modificationStamp);
+        }
+
+        var items = findAllTraits(project).stream()
             .map(it -> it.getTraitNameDecl().getText())
+            .collect(Collectors.toList());
+
+        findAllTraitsAsStringsCache.clear();
+        findAllTraitsAsStringsCache.put(modificationStamp, items);
+        return items;
+    }
+
+    public static List<RRTraitDescrDecl> findAllTraitDescriptions(Project project) {
+        RRFile file = RRUtil.findRRFile("export_vnvs.txt", project);
+
+        return Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportVnvs.class))
+            .map(it -> it.getExportVnvsItemList())
+            .orElse(new ArrayList<>()).stream()
+            .map(it -> it.getTraitDescrDecl())
             .collect(Collectors.toList());
     }
 
@@ -513,7 +542,7 @@ public class RRUtil {
     }
 
     public static boolean isScript(PsiFile file) {
-        return file.getText().contains("script\n");
+        return file.getText().contains("script\n") && file.getText().contains("end_script");
     }
 
     public static Collection<PsiElement> collectLeaves(

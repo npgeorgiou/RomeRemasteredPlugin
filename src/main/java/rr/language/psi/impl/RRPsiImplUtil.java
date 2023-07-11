@@ -801,6 +801,60 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Ancillary descriptions decl and refs">
+    public static PsiElement setName(RRAncillaryDescrDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRAncillaryDescrDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRAncillaryDescrDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRAncillaryDescrRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static AncillaryDescrReference getReference(RRAncillaryDescrRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new AncillaryDescrReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Trait descriptions decl and refs">
+    public static PsiElement setName(RRTraitDescrDecl e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRTraitDescrDecl e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRTraitDescrDecl e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRTraitDescrRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static TraitDescrReference getReference(RRTraitDescrRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new TraitDescrReference(ref, range);
+    }
+    //</editor-fold>
+
     public static String name(RRSettlementItem settlementItem) {
         return settlementItem.getNode().findChildByType(RRTypes.REGION_REF).getText();
     }
