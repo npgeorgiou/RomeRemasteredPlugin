@@ -53,7 +53,7 @@ public class RRElementFactory {
     }
 
     public static PsiElement createComment(Project project, String text) {
-        RRFile file = createFile(project, text + "\nfoo");
+        RRFile file = createFile(project, text);
         return file.getFirstChild();
     }
 

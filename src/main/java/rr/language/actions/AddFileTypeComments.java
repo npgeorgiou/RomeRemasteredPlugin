@@ -21,51 +21,6 @@ public class AddFileTypeComments extends AnAction {
         e.getPresentation().setEnabledAndVisible(project != null);
     }
 
-//    files.put("export_buildings.txt", ";");
-
-    String[] addMarkersTo = new String[]{
-        "export_buildings.txt",
-        "names.txt",
-        "descr_regions.txt",
-        "descr_mercenaries.txt",
-        "descr_strat.txt",
-        "descr_cultures.txt",
-        "descr_sm_major_events.txt",
-        "descr_unit_variation.txt",
-        "export_descr_ancillaries.txt",
-        "export_descr_buildings.txt",
-        "export_descr_character_traits.txt",
-        "export_descr_unit.txt",
-        "feral_descr_ai_personality.txt",
-        "descr_faction_groups.txt",
-        "descr_sm_factions.txt",
-        "descr_sm_resources.txt",
-        "feral_descr_portraits_variation.txt",
-        "descr_banners.txt",
-        "descr_character.txt",
-        "descr_building_battle.txt",
-        "descr_lbc_db.txt",
-        "descr_offmap_models.txt",
-        "landmarks.txt",
-        "descr_sm_landmarks.txt",
-        "descr_model_battle.txt",
-        "descr_model_strat.txt",
-        "descr_disasters.txt",
-        "descr_mount.txt",
-        "descr_rebel_factions.txt",
-        "rebel_faction_descr.txt",
-        "rebel_faction_descr_enums.txt",
-        "descr_items.txt",
-        "descr_sm_ambient_objects.txt",
-        "descr_beliefs.txt",
-        "descr_palette.txt",
-        "descr_ship.txt",
-        "descr_projectile_new.txt",
-        "descr_animals.txt",
-        "export_vnvs.txt",
-        "export_ancillaries.txt",
-    };
-
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
         // Example of how to use Grammar-kit to parse files, instead of Antlr. LightPsi file is used only for that,
@@ -73,73 +28,70 @@ public class AddFileTypeComments extends AnAction {
         //File file = new File("C:\\Users\\nikol\\AppData\\Local\\Feral Interactive\\Total War ROME REMASTERED\\Mods\\Local Mods\\playground\\data\\descr_banners.txt");
         //var foo = LightPsi.parseFile(file, new RRParserDefinition());
 
-        HashMap<String, String> filesToCommentChar = new HashMap<>();
-        filesToCommentChar.put("export_buildings.txt", "¬");
-        filesToCommentChar.put("names.txt", "¬");
-        filesToCommentChar.put("rebel_faction_descr.txt", "¬");
-        filesToCommentChar.put("export_vnvs.txt", "¬");
-        filesToCommentChar.put("export_ancillaries.txt", "¬");
-        filesToCommentChar.put("landmarks.txt", "¬");
-        filesToCommentChar.put("descr_regions.txt", ";");
-        filesToCommentChar.put("descr_mercenaries.txt", ";");
-        filesToCommentChar.put("descr_strat.txt", ";");
-        filesToCommentChar.put("descr_cultures.txt", ";");
-        filesToCommentChar.put("descr_sm_major_events.txt", ";");
-        filesToCommentChar.put("descr_unit_variation.txt", ";");
-        filesToCommentChar.put("export_descr_ancillaries.txt", ";");
-        filesToCommentChar.put("export_descr_buildings.txt", ";");
-        filesToCommentChar.put("export_descr_character_traits.txt", ";");
-        filesToCommentChar.put("export_descr_unit.txt", ";");
-        filesToCommentChar.put("feral_descr_ai_personality.txt", ";");
-        filesToCommentChar.put("descr_faction_groups.txt", ";");
-        filesToCommentChar.put("descr_sm_factions.txt", ";");
-        filesToCommentChar.put("descr_sm_resources.txt", ";");
-        filesToCommentChar.put("feral_descr_portraits_variation.txt", ";");
-        filesToCommentChar.put("descr_banners.txt", ";");
-        filesToCommentChar.put("descr_character.txt", ";");
-        filesToCommentChar.put("descr_building_battle.txt", ";");
-        filesToCommentChar.put("descr_lbc_db.txt", ";");
-        filesToCommentChar.put("descr_offmap_models.txt", ";");
-        filesToCommentChar.put("descr_sm_landmarks.txt", ";");
-        filesToCommentChar.put("descr_model_battle.txt", ";");
-        filesToCommentChar.put("descr_model_strat.txt", ";");
-        filesToCommentChar.put("descr_disasters.txt", ";");
-        filesToCommentChar.put("descr_mount.txt", ";");
-        filesToCommentChar.put("descr_rebel_factions.txt", ";");
-        filesToCommentChar.put("rebel_faction_descr_enums.txt", ";");
-        filesToCommentChar.put("descr_items.txt", ";");
-        filesToCommentChar.put("descr_sm_ambient_objects.txt", ";");
-        filesToCommentChar.put("descr_beliefs.txt", ";");
-        filesToCommentChar.put("descr_palette.txt", ";");
-        filesToCommentChar.put("descr_ship.txt", ";");
-        filesToCommentChar.put("descr_projectile_new.txt", ";");
-        filesToCommentChar.put("descr_animals.txt", ";");
-
         Project project = event.getProject();
 
-        Collection<RRFile> files = RRUtil.findAllRRFiles(project);
+        HashMap<RRFile, String> filesAndMarker = new HashMap<>();
+        filesAndMarker.put(RRUtil.findRRFile("export_buildings.txt", project), "¬EXPORT_BUILDINGS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("names.txt", project), "¬NAMES_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("rebel_faction_descr.txt", project), "¬REBEL_FACTION_DESCR_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("export_vnvs.txt", project), "¬EXPORT_VNVS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("export_ancillaries.txt", project), "¬EXPORT_ANCILLARIES_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("landmarks.txt", project), "¬LANDMARKS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFileThatEndsWith("_campaign_regions_and_settlement_names.txt", project), "¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_regions.txt", project), ";DESCR_REGIONS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_mercenaries.txt", project), ";DESCR_MERCENARIES_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_strat.txt", project), ";DESCR_STRAT_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_cultures.txt", project), ";DESCR_CULTURES_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_sm_major_events.txt", project), ";DESCR_SM_MAJOR_EVENTS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_unit_variation.txt", project), ";DESCR_UNIT_VARIATION_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("export_descr_ancillaries.txt", project), ";EXPORT_DESCR_ANCILLARIES_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("export_descr_buildings.txt", project), ";EXPORT_DESCR_BUILDINGS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("export_descr_character_traits.txt", project), ";EXPORT_DESCR_CHARACTER_TRAITS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("export_descr_unit.txt", project), ";EXPORT_DESCR_UNIT_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("feral_descr_ai_personality.txt", project), ";FERAL_DESCR_AI_PERSONALITY_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_faction_groups.txt", project), ";DESCR_FACTION_GROUPS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_sm_factions.txt", project), ";DESCR_SM_FACTIONS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_sm_resources.txt", project), ";DESCR_SM_RESOURCES_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("feral_descr_portraits_variation.txt", project), ";FERAL_DESCR_PORTRAITS_VARIATION_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_banners.txt", project), ";DESCR_BANNERS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_character.txt", project), ";DESCR_CHARACTER_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_building_battle.txt", project), ";DESCR_BUILDING_BATTLE_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_lbc_db.txt", project), ";DESCR_LBC_DB_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_offmap_models.txt", project), ";DESCR_OFFMAP_MODELS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_sm_landmarks.txt", project), ";DESCR_SM_LANDMARKS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_model_battle.txt", project), ";DESCR_MODEL_BATTLE_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_model_strat.txt", project), ";DESCR_MODEL_STRAT_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_disasters.txt", project), ";DESCR_DISASTERS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_mount.txt", project), ";DESCR_MOUNT_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_rebel_factions.txt", project), ";DESCR_REBEL_FACTIONS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("rebel_faction_descr_enums.txt", project), ";REBEL_FACTION_DESCR_ENUMS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_items.txt", project), ";DESCR_ITEMS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_sm_ambient_objects.txt", project), ";DESCR_SM_AMBIENT_OBJECTS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_beliefs.txt", project), ";DESCR_BELIEFS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_palette.txt", project), ";DESCR_PALETTE_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_ship.txt", project), ";DESCR_SHIP_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_projectile_new.txt", project), ";DESCR_PROJECTILE_NEW_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_animals.txt", project), ";DESCR_ANIMALS_MARKER DO NOT REMOVE");
+        filesAndMarker.put(RRUtil.findRRFile("descr_win_conditions.txt", project), ";DESCR_WIN_CONDITIONS_MARKER DO NOT REMOVE");
 
-        for (RRFile file : files) {
-            String fileName = file.getVirtualFile().getName();
+        for (var entry : filesAndMarker.entrySet()) {
+            var file = entry.getKey();
+            var marker = entry.getValue();
 
-            if (!filesToCommentChar.containsKey(fileName)) {
+            if (file == null) {
                 continue;
             }
 
-            if (file.getFirstChild().getText().startsWith(";" + fileName)) {
+            if (file.getFirstChild().getText().contains("_MARKER DO NOT REMOVE")) {
                 continue;
             }
 
-            var commentChar = filesToCommentChar.get(fileName);
-            if (Objects.equals(commentChar, "¬")) {
-                commentChar = Character.toString(0x000AC);
+            if (marker.startsWith("¬")) {
+                marker = marker.replace("¬", Character.toString(0x000AC));
             }
 
             PsiElement newline = RRElementFactory.createNewline(project);
-            PsiElement comment = RRElementFactory.createComment(
-                project,
-                commentChar + fileName + " DONT REMOVE THIS LINE, THE RR PLUGIN NEEDS IT"
-            );
+            PsiElement comment = RRElementFactory.createComment(project, marker);
 
             WriteCommandAction.writeCommandAction(project).withName("Foo").run(() ->
                 file.addBefore(newline, file.getFirstChild())

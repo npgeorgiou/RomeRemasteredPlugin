@@ -19,6 +19,7 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 
 public class RRSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey BAD_CHARACTER_STYLE = createTextAttributesKey("RR_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
+    public static final TextAttributesKey MARKER_STYLE = createTextAttributesKey("RR_MARKER", DefaultLanguageHighlighterColors.DOC_COMMENT);
     public static final TextAttributesKey COMMENT_STYLE = createTextAttributesKey("RR_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey NUMBER_STYLE = createTextAttributesKey("RR_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
     public static final TextAttributesKey BOOLEAN_STYLE = createTextAttributesKey("RR_BOOLEAN", DefaultLanguageHighlighterColors.CONSTANT);
@@ -39,7 +40,7 @@ public class RRSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final Map<IElementType, TextAttributesKey> ATTRIBUTES = new HashMap<>();
 
     static {
-        fillMap(ATTRIBUTES, RRParserDefinition.FILE_TYPE_MARKERS, COMMENT_STYLE);
+        fillMap(ATTRIBUTES, RRParserDefinition.MARKERS, MARKER_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.PUNCTUATIONS, PUNCTUATION_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.OPERATORS, OPERATORS_STYLE);
         fillMap(ATTRIBUTES, RRParserDefinition.KEYWORDS, KEYWORDS_STYLE);

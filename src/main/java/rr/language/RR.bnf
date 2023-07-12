@@ -14,45 +14,46 @@
 
   tokens = [
       // basic
-      DESCR_STRAT_MARKER='regexp:;descr_strat.txt.*'
-      EXPORT_DESCR_BUILDINGS_MARKER='regexp:;export_descr_buildings.txt.*'
-      DESCR_CULTURES_MARKER='regexp:;descr_cultures.txt.*'
-      DESCR_MERCENARIES_MARKER='regexp:;descr_mercenaries.txt.*'
-      DESCR_UNIT_VARIATION_MARKER='regexp:;descr_unit_variation.txt.*'
-      DESCR_REGIONS_MARKER='regexp:;descr_regions.txt.*'
-      DESCR_SM_MAJOR_EVENTS_MARKER='regexp:;descr_sm_major_events.txt.*'
-      EXPORT_DESCR_ANCILLARIES_MARKER='regexp:;export_descr_ancillaries.txt.*'
-      EXPORT_DESCR_CHARACTER_TRAITS_MARKER='regexp:;export_descr_character_traits.txt.*'
-      EXPORT_DESCR_UNIT_MARKER='regexp:;export_descr_unit.txt.*'
-      FERAL_DESCR_AI_PERSONALITY_MARKER='regexp:;feral_descr_ai_personality.txt.*'
-      DESCR_FACTION_GROUPS_MARKER='regexp:;descr_faction_groups.txt.*'
-      DESCR_SM_FACTIONS_MARKER='regexp:;descr_sm_factions.txt.*'
-      DESCR_SM_RESOURCES_MARKER='regexp:;descr_sm_resources.txt.*'
-      FERAL_DESCR_PORTRAITS_VARIATION_MARKER='regexp:;feral_descr_portraits_variation.txt.*'
-      DESCR_BANNERS_MARKER='regexp:;descr_banners.txt.*'
-      DESCR_BUILDING_BATTLE_MARKER='regexp:;descr_building_battle.txt.*'
-      DESCR_CHARACTER_MARKER='regexp:;descr_character.txt.*'
-      DESCR_LBC_DB_MARKER='regexp:;descr_lbc_db.txt.*'
-      DESCR_MODEL_BATTLE_MARKER='regexp:;descr_model_battle.txt.*'
-      DESCR_MODEL_STRAT_MARKER='regexp:;descr_model_strat.txt.*'
-      DESCR_OFFMAP_MODELS_MARKER='regexp:;descr_offmap_models.txt.*'
-      DESCR_SM_LANDMARKS_MARKER='regexp:;descr_sm_landmarks.txt.*'
-      DESCR_DISASTERS_MARKER='regexp:;descr_disasters.txt.*'
-      DESCR_MOUNT_MARKER='regexp:;descr_mount.txt.*'
-      DESCR_SHIP_MARKER='regexp:;descr_ship.txt.*'
-      DESCR_REBEL_FACTIONS_MARKER='regexp:;descr_rebel_factions.txt.*'
-      DESCR_ITEMS_MARKER='regexp:;descr_items.txt.*'
-      DESCR_SM_AMBIENT_OBJECTS_MARKER='regexp:;descr_sm_ambient_objects.txt.*'
-      DESCR_BELIEFS_MARKER='regexp:;descr_beliefs.txt.*'
-      DESCR_PROJECTILE_MARKER='regexp:;descr_projectile_new.txt.*'
-      DESCR_ANIMALS_MARKER='regexp:;descr_animals.txt.*'
+      DESCR_STRAT_MARKER='regexp:;DESCR_STRAT_MARKER.*'
+      EXPORT_DESCR_BUILDINGS_MARKER='regexp:;EXPORT_DESCR_BUILDINGS_MARKER.*'
+      DESCR_CULTURES_MARKER='regexp:;DESCR_CULTURES_MARKER.*'
+      DESCR_MERCENARIES_MARKER='regexp:;DESCR_MERCENARIES_MARKER.*'
+      DESCR_UNIT_VARIATION_MARKER='regexp:;DESCR_UNIT_VARIATION_MARKER.*'
+      DESCR_REGIONS_MARKER='regexp:;DESCR_REGIONS_MARKER.*'
+      DESCR_SM_MAJOR_EVENTS_MARKER='regexp:;DESCR_SM_MAJOR_EVENTS_MARKER.*'
+      EXPORT_DESCR_ANCILLARIES_MARKER='regexp:;EXPORT_DESCR_ANCILLARIES_MARKER.*'
+      EXPORT_DESCR_CHARACTER_TRAITS_MARKER='regexp:;EXPORT_DESCR_CHARACTER_TRAITS_MARKER.*'
+      EXPORT_DESCR_UNIT_MARKER='regexp:;EXPORT_DESCR_UNIT_MARKER.*'
+      FERAL_DESCR_AI_PERSONALITY_MARKER='regexp:;FERAL_DESCR_AI_PERSONALITY_MARKER.*'
+      DESCR_FACTION_GROUPS_MARKER='regexp:;DESCR_FACTION_GROUPS_MARKER.*'
+      DESCR_SM_FACTIONS_MARKER='regexp:;DESCR_SM_FACTIONS_MARKER.*'
+      DESCR_SM_RESOURCES_MARKER='regexp:;DESCR_SM_RESOURCES_MARKER.*'
+      FERAL_DESCR_PORTRAITS_VARIATION_MARKER='regexp:;FERAL_DESCR_PORTRAITS_VARIATION_MARKER.*'
+      DESCR_BANNERS_MARKER='regexp:;DESCR_BANNERS_MARKER.*'
+      DESCR_BUILDING_BATTLE_MARKER='regexp:;DESCR_BUILDING_BATTLE_MARKER.*'
+      DESCR_CHARACTER_MARKER='regexp:;DESCR_CHARACTER_MARKER.*'
+      DESCR_LBC_DB_MARKER='regexp:;DESCR_LBC_DB_MARKER.*'
+      DESCR_MODEL_BATTLE_MARKER='regexp:;DESCR_MODEL_BATTLE_MARKER.*'
+      DESCR_MODEL_STRAT_MARKER='regexp:;DESCR_MODEL_STRAT_MARKER.*'
+      DESCR_OFFMAP_MODELS_MARKER='regexp:;DESCR_OFFMAP_MODELS_MARKER.*'
+      DESCR_SM_LANDMARKS_MARKER='regexp:;DESCR_SM_LANDMARKS_MARKER.*'
+      DESCR_DISASTERS_MARKER='regexp:;DESCR_DISASTERS_MARKER.*'
+      DESCR_MOUNT_MARKER='regexp:;DESCR_MOUNT_MARKER.*'
+      DESCR_SHIP_MARKER='regexp:;DESCR_SHIP_MARKER.*'
+      DESCR_REBEL_FACTIONS_MARKER='regexp:;DESCR_REBEL_FACTIONS_MARKER.*'
+      DESCR_ITEMS_MARKER='regexp:;DESCR_ITEMS_MARKER.*'
+      DESCR_SM_AMBIENT_OBJECTS_MARKER='regexp:;DESCR_SM_AMBIENT_OBJECTS_MARKER.*'
+      DESCR_BELIEFS_MARKER='regexp:;DESCR_BELIEFS_MARKER.*'
+      DESCR_PROJECTILE_MARKER='regexp:;DESCR_PROJECTILE_MARKER.*'
+      DESCR_ANIMALS_MARKER='regexp:;DESCR_ANIMALS_MARKER.*'
+      DESCR_WIN_CONDITIONS_MARKER='regexp:;DESCR_WIN_CONDITIONS_MARKER.*'
 
       // text mapping markers
-      // TODO: Do also buildings text in this generic way?
-      EXPORT_BUILDINGS_MARKER='regexp:;export_buildings.txt.*'
-      TEXT_MAPPING_MARKER='regexp:¬(landmarks|names|rebel_faction_descr).txt.*'
-      EXPORT_VNVS_MARKER='regexp:¬export_vnvs.txt.*'
-      EXPORT_ANCILLARIES_MARKER='regexp:¬export_ancillaries.txt.*'
+      EXPORT_BUILDINGS_MARKER='regexp:;EXPORT_BUILDINGS_MARKER.*'
+      EXPORT_VNVS_MARKER='regexp:¬EXPORT_VNVS_MARKER.*'
+      EXPORT_ANCILLARIES_MARKER='regexp:¬EXPORT_ANCILLARIES_MARKER.*'
+      CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER='regexp:¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER.*'
+      TEXT_MAPPING_MARKER='regexp:¬(names|rebel_faction_descr|landmarks).txt.*'
 
       // Keywords that can also be strings.
       LOCAL='regexp:"local"|local'
@@ -656,6 +657,14 @@
       HOUND="hound"
       WIDTH="width"
       OFFSET="offset"
+
+      //descr_win_conditions
+      HOLD_REGIONS="hold_regions"
+      TAKE_REGIONS="take_regions"
+      OUTLIVE="outlive"
+      TAKE_ROME="take_rome"
+      IMPERATOR="imperator"
+      OUTLIVE_FACTIONS="outlive_factions"
 
       // descr_rebel_factions
       REBEL_TYPE='rebel_type'
@@ -1801,12 +1810,14 @@ RRFile ::= descr_strat|
           descr_ship|
           descr_projectile|
           descr_animals|
+          descr_win_conditions|
           descr_rebel_factions|
           descr_items|
           descr_sm_ambient_objects|
           descr_beliefs|
           text_mapping_format|
           export_ancillaries|
+          campaign_regions_and_settlement_names|
           export_vnvs|
           enums_format|
           kv_format|
@@ -1932,7 +1943,7 @@ mission_ ::= ID INT ID (ID)?
 nameWithNumber_ ::= (safe_id)+ INT?
 name_ ::= safe_id+
 private safe_id ::= ID|keywords_that_may_be_in_ids
-keywords_that_may_be_in_ids ::= agent_type|SHIP|IDLE|HIDDEN|MISSILE|WARDOG|PIG|HOUND|ARROW|TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
+keywords_that_may_be_in_ids ::= agent_type|AND|SHIP|IDLE|HIDDEN|MISSILE|WARDOG|PIG|HOUND|ARROW|TRADE|DISCIPLINED|UNTRAINED|TRAINED|ANIMAL|LOCAL|GENERAL|ELEPHANT|HEAVY|LIGHT|INFANTRY|CAVALRY|ALLIED|CITY|BALLISTA|BERSERKER|HORSE|X|VILLAGE|TOWN|ARMY|LEADER|ARMOUR|DRUID|KNIFE|MACE|CLUB|AXE|SWORD|SPEAR|MERCENARIES|LARGE|CIVILIAN|MEDIUM|PIRATES|BRIGANDS|NORMAL|CATAPULT|TREBUCHET|SCORPION|HORDE|PHALANX|SPEARMEN|SIEGE|CHARIOT|CAMEL
 // ############### descr_strat end #################################
 
 // ############### export_descr_unit start ###############################
@@ -2749,6 +2760,18 @@ animal_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" method
 animal_ref ::= safe_id {methods=[setName getReference]}
 // ############### descr_animals end #################################
 
+// ############### descr_win_conditions start ###############################
+descr_win_conditions ::= DESCR_WIN_CONDITIONS_MARKER
+                         faction_win_condition+
+faction_win_condition ::= faction_ref
+                          (HOLD_REGIONS settlement_ref*)?
+                          (TAKE_REGIONS INT)?
+                          (OUTLIVE faction_ref+)?
+                          (TAKE_ROME)?
+                          (IMPERATOR)?
+                          (OUTLIVE_FACTIONS faction_ref+)?
+// ############### descr_animals end #################################
+
 // ############### descr_rebel_factions end #################################
 descr_rebel_factions ::= DESCR_REBEL_FACTIONS_MARKER
                          rebel_faction*
@@ -2764,11 +2787,12 @@ rebel_category ::= PEASANT_REVOLT|GLADIATOR_REVOLT|BRIGANDS|PIRATES
 
 // ############### descr_items start #################################
 descr_items ::= DESCR_ITEMS_MARKER
-                (INCLUDE txt_file_)+
+                (INCLUDE txt_file_)*
                 (TYPE ID
                  LOD
                  MAX_DISTANCE INT
                  MODEL_RIGID cas_file_)+
+                 (INCLUDE txt_file_)*
 // ############### descr_items end #################################
 
 // ############### descr_sm_ambient_objects start #################################
@@ -2821,6 +2845,13 @@ export_ancillaries ::= EXPORT_ANCILLARIES_MARKER
                        (export_ancillaries_item)+
 export_ancillaries_item ::= OCB ancillary_descr_decl CCB STRING+ {pin=1 recoverWhile=not_OCB}
 // ############### export_ancillaries end #################################
+
+// ############### *_campaign_regions_and_settlement_names start ###############################
+campaign_regions_and_settlement_names ::= CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER
+                                          (region_or_settlement_name_mapping)+
+region_or_settlement_name_mapping ::= OCB region_or_settlement_ref CCB STRING+ {pin=1 recoverWhile=not_OCB}
+region_or_settlement_ref ::= ID {methods=[setName getReference]}
+// ############### *_campaign_regions_and_settlement_names end #################################
 
 // ############### export_vnvs start ###############################
 export_vnvs ::= EXPORT_VNVS_MARKER

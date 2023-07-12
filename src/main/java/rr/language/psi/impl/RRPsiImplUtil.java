@@ -213,6 +213,19 @@ public class RRPsiImplUtil {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Region or Settlement ref">
+    public static PsiElement setName(RRRegionOrSettlementRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static RegionOrSettlementReference getReference(RRRegionOrSettlementRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new RegionOrSettlementReference(ref, range);
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Building trees decl and refs">
     public static PsiElement setName(RRBuildingTreeNameDecl e, String newName) {
         PsiElement id = RRElementFactory.createId(e.getProject(), newName);

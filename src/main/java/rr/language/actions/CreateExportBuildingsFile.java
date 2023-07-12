@@ -41,11 +41,12 @@ public class CreateExportBuildingsFile extends AnAction {
         Collection<RRBuildingTree> buildingTrees = RRUtil.findAllBuildingTrees(project);
 
         List<String> lines = new ArrayList<>();
-
-        lines.add(";export_buildings.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK");
+        var commentChar = Character.toString(0x000AC);
+        
+        lines.add(commentChar + "export_buildings.txt DO NOT REMOVE THIS LINE, IT IS NEEDED FOR THE IDE PLUGIN TO WORK");
         lines.add("");
 
-        lines.add(";repairs, dismantles, and upgrades");
+        lines.add(commentChar + "repairs, dismantles, and upgrades");
         lines.add("{generic_repair}	REPAIR");
         lines.add("{generic_repair_desc}	REPAIR DAMAGE TO BUILDING");
         lines.add("{generic_repair_desc_short}	REPAIR DAMAGE TO BUILDING");
@@ -72,7 +73,7 @@ public class CreateExportBuildingsFile extends AnAction {
         lines.add("{settlement_upgrade_large_city_desc_short}	UPGRADE CITY TO A HUGE CITY");
         lines.add("");
 
-        lines.add(";building trees");
+        lines.add(commentChar + "building trees");
         for (RRBuildingTree buildingTree : buildingTrees) {
             String treeName = buildingTree.getBuildingTreeNameDecl().getText();
 
@@ -80,7 +81,7 @@ public class CreateExportBuildingsFile extends AnAction {
         }
         lines.add("");
 
-        lines.add(";building levels");
+        lines.add(commentChar + "building levels");
         lines.add("");
 
         Collection<String> cultures = RRUtil.findAllCulturesAsStrings(project);
@@ -89,7 +90,7 @@ public class CreateExportBuildingsFile extends AnAction {
             for (RRBuildingLevel buildingLevel : buildingTree.getBuildingLevelList()) {
                 String levelName = buildingLevel.getBuildingLevelNameDecl().getText();
 
-                lines.add(";" + levelName);
+                lines.add(commentChar + "" + levelName);
                 lines.add("{" + levelName + "}  TODO: Write me");
                 lines.add("{" + levelName + "_desc}  WARNING! This baseline description should never appear on screen!");
                 lines.add("{" + levelName + "_desc_short}  WARNING! This baseline short description should never appear on screen!");

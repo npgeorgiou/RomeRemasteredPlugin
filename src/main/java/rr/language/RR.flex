@@ -73,55 +73,58 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 %state DESCR_SHIP
 %state DESCR_PROJECTILE
 %state DESCR_ANIMALS
+%state DESCR_WIN_CONDITIONS
 %state TEXT_MAPPING
 %xstate ENUMS
 
 %state SCRIPTS_EVENTS_CONDITIONS
 
 %%
-";descr_strat.txt"[^\r\n]*                     {yybegin(DESCR_STRAT); return RRTypes.DESCR_STRAT_MARKER;}
-";export_descr_buildings.txt"[^\r\n]*          {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.EXPORT_DESCR_BUILDINGS_MARKER;}
-";descr_cultures.txt"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
-";descr_sm_factions.txt"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
-";descr_mercenaries.txt"[^\r\n]*               {yybegin(DESCR_MERCENARIES); return RRTypes.DESCR_MERCENARIES_MARKER;}
-";descr_unit_variation.txt"[^\r\n]*            {yybegin(DESCR_UNIT_VARIATION); return RRTypes.DESCR_UNIT_VARIATION_MARKER;}
-";descr_regions.txt"[^\r\n]*                   {return RRTypes.DESCR_REGIONS_MARKER;}
-";descr_sm_major_events.txt"[^\r\n]*           {return RRTypes.DESCR_SM_MAJOR_EVENTS_MARKER;}
-";export_descr_ancillaries.txt"[^\r\n]*        {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.EXPORT_DESCR_ANCILLARIES_MARKER;}
-";export_descr_character_traits.txt"[^\r\n]*   {yybegin(EXPORT_DESCR_CHARACTER_TRAITS); return RRTypes.EXPORT_DESCR_CHARACTER_TRAITS_MARKER;}
-";export_descr_unit.txt"[^\r\n]*               {yybegin(EXPORT_DESCR_UNIT); return RRTypes.EXPORT_DESCR_UNIT_MARKER;}
-";feral_descr_ai_personality.txt"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
-";descr_faction_groups.txt"[^\r\n]*            {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
-";descr_sm_resources.txt"[^\r\n]*              {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
-";feral_descr_portraits_variation.txt"[^\r\n]* {yybegin(FERAL_DESCR_PORTRAITS_VARIATION); return RRTypes.FERAL_DESCR_PORTRAITS_VARIATION_MARKER;}
-";descr_banners.txt"[^\r\n]*                   {yybegin(DESCR_BANNERS); return RRTypes.DESCR_BANNERS_MARKER;}
-";descr_character.txt"[^\r\n]*                 {yybegin(DESCR_CHARACTER); return RRTypes.DESCR_CHARACTER_MARKER;}
-";descr_building_battle.txt"[^\r\n]*           {yybegin(DESCR_BUILDING_BATTLE); return RRTypes.DESCR_BUILDING_BATTLE_MARKER;}
-";descr_lbc_db.txt"[^\r\n]*                    {yybegin(DESCR_LBC_DB); return RRTypes.DESCR_LBC_DB_MARKER;}
-";descr_offmap_models.txt"[^\r\n]*             {yybegin(DESCR_OFFMAP_MODELS); return RRTypes.DESCR_OFFMAP_MODELS_MARKER;}
-";descr_sm_landmarks.txt"[^\r\n]*              {yybegin(DESCR_SM_LANDMARKS); return RRTypes.DESCR_SM_LANDMARKS_MARKER;}
-";descr_model_battle.txt"[^\r\n]*              {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_BATTLE_MARKER;}
-";descr_model_strat.txt"[^\r\n]*               {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_STRAT_MARKER;}
-";descr_disasters.txt"[^\r\n]*                 {yybegin(DESCR_DISASTERS); return RRTypes.DESCR_DISASTERS_MARKER;}
-";descr_mount.txt"[^\r\n]*                     {yybegin(DESCR_MOUNT); return RRTypes.DESCR_MOUNT_MARKER;}
-";descr_rebel_factions.txt"[^\r\n]*            {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.DESCR_REBEL_FACTIONS_MARKER;}
-";descr_items.txt"[^\r\n]*                     {yybegin(DESCR_ITEMS); return RRTypes.DESCR_ITEMS_MARKER;}
-";descr_sm_ambient_objects.txt"[^\r\n]*        {return RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER;}
-";descr_beliefs.txt"[^\r\n]*                   {return RRTypes.DESCR_BELIEFS_MARKER;}
-";descr_ship.txt"[^\r\n]*                      {yybegin(DESCR_SHIP);return RRTypes.DESCR_SHIP_MARKER;}
-";descr_projectile_new.txt"[^\r\n]*            {yybegin(DESCR_PROJECTILE);return RRTypes.DESCR_PROJECTILE_MARKER;}
-";descr_animals.txt"[^\r\n]*                   {yybegin(DESCR_ANIMALS);return RRTypes.DESCR_ANIMALS_MARKER;}
+";DESCR_STRAT_MARKER"[^\r\n]*                     {yybegin(DESCR_STRAT); return RRTypes.DESCR_STRAT_MARKER;}
+";EXPORT_DESCR_BUILDINGS_MARKER"[^\r\n]*          {yybegin(EXPORT_DESCR_BUILDINGS); return RRTypes.EXPORT_DESCR_BUILDINGS_MARKER;}
+";DESCR_CULTURES_MARKER"[^\r\n]*                  {return RRTypes.DESCR_CULTURES_MARKER;}
+";DESCR_SM_FACTIONS_MARKER"[^\r\n]*               {return RRTypes.DESCR_SM_FACTIONS_MARKER;}
+";DESCR_MERCENARIES_MARKER"[^\r\n]*               {yybegin(DESCR_MERCENARIES); return RRTypes.DESCR_MERCENARIES_MARKER;}
+";DESCR_UNIT_VARIATION_MARKER"[^\r\n]*            {yybegin(DESCR_UNIT_VARIATION); return RRTypes.DESCR_UNIT_VARIATION_MARKER;}
+";DESCR_REGIONS_MARKER"[^\r\n]*                   {return RRTypes.DESCR_REGIONS_MARKER;}
+";DESCR_SM_MAJOR_EVENTS_MARKER"[^\r\n]*           {return RRTypes.DESCR_SM_MAJOR_EVENTS_MARKER;}
+";EXPORT_DESCR_ANCILLARIES_MARKER"[^\r\n]*        {yybegin(EXPORT_DESCR_ANCILLARIES); return RRTypes.EXPORT_DESCR_ANCILLARIES_MARKER;}
+";EXPORT_DESCR_CHARACTER_TRAITS_MARKER"[^\r\n]*   {yybegin(EXPORT_DESCR_CHARACTER_TRAITS); return RRTypes.EXPORT_DESCR_CHARACTER_TRAITS_MARKER;}
+";EXPORT_DESCR_UNIT_MARKER"[^\r\n]*               {yybegin(EXPORT_DESCR_UNIT); return RRTypes.EXPORT_DESCR_UNIT_MARKER;}
+";FERAL_DESCR_AI_PERSONALITY_MARKER"[^\r\n]*      {yybegin(FERAL_DESCR_AI_PERSONALITY); return RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER;}
+";DESCR_FACTION_GROUPS_MARKER"[^\r\n]*            {yybegin(DESCR_FACTION_GROUPS); return RRTypes.DESCR_FACTION_GROUPS_MARKER;}
+";DESCR_SM_RESOURCES_MARKER"[^\r\n]*              {return RRTypes.DESCR_SM_RESOURCES_MARKER;}
+";FERAL_DESCR_PORTRAITS_VARIATION_MARKER"[^\r\n]* {yybegin(FERAL_DESCR_PORTRAITS_VARIATION); return RRTypes.FERAL_DESCR_PORTRAITS_VARIATION_MARKER;}
+";DESCR_BANNERS_MARKER"[^\r\n]*                   {yybegin(DESCR_BANNERS); return RRTypes.DESCR_BANNERS_MARKER;}
+";DESCR_CHARACTER_MARKER"[^\r\n]*                 {yybegin(DESCR_CHARACTER); return RRTypes.DESCR_CHARACTER_MARKER;}
+";DESCR_BUILDING_BATTLE_MARKER"[^\r\n]*           {yybegin(DESCR_BUILDING_BATTLE); return RRTypes.DESCR_BUILDING_BATTLE_MARKER;}
+";DESCR_LBC_DB_MARKER"[^\r\n]*                    {yybegin(DESCR_LBC_DB); return RRTypes.DESCR_LBC_DB_MARKER;}
+";DESCR_OFFMAP_MODELS_MARKER"[^\r\n]*             {yybegin(DESCR_OFFMAP_MODELS); return RRTypes.DESCR_OFFMAP_MODELS_MARKER;}
+";DESCR_SM_LANDMARKS_MARKER"[^\r\n]*              {yybegin(DESCR_SM_LANDMARKS); return RRTypes.DESCR_SM_LANDMARKS_MARKER;}
+";DESCR_MODEL_BATTLE_MARKER"[^\r\n]*              {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_BATTLE_MARKER;}
+";DESCR_MODEL_STRAT_MARKER"[^\r\n]*               {yybegin(DESCR_MODEL_BATTLE_AND_STRAT); return RRTypes.DESCR_MODEL_STRAT_MARKER;}
+";DESCR_DISASTERS_MARKER"[^\r\n]*                 {yybegin(DESCR_DISASTERS); return RRTypes.DESCR_DISASTERS_MARKER;}
+";DESCR_MOUNT_MARKER"[^\r\n]*                     {yybegin(DESCR_MOUNT); return RRTypes.DESCR_MOUNT_MARKER;}
+";DESCR_REBEL_FACTIONS_MARKER"[^\r\n]*            {yybegin(DESCR_REBEL_FACTIONS); return RRTypes.DESCR_REBEL_FACTIONS_MARKER;}
+";DESCR_ITEMS_MARKER"[^\r\n]*                     {yybegin(DESCR_ITEMS); return RRTypes.DESCR_ITEMS_MARKER;}
+";DESCR_SM_AMBIENT_OBJECTS_MARKER"[^\r\n]*        {return RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER;}
+";DESCR_BELIEFS_MARKER"[^\r\n]*                   {return RRTypes.DESCR_BELIEFS_MARKER;}
+";DESCR_SHIP_MARKER"[^\r\n]*                      {yybegin(DESCR_SHIP);return RRTypes.DESCR_SHIP_MARKER;}
+";DESCR_PROJECTILE_NEW_MARKER"[^\r\n]*            {yybegin(DESCR_PROJECTILE);return RRTypes.DESCR_PROJECTILE_MARKER;}
+";DESCR_ANIMALS_MARKER"[^\r\n]*                   {yybegin(DESCR_ANIMALS);return RRTypes.DESCR_ANIMALS_MARKER;}
+";DESCR_WIN_CONDITIONS_MARKER"[^\r\n]*            {yybegin(DESCR_WIN_CONDITIONS);return RRTypes.DESCR_WIN_CONDITIONS_MARKER;}
 
 // text mapping markers
-"¬export_buildings.txt"[^\r\n]*                {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
-"¬landmarks.txt"[^\r\n]*                       {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-"¬names.txt"[^\r\n]*                           {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-"¬rebel_faction_descr.txt"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-"¬export_vnvs.txt"[^\r\n]*                     {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_VNVS_MARKER;}
-"¬export_ancillaries.txt"[^\r\n]*              {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_ANCILLARIES_MARKER;}
+"¬EXPORT_BUILDINGS_MARKER"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
+"¬NAMES_MARKER"[^\r\n]*                        {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬REBEL_FACTION_DESCR_MARKER"[^\r\n]*          {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬EXPORT_VNVS_MARKER"[^\r\n]*                  {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_VNVS_MARKER;}
+"¬EXPORT_ANCILLARIES_MARKER"[^\r\n]*           {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_ANCILLARIES_MARKER;}
+"¬LANDMARKS_MARKER"[^\r\n]*                    {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER"[^\r\n]*  {yybegin(TEXT_MAPPING); return RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER;}
 
 // enum markers
-";rebel_faction_descr_enums.txt"[^\r\n]*       {yybegin(ENUMS); return RRTypes.ENUMS_MARKER;}
+";REBEL_FACTION_DESCR_ENUMS_MARKER"[^\r\n]*       {yybegin(ENUMS); return RRTypes.ENUMS_MARKER;}
 
 // Special things
 <SCRIPTS_EVENTS_CONDITIONS>{LOCAL}          {return RRTypes.LOCAL;}
@@ -871,6 +874,17 @@ true|false       {return RRTypes.BOOLEAN;}
     "offset"         {return RRTypes.OFFSET;}
     "mass"           {return RRTypes.MASS;}
     {ID}             {return RRTypes.ID;}
+}
+
+<DESCR_WIN_CONDITIONS>
+{
+    "hold_regions"       {return RRTypes.HOLD_REGIONS;}
+    "take_regions"       {return RRTypes.TAKE_REGIONS;}
+    "outlive"            {return RRTypes.OUTLIVE;}
+    "take_rome"          {return RRTypes.TAKE_ROME;}
+    "imperator"          {return RRTypes.IMPERATOR;}
+    "outlive_factions"   {return RRTypes.OUTLIVE_FACTIONS;}
+    {ID}                 {return RRTypes.ID;}
 }
 
 <DESCR_MODEL_BATTLE_AND_STRAT>

@@ -53,8 +53,19 @@ public class RRUtil {
     }
 
     public static RRFile findRRFile(String path, Project project) {
-        Collection<RRFile> files = findAllRRFiles(project);
+        var files = findAllRRFiles(project);
         files.removeIf(it -> !it.getVirtualFile().getPath().endsWith("/".concat(path)));
+
+        if (files.isEmpty()) {
+            return null;
+        }
+
+        return files.iterator().next();
+    }
+
+    public static RRFile findRRFileThatEndsWith(String path, Project project) {
+        var files = findAllRRFiles(project);
+        files.removeIf(it -> !it.getVirtualFile().getPath().endsWith(path));
 
         if (files.isEmpty()) {
             return null;

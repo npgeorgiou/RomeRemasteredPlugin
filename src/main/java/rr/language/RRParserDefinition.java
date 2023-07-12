@@ -17,6 +17,47 @@ import rr.language.psi.RRFile;
 import rr.language.psi.RRTypes;
 
 public class RRParserDefinition implements ParserDefinition {
+    public static final TokenSet MARKERS = TokenSet.create(
+        RRTypes.DESCR_STRAT_MARKER,
+        RRTypes.EXPORT_DESCR_BUILDINGS_MARKER,
+        RRTypes.DESCR_CULTURES_MARKER,
+        RRTypes.DESCR_SM_FACTIONS_MARKER,
+        RRTypes.DESCR_MERCENARIES_MARKER,
+        RRTypes.DESCR_UNIT_VARIATION_MARKER,
+        RRTypes.DESCR_REGIONS_MARKER,
+        RRTypes.DESCR_SM_MAJOR_EVENTS_MARKER,
+        RRTypes.EXPORT_DESCR_ANCILLARIES_MARKER,
+        RRTypes.EXPORT_DESCR_CHARACTER_TRAITS_MARKER,
+        RRTypes.EXPORT_DESCR_UNIT_MARKER,
+        RRTypes.FERAL_DESCR_AI_PERSONALITY_MARKER,
+        RRTypes.DESCR_FACTION_GROUPS_MARKER,
+        RRTypes.DESCR_SM_RESOURCES_MARKER,
+        RRTypes.FERAL_DESCR_PORTRAITS_VARIATION_MARKER,
+        RRTypes.DESCR_BANNERS_MARKER,
+        RRTypes.DESCR_CHARACTER_MARKER,
+        RRTypes.DESCR_BUILDING_BATTLE_MARKER,
+        RRTypes.DESCR_LBC_DB_MARKER,
+        RRTypes.DESCR_OFFMAP_MODELS_MARKER,
+        RRTypes.DESCR_SM_LANDMARKS_MARKER,
+        RRTypes.DESCR_MODEL_BATTLE_MARKER,
+        RRTypes.DESCR_MODEL_STRAT_MARKER,
+        RRTypes.DESCR_DISASTERS_MARKER,
+        RRTypes.DESCR_MOUNT_MARKER,
+        RRTypes.DESCR_REBEL_FACTIONS_MARKER,
+        RRTypes.DESCR_ITEMS_MARKER,
+        RRTypes.DESCR_SM_AMBIENT_OBJECTS_MARKER,
+        RRTypes.DESCR_BELIEFS_MARKER,
+        RRTypes.DESCR_SHIP_MARKER,
+        RRTypes.DESCR_PROJECTILE_MARKER,
+        RRTypes.DESCR_ANIMALS_MARKER,
+        RRTypes.DESCR_WIN_CONDITIONS_MARKER,
+        RRTypes.EXPORT_BUILDINGS_MARKER,
+        RRTypes.EXPORT_VNVS_MARKER,
+        RRTypes.EXPORT_ANCILLARIES_MARKER,
+        RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER,
+        RRTypes.TEXT_MAPPING_MARKER,
+        RRTypes.ENUMS_MARKER
+    );
 
     public static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);
     public static final TokenSet COMMENTS = TokenSet.create(RRTypes.COMMENT);
@@ -63,12 +104,6 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.RTM_FILE,
         RRTypes.WMV_FILE
     );
-
-    //<editor-fold desc="FILE MARKERS">
-    public static final TokenSet FILE_TYPE_MARKERS = TokenSet.create(
-        RRTypes.EXPORT_BUILDINGS_MARKER
-    );
-    //</editor-fold>
 
     //<editor-fold desc="CUSTOM_SCRIPT_HELPER_KEYWORDS">
     public static final TokenSet CUSTOM_SCRIPT_HELPERS = TokenSet.create(
@@ -906,6 +941,14 @@ public class RRParserDefinition implements ParserDefinition {
         // descr_projectiles_new
         RRTypes.WIDTH,
         RRTypes.OFFSET,
+
+        // descr_win_conditions
+        RRTypes.HOLD_REGIONS,
+        RRTypes.TAKE_REGIONS,
+        RRTypes.OUTLIVE,
+        RRTypes.TAKE_ROME,
+        RRTypes.IMPERATOR,
+        RRTypes.OUTLIVE_FACTIONS,
 
         // basic scripts stuff
         RRTypes.SCRIPT,

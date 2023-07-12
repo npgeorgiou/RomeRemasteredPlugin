@@ -21,16 +21,17 @@ public class RRReferencesSearch extends QueryExecutorBase<PsiReference, Referenc
         ReferencesSearch.SearchParameters queryParameters,
         Processor<? super PsiReference> consumer
     ) {
-        PsiElement element = queryParameters.getElementToSearch();
+        var element = queryParameters.getElementToSearch();
 
         if (element instanceof RRBuildingTreeNameDecl | element instanceof RRBuildingLevelNameDecl) {
             extendSearchTo(element.getText() + "_desc", element, queryParameters);
             extendSearchTo(element.getText() + "_desc_short", element, queryParameters);
             extendSearchTo(element.getText() + "_name", element, queryParameters);
 
-            Collection<String> factionsAndCulturesNames = RRUtil.findAllFactionsAsStrings(element.getProject());
+            var factionsAndCulturesNames = RRUtil.findAllFactionsAsStrings(element.getProject());
             factionsAndCulturesNames.addAll(RRUtil.findAllCulturesAsStrings(element.getProject()));
-            for (String factionOrCultureName : factionsAndCulturesNames) {
+
+            for (var factionOrCultureName : factionsAndCulturesNames) {
                 extendSearchTo(element.getText() + "_" + factionOrCultureName, element, queryParameters);
                 extendSearchTo(element.getText() + "_" + factionOrCultureName + "_desc", element, queryParameters);
                 extendSearchTo(element.getText() + "_" + factionOrCultureName + "_desc_short", element, queryParameters);
