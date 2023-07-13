@@ -29,14 +29,6 @@ public class DescrRebelFactions extends Inspector {
                 if (!uiTexts.contains(description.getText())) {
                     holder.registerProblem(description, "No description in rebel_faction_descr.txt", ProblemHighlightType.ERROR);
                 }
-
-                Collection<String> enums = RRUtil.findEnumsInFile("rebel_faction_descr_enums.txt", element.getProject()).stream()
-                    .map(it -> it.getText())
-                    .collect(Collectors.toList());
-
-                if (!enums.contains(element.getRebelsNameDecl().getText())) {
-                    holder.registerProblem(element.getRebelsNameDecl(), "No enum in rebel_faction_descr_enums.txt", ProblemHighlightType.ERROR);
-                }
             }
 
             @Override
@@ -52,21 +44,6 @@ public class DescrRebelFactions extends Inspector {
                 for (RRTextMappingItem mapping : element.getTextMappingItemList()) {
                     if (!rebelDescriptionIds.contains(mapping.getId().getText())) {
                         holder.registerProblem(mapping.getId(), "Not used in descr_rebel_factions.txt", ProblemHighlightType.WARNING);
-                    }
-                }
-            }
-
-            @Override
-            public void visitEnumsFormat(@NotNull RREnumsFormat element) {
-                if (!element.getContainingFile().getVirtualFile().getName().equals("rebel_faction_descr_enums.txt")) {
-                    return;
-                }
-
-                Collection<String> rebelNames = RRUtil.findAllRebelsAsStrings(element.getProject());
-                Collection<PsiElement> enums = RRUtil.findEnumsInFile("rebel_faction_descr_enums.txt", element.getProject());
-                for (PsiElement anEnum : enums) {
-                    if (!rebelNames.contains(anEnum.getText())) {
-                        holder.registerProblem(anEnum, "Not used in descr_rebel_factions.txt", ProblemHighlightType.WARNING);
                     }
                 }
             }

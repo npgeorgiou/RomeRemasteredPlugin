@@ -58,9 +58,6 @@
       // Keywords that can also be strings.
       LOCAL='regexp:"local"|local'
 
-      // enums markers
-      ENUMS_MARKER='regexp:;(rebel_faction_descr_enums).txt.*'
-
       COMMENT='regexp:[;¬].*'
 //      EOL='regexp:[\r\n][\s]*'
       space='regexp:\s+'
@@ -1819,7 +1816,6 @@ RRFile ::= descr_strat|
           export_ancillaries|
           campaign_regions_and_settlement_names|
           export_vnvs|
-          enums_format|
           kv_format|
           script_|
 
@@ -2858,11 +2854,6 @@ export_vnvs ::= EXPORT_VNVS_MARKER
                 (export_vnvs_item)+
 export_vnvs_item ::= OCB trait_descr_decl CCB STRING+ {pin=1 recoverWhile=not_OCB}
 // ############### export_vnvs end #################################
-
-// ############### enums_format start ###############################
-enums_format ::= ENUMS_MARKER
-                 ID+
-// ############### enums_format end #################################
 
 // ############### kv_format start ###############################
 kv_format ::= KVF_item

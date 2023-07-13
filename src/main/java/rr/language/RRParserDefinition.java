@@ -55,8 +55,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.EXPORT_VNVS_MARKER,
         RRTypes.EXPORT_ANCILLARIES_MARKER,
         RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER,
-        RRTypes.TEXT_MAPPING_MARKER,
-        RRTypes.ENUMS_MARKER
+        RRTypes.TEXT_MAPPING_MARKER
     );
 
     public static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);

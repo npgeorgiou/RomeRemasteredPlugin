@@ -5,6 +5,8 @@ import com.intellij.psi.tree.IElementType;
 import rr.language.psi.RRTypes;
 import com.intellij.psi.TokenType;
 
+
+''
 %%
 
 %class RRLexer
@@ -122,9 +124,6 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 "¬EXPORT_ANCILLARIES_MARKER"[^\r\n]*           {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_ANCILLARIES_MARKER;}
 "¬LANDMARKS_MARKER"[^\r\n]*                    {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 "¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER"[^\r\n]*  {yybegin(TEXT_MAPPING); return RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER;}
-
-// enum markers
-";REBEL_FACTION_DESCR_ENUMS_MARKER"[^\r\n]*       {yybegin(ENUMS); return RRTypes.ENUMS_MARKER;}
 
 // Special things
 <SCRIPTS_EVENTS_CONDITIONS>{LOCAL}          {return RRTypes.LOCAL;}

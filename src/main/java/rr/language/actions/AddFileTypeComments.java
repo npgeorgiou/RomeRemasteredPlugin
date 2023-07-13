@@ -64,7 +64,6 @@ public class AddFileTypeComments extends AnAction {
         filesAndMarker.put(RRUtil.findRRFile("descr_disasters.txt", project), ";DESCR_DISASTERS_MARKER DO NOT REMOVE");
         filesAndMarker.put(RRUtil.findRRFile("descr_mount.txt", project), ";DESCR_MOUNT_MARKER DO NOT REMOVE");
         filesAndMarker.put(RRUtil.findRRFile("descr_rebel_factions.txt", project), ";DESCR_REBEL_FACTIONS_MARKER DO NOT REMOVE");
-        filesAndMarker.put(RRUtil.findRRFile("rebel_faction_descr_enums.txt", project), ";REBEL_FACTION_DESCR_ENUMS_MARKER DO NOT REMOVE");
         filesAndMarker.put(RRUtil.findRRFile("descr_items.txt", project), ";DESCR_ITEMS_MARKER DO NOT REMOVE");
         filesAndMarker.put(RRUtil.findRRFile("descr_sm_ambient_objects.txt", project), ";DESCR_SM_AMBIENT_OBJECTS_MARKER DO NOT REMOVE");
         filesAndMarker.put(RRUtil.findRRFile("descr_beliefs.txt", project), ";DESCR_BELIEFS_MARKER DO NOT REMOVE");

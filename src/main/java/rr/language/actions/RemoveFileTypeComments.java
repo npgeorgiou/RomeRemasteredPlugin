@@ -54,7 +54,6 @@ public class RemoveFileTypeComments extends AnAction {
         "descr_mount.txt",
         "descr_rebel_factions.txt",
         "rebel_faction_descr.txt",
-        "rebel_faction_descr_enums.txt",
         "descr_items.txt",
         "descr_sm_ambient_objects.txt",
         "descr_beliefs.txt",
