@@ -49,10 +49,11 @@
       DESCR_WIN_CONDITIONS_MARKER='regexp:;DESCR_WIN_CONDITIONS_MARKER.*'
 
       // text mapping markers
+      CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER='regexp:¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER.*'
       EXPORT_BUILDINGS_MARKER='regexp:;EXPORT_BUILDINGS_MARKER.*'
+      REBEL_FACTION_DESCR_MARKER='regexp:¬REBEL_FACTION_DESCR_MARKER.*'
       EXPORT_VNVS_MARKER='regexp:¬EXPORT_VNVS_MARKER.*'
       EXPORT_ANCILLARIES_MARKER='regexp:¬EXPORT_ANCILLARIES_MARKER.*'
-      CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER='regexp:¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER.*'
       TEXT_MAPPING_MARKER='regexp:¬(names|rebel_faction_descr|landmarks).txt.*'
 
       // Keywords that can also be strings.
@@ -1815,6 +1816,7 @@ RRFile ::= descr_strat|
           text_mapping_format|
           export_ancillaries|
           campaign_regions_and_settlement_names|
+          rebel_faction_descr|
           export_vnvs|
           kv_format|
           script_|
@@ -2145,15 +2147,15 @@ ancillary_def ::= ANCILLARY ancillary_name_decl
                     (UNIQUE)*
                     (EXCLUDEDANCILLARIES <<list ancillary_ref>> COMMA?)*
                     (EXCLUDECULTURES <<list culture_ref>>)*
-                    DESCRIPTION ancillary_descr_ref
-                    EFFECTSDESCRIPTION <<list ancillary_descr_ref>>
+                    DESCRIPTION ancillary_descr_def
+                    EFFECTSDESCRIPTION <<list ancillary_descr_def>>
                     (EFFECT character_attribute_ INT)*
                     (FAKEEFFECT character_attribute_ INT)*
                     (RELIGIOUS_BELIEF religion_ref INT)*
                   {pin=1 recoverWhile=ancillary_def_recover}
 ancillary_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 ancillary_ref ::= safe_id {methods=[setName getReference]}
-ancillary_descr_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+ancillary_descr_def ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 ancillary_descr_ref ::= ID {methods=[setName getReference]}
 
 private ancillary_def_recover ::= !(ANCILLARY|TRIGGER)
@@ -2185,16 +2187,16 @@ trait_def ::= TRAIT trait_name_decl
 trait_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 trait_ref ::= safe_id {methods=[setName getReference]}
 private trait_def_recover ::= !(TRAIT|TRIGGER)
-trait_level ::= LEVEL safe_id
-                  DESCRIPTION trait_descr_ref
-                  EFFECTSDESCRIPTION trait_descr_ref
-                  (GAINMESSAGE trait_descr_ref)?
-                  (LOSEMESSAGE trait_descr_ref)?
-                  (EPITHET trait_descr_ref)?
+trait_level ::= LEVEL (trait_descr_def | HIDDEN)
+                  DESCRIPTION trait_descr_def
+                  EFFECTSDESCRIPTION trait_descr_def
+                  (GAINMESSAGE trait_descr_def)?
+                  (LOSEMESSAGE trait_descr_def)?
+                  (EPITHET trait_descr_def)?
                   THRESHOLD INT
                   (EFFECT character_attribute_ INT)*
                   (RELIGIOUS_BELIEF religion_ref INT)*
-trait_descr_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+trait_descr_def ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 trait_descr_ref ::= ID {methods=[setName getReference]}
 trait_trigger_def ::= TRIGGER ID
                         WHENTOTEST event
@@ -2221,7 +2223,7 @@ region_def ::= region_name_decl
                  (LEGION COLON ID)?
                  settlement_name_decl
                  faction_ref
-                 rebels_ref
+                 rebel_faction_ref
                  rgb
                  (NONE|<<list resource_ref>>)
                  INT
@@ -2771,13 +2773,15 @@ faction_win_condition ::= faction_ref
 // ############### descr_rebel_factions end #################################
 descr_rebel_factions ::= DESCR_REBEL_FACTIONS_MARKER
                          rebel_faction*
-rebel_faction ::= REBEL_TYPE rebels_name_decl
+rebel_faction ::= REBEL_TYPE rebel_faction_name_def
                   CATEGORY rebel_category
                   CHANCE_LC INT
-                  DESCRIPTION_LC ID
-                  (UNIT unit_ref)+ {methods=[getDescription]}
-rebels_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
-rebels_ref ::= safe_id {methods=[setName getReference]}
+                  DESCRIPTION_LC rebel_faction_descr_def
+                  (UNIT unit_ref)+
+rebel_faction_name_def ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+rebel_faction_ref ::= safe_id {methods=[setName getReference]}
+rebel_faction_descr_def ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+rebel_faction_descr_ref ::= ID {methods=[setName getReference]}
 rebel_category ::= PEASANT_REVOLT|GLADIATOR_REVOLT|BRIGANDS|PIRATES
 // ############### descr_rebel_factions end #################################
 
@@ -2839,7 +2843,7 @@ private not_OCB ::= !OCB
 // ############### export_ancillaries start ###############################
 export_ancillaries ::= EXPORT_ANCILLARIES_MARKER
                        (export_ancillaries_item)+
-export_ancillaries_item ::= OCB ancillary_descr_decl CCB STRING+ {pin=1 recoverWhile=not_OCB}
+export_ancillaries_item ::= OCB ancillary_descr_ref CCB STRING+ {pin=1 recoverWhile=not_OCB}
 // ############### export_ancillaries end #################################
 
 // ############### *_campaign_regions_and_settlement_names start ###############################
@@ -2852,8 +2856,14 @@ region_or_settlement_ref ::= ID {methods=[setName getReference]}
 // ############### export_vnvs start ###############################
 export_vnvs ::= EXPORT_VNVS_MARKER
                 (export_vnvs_item)+
-export_vnvs_item ::= OCB trait_descr_decl CCB STRING+ {pin=1 recoverWhile=not_OCB}
+export_vnvs_item ::= OCB trait_descr_ref CCB STRING+ {pin=1 recoverWhile=not_OCB}
 // ############### export_vnvs end #################################
+
+// ############### rebel_faction_descr start ###############################
+rebel_faction_descr ::= REBEL_FACTION_DESCR_MARKER
+                        (rebel_faction_descr_mapping)+
+rebel_faction_descr_mapping ::= OCB rebel_faction_descr_ref CCB STRING+ {pin=1 recoverWhile=not_OCB}
+// ############### rebel_faction_descr end #################################
 
 // ############### kv_format start ###############################
 kv_format ::= KVF_item

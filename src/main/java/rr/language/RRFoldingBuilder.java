@@ -300,7 +300,7 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
             fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
-        //descr_offmap_models
+        // descr_offmap_models
         for (RROffmapNavy element : PsiTreeUtil.findChildrenOfType(file, RROffmapNavy.class)) {
             fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
         }
@@ -314,22 +314,32 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
             fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
-        //descr_model_battle, descr_model_strat
+        // descr_model_battle, descr_model_strat
         for (RRModel_ element : PsiTreeUtil.findChildrenOfType(file, RRModel_.class)) {
             fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
-        //descr_mount
+        // descr_mount
         for (RRMount_ element : PsiTreeUtil.findChildrenOfType(file, RRMount_.class)) {
             fold(element, element.getFirstChild().getNextSibling().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
-        //descr_beliefs
+        // descr_beliefs
         for (RRReligion_ element : PsiTreeUtil.findChildrenOfType(file, RRReligion_.class)) {
             fold(element, element.getFirstChild().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
-        //scripts
+        // descr_projectiles_new
+        for (RRProjectile_ element : PsiTreeUtil.findChildrenOfType(file, RRProjectile_.class)) {
+            fold(element, element.getProjectileNameDecl().getNextSibling(), element.getLastChild(), "...", folds);
+        }
+
+        // rebel_faction_descr
+        for (RRRebelFaction element : PsiTreeUtil.findChildrenOfType(file, RRRebelFaction.class)) {
+            fold(element, element.getRebelFactionNameDef().getNextSibling(), element.getLastChild(), "...", folds);
+        }
+
+        // scripts
         for (RRIf_ element : PsiTreeUtil.findChildrenOfType(file, RRIf_.class)) {
             fold(element, element.getConditionAtomList().get(0).getNextSibling(), element.getLastChild(), "...", folds);
         }
@@ -362,11 +372,6 @@ public class RRFoldingBuilder extends FoldingBuilderEx implements DumbAware {
         }
         for (RRMacroDef_ element : PsiTreeUtil.findChildrenOfType(file, RRMacroDef_.class)) {
             fold(element, element.getFirstChild().getNextSibling().getNextSibling(), element.getLastChild(), "...", folds);
-        }
-
-        //descr_projectiles_new
-        for (RRProjectile_ element : PsiTreeUtil.findChildrenOfType(file, RRProjectile_.class)) {
-            fold(element, element.getProjectileNameDecl().getNextSibling(), element.getLastChild(), "...", folds);
         }
 
         return folds.toArray(new FoldingDescriptor[folds.size()]);

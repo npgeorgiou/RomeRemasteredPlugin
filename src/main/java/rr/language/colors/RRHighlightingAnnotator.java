@@ -23,21 +23,21 @@ public class RRHighlightingAnnotator implements Annotator {
 
         if (
             element instanceof RRUnitNameDecl ||
-                element instanceof RRUnitRef ||
-                element instanceof RRAncillaryNameDecl ||
-                element instanceof RRAncillaryRef ||
-                element instanceof RRModelNameDecl ||
-                element instanceof RRModelRef ||
-                element instanceof RRMountNameDecl ||
-                element instanceof RRMountRef ||
-                element instanceof RRShipNameDecl ||
-                element instanceof RRShipRef ||
-                element instanceof RRAnimalNameDecl ||
-                element instanceof RRAnimalRef ||
-                element instanceof RRTraitNameDecl ||
-                element instanceof RRTraitRef ||
-                element instanceof RRRebelsNameDecl ||
-                element instanceof RRRebelsRef
+            element instanceof RRUnitRef ||
+            element instanceof RRAncillaryNameDecl ||
+            element instanceof RRAncillaryRef ||
+            element instanceof RRModelNameDecl ||
+            element instanceof RRModelRef ||
+            element instanceof RRMountNameDecl ||
+            element instanceof RRMountRef ||
+            element instanceof RRShipNameDecl ||
+            element instanceof RRShipRef ||
+            element instanceof RRAnimalNameDecl ||
+            element instanceof RRAnimalRef ||
+            element instanceof RRTraitNameDecl ||
+            element instanceof RRTraitRef ||
+            element instanceof RRRebelFactionNameDef ||
+            element instanceof RRRebelFactionRef
         ) {
             color(element, RRSyntaxHighlighter.ID_STYLE, holder);
         }

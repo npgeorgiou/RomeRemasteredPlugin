@@ -8,41 +8,33 @@ import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
-import rr.language.psi.RRAncillaryDescrRef;
+import rr.language.psi.RRRebelFactionDescrRef;
 
 import java.util.stream.Collectors;
 
-public class AncillaryDescrReference extends PsiReferenceBase<PsiElement> implements PsiReference {
+public class RebelFactionDescrReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
-    public AncillaryDescrReference(@NotNull PsiElement element, TextRange rangeInElement) {
+    public RebelFactionDescrReference(@NotNull PsiElement element, TextRange rangeInElement) {
         super(element, rangeInElement);
     }
 
     @Override
     public @Nullable PsiElement resolve() {
-        var descriptions = RRUtil.findAllAncillaryDescriptions(myElement.getProject()).stream()
+        var items = RRUtil.findAllRebelFactions(myElement.getProject()).stream()
+            .map(it -> it.getRebelFactionDescrDef())
             .filter(it -> it.getText().equals(myElement.getText()))
             .collect(Collectors.toList());
 
-        if (!descriptions.isEmpty()) {
-            return descriptions.get(0);
-        }
-
-        var names = RRUtil.findAllAncillaries(myElement.getProject()).stream()
-            .map(it -> it.getAncillaryNameDecl())
-            .filter(it -> it.getText().equals(myElement.getText()))
-            .collect(Collectors.toList());
-
-        if (names.isEmpty()) {
+        if (items.isEmpty()) {
             return null;
         }
 
-        return names.get(0);
+        return items.get(0);
     }
 
     @Override
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
-        ((RRAncillaryDescrRef) myElement).setName(newName);
+        ((RRRebelFactionDescrRef) myElement).setName(newName);
         return myElement;
     }
 

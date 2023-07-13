@@ -9,42 +9,41 @@ import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
-import rr.language.psi.RRRebelFaction;
-import rr.language.psi.RRRebelsRef;
-import rr.language.psi.RRRegionDef;
-import rr.language.psi.RRRegionRef;
+import rr.language.psi.RRRebelFactionNameDef;
+import rr.language.psi.RRRebelFactionRef;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RebelsReference extends PsiReferenceBase<PsiElement> implements PsiReference {
+public class RebelFactionReference extends PsiReferenceBase<PsiElement> implements PsiReference {
 
-    public RebelsReference(@NotNull PsiElement element, TextRange rangeInElement) {
+    public RebelFactionReference(@NotNull PsiElement element, TextRange rangeInElement) {
         super(element, rangeInElement);
     }
 
     @Override
     public @Nullable PsiElement resolve() {
-        List<RRRebelFaction> items = RRUtil.findAllRebels(myElement.getProject()).stream()
-            .filter(it -> it.getRebelsNameDecl().getText().equals(myElement.getText()))
+        List<RRRebelFactionNameDef> items = RRUtil.findAllRebelFactions(myElement.getProject()).stream()
+            .map(it -> it.getRebelFactionNameDef())
+            .filter(it -> it.getText().equals(myElement.getText()))
             .collect(Collectors.toList());
 
         if (items.isEmpty()) {
             return null;
         }
 
-        return items.get(0).getRebelsNameDecl();
+        return items.get(0);
     }
 
     @Override
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
-        ((RRRebelsRef) myElement).setName(newName);
+        ((RRRebelFactionRef) myElement).setName(newName);
         return myElement;
     }
 
     @Override
     public Object @NotNull [] getVariants() {
-        return RRUtil.findAllRebelsAsStrings(myElement.getProject()).stream()
+        return RRUtil.findAllRebelFactionsAsStrings(myElement.getProject()).stream()
             .map(it -> LookupElementBuilder.create(it))
             .toArray();
     }

@@ -1,6 +1,5 @@
 package rr.language.psi.impl;
 
-import com.intellij.openapi.util.NlsSafe;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import rr.language.RRUtil;
@@ -352,33 +351,29 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Rebels">
-    public static PsiElement getDescription(RRRebelFaction e) {
-        return e.getNode().findChildByType(RRTypes.DESCRIPTION_LC).getPsi().getNextSibling().getNextSibling();
-    }
-
-    public static PsiElement setName(RRRebelsNameDecl e, String newName) {
+    public static PsiElement setName(RRRebelFactionNameDef e, String newName) {
         PsiElement id = RRElementFactory.createId(e.getProject(), newName);
         e.getFirstChild().replace(id);
         return e;
     }
 
-    public static String getName(RRRebelsNameDecl e) {
+    public static String getName(RRRebelFactionNameDef e) {
         return e.getFirstChild().getText();
     }
 
-    public static PsiElement getNameIdentifier(RRRebelsNameDecl e) {
+    public static PsiElement getNameIdentifier(RRRebelFactionNameDef e) {
         return e.getFirstChild();
     }
 
-    public static PsiElement setName(RRRebelsRef ref, String newName) {
+    public static PsiElement setName(RRRebelFactionRef ref, String newName) {
         PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
         ref.getFirstChild().replace(id);
         return ref;
     }
 
-    public static RebelsReference getReference(RRRebelsRef ref) {
+    public static RebelFactionReference getReference(RRRebelFactionRef ref) {
         TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
-        return new RebelsReference(ref, range);
+        return new RebelFactionReference(ref, range);
     }
     //</editor-fold>
 
@@ -815,17 +810,17 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Ancillary descriptions decl and refs">
-    public static PsiElement setName(RRAncillaryDescrDecl e, String newName) {
+    public static PsiElement setName(RRAncillaryDescrDef e, String newName) {
         PsiElement id = RRElementFactory.createId(e.getProject(), newName);
         e.getFirstChild().replace(id);
         return e;
     }
 
-    public static String getName(RRAncillaryDescrDecl e) {
+    public static String getName(RRAncillaryDescrDef e) {
         return e.getText();
     }
 
-    public static PsiElement getNameIdentifier(RRAncillaryDescrDecl e) {
+    public static PsiElement getNameIdentifier(RRAncillaryDescrDef e) {
         return e.getFirstChild();
     }
 
@@ -842,17 +837,17 @@ public class RRPsiImplUtil {
     //</editor-fold>
 
     //<editor-fold desc="Trait descriptions decl and refs">
-    public static PsiElement setName(RRTraitDescrDecl e, String newName) {
+    public static PsiElement setName(RRTraitDescrDef e, String newName) {
         PsiElement id = RRElementFactory.createId(e.getProject(), newName);
         e.getFirstChild().replace(id);
         return e;
     }
 
-    public static String getName(RRTraitDescrDecl e) {
+    public static String getName(RRTraitDescrDef e) {
         return e.getText();
     }
 
-    public static PsiElement getNameIdentifier(RRTraitDescrDecl e) {
+    public static PsiElement getNameIdentifier(RRTraitDescrDef e) {
         return e.getFirstChild();
     }
 
@@ -865,6 +860,33 @@ public class RRPsiImplUtil {
     public static TraitDescrReference getReference(RRTraitDescrRef ref) {
         TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
         return new TraitDescrReference(ref, range);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Rebel factions descriptions decl and refs">
+    public static PsiElement setName(RRRebelFactionDescrDef e, String newName) {
+        PsiElement id = RRElementFactory.createId(e.getProject(), newName);
+        e.getFirstChild().replace(id);
+        return e;
+    }
+
+    public static String getName(RRRebelFactionDescrDef e) {
+        return e.getText();
+    }
+
+    public static PsiElement getNameIdentifier(RRRebelFactionDescrDef e) {
+        return e.getFirstChild();
+    }
+
+    public static PsiElement setName(RRRebelFactionDescrRef ref, String newName) {
+        PsiElement id = RRElementFactory.createId(ref.getProject(), newName);
+        ref.getFirstChild().replace(id);
+        return ref;
+    }
+
+    public static RebelFactionDescrReference getReference(RRRebelFactionDescrRef ref) {
+        TextRange range = ref.getNode().findChildByType(RRTypes.ID).getPsi().getTextRangeInParent();
+        return new RebelFactionDescrReference(ref, range);
     }
     //</editor-fold>
 

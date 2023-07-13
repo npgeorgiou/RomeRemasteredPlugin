@@ -87,23 +87,6 @@ public class RRUtil {
         return ((RRTextMappingFormat) file.getFirstChild()).getTextMappingItemList();
     }
 
-    public static Collection<PsiElement> findEnumsInFile(String fileName, Project project) {
-        RRFile file = RRUtil.findRRFile(fileName, project);
-        return findEnumsInFile(file);
-    }
-
-    public static Collection<PsiElement> findEnumsInFile(RRFile file) {
-        if (file == null) {
-            return new ArrayList<>();
-        }
-
-        PsiElement format = file.findChildByClass(RREnumsFormat.class);
-
-        return PsiTreeUtil.findChildrenOfType(format, PsiElement.class).stream()
-            .filter(it -> it.getNode().getElementType().toString().equals("RRTokenType.ID"))
-            .collect(Collectors.toList());
-    }
-
     public static Collection<RRUnitItem_> findAllUnits(Project project) {
         RRFile file = RRUtil.findRRFile("export_descr_unit.txt", project);
 
@@ -169,7 +152,7 @@ public class RRUtil {
             .collect(Collectors.toList());
     }
 
-    public static Collection<RRRebelFaction> findAllRebels(Project project) {
+    public static Collection<RRRebelFaction> findAllRebelFactions(Project project) {
         RRFile file = RRUtil.findRRFile("descr_rebel_factions.txt", project);
 
         var opt = Optional.ofNullable(file)
@@ -179,9 +162,9 @@ public class RRUtil {
         return opt.orElse(new ArrayList<>());
     }
 
-    public static Collection<String> findAllRebelsAsStrings(Project project) {
-        return findAllRebels(project).stream()
-            .map(it -> it.getRebelsNameDecl().getText())
+    public static Collection<String> findAllRebelFactionsAsStrings(Project project) {
+        return findAllRebelFactions(project).stream()
+            .map(it -> it.getRebelFactionNameDef().getText())
             .collect(Collectors.toList());
     }
 
@@ -487,53 +470,59 @@ public class RRUtil {
             .collect(Collectors.toList());
     }
 
-    public static List<RRAncillaryDescrDecl> findAllAncillaryDescriptions(Project project) {
-        RRFile file = RRUtil.findRRFile("export_ancillaries.txt", project);
-
-        return Optional.ofNullable(file)
-            .map(it -> it.findChildByClass(RRExportAncillaries.class))
-            .map(it -> it.getExportAncillariesItemList())
-            .orElse(new ArrayList<>()).stream()
-            .map(it -> it.getAncillaryDescrDecl())
+    public static List<RRAncillaryDescrDef> findAllAncillaryDescriptions(Project project) {
+        return findAllAncillaries(project).stream()
+            .flatMap(it -> it.getAncillaryDescrDefList().stream())
             .collect(Collectors.toList());
-    }
-
-    private static Collection<RRTraitDef> findAllTraits(Project project) {
-        RRFile file = RRUtil.findRRFile("export_descr_character_traits.txt", project);
-        return Optional.ofNullable(file)
-            .map(it -> it.findChildByClass(RRExportDescrCharacterTraits.class))
-            .map(it -> it.getTraitDefList())
-            .orElse(new ArrayList<>());
     }
 
     // I do that because the Traits file is huge, and the NonExistingTrait Inspection
     // would otherwise re-read that huge file many times in order to check it.
-    private static Map<Long, List<String>> findAllTraitsAsStringsCache = new HashMap<>();
-    public static Collection<String> findAllTraitsAsStrings(Project project) {
+    private static Map<Long, List<RRTraitDef>> findAllTraitCache = new HashMap<>();
+    private static Collection<RRTraitDef> findAllTraits(Project project) {
         RRFile file = RRUtil.findRRFile("export_descr_character_traits.txt", project);
         var modificationStamp = file.getVirtualFile().getModificationStamp();
 
-        if (findAllTraitsAsStringsCache.containsKey(modificationStamp)) {
-            return findAllTraitsAsStringsCache.get(modificationStamp);
+        if (findAllTraitCache.containsKey(modificationStamp)) {
+            return findAllTraitCache.get(modificationStamp);
         }
 
-        var items = findAllTraits(project).stream()
-            .map(it -> it.getTraitNameDecl().getText())
-            .collect(Collectors.toList());
+        var items = Optional.ofNullable(file)
+            .map(it -> it.findChildByClass(RRExportDescrCharacterTraits.class))
+            .map(it -> it.getTraitDefList())
+            .orElse(new ArrayList<>());
 
-        findAllTraitsAsStringsCache.clear();
-        findAllTraitsAsStringsCache.put(modificationStamp, items);
+        findAllTraitCache.clear();
+        findAllTraitCache.put(modificationStamp, items);
         return items;
     }
 
-    public static List<RRTraitDescrDecl> findAllTraitDescriptions(Project project) {
-        RRFile file = RRUtil.findRRFile("export_vnvs.txt", project);
+    public static Collection<String> findAllTraitsAsStrings(Project project) {
+        return findAllTraits(project).stream()
+            .map(it -> it.getTraitNameDecl().getText())
+            .collect(Collectors.toList());
+    }
+
+    public static List<RRTraitDescrDef> findAllTraitDescriptions(Project project) {
+        var allDescriptions = new ArrayList<RRTraitDescrDef>();
+
+        for (var trait : findAllTraits(project)) {
+            for (var level : trait.getTraitLevelList()) {
+                allDescriptions.addAll(level.getTraitDescrDefList());
+            }
+        }
+
+        return allDescriptions.stream().filter(it -> it != null).collect(Collectors.toList());
+    }
+
+    public static List<RRRebelFactionDescrRef> findAllRebelFactionDescriptions(Project project) {
+        RRFile file = RRUtil.findRRFile("rebel_faction_descr.txt", project);
 
         return Optional.ofNullable(file)
-            .map(it -> it.findChildByClass(RRExportVnvs.class))
-            .map(it -> it.getExportVnvsItemList())
+            .map(it -> it.findChildByClass(RRRebelFactionDescr.class))
+            .map(it -> it.getRebelFactionDescrMappingList())
             .orElse(new ArrayList<>()).stream()
-            .map(it -> it.getTraitDescrDecl())
+            .map(it -> it.getRebelFactionDescrRef())
             .collect(Collectors.toList());
     }
 

@@ -5,8 +5,6 @@ import com.intellij.psi.tree.IElementType;
 import rr.language.psi.RRTypes;
 import com.intellij.psi.TokenType;
 
-
-''
 %%
 
 %class RRLexer
@@ -117,13 +115,13 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 ";DESCR_WIN_CONDITIONS_MARKER"[^\r\n]*            {yybegin(DESCR_WIN_CONDITIONS);return RRTypes.DESCR_WIN_CONDITIONS_MARKER;}
 
 // text mapping markers
+"¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER"[^\r\n]*  {yybegin(TEXT_MAPPING); return RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER;}
 "¬EXPORT_BUILDINGS_MARKER"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
-"¬NAMES_MARKER"[^\r\n]*                        {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-"¬REBEL_FACTION_DESCR_MARKER"[^\r\n]*          {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
+"¬REBEL_FACTION_DESCR_MARKER"[^\r\n]*          {yybegin(TEXT_MAPPING); return RRTypes.REBEL_FACTION_DESCR_MARKER;}
 "¬EXPORT_VNVS_MARKER"[^\r\n]*                  {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_VNVS_MARKER;}
 "¬EXPORT_ANCILLARIES_MARKER"[^\r\n]*           {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_ANCILLARIES_MARKER;}
 "¬LANDMARKS_MARKER"[^\r\n]*                    {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
-"¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER"[^\r\n]*  {yybegin(TEXT_MAPPING); return RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER;}
+"¬NAMES_MARKER"[^\r\n]*                        {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 
 // Special things
 <SCRIPTS_EVENTS_CONDITIONS>{LOCAL}          {return RRTypes.LOCAL;}

@@ -33,66 +33,70 @@
         <iconProvider implementation="rr.language.RRIconProvider"/>
 
         <!-- Inspections -->
-        <localInspection language="RomeRemastered" shortName="Rebel_factions_missing_enums_and_descriptions"
-                         displayName="Rebel factions missing enums and descriptions" groupName="RR"
+        <localInspection language="RomeRemastered" shortName="Resource_checks"
+                         displayName="Resource checks" groupName="RR"
                          enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.missingTextMapping.DescrRebelFactions"/>
+                         implementationClass="rr.language.inspections.Resource"/>
 
-        <localInspection language="RomeRemastered" shortName="Ancillaries_missing_descriptions"
-                         displayName="Ancillaries missing descriptions" groupName="RR"
+        <localInspection language="RomeRemastered" shortName="Rebel_factions_checks"
+                         displayName="Rebel factions checks" groupName="RR"
                          enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.missingTextMapping.DescrAncillaries"/>
+                         implementationClass="rr.language.inspections.RebelFaction"/>
 
-        <localInspection language="RomeRemastered" shortName="Traits_missing_descriptions"
-                         displayName="Traits missing descriptions" groupName="RR"
+        <localInspection language="RomeRemastered" shortName="Region_checks"
+                         displayName="Region checks" groupName="RR"
                          enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.missingTextMapping.DescrTraits"/>
+                         implementationClass="rr.language.inspections.Region"/>
+
+        <localInspection language="RomeRemastered" shortName="Traits_checks"
+                         displayName="Traits checks" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.Traits"/>
+
+        <localInspection language="RomeRemastered" shortName="Ancillary_checks"
+                         displayName="Ancillary checks" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.Ancillary"/>
 
         <localInspection language="RomeRemastered" shortName="Duplicate_mercenary_pool_regions"
                          displayName="Duplicate mercenary pool regions" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.DuplicateMercenaryPoolRegions"/>
-        <localInspection language="RomeRemastered" shortName="Non_existing_mercenary_pool_regions"
-                         displayName="Non existing mercenary pool regions" groupName="RR"
-                         enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.NonExistingRegion"/>
+
         <localInspection language="RomeRemastered" shortName="Non_existing_unit" displayName="Non existing unit"
                          groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingUnit"/>
+
         <localInspection language="RomeRemastered" shortName="Non_existing_building_tree"
                          displayName="Non existing building tree" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingBuildingTree"/>
+
         <localInspection language="RomeRemastered" shortName="Non_existing_building_level"
                          displayName="Non existing building level" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingBuildingLevel"/>
-        <localInspection language="RomeRemastered" shortName="Non_existing_trait" displayName="Non existing trait"
-                         groupName="RR"
-                         enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.NonExistingTrait"/>
-        <localInspection language="RomeRemastered" shortName="Non_existing_ancillary"
-                         displayName="Non existing ancillary" groupName="RR"
-                         enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.NonExistingAncillary"/>
+
         <localInspection language="RomeRemastered" shortName="Non_existing_ethnicity_makeup"
                          displayName="Non existing ethnicity makeup" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingEthnicityMakeup"/>
+
         <localInspection language="RomeRemastered" shortName="Non_existing_faction"
                          displayName="Non existing faction" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingFaction"/>
+
         <localInspection language="RomeRemastered" shortName="Non_existing_faction_or_culture"
                          displayName="Non existing faction or culture" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingFactionOrCulture"/>
+
         <localInspection language="RomeRemastered" shortName="Non_existing_culture"
                          displayName="Non existing culture" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingCulture"/>
-
 
     </extensions>
 

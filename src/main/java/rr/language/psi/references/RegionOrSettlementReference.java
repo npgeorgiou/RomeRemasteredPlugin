@@ -46,7 +46,7 @@ public class RegionOrSettlementReference extends PsiReferenceBase<PsiElement> im
 
     @Override
     public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
-        ((RRFactionOrCultureRef) myElement).setName(newName);
+        ((RRRegionOrSettlementRef) myElement).setName(newName);
         return myElement;
     }
 

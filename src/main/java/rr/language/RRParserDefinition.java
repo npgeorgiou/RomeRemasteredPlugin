@@ -55,6 +55,7 @@ public class RRParserDefinition implements ParserDefinition {
         RRTypes.EXPORT_VNVS_MARKER,
         RRTypes.EXPORT_ANCILLARIES_MARKER,
         RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER,
+        RRTypes.REBEL_FACTION_DESCR_MARKER,
         RRTypes.TEXT_MAPPING_MARKER
     );
 
