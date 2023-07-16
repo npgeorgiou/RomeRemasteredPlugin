@@ -46,7 +46,7 @@ class Traits : Inspector() {
             }
 
             private fun findAllTraitUiNames(project: Project): List<String> {
-                val file = findRRFile("export_vnvs.txt", project)
+                val file = findRRFile("text/export_vnvs.txt", project)
                 return Optional.ofNullable(file)
                     .map { it: RRFile ->
                         it.findChildByClass(

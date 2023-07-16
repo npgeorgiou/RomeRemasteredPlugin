@@ -4,7 +4,6 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import rr.language.RRUtil.findRRFile
-import rr.language.RRUtil.findRRFileThatEndsWith
 import rr.language.psi.RRElementFactory
 import rr.language.psi.RRFile
 
@@ -20,15 +19,15 @@ class AddFileTypeComments : AnAction() {
         // remove it from project. It was just for this test.
         //File file = new File("C:\\Users\\nikol\\AppData\\Local\\Feral Interactive\\Total War ROME REMASTERED\\Mods\\Local Mods\\playground\\data\\descr_banners.txt");
         //var foo = LightPsi.parseFile(file, new RRParserDefinition());
-        val project = event.project
+        val project = event.project!!
         val filesAndMarker = HashMap<RRFile?, String>()
-        filesAndMarker[findRRFile("export_buildings.txt", project)] = "¬EXPORT_BUILDINGS_MARKER DO NOT REMOVE"
-        filesAndMarker[findRRFile("names.txt", project)] = "¬NAMES_MARKER DO NOT REMOVE"
-        filesAndMarker[findRRFile("rebel_faction_descr.txt", project)] = "¬REBEL_FACTION_DESCR_MARKER DO NOT REMOVE"
-        filesAndMarker[findRRFile("export_vnvs.txt", project)] = "¬EXPORT_VNVS_MARKER DO NOT REMOVE"
-        filesAndMarker[findRRFile("export_ancillaries.txt", project)] = "¬EXPORT_ANCILLARIES_MARKER DO NOT REMOVE"
-        filesAndMarker[findRRFile("landmarks.txt", project)] = "¬LANDMARKS_MARKER DO NOT REMOVE"
-        filesAndMarker[findRRFileThatEndsWith("_campaign_regions_and_settlement_names.txt", project)] = "¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("text/export_buildings.txt", project)] = "¬EXPORT_BUILDINGS_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("text/names.txt", project)] = "¬NAMES_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("text/rebel_faction_descr.txt", project)] = "¬REBEL_FACTION_DESCR_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("text/export_vnvs.txt", project)] = "¬EXPORT_VNVS_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("text/export_ancillaries.txt", project)] = "¬EXPORT_ANCILLARIES_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("text/landmarks.txt", project)] = "¬LANDMARKS_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("_campaign_regions_and_settlement_names.txt", project)] = "¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER DO NOT REMOVE"
         filesAndMarker[findRRFile("descr_regions.txt", project)] = ";DESCR_REGIONS_MARKER DO NOT REMOVE"
         filesAndMarker[findRRFile("descr_mercenaries.txt", project)] = ";DESCR_MERCENARIES_MARKER DO NOT REMOVE"
         filesAndMarker[findRRFile("descr_strat.txt", project)] = ";DESCR_STRAT_MARKER DO NOT REMOVE"

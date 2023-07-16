@@ -63,7 +63,7 @@ class RebelFaction : Inspector() {
             }
 
             private fun findAllRebelFactionUiNames(project: Project): List<String> {
-                val file = findRRFile("rebel_faction_descr.txt", project)
+                val file = findRRFile("text/rebel_faction_descr.txt", project)
                 return Optional.ofNullable(file)
                     .map { it: RRFile ->
                         it.findChildByClass(

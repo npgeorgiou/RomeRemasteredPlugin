@@ -4,9 +4,9 @@ import com.intellij.codeInspection.LocalInspectionToolSession
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.openapi.project.Project
+import rr.language.RRUtil
 import rr.language.RRUtil.findAllRegionsAsStrings
 import rr.language.RRUtil.findAllSettlementsAsStrings
-import rr.language.RRUtil.findRRFileThatEndsWith
 import rr.language.psi.*
 import java.util.*
 import java.util.stream.Collectors
@@ -68,7 +68,7 @@ class Region : Inspector() {
             }
 
             private fun findAllRegionAndSettlementUiNames(project: Project): List<String> {
-                val file = findRRFileThatEndsWith("_campaign_regions_and_settlement_names.txt", project)
+                val file = RRUtil.findRRFile("_campaign_regions_and_settlement_names.txt", project)
                 return Optional.ofNullable(file)
                     .map { it: RRFile ->
                         it.findChildByClass(

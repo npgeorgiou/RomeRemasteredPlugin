@@ -68,18 +68,12 @@ class Ancillary : Inspector() {
             }
 
             private fun findAllAncillaryUiNames(project: Project): List<String> {
-                val file = findRRFile("export_ancillaries.txt", project)
-                return Optional.ofNullable(file)
-                    .map { it: RRFile ->
-                        it.findChildByClass(
-                            RRExportAncillaries::class.java
-                        )
-                    }
-                    .map { it: RRExportAncillaries? -> it!!.exportAncillariesItemList }
-                    .orElse(ArrayList()).stream()
-                    .map { it: RRExportAncillariesItem -> it.ancillaryDescrRef }
-                    .map { it: RRAncillaryDescrRef? -> it!!.id.text }
-                    .collect(Collectors.toList())
+                val file = findRRFile("text/export_ancillaries.txt", project)
+
+                return file?.findChildByClass(RRExportAncillaries::class.java)
+                    ?.exportAncillariesItemList
+                    ?.map { it.ancillaryDescrRef }
+                    ?.map { it!!.id.text } ?: emptyList()
             }
         }
     }

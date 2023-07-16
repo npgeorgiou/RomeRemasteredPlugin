@@ -21,7 +21,7 @@ class CreateExportBuildingsFile : AnAction() {
     }
 
     override fun actionPerformed(event: AnActionEvent) {
-        val project = event.project
+        val project = event.project!!
         val buildingTrees = findAllBuildingTrees(project)
         val lines: MutableList<String> = ArrayList()
         val commentChar = Character.toString(0x000AC)

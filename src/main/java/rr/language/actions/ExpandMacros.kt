@@ -26,7 +26,7 @@ class ExpandMacros : AnAction() {
 
     override fun actionPerformed(event: AnActionEvent) {
         val file = event.getData(PlatformDataKeys.VIRTUAL_FILE) ?: return
-        val project = event.project
+        val project = event.project!!
         val rrFile = findRRFile(file.name, project)
         val copy = rrFile!!.copy()
         expandMacrosIn(copy, PsiTreeUtil.findChildrenOfAnyType(copy, RRMacroDef_::class.java), project)

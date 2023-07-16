@@ -1,6 +1,8 @@
 package rr.language
 
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
@@ -12,72 +14,70 @@ import com.intellij.psi.util.PsiTreeUtil
 import rr.language.Util.removeLastOccurrence
 import rr.language.Util.unquote
 import rr.language.psi.*
+import java.io.File
 import java.util.*
 import java.util.function.Function
 import java.util.function.Predicate
 import java.util.stream.Collectors
 import java.util.stream.Stream
 
+
 object RRUtil {
     @JvmStatic
     fun findAllTgaFiles(project: Project?): MutableCollection<PsiFile?> {
         return FilenameIndex.getAllFilesByExt(project!!, "tga").stream()
-            .map { it: VirtualFile? ->
-                PsiManager.getInstance(
-                    project
-                ).findFile(it!!)
-            }
+            .map { it: VirtualFile? -> PsiManager.getInstance(project).findFile(it!!) }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
     fun findTgaFile(path: String, project: Project?): PsiFile? {
         val files = findAllTgaFiles(project)
-        files.removeIf { it: PsiFile? -> !it!!.virtualFile.path.endsWith("/$path") }
-        return if (files.isEmpty()) {
-            null
-        } else files.iterator().next()
+        return files.find { it!!.virtualFile.path.endsWith("/$path") }
     }
 
     @JvmStatic
-    fun findAllRRFiles(project: Project?): MutableCollection<RRFile> {
+    fun findAllRRFiles(project: Project?): List<RRFile> {
         val virtualFiles = FileTypeIndex.getFiles(
-            RRFileType.INSTANCE, GlobalSearchScope.allScope(
-                project!!
-            )
+            RRFileType.INSTANCE,
+            GlobalSearchScope.allScope(project!!)
         )
-        return virtualFiles.stream()
+
+        val a = 1
+        return virtualFiles
             .map { it: VirtualFile? ->
                 // Very big files cant be cast to RRfiles.
                 try {
-                    return@map PsiManager.getInstance(project).findFile(it!!) as RRFile?
+                    return@map PsiManager.getInstance(project).findFile(it!!) as RRFile
                 } catch (e: Exception) {
                     return@map null
                 }
             }
-            .filter { it: RRFile? -> it != null }
-            .collect(Collectors.toList())
+            .filterNotNull()
     }
 
     @JvmStatic
-    fun findRRFile(path: String, project: Project?): RRFile? {
-        val files = findAllRRFiles(project)
-        files.removeIf { it: RRFile -> !it.virtualFile.path.endsWith("/$path") }
-        return if (files.isEmpty()) {
-            null
-        } else files.iterator().next()
+    fun findRRFile(path: String, project: Project): RRFile? {
+        val file = File(project.basePath + "/" + path)
+        val virtualFile = LocalFileSystem.getInstance().findFileByIoFile(file)
+
+        if (virtualFile == null) {
+            return findRRFileThatEndsWith(path, project)
+        }
+
+        return PsiManager.getInstance(project).findFile(virtualFile) as RRFile
+
+//        val files = findAllRRFiles(project)
+//        return files.find { it.virtualFile.path.endsWith("/$path") }
     }
 
     @JvmStatic
-    fun findRRFileThatEndsWith(path: String?, project: Project?): RRFile? {
+    fun findRRFileThatEndsWith(path: String, project: Project?): RRFile? {
         val files = findAllRRFiles(project)
-        files.removeIf { it: RRFile -> !it.virtualFile.path.endsWith(path!!) }
-        return if (files.isEmpty()) {
-            null
-        } else files.iterator().next()
+        return files.find { it.virtualFile.path.endsWith("/$path") }
     }
 
-    fun findTextMappingsInFile(fileName: String, project: Project?): Collection<RRTextMappingItem> {
+    fun findTextMappingsInFile(fileName: String, project: Project): Collection<RRTextMappingItem> {
         val file = findRRFile(fileName, project)
         return findTextMappingsInFile(file)
     }
@@ -89,7 +89,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllUnits(project: Project?): Collection<RRUnitItem_> {
+    fun findAllUnits(project: Project): Collection<RRUnitItem_> {
         val file = findRRFile("export_descr_unit.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -102,14 +102,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllUnitsAsStrings(project: Project?): Collection<String> {
+    fun findAllUnitsAsStrings(project: Project): Collection<String> {
         return findAllUnits(project).stream()
             .map { it: RRUnitItem_ -> it.unitNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllAiPersonalities(project: Project?): Collection<RRAiPersonality> {
+    fun findAllAiPersonalities(project: Project): Collection<RRAiPersonality> {
         val file = findRRFile("feral_descr_ai_personality.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -122,14 +122,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllAiPersonalitiesAsStrings(project: Project?): Collection<String> {
+    fun findAllAiPersonalitiesAsStrings(project: Project): Collection<String> {
         return findAllAiPersonalities(project).stream()
             .map { it: RRAiPersonality -> it.aiPersonalityNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllRegions(project: Project?): Collection<RRRegionDef> {
+    fun findAllRegions(project: Project): Collection<RRRegionDef> {
         val file = findRRFile("descr_regions.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -142,14 +142,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllRegionsAsStrings(project: Project?): Collection<String> {
+    fun findAllRegionsAsStrings(project: Project): Collection<String> {
         return findAllRegions(project).stream()
             .map { it: RRRegionDef -> it.firstChild.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllSettlements(project: Project?): Collection<RRSettlementNameDecl> {
+    fun findAllSettlements(project: Project): Collection<RRSettlementNameDecl> {
         val file = findRRFile("descr_regions.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -164,14 +164,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllSettlementsAsStrings(project: Project?): Collection<String> {
+    fun findAllSettlementsAsStrings(project: Project): Collection<String> {
         return findAllSettlements(project).stream()
             .map { it: RRSettlementNameDecl -> it.firstChild.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllRebelFactions(project: Project?): Collection<RRRebelFaction> {
+    fun findAllRebelFactions(project: Project): Collection<RRRebelFaction> {
         val file = findRRFile("descr_rebel_factions.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -184,14 +184,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllRebelFactionsAsStrings(project: Project?): Collection<String> {
+    fun findAllRebelFactionsAsStrings(project: Project): Collection<String> {
         return findAllRebelFactions(project).stream()
             .map { it: RRRebelFaction -> it.rebelFactionNameDef.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllWonders(project: Project?): Collection<RRWonderNameDecl> {
+    fun findAllWonders(project: Project): Collection<RRWonderNameDecl> {
         val file = findRRFile("descr_sm_landmarks.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -204,14 +204,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllWondersAsStrings(project: Project?): Collection<String> {
+    fun findAllWondersAsStrings(project: Project): Collection<String> {
         return findAllWonders(project).stream()
             .map { it: RRWonderNameDecl -> it.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllProjectiles(project: Project?): Collection<RRProjectile_> {
+    fun findAllProjectiles(project: Project): Collection<RRProjectile_> {
         val file = findRRFile("descr_projectile_new.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -224,14 +224,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllProjectilesAsStrings(project: Project?): Collection<String> {
+    fun findAllProjectilesAsStrings(project: Project): Collection<String> {
         return findAllProjectiles(project).stream()
             .map { it: RRProjectile_ -> it.projectileNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllAnimals(project: Project?): Collection<RRAnimal_> {
+    fun findAllAnimals(project: Project): Collection<RRAnimal_> {
         val file = findRRFile("descr_animals.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -244,14 +244,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllAnimalsAsStrings(project: Project?): Collection<String> {
+    fun findAllAnimalsAsStrings(project: Project): Collection<String> {
         return findAllAnimals(project).stream()
             .map { it: RRAnimal_ -> it.animalNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllDisasters(project: Project?): Collection<RRDisaster_> {
+    fun findAllDisasters(project: Project): Collection<RRDisaster_> {
         val file = findRRFile("descr_disasters.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -264,7 +264,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllDisastersAsStrings(project: Project?): Collection<String> {
+    fun findAllDisastersAsStrings(project: Project): Collection<String> {
         return findAllDisasters(project).stream()
             .map { it: RRDisaster_ -> it.disasterNameDecl.text }
             .collect(Collectors.toList())
@@ -284,7 +284,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllMounts(project: Project?): Collection<RRMount_> {
+    fun findAllMounts(project: Project): Collection<RRMount_> {
         val file = findRRFile("descr_mount.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -297,7 +297,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllMountsAsStrings(project: Project?): Collection<String> {
+    fun findAllMountsAsStrings(project: Project): Collection<String> {
         return findAllMounts(project).stream()
             .map { it: RRMount_ ->
                 it.mountNameDecl!!
@@ -307,7 +307,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllShips(project: Project?): Collection<RRShip_> {
+    fun findAllShips(project: Project): Collection<RRShip_> {
         val file = findRRFile("descr_ship.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -320,14 +320,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllShipsAsStrings(project: Project?): Collection<String> {
+    fun findAllShipsAsStrings(project: Project): Collection<String> {
         return findAllShips(project).stream()
             .map { it: RRShip_ -> it.shipNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllModels(project: Project?): Collection<RRModel_> {
+    fun findAllModels(project: Project): Collection<RRModel_> {
         val battle_file = findRRFile("descr_model_battle.txt", project)
         val battle_models = Optional.ofNullable(battle_file)
             .map { it: RRFile ->
@@ -351,14 +351,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllModelsAsStrings(project: Project?): Collection<String> {
+    fun findAllModelsAsStrings(project: Project): Collection<String> {
         return findAllModels(project).stream()
             .map { it: RRModel_ -> it.modelNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllEthnicityMakeups(project: Project?): Collection<RREthnicityMakeup_> {
+    fun findAllEthnicityMakeups(project: Project): Collection<RREthnicityMakeup_> {
         val file = findRRFile("descr_unit_variation.txt", project)
         val opt = Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -371,14 +371,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllEthnicityMakeupsAsStrings(project: Project?): Collection<String> {
+    fun findAllEthnicityMakeupsAsStrings(project: Project): Collection<String> {
         return findAllEthnicityMakeups(project).stream()
             .map { it: RREthnicityMakeup_ -> it.ethnicityMakeupNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllFactions(project: Project?): Collection<RRFactionNameDecl> {
+    fun findAllFactions(project: Project): Collection<RRFactionNameDecl> {
         val file = findRRFile("descr_sm_factions.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -393,14 +393,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllFactionsAsStrings(project: Project?): MutableCollection<String> {
+    fun findAllFactionsAsStrings(project: Project): MutableCollection<String> {
         return findAllFactions(project).stream()
             .map { it: RRFactionNameDecl -> unquote(it.text) }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllReligions(project: Project?): Collection<RRReligionNameDecl> {
+    fun findAllReligions(project: Project): Collection<RRReligionNameDecl> {
         val file = findRRFile("descr_beliefs.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -415,14 +415,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllReligionsAsStrings(project: Project?): Collection<String> {
+    fun findAllReligionsAsStrings(project: Project): Collection<String> {
         return findAllReligions(project).stream()
             .map { it: RRReligionNameDecl -> unquote(it.text) }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllFactionGroups(project: Project?): Collection<RRFactionGroup> {
+    fun findAllFactionGroups(project: Project): Collection<RRFactionGroup> {
         val file = findRRFile("descr_faction_groups.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -434,14 +434,14 @@ object RRUtil {
             .orElse(ArrayList())
     }
 
-    fun findAllFactionGroupsAsStrings(project: Project?): Collection<String> {
+    fun findAllFactionGroupsAsStrings(project: Project): Collection<String> {
         return findAllFactionGroups(project).stream()
             .map { it: RRFactionGroup -> it.factionGroupNameDecl.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllCultures(project: Project?): Collection<RRCultureNameDecl> {
+    fun findAllCultures(project: Project): Collection<RRCultureNameDecl> {
         val file = findRRFile("descr_cultures.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -454,14 +454,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllCulturesAsStrings(project: Project?): Collection<String> {
+    fun findAllCulturesAsStrings(project: Project): Collection<String> {
         return findAllCultures(project).stream()
             .map { it: RRCultureNameDecl -> unquote(it.text) }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllAmbientObjects(project: Project?): Collection<RRAmbientObjectNameDecl> {
+    fun findAllAmbientObjects(project: Project): Collection<RRAmbientObjectNameDecl> {
         val file = findRRFile("descr_sm_ambient_objects.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -476,14 +476,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllAmbientObjectsAsStrings(project: Project?): Collection<String> {
+    fun findAllAmbientObjectsAsStrings(project: Project): Collection<String> {
         return findAllAmbientObjects(project).stream()
             .map { it: RRAmbientObjectNameDecl -> unquote(it.text) }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllResources(hidden: Boolean, project: Project?): List<RRResourceNameDecl> {
+    fun findAllResources(hidden: Boolean, project: Project): List<RRResourceNameDecl> {
         val file = findRRFile("descr_sm_resources.txt", project)
 
         var filter = { _: RRResourceDecl -> true }
@@ -498,14 +498,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllResourcesAsStrings(hidden: Boolean, project: Project?): Collection<String> {
+    fun findAllResourcesAsStrings(hidden: Boolean, project: Project): Collection<String> {
         return findAllResources(hidden, project).stream()
             .map { it: RRResourceNameDecl -> unquote(it.text) }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllBuildingTrees(project: Project?): Collection<RRBuildingTree> {
+    fun findAllBuildingTrees(project: Project): Collection<RRBuildingTree> {
         val file = findRRFile("export_descr_buildings.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -518,14 +518,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllBuildingTreesAsStrings(project: Project?): Collection<String> {
+    fun findAllBuildingTreesAsStrings(project: Project): Collection<String> {
         return findAllBuildingTrees(project).stream()
             .map { it: RRBuildingTree -> it.firstChild.nextSibling.nextSibling.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllBuildingLevels(project: Project?): Collection<RRBuildingLevel> {
+    fun findAllBuildingLevels(project: Project): Collection<RRBuildingLevel> {
         val file = findRRFile("export_descr_buildings.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -540,14 +540,14 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllBuildingLevelsAsStrings(project: Project?): Collection<String> {
+    fun findAllBuildingLevelsAsStrings(project: Project): Collection<String> {
         return findAllBuildingLevels(project).stream()
             .map { it: RRBuildingLevel -> it.firstChild.text }
             .collect(Collectors.toList())
     }
 
     @JvmStatic
-    fun findAllAncillaries(project: Project?): Collection<RRAncillaryDef> {
+    fun findAllAncillaries(project: Project): Collection<RRAncillaryDef> {
         val file = findRRFile("export_descr_ancillaries.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -560,7 +560,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllAncillariesAsStrings(project: Project?): Collection<String> {
+    fun findAllAncillariesAsStrings(project: Project): Collection<String> {
         return findAllAncillaries(project).stream()
             .map { it: RRAncillaryDef ->
                 it.ancillaryNameDecl!!
@@ -570,7 +570,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun findAllAncillaryDescriptions(project: Project?): List<RRAncillaryDescrDef> {
+    fun findAllAncillaryDescriptions(project: Project): List<RRAncillaryDescrDef> {
         return findAllAncillaries(project).stream()
             .flatMap { it: RRAncillaryDef -> it.ancillaryDescrDefList.stream() }
             .collect(Collectors.toList())
@@ -579,36 +579,29 @@ object RRUtil {
     // I do that because the Traits file is huge, and the NonExistingTrait Inspection
     // would otherwise re-read that huge file many times in order to check it.
     private val findAllTraitCache: MutableMap<Long, List<RRTraitDef>> = HashMap()
-    private fun findAllTraits(project: Project): Collection<RRTraitDef> {
+    private fun findAllTraits(project: Project): List<RRTraitDef> {
         val file = findRRFile("export_descr_character_traits.txt", project)
-            ?: return findAllTraitCache.values.toTypedArray()[0]
+            ?: return emptyList()
 
         // This file is huge, and apparently sometimes it becomes null. Go figure.
         val modificationStamp = file.virtualFile.modificationStamp
         if (findAllTraitCache.containsKey(modificationStamp)) {
             return findAllTraitCache[modificationStamp]!!
         }
-        val items = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRExportDescrCharacterTraits::class.java
-                )
-            }
-            .map { it: RRExportDescrCharacterTraits? -> it!!.traitDefList }
-            .orElse(ArrayList())
+
+        val items = file
+            .findChildByClass(RRExportDescrCharacterTraits::class.java)
+            ?.traitDefList ?: emptyList()
+
         findAllTraitCache.clear()
         findAllTraitCache[modificationStamp] = items
         return items
     }
 
     @JvmStatic
-    fun findAllTraitsAsStrings(project: Project): Collection<String> {
-        return findAllTraits(project).stream()
-            .map { it: RRTraitDef ->
-                it.traitNameDecl!!
-                    .text
-            }
-            .collect(Collectors.toList())
+    fun findAllTraitsAsStrings(project: Project): List<String> {
+        return findAllTraits(project)
+            .map {it.traitNameDecl!!.text }
     }
 
     @JvmStatic
@@ -622,7 +615,7 @@ object RRUtil {
         return allDescriptions.stream().filter { it: RRTraitDescrDef? -> it != null }.collect(Collectors.toList())
     }
 
-    fun findAllRebelFactionDescriptions(project: Project?): List<RRRebelFactionDescrRef?> {
+    fun findAllRebelFactionDescriptions(project: Project): List<RRRebelFactionDescrRef?> {
         val file = findRRFile("rebel_faction_descr.txt", project)
         return Optional.ofNullable(file)
             .map { it: RRFile ->
@@ -637,7 +630,7 @@ object RRUtil {
     }
 
     @JvmStatic
-    fun removePostfixesFromExportBuildingsId(id: String?, project: Project?): String {
+    fun removePostfixesFromExportBuildingsId(id: String?, project: Project): String {
         var name = removeLastOccurrence(id!!, "_name")
         name = removeLastOccurrence(name, "_desc_short")
         name = removeLastOccurrence(name, "_desc")
