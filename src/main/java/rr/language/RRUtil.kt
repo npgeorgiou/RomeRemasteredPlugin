@@ -2,7 +2,6 @@ package rr.language
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.LocalFileSystem
-import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
@@ -19,12 +18,11 @@ import java.util.*
 import java.util.function.Function
 import java.util.function.Predicate
 import java.util.stream.Collectors
-import java.util.stream.Stream
 
 
 object RRUtil {
     @JvmStatic
-    fun findAllTgaFiles(project: Project?): MutableCollection<PsiFile?> {
+    fun findAllTgaFiles(project: Project?): List<PsiFile?> {
         return FilenameIndex.getAllFilesByExt(project!!, "tga").stream()
             .map { it: VirtualFile? -> PsiManager.getInstance(project).findFile(it!!) }
             .collect(Collectors.toList())
@@ -43,7 +41,6 @@ object RRUtil {
             GlobalSearchScope.allScope(project!!)
         )
 
-        val a = 1
         return virtualFiles
             .map { it: VirtualFile? ->
                 // Very big files cant be cast to RRfiles.
@@ -66,542 +63,319 @@ object RRUtil {
         }
 
         return PsiManager.getInstance(project).findFile(virtualFile) as RRFile
-
-//        val files = findAllRRFiles(project)
-//        return files.find { it.virtualFile.path.endsWith("/$path") }
     }
 
     @JvmStatic
     fun findRRFileThatEndsWith(path: String, project: Project?): RRFile? {
         val files = findAllRRFiles(project)
-        return files.find { it.virtualFile.path.endsWith("/$path") }
-    }
-
-    fun findTextMappingsInFile(fileName: String, project: Project): Collection<RRTextMappingItem> {
-        val file = findRRFile(fileName, project)
-        return findTextMappingsInFile(file)
-    }
-
-    fun findTextMappingsInFile(file: RRFile?): Collection<RRTextMappingItem> {
-        return if (file == null) {
-            ArrayList()
-        } else (file.firstChild as RRTextMappingFormat).textMappingItemList
+        return files.find { it.virtualFile.path.endsWith(path) }
     }
 
     @JvmStatic
-    fun findAllUnits(project: Project): Collection<RRUnitItem_> {
-        val file = findRRFile("export_descr_unit.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRExportDescrUnit::class.java
-                )
-            }
-            .map { it: RRExportDescrUnit? -> it!!.unitItem_List }
-        return opt.orElse(ArrayList())
+    fun findAllUnits(project: Project): List<RRUnitItem_> {
+        val file = findRRFile("export_descr_unit.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRExportDescrUnit::class.java)!!.unitItem_List
     }
 
     @JvmStatic
-    fun findAllUnitsAsStrings(project: Project): Collection<String> {
-        return findAllUnits(project).stream()
-            .map { it: RRUnitItem_ -> it.unitNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllUnitsAsStrings(project: Project): List<String> {
+        return findAllUnits(project).map { it.unitNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllAiPersonalities(project: Project): Collection<RRAiPersonality> {
-        val file = findRRFile("feral_descr_ai_personality.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRFeralDescrAiPersonality::class.java
-                )
-            }
-            .map { it: RRFeralDescrAiPersonality? -> it!!.aiPersonalityList }
-        return opt.orElse(ArrayList())
+    fun findAllAiPersonalities(project: Project): List<RRAiPersonality> {
+        val file = findRRFile("descr_regions.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRFeralDescrAiPersonality::class.java)!!.aiPersonalityList
     }
 
     @JvmStatic
-    fun findAllAiPersonalitiesAsStrings(project: Project): Collection<String> {
-        return findAllAiPersonalities(project).stream()
-            .map { it: RRAiPersonality -> it.aiPersonalityNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllAiPersonalitiesAsStrings(project: Project): List<String> {
+        return findAllAiPersonalities(project).map { it.aiPersonalityNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllRegions(project: Project): Collection<RRRegionDef> {
-        val file = findRRFile("descr_regions.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrRegions::class.java
-                )
-            }
-            .map { it: RRDescrRegions? -> it!!.regionDefList }
-        return opt.orElse(ArrayList())
+    fun findAllRegions(project: Project): List<RRRegionDef> {
+        val file = findRRFile("descr_regions.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrRegions::class.java)!!.regionDefList
     }
 
     @JvmStatic
-    fun findAllRegionsAsStrings(project: Project): Collection<String> {
-        return findAllRegions(project).stream()
-            .map { it: RRRegionDef -> it.firstChild.text }
-            .collect(Collectors.toList())
+    fun findAllRegionsAsStrings(project: Project): List<String> {
+        return findAllRegions(project).map { it.firstChild.text }
     }
 
     @JvmStatic
-    fun findAllSettlements(project: Project): Collection<RRSettlementNameDecl> {
-        val file = findRRFile("descr_regions.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrRegions::class.java
-                )
-            }
-            .map { it: RRDescrRegions? -> it!!.regionDefList }
-            .orElse(ArrayList()).stream()
-            .map { it: RRRegionDef -> it.settlementNameDecl }
-            .collect(Collectors.toList())
+    fun findAllSettlements(project: Project): List<RRSettlementNameDecl> {
+        val file = findRRFile("descr_regions.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrRegions::class.java)!!.regionDefList
+            .map { it.settlementNameDecl }
     }
 
     @JvmStatic
-    fun findAllSettlementsAsStrings(project: Project): Collection<String> {
-        return findAllSettlements(project).stream()
-            .map { it: RRSettlementNameDecl -> it.firstChild.text }
-            .collect(Collectors.toList())
+    fun findAllSettlementsAsStrings(project: Project): List<String> {
+        return findAllSettlements(project).map { it.firstChild.text }
     }
 
     @JvmStatic
-    fun findAllRebelFactions(project: Project): Collection<RRRebelFaction> {
-        val file = findRRFile("descr_rebel_factions.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrRebelFactions::class.java
-                )
-            }
-            .map { it: RRDescrRebelFactions? -> it!!.rebelFactionList }
-        return opt.orElse(ArrayList())
+    fun findAllRebelFactions(project: Project): List<RRRebelFaction> {
+        val file = findRRFile("descr_rebel_factions.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrRebelFactions::class.java)!!.rebelFactionList
+            // If rebel_type is an enum, rebelFactionNameDef won't be there
+            .filter { it.rebelFactionNameDef != null}
     }
 
     @JvmStatic
-    fun findAllRebelFactionsAsStrings(project: Project): Collection<String> {
-        return findAllRebelFactions(project).stream()
-            .map { it: RRRebelFaction -> it.rebelFactionNameDef.text }
-            .collect(Collectors.toList())
+    fun findAllRebelFactionsAsStrings(project: Project): List<String> {
+        return findAllRebelFactions(project).map { it.rebelFactionNameDef!!.text }
     }
 
     @JvmStatic
-    fun findAllWonders(project: Project): Collection<RRWonderNameDecl> {
-        val file = findRRFile("descr_sm_landmarks.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrSmLandmarks::class.java
-                )
-            }
-            .map { it: RRDescrSmLandmarks? -> it!!.wonderNameDeclList }
-        return opt.orElse(ArrayList())
+    fun findAllWonders(project: Project): List<RRWonderNameDecl> {
+        val file = findRRFile("descr_sm_landmarks.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrSmLandmarks::class.java)!!.wonderNameDeclList
     }
 
     @JvmStatic
-    fun findAllWondersAsStrings(project: Project): Collection<String> {
-        return findAllWonders(project).stream()
-            .map { it: RRWonderNameDecl -> it.text }
-            .collect(Collectors.toList())
+    fun findAllWondersAsStrings(project: Project): List<String> {
+        return findAllWonders(project).map { it.text }
     }
 
     @JvmStatic
-    fun findAllProjectiles(project: Project): Collection<RRProjectile_> {
-        val file = findRRFile("descr_projectile_new.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrProjectile::class.java
-                )
-            }
-            .map { it: RRDescrProjectile? -> it!!.projectile_List }
-        return opt.orElse(ArrayList())
+    fun findAllProjectiles(project: Project): List<RRProjectile_> {
+        val file = findRRFile("descr_projectile_new.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrProjectile::class.java)!!.projectile_List
     }
 
     @JvmStatic
-    fun findAllProjectilesAsStrings(project: Project): Collection<String> {
-        return findAllProjectiles(project).stream()
-            .map { it: RRProjectile_ -> it.projectileNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllProjectilesAsStrings(project: Project): List<String> {
+        return findAllProjectiles(project).map { it.projectileNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllAnimals(project: Project): Collection<RRAnimal_> {
-        val file = findRRFile("descr_animals.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrAnimals::class.java
-                )
-            }
-            .map { it: RRDescrAnimals? -> it!!.animal_List }
-        return opt.orElse(ArrayList())
+    fun findAllAnimals(project: Project): List<RRAnimal_> {
+        val file = findRRFile("descr_animals.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrAnimals::class.java)!!.animal_List
     }
 
     @JvmStatic
-    fun findAllAnimalsAsStrings(project: Project): Collection<String> {
-        return findAllAnimals(project).stream()
-            .map { it: RRAnimal_ -> it.animalNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllAnimalsAsStrings(project: Project): List<String> {
+        return findAllAnimals(project).map { it.animalNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllDisasters(project: Project): Collection<RRDisaster_> {
-        val file = findRRFile("descr_disasters.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrDisasters::class.java
-                )
-            }
-            .map { it: RRDescrDisasters? -> it!!.disaster_List }
-        return opt.orElse(ArrayList())
+    fun findAllDisasters(project: Project): List<RRDisaster_> {
+        val file = findRRFile("descr_disasters.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrDisasters::class.java)!!.disaster_List
     }
 
     @JvmStatic
-    fun findAllDisastersAsStrings(project: Project): Collection<String> {
-        return findAllDisasters(project).stream()
-            .map { it: RRDisaster_ -> it.disasterNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllDisastersAsStrings(project: Project): List<String> {
+        return findAllDisasters(project).map { it.disasterNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllCounters(element: PsiElement): Collection<RRCounterNameDecl> {
+    fun findAllCounters(element: PsiElement): List<RRCounterNameDecl> {
         val file = element.containingFile as RRFile
-        return PsiTreeUtil.findChildrenOfAnyType(file, RRCounterNameDecl::class.java)
+        return PsiTreeUtil.findChildrenOfAnyType(file, RRCounterNameDecl::class.java).toList()
     }
 
     @JvmStatic
-    fun findAllCountersAsStrings(element: PsiElement): Collection<String> {
-        return findAllCounters(element).stream()
-            .map { it: RRCounterNameDecl -> it.text }
-            .collect(Collectors.toList())
+    fun findAllCountersAsStrings(element: PsiElement): List<String> {
+        return findAllCounters(element).map { it: RRCounterNameDecl -> it.text }
     }
 
     @JvmStatic
-    fun findAllMounts(project: Project): Collection<RRMount_> {
-        val file = findRRFile("descr_mount.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrMount::class.java
-                )
-            }
-            .map { it: RRDescrMount? -> it!!.mount_List }
-        return opt.orElse(ArrayList())
+    fun findAllMounts(project: Project): List<RRMount_> {
+        val file = findRRFile("descr_mount.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrMount::class.java)!!.mount_List
     }
 
     @JvmStatic
-    fun findAllMountsAsStrings(project: Project): Collection<String> {
-        return findAllMounts(project).stream()
-            .map { it: RRMount_ ->
-                it.mountNameDecl!!
-                    .text
-            }
-            .collect(Collectors.toList())
+    fun findAllMountsAsStrings(project: Project): List<String> {
+        return findAllMounts(project).map { it.mountNameDecl!!.text }
     }
 
     @JvmStatic
-    fun findAllShips(project: Project): Collection<RRShip_> {
-        val file = findRRFile("descr_ship.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrShip::class.java
-                )
-            }
-            .map { it: RRDescrShip? -> it!!.ship_List }
-        return opt.orElse(ArrayList())
+    fun findAllShips(project: Project): List<RRShip_> {
+        val file = findRRFile("descr_ship.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrShip::class.java)!!.ship_List
     }
 
     @JvmStatic
-    fun findAllShipsAsStrings(project: Project): Collection<String> {
-        return findAllShips(project).stream()
-            .map { it: RRShip_ -> it.shipNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllShipsAsStrings(project: Project): List<String> {
+        return findAllShips(project).map { it.shipNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllModels(project: Project): Collection<RRModel_> {
-        val battle_file = findRRFile("descr_model_battle.txt", project)
-        val battle_models = Optional.ofNullable(battle_file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrModelBattle::class.java
-                )
-            }
-            .map { it: RRDescrModelBattle? -> it!!.model_List }
-        val strat_file = findRRFile("descr_model_strat.txt", project)
-        val strat_models = Optional.ofNullable(strat_file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrModelStrat::class.java
-                )
-            }
-            .map { it: RRDescrModelStrat? -> it!!.model_List }
-        return Stream.concat(
-            battle_models.orElse(ArrayList()).stream(),
-            strat_models.orElse(ArrayList()).stream()
-        ).collect(Collectors.toList())
+    fun findAllModels(project: Project): List<RRModel_> {
+        val battleModels = findRRFile("descr_model_battle.txt", project)
+            ?.findChildByClass(RRDescrModelBattle::class.java)!!
+            .model_List
+
+        val stratModels = findRRFile("descr_model_strat.txt", project)
+            ?.findChildByClass(RRDescrModelStrat::class.java)!!
+            .model_List
+
+        return battleModels + stratModels
     }
 
     @JvmStatic
-    fun findAllModelsAsStrings(project: Project): Collection<String> {
-        return findAllModels(project).stream()
-            .map { it: RRModel_ -> it.modelNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllModelsAsStrings(project: Project): List<String> {
+        return findAllModels(project).map { it.modelNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllEthnicityMakeups(project: Project): Collection<RREthnicityMakeup_> {
-        val file = findRRFile("descr_unit_variation.txt", project)
-        val opt = Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrUnitVariation::class.java
-                )
-            }
-            .map { it: RRDescrUnitVariation? -> it!!.ethnicityMakeup_List }
-        return opt.orElse(ArrayList())
+    fun findAllEthnicityMakeups(project: Project): List<RREthnicityMakeup_> {
+        val file = findRRFile("descr_unit_variation.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrUnitVariation::class.java)!!.ethnicityMakeup_List
     }
 
     @JvmStatic
-    fun findAllEthnicityMakeupsAsStrings(project: Project): Collection<String> {
-        return findAllEthnicityMakeups(project).stream()
-            .map { it: RREthnicityMakeup_ -> it.ethnicityMakeupNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllEthnicityMakeupsAsStrings(project: Project): List<String> {
+        return findAllEthnicityMakeups(project).map { it.ethnicityMakeupNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllFactions(project: Project): Collection<RRFactionNameDecl> {
-        val file = findRRFile("descr_sm_factions.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrSmFactions::class.java
-                )
-            }
-            .map { it: RRDescrSmFactions? -> it!!.factionDeclList }
-            .orElse(ArrayList())
-            .stream().map { it: RRFactionDecl -> it.factionNameDecl }
-            .collect(Collectors.toList())
+    fun findAllFactions(project: Project): List<RRFactionNameDecl> {
+        val file = findRRFile("descr_sm_factions.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrSmFactions::class.java)!!.factionDeclList
+            .map { it.factionNameDecl }
     }
 
     @JvmStatic
-    fun findAllFactionsAsStrings(project: Project): MutableCollection<String> {
-        return findAllFactions(project).stream()
-            .map { it: RRFactionNameDecl -> unquote(it.text) }
-            .collect(Collectors.toList())
+    fun findAllFactionsAsStrings(project: Project): List<String> {
+        return findAllFactions(project).map { unquote(it.text) }
     }
 
     @JvmStatic
-    fun findAllReligions(project: Project): Collection<RRReligionNameDecl> {
-        val file = findRRFile("descr_beliefs.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrBeliefs::class.java
-                )
-            }
-            .map { it: RRDescrBeliefs? -> it!!.religion_List }
-            .orElse(ArrayList())
-            .stream().map { it: RRReligion_ -> it.religionNameDecl }
-            .collect(Collectors.toList())
+    fun findAllReligions(project: Project): List<RRReligionNameDecl> {
+        val file = findRRFile("descr_beliefs.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrBeliefs::class.java)!!.religion_List.map { it.religionNameDecl }
     }
 
     @JvmStatic
-    fun findAllReligionsAsStrings(project: Project): Collection<String> {
-        return findAllReligions(project).stream()
-            .map { it: RRReligionNameDecl -> unquote(it.text) }
-            .collect(Collectors.toList())
+    fun findAllReligionsAsStrings(project: Project): List<String> {
+        return findAllReligions(project).map { unquote(it.text) }
     }
 
     @JvmStatic
-    fun findAllFactionGroups(project: Project): Collection<RRFactionGroup> {
-        val file = findRRFile("descr_faction_groups.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrFactionGroups::class.java
-                )
-            }
-            .map { it: RRDescrFactionGroups? -> it!!.factionGroupList }
-            .orElse(ArrayList())
+    fun findAllFactionGroups(project: Project): List<RRFactionGroup> {
+        val file = findRRFile("descr_faction_groups.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrFactionGroups::class.java)!!.factionGroupList
     }
 
-    fun findAllFactionGroupsAsStrings(project: Project): Collection<String> {
-        return findAllFactionGroups(project).stream()
-            .map { it: RRFactionGroup -> it.factionGroupNameDecl.text }
-            .collect(Collectors.toList())
+    fun findAllFactionGroupsAsStrings(project: Project): List<String> {
+        return findAllFactionGroups(project).map { it.factionGroupNameDecl.text }
     }
 
     @JvmStatic
-    fun findAllCultures(project: Project): Collection<RRCultureNameDecl> {
-        val file = findRRFile("descr_cultures.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrCultures::class.java
-                )
-            }
-            .map { it: RRDescrCultures? -> it!!.cultureNameDeclList }
-            .orElse(ArrayList())
+    fun findAllCultures(project: Project): List<RRCultureNameDecl> {
+        val file = findRRFile("descr_cultures.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrCultures::class.java)!!.cultureNameDeclList
     }
 
     @JvmStatic
-    fun findAllCulturesAsStrings(project: Project): Collection<String> {
-        return findAllCultures(project).stream()
-            .map { it: RRCultureNameDecl -> unquote(it.text) }
-            .collect(Collectors.toList())
+    fun findAllCulturesAsStrings(project: Project): List<String> {
+        return findAllCultures(project).map { unquote(it.text) }
     }
 
     @JvmStatic
-    fun findAllAmbientObjects(project: Project): Collection<RRAmbientObjectNameDecl> {
-        val file = findRRFile("descr_sm_ambient_objects.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRDescrSmAmbientObjects::class.java
-                )
-            }
-            .map { it: RRDescrSmAmbientObjects? -> it!!.ambientObjectDeclList }
-            .orElse(ArrayList())
-            .stream().map { it: RRAmbientObjectDecl -> it.ambientObjectNameDecl }
-            .collect(Collectors.toList())
+    fun findAllAmbientObjects(project: Project): List<RRAmbientObjectNameDecl> {
+        val file = findRRFile("descr_sm_ambient_objects.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRDescrSmAmbientObjects::class.java)!!.ambientObjectDeclList
+            .map { it.ambientObjectNameDecl }
     }
 
     @JvmStatic
-    fun findAllAmbientObjectsAsStrings(project: Project): Collection<String> {
-        return findAllAmbientObjects(project).stream()
-            .map { it: RRAmbientObjectNameDecl -> unquote(it.text) }
-            .collect(Collectors.toList())
+    fun findAllAmbientObjectsAsStrings(project: Project): List<String> {
+        return findAllAmbientObjects(project).map { unquote(it.text) }
     }
 
     @JvmStatic
     fun findAllResources(hidden: Boolean, project: Project): List<RRResourceNameDecl> {
-        val file = findRRFile("descr_sm_resources.txt", project)
+        val file = findRRFile("descr_sm_resources.txt", project) ?: return emptyList()
 
         var filter = { _: RRResourceDecl -> true }
         if (hidden) {
             filter = { it: RRResourceDecl -> unquote(it.resourceType.text) == "hidden" }
         }
 
-        return file?.findChildByClass(RRDescrSmResources::class.java)
-            ?.resourceDeclList
-            ?.filter(filter)
-            ?.map { it.resourceNameDecl } ?: emptyList()
+        return file.findChildByClass(RRDescrSmResources::class.java)!!.resourceDeclList
+            .filter(filter)
+            .map { it.resourceNameDecl }
     }
 
     @JvmStatic
-    fun findAllResourcesAsStrings(hidden: Boolean, project: Project): Collection<String> {
-        return findAllResources(hidden, project).stream()
-            .map { it: RRResourceNameDecl -> unquote(it.text) }
-            .collect(Collectors.toList())
+    fun findAllResourcesAsStrings(hidden: Boolean, project: Project): List<String> {
+        return findAllResources(hidden, project).map { unquote(it.text) }
     }
 
     @JvmStatic
-    fun findAllBuildingTrees(project: Project): Collection<RRBuildingTree> {
-        val file = findRRFile("export_descr_buildings.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRExportDescrBuildings::class.java
-                )
-            }
-            .map { it: RRExportDescrBuildings? -> it!!.buildingTreeList }
-            .orElse(ArrayList())
+    fun findAllBuildingTrees(project: Project): List<RRBuildingTree> {
+        val file = findRRFile("export_descr_buildings.txt", project) ?: return emptyList()
+        return file.findChildByClass(RRExportDescrBuildings::class.java)!!.buildingTreeList
     }
 
     @JvmStatic
-    fun findAllBuildingTreesAsStrings(project: Project): Collection<String> {
-        return findAllBuildingTrees(project).stream()
-            .map { it: RRBuildingTree -> it.firstChild.nextSibling.nextSibling.text }
-            .collect(Collectors.toList())
+    fun findAllBuildingTreesAsStrings(project: Project): List<String> {
+        return findAllBuildingTrees(project).map { it.firstChild.nextSibling.nextSibling.text }
     }
 
     @JvmStatic
-    fun findAllBuildingLevels(project: Project): Collection<RRBuildingLevel> {
-        val file = findRRFile("export_descr_buildings.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRExportDescrBuildings::class.java
-                )
-            }
-            .map { it: RRExportDescrBuildings? -> it!!.buildingTreeList }
-            .orElse(ArrayList()).stream()
-            .flatMap { it: RRBuildingTree -> it.buildingLevelList.stream() }
-            .collect(Collectors.toList())
+    fun findAllBuildingLevels(project: Project): List<RRBuildingLevel> {
+        return findAllBuildingTrees(project).flatMap { it.buildingLevelList }
     }
 
     @JvmStatic
-    fun findAllBuildingLevelsAsStrings(project: Project): Collection<String> {
-        return findAllBuildingLevels(project).stream()
-            .map { it: RRBuildingLevel -> it.firstChild.text }
-            .collect(Collectors.toList())
+    fun findAllBuildingLevelsAsStrings(project: Project): List<String> {
+        return findAllBuildingLevels(project).map { it.firstChild.text }
     }
 
     @JvmStatic
-    fun findAllAncillaries(project: Project): Collection<RRAncillaryDef> {
-        val file = findRRFile("export_descr_ancillaries.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRExportDescrAncillaries::class.java
-                )
-            }
-            .map { it: RRExportDescrAncillaries? -> it!!.ancillaryDefList }
-            .orElse(ArrayList())
+    fun findAllAncillaries(project: Project): List<RRAncillaryDef> {
+        val file = findRRFile("export_descr_ancillaries.txt", project) ?: return emptyList()
+        return file.findChildByClass(RRExportDescrAncillaries::class.java)!!.ancillaryDefList
     }
 
     @JvmStatic
-    fun findAllAncillariesAsStrings(project: Project): Collection<String> {
-        return findAllAncillaries(project).stream()
-            .map { it: RRAncillaryDef ->
-                it.ancillaryNameDecl!!
-                    .text
-            }
-            .collect(Collectors.toList())
+    fun findAllAncillariesAsStrings(project: Project): List<String> {
+        return findAllAncillaries(project).map { it.ancillaryNameDecl!!.text }
     }
 
     @JvmStatic
     fun findAllAncillaryDescriptions(project: Project): List<RRAncillaryDescrDef> {
-        return findAllAncillaries(project).stream()
-            .flatMap { it: RRAncillaryDef -> it.ancillaryDescrDefList.stream() }
-            .collect(Collectors.toList())
+        return findAllAncillaries(project).flatMap { it.ancillaryDescrDefList }
     }
 
-    // I do that because the Traits file is huge, and the NonExistingTrait Inspection
-    // would otherwise re-read that huge file many times in order to check it.
-    private val findAllTraitCache: MutableMap<Long, List<RRTraitDef>> = HashMap()
     private fun findAllTraits(project: Project): List<RRTraitDef> {
-        val file = findRRFile("export_descr_character_traits.txt", project)
-            ?: return emptyList()
+        val file = findRRFile("export_descr_character_traits.txt", project) ?: return emptyList()
 
-        // This file is huge, and apparently sometimes it becomes null. Go figure.
-        val modificationStamp = file.virtualFile.modificationStamp
-        if (findAllTraitCache.containsKey(modificationStamp)) {
-            return findAllTraitCache[modificationStamp]!!
-        }
-
-        val items = file
-            .findChildByClass(RRExportDescrCharacterTraits::class.java)
-            ?.traitDefList ?: emptyList()
-
-        findAllTraitCache.clear()
-        findAllTraitCache[modificationStamp] = items
-        return items
+        return getFromCacheOr(file, {
+            file.findChildByClass(RRExportDescrCharacterTraits::class.java)!!.traitDefList
+        })
     }
 
     @JvmStatic
     fun findAllTraitsAsStrings(project: Project): List<String> {
         return findAllTraits(project)
-            .map {it.traitNameDecl!!.text }
+            .map { it.traitNameDecl!!.text }
     }
 
     @JvmStatic
@@ -634,11 +408,12 @@ object RRUtil {
         var name = removeLastOccurrence(id!!, "_name")
         name = removeLastOccurrence(name, "_desc_short")
         name = removeLastOccurrence(name, "_desc")
-        val factionsAndCulturesNames = findAllFactionsAsStrings(project)
-        factionsAndCulturesNames.addAll(findAllCulturesAsStrings(project))
+
+        val factionsAndCulturesNames = findAllFactionsAsStrings(project) + findAllCulturesAsStrings(project)
         for (factionOrCultureName in factionsAndCulturesNames) {
             name = removeLastOccurrence(name, "_$factionOrCultureName")
         }
+
         return name
     }
 
@@ -697,5 +472,26 @@ object RRUtil {
             if (foundCondition.test(next)) return next as T
         }
         return null
+    }
+
+    private var cache: HashMap<String, Any> = HashMap()
+    private fun <T> getFromCacheOr(file: RRFile, fetcher: () -> T): T {
+        val path = file.virtualFile.name
+        val modificationStamp = file.virtualFile.modificationStamp
+        val key = "$path:$modificationStamp"
+
+        if (cache.containsKey(key)) {
+            return cache[key] as T
+        }
+
+        val value = fetcher()
+
+        val previousKey = cache.filterKeys { it.startsWith("$path:") }.keys.firstOrNull()
+        if (previousKey != null) {
+            cache.remove(previousKey)
+        }
+
+        cache[key] = value as Any
+        return value
     }
 }

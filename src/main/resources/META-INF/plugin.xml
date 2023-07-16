@@ -74,7 +74,7 @@
         <localInspection language="RomeRemastered" shortName="Non_existing_building_tree"
                          displayName="Non existing building tree" groupName="RR"
                          enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.NonExistingBuildingTree"/>
+                         implementationClass="rr.language.inspections.BuildingTree"/>
 
         <localInspection language="RomeRemastered" shortName="Non_existing_building_level"
                          displayName="Non existing building level" groupName="RR"

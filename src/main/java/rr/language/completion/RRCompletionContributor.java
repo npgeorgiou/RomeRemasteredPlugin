@@ -1224,6 +1224,29 @@ public class RRCompletionContributor extends CompletionContributor {
         };
     }
 
+    private String[] rebelType() {
+        return Stream.concat(
+                Arrays.stream(new String[]{
+                    "gladiator_uprising",
+                    "brigands",
+                    "pirates"
+                }),
+                Arrays.stream(agentType()))
+            .toArray(String[]::new);
+    }
+
+    private String[] rebelCategory() {
+        return Stream.concat(
+                Arrays.stream(new String[]{
+                    "peasant_revolt",
+                    "gladiator_revolt",
+                    "brigands",
+                    "pirates"
+                }),
+                Arrays.stream(agentType()))
+            .toArray(String[]::new);
+    }
+
     public RRCompletionContributor() {
         // descr_strat
 
@@ -1292,6 +1315,17 @@ public class RRCompletionContributor extends CompletionContributor {
                             ),
                             null,
                             new Factions())))));
+
+        // descr_rebel_factions
+        Node descr_rebel_factions_rebel_type = new RootNode(
+            psiElement(RRTypes.REBEL_TYPE),
+            new Node(new HardcodedValues(rebelType()))
+        );
+
+        Node descr_rebel_factions_category = new RootNode(
+            psiElement(RRTypes.CATEGORY).inside(psiElement(RRTypes.REBEL_FACTION)),
+            new Node(new HardcodedValues(rebelCategory()))
+        );
 
         // export_descr_unit
         // category {category}
@@ -1701,6 +1735,9 @@ public class RRCompletionContributor extends CompletionContributor {
         extendFor(descr_strat_ancillaries);
         extendFor(descr_strat_core_attitudes_and_faction_relationships);
 
+        extendFor(descr_rebel_factions_rebel_type);
+        extendFor(descr_rebel_factions_category);
+
         extendFor(export_descr_unit_attributes);
         extendFor(export_descr_unit_formation);
         extendFor(export_descr_unit_stat_pri);
@@ -1833,7 +1870,6 @@ public class RRCompletionContributor extends CompletionContributor {
 //        );
 //    }
 //
-
 
     private PsiElementPattern.Capture<PsiElement> any(PsiElementPattern.Capture<PsiElement>... patterns) {
         return psiElement().andOr(patterns);

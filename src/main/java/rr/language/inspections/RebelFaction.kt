@@ -17,16 +17,19 @@ class RebelFaction : Inspector() {
         return object : RRVisitor() {
             override fun visitRebelFaction(element: RRRebelFaction) {
                 val name = element.rebelFactionNameDef
-                val hardcodedRebels: List<String> = mutableListOf("gladiator_uprising", "brigands", "pirates")
-                if (!hardcodedRebels.contains(name.text)) {
-                    if (ReferencesSearch.search(name).findAll().isEmpty()) {
-                        holder.registerProblem(
-                            element,
-                            "Rebel faction not used anywhere",
-                            ProblemHighlightType.LIKE_UNUSED_SYMBOL
-                        )
-                    }
+                val hardcodedRebels = listOf("gladiator_uprising", "brigands", "pirates")
+                if (hardcodedRebels.contains(name!!.text)) {
+                    return
                 }
+
+                if (ReferencesSearch.search(name).findAll().isEmpty()) {
+                    holder.registerProblem(
+                        element,
+                        "Rebel faction not used anywhere",
+                        ProblemHighlightType.LIKE_UNUSED_SYMBOL
+                    )
+                }
+
                 val description = element.rebelFactionDescrDef
                 val uiTexts = findAllRebelFactionUiNames(element.project)
                 if (!uiTexts.contains(description.text)) {
@@ -53,6 +56,7 @@ class RebelFaction : Inspector() {
                 val rebelDescriptionIds = findAllRebelFactions(element.project).stream()
                     .map { it: RRRebelFaction -> it.rebelFactionDescrDef.text }
                     .collect(Collectors.toList())
+
                 if (!rebelDescriptionIds.contains(element.id.text)) {
                     holder.registerProblem(
                         element.id,
@@ -63,18 +67,12 @@ class RebelFaction : Inspector() {
             }
 
             private fun findAllRebelFactionUiNames(project: Project): List<String> {
-                val file = findRRFile("text/rebel_faction_descr.txt", project)
-                return Optional.ofNullable(file)
-                    .map { it: RRFile ->
-                        it.findChildByClass(
-                            RRRebelFactionDescr::class.java
-                        )
-                    }
-                    .map { it: RRRebelFactionDescr? -> it!!.rebelFactionDescrMappingList }
-                    .orElse(ArrayList()).stream()
-                    .map { it: RRRebelFactionDescrMapping -> it.rebelFactionDescrRef }
-                    .map { it: RRRebelFactionDescrRef? -> it!!.id.text }
-                    .collect(Collectors.toList())
+                val file = findRRFile("text/rebel_faction_descr.txt", project) ?: return emptyList()
+
+                return file.findChildByClass(RRRebelFactionDescr::class.java)!!
+                    .rebelFactionDescrMappingList
+                    .map { it.rebelFactionDescrRef }
+                    .map { it!!.id.text }
             }
         }
     }

@@ -39,18 +39,12 @@ class Settlement : Inspector() {
             }
 
             private fun findAllRegionAndSettlementUiNames(project: Project): List<String> {
-                val file = RRUtil.findRRFile("_campaign_regions_and_settlement_names.txt", project)
-                return Optional.ofNullable(file)
-                    .map { it: RRFile ->
-                        it.findChildByClass(
-                            RRCampaignRegionsAndSettlementNames::class.java
-                        )
-                    }
-                    .map { it: RRCampaignRegionsAndSettlementNames? -> it!!.regionOrSettlementNameMappingList }
-                    .orElse(ArrayList()).stream()
-                    .map { it: RRRegionOrSettlementNameMapping -> it.regionOrSettlementRef }
-                    .map { it: RRRegionOrSettlementRef? -> it!!.id.text }
-                    .collect(Collectors.toList())
+                val file = RRUtil.findRRFile("_campaign_regions_and_settlement_names.txt", project) ?: return emptyList()
+
+                return file.findChildByClass(RRCampaignRegionsAndSettlementNames::class.java)!!
+                    .regionOrSettlementNameMappingList
+                    .map { it.regionOrSettlementRef }
+                    .map { it!!.id.text }
             }
         }
     }

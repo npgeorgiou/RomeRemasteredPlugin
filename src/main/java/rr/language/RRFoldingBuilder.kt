@@ -90,7 +90,7 @@ class RRFoldingBuilder : FoldingBuilderEx(), DumbAware {
             )
         }
         for (element in PsiTreeUtil.findChildrenOfType(file, RRSettlementItem::class.java)) {
-            fold(element, element.firstChild.nextSibling, element.lastChild, " " + element.name(), folds)
+            fold(element, element.firstChild.nextSibling, element.lastChild, " " + element.regionRef.text, folds)
         }
         for (element in PsiTreeUtil.findChildrenOfType(file, RRCharacterItem::class.java)) {
             fold(element, element.characterType.nextSibling, element.lastChild, "...", folds)
@@ -324,7 +324,7 @@ class RRFoldingBuilder : FoldingBuilderEx(), DumbAware {
 
         // rebel_faction_descr
         for (element in PsiTreeUtil.findChildrenOfType(file, RRRebelFaction::class.java)) {
-            fold(element, element.rebelFactionNameDef.nextSibling, element.lastChild, "...", folds)
+            fold(element, element.rebelFactionNameDef?.nextSibling, element.lastChild, "...", folds)
         }
 
         // scripts

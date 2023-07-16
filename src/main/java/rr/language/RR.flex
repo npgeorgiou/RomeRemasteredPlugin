@@ -925,16 +925,17 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <DESCR_REBEL_FACTIONS>
 {
-    "rebel_type"         {return RRTypes.REBEL_TYPE;}
-    "category"           {return RRTypes.CATEGORY;}
-    "peasant_revolt"     {return RRTypes.PEASANT_REVOLT;}
-    "gladiator_revolt"   {return RRTypes.GLADIATOR_REVOLT;}
-    "brigands"           {return RRTypes.BRIGANDS;}
-    "pirates"            {return RRTypes.PIRATES;}
-    "chance"             {return RRTypes.CHANCE_LC;}
-    "description"        {yybegin(DESCR_REBEL_FACTIONS_NO_KEYWORDS); return RRTypes.DESCRIPTION_LC;}
-    "unit"               {return RRTypes.UNIT;}
-    {ID}                 {return RRTypes.ID;}
+    "rebel_type"            {return RRTypes.REBEL_TYPE;}
+    "category"              {return RRTypes.CATEGORY;}
+    "peasant_revolt"        {return RRTypes.PEASANT_REVOLT;}
+    "gladiator_revolt"      {return RRTypes.GLADIATOR_REVOLT;}
+    "brigands"              {return RRTypes.BRIGANDS;}
+    "pirates"               {return RRTypes.PIRATES;}
+    "gladiator_uprising"    {return RRTypes.GLADIATOR_UPRISING;}
+    "chance"                {return RRTypes.CHANCE_LC;}
+    "description"           {yybegin(DESCR_REBEL_FACTIONS_NO_KEYWORDS); return RRTypes.DESCRIPTION_LC;}
+    "unit"                  {return RRTypes.UNIT;}
+    {ID}                    {return RRTypes.ID;}
 }
 <DESCR_REBEL_FACTIONS_NO_KEYWORDS>
 {

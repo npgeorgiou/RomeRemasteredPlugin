@@ -19,8 +19,9 @@ class RRReferencesSearch : QueryExecutorBase<PsiReference?, ReferencesSearch.Sea
             extendSearchTo("${element.text}_desc_short", element, queryParameters)
             extendSearchTo("${element.text}_name", element, queryParameters)
 
-            val factionsAndCulturesNames = RRUtil.findAllFactionsAsStrings(element.project)
-            factionsAndCulturesNames.addAll(RRUtil.findAllCulturesAsStrings(element.project))
+            val factionsAndCulturesNames = RRUtil.findAllFactionsAsStrings(element.project) +
+                    RRUtil.findAllCulturesAsStrings(element.project)
+
             for (factionOrCultureName in factionsAndCulturesNames) {
                 extendSearchTo("${element.text}_$factionOrCultureName", element, queryParameters)
                 extendSearchTo("${element.text}_${factionOrCultureName}_desc", element, queryParameters)

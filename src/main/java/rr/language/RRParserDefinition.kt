@@ -157,28 +157,34 @@ class RRParserDefinition : ParserDefinition {
 
         //<editor-fold desc="CONSTANTS">
         @JvmField
-        val CONSTANTS = TokenSet.create( // settlement levels
+        val CONSTANTS = TokenSet.create(
+            // settlement levels
             RRTypes.VILLAGE,
             RRTypes.TOWN,
             RRTypes.LARGE_TOWN,
             RRTypes.CITY,
             RRTypes.LARGE_CITY,
             RRTypes.HUGE_CITY,
-            RRTypes.DEFAULT_SET,  //diplomatic_stance
+            RRTypes.DEFAULT_SET,
+            //diplomatic_stance
             RRTypes.ALLIED_TO,
-            RRTypes.AT_WAR_WITH,  // building types
+            RRTypes.AT_WAR_WITH,
+            // building types
             RRTypes.CORE,
             RRTypes.DEFENCE,
             RRTypes.MILITARY,
             RRTypes.TRADE,
             RRTypes.WATER,
             RRTypes.CULTURE,
-            RRTypes.RELIGIOUS,  // port levels
+            RRTypes.RELIGIOUS,
+            // port levels
             RRTypes.FISHING_VILLAGE,
             RRTypes.SEA_PORT,
             RRTypes.SHIPWRIGHT,
-            RRTypes.DOCKYARD,  // export_descr_unit
-            RRTypes.NO,  // unit attributes
+            RRTypes.DOCKYARD,
+            // export_descr_unit
+            RRTypes.NO,
+            // unit attributes
             RRTypes.FRIGHTEN_FOOT,
             RRTypes.FRIGHTEN_MOUNTED,
             RRTypes.CAN_RUN_AMOK,
@@ -236,50 +242,60 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.DISCIPLINED,
             RRTypes.UNTRAINED,
             RRTypes.TRAINED,
-            RRTypes.HIGHLY_TRAINED,  // conflict types
+            RRTypes.HIGHLY_TRAINED,
+            // conflict types
             RRTypes.SUCCESSFULAMBUSH,
             RRTypes.FAILEDAMBUSH,
             RRTypes.NORMAL,
             RRTypes.SIEGE,
             RRTypes.SALLYBESIEGER,
             RRTypes.NAVAL,
-            RRTypes.WITHDRAW,  // battle success
+            RRTypes.WITHDRAW,
+            // battle success
             RRTypes.CLOSE,
             RRTypes.AVERAGE,
             RRTypes.CLEAR,
             RRTypes.CRUSHING,
-            RRTypes.TOWER,  // siege_engine_class
+            RRTypes.TOWER,
+            // siege_engine_class
             RRTypes.RAM,
             RRTypes.LADDER,
             RRTypes.SAP_POINT,
             RRTypes.CATAPULT,
             RRTypes.TREBUCHET,
             RRTypes.BALLISTA,
-            RRTypes.SCORPION,  // tower defence type
+            RRTypes.SCORPION,
+            // tower defence type
             RRTypes.ARROW_TOWER,
-            RRTypes.BALLISTA_TOWER,  // gate defence type
+            RRTypes.BALLISTA_TOWER,
+            // gate defence type
             RRTypes.HOT_SAND,
-            RRTypes.BURNING_OIL,  // battle building type
+            RRTypes.BURNING_OIL,
+            // battle building type
             RRTypes.AMBIENT,
             RRTypes.MAJOR,
             RRTypes.WALL,
             RRTypes.TOWER,
-            RRTypes.GATE,  // unit class
+            RRTypes.GATE,
+            // unit class
             RRTypes.LIGHT,
             RRTypes.HEAVY,
             RRTypes.SKIRMISH,
             RRTypes.MISSILE,
-            RRTypes.SPEARMEN,  // unit category
+            RRTypes.SPEARMEN,
+            // unit category
             RRTypes.INFANTRY,
             RRTypes.CAVALRY,
             RRTypes.SIEGE,
             RRTypes.HANDLER,
             RRTypes.SHIP,
-            RRTypes.NON_COMBATANT,  // hide_type
+            RRTypes.NON_COMBATANT,
+            // hide_type
             RRTypes.HIDE_FOREST,
             RRTypes.HIDE_IMPROVED_FOREST,
             RRTypes.HIDE_LONG_GRASS,
-            RRTypes.HIDE_ANYWHERE,  // formations
+            RRTypes.HIDE_ANYWHERE,
+            // formations
             RRTypes.SQUARE,
             RRTypes.SQUARE_HOLLOW,
             RRTypes.COLUMN,
@@ -288,7 +304,8 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.TESTUDO,
             RRTypes.WEDGE,
             RRTypes.SHIELD_WALL,
-            RRTypes.SCHILTROM,  // special abilities
+            RRTypes.SCHILTROM,
+            // special abilities
             RRTypes.DROP_ENGINES,
             RRTypes.FLAMING_AMMO,
             RRTypes.CHANT,
@@ -299,12 +316,14 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.MOVE_AND_SHOOT,
             RRTypes.CANTABRIAN_CIRCLE,
             RRTypes.STEALTH,
-            RRTypes.FEIGNED_ROUT,  // mount_class
+            RRTypes.FEIGNED_ROUT,
+            // mount_class
             RRTypes.HORSE,
             RRTypes.CAMEL,
             RRTypes.ELEPHANT,
             RRTypes.CHARIOT,
-            RRTypes.SCORPION_CART,  // action status
+            RRTypes.SCORPION_CART,
+            // action status
             RRTypes.IDLING,
             RRTypes.HIDING,
             RRTypes.READY,
@@ -323,23 +342,27 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.DEAD,
             RRTypes.LEAVING_BATTLE,
             RRTypes.ENTERING_BATTLE,
-            RRTypes.LEFT_BATTLE,  // attack direction
+            RRTypes.LEFT_BATTLE,
+            // attack direction
             RRTypes.FRONT,
             RRTypes.FLANK,
-            RRTypes.REAR,  // disaster_type
+            RRTypes.REAR,
+            // disaster_type
             RRTypes.EARTHQUAKE,
             RRTypes.FLOOD,
             RRTypes.HORDE,
             RRTypes.FIRE,
             RRTypes.RIOT,
             RRTypes.STORM,
-            RRTypes.VOLCANO,  // character_action_advice
+            RRTypes.VOLCANO,
+            // character_action_advice
             RRTypes.ATTACK_ENEMY,
             RRTypes.ATTACK_SETTLEMENT,
             RRTypes.MERGE_ARMIES,
             RRTypes.PATROL_REGION,
             RRTypes.MOVE_TO_REGION,
-            RRTypes.DO_NOTHING,  // character_type
+            RRTypes.DO_NOTHING,
+            // character_type
             RRTypes.ALL,
             RRTypes.FAMILY,
             RRTypes.NAMED_CHARACTER,
@@ -348,28 +371,34 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.DIPLOMAT,
             RRTypes.SPY,
             RRTypes.ASSASSIN,
-            RRTypes.MERCHANT,  // tax_level
+            RRTypes.MERCHANT,
+            // tax_level
             RRTypes.TAX_LOW,
             RRTypes.TAX_NORMAL,
             RRTypes.TAX_HIGH,
-            RRTypes.TAX_EXTORTIONATE,  // success_level
+            RRTypes.TAX_EXTORTIONATE,
+            // success_level
             RRTypes.NOT_SUCCESSFUL,
             RRTypes.SLIGHTLY_SUCCESSFUL,
             RRTypes.PARTLY_SUCCESSFUL,
-            RRTypes.HIGHLY_SUCCESSFUL,  // diplomatic_stance
+            RRTypes.HIGHLY_SUCCESSFUL,
+            // diplomatic_stance
             RRTypes.ALLIED,
             RRTypes.SUSPICIOUS,
             RRTypes.NEUTRAL,
             RRTypes.HOSTILE,
-            RRTypes.ATWAR,  // loyalty_to_governor_level
+            RRTypes.ATWAR,
+            // loyalty_to_governor_level
             RRTypes.LOYALTY_REVOLTING,
             RRTypes.LOYALTY_RIOTING,
             RRTypes.LOYALTY_DISILLUSIONED,
             RRTypes.LOYALTY_CONTENT,
-            RRTypes.LOYALTY_HAPPY,  // automanage_type
+            RRTypes.LOYALTY_HAPPY,
+            // automanage_type
             RRTypes.TROOPS,
             RRTypes.BUILDINGS,
-            RRTypes.MECHANICS,  // descr_model_battle
+            RRTypes.MECHANICS,
+            // descr_model_battle
             RRTypes.YES,
             RRTypes.TIRED_C,
             RRTypes.VERYTIRED,
@@ -378,17 +407,27 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.SKINNYATHLETIC,
             RRTypes.ATHLETIC,
             RRTypes.BULKY,
-            RRTypes.OVERWEIGHT,  // ship type
+            RRTypes.OVERWEIGHT,
+            // descr_rebel_factions
+            RRTypes.GLADIATOR_UPRISING,
+            RRTypes.BRIGANDS,
+            RRTypes.PIRATES,
+            RRTypes.PEASANT_REVOLT,
+            RRTypes.GLADIATOR_REVOLT,
+            // ship type
             RRTypes.FLAG,
             RRTypes.TRANSPORT,
             RRTypes.WAR,
             RRTypes.SAIL,
-            RRTypes.OARS,  // ship artillery
+            RRTypes.OARS,
+            // ship artillery
             RRTypes.FLAME,
-            RRTypes.ROCK,  // animal class
+            RRTypes.ROCK,
+            // animal class
             RRTypes.WARDOG,
             RRTypes.PIG,
-            RRTypes.HOUND,  // command params
+            RRTypes.HOUND,
+            // command params
             RRTypes.SUDO,
             RRTypes.LABEL,
             RRTypes.ON,
@@ -473,7 +512,8 @@ class RRParserDefinition : ParserDefinition {
 
         //<editor-fold desc="KEYWORDS">
         @JvmField
-        val KEYWORDS = TokenSet.create( // descr_strat
+        val KEYWORDS = TokenSet.create(
+            // descr_strat
             RRTypes.END,
             RRTypes.SUMMER,
             RRTypes.WINTER,
@@ -545,7 +585,8 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.X,
             RRTypes.Y,
             RRTypes.SCRIPT,
-            RRTypes.ONCE_ONLY,  // export_descr_unit
+            RRTypes.ONCE_ONLY,
+            // export_descr_unit
             RRTypes.DICTIONARY,
             RRTypes.CATEGORY,
             RRTypes.CLASS,
@@ -584,7 +625,8 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.OFFICER,
             RRTypes.ENGINE,
             RRTypes.ANIMAL,
-            RRTypes.IS_FEMALE,  // export_descr_buildings
+            RRTypes.IS_FEMALE,
+            // export_descr_buildings
             RRTypes.TAGS,
             RRTypes.ALIAS,
             RRTypes.REQUIRES,
@@ -655,8 +697,10 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.RESOURCE,
             RRTypes.HIDDEN_RESOURCE,
             RRTypes.BUILDING_PRESENT,
-            RRTypes.BUILDING_PRESENT_MIN_LEVEL,  // descr_region
-            RRTypes.LEGION,  // export_descr_ancillaries
+            RRTypes.BUILDING_PRESENT_MIN_LEVEL,
+            // descr_region
+            RRTypes.LEGION,
+            // export_descr_ancillaries
             RRTypes.ANCILLARY,
             RRTypes.IMAGE,
             RRTypes.UNIQUE,
@@ -673,7 +717,8 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.WHENTOTEST,
             RRTypes.CONDITION,
             RRTypes.ACQUIREANCILLARY,
-            RRTypes.REMOVEANCILLARY,  // export_descr_traits
+            RRTypes.REMOVEANCILLARY,
+            // export_descr_traits
             RRTypes.TRAIT,
             RRTypes.CHARACTERS,
             RRTypes.NOGOINGBACKLEVEL,
@@ -691,12 +736,14 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.AFFECTS,
             RRTypes.TRIGGER,
             RRTypes.CHANCE,
-            RRTypes.LOSE,  // descr_mercenaries
+            RRTypes.LOSE,
+            // descr_mercenaries
             RRTypes.POOL,
             RRTypes.REGIONS,
             RRTypes.REPLENISH,
             RRTypes.MAX,
-            RRTypes.INITIAL,  // descr_unit_variation
+            RRTypes.INITIAL,
+            // descr_unit_variation
             RRTypes.SKIN,
             RRTypes.ETHNICITIES,
             RRTypes.HAIR_STYLES,
@@ -704,7 +751,8 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.BEARD_STYLES,
             RRTypes.AGED_HAIR_COLOR,
             RRTypes.VARIANT,
-            RRTypes.DISTRIBUTION,  // feral_descr_ai_personality
+            RRTypes.DISTRIBUTION,
+            // feral_descr_ai_personality
             RRTypes.BUILDING_PRIORITY,
             RRTypes.POPULATION_GROWTH_BONUS,
             RRTypes.POPULATION_LOYALTY_BONUS,
@@ -748,12 +796,15 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.SUBTERFUGE_RISK_TAKER,
             RRTypes.DIPLOMATIC_PRIORITY,
             RRTypes.AGGRESIVENESS,
-            RRTypes.PERSONALITY,  // descr_faction_groups
-            RRTypes.GROUP,  // feral_descr_portraits_variation
+            RRTypes.PERSONALITY,
+            // descr_faction_groups
+            RRTypes.GROUP,
+            // feral_descr_portraits_variation
             RRTypes.OLD,
             RRTypes.CIVILIAN,
             RRTypes.ROGUE,
-            RRTypes.YOUNG,  // descr_banners
+            RRTypes.YOUNG,
+            // descr_banners
             RRTypes.BANNER,
             RRTypes.MODEL,
             RRTypes.SKELETON,
@@ -761,14 +812,16 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.STANDARD_TEXTURE,
             RRTypes.REBELS_TEXTURE,
             RRTypes.ROUTING_TEXTURE,
-            RRTypes.ALLY_TEXTURE,  // descr_character
+            RRTypes.ALLY_TEXTURE,
+            // descr_character
             RRTypes.STARTING_ACTION_POINTS,
             RRTypes.ACTIONS,
             RRTypes.WAGE_BASE,
             RRTypes.STRAT_CARD,
             RRTypes.STRAT_MODEL,
             RRTypes.BATTLE_MODEL,
-            RRTypes.BATTLE_EQUIP,  // descr_character
+            RRTypes.BATTLE_EQUIP,
+            // descr_character
             RRTypes.TEXTURE_VARIANTS,
             RRTypes.SNOWCOVER,
             RRTypes.SNOWFALL,
@@ -787,18 +840,21 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.LOCALISED_NAME,
             RRTypes.MIN_HEALTH,
             RRTypes.ITEM,
-            RRTypes.PHYSICAL_INFO,  // descr_offmap_models
+            RRTypes.PHYSICAL_INFO,
+            // descr_offmap_models
             RRTypes.NAVY,
             RRTypes.LARGE,
             RRTypes.MEDIUM,
             RRTypes.SMALL,
             RRTypes.WONDER,
-            RRTypes.PORT,  // descr_sm_landmarks
+            RRTypes.PORT,
+            // descr_sm_landmarks
             RRTypes.IMAGE,
             RRTypes.JULII_RTM,
             RRTypes.BRUTII_RTM,
             RRTypes.SCIPII_RTM,
-            RRTypes.MOVIE,  // descr_model_battle
+            RRTypes.MOVIE,
+            // descr_model_battle
             RRTypes.SCALE,
             RRTypes.SKELETON_HORSE,
             RRTypes.SKELETON_ELEPHANT,
@@ -814,12 +870,15 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.NO_VARIATION,
             RRTypes.MODEL_FLEXI,
             RRTypes.MODEL_FLEXI_M,
-            RRTypes.MODEL_FLEXI_C,  // descr_model_strat
-            RRTypes.IGNORE_REGISTRY,  // descr_disasters
+            RRTypes.MODEL_FLEXI_C,
+            // descr_model_strat
+            RRTypes.IGNORE_REGISTRY,
+            // descr_disasters
             RRTypes.DISASTER_LC,
             RRTypes.YEAR,
             RRTypes.POSITION,
-            RRTypes.SIZE,  // descr_mount
+            RRTypes.SIZE,
+            // descr_mount
             RRTypes.RADIUS,
             RRTypes.X_RADIUS,
             RRTypes.HEIGHT,
@@ -851,14 +910,17 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.SCORPION_OFFSET,
             RRTypes.SCORPION_HEIGHT,
             RRTypes.SCORPION_FORWARD_LENGTH,
-            RRTypes.SCORPION_RELOAD_TICKS,  // descr_rebel_factions
+            RRTypes.SCORPION_RELOAD_TICKS,
+            // descr_rebel_factions
             RRTypes.REBEL_TYPE,
             RRTypes.CHANCE_LC,
             RRTypes.DESCRIPTION_LC,
             RRTypes.SCORPION_RELOAD_TICKS,
-            RRTypes.SCORPION_RELOAD_TICKS,  // descr_items
+            RRTypes.SCORPION_RELOAD_TICKS,
+            // descr_items
             RRTypes.MAX_DISTANCE,
-            RRTypes.MODEL_RIGID,  // descr_ship
+            RRTypes.MODEL_RIGID,
+            // descr_ship
             RRTypes.SHIP_TYPE,
             RRTypes.CARRYING_CAPACITY,
             RRTypes.SPEED,
@@ -866,7 +928,8 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.ARTILLERY,
             RRTypes.DURABILITY,
             RRTypes.DEPTH,
-            RRTypes.BEAM,  // descr_projectiles_new
+            RRTypes.BEAM,
+            // descr_projectiles_new
             RRTypes.PROJECTILE,
             RRTypes.FLAMING,
             RRTypes.END_EFFECT,
@@ -891,15 +954,18 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.LENGTH,
             RRTypes.TAIL_TEX0,
             RRTypes.TAIL_TEX1,
-            RRTypes.HEAD_TEX,  // descr_projectiles_new
+            RRTypes.HEAD_TEX,
+            // descr_projectiles_new
             RRTypes.WIDTH,
-            RRTypes.OFFSET,  // descr_win_conditions
+            RRTypes.OFFSET,
+            // descr_win_conditions
             RRTypes.HOLD_REGIONS,
             RRTypes.TAKE_REGIONS,
             RRTypes.OUTLIVE,
             RRTypes.TAKE_ROME,
             RRTypes.IMPERATOR,
-            RRTypes.OUTLIVE_FACTIONS,  // basic scripts stuff
+            RRTypes.OUTLIVE_FACTIONS,
+            // basic scripts stuff
             RRTypes.SCRIPT,
             RRTypes.END_SCRIPT,
             RRTypes.RETURN,
@@ -913,7 +979,8 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.FOR_EACH,
             RRTypes.IN,
             RRTypes.END_FOR,
-            RRTypes.WORLD,  // commands stuff
+            RRTypes.WORLD,
+            // commands stuff
             RRTypes.SUDO,
             RRTypes.CHARACTER_UCF
         )

@@ -671,6 +671,7 @@
       PEASANT_REVOLT='peasant_revolt'
       GLADIATOR_REVOLT='gladiator_revolt'
       BRIGANDS='brigands'
+      GLADIATOR_UPRISING='gladiator_uprising'
       PIRATES='pirates'
 
       // descr_items
@@ -1888,7 +1889,6 @@ settlement_item ::= SETTLEMENT OCB
                       FACTION_CREATOR faction_ref
                       building_item*
                     CCB
-                    {methods=[name]}
 settlement_level ::= VILLAGE|TOWN|LARGE_TOWN|CITY|LARGE_CITY|HUGE_CITY
 settlement_plan ::= DEFAULT_SET|ID
 
@@ -2773,8 +2773,8 @@ faction_win_condition ::= faction_ref
 // ############### descr_rebel_factions end #################################
 descr_rebel_factions ::= DESCR_REBEL_FACTIONS_MARKER
                          rebel_faction*
-rebel_faction ::= REBEL_TYPE rebel_faction_name_def
-                  CATEGORY rebel_category
+rebel_faction ::= REBEL_TYPE (rebel_faction_name_def | (GLADIATOR_UPRISING|BRIGANDS|PIRATES))
+                  CATEGORY (PEASANT_REVOLT|GLADIATOR_REVOLT|BRIGANDS|PIRATES)
                   CHANCE_LC INT
                   DESCRIPTION_LC rebel_faction_descr_def
                   (UNIT unit_ref)+
@@ -2782,7 +2782,6 @@ rebel_faction_name_def ::= safe_id {implements="rr.language.psi.RRNamedElement" 
 rebel_faction_ref ::= safe_id {methods=[setName getReference]}
 rebel_faction_descr_def ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 rebel_faction_descr_ref ::= ID {methods=[setName getReference]}
-rebel_category ::= PEASANT_REVOLT|GLADIATOR_REVOLT|BRIGANDS|PIRATES
 // ############### descr_rebel_factions end #################################
 
 // ############### descr_items start #################################
