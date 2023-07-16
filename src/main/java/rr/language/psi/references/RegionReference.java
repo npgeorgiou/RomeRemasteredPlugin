@@ -8,9 +8,8 @@ import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
-import rr.language.psi.*;
+import rr.language.psi.RRRegionRef;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class RegionReference extends PsiReferenceBase<PsiElement> implements PsiReference {
@@ -21,15 +20,16 @@ public class RegionReference extends PsiReferenceBase<PsiElement> implements Psi
 
     @Override
     public @Nullable PsiElement resolve() {
-        List<RRRegionDef> regions = RRUtil.findAllRegions(myElement.getProject()).stream()
-            .filter(it -> it.getFirstChild().getText().equals(myElement.getText()))
+        var regions = RRUtil.findAllRegions(myElement.getProject()).stream()
+            .map(it -> it.getRegionNameDecl())
+            .filter(it -> it.getText().equals(myElement.getText()))
             .collect(Collectors.toList());
 
         if (regions.isEmpty()) {
             return null;
         }
 
-        return regions.get(0).getFirstChild();
+        return regions.get(0);
     }
 
     @Override

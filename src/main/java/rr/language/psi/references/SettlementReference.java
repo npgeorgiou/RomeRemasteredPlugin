@@ -9,12 +9,8 @@ import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import rr.language.RRUtil;
-import rr.language.psi.RRRegionDef;
-import rr.language.psi.RRRegionRef;
-import rr.language.psi.RRSettlementNameDecl;
 import rr.language.psi.RRSettlementRef;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class SettlementReference extends PsiReferenceBase<PsiElement> implements PsiReference {
@@ -25,15 +21,15 @@ public class SettlementReference extends PsiReferenceBase<PsiElement> implements
 
     @Override
     public @Nullable PsiElement resolve() {
-        List<RRSettlementNameDecl> items = RRUtil.findAllSettlements(myElement.getProject()).stream()
-            .filter(it -> it.getFirstChild().getText().equals(myElement.getText()))
+        var items = RRUtil.findAllSettlements(myElement.getProject()).stream()
+            .filter(it -> it.getText().equals(myElement.getText()))
             .collect(Collectors.toList());
 
         if (items.isEmpty()) {
             return null;
         }
 
-        return items.get(0).getFirstChild();
+        return items.get(0);
     }
 
     @Override

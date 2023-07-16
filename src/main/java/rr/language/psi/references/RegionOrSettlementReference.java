@@ -24,21 +24,21 @@ public class RegionOrSettlementReference extends PsiReferenceBase<PsiElement> im
 
     @Override
     public @Nullable PsiElement resolve() {
-        List<RRRegionNameDecl> factions = RRUtil.findAllRegions(myElement.getProject()).stream()
+        var regions = RRUtil.findAllRegions(myElement.getProject()).stream()
             .map(it -> it.getRegionNameDecl())
             .filter(it -> myElement.getText().equals(it.getText()))
             .collect(Collectors.toList());
 
-        if (!factions.isEmpty()) {
-            return factions.get(0);
+        if (!regions.isEmpty()) {
+            return regions.get(0);
         }
 
-        List<RRSettlementNameDecl> cultures = RRUtil.findAllSettlements(myElement.getProject()).stream()
+        var settlements = RRUtil.findAllSettlements(myElement.getProject()).stream()
             .filter(it -> myElement.getText().equals(it.getText()))
             .collect(Collectors.toList());
 
-        if (!cultures.isEmpty()) {
-            return cultures.get(0);
+        if (!settlements.isEmpty()) {
+            return settlements.get(0);
         }
 
         return null;

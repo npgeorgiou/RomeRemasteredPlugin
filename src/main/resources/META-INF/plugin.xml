@@ -14,20 +14,18 @@
                   implementationClass="rr.language.RRFileType"
                   fieldName="INSTANCE"
                   language="RomeRemastered"
-                  extensions="txt"/>
+                  extensions="txt"
+        />
         <lang.namesValidator language="RomeRemastered" implementationClass="rr.language.refactoring.RRNamesValidator"/>
         <lang.parserDefinition language="RomeRemastered" implementationClass="rr.language.RRParserDefinition"/>
-        <lang.syntaxHighlighterFactory language="RomeRemastered"
-                                       implementationClass="rr.language.colors.RRSyntaxHighlighterFactory"/>
+        <lang.syntaxHighlighterFactory language="RomeRemastered" implementationClass="rr.language.colors.RRSyntaxHighlighterFactory"/>
         <annotator language="RomeRemastered" implementationClass="rr.language.colors.RRHighlightingAnnotator"/>
         <colorSettingsPage implementation="rr.language.colors.RRColorSettingsPage"/>
         <lang.foldingBuilder language="RomeRemastered" implementationClass="rr.language.RRFoldingBuilder"/>
         <lang.commenter language="RomeRemastered" implementationClass="rr.language.RRCommenter"/>
-        <completion.contributor language="RomeRemastered"
-                                implementationClass="rr.language.completion.RRCompletionContributor"/>
+        <completion.contributor language="RomeRemastered" implementationClass="rr.language.completion.RRCompletionContributor"/>
         <lang.findUsagesProvider language="RomeRemastered" implementationClass="rr.language.RRFindUsagesProvider"/>
-        <lang.refactoringSupport language="RomeRemastered"
-                                 implementationClass="rr.language.RRRefactoringSupportProvider"/>
+        <lang.refactoringSupport language="RomeRemastered" implementationClass="rr.language.RRRefactoringSupportProvider"/>
         <codeInsight.lineMarkerProvider language="RomeRemastered" implementationClass="rr.language.RRLineMarkerProvider"/>
         <referencesSearch implementation="rr.language.RRReferencesSearch"/>
         <iconProvider implementation="rr.language.RRIconProvider"/>
@@ -47,6 +45,11 @@
                          displayName="Region checks" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.Region"/>
+
+        <localInspection language="RomeRemastered" shortName="Settlement_checks"
+                         displayName="Settlement checks" groupName="RR"
+                         enabledByDefault="true" level="WARNING"
+                         implementationClass="rr.language.inspections.Settlement"/>
 
         <localInspection language="RomeRemastered" shortName="Traits_checks"
                          displayName="Traits checks" groupName="RR"
@@ -97,7 +100,6 @@
                          displayName="Non existing culture" groupName="RR"
                          enabledByDefault="true" level="WARNING"
                          implementationClass="rr.language.inspections.NonExistingCulture"/>
-
     </extensions>
 
     <actions>
@@ -109,6 +111,7 @@
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
+
         <action
                 id="rr.language.actions.ExpandMacros"
                 class="rr.language.actions.ExpandMacros"
@@ -119,14 +122,7 @@
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <keyboard-shortcut first-keystroke="alt G" keymap="$default"/>
         </action>
-        <action
-                id="rr.language.actions.RemoveFileTypeComments"
-                class="rr.language.actions.RemoveFileTypeComments"
-                text="PLUGIN: Remove File Type Comment"
-                description="Remove special comment at beginning of files (Needed for game to run)"
-        >
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-        </action>
+
         <action
                 id="rr.language.actions.CreateExportBuildingsFile"
                 class="rr.language.actions.CreateExportBuildingsFile"
@@ -135,6 +131,7 @@
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
+
         <action
                 id="rr.language.actions.DeleteNotLoadedFiles"
                 class="rr.language.actions.DeleteNotLoadedFiles"
