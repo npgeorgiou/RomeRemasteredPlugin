@@ -17,6 +17,7 @@ class RRHighlightingAnnotator : Annotator {
         ) {
             color(element, RRSyntaxHighlighter.COORDS_STYLE, holder)
         }
+
         if (element is RRUnitNameDecl ||
             element is RRUnitRef ||
             element is RRAncillaryNameDecl ||
@@ -36,6 +37,7 @@ class RRHighlightingAnnotator : Annotator {
         ) {
             color(element, RRSyntaxHighlighter.ID_STYLE, holder)
         }
+
         if (element is RRTgaFile_) {
             color(element, RRSyntaxHighlighter.FILES_STYLE, holder)
         }

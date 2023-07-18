@@ -551,7 +551,7 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.POPULATION,
             RRTypes.PLAN_SET,
             RRTypes.FACTION_CREATOR,
-            RRTypes.BUILDING,
+            RRTypes.BUILDING_K,
             RRTypes.TYPE,
             RRTypes.CHARACTER,
             RRTypes.SUB_FACTION,
@@ -719,7 +719,7 @@ class RRParserDefinition : ParserDefinition {
             RRTypes.ACQUIREANCILLARY,
             RRTypes.REMOVEANCILLARY,
             // export_descr_traits
-            RRTypes.TRAIT,
+            RRTypes.TRAIT_K,
             RRTypes.CHARACTERS,
             RRTypes.NOGOINGBACKLEVEL,
             RRTypes.ANTITRAITS,

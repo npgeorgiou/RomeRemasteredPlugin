@@ -50,6 +50,7 @@
 
       // text mapping markers
       CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER='regexp:¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER.*'
+      CAMPAIGN_DESCRIPTIONS_MARKER='regexp:;CAMPAIGN_DESCRIPTIONS_MARKER.*'
       EXPORT_BUILDINGS_MARKER='regexp:;EXPORT_BUILDINGS_MARKER.*'
       REBEL_FACTION_DESCR_MARKER='regexp:¬REBEL_FACTION_DESCR_MARKER.*'
       EXPORT_VNVS_MARKER='regexp:¬EXPORT_VNVS_MARKER.*'
@@ -146,7 +147,7 @@
       LARGE_CITY="large_city"
       HUGE_CITY="huge_city"
       DEFAULT_SET="default_set"
-      BUILDING="building"
+      BUILDING_K="building"
       TYPE="type"
       CHARACTER="character"
       SUB_FACTION="sub_faction"
@@ -390,7 +391,7 @@
       REMOVEANCILLARY = "RemoveAncillary"
 
       // export_descr_traits
-      TRAIT = "Trait"
+      TRAIT_K = "Trait"
       CHARACTERS = "Characters"
       NOGOINGBACKLEVEL = "NoGoingBackLevel"
       ANTITRAITS = "AntiTraits"
@@ -1789,6 +1790,7 @@ RRFile ::= descr_strat|
           descr_regions|
           descr_mercenaries|
           descr_unit_variation|
+          campaign_descriptions|
           export_buildings|
           descr_cultures|
           feral_descr_ai_personality|
@@ -1893,7 +1895,7 @@ settlement_item ::= SETTLEMENT OCB
 settlement_level ::= VILLAGE|TOWN|LARGE_TOWN|CITY|LARGE_CITY|HUGE_CITY
 settlement_plan ::= DEFAULT_SET|ID
 
-building_item ::= BUILDING OCB building_info CCB {pin=2}
+building_item ::= BUILDING_K OCB building_info CCB {pin=2}
 private building_info ::= TYPE building_tree_ref building_level_ref  {pin=1 recoverWhile=not_CCB}
 private not_CCB ::= !CCB
 
@@ -2062,7 +2064,7 @@ condition_alias ::= ALIAS ID OCB
                      CCB {pin=1 recoverWhile=aliasRecover}
 private aliasRecover ::= !(condition_alias|building_tree)
 
-building_tree ::= BUILDING building_tree_name_decl OCB
+building_tree ::= BUILDING_K building_tree_name_decl OCB
                         (CLASSIFICATION building_category)?
                         (TAG ID)?
                         (ICON tga_file_)?
@@ -2180,7 +2182,7 @@ private character_attribute_ ::= character_main_attribute|'Finance'|'Conditional
 export_descr_character_traits ::= EXPORT_DESCR_CHARACTER_TRAITS_MARKER
                                   trait_def+
                                   trait_trigger_def+
-trait_def ::= TRAIT trait_name_decl
+trait_def ::= TRAIT_K trait_name_decl
                 CHARACTERS <<list (character_type)>>
                 HIDDEN?
                 (EXCLUDECULTURES <<list ID>>)*
@@ -2191,7 +2193,7 @@ trait_def ::= TRAIT trait_name_decl
               {pin=1 recoverWhile=trait_def_recover}
 trait_name_decl ::= safe_id {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 trait_ref ::= safe_id {methods=[setName getReference]}
-private trait_def_recover ::= !(TRAIT|TRIGGER)
+private trait_def_recover ::= !(TRAIT_K|TRIGGER)
 trait_level ::= LEVEL (trait_descr_def | HIDDEN)
                   DESCRIPTION trait_descr_def
                   EFFECTSDESCRIPTION trait_descr_def
@@ -2268,6 +2270,11 @@ str_ethnicity_ref ::= STRING {methods=[setName getReference]}
 ethnicity_makeup_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 ethnicity_makeup_ref ::= ID {methods=[setName getReference]}
 // ############### descr_unit_variation end #################################
+
+// ############### campaign_descriptions start ###############################
+campaign_descriptions ::= CAMPAIGN_DESCRIPTIONS_MARKER
+                     (OCB ID CCB STRING+)+
+// ############### campaign_descriptions end #################################
 
 // ############### export_buildings start ###############################
 export_buildings ::= EXPORT_BUILDINGS_MARKER
@@ -3076,7 +3083,7 @@ i_battleplayerarmypercentageofmatchingunits_ ::= I_BATTLEPLAYERARMYPERCENTAGEOFM
 i_battleplayerarmynumberofmatchingunits_ ::= I_BATTLEPLAYERARMYNUMBEROFMATCHINGUNITS ID comparison_op INT {pin=1}
 localplayerhasmanualreinforcements_ ::= LOCALPLAYERHASMANUALREINFORCEMENTS {pin=1}
 localplayerhasaireinforcements_ ::= LOCALPLAYERHASAIREINFORCEMENTS {pin=1}
-trait_ ::= trait trait_ref comparison_op INT {pin=1}
+trait_ ::= TRAIT trait_ref comparison_op INT {pin=1}
 hasancillary_ ::= HASANCILLARY ancillary_ref {pin=1}
 fathertrait_ ::= FATHERTRAIT trait_ref comparison_op INT {pin=1}
 factionleadertrait_ ::= FACTIONLEADERTRAIT trait_ref comparison_op INT {pin=1}

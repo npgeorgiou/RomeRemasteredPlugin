@@ -143,6 +143,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 
 // text mapping markers
 "¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER"[^\r\n]*  {yybegin(TEXT_MAPPING); return RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER;}
+"¬CAMPAIGN_DESCRIPTIONS_MARKER"[^\r\n]*        {yybegin(TEXT_MAPPING); return RRTypes.CAMPAIGN_DESCRIPTIONS_MARKER;}
 "¬EXPORT_UNITS_MARKER"[^\r\n]*                 {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_UNITS_MARKER;}
 "¬EXPORT_BUILDINGS_MARKER"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
 "¬REBEL_FACTION_DESCR_MARKER"[^\r\n]*          {yybegin(TEXT_MAPPING); return RRTypes.REBEL_FACTION_DESCR_MARKER;}
@@ -295,7 +296,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "plan_set"                   {return RRTypes.PLAN_SET;}
     "faction_creator"            {return RRTypes.FACTION_CREATOR;}
     "default_set"                {return RRTypes.DEFAULT_SET;}
-    "building"                   {return RRTypes.BUILDING;}
+    "building"                   {return RRTypes.BUILDING_K;}
     "type"                       {return RRTypes.TYPE;}
     "character"                  {return RRTypes.CHARACTER;}
     "sub_faction"                {return RRTypes.SUB_FACTION;}
@@ -460,7 +461,7 @@ true|false       {return RRTypes.BOOLEAN;}
     "alias"                         {return RRTypes.ALIAS;}
     "requires"                      {return RRTypes.REQUIRES;}
     "no_building_tagged"            {return RRTypes.NO_BUILDING_TAGGED;}
-    "building"                      {return RRTypes.BUILDING;}
+    "building"                      {return RRTypes.BUILDING_K;}
     "queued"                        {return RRTypes.QUEUED;}
     "display_string"                {return RRTypes.DISPLAY_STRING;}
     "tag"                           {return RRTypes.TAG;}
@@ -582,7 +583,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <EXPORT_DESCR_CHARACTER_TRAITS>
 {
-    "Trait"               {return RRTypes.TRAIT;}
+    "Trait"               {return RRTypes.TRAIT_K;}
     "Characters"          {return RRTypes.CHARACTERS;}
     "Hidden"              {return RRTypes.HIDDEN;}
     "NoGoingBackLevel"    {return RRTypes.NOGOINGBACKLEVEL;}

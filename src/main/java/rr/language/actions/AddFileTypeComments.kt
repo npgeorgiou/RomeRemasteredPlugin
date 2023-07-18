@@ -22,6 +22,7 @@ class AddFileTypeComments : AnAction() {
         val project = event.project!!
         val filesAndMarker = HashMap<RRFile?, String>()
         filesAndMarker[findRRFile("text/export_units.txt", project)] = "¬EXPORT_UNITS_MARKER DO NOT REMOVE"
+        filesAndMarker[findRRFile("text/campaign_descriptions.txt", project)] = "¬CAMPAIGN_DESCRIPTIONS_MARKER DO NOT REMOVE"
         filesAndMarker[findRRFile("text/export_buildings.txt", project)] = "¬EXPORT_BUILDINGS_MARKER DO NOT REMOVE"
         filesAndMarker[findRRFile("text/names.txt", project)] = "¬NAMES_MARKER DO NOT REMOVE"
         filesAndMarker[findRRFile("text/rebel_faction_descr.txt", project)] = "¬REBEL_FACTION_DESCR_MARKER DO NOT REMOVE"

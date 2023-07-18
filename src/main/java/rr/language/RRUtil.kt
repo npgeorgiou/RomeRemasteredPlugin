@@ -85,7 +85,7 @@ object RRUtil {
 
     @JvmStatic
     fun findAllAiPersonalities(project: Project): List<RRAiPersonality> {
-        val file = findRRFile("descr_regions.txt", project) ?: return emptyList()
+        val file = findRRFile("feral_descr_ai_personality.txt", project) ?: return emptyList()
 
         return file.findChildByClass(RRFeralDescrAiPersonality::class.java)!!.aiPersonalityList
     }
