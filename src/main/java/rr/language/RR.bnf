@@ -54,6 +54,7 @@
       REBEL_FACTION_DESCR_MARKER='regexp:¬REBEL_FACTION_DESCR_MARKER.*'
       EXPORT_VNVS_MARKER='regexp:¬EXPORT_VNVS_MARKER.*'
       EXPORT_ANCILLARIES_MARKER='regexp:¬EXPORT_ANCILLARIES_MARKER.*'
+      EXPORT_UNITS_MARKER='regexp:¬EXPORT_UNITS_MARKER.*'
       TEXT_MAPPING_MARKER='regexp:¬(names|rebel_faction_descr|landmarks).txt.*'
 
       // Keywords that can also be strings.
@@ -409,7 +410,6 @@
       REPLENISH = "replenish"
       MAX = "max"
       INITIAL = "initial"
-
 
       // descr_regions
       LEGION = "legion"
@@ -1816,6 +1816,7 @@ RRFile ::= descr_strat|
           descr_beliefs|
           text_mapping_format|
           export_ancillaries|
+          export_units|
           campaign_regions_and_settlement_names|
           rebel_faction_descr|
           export_vnvs|
@@ -1948,7 +1949,7 @@ keywords_that_may_be_in_ids ::= agent_type|AND|SHIP|IDLE|HIDDEN|MISSILE|WARDOG|P
 export_descr_unit ::= EXPORT_DESCR_UNIT_MARKER
                       unit_item_+
 unit_item_ ::= TYPE unit_name_decl
-               DICTIONARY ID
+               DICTIONARY unit_descr_def
                CATEGORY unit_category
                CLASS unit_class
                VOICE_TYPE ID culture_ref?
@@ -1967,10 +1968,13 @@ unit_item_ ::= TYPE unit_name_decl
                (REBALANCE_STATBLOCK rebalance_block)?
                {pin=2}
 
-unit_name_decl ::= nameWithNumber_ {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+unit_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 unit_ref ::= nameWithNumber_ {methods=[setName getReference]}
 str_unit_ref ::= STRING {methods=[setName getReference]}
 faction_or_culture_ref ::= ID {methods=[setName getReference]}
+unit_descr_def ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
+unit_descr_ref ::= ID {methods=[setName getReference]}
+
 
 private soldier_ ::= SOLDIER model_ref COMMA INT COMMA INT COMMA number
 private soldiers_ ::= SOLDIERS INT COMMA INT COMMA number OCB
@@ -2065,8 +2069,9 @@ building_tree ::= BUILDING building_tree_name_decl OCB
                         LEVELS building_level_ref+ OCB
                           building_level+
                         CCB
-                        (PLUGINS OCB CCB)?
+                        plugin?
                       CCB {pin=1}
+plugin ::= (PLUGINS OCB CCB)
 building_category ::= CORE|DEFENCE|MILITARY|TRADE|WATER|CULTURE|RELIGIOUS|
 building_tree_name_decl ::= ID {implements="rr.language.psi.RRNamedElement" methods=[setName getName getNameIdentifier]}
 building_tree_ref ::= ID {methods=[setName getReference]}
@@ -2209,7 +2214,7 @@ private trait_trigger_def_recover ::= !TRIGGER
 // ############### descr_mercenaries start ###############################
 descr_mercenaries ::= DESCR_MERCENARIES_MARKER
                       mercenary_pool+
-mercenary_pool ::= POOL name_
+mercenary_pool ::= POOL ID
                     mercenary_pool_regions
                     mercenary_pool_unit+
 mercenary_pool_regions ::= REGIONS (region_ref COMMA?)+
@@ -2844,6 +2849,12 @@ export_ancillaries ::= EXPORT_ANCILLARIES_MARKER
                        (export_ancillaries_item)+
 export_ancillaries_item ::= OCB ancillary_descr_ref CCB STRING+ {pin=1 recoverWhile=not_OCB}
 // ############### export_ancillaries end #################################
+
+// ############### export_units start ###############################
+export_units ::= EXPORT_UNITS_MARKER
+                       (export_units_item)+
+export_units_item ::= OCB unit_descr_ref CCB STRING+ {pin=1 recoverWhile=not_OCB}
+// ############### export_units end #################################
 
 // ############### *_campaign_regions_and_settlement_names start ###############################
 campaign_regions_and_settlement_names ::= CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER

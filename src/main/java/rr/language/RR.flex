@@ -4,9 +4,37 @@ import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import rr.language.psi.RRTypes;
 import com.intellij.psi.TokenType;
+import java.util.Stack;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 %%
+%{
+private Stack<Integer> stack = new Stack<Integer>();
 
+private void write (String str) throws IOException {
+    BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\nikol\\Desktop\\debug.foo", true));
+    writer.append(str +  "\n");
+    writer.close();
+}
+
+public void yySaveStateAndBegin(int newState) throws IOException {
+  var current = yystate();
+  write("-> save:" + current + ", jump to:" + newState);
+  stack.push(current);
+  write(" #-> stack: " + stack.toString());
+  yybegin(newState);
+}
+
+public void yybeginPreviousState() throws IOException {
+  var current = yystate();
+  var prev = stack.pop();
+  write("<- going back to prev:" + prev + " from " + current);
+  write(" #<- stack: " + stack.toString());
+  yybegin(prev);
+}
+%}
 %class RRLexer
 %implements FlexLexer
 %unicode
@@ -18,8 +46,8 @@ import com.intellij.psi.TokenType;
 EOL  = [\r\n]
 LINE_WS = [ \t]
 
+WS     = ({EOL}|{LINE_WS})+
 EOL_WS = {EOL}+{LINE_WS}+
-WS      = ({EOL}|{LINE_WS})+
 
 COMMENT = (";"|"¬"|"//")[^\r\n]*
 
@@ -46,12 +74,12 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 %xstate TEXT_MAPPING
 %xstate TEXT_MAPPING_NO_KEYWORDS
 
-
 %state DESCR_STRAT
 %state EXPORT_DESCR_BUILDINGS
 %xstate EXPORT_DESCR_BUILDINGS_NO_KEYWORDS
 %state EXPORT_DESCR_UNIT
 %state DESCR_MERCENARIES
+%xstate ID_UNTIL_NEWLINE
 %state EXPORT_DESCR_ANCILLARIES
 %state EXPORT_DESCR_CHARACTER_TRAITS
 %state DESCR_CHARACTER
@@ -76,7 +104,6 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 %state DESCR_WIN_CONDITIONS
 %state TEXT_MAPPING
 %xstate ENUMS
-
 %state SCRIPTS_EVENTS_CONDITIONS
 
 %%
@@ -116,6 +143,7 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 
 // text mapping markers
 "¬CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER"[^\r\n]*  {yybegin(TEXT_MAPPING); return RRTypes.CAMPAIGN_REGIONS_AND_SETTLEMENT_NAMES_MARKER;}
+"¬EXPORT_UNITS_MARKER"[^\r\n]*                 {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_UNITS_MARKER;}
 "¬EXPORT_BUILDINGS_MARKER"[^\r\n]*             {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_BUILDINGS_MARKER;}
 "¬REBEL_FACTION_DESCR_MARKER"[^\r\n]*          {yybegin(TEXT_MAPPING); return RRTypes.REBEL_FACTION_DESCR_MARKER;}
 "¬EXPORT_VNVS_MARKER"[^\r\n]*                  {yybegin(TEXT_MAPPING); return RRTypes.EXPORT_VNVS_MARKER;}
@@ -124,7 +152,8 @@ ID = ([:jletterdigit:])+ (\+|\'|\-|\#|\&|\!|\?|[:jletterdigit:])* ([:jletterdigi
 "¬NAMES_MARKER"[^\r\n]*                        {yybegin(TEXT_MAPPING); return RRTypes.TEXT_MAPPING_MARKER;}
 
 // Special things
-<SCRIPTS_EVENTS_CONDITIONS>{LOCAL}          {return RRTypes.LOCAL;}
+<SCRIPTS_EVENTS_CONDITIONS>
+{LOCAL}                   {return RRTypes.LOCAL;}
 {TGA_FILE}|\"{TGA_FILE}\" {return RRTypes.TGA_FILE;}
 {TXT_FILE}|\"{TXT_FILE}\" {return RRTypes.TXT_FILE;}
 {CAS_FILE}|\"{CAS_FILE}\" {return RRTypes.CAS_FILE;}
@@ -223,10 +252,8 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <YYINITIAL>
 {
-    "script"                    {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.SCRIPT;}
-
+    "script"             {yybegin(SCRIPTS_EVENTS_CONDITIONS); return RRTypes.SCRIPT;}
     "none"               {return RRTypes.NONE;}
-
     {ID}                 {return RRTypes.ID;}
 
 }
@@ -316,7 +343,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <EXPORT_DESCR_UNIT>
 {
-    "type"                          {return RRTypes.TYPE;}
+    "type"                          {yySaveStateAndBegin(ID_UNTIL_NEWLINE); return RRTypes.TYPE;}
     "dictionary"                    {return RRTypes.DICTIONARY;}
     "category"                      {return RRTypes.CATEGORY;}
     "class"                         {return RRTypes.CLASS;}
@@ -585,7 +612,7 @@ true|false       {return RRTypes.BOOLEAN;}
 
 <DESCR_MERCENARIES>
 {
-    "pool"             {return RRTypes.POOL;}
+    "pool"             {yySaveStateAndBegin(ID_UNTIL_NEWLINE); return RRTypes.POOL;}
     "-"                {return RRTypes.DASH;}
     "regions"          {return RRTypes.REGIONS;}
     "unit"             {return RRTypes.UNIT;}
@@ -595,6 +622,13 @@ true|false       {return RRTypes.BOOLEAN;}
     "max"              {return RRTypes.MAX;}
     "initial"          {return RRTypes.INITIAL;}
     {ID}               {return RRTypes.ID;}
+}
+
+<ID_UNTIL_NEWLINE>
+{
+    {LINE_WS}          {return TokenType.WHITE_SPACE;}
+    {EOL}              {yybeginPreviousState();}
+    \S.*               {return RRTypes.ID;}  // Any non-white space char, then anything
 }
 
 <DESCR_UNIT_VARIATION>
@@ -1022,17 +1056,6 @@ true|false       {return RRTypes.BOOLEAN;}
     {COMMENT}    {return RRTypes.COMMENT;}
     {ID}         {return RRTypes.ID;}
 }
-
-//<SCRIPT>
-//{
-//
-//    {ID}                                          {return RRTypes.ID;}
-//}
-//
-//<CONDITIONS>
-//{
-//    {ID}                                              {return RRTypes.ID;}
-//}
 
 <SCRIPTS_EVENTS_CONDITIONS>
 {

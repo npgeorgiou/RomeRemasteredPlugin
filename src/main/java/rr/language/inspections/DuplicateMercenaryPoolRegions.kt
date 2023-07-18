@@ -10,12 +10,14 @@ class DuplicateMercenaryPoolRegions : Inspector() {
     override fun buildRRVisitor(holder: ProblemsHolder, session: LocalInspectionToolSession): RRVisitor {
         return object : RRVisitor() {
             override fun visitMercenaryPoolRegions(element: RRMercenaryPoolRegions) {
-                val seenOnce: MutableCollection<String> = HashSet()
+                val seenOnce = HashSet<String>()
+
                 for (region in element.regionRefList) {
                     if (!seenOnce.add(region.text)) {
                         holder.registerProblem(region, "Duplicate region", ProblemHighlightType.LIKE_UNUSED_SYMBOL)
                     }
                 }
+
             }
         }
     }

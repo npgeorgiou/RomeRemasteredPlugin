@@ -60,8 +60,7 @@ class ExpandMacros : AnAction() {
                             " " + argsIterator.next().text
                         )
                     }
-                    val createdMacroDef =
-                        RRElementFactory.createScript(project, expandedString).statementList[0].macroDef_
+                    val createdMacroDef = RRElementFactory.createScript(project, expandedString).statementList[0].macroDef_
                     for (s in createdMacroDef!!.statementList) {
                         expandMacrosIn(s, macroDefs, project)
                     }

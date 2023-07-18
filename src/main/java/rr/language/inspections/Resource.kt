@@ -23,13 +23,8 @@ class Resource : Inspector() {
             }
 
             override fun visitResourceRef(element: RRResourceRef) {
-                val items = findAllResourcesAsStrings(false, element.project)
-                if (!items.contains(element.text)) {
-                    holder.registerProblem(
-                        element,
-                        "Non existing resource",
-                        ProblemHighlightType.ERROR
-                    )
+                if (element.reference.resolve() == null) {
+                    holder.registerProblem(element, "Non existing resource", ProblemHighlightType.ERROR)
                 }
             }
         }

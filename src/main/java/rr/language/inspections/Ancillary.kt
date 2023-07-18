@@ -37,16 +37,7 @@ class Ancillary : Inspector() {
             }
 
             override fun visitAncillaryDescrRef(element: RRAncillaryDescrRef) {
-                val all: MutableCollection<String> = findAllAncillaryDescriptions(element.project).stream()
-                    .map { it: RRAncillaryDescrDef -> it.text }
-                    .collect(Collectors.toList())
-                val names = findAllAncillaries(element.project).stream()
-                    .map { it: RRAncillaryDef -> it.ancillaryNameDecl }
-                    .filter { it: RRAncillaryNameDecl? -> it!!.text == element.text }
-                    .map { it: RRAncillaryNameDecl? -> it!!.text }
-                    .collect(Collectors.toList())
-                all.addAll(names)
-                if (!all.contains(element.text)) {
+                if (element.reference.resolve() == null) {
                     holder.registerProblem(
                         element,
                         "Non existing ancillary description",
@@ -56,13 +47,7 @@ class Ancillary : Inspector() {
             }
 
             override fun visitAncillaryRef(element: RRAncillaryRef) {
-                val all: Collection<String> = findAllAncillaries(element.project).stream()
-                    .map { it: RRAncillaryDef ->
-                        it.ancillaryNameDecl!!
-                            .text
-                    }
-                    .collect(Collectors.toList())
-                if (!all.contains(element.text)) {
+                if (element.reference.resolve() == null) {
                     holder.registerProblem(element, "Non existing ancillary", ProblemHighlightType.ERROR)
                 }
             }

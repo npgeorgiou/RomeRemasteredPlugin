@@ -65,32 +65,22 @@ class CreateExportBuildingsFile : AnAction() {
         lines.add(commentChar + "building levels")
         lines.add("")
 
-        val cultures = findAllCulturesAsStrings(project)
         for (buildingTree in buildingTrees) {
             for (buildingLevel in buildingTree.buildingLevelList) {
                 val levelName = buildingLevel.buildingLevelNameDecl.text
+
                 lines.add(commentChar + "" + levelName)
-                lines.add("{$levelName}  TODO: Write me")
-                lines.add("{" + levelName + "_desc}  WARNING! This baseline description should never appear on screen!")
-                lines.add("{" + levelName + "_desc_short}  WARNING! This baseline short description should never appear on screen!")
+                lines.add("{$levelName}  WARNING! This should never appear on screen!")
+                lines.add("{" + levelName + "_desc}  WARNING! This should never appear on screen!")
+                lines.add("{" + levelName + "_desc_short}  WARNING! This should never appear on screen!")
                 lines.add("")
 
                 val allowedFactionsAndCultures = buildingLevel.requirementList[0]
-                    .buildingConditionList.stream()
-                    .filter { it: RRBuildingCondition -> it.factionsC != null }
-                    .map { it: RRBuildingCondition -> it.factionsC }
-                    .flatMap { it: RRFactionsC? -> it!!.factionOrCultureRefList.stream() }
-                    .map { it: RRFactionOrCultureRef -> it.text }
-                    .collect(Collectors.toList())
-                val excludedCultures = cultures.stream()
-                    .filter { it: String -> !allowedFactionsAndCultures.contains(it) }
-                    .collect(Collectors.toList())
-
-                for (excludedCulture in excludedCultures) {
-                    lines.add("{" + levelName + "_" + excludedCulture + "_desc}  WARNING! This text should never appear on screen!")
-                    lines.add("{" + levelName + "_" + excludedCulture + "_desc_short}  WARNING! This text should never appear on screen!")
-                    lines.add("")
-                }
+                    .buildingConditionList
+                    .filter { it.factionsC != null }
+                    .map { it.factionsC }
+                    .flatMap { it!!.factionOrCultureRefList }
+                    .map { it.text }
 
                 for (allowedFactionOrCulture in allowedFactionsAndCultures) {
                     lines.add("{" + levelName + "_" + allowedFactionOrCulture + "}  TODO: Write me")

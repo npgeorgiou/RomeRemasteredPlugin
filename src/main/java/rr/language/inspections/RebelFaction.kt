@@ -42,8 +42,7 @@ class RebelFaction : Inspector() {
             }
 
             override fun visitRebelFactionRef(element: RRRebelFactionRef) {
-                val items = findAllRebelFactionsAsStrings(element.project)
-                if (!items.contains(element.text)) {
+                if (element.reference.resolve() == null) {
                     holder.registerProblem(
                         element,
                         "Non existing rebel faction",
@@ -53,11 +52,7 @@ class RebelFaction : Inspector() {
             }
 
             override fun visitRebelFactionDescrRef(element: RRRebelFactionDescrRef) {
-                val rebelDescriptionIds = findAllRebelFactions(element.project).stream()
-                    .map { it: RRRebelFaction -> it.rebelFactionDescrDef.text }
-                    .collect(Collectors.toList())
-
-                if (!rebelDescriptionIds.contains(element.id.text)) {
+                if (element.reference.resolve() == null) {
                     holder.registerProblem(
                         element.id,
                         "Not used in descr_rebel_factions.txt",

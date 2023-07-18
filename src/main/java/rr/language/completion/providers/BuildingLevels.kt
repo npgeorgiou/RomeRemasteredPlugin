@@ -18,17 +18,17 @@ class BuildingLevels(private var restrict: Boolean) : RRCompletionProvider() {
         val typed = parameters.position
         val project = parameters.originalFile.project
         var filter = { _: RRBuildingTree? -> true }
+
         if (restrict) {
             val buildingTree = typed.parent.prevSibling.prevSibling.text
-            filter = { it: RRBuildingTree? ->
-                it?.buildingTreeNameDecl!!.text == buildingTree
-            }
+            filter = { it?.buildingTreeNameDecl!!.text == buildingTree }
         }
-        val levels: Collection<String> = findAllBuildingTrees(project).stream()
+
+        val levels = findAllBuildingTrees(project)
             .filter(filter)
-            .flatMap { it.buildingLevelList.stream() }
+            .flatMap { it.buildingLevelList }
             .map { it.firstChild.text }
-            .collect(Collectors.toList())
+
         for (level in levels) {
             resultSet.addElement(LookupElementBuilder.create(level))
         }

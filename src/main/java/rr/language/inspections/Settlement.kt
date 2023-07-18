@@ -32,8 +32,7 @@ class Settlement : Inspector() {
             }
 
             override fun visitSettlementRef(element: RRSettlementRef) {
-                val all = findAllSettlementsAsStrings(element.project)
-                if (!all.contains(element.text)) {
+                if (element.reference.resolve() == null) {
                     holder.registerProblem(element, "Non existing settlement", ProblemHighlightType.ERROR)
                 }
             }

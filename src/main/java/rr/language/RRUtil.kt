@@ -335,7 +335,7 @@ object RRUtil {
 
     @JvmStatic
     fun findAllBuildingTreesAsStrings(project: Project): List<String> {
-        return findAllBuildingTrees(project).map { it.firstChild.nextSibling.nextSibling.text }
+        return findAllBuildingTrees(project).map { it.buildingTreeNameDecl!!.text }
     }
 
     @JvmStatic
@@ -343,15 +343,26 @@ object RRUtil {
         return findAllBuildingTrees(project).flatMap { it.buildingLevelList }
     }
 
+    fun findAllBuildingTreesUiNames(project: Project): List<String> {
+        val file = findRRFile("export_buildings.txt", project) ?: return emptyList()
+
+        return file.findChildByClass(RRExportBuildings::class.java)!!
+            .buriedBuildingTreeOrLevelRefList
+            .map { it.id.text }
+    }
+
     @JvmStatic
     fun findAllBuildingLevelsAsStrings(project: Project): List<String> {
-        return findAllBuildingLevels(project).map { it.firstChild.text }
+        return findAllBuildingLevels(project).map { it.buildingLevelNameDecl.text }
     }
 
     @JvmStatic
     fun findAllAncillaries(project: Project): List<RRAncillaryDef> {
         val file = findRRFile("export_descr_ancillaries.txt", project) ?: return emptyList()
-        return file.findChildByClass(RRExportDescrAncillaries::class.java)!!.ancillaryDefList
+
+        return getFromCacheOr(file, {
+            file.findChildByClass(RRExportDescrAncillaries::class.java)!!.ancillaryDefList
+        })
     }
 
     @JvmStatic
@@ -364,7 +375,22 @@ object RRUtil {
         return findAllAncillaries(project).flatMap { it.ancillaryDescrDefList }
     }
 
-    private fun findAllTraits(project: Project): List<RRTraitDef> {
+    @JvmStatic
+    fun findAllAncillaryDescriptionsAsStrings(project: Project): List<String> {
+        val ancillaries = findAllAncillaries(project)
+        val descriptionDefs = ancillaries.flatMap { it.ancillaryDescrDefList }.map { it.text } +
+                ancillaries.map { it.ancillaryNameDecl!!.text }
+
+        return descriptionDefs
+    }
+
+    @JvmStatic
+    fun findAllUnitDescriptions(project: Project): List<RRUnitDescrDef> {
+        return findAllUnits(project).map { it.unitDescrDef!! }
+    }
+
+    @JvmStatic
+    fun findAllTraits(project: Project): List<RRTraitDef> {
         val file = findRRFile("export_descr_character_traits.txt", project) ?: return emptyList()
 
         return getFromCacheOr(file, {
@@ -380,32 +406,14 @@ object RRUtil {
 
     @JvmStatic
     fun findAllTraitDescriptions(project: Project): List<RRTraitDescrDef> {
-        val allDescriptions = ArrayList<RRTraitDescrDef>()
-        for (trait in findAllTraits(project)) {
-            for (level in trait.traitLevelList) {
-                allDescriptions.addAll(level.traitDescrDefList)
-            }
-        }
-        return allDescriptions.stream().filter { it: RRTraitDescrDef? -> it != null }.collect(Collectors.toList())
-    }
-
-    fun findAllRebelFactionDescriptions(project: Project): List<RRRebelFactionDescrRef?> {
-        val file = findRRFile("rebel_faction_descr.txt", project)
-        return Optional.ofNullable(file)
-            .map { it: RRFile ->
-                it.findChildByClass(
-                    RRRebelFactionDescr::class.java
-                )
-            }
-            .map { it: RRRebelFactionDescr? -> it!!.rebelFactionDescrMappingList }
-            .orElse(ArrayList()).stream()
-            .map { it: RRRebelFactionDescrMapping -> it.rebelFactionDescrRef }
-            .collect(Collectors.toList())
+        return findAllTraits(project)
+            .flatMap { it.traitLevelList }
+            .flatMap { it.traitDescrDefList }
     }
 
     @JvmStatic
-    fun removePostfixesFromExportBuildingsId(id: String?, project: Project): String {
-        var name = removeLastOccurrence(id!!, "_name")
+    fun removePostfixesFromExportBuildingsId(id: String, project: Project): String {
+        var name = removeLastOccurrence(id, "_name")
         name = removeLastOccurrence(name, "_desc_short")
         name = removeLastOccurrence(name, "_desc")
 
@@ -414,6 +422,12 @@ object RRUtil {
             name = removeLastOccurrence(name, "_$factionOrCultureName")
         }
 
+        return name
+    }
+
+    fun removePostfixesFromExportUnitsId(id: String): String {
+        var name = removeLastOccurrence(id, "_descr_short")
+        name = removeLastOccurrence(name, "_descr")
         return name
     }
 

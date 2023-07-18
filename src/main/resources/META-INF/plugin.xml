@@ -69,7 +69,7 @@
         <localInspection language="RomeRemastered" shortName="Non_existing_unit" displayName="Non existing unit"
                          groupName="RR"
                          enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.NonExistingUnit"/>
+                         implementationClass="rr.language.inspections.Unit"/>
 
         <localInspection language="RomeRemastered" shortName="Non_existing_building_tree"
                          displayName="Non existing building tree" groupName="RR"
@@ -79,7 +79,7 @@
         <localInspection language="RomeRemastered" shortName="Non_existing_building_level"
                          displayName="Non existing building level" groupName="RR"
                          enabledByDefault="true" level="WARNING"
-                         implementationClass="rr.language.inspections.NonExistingBuildingLevel"/>
+                         implementationClass="rr.language.inspections.BuildingLevel"/>
 
         <localInspection language="RomeRemastered" shortName="Non_existing_ethnicity_makeup"
                          displayName="Non existing ethnicity makeup" groupName="RR"
@@ -106,7 +106,7 @@
         <action
                 id="rr.language.actions.AddFileTypeComments"
                 class="rr.language.actions.AddFileTypeComments"
-                text="PLUGIN: Add File Type Comment"
+                text="PLUGIN: Add File Type Marker"
                 description="Add special comment at beginning of files (Needed for plugin)"
         >
             <add-to-group group-id="ToolsMenu" anchor="first"/>

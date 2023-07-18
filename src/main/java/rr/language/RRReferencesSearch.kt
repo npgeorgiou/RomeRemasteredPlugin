@@ -7,6 +7,7 @@ import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.util.Processor
 import rr.language.psi.RRBuildingLevelNameDecl
 import rr.language.psi.RRBuildingTreeNameDecl
+import rr.language.psi.RRUnitDescrDef
 
 class RRReferencesSearch : QueryExecutorBase<PsiReference?, ReferencesSearch.SearchParameters>(true) {
     override fun processQuery(
@@ -14,10 +15,14 @@ class RRReferencesSearch : QueryExecutorBase<PsiReference?, ReferencesSearch.Sea
         consumer: Processor<in PsiReference?>
     ) {
         val element = queryParameters.elementToSearch
-        if (element is RRBuildingTreeNameDecl || element is RRBuildingLevelNameDecl) {
+
+        if (element is RRBuildingTreeNameDecl) {
+            extendSearchTo("${element.text}_name", element, queryParameters)
+        }
+
+        if (element is RRBuildingLevelNameDecl) {
             extendSearchTo("${element.text}_desc", element, queryParameters)
             extendSearchTo("${element.text}_desc_short", element, queryParameters)
-            extendSearchTo("${element.text}_name", element, queryParameters)
 
             val factionsAndCulturesNames = RRUtil.findAllFactionsAsStrings(element.project) +
                     RRUtil.findAllCulturesAsStrings(element.project)
@@ -27,6 +32,11 @@ class RRReferencesSearch : QueryExecutorBase<PsiReference?, ReferencesSearch.Sea
                 extendSearchTo("${element.text}_${factionOrCultureName}_desc", element, queryParameters)
                 extendSearchTo("${element.text}_${factionOrCultureName}_desc_short", element, queryParameters)
             }
+        }
+
+        if (element is RRUnitDescrDef) {
+            extendSearchTo("${element.text}_descr", element, queryParameters)
+            extendSearchTo("${element.text}_descr_short", element, queryParameters)
         }
     }
 
